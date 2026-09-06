@@ -25,7 +25,7 @@ import { assertLegacyPhaseBDisabled, scanSensitive, summarize, validateDiscovery
 const SEED = '0123456789abcdef'.repeat(4)
 
 test('R0 hard-disables the legacy 0.2.4 controller before it can create a run', () => {
-  assert.throws(() => assertLegacyPhaseBDisabled(), /LEGACY_ROUTE_DISABLED:0\.2\.4:BLOCKED_BY_R0_UNTIL_R4/)
+  assert.throws(() => assertLegacyPhaseBDisabled(), /LEGACY_ROUTE_DISABLED:0\.2\.4:LEGACY_ROUTE_PERMANENTLY_DISABLED/)
 })
 
 function sampleUrls(count = 20) {
@@ -298,7 +298,7 @@ test('R0 popup has no inputs and cannot start or stop the frozen route', async (
   assert.doesNotMatch(html, /sampleUrls|sessionToken|controllerUrl|targetSampleCount|每行一个/)
   assert.doesNotMatch(script, /sendMessage|storage|phase-b\.start|phase-b\.stop/)
   assert.match(html, /0\.2\.3 作者证明失败/)
-  assert.match(html, /LEGACY_ROUTE_DISABLED:0\.2\.4:BLOCKED_BY_R0_UNTIL_R4/)
+  assert.match(html, /LEGACY_ROUTE_DISABLED:0\.2\.4:LEGACY_ROUTE_PERMANENTLY_DISABLED/)
   assert.match(html, /id="start" disabled/)
   assert.match(html, /id="stop" class="danger" disabled/)
   const background = await readFile(new URL('../extension/background.js', import.meta.url), 'utf8')
@@ -307,7 +307,7 @@ test('R0 popup has no inputs and cannot start or stop the frozen route', async (
   assert.match(background, /Input\.dispatchKeyEvent/)
   assert.match(background, /key: 'Enter'/)
   assert.doesNotMatch(background, /Input\.dispatchMouseEvent/)
-  assert.match(background, /LEGACY_ROUTE_DISABLED:0\.2\.4:BLOCKED_BY_R0_UNTIL_R4/)
+  assert.match(background, /LEGACY_ROUTE_DISABLED:0\.2\.4:LEGACY_ROUTE_PERMANENTLY_DISABLED/)
 })
 
 test('summary refuses benchmark claims and detects verified-empty conflicts', async () => {

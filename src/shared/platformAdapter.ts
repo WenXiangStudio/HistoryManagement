@@ -61,6 +61,7 @@ export const routeTraceStatusSchema = z.enum([
   'cursor-loop',
   'duplicate-native-id',
   'pagination-error',
+  'target-id-mismatch',
   'author-proof-mismatch',
   'dom-mismatch',
   'stopped'
@@ -123,6 +124,21 @@ export const workAuthorProofSchema = z.object({
       code: 'custom',
       path: ['requestTargetCreatorId'],
       message: 'creator-work-list proofs require an independently observed request target'
+    })
+  }
+  const expectedRoute = {
+    'DY-WORKS-NETWORK': { sourceKind: 'network-response', endpointKind: 'creator-work-list' },
+    'DY-WORKS-EMBEDDED': { sourceKind: 'embedded-json', endpointKind: 'creator-work-list' },
+    'DY-WORKS-INPAGE': { sourceKind: 'page-context-fetch', endpointKind: 'creator-work-list' },
+    'DY-DETAIL-NETWORK': { sourceKind: 'network-response', endpointKind: 'work-detail' },
+    'DY-DETAIL-EMBEDDED': { sourceKind: 'embedded-json', endpointKind: 'work-detail' },
+    'DY-DETAIL-INPAGE': { sourceKind: 'page-context-fetch', endpointKind: 'work-detail' }
+  }[proof.routeId]
+  if (expectedRoute && (expectedRoute.sourceKind !== proof.authorProofSource || expectedRoute.endpointKind !== proof.endpointKind)) {
+    context.addIssue({
+      code: 'custom',
+      path: ['routeId'],
+      message: 'author proof route, source kind, and endpoint kind must agree'
     })
   }
   const successfulTrace = proof.routeTrace.find((entry) => entry.routeId === proof.routeId && entry.status === 'success')
@@ -282,6 +298,135 @@ export const douyinWorkApiProofSchema = z.object({
   }
 })
 
+const workAuthorBindingSchema = z.object({
+  workId: opaquePlatformIdSchema,
+  authorId: opaquePlatformIdSchema
+}).strict()
+
+const structuredWorkProofShape = {
+  platform: z.literal('douyin'),
+  adapterName: platformAdapterNameSchema,
+  adapterVersion: platformAdapterVersionSchema,
+  schemaVersion: z.literal(2),
+  sourceKind: z.enum(['network-response', 'embedded-json', 'page-context-fetch']),
+  requestParameters: persistedRequestParametersSchema,
+  schemaFingerprint: sha256DigestSchema,
+  responseProjectionSha256: sha256DigestSchema,
+  routeTrace: routeTraceSchema,
+  collectedAt: z.string().datetime(),
+  browserOrigin: z.literal('https://www.douyin.com'),
+  sessionUsed: z.literal(true),
+  validationResults: adapterValidationResultsSchema
+} as const
+
+export const douyinCreatorWorksStructuredProofSchema = z.object({
+  contract: z.literal('douyin-creator-works-structured-proof/v2'),
+  ...structuredWorkProofShape,
+  routeId: z.enum(['DY-WORKS-NETWORK', 'DY-WORKS-EMBEDDED', 'DY-WORKS-INPAGE']),
+  endpointKind: z.literal('creator-work-list'),
+  followedCreatorId: opaquePlatformIdSchema,
+  profileRouteCreatorId: opaquePlatformIdSchema,
+  requestTargetCreatorId: opaquePlatformIdSchema,
+  targetCreatorIdSourcePath: z.enum([
+    'request.sec_user_id',
+    'embedded.profile_user.uid',
+    'embedded.profile_user.sec_uid'
+  ]),
+  cursorIn: z.string().max(240).nullable(),
+  cursorOut: z.string().max(240).nullable(),
+  hasMore: z.boolean(),
+  reportedTotal: z.number().int().nonnegative().nullable(),
+  returnedIds: returnedIdsSchema,
+  workIds: returnedIdsSchema,
+  authorBindings: z.array(workAuthorBindingSchema).max(1_000)
+}).strict().superRefine((proof, context) => {
+  if (
+    proof.followedCreatorId !== proof.profileRouteCreatorId
+    || proof.followedCreatorId !== proof.requestTargetCreatorId
+  ) {
+    context.addIssue({ code: 'custom', path: ['requestTargetCreatorId'], message: 'AUTHOR_PROOF_MISMATCH: followed, profile, and request target IDs must agree' })
+  }
+  if (JSON.stringify(proof.workIds) !== JSON.stringify(proof.returnedIds)) {
+    context.addIssue({ code: 'custom', path: ['workIds'], message: 'workIds must exactly match returnedIds' })
+  }
+  if (JSON.stringify(proof.authorBindings.map((binding) => binding.workId)) !== JSON.stringify(proof.workIds)) {
+    context.addIssue({ code: 'custom', path: ['authorBindings'], message: 'author bindings must exactly follow workIds order' })
+  }
+  if (proof.authorBindings.some((binding) => binding.authorId !== proof.followedCreatorId)) {
+    context.addIssue({ code: 'custom', path: ['authorBindings'], message: 'AUTHOR_PROOF_MISMATCH: every observed author must match the followed creator' })
+  }
+  const expected = {
+    'network-response': { routeId: 'DY-WORKS-NETWORK', targetPath: 'request.sec_user_id' },
+    'embedded-json': { routeId: 'DY-WORKS-EMBEDDED', targetPath: null },
+    'page-context-fetch': { routeId: 'DY-WORKS-INPAGE', targetPath: 'request.sec_user_id' }
+  }[proof.sourceKind]
+  if (proof.routeId !== expected.routeId) {
+    context.addIssue({ code: 'custom', path: ['routeId'], message: 'creator works route must match its source kind' })
+  }
+  const success = proof.routeTrace.find((entry) => entry.routeId === proof.routeId && entry.status === 'success')
+  if (!success || success.schemaFingerprint !== proof.schemaFingerprint) {
+    context.addIssue({ code: 'custom', path: ['routeTrace'], message: 'creator works proof requires a successful matching route trace' })
+  }
+  if (proof.sourceKind === 'embedded-json') {
+    if (proof.requestParameters.length !== 0 || proof.targetCreatorIdSourcePath === 'request.sec_user_id') {
+      context.addIssue({ code: 'custom', path: ['requestParameters'], message: 'embedded creator works proof cannot claim request metadata' })
+    }
+  } else {
+    if (proof.targetCreatorIdSourcePath !== expected.targetPath) {
+      context.addIssue({ code: 'custom', path: ['targetCreatorIdSourcePath'], message: 'network creator target must come from request.sec_user_id' })
+    }
+    if (String(parameterValue(proof.requestParameters, 'sec_user_id') ?? '') !== proof.requestTargetCreatorId) {
+      context.addIssue({ code: 'custom', path: ['requestParameters'], message: 'sec_user_id must match requestTargetCreatorId' })
+    }
+  }
+})
+
+export const douyinWorkDetailStructuredProofSchema = z.object({
+  contract: z.literal('douyin-work-detail-structured-proof/v2'),
+  ...structuredWorkProofShape,
+  routeId: z.enum(['DY-DETAIL-NETWORK', 'DY-DETAIL-EMBEDDED', 'DY-DETAIL-INPAGE']),
+  endpointKind: z.literal('work-detail'),
+  targetWorkId: opaquePlatformIdSchema,
+  returnedWorkId: opaquePlatformIdSchema,
+  expectedCreatorId: opaquePlatformIdSchema,
+  observedAuthorId: opaquePlatformIdSchema,
+  authorIdSourcePath: z.enum(['aweme_detail.author.uid', 'aweme_detail.author.sec_uid']),
+  targetWorkIdSourcePath: z.enum(['request.aweme_id', 'request.item_id', 'embedded.aweme_detail.aweme_id']),
+  returnedIds: returnedIdsSchema
+}).strict().superRefine((proof, context) => {
+  if (proof.targetWorkId !== proof.returnedWorkId || proof.returnedIds.length !== 1 || proof.returnedIds[0] !== proof.returnedWorkId) {
+    context.addIssue({ code: 'custom', path: ['returnedWorkId'], message: 'TARGET_ID_MISMATCH: detail work ID must match the requested work' })
+  }
+  if (proof.expectedCreatorId !== proof.observedAuthorId) {
+    context.addIssue({ code: 'custom', path: ['observedAuthorId'], message: 'AUTHOR_PROOF_MISMATCH: detail author must match the expected creator' })
+  }
+  const expectedRoute = {
+    'network-response': 'DY-DETAIL-NETWORK',
+    'embedded-json': 'DY-DETAIL-EMBEDDED',
+    'page-context-fetch': 'DY-DETAIL-INPAGE'
+  }[proof.sourceKind]
+  if (proof.routeId !== expectedRoute) {
+    context.addIssue({ code: 'custom', path: ['routeId'], message: 'work detail route must match its source kind' })
+  }
+  const success = proof.routeTrace.find((entry) => entry.routeId === proof.routeId && entry.status === 'success')
+  if (!success || success.schemaFingerprint !== proof.schemaFingerprint) {
+    context.addIssue({ code: 'custom', path: ['routeTrace'], message: 'work detail proof requires a successful matching route trace' })
+  }
+  if (proof.sourceKind === 'embedded-json') {
+    if (proof.requestParameters.length !== 0 || proof.targetWorkIdSourcePath !== 'embedded.aweme_detail.aweme_id') {
+      context.addIssue({ code: 'custom', path: ['requestParameters'], message: 'embedded detail proof cannot claim request metadata' })
+    }
+  } else {
+    if (proof.targetWorkIdSourcePath === 'embedded.aweme_detail.aweme_id') {
+      context.addIssue({ code: 'custom', path: ['targetWorkIdSourcePath'], message: 'network detail target must come from an explicit request parameter' })
+    }
+    const parameterName = proof.targetWorkIdSourcePath === 'request.item_id' ? 'item_id' : 'aweme_id'
+    if (String(parameterValue(proof.requestParameters, parameterName) ?? '') !== proof.targetWorkId) {
+      context.addIssue({ code: 'custom', path: ['requestParameters'], message: 'detail request parameter must match targetWorkId' })
+    }
+  }
+})
+
 export const douyinFollowingApiProofSchema = z.object({
   contract: z.literal('douyin-following-api-proof/v1'),
   ...commonDouyinApiProofShape,
@@ -375,6 +520,8 @@ export const mediaResourceProofSchema = z.object({
 export const platformSourceProofSchema = z.union([
   douyinCommentApiProofSchema,
   douyinWorkApiProofSchema,
+  douyinCreatorWorksStructuredProofSchema,
+  douyinWorkDetailStructuredProofSchema,
   douyinFollowingApiProofSchema,
   douyinFollowingStructuredProofSchema,
   mediaResourceProofSchema
@@ -453,6 +600,7 @@ export const platformAdapterErrorCodeSchema = z.enum([
   'CURSOR_LOOP',
   'DUPLICATE_NATIVE_ID',
   'PAGINATION_PROTOCOL_ERROR',
+  'TARGET_ID_MISMATCH',
   'WORK_PRIVATE',
   'WORK_DELETED',
   'COMMENTS_DISABLED',
@@ -508,6 +656,7 @@ export const PLATFORM_ADAPTER_ERROR_POLICIES = {
   CURSOR_LOOP: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
   DUPLICATE_NATIVE_ID: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
   PAGINATION_PROTOCOL_ERROR: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  TARGET_ID_MISMATCH: { category: 'protocol', retryable: false, taskImpact: 'batch', userActionRequired: false },
   WORK_PRIVATE: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
   WORK_DELETED: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
   COMMENTS_DISABLED: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
@@ -620,6 +769,8 @@ export type RouteTraceEntry = z.infer<typeof routeTraceEntrySchema>
 export type RoutePolicy = z.infer<typeof routePolicySchema>
 export type WorkAuthorProof = z.infer<typeof workAuthorProofSchema>
 export type DouyinFollowingStructuredProof = z.infer<typeof douyinFollowingStructuredProofSchema>
+export type DouyinCreatorWorksStructuredProof = z.infer<typeof douyinCreatorWorksStructuredProofSchema>
+export type DouyinWorkDetailStructuredProof = z.infer<typeof douyinWorkDetailStructuredProofSchema>
 
 export type PlatformAdapterPage<T> = {
   contract: 'platform-adapter-page/v1'

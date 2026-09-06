@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import {
   adapterSourceKindSchema,
+  douyinWorkDetailStructuredProofSchema,
   opaquePlatformIdSchema,
   platformAdapterVersionSchema,
   routeIdSchema,
@@ -13,7 +14,7 @@ import {
   type WorkAuthorProof
 } from './platformAdapter'
 
-export const STRUCTURED_ACQUISITION_ADAPTER_VERSION = '0.2.0-r2'
+export const STRUCTURED_ACQUISITION_ADAPTER_VERSION = '0.2.0-r4'
 
 const policies = [
   {
@@ -71,7 +72,43 @@ const policies = [
     allowedMethods: ['GET'],
     maxAttempts: 1,
     timeoutMs: 20_000,
-    switchOn: ['not-observed', 'schema-missing', 'schema-changed', 'author-proof-mismatch'],
+    switchOn: ['not-observed', 'schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-WORKS-EMBEDDED',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-WORKS-EMBEDDED',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 5_000,
+    switchOn: ['schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-WORKS-INPAGE',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-WORKS-INPAGE',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 20_000,
+    switchOn: ['signature-unavailable', 'signature-rejected', 'schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-WORKS-STOP',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-WORKS-STOP',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 1,
+    switchOn: [],
     nextRouteId: null,
     requiresNewUserApproval: false,
     eligibleForFormalData: false
@@ -83,7 +120,43 @@ const policies = [
     allowedMethods: ['GET'],
     maxAttempts: 1,
     timeoutMs: 20_000,
-    switchOn: ['not-observed', 'schema-missing', 'schema-changed', 'author-proof-mismatch'],
+    switchOn: ['not-observed', 'schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-DETAIL-EMBEDDED',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-DETAIL-EMBEDDED',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 5_000,
+    switchOn: ['schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-DETAIL-INPAGE',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-DETAIL-INPAGE',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 20_000,
+    switchOn: ['signature-unavailable', 'signature-rejected', 'schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-DETAIL-STOP',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-DETAIL-STOP',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 1,
+    switchOn: [],
     nextRouteId: null,
     requiresNewUserApproval: false,
     eligibleForFormalData: false
@@ -136,7 +209,11 @@ export const ROUTE_REGISTRY = Object.freeze(Object.fromEntries(
 const routeEndpointKinds = Object.freeze({
   'DY-FOLLOW-NETWORK': 'following-list',
   'DY-WORKS-NETWORK': 'creator-work-list',
+  'DY-WORKS-EMBEDDED': 'creator-work-list',
+  'DY-WORKS-INPAGE': 'creator-work-list',
   'DY-DETAIL-NETWORK': 'work-detail',
+  'DY-DETAIL-EMBEDDED': 'work-detail',
+  'DY-DETAIL-INPAGE': 'work-detail',
   'DY-COMMENT-NETWORK': 'comment-list',
   'DY-REPLY-NETWORK': 'comment-reply-list',
   'DY-MEDIA-NETWORK': 'media-resource'
@@ -147,7 +224,7 @@ export const legacyPhaseBRouteSchema = z.object({
   status: z.enum(['frozen-failed', 'disabled']),
   executable: z.literal(false),
   benchmarkEligible: z.literal(false),
-  reasonCode: z.enum(['AUTHOR_PROOF_CIRCULAR', 'BLOCKED_BY_R0_UNTIL_R4'])
+  reasonCode: z.enum(['AUTHOR_PROOF_CIRCULAR', 'LEGACY_ROUTE_PERMANENTLY_DISABLED'])
 }).strict()
 
 export const LEGACY_PHASE_B_ROUTES = Object.freeze({
@@ -163,7 +240,7 @@ export const LEGACY_PHASE_B_ROUTES = Object.freeze({
     status: 'disabled',
     executable: false,
     benchmarkEligible: false,
-    reasonCode: 'BLOCKED_BY_R0_UNTIL_R4'
+    reasonCode: 'LEGACY_ROUTE_PERMANENTLY_DISABLED'
   })
 })
 
@@ -249,9 +326,92 @@ export const structuredWorkObservationSchema = z.object({
 }).strict().superRefine((observation, context) => {
   const expected = routeEndpointKinds[observation.routeId as keyof typeof routeEndpointKinds]
   if (!expected) {
-    context.addIssue({ code: 'custom', path: ['routeId'], message: 'work observation route is not registered for R0-R2' })
+    context.addIssue({ code: 'custom', path: ['routeId'], message: 'work observation route is not registered for structured acquisition' })
   } else if (expected !== observation.endpointKind) {
     context.addIssue({ code: 'custom', path: ['endpointKind'], message: 'route and endpoint kind do not agree' })
+  }
+})
+
+export const publicWorkStatisticsSchema = z.object({
+  likeCount: z.number().int().nonnegative().nullable(),
+  commentCount: z.number().int().nonnegative().nullable(),
+  collectCount: z.number().int().nonnegative().nullable(),
+  shareCount: z.number().int().nonnegative().nullable(),
+  playCount: z.number().int().nonnegative().nullable()
+}).strict()
+
+export const publicWorkStatisticFieldSchema = z.enum([
+  'likeCount',
+  'commentCount',
+  'collectCount',
+  'shareCount',
+  'playCount'
+])
+
+function changedStatisticFields(
+  left: z.infer<typeof publicWorkStatisticsSchema>,
+  right: z.infer<typeof publicWorkStatisticsSchema>
+): Array<z.infer<typeof publicWorkStatisticFieldSchema>> {
+  return publicWorkStatisticFieldSchema.options.filter((field) => left[field] !== right[field])
+}
+
+export const workDetailVerificationSchema = z.object({
+  contract: z.literal('douyin-work-detail-verification/v1'),
+  workId: opaquePlatformIdSchema,
+  expectedCreatorId: opaquePlatformIdSchema,
+  listObservation: structuredWorkObservationSchema,
+  detailObservation: structuredWorkObservationSchema,
+  detailSourceProof: douyinWorkDetailStructuredProofSchema,
+  listStatistics: publicWorkStatisticsSchema,
+  detailStatistics: publicWorkStatisticsSchema,
+  changedStatisticFields: z.array(publicWorkStatisticFieldSchema).max(5).refine(
+    (fields) => new Set(fields).size === fields.length,
+    { message: 'changedStatisticFields must not contain duplicates' }
+  ),
+  verifiedAt: z.string().datetime()
+}).strict().superRefine((verification, context) => {
+  const list = verification.listObservation
+  const detail = verification.detailObservation
+  const detailProof = verification.detailSourceProof
+  if (list.endpointKind !== 'creator-work-list' || detail.endpointKind !== 'work-detail') {
+    context.addIssue({ code: 'custom', path: ['detailObservation'], message: 'detail verification requires independent list and detail endpoints' })
+  }
+  if (list.routeId === detail.routeId) {
+    context.addIssue({ code: 'custom', path: ['detailObservation', 'routeId'], message: 'detail verification route must be independent from the list route' })
+  }
+  if (
+    verification.workId !== list.workId
+    || verification.workId !== detail.workId
+    || verification.workId !== detailProof.targetWorkId
+    || verification.workId !== detailProof.returnedWorkId
+  ) {
+    context.addIssue({ code: 'custom', path: ['workId'], message: 'TARGET_ID_MISMATCH:list and detail work IDs must agree' })
+  }
+  if (
+    verification.expectedCreatorId !== list.authorId
+    || verification.expectedCreatorId !== detail.authorId
+    || verification.expectedCreatorId !== detailProof.expectedCreatorId
+    || verification.expectedCreatorId !== detailProof.observedAuthorId
+    || list.requestTargetCreatorId !== verification.expectedCreatorId
+  ) {
+    context.addIssue({ code: 'custom', path: ['expectedCreatorId'], message: 'AUTHOR_PROOF_MISMATCH:list target, list author, and detail author must agree' })
+  }
+  if (
+    detail.routeId !== detailProof.routeId
+    || detail.sourceKind !== detailProof.sourceKind
+    || detail.schemaFingerprint !== detailProof.schemaFingerprint
+    || detail.responseProjectionSha256 !== detailProof.responseProjectionSha256
+    || detail.observedAt !== detailProof.collectedAt
+    || JSON.stringify(detail.routeTrace) !== JSON.stringify(detailProof.routeTrace)
+  ) {
+    context.addIssue({ code: 'custom', path: ['detailSourceProof'], message: 'detail observation must be exactly bound to its request-target source proof' })
+  }
+  if (verification.verifiedAt !== detail.observedAt || verification.verifiedAt !== detailProof.collectedAt) {
+    context.addIssue({ code: 'custom', path: ['verifiedAt'], message: 'detail verification time must be exactly bound to the detail observation and source proof' })
+  }
+  const expectedChanged = changedStatisticFields(verification.listStatistics, verification.detailStatistics)
+  if (JSON.stringify(verification.changedStatisticFields) !== JSON.stringify(expectedChanged)) {
+    context.addIssue({ code: 'custom', path: ['changedStatisticFields'], message: 'statistics differences must be reported exactly instead of silently merged' })
   }
 })
 
@@ -264,6 +424,8 @@ export const structuredWorkCandidateSchema = z.object({
 
 export type StructuredWorkObservation = z.infer<typeof structuredWorkObservationSchema>
 export type StructuredWorkCandidate = z.infer<typeof structuredWorkCandidateSchema>
+export type PublicWorkStatistics = z.infer<typeof publicWorkStatisticsSchema>
+export type WorkDetailVerification = z.infer<typeof workDetailVerificationSchema>
 
 function requireTraceBinding(observation: StructuredWorkObservation): RouteTraceEntry[] {
   const traces = routeTraceSchema.parse(observation.routeTrace)
@@ -272,6 +434,54 @@ function requireTraceBinding(observation: StructuredWorkObservation): RouteTrace
     throw new Error('SCHEMA_CHANGED:observation is not bound to a successful route trace')
   }
   return traces
+}
+
+export function createWorkDetailVerification(input: {
+  workId: string
+  expectedCreatorId: string
+  listObservation: StructuredWorkObservation
+  detailObservation: StructuredWorkObservation
+  detailSourceProof: unknown
+  listStatistics: PublicWorkStatistics
+  detailStatistics: PublicWorkStatistics
+  verifiedAt: string
+}): WorkDetailVerification {
+  const listStatistics = publicWorkStatisticsSchema.parse(input.listStatistics)
+  const detailStatistics = publicWorkStatisticsSchema.parse(input.detailStatistics)
+  const listObservation = structuredWorkObservationSchema.parse(input.listObservation)
+  const detailObservation = structuredWorkObservationSchema.parse(input.detailObservation)
+  requireTraceBinding(listObservation)
+  requireTraceBinding(detailObservation)
+  return workDetailVerificationSchema.parse({
+    contract: 'douyin-work-detail-verification/v1',
+    workId: input.workId,
+    expectedCreatorId: input.expectedCreatorId,
+    listObservation,
+    detailObservation,
+    detailSourceProof: douyinWorkDetailStructuredProofSchema.parse(input.detailSourceProof),
+    listStatistics,
+    detailStatistics,
+    changedStatisticFields: changedStatisticFields(listStatistics, detailStatistics),
+    verifiedAt: input.verifiedAt
+  })
+}
+
+export function assertWorkDetailVerificationForPersistence(
+  verificationInput: unknown,
+  expected: { workId: string; creatorId: string; listObservation: StructuredWorkObservation }
+): WorkDetailVerification {
+  const verification = workDetailVerificationSchema.parse(verificationInput)
+  const listObservation = structuredWorkObservationSchema.parse(expected.listObservation)
+  requireTraceBinding(verification.listObservation)
+  requireTraceBinding(verification.detailObservation)
+  if (
+    verification.workId !== expected.workId
+    || verification.expectedCreatorId !== expected.creatorId
+    || JSON.stringify(verification.listObservation) !== JSON.stringify(listObservation)
+  ) {
+    throw new Error('AUTHOR_PROOF_MISMATCH:persisted work is not bound to its independent detail verification')
+  }
+  return verification
 }
 
 export function createWorkAuthorProof(input: {

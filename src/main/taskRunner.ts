@@ -1,6 +1,6 @@
 import type { BrowserCollectionEnvelope, BrowserEventReceipt, SampleSyncOptions } from '../shared/contracts'
-import { douyinFollowingStructuredProofSchema } from '../shared/platformAdapter'
-import { acceptStructuredWorkCandidate, assertWorkAuthorProofForPersistence } from '../shared/structuredAcquisition'
+import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema } from '../shared/platformAdapter'
+import { acceptStructuredWorkCandidate, assertWorkAuthorProofForPersistence, assertWorkDetailVerificationForPersistence } from '../shared/structuredAcquisition'
 import type { AppDatabase } from './database'
 import { BridgeServer, type BrowserCommand } from './bridgeServer'
 import type { WorkerClient } from './workerClient'
@@ -392,13 +392,68 @@ export function validateEnvelopeForJob(
     if (!creatorId) throw new Error('作品任务缺少 creatorId')
     const source = requireDouyinUrl(envelope.sourceUrl, '博主作品来源')
     if (normalizedPath(source.pathname) !== `/user/${creatorId}`) throw new Error('作品来源与目标博主不一致')
+    const candidateProof = envelope.sourceProof
+    if (!candidateProof || candidateProof.contract !== 'douyin-creator-works-structured-proof/v2') {
+      throw new Error('DOM_ONLY_SOURCE_REJECTED:作品列表缺少结构化 page-level 来源证明')
+    }
+    const proofResult = douyinCreatorWorksStructuredProofSchema.safeParse(candidateProof)
+    if (!proofResult.success) throw new Error(`结构化作品列表证明无效：${proofResult.error.issues[0]?.message ?? 'schema mismatch'}`)
+    const proof = proofResult.data
+    if (
+      proof.followedCreatorId !== creatorId
+      || proof.profileRouteCreatorId !== creatorId
+      || proof.requestTargetCreatorId !== creatorId
+    ) {
+      throw new Error('AUTHOR_PROOF_MISMATCH:作品 page-level proof 的四 ID 链与目标博主不一致')
+    }
+    if (proof.collectedAt !== envelope.collectedAt || proof.browserOrigin !== source.origin) {
+      throw new Error('结构化作品列表证明与 envelope 的采集时间或来源 origin 不一致')
+    }
+    if (proof.hasMore !== envelope.hasMore || proof.cursorOut !== (envelope.cursor ?? null)) {
+      throw new Error('结构化作品列表证明与 envelope 的分页状态不一致')
+    }
     if (!envelope.items.every((item) => item.entityType === 'work' && item.creatorId === creatorId)) {
       throw new Error('作品结果包含目标博主以外的数据')
     }
+    const works = envelope.items.filter((item) => item.entityType === 'work')
+    const workIds = works.map((item) => item.workId)
+    if (new Set(workIds).size !== workIds.length) throw new Error('作品结果包含重复 aweme_id')
+    if (
+      JSON.stringify(proof.workIds) !== JSON.stringify(workIds)
+      || JSON.stringify(proof.returnedIds) !== JSON.stringify(workIds)
+      || JSON.stringify(proof.authorBindings) !== JSON.stringify(workIds.map((workId) => ({ workId, authorId: creatorId })))
+    ) {
+      throw new Error('结构化作品 page-level proof 与作品/作者清单不一致')
+    }
+    if (works.length === 0) {
+      if (proof.reportedTotal !== 0 || proof.hasMore || envelope.completeness !== 'complete') {
+        throw new Error('空作品列表缺少 total=0、hasMore=false 的结构化闭合证明')
+      }
+    } else {
+      if (proof.reportedTotal !== null && proof.reportedTotal < works.length) {
+        throw new Error('结构化作品证明的 reportedTotal 小于返回作品数')
+      }
+      if (proof.hasMore ? envelope.completeness !== 'partial' : envelope.completeness !== 'complete') {
+        throw new Error('结构化作品证明与 envelope 的完成状态不一致')
+      }
+    }
     for (const item of envelope.items) {
       if (item.entityType !== 'work') continue
-      if (!item.authorProof || !item.structuredObservation) {
-        throw new Error('DOM_ONLY_SOURCE_REJECTED:作品缺少独立结构化作者证明或 observation')
+      if (!item.authorProof || !item.structuredObservation || !item.detailVerification) {
+        throw new Error('DOM_ONLY_SOURCE_REJECTED:作品缺少独立列表 observation、作者证明或详情复核')
+      }
+      if (
+        item.structuredObservation.routeId !== proof.routeId
+        || item.structuredObservation.sourceKind !== proof.sourceKind
+        || item.structuredObservation.endpointKind !== proof.endpointKind
+        || item.structuredObservation.requestTargetCreatorId !== proof.requestTargetCreatorId
+        || item.structuredObservation.authorId !== creatorId
+        || item.structuredObservation.schemaFingerprint !== proof.schemaFingerprint
+        || item.structuredObservation.responseProjectionSha256 !== proof.responseProjectionSha256
+        || item.structuredObservation.observedAt !== proof.collectedAt
+        || JSON.stringify(item.structuredObservation.routeTrace) !== JSON.stringify(proof.routeTrace)
+      ) {
+        throw new Error('AUTHOR_PROOF_MISMATCH:作品 observation 未与 page-level projection/hash/trace 精确绑定')
       }
       acceptStructuredWorkCandidate({
         workId: item.workId,
@@ -407,6 +462,16 @@ export function validateEnvelopeForJob(
         authorProof: item.authorProof
       }, item.structuredObservation)
       assertWorkAuthorProofForPersistence(item.authorProof, { workId: item.workId, creatorId })
+      const detailVerification = assertWorkDetailVerificationForPersistence(item.detailVerification, {
+        workId: item.workId,
+        creatorId,
+        listObservation: item.structuredObservation
+      })
+      const expectedMetrics = detailVerification.detailStatistics
+      const persistedMetricFields = ['likeCount', 'commentCount', 'collectCount', 'shareCount'] as const
+      if (!item.metrics || persistedMetricFields.some((field) => item.metrics?.[field] !== expectedMetrics[field])) {
+        throw new Error('作品 metrics 必须精确来自已验证的详情 statistics 白名单投影')
+      }
     }
     return
   }

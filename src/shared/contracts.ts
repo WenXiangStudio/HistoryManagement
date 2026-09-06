@@ -1,6 +1,6 @@
 import { z } from 'zod'
-import { douyinFollowingStructuredProofSchema, workAuthorProofSchema } from './platformAdapter'
-import { structuredWorkObservationSchema } from './structuredAcquisition'
+import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema, workAuthorProofSchema } from './platformAdapter'
+import { structuredWorkObservationSchema, workDetailVerificationSchema } from './structuredAcquisition'
 
 export const platformSchema = z.literal('douyin')
 export type Platform = z.infer<typeof platformSchema>
@@ -69,6 +69,7 @@ export type DouyinCommentSourceProof = z.infer<typeof douyinCommentSourceProofSc
 
 export const collectionSourceProofSchema = z.union([
   douyinFollowingStructuredProofSchema,
+  douyinCreatorWorksStructuredProofSchema,
   douyinFollowingSourceProofSchema,
   douyinCommentSourceProofSchema
 ])
@@ -88,7 +89,8 @@ const workPayloadSchema = z.object({
   discoveredAt: z.string().datetime(),
   metrics: publicMetricsSchema.optional(),
   authorProof: workAuthorProofSchema.optional(),
-  structuredObservation: structuredWorkObservationSchema.optional()
+  structuredObservation: structuredWorkObservationSchema.optional(),
+  detailVerification: workDetailVerificationSchema.optional()
 })
 
 const commentPayloadSchema = z.object({

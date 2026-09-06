@@ -64,17 +64,23 @@ function observation(authorId = 'synthetic-creator-1001'): StructuredWorkObserva
 }
 
 describe('R0 route and failed-run freeze', () => {
-  it('registers the six Network routes plus the R3 following fallbacks as synthetic-only', () => {
+  it('registers the Network routes plus R3/R4 fallbacks as synthetic-only', () => {
     expect(Object.keys(ROUTE_REGISTRY).sort()).toEqual([
       'DY-COMMENT-NETWORK',
+      'DY-DETAIL-EMBEDDED',
+      'DY-DETAIL-INPAGE',
       'DY-DETAIL-NETWORK',
+      'DY-DETAIL-STOP',
       'DY-FOLLOW-EMBEDDED',
       'DY-FOLLOW-INPAGE',
       'DY-FOLLOW-NETWORK',
       'DY-FOLLOW-STOP',
       'DY-MEDIA-NETWORK',
       'DY-REPLY-NETWORK',
-      'DY-WORKS-NETWORK'
+      'DY-WORKS-EMBEDDED',
+      'DY-WORKS-INPAGE',
+      'DY-WORKS-NETWORK',
+      'DY-WORKS-STOP'
     ])
     expect(Object.values(ROUTE_REGISTRY).every((route) => !route.eligibleForFormalData)).toBe(true)
     expect(Object.values(ROUTE_REGISTRY).every((route) => route.allowedMethods[0] === 'GET')).toBe(true)
@@ -84,7 +90,8 @@ describe('R0 route and failed-run freeze', () => {
     expect(LEGACY_PHASE_B_ROUTES['0.2.3']).toMatchObject({ executable: false, benchmarkEligible: false, status: 'frozen-failed' })
     expect(LEGACY_PHASE_B_ROUTES['0.2.4']).toMatchObject({ executable: false, benchmarkEligible: false, status: 'disabled' })
     expect(() => assertLegacyPhaseBRouteDisabled('0.2.3')).toThrow(/LEGACY_ROUTE_DISABLED/)
-    expect(() => assertLegacyPhaseBRouteDisabled('0.2.4')).toThrow(/BLOCKED_BY_R0_UNTIL_R4/)
+    expect(LEGACY_PHASE_B_ROUTES['0.2.4'].reasonCode).toBe('LEGACY_ROUTE_PERMANENTLY_DISABLED')
+    expect(() => assertLegacyPhaseBRouteDisabled('0.2.4')).toThrow(/LEGACY_ROUTE_PERMANENTLY_DISABLED/)
   })
 
   it('treats every historical run as immutable failure evidence regardless of legacy summary fields', () => {

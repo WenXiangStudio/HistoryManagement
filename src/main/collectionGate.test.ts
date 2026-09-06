@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import type { BrowserCollectionEnvelope, DouyinFollowingStructuredProof } from '../shared/contracts'
+import { syntheticCreatorWorksProof, syntheticR4WorkEvidence } from '../shared/fixtures/syntheticR4Proofs'
 import { validateEnvelopeForJob } from './taskRunner'
 
 function validFollowingEnvelope(): BrowserCollectionEnvelope {
@@ -108,15 +109,19 @@ function validCommentEnvelope(): BrowserCollectionEnvelope {
 function validWorkEnvelope(): BrowserCollectionEnvelope {
   const creatorId = 'creator-1'
   const workId = 'work-1'
-  const schemaFingerprint = 'a'.repeat(64)
+  const collectedAt = '2026-09-06T01:00:00.000Z'
+  const statistics = { likeCount: 12, commentCount: 3, collectCount: 4, shareCount: 5, playCount: 100 }
+  const evidence = syntheticR4WorkEvidence(creatorId, workId, statistics, { collectedAt })
   return {
     contract: 'browser-collection-envelope/v1',
     commandId: 'work-command',
     platform: 'douyin',
-    collectedAt: '2026-09-06T01:00:00.000Z',
+    collectedAt,
     sourceUrl: `https://www.douyin.com/user/${creatorId}`,
     completeness: 'complete',
+    cursor: '20',
     hasMore: false,
+    sourceProof: syntheticCreatorWorksProof(creatorId, [workId], { collectedAt }),
     items: [{
       entityType: 'work',
       workId,
@@ -125,51 +130,15 @@ function validWorkEnvelope(): BrowserCollectionEnvelope {
       sourceUrl: `https://www.douyin.com/video/${workId}`,
       title: '合成作品',
       description: '',
-      discoveredAt: '2026-09-06T01:00:00.000Z',
-      authorProof: {
-        contract: 'douyin-work-author-proof/v2',
-        followedCreatorId: creatorId,
-        profileRouteCreatorId: creatorId,
-        requestTargetCreatorId: creatorId,
-        observedWorkAuthorId: creatorId,
-        observedWorkId: workId,
-        authorProofSource: 'network-response',
-        endpointKind: 'creator-work-list',
-        routeId: 'DY-WORKS-NETWORK',
-        adapterVersion: '0.2.0-r2',
-        observedAt: '2026-09-06T01:00:00.000Z',
-        schemaFingerprint,
-        responseProjectionSha256: 'b'.repeat(64),
-        routeTrace: [{
-          routeId: 'DY-WORKS-NETWORK',
-          status: 'success',
-          attempt: 1,
-          durationMs: 12,
-          schemaFingerprint,
-          occurredAt: '2026-09-06T01:00:00.000Z'
-        }]
+      discoveredAt: collectedAt,
+      metrics: {
+        likeCount: statistics.likeCount,
+        commentCount: statistics.commentCount,
+        collectCount: statistics.collectCount,
+        shareCount: statistics.shareCount,
+        visibility: { like: 'visible', comment: 'visible', collect: 'visible', share: 'visible' }
       },
-      structuredObservation: {
-        contract: 'douyin-structured-work-observation/v1',
-        sourceKind: 'network-response',
-        routeId: 'DY-WORKS-NETWORK',
-        endpointKind: 'creator-work-list',
-        requestTargetCreatorId: creatorId,
-        workId,
-        authorId: creatorId,
-        authorIdSourcePath: 'aweme_list[].author.uid',
-        observedAt: '2026-09-06T01:00:00.000Z',
-        schemaFingerprint,
-        responseProjectionSha256: 'b'.repeat(64),
-        routeTrace: [{
-          routeId: 'DY-WORKS-NETWORK',
-          status: 'success',
-          attempt: 1,
-          durationMs: 12,
-          schemaFingerprint,
-          occurredAt: '2026-09-06T01:00:00.000Z'
-        }]
-      }
+      ...evidence
     }]
   }
 }
@@ -252,7 +221,7 @@ describe('collection source semantic gate', () => {
     expect(() => validateEnvelopeForJob(validFollowingEnvelope(), 'collection.creator_works', { creatorId: 'creator-1' })).toThrow(/不能返回博主实体/)
   })
 
-  it('accepts creator works only with WorkAuthorProof/v2 and rejects the former DOM-only shape', () => {
+  it('accepts creator works only with page proof, WorkAuthorProof/v2, and independent detail verification', () => {
     const value = validWorkEnvelope()
     expect(() => validateEnvelopeForJob(value, 'collection.creator_works', { creatorId: 'creator-1' })).not.toThrow()
 
@@ -260,6 +229,38 @@ describe('collection source semantic gate', () => {
     const work = domOnly.items[0]
     if (work.entityType === 'work') delete work.authorProof
     expect(() => validateEnvelopeForJob(domOnly, 'collection.creator_works', { creatorId: 'creator-1' })).toThrow(/DOM_ONLY_SOURCE_REJECTED/)
+  })
+
+  it.each([
+    ['missing page-level proof', (value: BrowserCollectionEnvelope) => { delete value.sourceProof }, /DOM_ONLY_SOURCE_REJECTED/],
+    ['missing detail verification', (value: BrowserCollectionEnvelope) => {
+      const work = value.items[0]
+      if (work.entityType === 'work') delete work.detailVerification
+    }, /DOM_ONLY_SOURCE_REJECTED/],
+    ['forged page projection hash', (value: BrowserCollectionEnvelope) => {
+      const work = value.items[0]
+      if (work.entityType === 'work' && work.structuredObservation) work.structuredObservation.responseProjectionSha256 = 'e'.repeat(64)
+    }, /AUTHOR_PROOF_MISMATCH/],
+    ['detail target ID mismatch', (value: BrowserCollectionEnvelope) => {
+      const work = value.items[0]
+      if (work.entityType === 'work' && work.detailVerification) work.detailVerification.detailSourceProof.returnedWorkId = 'different-work'
+    }, /TARGET_ID_MISMATCH/],
+    ['detail author mismatch', (value: BrowserCollectionEnvelope) => {
+      const work = value.items[0]
+      if (work.entityType === 'work' && work.detailVerification) work.detailVerification.detailSourceProof.observedAuthorId = 'different-author'
+    }, /AUTHOR_PROOF_MISMATCH/],
+    ['detail verification time mismatch', (value: BrowserCollectionEnvelope) => {
+      const work = value.items[0]
+      if (work.entityType === 'work' && work.detailVerification) work.detailVerification.verifiedAt = '2026-09-06T01:00:01.000Z'
+    }, /verification time/],
+    ['metrics not from detail projection', (value: BrowserCollectionEnvelope) => {
+      const work = value.items[0]
+      if (work.entityType === 'work' && work.metrics) work.metrics.likeCount = 999
+    }, /statistics/]
+  ])('rejects R4 work evidence with %s before persistence', (_label, mutate, expected) => {
+    const value = validWorkEnvelope()
+    mutate(value)
+    expect(() => validateEnvelopeForJob(value, 'collection.creator_works', { creatorId: 'creator-1' })).toThrow(expected)
   })
 
   it('rejects a creator-loop author value when the proof reports a different observed author', () => {

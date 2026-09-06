@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { EventEmitter } from 'node:events'
 import type { BrowserCollectionEnvelope, BrowserEventReceipt, DouyinCommentSourceProof, DouyinFollowingStructuredProof } from '../shared/contracts'
+import { syntheticCreatorWorksProof, syntheticR4WorkEvidence } from '../shared/fixtures/syntheticR4Proofs'
 import { AppDatabase } from './database'
 import type { BridgeServer, BrowserCommand } from './bridgeServer'
 import { TaskRunner, validateSampleSyncOptions } from './taskRunner'
@@ -100,58 +101,6 @@ function followingProof(creatorIds: string[], empty = false): DouyinFollowingStr
   }
 }
 
-function workAuthorProof(creatorId: string, workId: string) {
-  const schemaFingerprint = 'a'.repeat(64)
-  return {
-    contract: 'douyin-work-author-proof/v2' as const,
-    followedCreatorId: creatorId,
-    profileRouteCreatorId: creatorId,
-    requestTargetCreatorId: creatorId,
-    observedWorkAuthorId: creatorId,
-    observedWorkId: workId,
-    authorProofSource: 'network-response' as const,
-    endpointKind: 'creator-work-list' as const,
-    routeId: 'DY-WORKS-NETWORK' as const,
-    adapterVersion: '0.2.0-r2',
-    observedAt: '2026-09-02T08:00:00.000Z',
-    schemaFingerprint,
-    responseProjectionSha256: 'b'.repeat(64),
-    routeTrace: [{
-      routeId: 'DY-WORKS-NETWORK' as const,
-      status: 'success' as const,
-      attempt: 1,
-      durationMs: 10,
-      schemaFingerprint,
-      occurredAt: '2026-09-02T08:00:00.000Z'
-    }]
-  }
-}
-
-function structuredWorkObservation(creatorId: string, workId: string) {
-  const schemaFingerprint = 'a'.repeat(64)
-  return {
-    contract: 'douyin-structured-work-observation/v1' as const,
-    sourceKind: 'network-response' as const,
-    routeId: 'DY-WORKS-NETWORK' as const,
-    endpointKind: 'creator-work-list' as const,
-    requestTargetCreatorId: creatorId,
-    workId,
-    authorId: creatorId,
-    authorIdSourcePath: 'aweme_list[].author.uid' as const,
-    observedAt: '2026-09-02T08:00:00.000Z',
-    schemaFingerprint,
-    responseProjectionSha256: 'b'.repeat(64),
-    routeTrace: [{
-      routeId: 'DY-WORKS-NETWORK' as const,
-      status: 'success' as const,
-      attempt: 1,
-      durationMs: 10,
-      schemaFingerprint,
-      occurredAt: '2026-09-02T08:00:00.000Z'
-    }]
-  }
-}
-
 function commentProof(workId: string, commentIds: string[]): DouyinCommentSourceProof {
   return {
     contract: 'douyin-comment-source-proof/v1',
@@ -179,7 +128,9 @@ function envelope(
     collectedAt: '2026-09-02T08:00:00.000Z', sourceUrl,
     completeness: 'complete',
     hasMore: false,
-    ...(sourceProof?.contract === 'douyin-following-structured-proof/v2' ? { cursor: sourceProof.cursorOut } : {}),
+    ...(sourceProof?.contract === 'douyin-following-structured-proof/v2' || sourceProof?.contract === 'douyin-creator-works-structured-proof/v2'
+      ? { cursor: sourceProof.cursorOut }
+      : {}),
     ...(sourceProof ? { sourceProof } : {}),
     items
   }
@@ -234,13 +185,25 @@ describe('bounded sample synchronization', () => {
     const creatorJob = database!.db.prepare(`SELECT id, payload_json FROM jobs WHERE kind='collection.creator_works' ORDER BY id LIMIT 1`).get() as { id: number; payload_json: string }
     const creatorPayload = JSON.parse(creatorJob.payload_json) as Record<string, unknown>
     const creatorId = String(creatorPayload.creatorId)
-    const worksReceipt = bridge.deliverEnvelope(envelope(String(creatorPayload.commandId), `https://www.douyin.com/user/${creatorId}`, [1, 2, 3].map((index) => ({
-      entityType: 'work' as const, workId: `${creatorId}-w${index}`, creatorId, workType: index === 2 ? 'image' as const : 'video' as const,
-      sourceUrl: `https://www.douyin.com/video/${creatorId}-w${index}`, title: `真实作品 ${index}`, description: `作品 ${index}`,
-      discoveredAt: '2026-09-02T08:00:00.000Z', authorProof: workAuthorProof(creatorId, `${creatorId}-w${index}`),
-      structuredObservation: structuredWorkObservation(creatorId, `${creatorId}-w${index}`), metrics: { likeCount: index, commentCount: null, collectCount: null, shareCount: null,
-        visibility: { like: 'visible' as const, comment: 'unknown' as const, collect: 'unknown' as const, share: 'unknown' as const } }
-    }))))
+    const workIds = [1, 2, 3].map((index) => `${creatorId}-w${index}`)
+    const workItems = workIds.map((workId, offset) => {
+      const index = offset + 1
+      const statistics = { likeCount: index, commentCount: null, collectCount: null, shareCount: null, playCount: null }
+      return {
+        entityType: 'work' as const, workId, creatorId, workType: index === 2 ? 'image' as const : 'video' as const,
+        sourceUrl: `https://www.douyin.com/video/${workId}`, title: `真实作品 ${index}`, description: `作品 ${index}`,
+        discoveredAt: '2026-09-02T08:00:00.000Z',
+        metrics: { likeCount: index, commentCount: null, collectCount: null, shareCount: null,
+          visibility: { like: 'visible' as const, comment: 'unknown' as const, collect: 'unknown' as const, share: 'unknown' as const } },
+        ...syntheticR4WorkEvidence(creatorId, workId, statistics, { collectedAt: '2026-09-02T08:00:00.000Z' })
+      }
+    })
+    const worksReceipt = bridge.deliverEnvelope(envelope(
+      String(creatorPayload.commandId),
+      `https://www.douyin.com/user/${creatorId}`,
+      workItems,
+      syntheticCreatorWorksProof(creatorId, workIds, { collectedAt: '2026-09-02T08:00:00.000Z', cursorOut: '20' })
+    ))
     expect(worksReceipt, worksReceipt.error).toMatchObject({ accepted: true })
 
     expect(database!.getSummary().workCount).toBe(2)
@@ -301,6 +264,55 @@ describe('bounded sample synchronization', () => {
     expect(Number((database!.db.prepare('SELECT COUNT(*) AS count FROM metric_snapshots').get() as { count: number }).count)).toBe(0)
     expect(Number((database!.db.prepare('SELECT COUNT(*) AS count FROM collection_checkpoints').get() as { count: number }).count)).toBe(0)
     expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind='collection.creator_works'`).get() as { count: number }).count)).toBe(0)
+  })
+
+  it('rejects an R4 work without independent detail verification before any work-side database write', async () => {
+    const { runner, bridge } = createRunner()
+    runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    await dispatchNext(runner)
+    const followingCommand = bridge.commands.at(-1)!
+    const creatorId = 'synthetic-r4-creator'
+    expect(bridge.deliverEnvelope(envelope(
+      followingCommand.commandId,
+      'https://www.douyin.com/user/self?showTab=follow',
+      [{
+        entityType: 'creator', creatorId, nickname: '合成 R4 博主',
+        profileUrl: `https://www.douyin.com/user/${creatorId}`, signature: '', isFollowing: true
+      }],
+      followingProof([creatorId])
+    ))).toMatchObject({ accepted: true })
+
+    await dispatchNext(runner)
+    const creatorJob = database!.db.prepare(`SELECT id, payload_json FROM jobs WHERE kind='collection.creator_works' ORDER BY id LIMIT 1`).get() as { id: number; payload_json: string }
+    const creatorPayload = JSON.parse(creatorJob.payload_json) as Record<string, unknown>
+    const workId = 'synthetic-r4-work'
+    const statistics = { likeCount: 12, commentCount: 3, collectCount: 4, shareCount: 5, playCount: 100 }
+    const evidence = syntheticR4WorkEvidence(creatorId, workId, statistics, { collectedAt: '2026-09-02T08:00:00.000Z' })
+    const receipt = bridge.deliverEnvelope(envelope(
+      String(creatorPayload.commandId),
+      `https://www.douyin.com/user/${creatorId}`,
+      [{
+        entityType: 'work', workId, creatorId, workType: 'video',
+        sourceUrl: `https://www.douyin.com/video/${workId}`, title: '合成 R4 作品', description: '',
+        discoveredAt: '2026-09-02T08:00:00.000Z',
+        metrics: {
+          likeCount: 12, commentCount: 3, collectCount: 4, shareCount: 5,
+          visibility: { like: 'visible', comment: 'visible', collect: 'visible', share: 'visible' }
+        },
+        authorProof: evidence.authorProof,
+        structuredObservation: evidence.structuredObservation
+      }],
+      syntheticCreatorWorksProof(creatorId, [workId], { collectedAt: '2026-09-02T08:00:00.000Z' })
+    ))
+
+    expect(receipt).toMatchObject({ accepted: false, code: 'invalid-collection-proof' })
+    expect(receipt.error).toMatch(/DOM_ONLY_SOURCE_REJECTED/)
+    expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(creatorJob.id) as { state: string }).state).toBe('blocked_user_action')
+    expect(database!.getSummary()).toMatchObject({ followingCount: 1, workCount: 0, commentCount: 0 })
+    expect(Number((database!.db.prepare('SELECT COUNT(*) AS count FROM works').get() as { count: number }).count)).toBe(0)
+    expect(Number((database!.db.prepare('SELECT COUNT(*) AS count FROM metric_snapshots').get() as { count: number }).count)).toBe(0)
+    expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM collection_checkpoints WHERE scope_id=?`).get(creatorId) as { count: number }).count)).toBe(0)
+    expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind='collection.work_comments'`).get() as { count: number }).count)).toBe(0)
   })
 
   it('rejects proof whose creator list or profile identity does not match the returned items', async () => {

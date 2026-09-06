@@ -26,7 +26,7 @@ const maximumBodyBytes = 4 * 1024 * 1024
 const sensitiveKeyPattern = /(?:authorization|bearer|cookie|password|secret|apikey|accesstoken|refreshtoken|x[-_]?bogus|signature(?:value|input|header)?|session(?:id|token|key)|device(?:id|fingerprint)|browserprofile)/i
 
 function assertLegacyPhaseBDisabled() {
-  throw new Error('LEGACY_ROUTE_DISABLED:0.2.4:BLOCKED_BY_R0_UNTIL_R4')
+  throw new Error('LEGACY_ROUTE_DISABLED:0.2.4:LEGACY_ROUTE_PERMANENTLY_DISABLED')
 }
 
 function parseArgs(values) {

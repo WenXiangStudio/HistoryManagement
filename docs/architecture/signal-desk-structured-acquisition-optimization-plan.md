@@ -1,7 +1,7 @@
 # Signal Desk 结构化采集与理解可执行优化方案
 
 > 版本：规划基线 `2026-09-05`  
-> 状态：`R0～R3` 已完成离线实现与合成测试；`R4～R8` 未实施，尚未开始新的真实采集或正式库迁移
+> 状态：`R0～R4` 已完成离线实现与合成/模拟测试；`R5～R8` 未实施，尚未开始新的真实采集或正式库迁移
 > 社区证据库：[`signal-desk-community-validated-routes-2026-09-05.md`](../research/signal-desk-community-validated-routes-2026-09-05.md)
 
 ## 1. 要解决的真实问题
@@ -286,7 +286,7 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 - 将 `0.2.3` 标记为“作品归属证明失败”，24 个样本不得作为关注作品基准；
 - 保留旧 run，仅作只读失败证据；测试必须另用合成 fixture；
 - 禁止 `inferred:common-work-ancestor-div` 产生正式候选；
-- 禁止运行 `0.2.4`，直到 R1～R4 完成；
+- `0.2.4` 永久退役并保持硬禁用，不因 R1～R4 完成而恢复；
 - 建立 route registry 和证据等级枚举。
 
 退出条件：单元测试能证明 DOM-only 候选被拒绝，自填作者 ID 被拒绝，历史 run 不被误判为通过。
@@ -338,9 +338,20 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 
 ### R4：作品、详情与作者独立证明
 
+状态：已完成（2026-09-06，仅合成 fixture、模拟 route 和内存数据库）。已实现 `DY-WORKS-NETWORK → DY-WORKS-EMBEDDED → DY-WORKS-INPAGE → DY-WORKS-STOP` 与对应详情路线；列表页级 proof、逐作品 `WorkAuthorProof/v2` 和 `WorkDetailVerification/v1` 将关注目标、主页目标、请求目标、列表作者、详情请求作品、详情返回作品与详情作者闭合为独立证明链。详情失败、作者错配、目标 ID 错配或分页未闭合均整批返回零候选。
+
+主要文件：
+
+- `src/main/douyinWorkAdapters.ts`
+- `src/main/douyinWorkAdapters.test.ts`
+- `src/shared/fixtures/douyin-work-pages-r4.mock.json`
+- `src/shared/fixtures/syntheticR4Proofs.ts`
+- `src/shared/structuredAcquisition.ts`
+- `src/main/taskRunner.ts`
+
 改动：实现 `/aweme/post/`、详情复核、statistics 投影和四 ID 一致门禁；删除把目标 creator ID 回填成观察作者 ID 的路径。
 
-退出条件：推荐作品混入、错误作者、伪填 creator ID、详情 ID 不一致均被拒绝；主页 DOM 链接不再产生候选。
+退出条件：推荐作品混入、错误作者、伪填 creator ID、详情 ID 不一致均被拒绝；主页 DOM 链接不再产生候选。点赞、评论、收藏、分享、播放只投影安全非负整数或 `null`，列表与详情快照及差异字段分别保留，禁止猜测“1.2万”或静默合并。生产连接器尚未生成对应 v2 envelope，本阶段仍为 E2-doc 的离线实现，不构成 E3/E4。
 
 ### R5：评论和回复结构化适配器
 
@@ -432,4 +443,4 @@ run/<run-id>/
 
 推荐按 `R0 → R1 → R2 → R3 → R4 → R5 → R6 → R7 → R8` 执行，不并行触碰真实平台。`R0～R7` 可以全部用源码、合成 fixture、临时测试库和浏览器事件模拟完成；到 `R8` 才需要真实页面验证。
 
-当前交付已完成 `R0～R3` 的离线实现与合成/模拟测试，没有执行新采集、没有写正式数据库、没有恢复历史任务。下一实施点是 `R4`；由于 `R4` 尚未完成，`0.2.4` 仍由代码硬禁用，也不得进入真实 `R8/T1/T2/T3`。R3 已完成关注结构化适配器和桌面端 v2 入库门禁，但生产连接器尚未把 R2 Observer 投影转换为业务 envelope；作品与评论投影仍待 `R4/R5`，因此不能把本轮测试视为真实平台验收。
+当前交付已完成 `R0～R4` 的离线实现与合成/模拟测试，没有执行新采集、没有写正式数据库、没有恢复历史任务。下一实施点是 `R5`；`0.2.3/0.2.4` 已永久退役并由代码硬禁用，也不得进入真实 `R8/T1/T2/T3`。R3/R4 已完成关注、作品列表、作品详情和桌面端 v2 入库门禁，但生产连接器尚未把 R2 Observer 投影转换为业务 envelope，评论与回复投影仍待 R5，因此不能把本轮测试视为 E3/E4 或真实平台验收。
