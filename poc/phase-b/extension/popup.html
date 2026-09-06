@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signal Desk Phase B PoC</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main>
+      <h1>阶段 B · 隔离评论 PoC</h1>
+      <p class="boundary">自动从本人真实关注关系中随机抽取 20～30 个公开作品；结果只写本地隔离目录，不连接正式 Signal Desk。</p>
+
+      <label>
+        控制器地址
+        <input id="controllerUrl" value="http://127.0.0.1:43827" spellcheck="false">
+      </label>
+      <label>
+        自动抽样数量（20～30）
+        <input id="targetSampleCount" type="number" min="20" max="30" step="1" value="24">
+      </label>
+
+      <p class="automation">点击开始后，扩展会与本机控制器自动配对，打开本人主页，严格验证“关注”关系弹窗，随机打乱已关注博主并从其公开作品中分层抽样。无需粘贴 token，也无需收集或粘贴任何作品链接。</p>
+
+      <div class="actions">
+        <button id="start">开始隔离 PoC</button>
+        <button id="stop" class="danger">立即停止</button>
+      </div>
+
+      <pre id="status">尚未开始</pre>
+      <p class="warning">扩展会显示 Chrome 调试权限提示，这是为了读取评论网络响应正文；不会读取或保存请求头、Cookie、签名值或密码，也不会执行关注、点赞、评论等写操作。</p>
+    </main>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

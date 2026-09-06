@@ -1,0 +1,36 @@
+{
+  "fixture": "synthetic-douyin-comment-page/v1",
+  "status_code": 0,
+  "comments": [
+    {
+      "cid": "mock-comment-1001",
+      "text": "这是完全虚构的阶段 A fixture 评论",
+      "create_time": 1788537600,
+      "digg_count": 7,
+      "ip_label": "测试地区",
+      "reply_comment_total": 0,
+      "user": {
+        "uid": "mock-user-1001",
+        "nickname": "Fixture 用户"
+      }
+    },
+    {
+      "cid": "mock-comment-1002",
+      "text": "用于验证分页、原生 cid 和白名单投影",
+      "create_time": 1788537660,
+      "digg_count": 0,
+      "ip_label": null,
+      "reply_comment_total": 2,
+      "user": {
+        "uid": "mock-user-1002",
+        "nickname": "Mock Viewer"
+      }
+    }
+  ],
+  "cursor": 20,
+  "has_more": 1,
+  "total": 42,
+  "extra": {
+    "now": 1788537700000
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "contract": "signal-desk-browser-connector-identity/v1",
+  "connectorVersion": "0.1.6",
+  "extensionId": "fejndacdabkgahmfpfjaghhedbdehonh",
+  "stableDirectory": "%LOCALAPPDATA%\\Signal Desk\\BrowserConnector"
+}

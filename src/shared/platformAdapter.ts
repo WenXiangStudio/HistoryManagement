@@ -1,0 +1,438 @@
+import { z } from 'zod'
+
+export const platformAdapterNameSchema = z.string()
+  .min(3)
+  .max(80)
+  .regex(/^[a-z][a-z0-9]*(?:[.-][a-z0-9]+)*$/, 'adapterName must be a stable lowercase identifier')
+
+export const platformAdapterVersionSchema = z.string()
+  .regex(/^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z.-]+)?$/, 'adapterVersion must be semantic-versioned')
+
+export const platformOperationSchema = z.enum([
+  'following',
+  'creator-works',
+  'work-detail',
+  'comments',
+  'comment-replies',
+  'media-resolve'
+])
+
+export const adapterEndpointKindSchema = z.enum([
+  'following-list',
+  'creator-work-list',
+  'work-detail',
+  'comment-list',
+  'comment-reply-list',
+  'media-resource'
+])
+
+export const adapterSourceKindSchema = z.enum([
+  'network-response',
+  'page-context-fetch',
+  'embedded-json',
+  'dom-fallback'
+])
+
+export const mediaSourceKindSchema = z.enum([
+  'structured-detail',
+  'media-element',
+  'performance-resource',
+  'network-response',
+  'yt-dlp-extractor'
+])
+
+export const persistedRequestParameterNameSchema = z.enum([
+  'aid',
+  'aweme_id',
+  'channel',
+  'comment_id',
+  'count',
+  'cursor',
+  'device_platform',
+  'item_id',
+  'max_cursor',
+  'min_cursor',
+  'sec_user_id'
+])
+
+const requestParameterValueSchema = z.union([
+  z.string().max(512),
+  z.number().finite(),
+  z.boolean()
+])
+
+export const persistedRequestParameterSchema = z.object({
+  name: persistedRequestParameterNameSchema,
+  value: requestParameterValueSchema
+}).strict().superRefine((entry, context) => {
+  const numericNames = new Set(['aid', 'count', 'cursor', 'max_cursor', 'min_cursor'])
+  const identifierNames = new Set(['aweme_id', 'comment_id', 'item_id', 'sec_user_id'])
+  if (numericNames.has(entry.name)) {
+    const valid = typeof entry.value === 'number'
+      ? Number.isSafeInteger(entry.value) && entry.value >= 0
+      : typeof entry.value === 'string' && /^\d+$/.test(entry.value)
+    if (!valid) context.addIssue({ code: 'custom', path: ['value'], message: `${entry.name} must be a non-negative integer` })
+  } else if (identifierNames.has(entry.name)) {
+    if (typeof entry.value !== 'string' || !/^[A-Za-z0-9._-]{1,240}$/.test(entry.value)) {
+      context.addIssue({ code: 'custom', path: ['value'], message: `${entry.name} must be an opaque platform identifier` })
+    }
+  } else if (typeof entry.value !== 'string' || !/^[A-Za-z0-9._-]{1,80}$/.test(entry.value)) {
+    context.addIssue({ code: 'custom', path: ['value'], message: `${entry.name} must be a short public enum value` })
+  }
+})
+
+const persistedRequestParametersSchema = z.array(persistedRequestParameterSchema)
+  .max(24)
+  .refine(
+    (entries) => new Set(entries.map((entry) => entry.name)).size === entries.length,
+    { message: 'request parameter names must be unique' }
+  )
+
+export const adapterValidationResultsSchema = z.object({
+  http: z.enum(['valid', 'not-applicable']),
+  json: z.literal('valid'),
+  platformStatus: z.enum(['valid', 'not-applicable']),
+  targetIdentity: z.literal('valid'),
+  schema: z.literal('valid'),
+  pagination: z.enum(['valid', 'not-applicable']),
+  sensitiveFields: z.literal('removed')
+}).strict()
+
+const returnedIdsSchema = z.array(z.string().min(1).max(240))
+  .max(1_000)
+  .refine((values) => new Set(values).size === values.length, {
+    message: 'returnedIds must not contain duplicates'
+  })
+
+const responseBodySha256Schema = z.string().regex(/^[a-f0-9]{64}$/, 'responseBodySha256 must be lowercase SHA-256')
+
+const commonDouyinApiProofShape = {
+  platform: z.literal('douyin'),
+  adapterName: platformAdapterNameSchema,
+  adapterVersion: platformAdapterVersionSchema,
+  schemaVersion: z.literal(1),
+  sourceKind: adapterSourceKindSchema,
+  requestParameters: persistedRequestParametersSchema,
+  cursorIn: z.string().max(240).nullable(),
+  cursorOut: z.string().max(240).nullable(),
+  hasMore: z.boolean(),
+  reportedTotal: z.number().int().nonnegative().nullable(),
+  returnedIds: returnedIdsSchema,
+  responseBodySha256: responseBodySha256Schema,
+  collectedAt: z.string().datetime(),
+  browserOrigin: z.literal('https://www.douyin.com'),
+  sessionUsed: z.literal(true),
+  signatureProvider: z.enum(['page-frontierSign', 'observed-network-response', 'not-required']),
+  validationResults: adapterValidationResultsSchema
+} as const
+
+function parameterValue(
+  entries: Array<z.infer<typeof persistedRequestParameterSchema>>,
+  name: z.infer<typeof persistedRequestParameterNameSchema>
+): string | number | boolean | undefined {
+  return entries.find((entry) => entry.name === name)?.value
+}
+
+export const douyinCommentApiProofSchema = z.object({
+  contract: z.literal('douyin-comment-api-proof/v1'),
+  ...commonDouyinApiProofShape,
+  pageKind: z.literal('work-detail-comments'),
+  endpointKind: z.enum(['comment-list', 'comment-reply-list']),
+  awemeId: z.string().min(1).max(240)
+}).strict().superRefine((proof, context) => {
+  if (String(parameterValue(proof.requestParameters, 'aweme_id') ?? '') !== proof.awemeId) {
+    context.addIssue({ code: 'custom', path: ['requestParameters'], message: 'aweme_id must match proof.awemeId' })
+  }
+  if (proof.endpointKind === 'comment-list' && parameterValue(proof.requestParameters, 'comment_id') !== undefined) {
+    context.addIssue({ code: 'custom', path: ['requestParameters'], message: 'root comment pages must not contain comment_id' })
+  }
+})
+
+export const douyinWorkApiProofSchema = z.object({
+  contract: z.literal('douyin-work-api-proof/v1'),
+  ...commonDouyinApiProofShape,
+  pageKind: z.enum(['creator-profile-works', 'work-detail']),
+  endpointKind: z.enum(['creator-work-list', 'work-detail']),
+  creatorId: z.string().min(1).max(240).nullable(),
+  workIds: returnedIdsSchema
+}).strict().superRefine((proof, context) => {
+  if (JSON.stringify(proof.workIds) !== JSON.stringify(proof.returnedIds)) {
+    context.addIssue({ code: 'custom', path: ['workIds'], message: 'workIds must exactly match returnedIds' })
+  }
+})
+
+export const douyinFollowingApiProofSchema = z.object({
+  contract: z.literal('douyin-following-api-proof/v1'),
+  ...commonDouyinApiProofShape,
+  pageKind: z.literal('owner-following-list'),
+  endpointKind: z.literal('following-list'),
+  relationship: z.literal('following'),
+  creatorIds: returnedIdsSchema
+}).strict().superRefine((proof, context) => {
+  if (JSON.stringify(proof.creatorIds) !== JSON.stringify(proof.returnedIds)) {
+    context.addIssue({ code: 'custom', path: ['creatorIds'], message: 'creatorIds must exactly match returnedIds' })
+  }
+})
+
+export const mediaResourceProofSchema = z.object({
+  contract: z.literal('media-resource-proof/v1'),
+  platform: z.enum(['douyin', 'bilibili', 'youtube', 'xiaohongshu', 'kuaishou']),
+  adapterName: platformAdapterNameSchema,
+  adapterVersion: platformAdapterVersionSchema,
+  schemaVersion: z.literal(1),
+  sourceKind: mediaSourceKindSchema,
+  endpointKind: z.literal('media-resource'),
+  workId: z.string().min(1).max(240),
+  resourceKind: z.enum(['video', 'audio', 'subtitle', 'image']),
+  resourceUrlSha256: responseBodySha256Schema,
+  collectedAt: z.string().datetime(),
+  browserOrigin: z.string().url().nullable(),
+  sessionUsed: z.boolean(),
+  validationResults: z.object({
+    targetIdentity: z.literal('valid'),
+    resourceScheme: z.literal('https'),
+    sensitiveFields: z.literal('removed')
+  }).strict()
+}).strict()
+
+export const platformSourceProofSchema = z.union([
+  douyinCommentApiProofSchema,
+  douyinWorkApiProofSchema,
+  douyinFollowingApiProofSchema,
+  mediaResourceProofSchema
+])
+
+export const adapterIdentitySchema = z.object({
+  platform: z.enum(['douyin', 'bilibili', 'youtube', 'xiaohongshu', 'kuaishou']),
+  adapterName: platformAdapterNameSchema,
+  adapterVersion: platformAdapterVersionSchema,
+  schemaVersion: z.literal(1)
+}).strict()
+
+export const adapterPaginationSchema = z.object({
+  cursorIn: z.string().max(240).nullable(),
+  cursorOut: z.string().max(240).nullable(),
+  hasMore: z.boolean(),
+  reportedTotal: z.number().int().nonnegative().nullable(),
+  returnedCount: z.number().int().nonnegative(),
+  duplicateCount: z.number().int().nonnegative()
+}).strict()
+
+export const adapterCompletionSchema = z.enum(['partial', 'complete', 'verified-empty'])
+
+export function createPlatformAdapterPageSchema<T extends z.ZodType>(itemSchema: T) {
+  return z.object({
+    contract: z.literal('platform-adapter-page/v1'),
+    identity: adapterIdentitySchema,
+    operation: platformOperationSchema,
+    completion: adapterCompletionSchema,
+    pagination: adapterPaginationSchema,
+    sourceProof: platformSourceProofSchema,
+    items: z.array(itemSchema).max(1_000)
+  }).strict().superRefine((page, context) => {
+    if (page.pagination.returnedCount !== page.items.length) {
+      context.addIssue({ code: 'custom', path: ['pagination', 'returnedCount'], message: 'returnedCount must equal items.length' })
+    }
+    if (page.completion === 'verified-empty') {
+      if (page.items.length !== 0 || page.pagination.hasMore || page.pagination.reportedTotal !== 0) {
+        context.addIssue({
+          code: 'custom',
+          path: ['completion'],
+          message: 'verified-empty requires zero items, hasMore=false, and reportedTotal=0'
+        })
+      }
+    }
+    if (page.completion === 'complete' && page.pagination.hasMore) {
+      context.addIssue({ code: 'custom', path: ['completion'], message: 'complete pages cannot have hasMore=true' })
+    }
+    if (page.items.length === 0 && page.pagination.hasMore) {
+      context.addIssue({ code: 'custom', path: ['pagination'], message: 'an empty page with hasMore=true is a protocol error' })
+    }
+  })
+}
+
+export const platformAdapterErrorCodeSchema = z.enum([
+  'BROWSER_OFFLINE',
+  'PAGE_NAVIGATION_TIMEOUT',
+  'PAGE_CONTEXT_NOT_READY',
+  'LOGIN_REQUIRED',
+  'CAPTCHA_OR_SECURITY_CHALLENGE',
+  'RATE_LIMITED',
+  'HTTP_TRANSIENT',
+  'API_STATUS_ERROR',
+  'SIGNATURE_UNAVAILABLE',
+  'SIGNATURE_REJECTED',
+  'SCHEMA_CHANGED',
+  'WORK_PRIVATE',
+  'WORK_DELETED',
+  'COMMENTS_DISABLED',
+  'VERIFIED_EMPTY',
+  'MEDIA_URL_EXPIRED',
+  'MEDIA_DOWNLOAD_FAILED'
+])
+
+export const adapterErrorCategorySchema = z.enum([
+  'transient',
+  'authentication',
+  'challenge',
+  'throttling',
+  'protocol',
+  'access',
+  'outcome'
+])
+
+export const adapterTaskImpactSchema = z.enum(['item', 'batch', 'adapter'])
+
+export type PlatformAdapterErrorCode = z.infer<typeof platformAdapterErrorCodeSchema>
+export type AdapterErrorCategory = z.infer<typeof adapterErrorCategorySchema>
+export type AdapterTaskImpact = z.infer<typeof adapterTaskImpactSchema>
+
+type AdapterErrorPolicy = {
+  category: AdapterErrorCategory
+  retryable: boolean
+  taskImpact: AdapterTaskImpact
+  userActionRequired: boolean
+}
+
+export const PLATFORM_ADAPTER_ERROR_POLICIES = {
+  BROWSER_OFFLINE: { category: 'transient', retryable: true, taskImpact: 'batch', userActionRequired: false },
+  PAGE_NAVIGATION_TIMEOUT: { category: 'transient', retryable: true, taskImpact: 'item', userActionRequired: false },
+  PAGE_CONTEXT_NOT_READY: { category: 'transient', retryable: true, taskImpact: 'item', userActionRequired: false },
+  LOGIN_REQUIRED: { category: 'authentication', retryable: false, taskImpact: 'batch', userActionRequired: true },
+  CAPTCHA_OR_SECURITY_CHALLENGE: { category: 'challenge', retryable: false, taskImpact: 'batch', userActionRequired: true },
+  RATE_LIMITED: { category: 'throttling', retryable: true, taskImpact: 'batch', userActionRequired: false },
+  HTTP_TRANSIENT: { category: 'transient', retryable: true, taskImpact: 'item', userActionRequired: false },
+  API_STATUS_ERROR: { category: 'protocol', retryable: false, taskImpact: 'item', userActionRequired: false },
+  SIGNATURE_UNAVAILABLE: { category: 'transient', retryable: true, taskImpact: 'item', userActionRequired: false },
+  SIGNATURE_REJECTED: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  SCHEMA_CHANGED: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  WORK_PRIVATE: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
+  WORK_DELETED: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
+  COMMENTS_DISABLED: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
+  VERIFIED_EMPTY: { category: 'outcome', retryable: false, taskImpact: 'item', userActionRequired: false },
+  MEDIA_URL_EXPIRED: { category: 'transient', retryable: true, taskImpact: 'item', userActionRequired: false },
+  MEDIA_DOWNLOAD_FAILED: { category: 'transient', retryable: true, taskImpact: 'item', userActionRequired: false }
+} as const satisfies Record<PlatformAdapterErrorCode, AdapterErrorPolicy>
+
+const safeContextKeySchema = z.string()
+  .min(1)
+  .max(64)
+  .regex(/^[a-z][a-zA-Z0-9]*$/)
+  .refine(
+    (key) => !/(authorization|bearer|cookie|password|secret|token|apiKey|xBogus|signature|deviceId|browserProfile)/i.test(key),
+    { message: 'sensitive context keys are forbidden' }
+  )
+
+const safeContextValueSchema = z.union([
+  z.string().max(1_000),
+  z.number().finite(),
+  z.boolean(),
+  z.null()
+])
+
+export const platformAdapterIssueSchema = z.object({
+  contract: z.literal('platform-adapter-issue/v1'),
+  code: platformAdapterErrorCodeSchema,
+  category: adapterErrorCategorySchema,
+  phase: z.enum(['session', 'navigation', 'discovery', 'signature', 'request', 'response', 'validation', 'pagination', 'media']),
+  message: z.string().min(1).max(2_000),
+  retryable: z.boolean(),
+  taskImpact: adapterTaskImpactSchema,
+  userActionRequired: z.boolean(),
+  endpointKind: adapterEndpointKindSchema.nullable(),
+  httpStatus: z.number().int().min(100).max(599).nullable(),
+  retryAfterMs: z.number().int().nonnegative().max(86_400_000).nullable(),
+  safeContext: z.record(safeContextKeySchema, safeContextValueSchema),
+  occurredAt: z.string().datetime()
+}).strict().superRefine((issue, context) => {
+  const policy = PLATFORM_ADAPTER_ERROR_POLICIES[issue.code]
+  for (const field of ['category', 'retryable', 'taskImpact', 'userActionRequired'] as const) {
+    if (issue[field] !== policy[field]) {
+      context.addIssue({ code: 'custom', path: [field], message: `${field} does not match the frozen policy for ${issue.code}` })
+    }
+  }
+  if (issue.code !== 'RATE_LIMITED' && issue.retryAfterMs !== null) {
+    context.addIssue({ code: 'custom', path: ['retryAfterMs'], message: 'retryAfterMs is reserved for RATE_LIMITED' })
+  }
+})
+
+export function buildPlatformAdapterIssue(input: {
+  code: PlatformAdapterErrorCode
+  phase: z.infer<typeof platformAdapterIssueSchema>['phase']
+  message: string
+  endpointKind?: z.infer<typeof adapterEndpointKindSchema> | null
+  httpStatus?: number | null
+  retryAfterMs?: number | null
+  safeContext?: Record<string, string | number | boolean | null>
+  occurredAt: string
+}): z.infer<typeof platformAdapterIssueSchema> {
+  const policy = PLATFORM_ADAPTER_ERROR_POLICIES[input.code]
+  return platformAdapterIssueSchema.parse({
+    contract: 'platform-adapter-issue/v1',
+    code: input.code,
+    ...policy,
+    phase: input.phase,
+    message: input.message,
+    endpointKind: input.endpointKind ?? null,
+    httpStatus: input.httpStatus ?? null,
+    retryAfterMs: input.retryAfterMs ?? null,
+    safeContext: input.safeContext ?? {},
+    occurredAt: input.occurredAt
+  })
+}
+
+export const collectionScopeSchema = z.object({
+  contract: z.literal('collection-scope/v1'),
+  platform: z.enum(['douyin', 'bilibili', 'youtube', 'xiaohongshu', 'kuaishou']),
+  ownerAccountId: z.string().min(1).max(120),
+  operation: platformOperationSchema,
+  entityId: z.string().min(1).max(240).nullable(),
+  limits: z.object({
+    creatorLimit: z.number().int().positive().nullable(),
+    worksPerCreator: z.number().int().positive().nullable(),
+    commentsPerWork: z.number().int().positive().nullable()
+  }).strict(),
+  collectionMode: z.enum(['collection-only', 'with-media']),
+  adapterName: platformAdapterNameSchema,
+  adapterVersion: platformAdapterVersionSchema,
+  timeWindow: z.object({
+    from: z.string().datetime().nullable(),
+    to: z.string().datetime().nullable()
+  }).strict().nullable()
+}).strict().superRefine((scope, context) => {
+  const { from, to } = scope.timeWindow ?? {}
+  if (from && to && Date.parse(from) > Date.parse(to)) {
+    context.addIssue({ code: 'custom', path: ['timeWindow'], message: 'timeWindow.from must not be after timeWindow.to' })
+  }
+})
+
+export type AdapterIdentity = z.infer<typeof adapterIdentitySchema>
+export type PlatformOperation = z.infer<typeof platformOperationSchema>
+export type PlatformSourceProof = z.infer<typeof platformSourceProofSchema>
+export type AdapterPagination = z.infer<typeof adapterPaginationSchema>
+export type AdapterCompletion = z.infer<typeof adapterCompletionSchema>
+export type PlatformAdapterIssue = z.infer<typeof platformAdapterIssueSchema>
+export type CollectionScope = z.infer<typeof collectionScopeSchema>
+
+export type PlatformAdapterPage<T> = {
+  contract: 'platform-adapter-page/v1'
+  identity: AdapterIdentity
+  operation: PlatformOperation
+  completion: AdapterCompletion
+  pagination: AdapterPagination
+  sourceProof: PlatformSourceProof
+  items: T[]
+}
+
+export type PlatformAdapterContext = {
+  browserOrigin: string
+  sessionKind: 'browser-page'
+  signal: AbortSignal
+  now: () => Date
+}
+
+export interface PlatformAdapter<TRequest, TItem> {
+  readonly identity: AdapterIdentity
+  readonly operation: PlatformOperation
+  collect(request: TRequest, context: PlatformAdapterContext): Promise<PlatformAdapterPage<TItem>>
+}

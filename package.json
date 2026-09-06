@@ -1,0 +1,96 @@
+{
+  "name": "signal-desk",
+  "version": "0.1.11",
+  "private": true,
+  "description": "Local-first Douyin following intelligence desk",
+  "main": "./out/main/index.js",
+  "author": "Signal Desk",
+  "license": "UNLICENSED",
+  "type": "module",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "package": "npm run build:native-host && npm run build && electron-builder --dir && npm run test:packaged-renderer",
+    "dist:win": "npm run build:native-host && npm run build && electron-builder --win nsis && npm run test:packaged-renderer",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:worker": "powershell -ExecutionPolicy Bypass -File scripts/run-worker-tests.ps1",
+    "build:native-host": "powershell -ExecutionPolicy Bypass -File browser-connector/build-native-host.ps1",
+    "test:native-host": "npm run build:native-host && node scripts/test-native-host.mjs && npm run test:native-manifest",
+    "test:native-manifest": "node scripts/test-native-manifest.mjs",
+    "test:packaged-renderer": "node scripts/test-packaged-renderer.mjs",
+    "test:connector-content": "node scripts/test-connector-content.mjs",
+    "test:connector-background": "node scripts/test-connector-background.mjs",
+    "test:phase-b": "node --test poc/phase-b/test/*.test.mjs",
+    "check": "tsc --noEmit && npm run test && npm run test:worker && npm run test:native-host && npm run test:connector-content && npm run test:connector-background && npm run test:phase-b && node --check browser-connector/extension/popup.js && npm run build"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.6",
+    "@fontsource/noto-sans-sc": "^5.2.6",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@ffprobe-installer/ffprobe": "^2.1.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "zod": "^4.1.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.2",
+    "electron": "^39.8.10",
+    "electron-builder": "^26.0.12",
+    "electron-vite": "^4.0.0",
+    "jsdom": "^26.1.0",
+    "typescript": "^5.9.2",
+    "vite": "^7.1.3",
+    "vitest": "^3.2.4"
+  },
+  "build": {
+    "appId": "com.signaldesk.app",
+    "productName": "Signal Desk",
+    "asar": true,
+    "asarUnpack": [
+      "node_modules/@ffmpeg-installer/**",
+      "node_modules/@ffprobe-installer/**"
+    ],
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "out/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "worker",
+        "to": "worker"
+      },
+      {
+        "from": "browser-connector",
+        "to": "browser-connector",
+        "filter": [
+          "**/*",
+          "!native-host/bin/com.signaldesk.bridge.json"
+        ]
+      },
+      {
+        "from": "runtime/python311",
+        "to": "python311"
+      }
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "SignalDesk-${version}-${arch}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "deleteAppDataOnUninstall": false,
+      "include": "build/installer.nsh"
+    }
+  }
+}

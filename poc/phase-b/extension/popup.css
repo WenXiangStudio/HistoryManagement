@@ -1,0 +1,15 @@
+:root { color-scheme: light; font-family: system-ui, "Microsoft YaHei", sans-serif; }
+body { width: 460px; margin: 0; color: #20252b; background: #f8f7f3; }
+main { padding: 16px; }
+h1 { margin: 0 0 8px; font-size: 19px; }
+p { line-height: 1.45; }
+.boundary { margin: 0 0 14px; color: #3f5d50; }
+label { display: grid; gap: 5px; margin: 10px 0; font-size: 13px; font-weight: 650; }
+input, textarea { box-sizing: border-box; width: 100%; padding: 8px; border: 1px solid #b9b9b2; border-radius: 7px; background: white; font: 12px ui-monospace, Consolas, monospace; }
+textarea { resize: vertical; }
+.actions { display: flex; gap: 9px; margin-top: 12px; }
+button { padding: 8px 12px; border: 0; border-radius: 7px; color: white; background: #326a55; cursor: pointer; }
+button.danger { background: #9a473d; }
+button:disabled { cursor: not-allowed; opacity: .55; }
+pre { min-height: 58px; max-height: 150px; overflow: auto; white-space: pre-wrap; padding: 9px; border-radius: 7px; background: #20252b; color: #edf6ef; font-size: 11px; }
+.warning { margin-bottom: 0; color: #79552f; font-size: 12px; }

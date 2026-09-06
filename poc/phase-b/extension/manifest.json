@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Signal Desk Phase B 隔离评论 PoC",
+  "version": "0.2.4",
+  "description": "自动从本人真实关注中随机抽样，并在独立目录对比评论 Network、页面 API 与 DOM shadow；不连接正式 Signal Desk。",
+  "minimum_chrome_version": "120",
+  "permissions": [
+    "debugger",
+    "scripting",
+    "storage",
+    "tabs"
+  ],
+  "host_permissions": [
+    "https://www.douyin.com/*",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Signal Desk Phase B PoC",
+    "default_popup": "popup.html"
+  }
+}
