@@ -1,26 +1,65 @@
 import { describe, expect, it } from 'vitest'
-import type { BrowserCollectionEnvelope, DouyinFollowingSourceProof } from '../shared/contracts'
+import type { BrowserCollectionEnvelope, DouyinFollowingStructuredProof } from '../shared/contracts'
 import { validateEnvelopeForJob } from './taskRunner'
 
 function validFollowingEnvelope(): BrowserCollectionEnvelope {
+  const collectedAt = '2026-09-02T08:00:00.000Z'
+  const schemaFingerprint = 'a'.repeat(64)
+  const creatorIds = ['creator-1', 'creator-2']
   return {
     contract: 'browser-collection-envelope/v1',
     commandId: 'following-command',
     platform: 'douyin',
-    collectedAt: '2026-09-02T08:00:00.000Z',
+    collectedAt,
     sourceUrl: 'https://www.douyin.com/user/self?showTab=follow',
-    completeness: 'partial',
-    hasMore: true,
+    completeness: 'complete',
+    cursor: '20',
+    hasMore: false,
     sourceProof: {
-      contract: 'douyin-following-source-proof/v1',
+      contract: 'douyin-following-structured-proof/v2',
+      platform: 'douyin',
+      adapterName: 'douyin.following',
+      adapterVersion: '0.2.0-r3',
+      schemaVersion: 2,
+      routeId: 'DY-FOLLOW-NETWORK',
+      sourceKind: 'network-response',
+      endpointKind: 'following-list',
       relationship: 'following',
-      pageKind: 'owner-following-list',
-      activeTab: 'following',
-      extractionScope: 'verified-following-list-container',
-      scrollRootKind: 'not-needed',
-      containerIdentity: 'role:list|aria-label:关注账号列表',
-      scrollRootIdentity: 'not-needed',
-      creatorIds: ['creator-1', 'creator-2']
+      ownerAccountId: 'synthetic-owner-1000',
+      requestTargetCreatorId: 'synthetic-owner-1000',
+      requestParameters: [
+        { name: 'count', value: 20 },
+        { name: 'cursor', value: '0' },
+        { name: 'sec_user_id', value: 'synthetic-owner-1000' }
+      ],
+      cursorIn: '0',
+      cursorOut: '20',
+      hasMore: false,
+      reportedTotal: 2,
+      returnedIds: creatorIds,
+      creatorIds,
+      schemaFingerprint,
+      responseProjectionSha256: 'b'.repeat(64),
+      routeTrace: [{
+        routeId: 'DY-FOLLOW-NETWORK',
+        status: 'success',
+        attempt: 1,
+        durationMs: 12,
+        schemaFingerprint,
+        occurredAt: collectedAt
+      }],
+      collectedAt,
+      browserOrigin: 'https://www.douyin.com',
+      sessionUsed: true,
+      validationResults: {
+        http: 'valid',
+        json: 'valid',
+        platformStatus: 'valid',
+        targetIdentity: 'valid',
+        schema: 'valid',
+        pagination: 'valid',
+        sensitiveFields: 'removed'
+      }
     },
     items: [
       { entityType: 'creator', creatorId: 'creator-1', nickname: '博主一', profileUrl: 'https://www.douyin.com/user/creator-1', signature: '', isFollowing: true },
@@ -137,8 +176,8 @@ function validWorkEnvelope(): BrowserCollectionEnvelope {
 
 const followingPayload = { creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20, collectionOnly: true }
 
-function followingProofOf(value: BrowserCollectionEnvelope): DouyinFollowingSourceProof {
-  if (value.sourceProof?.contract !== 'douyin-following-source-proof/v1') throw new Error('expected following proof')
+function followingProofOf(value: BrowserCollectionEnvelope): DouyinFollowingStructuredProof {
+  if (value.sourceProof?.contract !== 'douyin-following-structured-proof/v2') throw new Error('expected structured following proof')
   return value.sourceProof
 }
 
@@ -152,6 +191,8 @@ describe('collection source semantic gate', () => {
     ['wrong source route', (value: BrowserCollectionEnvelope) => { value.sourceUrl = 'https://www.douyin.com/' }],
     ['wrong source host', (value: BrowserCollectionEnvelope) => { value.sourceUrl = 'https://www.douyin.com.example.test/user/self?showTab=follow' }],
     ['proof id mismatch', (value: BrowserCollectionEnvelope) => { followingProofOf(value).creatorIds = ['creator-1'] }],
+    ['proof route/source mismatch', (value: BrowserCollectionEnvelope) => { followingProofOf(value).routeId = 'DY-FOLLOW-EMBEDDED' }],
+    ['proof pagination mismatch', (value: BrowserCollectionEnvelope) => { followingProofOf(value).hasMore = true }],
     ['profile id mismatch', (value: BrowserCollectionEnvelope) => {
       const creator = value.items[0]
       if (creator.entityType === 'creator') creator.profileUrl = 'https://www.douyin.com/user/different'
@@ -182,12 +223,29 @@ describe('collection source semantic gate', () => {
     const value = validFollowingEnvelope()
     value.items = []
     followingProofOf(value).creatorIds = []
+    followingProofOf(value).returnedIds = []
     value.completeness = 'complete'
     value.hasMore = false
     expect(() => validateEnvelopeForJob(value, 'collection.following', followingPayload)).toThrow(/空关注列表/)
 
-    followingProofOf(value).emptyStateEvidence = 'verified-empty-state'
+    followingProofOf(value).reportedTotal = 0
     expect(() => validateEnvelopeForJob(value, 'collection.following', followingPayload)).not.toThrow()
+  })
+
+  it('rejects the legacy DOM following proof even when it returns creator rows', () => {
+    const value = validFollowingEnvelope()
+    value.sourceProof = {
+      contract: 'douyin-following-source-proof/v1',
+      relationship: 'following',
+      pageKind: 'owner-following-list',
+      activeTab: 'following',
+      extractionScope: 'verified-following-list-container',
+      scrollRootKind: 'not-needed',
+      containerIdentity: 'role:list|aria-label:关注账号列表',
+      scrollRootIdentity: 'not-needed',
+      creatorIds: ['creator-1', 'creator-2']
+    }
+    expect(() => validateEnvelopeForJob(value, 'collection.following', followingPayload)).toThrow(/DOM_ONLY_SOURCE_REJECTED/)
   })
 
   it('rejects creator entities returned by non-following jobs', () => {

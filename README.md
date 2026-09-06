@@ -1,12 +1,12 @@
 # Signal Desk V0.1
 
-> 结构化采集状态（2026-09-06）：R0～R2 已完成离线实现和合成/模拟测试；旧 `0.2.3/0.2.4` 路线已冻结/硬禁用。R3～R8 与真实平台验收尚未开始，当前不得恢复历史任务或把 DOM-only 作品写入正式数据。
+> 结构化采集状态（2026-09-06）：R0～R3 已完成离线实现和合成/模拟测试；旧 `0.2.3/0.2.4` 路线已冻结/硬禁用。R4～R8 与真实平台验收尚未开始，当前不得恢复历史任务，也不得把 DOM-only 关注关系或作品写入正式数据。
 
 Signal Desk 是一个面向 Windows 11 的本地优先抖音个人账号内容情报台。浏览器只承担“读取当前登录状态下公开可见页面”的采集桥梁；关注博主管理、作品摘要、转写、OCR、评论分析、标签、搜索、批注、队列和导出全部在桌面应用中完成。
 
 当前仓库提供一个可运行、可打包的 V0.1，而不是只有提示词的 Skill：它包含 Electron 桌面端、SQLite 数据库、Chrome/Edge 只读连接器、Native Messaging 控制台 Host、Python 媒体工作器和 OpenAI-compatible BYOK 云端分析流程。
 
-Signal Desk 0.2 的平台事实获取层正在分阶段重构。阶段 A 已冻结适配器、分页、来源证明、结构化错误、敏感信息白名单和范围指纹合同；R0～R2 又完成旧路线冻结、`WorkAuthorProof/v2`、schema/projection hash、route trace 和六类通用 Network Observer。设计与阶段边界见 [`docs/architecture/platform-adapter-phase-a.md`](docs/architecture/platform-adapter-phase-a.md) 与 [`docs/architecture/signal-desk-structured-acquisition-optimization-plan.md`](docs/architecture/signal-desk-structured-acquisition-optimization-plan.md)。这些结果只来自合成 fixture 和模拟 CDP；R3～R5 尚未把结构化投影绑定为业务采集结果。
+Signal Desk 0.2 的平台事实获取层正在分阶段重构。阶段 A 已冻结适配器、分页、来源证明、结构化错误、敏感信息白名单和范围指纹合同；R0～R3 又完成旧路线冻结、`WorkAuthorProof/v2`、schema/projection hash、route trace、六类通用 Network Observer，以及关注列表的 NETWORK/EMBEDDED/INPAGE 离线适配器和 v2 入库门禁。设计与阶段边界见 [`docs/architecture/platform-adapter-phase-a.md`](docs/architecture/platform-adapter-phase-a.md) 与 [`docs/architecture/signal-desk-structured-acquisition-optimization-plan.md`](docs/architecture/signal-desk-structured-acquisition-optimization-plan.md)。这些结果只来自合成 fixture 和模拟 CDP；生产连接器尚未生成 R3 v2 following envelope，R4/R5 的作品与评论业务适配器也尚未实现。
 
 ## 已实现能力
 

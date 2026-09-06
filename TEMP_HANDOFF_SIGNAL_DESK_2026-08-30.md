@@ -9,14 +9,15 @@
 
 本节是当前唯一有效的续接事实和下一阶段实施依据，优先于本文后续所有版本历史、旧测试顺序和旧开场提示。后文关于“`0.1.11` 尚未安装”“不得扩大到 `3/5/20`”“评论仍待第一次真实复验”等内容均只作为历史保留，不得据此重复执行旧操作。
 
-### 0.-3 2026-09-06 R0～R2 离线实施状态（本节最优先事实）
+### 0.-3 2026-09-06 R0～R3 离线实施状态（本节最优先事实）
 
 - 已恢复本地版本控制基线：仓库在修改前建立 `main` 根提交 `3465208`；依赖、构建物、安装包、数据库和运行时输出均按忽略规则排除。
 - R0 已完成：`0.2.3` 固定为 `AUTHOR_PROOF_CIRCULAR` 失败，`0.2.4` 控制器在创建运行目录前硬拒绝，旧扩展的自动/手动启动入口同样硬拒绝。`poc/phase-b/FROZEN_RUNS.json` 固化三个历史 run 的失败分类与关键文件 SHA-256；原始 run 未删除、未覆盖、未重跑，也未作为测试输入。
 - R1 已完成：实现 `douyin-work-author-proof/v2`、四 ID 一致、独立结构化 observation 对照、原生 `aweme_id/cid` 门禁、schema fingerprint、白名单 projection SHA-256、六条 route registry、非敏感 trace 以及 GET/path/参数/header/持久化字段安全负例。正式作品任务现在会在数据库写入前拒绝缺少作者证明的旧 DOM-only 结果。
 - R2 已完成：新增可单测的六类 Network Observer（关注、账号作品、详情、一级评论、回复、媒体），正式连接器执行顺序改为 attach → `Network.enable` → 导航/触发；仅对允许 host 的 GET Fetch/XHR 成功 JSON 读取受限 body，随后 path + schema 双分类、白名单投影、哈希并释放原文；结束时 detach 并清空内存。
+- R3 已完成（仅合成 fixture）：新增关注列表结构化适配器，固定按 `DY-FOLLOW-NETWORK → DY-FOLLOW-EMBEDDED → DY-FOLLOW-INPAGE → DY-FOLLOW-STOP` 切换；多页闭合、verified-empty、cursor loop、重复 creator ID、401/403、429、schema change、未观察 endpoint 和安全负例均有测试。新增 `douyin-following-structured-proof/v2`，正式 following 门禁会在任何数据库写入前拒绝旧 DOM v1；所有结构化路线失败时 creator 始终为 0。
 - 本批次测试只使用仓库内合成 fixture、模拟 CDP 和测试临时目录；没有连接真实平台、没有读取浏览器凭据、没有写正式 SQLite、没有恢复历史任务，也没有启动媒体/ASR/OCR/BYOK/云分析。
-- 下一实施点是 R3。R3/R4 完成前 `0.2.4` 仍保持硬禁用；R2 的合成成功不代表 E4 产品验收，不得启动真实 `R8/T1/T2/T3`。
+- 下一实施点是 R4。R4 完成前 `0.2.4` 仍保持硬禁用；R3 的合成成功不代表 E4 产品验收，生产连接器尚未发出 v2 following envelope，不得启动真实 `R8/T1/T2/T3`。
 
 ### 0.-2 2026-09-05 社区路线研究与结构化重设计（本节最优先事实）
 
@@ -27,7 +28,7 @@
 - 新的作品接纳门禁要求 `followedCreatorId = profileRouteCreatorId = requestTargetCreatorId = observedWorkAuthorId`；最后一个值必须直接来自结构化作品/详情响应，禁止从任务目标回填。评论必须有原生 `cid` 并独立验证 `aweme_id`；`synthetic-content-hash` 仅作历史兼容，不能用于新采集。
 - 社区项目的公开源码或文档只记为候选路线证据，不等于 Signal Desk 已在当前账号/当前平台通过。新的等级为 `E1-source / E2-doc / E3-local-poc / E4-product`；只有隔离 PoC、20～30 个自动样本和人工抽检全部通过才能达到产品级，任何作者错配、跨作品评论、敏感值泄漏或写请求都会令整批失败。
 - 本轮只新增两份 Markdown 文档并更新本节；没有连接抖音、没有开始新采集、没有读取或写入正式 SQLite、没有改生产连接器代码、没有恢复历史任务，也没有备份、清理、重置、媒体处理、ASR/OCR、BYOK 或云分析。
-- 历史上此处把 `R0～R2` 记为下一步；它们现已按 0.-3 完成离线实现。当前下一步为 `R3`，`0.2.4` 继续硬禁用；真实 `R8/T1/T2/T3` 仍需另行确认且只能写隔离输出目录。
+- 历史上此处把 `R0～R2` 记为下一步；它们及 R3 现已按 0.-3 完成离线实现。当前下一步为 `R4`，`0.2.4` 继续硬禁用；真实 `R8/T1/T2/T3` 仍需另行确认且只能写隔离输出目录。
 
 ### 0.-1 2026-09-05 阶段 B 自动抽样最新状态（优先于本节后续旧授权描述）
 

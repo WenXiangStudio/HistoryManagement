@@ -1,4 +1,5 @@
 import type { BrowserCollectionEnvelope, BrowserEventReceipt, SampleSyncOptions } from '../shared/contracts'
+import { douyinFollowingStructuredProofSchema } from '../shared/platformAdapter'
 import { acceptStructuredWorkCandidate, assertWorkAuthorProofForPersistence } from '../shared/structuredAcquisition'
 import type { AppDatabase } from './database'
 import { BridgeServer, type BrowserCommand } from './bridgeServer'
@@ -244,8 +245,8 @@ function limitEnvelope(envelope: BrowserCollectionEnvelope, kind: string, scope:
     return {
       ...envelope,
       items,
-      sourceProof: envelope.sourceProof?.contract === 'douyin-following-source-proof/v1'
-        ? { ...envelope.sourceProof, creatorIds: items.map((item) => item.creatorId) }
+      sourceProof: envelope.sourceProof?.contract === 'douyin-following-structured-proof/v2'
+        ? envelope.sourceProof
         : undefined,
       ...(limited ? { completeness: 'partial' as const, hasMore: true, reason: `桌面端小样本硬上限：${scope.creatorLimit} 位博主` } : {})
     }
@@ -328,15 +329,40 @@ export function validateEnvelopeForJob(
     if (normalizedPath(source.pathname) !== '/user/self' || source.searchParams.get('showTab') !== 'follow') {
       throw new Error('来源不是本人关注页')
     }
-    const proof = envelope.sourceProof
-    if (!proof || proof.contract !== 'douyin-following-source-proof/v1') throw new Error('缺少本人关注列表来源证明')
+    const candidateProof = envelope.sourceProof
+    if (candidateProof?.contract === 'douyin-following-source-proof/v1') {
+      throw new Error('DOM_ONLY_SOURCE_REJECTED:旧 DOM 关注弹窗证明不能作为正式关注事实来源')
+    }
+    if (!candidateProof || candidateProof.contract !== 'douyin-following-structured-proof/v2') {
+      throw new Error('DOM_ONLY_SOURCE_REJECTED:缺少结构化本人关注列表来源证明')
+    }
+    const proofResult = douyinFollowingStructuredProofSchema.safeParse(candidateProof)
+    if (!proofResult.success) throw new Error(`结构化关注证明无效：${proofResult.error.issues[0]?.message ?? 'schema mismatch'}`)
+    const proof = proofResult.data
+    const expectedRoute = {
+      'network-response': 'DY-FOLLOW-NETWORK',
+      'embedded-json': 'DY-FOLLOW-EMBEDDED',
+      'page-context-fetch': 'DY-FOLLOW-INPAGE'
+    }[proof.sourceKind]
+    if (proof.routeId !== expectedRoute || proof.endpointKind !== 'following-list' || proof.relationship !== 'following') {
+      throw new Error('结构化关注证明的 route/source/endpoint 不一致')
+    }
+    if (proof.collectedAt !== envelope.collectedAt || proof.browserOrigin !== source.origin) {
+      throw new Error('结构化关注证明与 envelope 的采集时间或来源 origin 不一致')
+    }
+    if (proof.hasMore !== envelope.hasMore || proof.cursorOut !== (envelope.cursor ?? null)) {
+      throw new Error('结构化关注证明与 envelope 的分页状态不一致')
+    }
     if (!envelope.items.every((item) => item.entityType === 'creator')) {
       throw new Error('关注列表结果混入了非博主实体')
     }
     const creators = envelope.items.filter((item) => item.entityType === 'creator')
     const creatorIds = creators.map((item) => item.creatorId)
     if (new Set(creatorIds).size !== creatorIds.length) throw new Error('关注列表结果包含重复博主')
-    if (JSON.stringify(proof.creatorIds) !== JSON.stringify(creatorIds)) {
+    if (
+      JSON.stringify(proof.creatorIds) !== JSON.stringify(creatorIds)
+      || JSON.stringify(proof.returnedIds) !== JSON.stringify(creatorIds)
+    ) {
       throw new Error('来源证明与博主清单不一致')
     }
     for (const creator of creators) {
@@ -344,11 +370,16 @@ export function validateEnvelopeForJob(
       requireProfileUrl(creator.profileUrl, creator.creatorId)
     }
     if (creators.length === 0) {
-      if (proof.emptyStateEvidence !== 'verified-empty-state' || envelope.completeness !== 'complete' || envelope.hasMore) {
-        throw new Error('空关注列表缺少明确空状态证明')
+      if (proof.reportedTotal !== 0 || proof.hasMore || envelope.completeness !== 'complete') {
+        throw new Error('空关注列表缺少 total=0、hasMore=false 的结构化闭合证明')
       }
-    } else if (proof.emptyStateEvidence) {
-      throw new Error('非空关注列表不能携带空状态证明')
+    } else {
+      if (proof.reportedTotal !== null && proof.reportedTotal < creators.length) {
+        throw new Error('结构化关注证明的 reportedTotal 小于返回博主数')
+      }
+      if (proof.hasMore ? envelope.completeness !== 'partial' : envelope.completeness !== 'complete') {
+        throw new Error('结构化关注证明与 envelope 的完成状态不一致')
+      }
     }
     return
   }

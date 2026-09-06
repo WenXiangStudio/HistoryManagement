@@ -1,7 +1,7 @@
 # Signal Desk 结构化采集与理解可执行优化方案
 
 > 版本：规划基线 `2026-09-05`  
-> 状态：`R0～R2` 已完成离线实现与合成测试；`R3～R8` 未实施，尚未开始新的真实采集或正式库迁移
+> 状态：`R0～R3` 已完成离线实现与合成测试；`R4～R8` 未实施，尚未开始新的真实采集或正式库迁移
 > 社区证据库：[`signal-desk-community-validated-routes-2026-09-05.md`](../research/signal-desk-community-validated-routes-2026-09-05.md)
 
 ## 1. 要解决的真实问题
@@ -284,7 +284,7 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 改动：
 
 - 将 `0.2.3` 标记为“作品归属证明失败”，24 个样本不得作为关注作品基准；
-- 保留旧 run，仅作回归 fixture 和失败证据；
+- 保留旧 run，仅作只读失败证据；测试必须另用合成 fixture；
 - 禁止 `inferred:common-work-ancestor-div` 产生正式候选；
 - 禁止运行 `0.2.4`，直到 R1～R4 完成；
 - 建立 route registry 和证据等级枚举。
@@ -321,6 +321,16 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 退出条件：用合成 CDP 事件验证六类响应；敏感字段泄漏测试为零；path/schema 变体按预期分类。
 
 ### R3：关注列表结构化适配器
+
+状态：已完成（2026-09-06，仅合成 fixture）。已实现 `DY-FOLLOW-NETWORK → DY-FOLLOW-EMBEDDED → DY-FOLLOW-INPAGE → DY-FOLLOW-STOP` 的固定切换、严格分页闭合、`douyin-following-structured-proof/v2`、schema/projection hash 和非敏感 route trace；正式 following 入库门禁已拒绝旧 DOM v1。生产连接器尚未把 Observer 投影桥接为 v2 envelope，因此本阶段不构成真实平台或 E4 验收。
+
+主要文件：
+
+- `src/main/douyinFollowingAdapter.ts`
+- `src/shared/fixtures/douyin-following-pages.mock.json`
+- `src/main/douyinFollowingAdapter.test.ts`
+- `src/shared/contracts.ts`
+- `src/main/taskRunner.ts`
 
 改动：依次实现 `DY-FOLLOW-NETWORK`、`EMBEDDED`、`INPAGE`，把 DOM 关注弹窗降为导航/触发/shadow；F2 行为只用于 clean-room 模型参考。
 
@@ -422,4 +432,4 @@ run/<run-id>/
 
 推荐按 `R0 → R1 → R2 → R3 → R4 → R5 → R6 → R7 → R8` 执行，不并行触碰真实平台。`R0～R7` 可以全部用源码、合成 fixture、临时测试库和浏览器事件模拟完成；到 `R8` 才需要真实页面验证。
 
-当前交付已完成 `R0～R2` 的离线实现与合成/模拟测试，没有执行新采集、没有写正式数据库、没有恢复历史任务。下一实施点是 `R3`；由于 `R3/R4` 尚未完成，`0.2.4` 仍由代码硬禁用，也不得进入真实 `R8/T1/T2/T3`。R2 Observer 虽已接入正式连接器的 attach/detach 生命周期，但投影要到 `R3～R5` 才能绑定到具体业务 envelope，因此不能把本轮测试视为真实平台验收。
+当前交付已完成 `R0～R3` 的离线实现与合成/模拟测试，没有执行新采集、没有写正式数据库、没有恢复历史任务。下一实施点是 `R4`；由于 `R4` 尚未完成，`0.2.4` 仍由代码硬禁用，也不得进入真实 `R8/T1/T2/T3`。R3 已完成关注结构化适配器和桌面端 v2 入库门禁，但生产连接器尚未把 R2 Observer 投影转换为业务 envelope；作品与评论投影仍待 `R4/R5`，因此不能把本轮测试视为真实平台验收。

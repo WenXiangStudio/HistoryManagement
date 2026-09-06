@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { workAuthorProofSchema } from './platformAdapter'
+import { douyinFollowingStructuredProofSchema, workAuthorProofSchema } from './platformAdapter'
 import { structuredWorkObservationSchema } from './structuredAcquisition'
 
 export const platformSchema = z.literal('douyin')
@@ -47,6 +47,7 @@ export const douyinFollowingSourceProofSchema = z.object({
   emptyStateEvidence: z.literal('verified-empty-state').optional()
 }).strict()
 export type DouyinFollowingSourceProof = z.infer<typeof douyinFollowingSourceProofSchema>
+export type DouyinFollowingStructuredProof = z.infer<typeof douyinFollowingStructuredProofSchema>
 
 export const douyinCommentSourceProofSchema = z.object({
   contract: z.literal('douyin-comment-source-proof/v1'),
@@ -67,6 +68,7 @@ export const douyinCommentSourceProofSchema = z.object({
 export type DouyinCommentSourceProof = z.infer<typeof douyinCommentSourceProofSchema>
 
 export const collectionSourceProofSchema = z.union([
+  douyinFollowingStructuredProofSchema,
   douyinFollowingSourceProofSchema,
   douyinCommentSourceProofSchema
 ])

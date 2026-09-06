@@ -59,6 +59,8 @@ export const routeTraceStatusSchema = z.enum([
   'security-challenge',
   'rate-limited',
   'cursor-loop',
+  'duplicate-native-id',
+  'pagination-error',
   'author-proof-mismatch',
   'dom-mismatch',
   'stopped'
@@ -293,6 +295,62 @@ export const douyinFollowingApiProofSchema = z.object({
   }
 })
 
+export const douyinFollowingStructuredProofSchema = z.object({
+  contract: z.literal('douyin-following-structured-proof/v2'),
+  platform: z.literal('douyin'),
+  adapterName: platformAdapterNameSchema,
+  adapterVersion: platformAdapterVersionSchema,
+  schemaVersion: z.literal(2),
+  routeId: routeIdSchema,
+  sourceKind: z.enum(['network-response', 'embedded-json', 'page-context-fetch']),
+  endpointKind: z.literal('following-list'),
+  relationship: z.literal('following'),
+  ownerAccountId: opaquePlatformIdSchema,
+  requestTargetCreatorId: opaquePlatformIdSchema.nullable(),
+  requestParameters: persistedRequestParametersSchema,
+  cursorIn: z.string().max(240).nullable(),
+  cursorOut: z.string().max(240).nullable(),
+  hasMore: z.boolean(),
+  reportedTotal: z.number().int().nonnegative().nullable(),
+  returnedIds: returnedIdsSchema,
+  creatorIds: returnedIdsSchema,
+  schemaFingerprint: sha256DigestSchema,
+  responseProjectionSha256: sha256DigestSchema,
+  routeTrace: routeTraceSchema,
+  collectedAt: z.string().datetime(),
+  browserOrigin: z.literal('https://www.douyin.com'),
+  sessionUsed: z.literal(true),
+  validationResults: adapterValidationResultsSchema
+}).strict().superRefine((proof, context) => {
+  if (JSON.stringify(proof.creatorIds) !== JSON.stringify(proof.returnedIds)) {
+    context.addIssue({ code: 'custom', path: ['creatorIds'], message: 'creatorIds must exactly match returnedIds' })
+  }
+  const expectedRoute = {
+    'network-response': 'DY-FOLLOW-NETWORK',
+    'embedded-json': 'DY-FOLLOW-EMBEDDED',
+    'page-context-fetch': 'DY-FOLLOW-INPAGE'
+  }[proof.sourceKind]
+  if (proof.routeId !== expectedRoute) {
+    context.addIssue({ code: 'custom', path: ['routeId'], message: 'routeId must match the structured source kind' })
+  }
+  const successfulTrace = proof.routeTrace.find((entry) => entry.routeId === proof.routeId && entry.status === 'success')
+  if (!successfulTrace || successfulTrace.schemaFingerprint !== proof.schemaFingerprint) {
+    context.addIssue({ code: 'custom', path: ['routeTrace'], message: 'following proof requires a successful matching route trace' })
+  }
+  if (proof.sourceKind === 'embedded-json') {
+    if (proof.requestTargetCreatorId !== null || proof.requestParameters.length !== 0) {
+      context.addIssue({ code: 'custom', path: ['requestParameters'], message: 'embedded following proof cannot claim a network request' })
+    }
+  } else {
+    if (proof.requestTargetCreatorId !== proof.ownerAccountId) {
+      context.addIssue({ code: 'custom', path: ['requestTargetCreatorId'], message: 'following request target must match ownerAccountId' })
+    }
+    if (String(parameterValue(proof.requestParameters, 'sec_user_id') ?? '') !== proof.ownerAccountId) {
+      context.addIssue({ code: 'custom', path: ['requestParameters'], message: 'sec_user_id must match ownerAccountId' })
+    }
+  }
+})
+
 export const mediaResourceProofSchema = z.object({
   contract: z.literal('media-resource-proof/v1'),
   platform: z.enum(['douyin', 'bilibili', 'youtube', 'xiaohongshu', 'kuaishou']),
@@ -318,6 +376,7 @@ export const platformSourceProofSchema = z.union([
   douyinCommentApiProofSchema,
   douyinWorkApiProofSchema,
   douyinFollowingApiProofSchema,
+  douyinFollowingStructuredProofSchema,
   mediaResourceProofSchema
 ])
 
@@ -391,6 +450,9 @@ export const platformAdapterErrorCodeSchema = z.enum([
   'INVALID_CONTENT_TYPE',
   'MALFORMED_JSON',
   'BUFFER_LIMIT_REACHED',
+  'CURSOR_LOOP',
+  'DUPLICATE_NATIVE_ID',
+  'PAGINATION_PROTOCOL_ERROR',
   'WORK_PRIVATE',
   'WORK_DELETED',
   'COMMENTS_DISABLED',
@@ -443,6 +505,9 @@ export const PLATFORM_ADAPTER_ERROR_POLICIES = {
   INVALID_CONTENT_TYPE: { category: 'protocol', retryable: false, taskImpact: 'item', userActionRequired: false },
   MALFORMED_JSON: { category: 'protocol', retryable: false, taskImpact: 'item', userActionRequired: false },
   BUFFER_LIMIT_REACHED: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  CURSOR_LOOP: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  DUPLICATE_NATIVE_ID: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  PAGINATION_PROTOCOL_ERROR: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
   WORK_PRIVATE: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
   WORK_DELETED: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
   COMMENTS_DISABLED: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
@@ -554,6 +619,7 @@ export type EvidenceLevel = z.infer<typeof evidenceLevelSchema>
 export type RouteTraceEntry = z.infer<typeof routeTraceEntrySchema>
 export type RoutePolicy = z.infer<typeof routePolicySchema>
 export type WorkAuthorProof = z.infer<typeof workAuthorProofSchema>
+export type DouyinFollowingStructuredProof = z.infer<typeof douyinFollowingStructuredProofSchema>
 
 export type PlatformAdapterPage<T> = {
   contract: 'platform-adapter-page/v1'

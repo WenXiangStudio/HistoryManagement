@@ -24,6 +24,42 @@ const policies = [
     maxAttempts: 1,
     timeoutMs: 20_000,
     switchOn: ['not-observed', 'schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-FOLLOW-EMBEDDED',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-FOLLOW-EMBEDDED',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 5_000,
+    switchOn: ['schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-FOLLOW-INPAGE',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-FOLLOW-INPAGE',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 20_000,
+    switchOn: ['signature-unavailable', 'signature-rejected', 'schema-missing', 'schema-changed'],
+    nextRouteId: 'DY-FOLLOW-STOP',
+    requiresNewUserApproval: false,
+    eligibleForFormalData: false
+  },
+  {
+    routeId: 'DY-FOLLOW-STOP',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION,
+    evidenceLevel: 'E2-doc',
+    allowedMethods: ['GET'],
+    maxAttempts: 1,
+    timeoutMs: 1,
+    switchOn: [],
     nextRouteId: null,
     requiresNewUserApproval: false,
     eligibleForFormalData: false

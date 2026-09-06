@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it } from 'vitest'
 import { EventEmitter } from 'node:events'
-import type { BrowserCollectionEnvelope, BrowserEventReceipt, DouyinCommentSourceProof, DouyinFollowingSourceProof } from '../shared/contracts'
+import type { BrowserCollectionEnvelope, BrowserEventReceipt, DouyinCommentSourceProof, DouyinFollowingStructuredProof } from '../shared/contracts'
 import { AppDatabase } from './database'
 import type { BridgeServer, BrowserCommand } from './bridgeServer'
 import { TaskRunner, validateSampleSyncOptions } from './taskRunner'
@@ -49,18 +49,54 @@ async function dispatchNext(runner: TaskRunner): Promise<void> {
   await (runner as unknown as { tick: () => Promise<void> }).tick()
 }
 
-function followingProof(creatorIds: string[], empty = false): DouyinFollowingSourceProof {
+function followingProof(creatorIds: string[], empty = false): DouyinFollowingStructuredProof {
+  const collectedAt = '2026-09-02T08:00:00.000Z'
+  const schemaFingerprint = 'a'.repeat(64)
   return {
-    contract: 'douyin-following-source-proof/v1',
+    contract: 'douyin-following-structured-proof/v2',
+    platform: 'douyin',
+    adapterName: 'douyin.following',
+    adapterVersion: '0.2.0-r3',
+    schemaVersion: 2,
+    routeId: 'DY-FOLLOW-NETWORK',
+    sourceKind: 'network-response',
+    endpointKind: 'following-list',
     relationship: 'following',
-    pageKind: 'owner-following-list',
-    activeTab: 'following',
-    extractionScope: 'verified-following-list-container',
-    scrollRootKind: 'not-needed',
-    containerIdentity: 'role:list|aria-label:关注账号列表',
-    scrollRootIdentity: empty ? 'verified-empty-state' : 'not-needed',
+    ownerAccountId: 'synthetic-owner-1000',
+    requestTargetCreatorId: 'synthetic-owner-1000',
+    requestParameters: [
+      { name: 'count', value: 20 },
+      { name: 'cursor', value: '0' },
+      { name: 'sec_user_id', value: 'synthetic-owner-1000' }
+    ],
+    cursorIn: '0',
+    cursorOut: empty ? '0' : '40',
+    hasMore: false,
+    reportedTotal: creatorIds.length,
+    returnedIds: creatorIds,
     creatorIds,
-    ...(empty ? { emptyStateEvidence: 'verified-empty-state' as const } : {})
+    schemaFingerprint,
+    responseProjectionSha256: 'b'.repeat(64),
+    routeTrace: [{
+      routeId: 'DY-FOLLOW-NETWORK',
+      status: 'success',
+      attempt: 1,
+      durationMs: 10,
+      schemaFingerprint,
+      occurredAt: collectedAt
+    }],
+    collectedAt,
+    browserOrigin: 'https://www.douyin.com',
+    sessionUsed: true,
+    validationResults: {
+      http: 'valid',
+      json: 'valid',
+      platformStatus: 'valid',
+      targetIdentity: 'valid',
+      schema: 'valid',
+      pagination: 'valid',
+      sensitiveFields: 'removed'
+    }
   }
 }
 
@@ -136,12 +172,16 @@ function envelope(
   commandId: string,
   sourceUrl: string,
   items: BrowserCollectionEnvelope['items'],
-  sourceProof?: DouyinFollowingSourceProof | DouyinCommentSourceProof
+  sourceProof?: BrowserCollectionEnvelope['sourceProof']
 ): BrowserCollectionEnvelope {
   return {
     contract: 'browser-collection-envelope/v1', commandId, platform: 'douyin',
     collectedAt: '2026-09-02T08:00:00.000Z', sourceUrl,
-    completeness: 'complete', hasMore: false, ...(sourceProof ? { sourceProof } : {}), items
+    completeness: 'complete',
+    hasMore: false,
+    ...(sourceProof?.contract === 'douyin-following-structured-proof/v2' ? { cursor: sourceProof.cursorOut } : {}),
+    ...(sourceProof ? { sourceProof } : {}),
+    items
   }
 }
 
@@ -165,7 +205,7 @@ describe('bounded sample synchronization', () => {
 
   it('enforces every limit again before persistence and completes collection jobs without starting media or cloud work', async () => {
     const { runner, bridge } = createRunner()
-    runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 2, commentsPerWork: 2 })
+    const started = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 2, commentsPerWork: 2 })
     await dispatchNext(runner)
     const followingCommand = bridge.commands.at(-1)!
     const followingItems = [
@@ -182,6 +222,12 @@ describe('bounded sample synchronization', () => {
 
     expect(database!.getSummary()).toMatchObject({ followingCount: 1, workCount: 0, commentCount: 0 })
     expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind='collection.following' AND state='completed'`).get() as { count: number }).count)).toBe(1)
+    const followingCheckpoint = JSON.parse(String((database!.db.prepare('SELECT checkpoint_json FROM jobs WHERE id=?').get(started.jobId) as { checkpoint_json: string }).checkpoint_json)) as {
+      sourceProof: DouyinFollowingStructuredProof
+    }
+    expect(followingCheckpoint.sourceProof.creatorIds).toEqual(['real-c1', 'real-c2', 'real-c3'])
+    expect(followingCheckpoint.sourceProof.returnedIds).toEqual(['real-c1', 'real-c2', 'real-c3'])
+    expect(followingCheckpoint.sourceProof.responseProjectionSha256).toBe('b'.repeat(64))
     expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind='collection.creator_works' AND state='queued'`).get() as { count: number }).count)).toBe(1)
 
     await dispatchNext(runner)
@@ -229,16 +275,27 @@ describe('bounded sample synchronization', () => {
     expect(database!.db.prepare('PRAGMA foreign_key_check').all()).toEqual([])
   })
 
-  it('rejects an old or unproven following envelope before any database write', async () => {
+  it('rejects a legacy DOM-only following envelope before any database write', async () => {
     const { runner, bridge } = createRunner()
     const started = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
     await dispatchNext(runner)
     const command = bridge.commands.at(-1)!
     const receipt = bridge.deliverEnvelope(envelope(command.commandId, 'https://www.douyin.com/user/self?showTab=follow', [
       { entityType: 'creator', creatorId: 'noise-user', nickname: '推荐账号', profileUrl: 'https://www.douyin.com/user/noise-user', signature: '', isFollowing: true }
-    ]))
+    ], {
+      contract: 'douyin-following-source-proof/v1',
+      relationship: 'following',
+      pageKind: 'owner-following-list',
+      activeTab: 'following',
+      extractionScope: 'verified-following-list-container',
+      scrollRootKind: 'not-needed',
+      containerIdentity: 'role:list|aria-label:关注账号列表',
+      scrollRootIdentity: 'not-needed',
+      creatorIds: ['noise-user']
+    }))
 
     expect(receipt).toMatchObject({ accepted: false, code: 'invalid-collection-proof' })
+    expect(receipt.error).toMatch(/DOM_ONLY_SOURCE_REJECTED/)
     expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(started.jobId) as { state: string }).state).toBe('blocked_user_action')
     expect(database!.getSummary()).toMatchObject({ followingCount: 0, workCount: 0, commentCount: 0, lastSyncAt: null })
     expect(Number((database!.db.prepare('SELECT COUNT(*) AS count FROM metric_snapshots').get() as { count: number }).count)).toBe(0)

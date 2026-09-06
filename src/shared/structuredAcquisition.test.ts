@@ -64,11 +64,14 @@ function observation(authorId = 'synthetic-creator-1001'): StructuredWorkObserva
 }
 
 describe('R0 route and failed-run freeze', () => {
-  it('registers all six Network routes as synthetic-only and not eligible for formal data', () => {
+  it('registers the six Network routes plus the R3 following fallbacks as synthetic-only', () => {
     expect(Object.keys(ROUTE_REGISTRY).sort()).toEqual([
       'DY-COMMENT-NETWORK',
       'DY-DETAIL-NETWORK',
+      'DY-FOLLOW-EMBEDDED',
+      'DY-FOLLOW-INPAGE',
       'DY-FOLLOW-NETWORK',
+      'DY-FOLLOW-STOP',
       'DY-MEDIA-NETWORK',
       'DY-REPLY-NETWORK',
       'DY-WORKS-NETWORK'

@@ -1,0 +1,113 @@
+{
+  "fixture": "synthetic-douyin-following-pages/v1",
+  "ownerAccountId": "synthetic-owner-1000",
+  "networkPages": {
+    "0": {
+      "status_code": 0,
+      "user_list": [
+        {
+          "uid": "synthetic-creator-1001",
+          "sec_uid": "synthetic-sec-creator-1001",
+          "nickname": "合成博主甲",
+          "signature": "第一页合成账号",
+          "is_following": true,
+          "private_token": "must-not-enter-proof-or-projection"
+        },
+        {
+          "uid": "synthetic-creator-1002",
+          "sec_uid": "synthetic-sec-creator-1002",
+          "nickname": "合成博主乙",
+          "signature": "第一页第二个合成账号",
+          "follow_status": 1
+        }
+      ],
+      "cursor": 20,
+      "has_more": 1,
+      "total": 3,
+      "debug_cookie": "must-not-enter-proof-or-projection"
+    },
+    "20": {
+      "status_code": 0,
+      "user_list": [
+        {
+          "uid": "synthetic-creator-1003",
+          "sec_uid": "synthetic-sec-creator-1003",
+          "nickname": "合成博主丙",
+          "signature": "第二页合成账号",
+          "is_following": 1
+        }
+      ],
+      "cursor": 40,
+      "has_more": 0,
+      "total": 3,
+      "authorization": "must-not-enter-proof-or-projection"
+    }
+  },
+  "verifiedEmpty": {
+    "status_code": 0,
+    "user_list": [],
+    "cursor": 0,
+    "has_more": 0,
+    "total": 0
+  },
+  "emptyWithoutTotal": {
+    "status_code": 0,
+    "user_list": [],
+    "cursor": 0,
+    "has_more": 0
+  },
+  "emptyHasMore": {
+    "status_code": 0,
+    "user_list": [],
+    "cursor": 20,
+    "has_more": 1,
+    "total": 1
+  },
+  "cursorLoop": {
+    "status_code": 0,
+    "user_list": [
+      {
+        "uid": "synthetic-creator-loop",
+        "nickname": "游标循环合成账号",
+        "follow_status": 2
+      }
+    ],
+    "cursor": 0,
+    "has_more": 1,
+    "total": 2
+  },
+  "embeddedState": {
+    "application": {
+      "hydration": {
+        "followingPage": {
+          "status_code": 0,
+          "user_list": [
+            {
+              "uid": "synthetic-embedded-creator",
+              "sec_uid": "synthetic-sec-embedded-creator",
+              "nickname": "合成 Embedded 博主",
+              "signature": "嵌套 hydration fixture",
+              "is_following": true,
+              "X-Bogus": "must-not-enter-proof-or-projection"
+            }
+          ],
+          "cursor": 0,
+          "has_more": 0,
+          "total": 1
+        }
+      }
+    }
+  },
+  "schemaChanged": {
+    "status_code": 0,
+    "accounts": [
+      {
+        "account_id": "synthetic-schema-change",
+        "relationship": "following"
+      }
+    ],
+    "next_cursor": 0,
+    "more": false,
+    "total": 1
+  }
+}
