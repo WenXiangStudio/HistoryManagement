@@ -25,6 +25,10 @@ const maximumSamples = 30
 const maximumBodyBytes = 4 * 1024 * 1024
 const sensitiveKeyPattern = /(?:authorization|bearer|cookie|password|secret|apikey|accesstoken|refreshtoken|x[-_]?bogus|signature(?:value|input|header)?|session(?:id|token|key)|device(?:id|fingerprint)|browserprofile)/i
 
+function assertLegacyPhaseBDisabled() {
+  throw new Error('LEGACY_ROUTE_DISABLED:0.2.4:BLOCKED_BY_R0_UNTIL_R4')
+}
+
 function parseArgs(values) {
   const command = values[0] || 'start'
   const args = { command, port: 43827, token: null }
@@ -392,6 +396,7 @@ async function stopRemote(port, token) {
 }
 
 async function startController(port) {
+  assertLegacyPhaseBDisabled()
   await mkdir(runtimeRoot, { recursive: true })
   await mkdir(runsRoot, { recursive: true })
   const token = randomBytes(32).toString('hex')
@@ -517,7 +522,7 @@ async function startController(port) {
   process.on('SIGTERM', () => { void shutdown() })
 }
 
-export { markdownReport, scanSensitive, summarize, validateDiscovery, validateManifest, validateReport }
+export { assertLegacyPhaseBDisabled, markdownReport, scanSensitive, summarize, validateDiscovery, validateManifest, validateReport }
 
 if (resolve(process.argv[1] || '') === fileURLToPath(import.meta.url)) {
   const args = parseArgs(process.argv.slice(2))

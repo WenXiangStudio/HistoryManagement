@@ -26,6 +26,125 @@ export const adapterEndpointKindSchema = z.enum([
   'media-resource'
 ])
 
+export const evidenceLevelSchema = z.enum([
+  'E1-source',
+  'E2-doc',
+  'E3-local-poc',
+  'E4-product'
+])
+
+export const opaquePlatformIdSchema = z.string()
+  .min(1)
+  .max(240)
+  .regex(/^[A-Za-z0-9._-]+$/, 'platform identifiers must be opaque and path-safe')
+  .refine((value) => value !== 'self', { message: 'self is not a native platform identifier' })
+
+export const sha256DigestSchema = z.string()
+  .regex(/^[a-f0-9]{64}$/, 'digest must be a lowercase SHA-256')
+
+export const routeIdSchema = z.string()
+  .min(3)
+  .max(80)
+  .regex(/^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*$/, 'routeId must be a stable uppercase identifier')
+
+export const routeTraceStatusSchema = z.enum([
+  'success',
+  'not-observed',
+  'schema-missing',
+  'schema-changed',
+  'unrecognized-path',
+  'signature-unavailable',
+  'signature-rejected',
+  'login-required',
+  'security-challenge',
+  'rate-limited',
+  'cursor-loop',
+  'author-proof-mismatch',
+  'dom-mismatch',
+  'stopped'
+])
+
+export const routeTraceEntrySchema = z.object({
+  routeId: routeIdSchema,
+  status: routeTraceStatusSchema,
+  attempt: z.number().int().positive().max(10),
+  durationMs: z.number().int().nonnegative().max(300_000),
+  schemaFingerprint: sha256DigestSchema.nullable(),
+  occurredAt: z.string().datetime()
+}).strict()
+
+export const routeTraceSchema = z.array(routeTraceEntrySchema).max(32)
+
+export const routePolicySchema = z.object({
+  routeId: routeIdSchema,
+  adapterVersion: platformAdapterVersionSchema,
+  evidenceLevel: evidenceLevelSchema,
+  allowedMethods: z.tuple([z.literal('GET')]),
+  maxAttempts: z.number().int().positive().max(3),
+  timeoutMs: z.number().int().positive().max(120_000),
+  switchOn: z.array(routeTraceStatusSchema).max(16),
+  nextRouteId: routeIdSchema.nullable(),
+  requiresNewUserApproval: z.boolean(),
+  eligibleForFormalData: z.boolean()
+}).strict()
+
+export const workAuthorProofSchema = z.object({
+  contract: z.literal('douyin-work-author-proof/v2'),
+  followedCreatorId: opaquePlatformIdSchema,
+  profileRouteCreatorId: opaquePlatformIdSchema,
+  requestTargetCreatorId: opaquePlatformIdSchema.nullable(),
+  observedWorkAuthorId: opaquePlatformIdSchema,
+  observedWorkId: opaquePlatformIdSchema,
+  authorProofSource: z.enum(['network-response', 'embedded-json', 'page-context-fetch']),
+  endpointKind: z.enum(['creator-work-list', 'work-detail', 'follow-feed']),
+  routeId: routeIdSchema,
+  adapterVersion: platformAdapterVersionSchema,
+  observedAt: z.string().datetime(),
+  schemaFingerprint: sha256DigestSchema,
+  responseProjectionSha256: sha256DigestSchema,
+  routeTrace: routeTraceSchema
+}).strict().superRefine((proof, context) => {
+  const identities = [
+    proof.profileRouteCreatorId,
+    proof.requestTargetCreatorId,
+    proof.observedWorkAuthorId
+  ].filter((value): value is string => value !== null)
+  if (identities.some((value) => value !== proof.followedCreatorId)) {
+    context.addIssue({
+      code: 'custom',
+      path: ['observedWorkAuthorId'],
+      message: 'AUTHOR_PROOF_MISMATCH: followed, profile, request, and observed author IDs must agree'
+    })
+  }
+  if (proof.endpointKind === 'creator-work-list' && proof.requestTargetCreatorId === null) {
+    context.addIssue({
+      code: 'custom',
+      path: ['requestTargetCreatorId'],
+      message: 'creator-work-list proofs require an independently observed request target'
+    })
+  }
+  const successfulTrace = proof.routeTrace.find((entry) => entry.routeId === proof.routeId && entry.status === 'success')
+  if (!successfulTrace || successfulTrace.schemaFingerprint !== proof.schemaFingerprint) {
+    context.addIssue({
+      code: 'custom',
+      path: ['routeTrace'],
+      message: 'author proof requires a successful matching route trace and schema fingerprint'
+    })
+  }
+})
+
+export const structuredReadRequestSchema = z.object({
+  contract: z.literal('structured-read-request/v1'),
+  method: z.literal('GET'),
+  endpointKind: adapterEndpointKindSchema,
+  path: z.string().min(1).max(512)
+    .regex(/^\/(?!\/)[^?#\r\n]*$/, 'path must be a relative pathname without query or fragment'),
+  requestParameters: z.array(z.object({
+    name: z.string().min(1).max(64),
+    value: z.union([z.string().max(512), z.number().finite(), z.boolean()])
+  }).strict()).max(24)
+}).strict()
+
 export const adapterSourceKindSchema = z.enum([
   'network-response',
   'page-context-fetch',
@@ -262,7 +381,16 @@ export const platformAdapterErrorCodeSchema = z.enum([
   'API_STATUS_ERROR',
   'SIGNATURE_UNAVAILABLE',
   'SIGNATURE_REJECTED',
+  'NOT_OBSERVED',
+  'UNRECOGNIZED_PATH_WITH_KNOWN_SCHEMA',
   'SCHEMA_CHANGED',
+  'AUTHOR_PROOF_MISMATCH',
+  'DOM_ONLY_SOURCE_REJECTED',
+  'UNSAFE_REQUEST',
+  'RESPONSE_TOO_LARGE',
+  'INVALID_CONTENT_TYPE',
+  'MALFORMED_JSON',
+  'BUFFER_LIMIT_REACHED',
   'WORK_PRIVATE',
   'WORK_DELETED',
   'COMMENTS_DISABLED',
@@ -305,7 +433,16 @@ export const PLATFORM_ADAPTER_ERROR_POLICIES = {
   API_STATUS_ERROR: { category: 'protocol', retryable: false, taskImpact: 'item', userActionRequired: false },
   SIGNATURE_UNAVAILABLE: { category: 'transient', retryable: true, taskImpact: 'item', userActionRequired: false },
   SIGNATURE_REJECTED: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  NOT_OBSERVED: { category: 'outcome', retryable: false, taskImpact: 'item', userActionRequired: false },
+  UNRECOGNIZED_PATH_WITH_KNOWN_SCHEMA: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
   SCHEMA_CHANGED: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  AUTHOR_PROOF_MISMATCH: { category: 'protocol', retryable: false, taskImpact: 'batch', userActionRequired: false },
+  DOM_ONLY_SOURCE_REJECTED: { category: 'protocol', retryable: false, taskImpact: 'item', userActionRequired: false },
+  UNSAFE_REQUEST: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
+  RESPONSE_TOO_LARGE: { category: 'protocol', retryable: false, taskImpact: 'item', userActionRequired: false },
+  INVALID_CONTENT_TYPE: { category: 'protocol', retryable: false, taskImpact: 'item', userActionRequired: false },
+  MALFORMED_JSON: { category: 'protocol', retryable: false, taskImpact: 'item', userActionRequired: false },
+  BUFFER_LIMIT_REACHED: { category: 'protocol', retryable: false, taskImpact: 'adapter', userActionRequired: false },
   WORK_PRIVATE: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
   WORK_DELETED: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
   COMMENTS_DISABLED: { category: 'access', retryable: false, taskImpact: 'item', userActionRequired: false },
@@ -413,6 +550,10 @@ export type AdapterPagination = z.infer<typeof adapterPaginationSchema>
 export type AdapterCompletion = z.infer<typeof adapterCompletionSchema>
 export type PlatformAdapterIssue = z.infer<typeof platformAdapterIssueSchema>
 export type CollectionScope = z.infer<typeof collectionScopeSchema>
+export type EvidenceLevel = z.infer<typeof evidenceLevelSchema>
+export type RouteTraceEntry = z.infer<typeof routeTraceEntrySchema>
+export type RoutePolicy = z.infer<typeof routePolicySchema>
+export type WorkAuthorProof = z.infer<typeof workAuthorProofSchema>
 
 export type PlatformAdapterPage<T> = {
   contract: 'platform-adapter-page/v1'

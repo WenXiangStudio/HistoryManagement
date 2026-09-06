@@ -1,0 +1,73 @@
+{
+  "contract": "signaldesk-r0-frozen-run-registry/v1",
+  "frozenAt": "2026-09-06T00:00:00.000+08:00",
+  "policy": {
+    "immutableEvidenceOnly": true,
+    "benchmarkEligible": false,
+    "mayResume": false,
+    "mayOverwrite": false,
+    "mayImportIntoFormalDatabase": false
+  },
+  "runs": [
+    {
+      "runId": "phase-b-20260905T142936Z",
+      "classification": "discovery-failed",
+      "reasonCode": "PAGE_CONTEXT_NOT_READY",
+      "benchmarkEligible": false,
+      "immutableFiles": [
+        {
+          "path": "discovery.json",
+          "bytes": 455,
+          "sha256": "c7e1538e4a9bbb3c765499eac7a75735411334df501a3042d6e64aab9d3f06b7"
+        },
+        {
+          "path": "discovery-failure.json",
+          "bytes": 280,
+          "sha256": "1a4cacd45db5dda01c78680e0d105d9074609324b9ab96f230693a5b4dc5e55b"
+        }
+      ]
+    },
+    {
+      "runId": "phase-b-20260905T143811Z",
+      "classification": "insufficient-eligible-samples",
+      "reasonCode": "INSUFFICIENT_ELIGIBLE_SAMPLES",
+      "benchmarkEligible": false,
+      "immutableFiles": [
+        {
+          "path": "discovery.json",
+          "bytes": 455,
+          "sha256": "26e39ab00d719037453c0b21cc4def322e386b12a2714870dae1426e820ab145"
+        },
+        {
+          "path": "discovery-failure.json",
+          "bytes": 321,
+          "sha256": "20c86b04b9e1a1675afacb916aca1d2555a210ab956fc882d4317a863722039d"
+        }
+      ]
+    },
+    {
+      "runId": "phase-b-20260905T144519Z",
+      "classification": "failed-author-proof-and-structured-comments",
+      "reasonCode": "AUTHOR_PROOF_CIRCULAR",
+      "benchmarkEligible": false,
+      "legacySummaryMustNotOverrideRegistry": true,
+      "immutableFiles": [
+        {
+          "path": "manifest.json",
+          "bytes": 83493,
+          "sha256": "620da5477689a86cd196fcc31c94c9b4f9ac703bfa23b02d6f8d134ac380e6e7"
+        },
+        {
+          "path": "summary.json",
+          "bytes": 1126,
+          "sha256": "ce8e593b0240f56c5bd3bb7a529d87e270ef3a83dad4702af8a77577fa352ae0"
+        },
+        {
+          "path": "report.md",
+          "bytes": 1240,
+          "sha256": "72ebd3b3ade583a0c7a57d0d12ad5398b57d56d95b1d03689657d035943e01cc"
+        }
+      ]
+    }
+  ]
+}

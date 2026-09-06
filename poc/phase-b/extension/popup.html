@@ -3,32 +3,23 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Signal Desk Phase B PoC</title>
+    <title>Signal Desk Phase B（已冻结）</title>
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
     <main>
-      <h1>阶段 B · 隔离评论 PoC</h1>
-      <p class="boundary">自动从本人真实关注关系中随机抽取 20～30 个公开作品；结果只写本地隔离目录，不连接正式 Signal Desk。</p>
+      <h1>阶段 B · 历史路线已冻结</h1>
+      <p class="boundary">R0 已判定 0.2.3 作者证明失败，并硬禁用 0.2.4。此扩展只保留为失败证据，不会配对控制器、打开页面或创建新 run。</p>
 
-      <label>
-        控制器地址
-        <input id="controllerUrl" value="http://127.0.0.1:43827" spellcheck="false">
-      </label>
-      <label>
-        自动抽样数量（20～30）
-        <input id="targetSampleCount" type="number" min="20" max="30" step="1" value="24">
-      </label>
-
-      <p class="automation">点击开始后，扩展会与本机控制器自动配对，打开本人主页，严格验证“关注”关系弹窗，随机打乱已关注博主并从其公开作品中分层抽样。无需粘贴 token，也无需收集或粘贴任何作品链接。</p>
+      <p class="automation">请勿重新加载或运行此旧扩展。后续真实验证必须等待 R3～R7 完成，并按 R8 重新授权。</p>
 
       <div class="actions">
-        <button id="start">开始隔离 PoC</button>
-        <button id="stop" class="danger">立即停止</button>
+        <button id="start" disabled>路线已禁用</button>
+        <button id="stop" class="danger" disabled>无运行可停止</button>
       </div>
 
-      <pre id="status">尚未开始</pre>
-      <p class="warning">扩展会显示 Chrome 调试权限提示，这是为了读取评论网络响应正文；不会读取或保存请求头、Cookie、签名值或密码，也不会执行关注、点赞、评论等写操作。</p>
+      <pre id="status">LEGACY_ROUTE_DISABLED:0.2.4:BLOCKED_BY_R0_UNTIL_R4</pre>
+      <p class="warning">历史 run 保持只读，不恢复、不覆盖，也不导入正式数据库。</p>
     </main>
     <script type="module" src="popup.js"></script>
   </body>

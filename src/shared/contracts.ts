@@ -1,4 +1,6 @@
 import { z } from 'zod'
+import { workAuthorProofSchema } from './platformAdapter'
+import { structuredWorkObservationSchema } from './structuredAcquisition'
 
 export const platformSchema = z.literal('douyin')
 export type Platform = z.infer<typeof platformSchema>
@@ -82,7 +84,9 @@ const workPayloadSchema = z.object({
   imageUrls: z.array(z.string().url()).max(100).optional(),
   publishedAt: z.string().datetime().nullable().optional(),
   discoveredAt: z.string().datetime(),
-  metrics: publicMetricsSchema.optional()
+  metrics: publicMetricsSchema.optional(),
+  authorProof: workAuthorProofSchema.optional(),
+  structuredObservation: structuredWorkObservationSchema.optional()
 })
 
 const commentPayloadSchema = z.object({

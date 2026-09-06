@@ -44,7 +44,7 @@
 | 点赞/评论/收藏/分享 | DOM 可见文本及局部结构 | MediaCrawler、TikTokDownloader 读取 `statistics` | 只读列表/详情响应为主；不可见值为 `NULL`，不得从缩写文本猜值 |
 | 一级评论 | 正式连接器扫描 `comment-item` | MediaCrawler、F2、TikTokDownloader 等实现 `/comment/list/` | 原生 `cid`、`aweme_id`、cursor、has_more 是最低证明要求 |
 | 二级回复 | 合同已有，正式通道未落地 | 多项目实现 `/comment/list/reply/` | 单独 endpoint、单独分页和父子关系验证 |
-| 浏览器结构化捕获 | 阶段 B `0.2.4` 已有初步 `chrome.debugger` 探针 | Chrome Debugger/CDP 与 Playwright 官方文档 | `chrome.debugger` 方向正确；需扩展 endpoint 识别与 schema classifier |
+| 浏览器结构化捕获 | 旧阶段 B `0.2.4` 已冻结；R2 已完成六类通用 `chrome.debugger` Observer 的模拟 CDP 实现 | Chrome Debugger/CDP 与 Playwright 官方文档 | attach-before-navigation、endpoint/schema classifier、bounded projection 已通过合成测试；尚非真实平台验收 |
 | 媒体解析 | 数据库和工作器已有，采集端仍待稳定 URL | 多个下载器、yt-dlp、浏览器资源观察 | 详情响应媒体 URL 为主；yt-dlp 只做公开 URL 隔离备选 |
 | ASR | `faster-whisper` CPU INT8 | faster-whisper；whisper.cpp | 保留现路线，预设 whisper.cpp 备选并建立短视频基准 |
 | OCR | PaddleOCR 抽帧识别 | PaddleOCR | 保留，但低置信度文字不能自动成为事实正文 |
@@ -179,7 +179,7 @@
 - [Playwright Response API](https://playwright.dev/docs/api/class-response)：`response.json()` 可读取 JSON 响应。
 - [Playwright `connectOverCDP`](https://playwright.dev/docs/api/class-browsertype#browser-type-connect-over-cdp)：可连接现有 Chromium 和默认 context；官方同时提示 CDP 连接的 fidelity 低于 Playwright 自有协议。
 
-因此 Signal Desk `0.2.4` 使用 `chrome.debugger` 捕获响应体的方向本身正确，无需因为这次失败就整体改用 Playwright。待修的是：监听必须发生在导航/触发之前，endpoint 候选范围不能只盯评论路径，path allowlist 必须与 schema classifier 双重判定，作品发现也必须进入同一结构化通道。Playwright/CDP 保留为独立诊断和交叉验证 harness，而非唯一正式依赖。
+因此 Signal Desk 使用 `chrome.debugger` 捕获响应体的方向本身正确，无需因为旧 `0.2.4` 失败就整体改用 Playwright。R2 已在模拟 CDP 中实现先监听后导航/触发、六类 endpoint、path + schema 双判定和 bounded projection；作品发现等具体业务绑定仍属于 R3～R5，未经真实小样本验证不能升格为产品通过。Playwright/CDP 保留为独立诊断和交叉验证 harness，而非唯一正式依赖。
 
 ## 7. 媒体、ASR 与 OCR 路线
 

@@ -66,6 +66,75 @@ function validCommentEnvelope(): BrowserCollectionEnvelope {
   }
 }
 
+function validWorkEnvelope(): BrowserCollectionEnvelope {
+  const creatorId = 'creator-1'
+  const workId = 'work-1'
+  const schemaFingerprint = 'a'.repeat(64)
+  return {
+    contract: 'browser-collection-envelope/v1',
+    commandId: 'work-command',
+    platform: 'douyin',
+    collectedAt: '2026-09-06T01:00:00.000Z',
+    sourceUrl: `https://www.douyin.com/user/${creatorId}`,
+    completeness: 'complete',
+    hasMore: false,
+    items: [{
+      entityType: 'work',
+      workId,
+      creatorId,
+      workType: 'video',
+      sourceUrl: `https://www.douyin.com/video/${workId}`,
+      title: '合成作品',
+      description: '',
+      discoveredAt: '2026-09-06T01:00:00.000Z',
+      authorProof: {
+        contract: 'douyin-work-author-proof/v2',
+        followedCreatorId: creatorId,
+        profileRouteCreatorId: creatorId,
+        requestTargetCreatorId: creatorId,
+        observedWorkAuthorId: creatorId,
+        observedWorkId: workId,
+        authorProofSource: 'network-response',
+        endpointKind: 'creator-work-list',
+        routeId: 'DY-WORKS-NETWORK',
+        adapterVersion: '0.2.0-r2',
+        observedAt: '2026-09-06T01:00:00.000Z',
+        schemaFingerprint,
+        responseProjectionSha256: 'b'.repeat(64),
+        routeTrace: [{
+          routeId: 'DY-WORKS-NETWORK',
+          status: 'success',
+          attempt: 1,
+          durationMs: 12,
+          schemaFingerprint,
+          occurredAt: '2026-09-06T01:00:00.000Z'
+        }]
+      },
+      structuredObservation: {
+        contract: 'douyin-structured-work-observation/v1',
+        sourceKind: 'network-response',
+        routeId: 'DY-WORKS-NETWORK',
+        endpointKind: 'creator-work-list',
+        requestTargetCreatorId: creatorId,
+        workId,
+        authorId: creatorId,
+        authorIdSourcePath: 'aweme_list[].author.uid',
+        observedAt: '2026-09-06T01:00:00.000Z',
+        schemaFingerprint,
+        responseProjectionSha256: 'b'.repeat(64),
+        routeTrace: [{
+          routeId: 'DY-WORKS-NETWORK',
+          status: 'success',
+          attempt: 1,
+          durationMs: 12,
+          schemaFingerprint,
+          occurredAt: '2026-09-06T01:00:00.000Z'
+        }]
+      }
+    }]
+  }
+}
+
 const followingPayload = { creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20, collectionOnly: true }
 
 function followingProofOf(value: BrowserCollectionEnvelope): DouyinFollowingSourceProof {
@@ -123,6 +192,25 @@ describe('collection source semantic gate', () => {
 
   it('rejects creator entities returned by non-following jobs', () => {
     expect(() => validateEnvelopeForJob(validFollowingEnvelope(), 'collection.creator_works', { creatorId: 'creator-1' })).toThrow(/不能返回博主实体/)
+  })
+
+  it('accepts creator works only with WorkAuthorProof/v2 and rejects the former DOM-only shape', () => {
+    const value = validWorkEnvelope()
+    expect(() => validateEnvelopeForJob(value, 'collection.creator_works', { creatorId: 'creator-1' })).not.toThrow()
+
+    const domOnly = validWorkEnvelope()
+    const work = domOnly.items[0]
+    if (work.entityType === 'work') delete work.authorProof
+    expect(() => validateEnvelopeForJob(domOnly, 'collection.creator_works', { creatorId: 'creator-1' })).toThrow(/DOM_ONLY_SOURCE_REJECTED/)
+  })
+
+  it('rejects a creator-loop author value when the proof reports a different observed author', () => {
+    const value = validWorkEnvelope()
+    const work = value.items[0]
+    if (work.entityType !== 'work' || !work.authorProof) throw new Error('expected synthetic author proof')
+    if (!work.structuredObservation) throw new Error('expected independent observation')
+    work.structuredObservation.authorId = 'other-author'
+    expect(() => validateEnvelopeForJob(value, 'collection.creator_works', { creatorId: 'creator-1' })).toThrow(/AUTHOR_PROOF_MISMATCH/)
   })
 
   it('accepts a comment envelope only when its strict source proof is bound to the target work and every comment', () => {

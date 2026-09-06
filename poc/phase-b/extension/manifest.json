@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Signal Desk Phase B 隔离评论 PoC",
   "version": "0.2.4",
-  "description": "自动从本人真实关注中随机抽样，并在独立目录对比评论 Network、页面 API 与 DOM shadow；不连接正式 Signal Desk。",
+  "description": "已由 R0 冻结并禁用的 0.2.4 历史路线；仅保留为失败证据，不可启动新 run。",
   "minimum_chrome_version": "120",
   "permissions": [
     "debugger",

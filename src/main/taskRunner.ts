@@ -1,4 +1,5 @@
 import type { BrowserCollectionEnvelope, BrowserEventReceipt, SampleSyncOptions } from '../shared/contracts'
+import { acceptStructuredWorkCandidate, assertWorkAuthorProofForPersistence } from '../shared/structuredAcquisition'
 import type { AppDatabase } from './database'
 import { BridgeServer, type BrowserCommand } from './bridgeServer'
 import type { WorkerClient } from './workerClient'
@@ -362,6 +363,19 @@ export function validateEnvelopeForJob(
     if (normalizedPath(source.pathname) !== `/user/${creatorId}`) throw new Error('作品来源与目标博主不一致')
     if (!envelope.items.every((item) => item.entityType === 'work' && item.creatorId === creatorId)) {
       throw new Error('作品结果包含目标博主以外的数据')
+    }
+    for (const item of envelope.items) {
+      if (item.entityType !== 'work') continue
+      if (!item.authorProof || !item.structuredObservation) {
+        throw new Error('DOM_ONLY_SOURCE_REJECTED:作品缺少独立结构化作者证明或 observation')
+      }
+      acceptStructuredWorkCandidate({
+        workId: item.workId,
+        creatorId: item.creatorId,
+        sourceKind: item.authorProof.authorProofSource,
+        authorProof: item.authorProof
+      }, item.structuredObservation)
+      assertWorkAuthorProofForPersistence(item.authorProof, { workId: item.workId, creatorId })
     }
     return
   }

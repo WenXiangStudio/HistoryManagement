@@ -116,4 +116,20 @@ if (updateCount !== 1 || existingTab.url !== followingUrl) {
   throw new Error('A different self-profile route was not navigated to the following target')
 }
 
-console.log('Browser connector reconnect, receipt, online-vs-rejected state and relationship-dialog-preserving tab reuse OK')
+let observerAttached = false
+context.__attachObserver = async (tabId) => {
+  if (tabId !== 17) throw new Error(`Unexpected observed tab ${tabId}`)
+  observerAttached = true
+}
+existingTab = { id: 17, url: 'https://www.douyin.com/user/self?showTab=work', status: 'complete' }
+chrome.tabs.update = async (_id, patch) => {
+  if (!observerAttached) throw new Error('Navigation occurred before the Network Observer attached')
+  existingTab = { ...existingTab, ...patch }
+  return existingTab
+}
+await vm.runInContext(`openOrReuseTab(${JSON.stringify(followingUrl)}, { beforeNavigation: __attachObserver })`, context)
+if (!observerAttached || existingTab.url !== followingUrl) {
+  throw new Error('The connector did not enforce attach-before-navigation')
+}
+
+console.log('Browser connector reconnect, receipt, attach-before-navigation and relationship-dialog-preserving tab reuse OK')

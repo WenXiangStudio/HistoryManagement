@@ -29,6 +29,7 @@ import {
 } from './core.js'
 
 const DEBUGGER_VERSION = '1.3'
+const LEGACY_PHASE_B_DISABLED_REASON = 'LEGACY_ROUTE_DISABLED:0.2.4:BLOCKED_BY_R0_UNTIL_R4'
 const NAVIGATION_TIMEOUT_MS = 45_000
 const NETWORK_OBSERVE_MS = 12_000
 const API_TIMEOUT_MS = 20_000
@@ -1262,6 +1263,8 @@ async function runAutomaticPhaseB(controllerUrl, token, targetCount) {
 }
 
 async function beginAutomaticPhaseB(controllerUrl, targetCount) {
+  throw new Error(LEGACY_PHASE_B_DISABLED_REASON)
+  /* c8 ignore start -- frozen legacy implementation retained only as failure evidence. */
   if (state.running) throw new Error('已有阶段 B PoC 正在运行')
   const count = validateTargetSampleCount(targetCount)
   const token = await pairController(controllerUrl)
@@ -1278,6 +1281,7 @@ async function beginAutomaticPhaseB(controllerUrl, targetCount) {
   })
   void runAutomaticPhaseB(controllerUrl, token, count)
   return { accepted: true, automaticDiscovery: true, targetSampleCount: count }
+  /* c8 ignore stop */
 }
 
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {

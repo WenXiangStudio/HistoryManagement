@@ -64,6 +64,58 @@ function followingProof(creatorIds: string[], empty = false): DouyinFollowingSou
   }
 }
 
+function workAuthorProof(creatorId: string, workId: string) {
+  const schemaFingerprint = 'a'.repeat(64)
+  return {
+    contract: 'douyin-work-author-proof/v2' as const,
+    followedCreatorId: creatorId,
+    profileRouteCreatorId: creatorId,
+    requestTargetCreatorId: creatorId,
+    observedWorkAuthorId: creatorId,
+    observedWorkId: workId,
+    authorProofSource: 'network-response' as const,
+    endpointKind: 'creator-work-list' as const,
+    routeId: 'DY-WORKS-NETWORK' as const,
+    adapterVersion: '0.2.0-r2',
+    observedAt: '2026-09-02T08:00:00.000Z',
+    schemaFingerprint,
+    responseProjectionSha256: 'b'.repeat(64),
+    routeTrace: [{
+      routeId: 'DY-WORKS-NETWORK' as const,
+      status: 'success' as const,
+      attempt: 1,
+      durationMs: 10,
+      schemaFingerprint,
+      occurredAt: '2026-09-02T08:00:00.000Z'
+    }]
+  }
+}
+
+function structuredWorkObservation(creatorId: string, workId: string) {
+  const schemaFingerprint = 'a'.repeat(64)
+  return {
+    contract: 'douyin-structured-work-observation/v1' as const,
+    sourceKind: 'network-response' as const,
+    routeId: 'DY-WORKS-NETWORK' as const,
+    endpointKind: 'creator-work-list' as const,
+    requestTargetCreatorId: creatorId,
+    workId,
+    authorId: creatorId,
+    authorIdSourcePath: 'aweme_list[].author.uid' as const,
+    observedAt: '2026-09-02T08:00:00.000Z',
+    schemaFingerprint,
+    responseProjectionSha256: 'b'.repeat(64),
+    routeTrace: [{
+      routeId: 'DY-WORKS-NETWORK' as const,
+      status: 'success' as const,
+      attempt: 1,
+      durationMs: 10,
+      schemaFingerprint,
+      occurredAt: '2026-09-02T08:00:00.000Z'
+    }]
+  }
+}
+
 function commentProof(workId: string, commentIds: string[]): DouyinCommentSourceProof {
   return {
     contract: 'douyin-comment-source-proof/v1',
@@ -139,7 +191,8 @@ describe('bounded sample synchronization', () => {
     const worksReceipt = bridge.deliverEnvelope(envelope(String(creatorPayload.commandId), `https://www.douyin.com/user/${creatorId}`, [1, 2, 3].map((index) => ({
       entityType: 'work' as const, workId: `${creatorId}-w${index}`, creatorId, workType: index === 2 ? 'image' as const : 'video' as const,
       sourceUrl: `https://www.douyin.com/video/${creatorId}-w${index}`, title: `真实作品 ${index}`, description: `作品 ${index}`,
-      discoveredAt: '2026-09-02T08:00:00.000Z', metrics: { likeCount: index, commentCount: null, collectCount: null, shareCount: null,
+      discoveredAt: '2026-09-02T08:00:00.000Z', authorProof: workAuthorProof(creatorId, `${creatorId}-w${index}`),
+      structuredObservation: structuredWorkObservation(creatorId, `${creatorId}-w${index}`), metrics: { likeCount: index, commentCount: null, collectCount: null, shareCount: null,
         visibility: { like: 'visible' as const, comment: 'unknown' as const, collect: 'unknown' as const, share: 'unknown' as const } }
     }))))
     expect(worksReceipt, worksReceipt.error).toMatchObject({ accepted: true })

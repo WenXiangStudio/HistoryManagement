@@ -20,9 +20,13 @@ import {
   validateSampleUrls,
   validateTargetSampleCount
 } from '../extension/core.js'
-import { scanSensitive, summarize, validateDiscovery, validateManifest, validateReport } from '../controller.mjs'
+import { assertLegacyPhaseBDisabled, scanSensitive, summarize, validateDiscovery, validateManifest, validateReport } from '../controller.mjs'
 
 const SEED = '0123456789abcdef'.repeat(4)
+
+test('R0 hard-disables the legacy 0.2.4 controller before it can create a run', () => {
+  assert.throws(() => assertLegacyPhaseBDisabled(), /LEGACY_ROUTE_DISABLED:0\.2\.4:BLOCKED_BY_R0_UNTIL_R4/)
+})
 
 function sampleUrls(count = 20) {
   return Array.from({ length: count }, (_, index) => `https://www.douyin.com/video/mock-work-${String(index + 1).padStart(2, '0')}`)
@@ -288,20 +292,22 @@ test('discovery artifacts contain no Cookie, request template, signature value o
   assert.doesNotMatch(manifestSource, /nativeMessaging/)
 })
 
-test('popup has no manual token/work-URL input and starts automatic following sampling', async () => {
+test('R0 popup has no inputs and cannot start or stop the frozen route', async () => {
   const html = await readFile(new URL('../extension/popup.html', import.meta.url), 'utf8')
   const script = await readFile(new URL('../extension/popup.js', import.meta.url), 'utf8')
-  assert.doesNotMatch(html, /sampleUrls|sessionToken|每行一个/)
-  assert.doesNotMatch(script, /sampleUrls|sessionToken\.value/)
-  assert.match(html, /自动从本人真实关注关系中随机抽取/)
-  assert.match(html, /无需粘贴 token/)
+  assert.doesNotMatch(html, /sampleUrls|sessionToken|controllerUrl|targetSampleCount|每行一个/)
+  assert.doesNotMatch(script, /sendMessage|storage|phase-b\.start|phase-b\.stop/)
+  assert.match(html, /0\.2\.3 作者证明失败/)
+  assert.match(html, /LEGACY_ROUTE_DISABLED:0\.2\.4:BLOCKED_BY_R0_UNTIL_R4/)
+  assert.match(html, /id="start" disabled/)
+  assert.match(html, /id="stop" class="danger" disabled/)
   const background = await readFile(new URL('../extension/background.js', import.meta.url), 'utf8')
   assert.match(background, /signaldesk-phase-b-pair\/v1/)
   assert.match(background, /chrome\.runtime\.onInstalled\.addListener/)
   assert.match(background, /Input\.dispatchKeyEvent/)
   assert.match(background, /key: 'Enter'/)
   assert.doesNotMatch(background, /Input\.dispatchMouseEvent/)
-  assert.match(script, /targetSampleCount/)
+  assert.match(background, /LEGACY_ROUTE_DISABLED:0\.2\.4:BLOCKED_BY_R0_UNTIL_R4/)
 })
 
 test('summary refuses benchmark claims and detects verified-empty conflicts', async () => {

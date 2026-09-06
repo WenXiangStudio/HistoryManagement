@@ -102,19 +102,29 @@ async function executeCommand(command) {
     ? 'https://www.douyin.com/user/self?showTab=follow'
     : command.payload.profileUrl || command.payload.sourceUrl
   if (!targetUrl || !targetUrl.startsWith('https://www.douyin.com/')) throw new Error('连接器拒绝非抖音目标地址')
-  const tab = await openOrReuseTab(targetUrl)
-  await waitForTab(tab.id, 45_000)
-  let result
+  const { NetworkObserver } = await import('./network-observer.js')
+  const observer = new NetworkObserver({ debuggerApi: chrome.debugger })
+  let tab
   try {
-    result = await chrome.tabs.sendMessage(tab.id, { type: 'signaldesk.collect', command })
-  } catch (error) {
-    throw new Error(`无法读取抖音页面，请刷新页面或重新登录：${String(error)}`)
+    tab = await openOrReuseTab(targetUrl, {
+      beforeNavigation: async (tabId) => await observer.attach(tabId)
+    })
+    await waitForTab(tab.id, 45_000)
+    try {
+      const result = await chrome.tabs.sendMessage(tab.id, { type: 'signaldesk.collect', command })
+      if (!result?.ok) throw new Error(result?.error || '页面采集失败')
+      return result.envelope
+    } catch (error) {
+      throw new Error(`无法读取抖音页面，请刷新页面或重新登录：${String(error)}`)
+    }
+  } finally {
+    // R2 only establishes the bounded observer. R3-R5 will bind its safe
+    // projections into operation-specific envelopes; raw bodies are already gone.
+    await observer.stop()
   }
-  if (!result?.ok) throw new Error(result?.error || '页面采集失败')
-  return result.envelope
 }
 
-async function openOrReuseTab(url) {
+async function openOrReuseTab(url, { beforeNavigation } = {}) {
   const tabs = await chrome.tabs.query({ url: ['https://www.douyin.com/*'] })
   const exact = tabs.find((tab) => tab.url && new URL(tab.url).pathname === new URL(url).pathname)
   if (exact?.id) {
@@ -123,10 +133,14 @@ async function openOrReuseTab(url) {
     const alreadyAtTarget = currentUrl.origin === targetUrl.origin
       && currentUrl.pathname === targetUrl.pathname
       && currentUrl.search === targetUrl.search
+    await beforeNavigation?.(exact.id)
     if (!alreadyAtTarget) await chrome.tabs.update(exact.id, { url, active: false })
     return exact
   }
-  return await chrome.tabs.create({ url, active: false })
+  const blank = await chrome.tabs.create({ url: 'about:blank', active: false })
+  if (!blank.id) throw new Error('浏览器未返回可观察的 tabId')
+  await beforeNavigation?.(blank.id)
+  return await chrome.tabs.update(blank.id, { url, active: false })
 }
 
 function waitForTab(tabId, timeoutMs) {

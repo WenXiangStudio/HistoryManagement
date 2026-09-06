@@ -4,6 +4,8 @@ import {
   collectionScopeSchema,
   persistedRequestParameterSchema,
   persistedRequestParameterNameSchema,
+  routeTraceSchema,
+  structuredReadRequestSchema,
   type CollectionScope
 } from '../shared/platformAdapter'
 import type { z } from 'zod'
@@ -189,6 +191,113 @@ export function canonicalJson(value: unknown): string {
 
 export function sha256CanonicalJson(value: unknown): string {
   return createHash('sha256').update(canonicalJson(value), 'utf8').digest('hex')
+}
+
+function schemaType(value: unknown): string {
+  if (value === null) return 'null'
+  if (Array.isArray(value)) return 'array'
+  if (typeof value === 'number') return Number.isInteger(value) ? 'integer' : 'number'
+  return typeof value
+}
+
+export function canonicalSchemaPaths(value: unknown): string[] {
+  const paths = new Set<string>()
+  const visit = (current: unknown, path: string): void => {
+    const type = schemaType(current)
+    paths.add(`${path}:${type}`)
+    if (Array.isArray(current)) {
+      for (const entry of current) visit(entry, `${path}[]`)
+      return
+    }
+    if (current !== null && typeof current === 'object') {
+      for (const [key, entry] of Object.entries(current as Record<string, unknown>).sort(([left], [right]) => left.localeCompare(right))) {
+        visit(entry, `${path}.${key}`)
+      }
+    }
+  }
+  visit(value, '$')
+  return [...paths].sort()
+}
+
+export function createSchemaFingerprint(value: unknown): string {
+  return sha256CanonicalJson(canonicalSchemaPaths(value))
+}
+
+export function createResponseProjectionSha256(whitelistProjection: unknown): string {
+  return sha256CanonicalJson(whitelistProjection)
+}
+
+export function validateSafeReadOnlyRequest(input: {
+  method: string
+  endpointKind: AdapterEndpointKind
+  path: string
+  parameters?: URLSearchParams | Record<string, unknown>
+  headers?: Headers | Record<string, string | string[] | undefined>
+}): z.infer<typeof structuredReadRequestSchema> & { headers: Record<string, string> } {
+  if (input.method !== 'GET') throw new Error('UNSAFE_REQUEST:only GET is permitted')
+  if (!/^\/(?!\/)[^?#\r\n]*$/.test(input.path) || input.path.includes('://')) {
+    throw new Error('UNSAFE_REQUEST:only a query-free relative pathname may be retained')
+  }
+
+  const parameters = input.parameters ?? {}
+  const rawParameterEntries = parameterEntries(parameters)
+  const seen = new Set<string>()
+  const allowed = SAFE_PARAMETERS_BY_ENDPOINT[input.endpointKind]
+  for (const [name, value] of rawParameterEntries) {
+    if (isSensitiveKey(name)) throw new Error(`UNSAFE_REQUEST:sensitive parameter ${name} is forbidden`)
+    const parsed = persistedRequestParameterSchema.safeParse({ name, value })
+    if (!parsed.success || !allowed.has(parsed.data.name)) {
+      throw new Error(`UNSAFE_REQUEST:unknown or invalid parameter ${name}`)
+    }
+    if (seen.has(parsed.data.name)) throw new Error(`UNSAFE_REQUEST:duplicate parameter ${name}`)
+    seen.add(parsed.data.name)
+  }
+  const requestParameters = filterPersistedRequestParameters(input.endpointKind, parameters)
+
+  const rawHeaders = headerEntries(input.headers ?? {})
+  for (const [name] of rawHeaders) {
+    if (isSensitiveKey(name) || !PAGE_CONTEXT_REQUEST_HEADER_ALLOWLIST.includes(name.toLowerCase() as typeof PAGE_CONTEXT_REQUEST_HEADER_ALLOWLIST[number])) {
+      throw new Error(`UNSAFE_REQUEST:header ${name} is not explicitly permitted`)
+    }
+  }
+  const headers = filterPageContextRequestHeaders(input.headers ?? {})
+  if (Object.keys(headers).length !== rawHeaders.length) {
+    throw new Error('UNSAFE_REQUEST:one or more header values failed the strict allowlist')
+  }
+
+  return {
+    ...structuredReadRequestSchema.parse({
+      contract: 'structured-read-request/v1',
+      method: input.method,
+      endpointKind: input.endpointKind,
+      path: input.path,
+      requestParameters
+    }),
+    headers
+  }
+}
+
+const FORBIDDEN_PERSISTED_KEY = /^(?:rawResponse|responseBody|requestBody|requestUrl|responseUrl|url|headers?|cookies?)$/i
+
+export function assertSafePersistedRouteTrace(input: unknown): z.infer<typeof routeTraceSchema> {
+  const scan = (value: unknown): void => {
+    if (typeof value === 'string' && /^https?:\/\//i.test(value)) {
+      throw new Error('UNSAFE_REQUEST:complete URLs are forbidden in route trace persistence')
+    }
+    if (value === null || typeof value !== 'object') return
+    if (Array.isArray(value)) {
+      value.forEach(scan)
+      return
+    }
+    for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
+      if (isSensitiveKey(key) || FORBIDDEN_PERSISTED_KEY.test(key)) {
+        throw new Error(`UNSAFE_REQUEST:forbidden persisted field ${key}`)
+      }
+      scan(entry)
+    }
+  }
+  scan(input)
+  return routeTraceSchema.parse(input)
 }
 
 export function createCollectionScopeFingerprint(input: CollectionScope): string {

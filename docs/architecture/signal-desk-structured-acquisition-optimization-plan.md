@@ -1,7 +1,7 @@
 # Signal Desk 结构化采集与理解可执行优化方案
 
 > 版本：规划基线 `2026-09-05`  
-> 状态：待实施；尚未开始新的真实采集或正式库迁移  
+> 状态：`R0～R2` 已完成离线实现与合成测试；`R3～R8` 未实施，尚未开始新的真实采集或正式库迁移
 > 社区证据库：[`signal-desk-community-validated-routes-2026-09-05.md`](../research/signal-desk-community-validated-routes-2026-09-05.md)
 
 ## 1. 要解决的真实问题
@@ -279,6 +279,8 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 
 ### R0：冻结失败路线和验收口径
 
+状态：已完成（2026-09-06）。`0.2.3` 已冻结为作者证明失败，`0.2.4` 的控制器与扩展启动入口均硬拒绝；历史 run 由 `poc/phase-b/FROZEN_RUNS.json` 记录摘要文件哈希和失败分类，原始目录保持只读且不进入测试。
+
 改动：
 
 - 将 `0.2.3` 标记为“作品归属证明失败”，24 个样本不得作为关注作品基准；
@@ -290,6 +292,8 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 退出条件：单元测试能证明 DOM-only 候选被拒绝，自填作者 ID 被拒绝，历史 run 不被误判为通过。
 
 ### R1：扩展合同和安全门禁
+
+状态：已完成（2026-09-06，仅合成 fixture）。已实现 `WorkAuthorProof/v2`、四 ID 一致与独立 observation 对照、原生 `aweme_id/cid` 门禁、schema fingerprint、白名单 projection hash、route registry/trace，以及 GET/path/参数/header/持久化字段安全负例。
 
 主要文件：
 
@@ -303,6 +307,8 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 退出条件：所有合成正/反例通过；未知参数、敏感 key、原始 response、完整 URL 和非 GET 方法均被拒绝。
 
 ### R2：实现通用 Network Observer
+
+状态：已完成（2026-09-06，仅模拟 CDP）。Observer 已提取到 `browser-connector/extension/network-observer.js`，覆盖六类响应、attach-before-navigation、bounded buffer、path + schema 双分类、只保留投影、detach 清理；没有连接真实浏览器或平台。
 
 主要文件：
 
@@ -416,4 +422,4 @@ run/<run-id>/
 
 推荐按 `R0 → R1 → R2 → R3 → R4 → R5 → R6 → R7 → R8` 执行，不并行触碰真实平台。`R0～R7` 可以全部用源码、合成 fixture、临时测试库和浏览器事件模拟完成；到 `R8` 才需要真实页面验证。
 
-当前交付只完成社区研究和方案冻结，没有执行新采集、没有改生产连接器代码、没有写正式数据库。下一次若用户确认开始实现，应从 `R0～R2` 开始；在它们通过前不得重新加载或运行 `0.2.4`，也不得进入真实 `T1/T2/T3`。
+当前交付已完成 `R0～R2` 的离线实现与合成/模拟测试，没有执行新采集、没有写正式数据库、没有恢复历史任务。下一实施点是 `R3`；由于 `R3/R4` 尚未完成，`0.2.4` 仍由代码硬禁用，也不得进入真实 `R8/T1/T2/T3`。R2 Observer 虽已接入正式连接器的 attach/detach 生命周期，但投影要到 `R3～R5` 才能绑定到具体业务 envelope，因此不能把本轮测试视为真实平台验收。

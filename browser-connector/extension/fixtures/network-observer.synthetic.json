@@ -1,0 +1,160 @@
+{
+  "fixture": "signaldesk-network-observer-synthetic/v1",
+  "responses": [
+    {
+      "requestId": "synthetic-following",
+      "url": "https://www.douyin.com/aweme/v1/web/user/following/list/?cursor=0&count=20&X-Bogus=LEAK_FOLLOW_SIGNATURE",
+      "endpointKind": "following-list",
+      "routeId": "DY-FOLLOW-NETWORK",
+      "body": {
+        "status_code": 0,
+        "user_list": [
+          {
+            "uid": "synthetic-creator-1",
+            "sec_uid": "synthetic-sec-creator-1",
+            "nickname": "合成关注作者",
+            "is_following": 1,
+            "cookie": "LEAK_FOLLOW_COOKIE"
+          }
+        ],
+        "cursor": 20,
+        "has_more": 0,
+        "total": 1,
+        "access_token": "LEAK_FOLLOW_TOKEN"
+      }
+    },
+    {
+      "requestId": "synthetic-works",
+      "url": "https://www.douyin.com/aweme/v1/web/aweme/post/?sec_user_id=synthetic-creator-1&cursor=0&count=20&msToken=LEAK_WORK_TOKEN",
+      "endpointKind": "creator-work-list",
+      "routeId": "DY-WORKS-NETWORK",
+      "body": {
+        "status_code": 0,
+        "aweme_list": [
+          {
+            "aweme_id": "synthetic-work-1",
+            "aweme_type": 0,
+            "author": {
+              "uid": "synthetic-creator-1",
+              "sec_uid": "synthetic-sec-creator-1",
+              "nickname": "合成作品作者",
+              "authorization": "LEAK_WORK_AUTH"
+            },
+            "statistics": {
+              "digg_count": 11,
+              "comment_count": 2,
+              "collect_count": 3,
+              "share_count": 4,
+              "play_count": 5
+            },
+            "signature": "LEAK_WORK_SIGNATURE"
+          }
+        ],
+        "cursor": 20,
+        "has_more": 0,
+        "total": 1
+      }
+    },
+    {
+      "requestId": "synthetic-detail",
+      "url": "https://www.douyin.com/aweme/v1/web/aweme/detail/?aweme_id=synthetic-work-1&X-Bogus=LEAK_DETAIL_SIGNATURE",
+      "endpointKind": "work-detail",
+      "routeId": "DY-DETAIL-NETWORK",
+      "body": {
+        "status_code": 0,
+        "aweme_detail": {
+          "aweme_id": "synthetic-work-1",
+          "aweme_type": 0,
+          "author": {
+            "uid": "synthetic-creator-1",
+            "sec_uid": "synthetic-sec-creator-1",
+            "nickname": "合成详情作者"
+          },
+          "statistics": {
+            "digg_count": 12,
+            "comment_count": 3,
+            "collect_count": 4,
+            "share_count": 5,
+            "play_count": 6
+          },
+          "raw_headers": "LEAK_DETAIL_HEADERS"
+        }
+      }
+    },
+    {
+      "requestId": "synthetic-comments",
+      "url": "https://www.douyin.com/aweme/v1/web/comment/list/?aweme_id=synthetic-work-1&cursor=0&count=20&msToken=LEAK_COMMENT_TOKEN",
+      "endpointKind": "comment-list",
+      "routeId": "DY-COMMENT-NETWORK",
+      "body": {
+        "status_code": 0,
+        "comments": [
+          {
+            "cid": "synthetic-comment-1",
+            "aweme_id": "synthetic-work-1",
+            "text": "这是一条合成评论",
+            "digg_count": 2,
+            "user": {
+              "uid": "synthetic-viewer-1",
+              "nickname": "合成观众"
+            },
+            "password": "LEAK_COMMENT_PASSWORD"
+          }
+        ],
+        "cursor": 20,
+        "has_more": 0,
+        "total": 1
+      }
+    },
+    {
+      "requestId": "synthetic-replies",
+      "url": "https://www.douyin.com/aweme/v1/web/comment/list/reply/?aweme_id=synthetic-work-1&comment_id=synthetic-comment-1&cursor=0&count=20&X-Bogus=LEAK_REPLY_SIGNATURE",
+      "endpointKind": "comment-reply-list",
+      "routeId": "DY-REPLY-NETWORK",
+      "body": {
+        "status_code": 0,
+        "comments": [
+          {
+            "cid": "synthetic-reply-1",
+            "aweme_id": "synthetic-work-1",
+            "root_comment_id": "synthetic-comment-1",
+            "reply_to_comment_id": "synthetic-comment-1",
+            "text": "这是一条合成回复",
+            "digg_count": 1,
+            "user": {
+              "uid": "synthetic-viewer-2",
+              "nickname": "合成回复者"
+            },
+            "session_token": "LEAK_REPLY_SESSION"
+          }
+        ],
+        "cursor": 20,
+        "has_more": 0,
+        "total": 1
+      }
+    },
+    {
+      "requestId": "synthetic-media",
+      "url": "https://www.douyin.com/aweme/v1/web/media/resource/?aweme_id=synthetic-work-1&X-Bogus=LEAK_MEDIA_SIGNATURE",
+      "endpointKind": "media-resource",
+      "routeId": "DY-MEDIA-NETWORK",
+      "body": {
+        "status_code": 0,
+        "resource_list": [
+          {
+            "aweme_id": "synthetic-work-1",
+            "resources": [
+              {
+                "kind": "video",
+                "url_list": [
+                  "https://media.example.test/synthetic.mp4?token=LEAK_MEDIA_TOKEN"
+                ]
+              }
+            ],
+            "cookie": "LEAK_MEDIA_COOKIE"
+          }
+        ]
+      }
+    }
+  ]
+}

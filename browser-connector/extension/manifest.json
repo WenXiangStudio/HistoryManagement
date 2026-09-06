@@ -4,7 +4,7 @@
   "version": "0.1.6",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv/lRtL4xE46cqDBHn+hfYgblBiH/projVt/l3JWWcsAKX1/c+LuHLg/uLdEyi8cNKsvguIuUiIdBfWeClX+K+sO0q18KOLfl52cHr9veeu+3ZBba9xazpdDJNwKLn6WUOX3RcJoshnkHLDsG+2TFODfkzw1/AuyJFpK1EAWzCOqEiqSKZVZp6kTHwZHxycB5CS9+QLsaoggZnCsbzju8PDUaQNmeFjs6gwBrSmtJROGM4SVi4UIWB0bX338g7nTFvjZi3K5cXbyscPhLd6B4T+emE6nRcd1IqXJlSbhGtEz2ZbslpyOiDCPXn3rmBp44n84g8oHuGicRjt0TNOyHEwIDAQAB",
   "description": "将当前登录状态下公开可见的抖音关注、作品与评论发送到本机 Signal Desk。",
-  "permissions": ["nativeMessaging", "tabs", "storage"],
+  "permissions": ["nativeMessaging", "tabs", "storage", "debugger"],
   "host_permissions": [
     "https://www.douyin.com/*",
     "https://v.douyin.com/*"

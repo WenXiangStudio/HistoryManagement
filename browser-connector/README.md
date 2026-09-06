@@ -30,9 +30,12 @@
 
 连接器 `0.1.6` 还依据真实抖音作品页 DOM 收紧了评论采集：只从唯一可见的 `data-e2e="comment-list"` / `comment-mainContent` 容器读取精确的 `data-e2e="comment-item"`，要求每条记录同时具有 `comment-item-info-wrap` 公开作者信息和相邻正文节点，并向桌面端提交与目标作品和评论清单绑定的来源证明。评论按钮、输入框、数量、纯数字正文、全局类名模糊匹配和缺少作者结构的候选会安全拒绝，不会入库。
 
+R0～R2（2026-09-06）已经加入通用只读 Network Observer 和新的作品作者证明门禁。扩展现在先通过 `chrome.debugger` attach 并启用 Network，再导航或触发页面；Observer 只处理允许 host 上的 GET Fetch/XHR 成功 JSON，使用 path + schema 双分类，内存有固定上限，只输出白名单投影和 SHA-256，随后 detach 并清空。当前仍处于离线合成验证阶段：R3～R5 尚未把这些投影绑定到关注、作品和评论业务 envelope，旧 DOM-only 作品结果会被桌面端拒绝，不能据此恢复真实采集。
+
 ## 安全边界
 
 - Host 只读取当前用户 `%APPDATA%\Signal Desk\bridge.json` 中的临时回环地址和会话密钥。
 - 桌面端每次启动都会生成新的随机密钥，只监听 `127.0.0.1`。
 - 扩展只声明抖音域名，不包含发布、点赞、关注、私信或账号设置操作。
+- `debugger` 权限只用于上述 bounded Network Observer；不持久化原始 response、完整 URL、query、headers、Cookie 或签名值。
 - 登录失效、验证码、安全验证或频控会使任务暂停，连接器不会尝试绕过。
