@@ -1,7 +1,7 @@
 # Signal Desk 结构化采集与理解可执行优化方案
 
 > 版本：规划基线 `2026-09-05`  
-> 状态：`R0～R4` 已完成离线实现与合成/模拟测试；`R5～R8` 未实施，尚未开始新的真实采集或正式库迁移
+> 状态：用户确认 `R0～R5` 联合离线人工验收此前已签署 `PASS`；`R6` 已于 2026-09-07 获明确授权并完成离线实现与临时测试库验证；`R7～R8` 未获授权，尚未开始新的真实采集或正式用户库迁移
 > 社区证据库：[`signal-desk-community-validated-routes-2026-09-05.md`](../research/signal-desk-community-validated-routes-2026-09-05.md)
 
 ## 1. 要解决的真实问题
@@ -355,15 +355,47 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 
 ### R5：评论和回复结构化适配器
 
-改动：实现评论/回复 Network、embedded、in-page 和 trigger 路线；原生 `cid`；严格 `verified-empty`；分页断点与幂等。
+状态：已完成（2026-09-06，仅合成 fixture、模拟 route 和内存数据库边界）。R0～R4 离线检查点已由用户明确签署 `PASS` 并授权 R5。已实现一级评论和二级回复独立适配器、`0.2.0-r5` proof/route registry、数据库调用前门禁，并永久拒绝旧 DOM comment proof；没有连接真实浏览器或平台。
+
+主要文件：
+
+- `src/shared/commentAcquisition.ts`
+- `src/main/douyinCommentAdapters.ts`
+- `src/main/commentCollectionGate.ts`
+- `src/shared/fixtures/douyin-comment-pages-r5.mock.json`
+- 对应 adapter、gate 与 TaskRunner 边界测试
+
+改动：
+
+- 一级评论固定 `DY-COMMENT-NETWORK → EMBEDDED → INPAGE → TRIGGER → STOP`；回复使用对应 `DY-REPLY-*` 独立路线；
+- TRIGGER 只能接纳带 `network-observer` 标记的触发后结构化响应，不能从 DOM 制造事实；
+- 每项必须有原生 `cid`，且 `comments[].aweme_id` 独立等于目标作品；回复还必须与请求 `comment_id`、root 和 parent 关系一致；
+- verified-empty 只接受 `comments=[]`、`total=0`、`has_more=false`；跨作品、父关系错配、重复 cid、cursor loop、空页继续、未闭合分页和分页中途 schema change 全部整批归零；
+- 评论关闭、未观察、schema change、登录、频控、非零平台状态和安全请求错误分别分类；proof、projection hash、route trace、item 与 envelope 在 `database.ingestEnvelope` 前精确绑定；
+- R5 检查点时正式 comments 表尚未接受 `native-cid`；当时的 TaskRunner 测试证明 preflight 通过后，pre-R6 CHECK constraint 会使整笔 ingest 回滚，comment/checkpoint 均保持 0。该历史门禁已在 R6 源码迁移和临时测试库中解除，但本轮没有打开或迁移正式用户数据库。
 
 退出条件：跨作品评论、重复 cid、cursor loop、空页但 has_more、评论关闭、真实空评论、未观察到 endpoint 等均有不同结果；DOM 结果只能出现在 shadow 报告。
 
 ### R6：任务系统和测试库集成
 
-改动：`taskRunner` 使用适配器版本 + scope fingerprint 去重；单 item 失败不锁死无关任务；恢复必须精确到 job；只在临时测试库验证 schema/migration/幂等。
+状态：已完成（2026-09-07，仅源码、合成 fixture、内存/临时测试数据库和模拟任务事件）。用户确认 R0～R5 联合离线人工验收此前已签署 `PASS`，并在 2026-09-07 明确授权进入 R6。
 
-退出条件：不能触碰八个历史阻断任务；旧 completed 范围不阻碍新范围；任何来源证明失败都在数据库写入前被拒绝。
+改动：
+
+- comments schema 无损迁移接受 `native-cid`，保留三类旧 ID，新增 root/parent、reply count 和 endpoint 字段；
+- migration 回归固定检查八个历史任务 `#7/#8/#10/#11/#12/#13/#14/#16` 的状态、payload、checkpoint 与消息逐项不变，旧 checkpoint 转为 `legacy-unversioned`，不回填或恢复历史任务；
+- 无 adapter/scope identity 的旧采集任务在队列选择、暂停、恢复、浏览器 status 和迟到 envelope 五条路径均保持只读冻结；应用启动也不会调度它们；
+- `taskRunner` 将适配器名称、版本和 `scope-v1` fingerprint 同时写入 job/payload/checkpoint；活动相同范围幂等去重，旧 completed 范围不阻止新 run，不同范围可以独立排队；
+- 恢复 API 与任务中心 UI 改为按 job ID 精确恢复；每次派发递增 attempt 并生成新 command ID，旧尝试的迟到 envelope 被拒绝；
+- 一级评论与回复分别使用 comment-list/comment-replies identity；回复 checkpoint 绑定具体 root cid，数据库保存并复核 root/parent 外键；
+- 只有 following job 可派生 works job，只有 creator-works job 可派生 comments/media/cloud job，避免携带 work binding 的评论 envelope 递归创建同范围评论任务；
+- proof 的 adapter identity 与任务逐项绑定，scope 或版本篡改会在数据库写入前失败关闭；单个失败 job 不阻塞无关 scope。
+- comment envelope 中的 work item 只作为写前 ID/作者绑定，不进入通用 work upsert；评论 proof 未覆盖的标题、描述或指标不能借评论任务覆盖既有作品数据。
+- 生产主进程和 renderer 默认硬禁用“小样本同步”；只有 v2 connector bridge 完成后修改共享能力门，测试环境才可显式启用 R6 调度路径。
+
+退出条件：已由离线自动测试覆盖。没有触碰八个历史阻断任务；旧 completed 范围不阻碍新范围；任何来源证明或 adapter/scope identity 失败都在数据库写入前被拒绝。正式用户数据库仍未执行迁移，生产连接器仍未生成 v2 业务 envelope。
+
+离线验证：`npm run check` 通过；其中 Vitest 为 14 个文件 / 181 项，Python worker 2 项，Network Observer 8 项，冻结 Phase B 15 项，Native Host、连接器协议和 Electron 生产构建均通过。`npm run package` 与 packaged-renderer 冒烟通过，生产包确认同步入口和主进程都失败关闭；生产依赖高危漏洞审计为 0。
 
 ### R7：媒体、ASR/OCR、总结和事实核验合同
 
@@ -443,4 +475,4 @@ run/<run-id>/
 
 推荐按 `R0 → R1 → R2 → R3 → R4 → R5 → R6 → R7 → R8` 执行，不并行触碰真实平台。`R0～R7` 可以全部用源码、合成 fixture、临时测试库和浏览器事件模拟完成；到 `R8` 才需要真实页面验证。
 
-当前交付已完成 `R0～R4` 的离线实现与合成/模拟测试，没有执行新采集、没有写正式数据库、没有恢复历史任务。下一实施点是 `R5`；`0.2.3/0.2.4` 已永久退役并由代码硬禁用，也不得进入真实 `R8/T1/T2/T3`。R3/R4 已完成关注、作品列表、作品详情和桌面端 v2 入库门禁，但生产连接器尚未把 R2 Observer 投影转换为业务 envelope，评论与回复投影仍待 R5，因此不能把本轮测试视为 E3/E4 或真实平台验收。
+当前交付已完成 `R0～R6` 的离线实现与合成/模拟测试。用户在 2026-09-07 明确纠正记录：R0～R5 联合离线人工验收此前已经签署 `PASS`；同日明确授权进入 R6。R6 只在源码、内存/临时测试数据库与模拟任务事件中实施和验证，没有执行新采集、没有打开或迁移正式用户数据库、没有恢复历史任务。`0.2.3/0.2.4` 已永久退役并由代码硬禁用，也不得进入真实 `R8/T1/T2/T3`。生产连接器尚未把 R2 Observer 投影转换为业务 envelope，因此不能把本轮测试视为 E3/E4 或真实平台验收。下一授权点为 R7；R8 仍必须另行明确批准。

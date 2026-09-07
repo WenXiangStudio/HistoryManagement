@@ -39,11 +39,11 @@ afterEach(() => {
   database = null
 })
 
-function createRunner(): { runner: TaskRunner; bridge: FakeBridge } {
+function createRunner(structuredSyncEnabled = true): { runner: TaskRunner; bridge: FakeBridge } {
   database = new AppDatabase(':memory:')
   const bridge = new FakeBridge()
   const worker = { processMedia: async () => { throw new Error('media processing must not run during collection-only sample sync') } } as unknown as WorkerClient
-  return { runner: new TaskRunner(database, bridge as unknown as BridgeServer, worker, 'D:\\signal-desk-test-cache'), bridge }
+  return { runner: new TaskRunner(database, bridge as unknown as BridgeServer, worker, 'D:\\signal-desk-test-cache', structuredSyncEnabled), bridge }
 }
 
 async function dispatchNext(runner: TaskRunner): Promise<void> {
@@ -57,7 +57,7 @@ function followingProof(creatorIds: string[], empty = false): DouyinFollowingStr
     contract: 'douyin-following-structured-proof/v2',
     platform: 'douyin',
     adapterName: 'douyin.following',
-    adapterVersion: '0.2.0-r3',
+    adapterVersion: '0.2.0-r4',
     schemaVersion: 2,
     routeId: 'DY-FOLLOW-NETWORK',
     sourceKind: 'network-response',
@@ -137,6 +137,34 @@ function envelope(
 }
 
 describe('bounded sample synchronization', () => {
+  it('keeps production structured sync hard-disabled until the v2 connector bridge exists', () => {
+    const { runner } = createRunner(false)
+    expect(() => runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })).toThrow(/禁止启动真实采集/)
+  })
+
+  it('keeps legacy unscoped collection jobs immutable across dispatch, pause, envelope, and status paths', async () => {
+    const { runner, bridge } = createRunner()
+    const legacyPayload = { commandId: 'legacy-frozen-command', workId: 'legacy-work' }
+    const legacyId = database!.enqueueJob('collection.work_comments', legacyPayload, 1)
+    const before = database!.db.prepare('SELECT state, payload_json, checkpoint_json, status_message FROM jobs WHERE id=?').get(legacyId)
+
+    await dispatchNext(runner)
+    expect(bridge.commands).toHaveLength(0)
+    database!.cancelActiveJobs()
+    bridge.emit('status', { type: 'blocked', commandId: legacyPayload.commandId, message: '不得写入旧任务' })
+    expect(bridge.deliverEnvelope({
+      contract: 'browser-collection-envelope/v1',
+      commandId: legacyPayload.commandId,
+      platform: 'douyin',
+      collectedAt: '2026-09-07T00:00:00.000Z',
+      sourceUrl: 'https://www.douyin.com/video/legacy-work',
+      completeness: 'complete',
+      hasMore: false,
+      items: []
+    })).toMatchObject({ accepted: false, code: 'stale-command' })
+    expect(database!.db.prepare('SELECT state, payload_json, checkpoint_json, status_message FROM jobs WHERE id=?').get(legacyId)).toEqual(before)
+  })
+
   it('rejects limits outside the main-process hard boundary', () => {
     expect(validateSampleSyncOptions({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })).toEqual({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })
     expect(() => validateSampleSyncOptions({ creatorLimit: 6, worksPerCreator: 5, commentsPerWork: 20 })).toThrow(/1～5/)
@@ -151,10 +179,15 @@ describe('bounded sample synchronization', () => {
     expect(started.scope).toEqual({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })
     const payload = JSON.parse(String((database!.db.prepare('SELECT payload_json FROM jobs WHERE id=?').get(started.jobId) as { payload_json: string }).payload_json))
     expect(payload).toMatchObject({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20, collectionOnly: true })
-    expect(() => runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })).toThrow(/已有采集任务/)
+    expect(() => runner.startSampleSync({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })).toThrow(/相同适配器版本和采集范围/)
+    const independent = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    expect(independent.jobId).not.toBe(started.jobId)
+    database!.updateJob(started.jobId, 'completed')
+    const rerun = runner.startSampleSync({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })
+    expect(rerun.jobId).not.toBe(started.jobId)
   })
 
-  it('enforces every limit again before persistence and completes collection jobs without starting media or cloud work', async () => {
+  it('enforces following/work limits and rejects the legacy DOM comment result without starting media or cloud work', async () => {
     const { runner, bridge } = createRunner()
     const started = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 2, commentsPerWork: 2 })
     await dispatchNext(runner)
@@ -222,18 +255,18 @@ describe('bounded sample synchronization', () => {
         visibility: { like: 'visible' as const, comment: 'visible' as const, collect: 'unknown' as const, share: 'unknown' as const } }
     }
     const commentIds = [1, 2, 3].map((index) => `${workId}-cm${index}`)
-    expect(bridge.deliverEnvelope(envelope(String(commentPayload.commandId), sourceUrl, [
+    const legacyReceipt = bridge.deliverEnvelope(envelope(String(commentPayload.commandId), sourceUrl, [
       workItem,
       ...[1, 2, 3].map((index) => ({ entityType: 'comment' as const, commentId: `${workId}-cm${index}`, commentIdKind: 'page-attribute' as const, workId, parentCommentId: null, publicAuthorId: null, publicAuthorName: `真实观众${index}`, body: `真实评论 ${index}`, likeCount: index, publishedAt: null }))
-    ], commentProof(workId, commentIds)))).toMatchObject({ accepted: true })
+    ], commentProof(workId, commentIds)))
+    expect(legacyReceipt).toMatchObject({ accepted: false, code: 'invalid-collection-proof' })
+    expect(legacyReceipt.error).toMatch(/DOM_ONLY_SOURCE_REJECTED/)
 
-    expect(database!.getSummary()).toMatchObject({ followingCount: 1, workCount: 2, commentCount: 2 })
-    expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(commentJob.id) as { state: string }).state).toBe('completed')
+    expect(database!.getSummary()).toMatchObject({ followingCount: 1, workCount: 2, commentCount: 0 })
+    expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(commentJob.id) as { state: string }).state).toBe('blocked_user_action')
     const storedComments = database!.db.prepare('SELECT platform_comment_id, platform_comment_id_kind, public_author_name, body, source_verified, source_proof_json FROM comments WHERE work_id=(SELECT id FROM works WHERE platform_work_id=?) ORDER BY id').all(workId) as Array<Record<string, unknown>>
-    expect(storedComments).toHaveLength(2)
-    expect(storedComments[0]).toMatchObject({ platform_comment_id_kind: 'page-attribute', public_author_name: '真实观众1', body: '真实评论 1', source_verified: 1 })
-    expect(JSON.parse(String(storedComments[0].source_proof_json))).toMatchObject({ contract: 'douyin-comment-source-proof/v1', workId, commentIds: commentIds.slice(0, 2) })
-    expect(database!.db.prepare('SELECT scope_type, scope_id FROM collection_checkpoints WHERE scope_type=? AND scope_id=?').get('work', workId)).toMatchObject({ scope_type: 'work', scope_id: workId })
+    expect(storedComments).toHaveLength(0)
+    expect(database!.db.prepare('SELECT scope_type, scope_id FROM collection_checkpoints WHERE scope_type=? AND scope_id=?').get('work', workId)).toBeUndefined()
     expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind LIKE 'media.%' OR kind LIKE 'cloud.%'`).get() as { count: number }).count)).toBe(0)
     expect(database!.db.prepare('PRAGMA foreign_key_check').all()).toEqual([])
   })
@@ -358,11 +391,57 @@ describe('bounded sample synchronization', () => {
     bridge.emit('status', { type: 'blocked', commandId: command.commandId, message: '请完成登录验证' })
     expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(started.jobId) as { state: string }).state).toBe('blocked_user_action')
 
-    database!.resumePausedJobs()
+    const unrelatedJobId = database!.enqueueJob('media.process', { workId: 'unrelated' })
+    database!.db.prepare(`UPDATE jobs SET state='paused' WHERE id=?`).run(unrelatedJobId)
+    const legacyCollectionJobId = database!.enqueueJob('collection.work_comments', { workId: 'legacy-unversioned' })
+    database!.db.prepare(`UPDATE jobs SET state='paused' WHERE id=?`).run(legacyCollectionJobId)
+    expect(database!.resumeJob(legacyCollectionJobId)).toBe(false)
+    expect(database!.resumeJob(started.jobId)).toBe(true)
     expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(started.jobId) as { state: string }).state).toBe('queued')
+    expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(unrelatedJobId) as { state: string }).state).toBe('paused')
+    expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(legacyCollectionJobId) as { state: string }).state).toBe('paused')
+    expect(database!.getJobs().find((job) => job.id === legacyCollectionJobId)?.resumable).toBe(false)
     await dispatchNext(runner)
     expect(bridge.commands).toHaveLength(2)
-    expect(bridge.commands[1].commandId).toBe(command.commandId)
+    expect(bridge.commands[1].commandId).not.toBe(command.commandId)
+    expect(bridge.commands[1].commandId).toBe(`job-${started.jobId}-attempt-2`)
+    expect(bridge.deliverEnvelope(envelope(
+      command.commandId,
+      'https://www.douyin.com/user/self?showTab=follow',
+      [],
+      followingProof([], true)
+    ))).toMatchObject({ accepted: false, code: 'unknown-command' })
+    expect(database!.getSummary()).toMatchObject({ followingCount: 0, workCount: 0, commentCount: 0 })
+  })
+
+  it('continues an unrelated scope after one collection job is rejected', async () => {
+    const { runner, bridge } = createRunner()
+    const first = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    const second = runner.startSampleSync({ creatorLimit: 2, worksPerCreator: 1, commentsPerWork: 1 })
+    database!.db.prepare('UPDATE jobs SET created_at=? WHERE id=?').run('2026-09-06T00:00:00.000Z', first.jobId)
+    database!.db.prepare('UPDATE jobs SET created_at=? WHERE id=?').run('2026-09-06T00:00:01.000Z', second.jobId)
+
+    await dispatchNext(runner)
+    const firstCommand = bridge.commands.at(-1)!
+    const rejected = bridge.deliverEnvelope(envelope(firstCommand.commandId, 'https://www.douyin.com/user/self?showTab=follow', [
+      { entityType: 'creator', creatorId: 'dom-only', nickname: 'DOM 候选', profileUrl: 'https://www.douyin.com/user/dom-only', signature: '', isFollowing: true }
+    ], {
+      contract: 'douyin-following-source-proof/v1',
+      relationship: 'following',
+      pageKind: 'owner-following-list',
+      activeTab: 'following',
+      extractionScope: 'verified-following-list-container',
+      scrollRootKind: 'not-needed',
+      containerIdentity: 'synthetic',
+      scrollRootIdentity: 'not-needed',
+      creatorIds: ['dom-only']
+    }))
+    expect(rejected).toMatchObject({ accepted: false, code: 'invalid-collection-proof' })
+    expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(first.jobId) as { state: string }).state).toBe('blocked_user_action')
+
+    await dispatchNext(runner)
+    expect(bridge.commands.at(-1)?.commandId).toBe(`job-${second.jobId}-attempt-1`)
+    expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(second.jobId) as { state: string }).state).toBe('running')
   })
 
   it('does not expose a cold-start command until the task is running', async () => {
@@ -379,7 +458,7 @@ describe('bounded sample synchronization', () => {
     })
 
     bridge.online = true
-    database!.resumePausedJobs()
+    expect(database!.resumeJob(started.jobId)).toBe(true)
     const statesSeenByQueue: string[] = []
     bridge.onQueue = () => {
       const row = database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(started.jobId) as { state: string }

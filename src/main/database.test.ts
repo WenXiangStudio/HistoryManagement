@@ -43,6 +43,48 @@ describe('AppDatabase', () => {
     expect(Number((database.db.prepare('SELECT COUNT(*) AS count FROM metric_snapshots').get() as { count: number }).count)).toBe(2)
   })
 
+  it('rejects native cid reuse and reply relationships across works', () => {
+    database = new AppDatabase(':memory:')
+    const collectedAt = '2026-09-07T00:00:00.000Z'
+    database.ingestEnvelope({
+      contract: 'browser-collection-envelope/v1', commandId: 'seed-two-works', platform: 'douyin', collectedAt,
+      sourceUrl: 'https://www.douyin.com/user/creator-relations', completeness: 'complete', hasMore: false,
+      items: [
+        { entityType: 'work', workId: 'relation-work-a', creatorId: 'creator-relations', workType: 'video', sourceUrl: 'https://www.douyin.com/video/relation-work-a', title: 'A', description: '', discoveredAt: collectedAt },
+        { entityType: 'work', workId: 'relation-work-b', creatorId: 'creator-relations', workType: 'video', sourceUrl: 'https://www.douyin.com/video/relation-work-b', title: 'B', description: '', discoveredAt: collectedAt }
+      ]
+    })
+    database.ingestEnvelope({
+      contract: 'browser-collection-envelope/v1', commandId: 'seed-native-root', platform: 'douyin', collectedAt,
+      sourceUrl: 'https://www.douyin.com/video/relation-work-b', completeness: 'complete', hasMore: false,
+      items: [{
+        entityType: 'comment', commentId: 'native-root-b', commentIdKind: 'native-cid', workId: 'relation-work-b',
+        parentCommentId: null, rootCommentId: null, publicAuthorId: 'viewer-root', publicAuthorName: '根评论作者',
+        body: '同作品的原生一级评论', likeCount: 0, replyCount: 1, endpointKind: 'comment-list', publishedAt: null
+      }]
+    })
+
+    const crossWorkReply = {
+      contract: 'browser-collection-envelope/v1' as const,
+      commandId: 'cross-work-reply', platform: 'douyin' as const, collectedAt,
+      sourceUrl: 'https://www.douyin.com/video/relation-work-a', completeness: 'complete' as const, hasMore: false,
+      items: [{
+        entityType: 'comment' as const, commentId: 'native-reply-a', commentIdKind: 'native-cid' as const,
+        workId: 'relation-work-a', parentCommentId: 'native-root-b', rootCommentId: 'native-root-b',
+        publicAuthorId: 'viewer-reply', publicAuthorName: '回复作者', body: '不能跨作品关联', likeCount: 0,
+        replyCount: 0, endpointKind: 'comment-reply-list' as const, publishedAt: null
+      }]
+    }
+    expect(() => database!.ingestEnvelope(crossWorkReply)).toThrow(/同作品的原生一级评论/)
+    expect(() => database!.ingestEnvelope({
+      ...crossWorkReply,
+      commandId: 'reuse-root-on-work-a',
+      items: [{ ...crossWorkReply.items[0], commentId: 'native-root-b', parentCommentId: null, rootCommentId: null, endpointKind: 'comment-list' as const }]
+    })).toThrow(/同一 cid 不能跨作品复用/)
+    expect(Number((database.db.prepare(`SELECT COUNT(*) AS count FROM comments WHERE platform_comment_id='native-reply-a'`).get() as { count: number }).count)).toBe(0)
+    expect(database.db.prepare('PRAGMA foreign_key_check').all()).toEqual([])
+  })
+
   it('generates a complete offline demo library', () => {
     database = new AppDatabase(':memory:')
     database.seedDemo()

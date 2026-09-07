@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import type { BrowserCollectionEnvelope, DouyinFollowingStructuredProof } from '../shared/contracts'
 import { syntheticCreatorWorksProof, syntheticR4WorkEvidence } from '../shared/fixtures/syntheticR4Proofs'
+import { createResponseProjectionSha256 } from './platformAdapterSecurity'
 import { validateEnvelopeForJob } from './taskRunner'
 
 function validFollowingEnvelope(): BrowserCollectionEnvelope {
@@ -70,38 +71,88 @@ function validFollowingEnvelope(): BrowserCollectionEnvelope {
 }
 
 function validCommentEnvelope(): BrowserCollectionEnvelope {
+  const collectedAt = '2026-09-06T06:00:00.000Z'
+  const schemaFingerprint = 'c'.repeat(64)
+  const comment = {
+    entityType: 'comment' as const,
+    commentId: 'native-comment-1',
+    commentIdKind: 'native-cid' as const,
+    workId: 'work-1',
+    parentCommentId: null,
+    rootCommentId: null,
+    publicAuthorId: 'viewer-1',
+    publicAuthorName: 'FanFan',
+    body: '哪个 agent',
+    likeCount: 2,
+    replyCount: 0,
+    endpointKind: 'comment-list' as const,
+    publishedAt: null
+  }
+  const projection = {
+    endpointKind: 'comment-list',
+    targetWorkId: 'work-1',
+    targetRootCommentId: null,
+    cursorIn: '0',
+    cursorOut: '20',
+    hasMore: false,
+    reportedTotal: 1,
+    returnedIds: [comment.commentId],
+    items: [{
+      commentId: comment.commentId,
+      commentIdKind: comment.commentIdKind,
+      workId: comment.workId,
+      parentCommentId: comment.parentCommentId,
+      rootCommentId: comment.rootCommentId,
+      publicAuthorId: comment.publicAuthorId,
+      publicAuthorName: comment.publicAuthorName,
+      body: comment.body,
+      likeCount: comment.likeCount,
+      replyCount: comment.replyCount,
+      publishedAt: comment.publishedAt,
+      endpointKind: comment.endpointKind
+    }]
+  }
   return {
     contract: 'browser-collection-envelope/v1',
     commandId: 'comment-command',
     platform: 'douyin',
-    collectedAt: '2026-09-04T09:34:04.669Z',
+    collectedAt,
     sourceUrl: 'https://www.douyin.com/video/work-1',
-    completeness: 'partial',
-    hasMore: true,
+    completeness: 'complete',
+    cursor: '20',
+    hasMore: false,
     sourceProof: {
-      contract: 'douyin-comment-source-proof/v1',
-      pageKind: 'work-detail-comments',
-      extractionScope: 'verified-comment-list-container',
-      containerIdentity: 'data-e2e:comment-list',
-      itemIdentity: 'data-e2e:comment-item',
-      authorIdentity: 'class-token:comment-item-info-wrap',
-      bodyIdentity: 'adjacent-visible-sibling-after-author',
-      scrollRootKind: 'not-needed',
-      scrollRootIdentity: 'not-needed',
-      workId: 'work-1',
-      commentIds: ['comment-page-1']
+      contract: 'douyin-comment-list-structured-proof/v2',
+      platform: 'douyin', adapterName: 'douyin.comment-list', adapterVersion: '0.2.0-r5', schemaVersion: 2,
+      routeId: 'DY-COMMENT-NETWORK', sourceKind: 'network-response', endpointKind: 'comment-list',
+      requestParameters: [
+        { name: 'aweme_id', value: 'work-1' },
+        { name: 'count', value: 20 },
+        { name: 'cursor', value: '0' }
+      ],
+      targetWorkId: 'work-1', requestTargetWorkId: 'work-1', targetWorkIdSourcePath: 'request.aweme_id',
+      cursorIn: '0', cursorOut: '20', hasMore: false, reportedTotal: 1,
+      returnedIds: [comment.commentId], commentIds: [comment.commentId],
+      commentBindings: [{ commentId: comment.commentId, workId: 'work-1', parentCommentId: null, rootCommentId: null }],
+      schemaFingerprint,
+      responseProjectionSha256: createResponseProjectionSha256(projection),
+      routeTrace: [{
+        routeId: 'DY-COMMENT-NETWORK', status: 'success', attempt: 1, durationMs: 5,
+        schemaFingerprint, occurredAt: collectedAt
+      }],
+      collectedAt, browserOrigin: 'https://www.douyin.com', sessionUsed: true,
+      validationResults: {
+        http: 'valid', json: 'valid', platformStatus: 'valid', targetIdentity: 'valid',
+        schema: 'valid', pagination: 'valid', sensitiveFields: 'removed'
+      }
     },
     items: [
       {
         entityType: 'work', workId: 'work-1', creatorId: 'creator-1', workType: 'video',
         sourceUrl: 'https://www.douyin.com/video/work-1', title: '作品', description: '',
-        discoveredAt: '2026-09-04T09:34:04.669Z'
+        discoveredAt: collectedAt
       },
-      {
-        entityType: 'comment', commentId: 'comment-page-1', commentIdKind: 'page-attribute', workId: 'work-1',
-        parentCommentId: null, publicAuthorId: 'viewer-1', publicAuthorName: 'FanFan', body: '哪个agent',
-        likeCount: 2, publishedAt: null
-      }
+      comment
     ]
   }
 }
@@ -279,10 +330,10 @@ describe('collection source semantic gate', () => {
   it.each([
     ['missing proof', (value: BrowserCollectionEnvelope) => { delete value.sourceProof }],
     ['wrong proof work', (value: BrowserCollectionEnvelope) => {
-      if (value.sourceProof?.contract === 'douyin-comment-source-proof/v1') value.sourceProof.workId = 'other-work'
+      if (value.sourceProof?.contract === 'douyin-comment-list-structured-proof/v2') value.sourceProof.targetWorkId = 'other-work'
     }],
     ['proof id mismatch', (value: BrowserCollectionEnvelope) => {
-      if (value.sourceProof?.contract === 'douyin-comment-source-proof/v1') value.sourceProof.commentIds = ['other-comment']
+      if (value.sourceProof?.contract === 'douyin-comment-list-structured-proof/v2') value.sourceProof.commentIds = ['other-comment']
     }],
     ['numeric control body', (value: BrowserCollectionEnvelope) => {
       const comment = value.items.find((item) => item.entityType === 'comment')

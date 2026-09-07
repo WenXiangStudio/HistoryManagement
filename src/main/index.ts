@@ -81,9 +81,10 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
     requireServices().database.cancelActiveJobs()
     return { ok: true }
   })
-  ipcMain.handle('sync:resume', () => {
-    requireServices().database.resumePausedJobs()
-    return { ok: true }
+  ipcMain.handle('sync:resume', (_event, jobId: number) => {
+    const resumed = requireServices().database.resumeJob(Number(jobId))
+    if (!resumed) throw new Error('该任务当前不可恢复，其他任务未受影响')
+    return { ok: true, resumed, jobId: Number(jobId) }
   })
   ipcMain.handle('demo:seed', () => {
     requireServices().database.seedDemo()

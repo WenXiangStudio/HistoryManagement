@@ -16,6 +16,17 @@ import { migrateDatabase } from './schema'
 
 type SqlValue = string | number | bigint | null | Uint8Array
 type WorkMetricSample = MetricSample & { workId: number }
+export type CollectionJobIdentity = {
+  adapterName: string
+  adapterVersion: string
+  scopeFingerprint: string
+}
+export type CollectionCheckpointScope = {
+  scopeType: string
+  scopeId: string
+  scopeFingerprint?: string
+  jobId?: number
+}
 type DemoDataContext = {
   summary: DemoDataSummary
   creatorIds: number[]
@@ -97,7 +108,7 @@ export class AppDatabase {
 
   ingestEnvelope(
     input: unknown,
-    checkpointScope?: { scopeType: string; scopeId: string }
+    checkpointScope?: CollectionCheckpointScope
   ): { creators: number; works: number; comments: number } {
     const envelope = browserCollectionEnvelopeSchema.parse(input)
     return this.transaction(() => {
@@ -124,15 +135,29 @@ export class AppDatabase {
             ? String(firstItem.workId)
             : '')
       if (!scopeType || !checkpointId) throw new Error('空采集结果必须提供经过任务校验的检查点范围')
+      const scopeFingerprint = checkpointScope?.scopeFingerprint ?? 'legacy-unversioned'
+      if (scopeFingerprint !== 'legacy-unversioned' && !/^scope-v1:[a-f0-9]{64}$/.test(scopeFingerprint)) {
+        throw new Error('采集检查点缺少有效的 scope fingerprint')
+      }
       this.db.prepare(`
-        INSERT INTO collection_checkpoints(scope_type, scope_id, cursor, has_more, completeness, reason, updated_at)
-        VALUES (?, ?, ?, ?, ?, ?, ?)
-        ON CONFLICT(scope_type, scope_id) DO UPDATE SET
+        INSERT INTO collection_checkpoints(scope_type, scope_id, scope_fingerprint, job_id, cursor, has_more, completeness, reason, updated_at)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+        ON CONFLICT(scope_type, scope_id, scope_fingerprint) DO UPDATE SET
+          job_id=excluded.job_id,
           cursor=excluded.cursor, has_more=excluded.has_more, completeness=excluded.completeness,
           reason=excluded.reason, updated_at=excluded.updated_at
-      `).run(scopeType, checkpointId, envelope.cursor ?? null, envelope.hasMore ? 1 : 0, envelope.completeness, envelope.reason ?? null, envelope.collectedAt)
+      `).run(
+        scopeType,
+        checkpointId,
+        scopeFingerprint,
+        checkpointScope?.jobId ?? null,
+        envelope.cursor ?? null,
+        envelope.hasMore ? 1 : 0,
+        envelope.completeness,
+        envelope.reason ?? null,
+        envelope.collectedAt
+      )
       this.db.prepare('UPDATE owner_accounts SET last_sync_at = ? WHERE platform = ?').run(envelope.collectedAt, envelope.platform)
-      this.db.prepare(`UPDATE jobs SET state='completed', progress=1, status_message='采集完成', completed_at=?, updated_at=? WHERE json_extract(payload_json, '$.commandId')=? AND state IN ('running','blocked_user_action')`).run(nowIso(), nowIso(), envelope.commandId)
       return counts
     })
   }
@@ -182,29 +207,118 @@ export class AppDatabase {
     return workId
   }
 
-  private upsertComment(envelope: BrowserCollectionEnvelope, item: Extract<BrowserCollectionEnvelope['items'][number], { entityType: 'comment' }>): number | null {
+  private upsertComment(envelope: BrowserCollectionEnvelope, item: Extract<BrowserCollectionEnvelope['items'][number], { entityType: 'comment' }>): number {
     const work = this.db.prepare('SELECT id FROM works WHERE platform=? AND platform_work_id=?').get(envelope.platform, item.workId) as { id: number } | undefined
-    if (!work) return null
+    if (!work) throw new Error('评论引用的作品尚未持久化')
+    const existing = this.db.prepare(`
+      SELECT id, work_id, parent_comment_id, root_comment_id, platform_comment_id_kind, endpoint_kind
+      FROM comments WHERE platform=? AND platform_comment_id=?
+    `).get(envelope.platform, item.commentId) as {
+      id: number
+      work_id: number
+      parent_comment_id: number | null
+      root_comment_id: number | null
+      platform_comment_id_kind: string
+      endpoint_kind: string | null
+    } | undefined
+    if (existing && existing.work_id !== work.id) throw new Error('同一 cid 不能跨作品复用')
+    let rootId: number | null = null
+    if (item.rootCommentId) {
+      const root = this.db.prepare(`
+        SELECT id, work_id, parent_comment_id, root_comment_id, platform_comment_id_kind, endpoint_kind
+        FROM comments WHERE platform=? AND platform_comment_id=?
+      `).get(envelope.platform, item.rootCommentId) as {
+        id: number
+        work_id: number
+        parent_comment_id: number | null
+        root_comment_id: number | null
+        platform_comment_id_kind: string
+        endpoint_kind: string | null
+      } | undefined
+      if (!root && item.commentIdKind === 'native-cid') {
+        throw new Error(`结构化回复缺少已持久化的 root cid：` + item.rootCommentId)
+      }
+      if (root && item.commentIdKind === 'native-cid' && (
+        root.work_id !== work.id
+        || root.platform_comment_id_kind !== 'native-cid'
+        || root.endpoint_kind !== 'comment-list'
+        || root.parent_comment_id !== null
+        || root.root_comment_id !== null
+      )) {
+        throw new Error('结构化回复的 root cid 不是同作品的原生一级评论')
+      }
+      rootId = root?.id ?? null
+    }
     let parentId: number | null = null
     if (item.parentCommentId) {
-      const parent = this.db.prepare('SELECT id FROM comments WHERE platform=? AND platform_comment_id=?').get(envelope.platform, item.parentCommentId) as { id: number } | undefined
+      const parent = this.db.prepare(`
+        SELECT id, work_id, root_comment_id FROM comments
+        WHERE platform=? AND platform_comment_id=?
+      `).get(envelope.platform, item.parentCommentId) as { id: number; work_id: number; root_comment_id: number | null } | undefined
+      if (!parent && item.commentIdKind === 'native-cid') {
+        throw new Error(`结构化回复缺少已持久化的 parent cid：` + item.parentCommentId)
+      }
+      if (parent && item.commentIdKind === 'native-cid' && (
+        parent.work_id !== work.id
+        || rootId === null
+        || (parent.id !== rootId && parent.root_comment_id !== rootId)
+      )) {
+        throw new Error('结构化回复的 parent cid 不在同一作品和 root 链中')
+      }
       parentId = parent?.id ?? null
+    }
+    if (existing && item.commentIdKind === 'native-cid' && (
+      existing.platform_comment_id_kind !== 'native-cid'
+      || (existing.endpoint_kind !== null && existing.endpoint_kind !== (item.endpointKind ?? null))
+      || (existing.parent_comment_id !== null && existing.parent_comment_id !== parentId)
+      || (existing.root_comment_id !== null && existing.root_comment_id !== rootId)
+    )) {
+      throw new Error('原生 cid 的作品、端点或回复关系不能被重新绑定')
     }
     const hash = commentHash(item.body)
     const exclusion = item.body.trim() ? null : 'blank'
-    const sourceProof = envelope.sourceProof?.contract === 'douyin-comment-source-proof/v1' ? envelope.sourceProof : null
+    const commentProofContract = envelope.sourceProof?.contract
+    const sourceProof = commentProofContract === 'douyin-comment-list-structured-proof/v2'
+      || commentProofContract === 'douyin-comment-reply-structured-proof/v2'
+      ? envelope.sourceProof
+      : null
     this.db.prepare(`
-      INSERT INTO comments(platform, platform_comment_id, platform_comment_id_kind, work_id, parent_comment_id, public_author_id, public_author_name, anonymous_author_id, body, normalized_hash, like_count, published_at, collected_at, cloud_state, exclusion_reason, source_verified, source_proof_json)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO comments(platform, platform_comment_id, platform_comment_id_kind, work_id, parent_comment_id, root_comment_id, public_author_id, public_author_name, anonymous_author_id, body, normalized_hash, like_count, reply_count, endpoint_kind, published_at, collected_at, cloud_state, exclusion_reason, source_verified, source_proof_json)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(platform, platform_comment_id) DO UPDATE SET
-        parent_comment_id=COALESCE(excluded.parent_comment_id, comments.parent_comment_id), body=excluded.body,
+        parent_comment_id=COALESCE(excluded.parent_comment_id, comments.parent_comment_id),
+        root_comment_id=COALESCE(excluded.root_comment_id, comments.root_comment_id),
+        body=excluded.body,
         platform_comment_id_kind=excluded.platform_comment_id_kind,
         public_author_id=excluded.public_author_id, public_author_name=excluded.public_author_name,
         anonymous_author_id=excluded.anonymous_author_id, normalized_hash=excluded.normalized_hash,
-        like_count=excluded.like_count, published_at=COALESCE(excluded.published_at, comments.published_at),
+        like_count=excluded.like_count, reply_count=excluded.reply_count,
+        endpoint_kind=COALESCE(excluded.endpoint_kind, comments.endpoint_kind),
+        published_at=COALESCE(excluded.published_at, comments.published_at),
         collected_at=excluded.collected_at, source_verified=excluded.source_verified,
         source_proof_json=excluded.source_proof_json
-    `).run(envelope.platform, item.commentId, item.commentIdKind, work.id, parentId, item.publicAuthorId ?? null, item.publicAuthorName, anonymousAuthorId(item.publicAuthorId, item.publicAuthorName), item.body, hash, item.likeCount, item.publishedAt ?? null, envelope.collectedAt, exclusion ? 'excluded' : 'pending', exclusion, sourceProof ? 1 : 0, JSON.stringify(sourceProof ?? {}))
+    `).run(
+      envelope.platform,
+      item.commentId,
+      item.commentIdKind,
+      work.id,
+      parentId,
+      rootId,
+      item.publicAuthorId ?? null,
+      item.publicAuthorName,
+      anonymousAuthorId(item.publicAuthorId, item.publicAuthorName),
+      item.body,
+      hash,
+      item.likeCount,
+      item.replyCount ?? null,
+      item.endpointKind ?? null,
+      item.publishedAt ?? null,
+      envelope.collectedAt,
+      exclusion ? 'excluded' : 'pending',
+      exclusion,
+      sourceProof ? 1 : 0,
+      JSON.stringify(sourceProof ?? {})
+    )
     const comment = this.db.prepare('SELECT id FROM comments WHERE platform=? AND platform_comment_id=?').get(envelope.platform, item.commentId) as { id: number }
     this.indexComment(comment.id)
     return comment.id
@@ -427,7 +541,7 @@ export class AppDatabase {
       creatorDomains: (this.db.prepare('SELECT t.label FROM creator_tags ct JOIN taxonomy_tags t ON t.id=ct.tag_id WHERE ct.creator_id=? ORDER BY ct.confidence DESC, t.label').all(Number(work.creator_id)) as Array<{ label: string }>).map((row) => row.label),
       transcript: this.db.prepare('SELECT start_ms, end_ms, text, provider, confidence FROM transcript_segments WHERE work_id=? ORDER BY start_ms').all(workId),
       ocr: this.db.prepare('SELECT frame_ref, time_ms, text, confidence FROM ocr_blocks WHERE work_id=? ORDER BY COALESCE(time_ms,0)').all(workId),
-      comments: this.db.prepare('SELECT id, platform_comment_id, platform_comment_id_kind, parent_comment_id, public_author_id, public_author_name, anonymous_author_id, body, like_count, published_at, collected_at, cloud_state, source_verified, source_proof_json FROM comments WHERE work_id=? ORDER BY COALESCE(like_count,0) DESC, published_at LIMIT 500').all(workId),
+      comments: this.db.prepare('SELECT id, platform_comment_id, platform_comment_id_kind, parent_comment_id, root_comment_id, public_author_id, public_author_name, anonymous_author_id, body, like_count, reply_count, endpoint_kind, published_at, collected_at, cloud_state, source_verified, source_proof_json FROM comments WHERE work_id=? ORDER BY COALESCE(like_count,0) DESC, published_at LIMIT 500').all(workId),
       evidenceFrames: this.db.prepare('SELECT frame_ref, time_ms, selected_for_cloud FROM evidence_frames WHERE work_id=? ORDER BY COALESCE(time_ms,0)').all(workId),
       visualAnalysis: (() => {
         const row = this.db.prepare(`SELECT summary, key_points_json, core_expression, evidence_json, confidence, model_id, generated_at FROM analyses WHERE subject_type='work' AND subject_id=? AND prompt_version='work-vision/v1'`).get(workId) as Record<string, unknown> | undefined
@@ -467,7 +581,22 @@ export class AppDatabase {
   }
 
   getJobs(): Array<Record<string, unknown>> {
-    return this.db.prepare('SELECT * FROM jobs ORDER BY CASE state WHEN \'running\' THEN 0 WHEN \'blocked_user_action\' THEN 1 WHEN \'queued\' THEN 2 ELSE 3 END, priority, created_at DESC LIMIT 500').all().map((row) => ({ ...row, payload: JSON.parse(String(row.payload_json)), checkpoint: JSON.parse(String(row.checkpoint_json)) }))
+    return this.db.prepare('SELECT * FROM jobs ORDER BY CASE state WHEN \'running\' THEN 0 WHEN \'blocked_user_action\' THEN 1 WHEN \'queued\' THEN 2 ELSE 3 END, priority, created_at DESC LIMIT 500').all().map((row) => {
+      const job = row as Record<string, unknown>
+      const state = String(job.state)
+      const kind = String(job.kind)
+      const hasCollectionIdentity = typeof job.adapter_name === 'string'
+        && typeof job.adapter_version === 'string'
+        && typeof job.scope_fingerprint === 'string'
+        && /^scope-v1:[a-f0-9]{64}$/.test(job.scope_fingerprint)
+      return {
+        ...job,
+        payload: JSON.parse(String(job.payload_json)),
+        checkpoint: JSON.parse(String(job.checkpoint_json)),
+        resumable: ['paused', 'blocked_user_action', 'retryable_failed'].includes(state)
+          && (!kind.startsWith('collection.') || hasCollectionIdentity)
+      }
+    })
   }
 
   enqueueJob(kind: string, payload: Record<string, unknown>, priority = 100, subjectType: string | null = null, subjectId: number | null = null): number {
@@ -476,21 +605,115 @@ export class AppDatabase {
     return Number(this.db.prepare('SELECT last_insert_rowid() AS id').get()!.id)
   }
 
+  enqueueCollectionJob(
+    kind: string,
+    payload: Record<string, unknown>,
+    identity: CollectionJobIdentity,
+    priority = 100,
+    subjectType: string | null = null,
+    subjectId: number | null = null
+  ): { jobId: number; created: boolean } {
+    if (!kind.startsWith('collection.')) throw new Error('只有采集任务可以使用 collection scope identity')
+    if (!/^scope-v1:[a-f0-9]{64}$/.test(identity.scopeFingerprint)) {
+      throw new Error('采集任务缺少有效的 scope fingerprint')
+    }
+    const now = nowIso()
+    const storedPayload = {
+      ...payload,
+      adapterName: identity.adapterName,
+      adapterVersion: identity.adapterVersion,
+      scopeFingerprint: identity.scopeFingerprint
+    }
+    const result = this.db.prepare(`
+      INSERT OR IGNORE INTO jobs(
+        kind, state, priority, subject_type, subject_id, payload_json,
+        adapter_name, adapter_version, scope_fingerprint, created_at, updated_at
+      )
+      VALUES (?, 'queued', ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(
+      kind,
+      priority,
+      subjectType,
+      subjectId,
+      JSON.stringify(storedPayload),
+      identity.adapterName,
+      identity.adapterVersion,
+      identity.scopeFingerprint,
+      now,
+      now
+    )
+    if (Number(result.changes) === 1) {
+      return { jobId: Number(this.db.prepare('SELECT last_insert_rowid() AS id').get()!.id), created: true }
+    }
+    const existing = this.db.prepare(`
+      SELECT id FROM jobs
+      WHERE kind=? AND adapter_version=? AND scope_fingerprint=?
+        AND state IN ('queued','running','paused','blocked_user_action','retryable_failed')
+      ORDER BY id DESC LIMIT 1
+    `).get(kind, identity.adapterVersion, identity.scopeFingerprint) as { id: number } | undefined
+    if (!existing) throw new Error('采集任务 scope 去重冲突，但未找到活动任务')
+    return { jobId: Number(existing.id), created: false }
+  }
+
   updateJob(jobId: number, state: JobState, fields: { progress?: number; message?: string; error?: string | null; checkpoint?: unknown } = {}): void {
     const completed = state === 'completed' ? nowIso() : null
     this.db.prepare(`UPDATE jobs SET state=?, progress=COALESCE(?, progress), status_message=COALESCE(?, status_message), error_message=?, checkpoint_json=COALESCE(?, checkpoint_json), updated_at=?, completed_at=COALESCE(?, completed_at) WHERE id=?`).run(state, fields.progress ?? null, fields.message ?? null, fields.error ?? null, fields.checkpoint === undefined ? null : JSON.stringify(fields.checkpoint), nowIso(), completed, jobId)
   }
 
   cancelActiveJobs(): void {
-    this.db.prepare(`UPDATE jobs SET state='paused', status_message='用户已暂停', updated_at=? WHERE state IN ('queued','running','retryable_failed')`).run(nowIso())
+    this.db.prepare(`
+      UPDATE jobs SET state='paused', status_message='用户已暂停', updated_at=?
+      WHERE state IN ('queued','running','retryable_failed')
+        AND (
+          kind NOT LIKE 'collection.%'
+          OR (
+            adapter_name IS NOT NULL
+            AND adapter_version IS NOT NULL
+            AND length(scope_fingerprint)=73
+            AND substr(scope_fingerprint, 1, 9)='scope-v1:'
+            AND substr(scope_fingerprint, 10) NOT GLOB '*[^0-9a-f]*'
+          )
+        )
+    `).run(nowIso())
   }
 
-  resumePausedJobs(): void {
-    this.db.prepare(`UPDATE jobs SET state='queued', status_message='等待恢复或重新尝试', error_message=NULL, updated_at=? WHERE state IN ('paused','blocked_user_action','retryable_failed')`).run(nowIso())
+  resumeJob(jobId: number): boolean {
+    if (!Number.isSafeInteger(jobId) || jobId < 1) throw new Error('无效的任务 ID')
+    const result = this.db.prepare(`
+      UPDATE jobs
+      SET state='queued', status_message='等待恢复或重新尝试', error_message=NULL,
+          next_attempt_at=NULL, updated_at=?
+      WHERE id=? AND state IN ('paused','blocked_user_action','retryable_failed')
+        AND (
+          kind NOT LIKE 'collection.%'
+          OR (
+            adapter_name IS NOT NULL
+            AND adapter_version IS NOT NULL
+            AND length(scope_fingerprint)=73
+            AND substr(scope_fingerprint, 1, 9)='scope-v1:'
+            AND substr(scope_fingerprint, 10) NOT GLOB '*[^0-9a-f]*'
+          )
+        )
+    `).run(nowIso(), jobId)
+    return Number(result.changes) === 1
   }
 
   nextQueuedJob(): Record<string, unknown> | null {
-    return (this.db.prepare(`SELECT * FROM jobs WHERE state='queued' AND (next_attempt_at IS NULL OR next_attempt_at<=?) ORDER BY priority, created_at LIMIT 1`).get(nowIso()) as Record<string, unknown> | undefined) ?? null
+    return (this.db.prepare(`
+      SELECT * FROM jobs
+      WHERE state='queued' AND (next_attempt_at IS NULL OR next_attempt_at<=?)
+        AND (
+          kind NOT LIKE 'collection.%'
+          OR (
+            adapter_name IS NOT NULL
+            AND adapter_version IS NOT NULL
+            AND length(scope_fingerprint)=73
+            AND substr(scope_fingerprint, 1, 9)='scope-v1:'
+            AND substr(scope_fingerprint, 10) NOT GLOB '*[^0-9a-f]*'
+          )
+        )
+      ORDER BY priority, created_at LIMIT 1
+    `).get(nowIso()) as Record<string, unknown> | undefined) ?? null
   }
 
   getSettings(): AppSettings {

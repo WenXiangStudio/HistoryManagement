@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema, workAuthorProofSchema } from './platformAdapter'
 import { structuredWorkObservationSchema, workDetailVerificationSchema } from './structuredAcquisition'
+import { structuredCommentProofSchema } from './commentAcquisition'
 
 export const platformSchema = z.literal('douyin')
 export type Platform = z.infer<typeof platformSchema>
@@ -70,6 +71,7 @@ export type DouyinCommentSourceProof = z.infer<typeof douyinCommentSourceProofSc
 export const collectionSourceProofSchema = z.union([
   douyinFollowingStructuredProofSchema,
   douyinCreatorWorksStructuredProofSchema,
+  structuredCommentProofSchema,
   douyinFollowingSourceProofSchema,
   douyinCommentSourceProofSchema
 ])
@@ -96,13 +98,16 @@ const workPayloadSchema = z.object({
 const commentPayloadSchema = z.object({
   entityType: z.literal('comment'),
   commentId: z.string().min(1),
-  commentIdKind: z.enum(['page-attribute', 'synthetic-content-hash', 'legacy-unknown']).default('legacy-unknown'),
+  commentIdKind: z.enum(['native-cid', 'page-attribute', 'synthetic-content-hash', 'legacy-unknown']).default('legacy-unknown'),
   workId: z.string().min(1),
   parentCommentId: z.string().nullable().optional(),
+  rootCommentId: z.string().nullable().optional(),
   publicAuthorId: z.string().nullable().optional(),
   publicAuthorName: z.string().default(''),
   body: z.string(),
   likeCount: z.number().int().nonnegative().nullable().default(null),
+  replyCount: z.number().int().nonnegative().nullable().optional(),
+  endpointKind: z.enum(['comment-list', 'comment-reply-list']).optional(),
   publishedAt: z.string().datetime().nullable().optional()
 })
 

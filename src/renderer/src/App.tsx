@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState, type JSX, type ReactNode } from 'react'
 import type { AppSettings, CreatorListItem, DashboardSummary, DemoDataSummary, InboxItem, SampleSyncOptions } from '../../shared/contracts'
+import { STRUCTURED_SYNC_AVAILABLE } from '../../shared/featureFlags'
 
 type Route = 'inbox' | 'creators' | 'jobs' | 'settings'
 type Job = {
@@ -12,6 +13,7 @@ type Job = {
   created_at: string
   updated_at: string
   payload: Record<string, unknown>
+  resumable: boolean
 }
 
 const EMPTY_SUMMARY: DashboardSummary = {
@@ -214,7 +216,7 @@ export default function App(): JSX.Element {
           </div>
           <div className="header-actions">
             <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.exportAll(true), '资料库已导出')} disabled={busy || !hasData}><Icon name="download" size={18}/>导出</button>
-            <button className="button primary" onClick={() => setSyncConfirmOpen(true)} disabled={busy || !summary.connectorOnline} title={summary.connectorOnline ? '确认小样本范围后开始采集' : '请先连接浏览器只读连接器'}><Icon name="sync" size={18}/>小样本同步</button>
+            <button className="button primary" onClick={() => setSyncConfirmOpen(true)} disabled={busy || !summary.connectorOnline || !STRUCTURED_SYNC_AVAILABLE} title={!STRUCTURED_SYNC_AVAILABLE ? '等待生产连接器完成 v2 结构化 envelope 桥接' : summary.connectorOnline ? '确认小样本范围后开始采集' : '请先连接浏览器只读连接器'}><Icon name="sync" size={18}/>{STRUCTURED_SYNC_AVAILABLE ? '小样本同步' : '结构化同步待接入'}</button>
           </div>
         </header>
 
@@ -231,7 +233,7 @@ export default function App(): JSX.Element {
           <CreatorsPage creators={creators} search={creatorSearch} setSearch={setCreatorSearch} onUpdate={(id, input, success) => void runAction(() => window.signalDesk.updateCreator(id, input), success)} />
         )}
         {route === 'jobs' && (
-          <JobsPage jobs={jobs} summary={summary} onPause={() => void runAction(() => window.signalDesk.pauseSync(), '队列已暂停')} onResume={() => void runAction(() => window.signalDesk.resumeSync(), '队列已恢复')} onConnector={() => void window.signalDesk.openConnectorFolder()} />
+          <JobsPage jobs={jobs} summary={summary} onPause={() => void runAction(() => window.signalDesk.pauseSync(), '队列已暂停')} onResume={(jobId) => void runAction(() => window.signalDesk.resumeSync(jobId), `任务 #${jobId} 已恢复`)} onConnector={() => void window.signalDesk.openConnectorFolder()} />
         )}
         {route === 'settings' && settings && (
           <SettingsPage
@@ -257,7 +259,7 @@ export default function App(): JSX.Element {
           void runAction(() => window.signalDesk.runCloud(batchId), '云端分析批次已完成')
         }} />
       )}
-      {syncConfirmOpen && <SampleSyncConfirm connectorOnline={summary.connectorOnline} onCancel={() => setSyncConfirmOpen(false)} onConfirm={(scope) => {
+      {STRUCTURED_SYNC_AVAILABLE && syncConfirmOpen && <SampleSyncConfirm connectorOnline={summary.connectorOnline} onCancel={() => setSyncConfirmOpen(false)} onConfirm={(scope) => {
         setSyncConfirmOpen(false)
         void runAction(() => window.signalDesk.startSync(scope), `小样本同步已开始：最多 ${scope.creatorLimit} 位博主、每位 ${scope.worksPerCreator} 个作品`)
       }} />}
@@ -334,12 +336,12 @@ function CreatorsPage({ creators, search, setSearch, onUpdate }: { creators: Cre
   </section>
 }
 
-function JobsPage({ jobs, summary, onPause, onResume, onConnector }: { jobs: Job[]; summary: DashboardSummary; onPause: () => void; onResume: () => void; onConnector: () => void }): JSX.Element {
+function JobsPage({ jobs, summary, onPause, onResume, onConnector }: { jobs: Job[]; summary: DashboardSummary; onPause: () => void; onResume: (jobId: number) => void; onConnector: () => void }): JSX.Element {
   const labels: Record<string, string> = { 'collection.following': '同步关注列表', 'collection.creator_works': '采集博主历史作品', 'collection.work_comments': '补齐作品评论', 'media.process': '提取音频、关键帧与 OCR', 'cloud.work_text': '作品文本分析', 'cloud.work_vision': '精选关键帧分析', 'cloud.comments': '公开评论分析' }
   return <section className="page-section">
-    <div className="pipeline-banner"><div className={`pipeline-icon ${summary.connectorOnline ? 'online' : ''}`}><Icon name="sync" size={26}/></div><div><h3>{summary.connectorOnline ? '浏览器连接器在线' : '真实同步需要浏览器连接器'}</h3><p>应用不会保存抖音账号密码。登录、验证码和安全验证只在你的浏览器中完成。</p></div><button className="button ghost" onClick={onConnector}>打开连接器目录</button><button className="button ghost" onClick={onPause}><Icon name="pause" size={17}/>暂停</button><button className="button primary compact" onClick={onResume}><Icon name="play" size={16}/>恢复</button></div>
-    <div className="job-list-header"><span>任务</span><span>状态</span><span>进度</span><span>更新时间</span></div>
-    <div className="job-list">{jobs.length ? jobs.map((job) => <div className="job-row" key={job.id}><div><span className={`job-kind ${job.kind.split('.')[0]}`}><Icon name={job.kind.startsWith('collection') ? 'sync' : job.kind.startsWith('media') ? 'database' : 'key'} size={17}/></span><div><strong>{labels[job.kind] || job.kind}</strong><small>{job.status_message || job.error_message || `任务 #${job.id}`}</small></div></div><StatusPill status={job.state}/><div className="progress"><i style={{ width: `${Math.round(job.progress * 100)}%` }}/><span>{Math.round(job.progress * 100)}%</span></div><time>{relativeTime(job.updated_at)}</time></div>) : <div className="empty-rows">还没有任务。点击右上角“小样本同步”，确认范围后建立第一条队列。</div>}</div>
+    <div className="pipeline-banner"><div className={`pipeline-icon ${summary.connectorOnline ? 'online' : ''}`}><Icon name="sync" size={26}/></div><div><h3>{summary.connectorOnline ? '浏览器连接器在线' : '真实同步需要浏览器连接器'}</h3><p>应用不会保存抖音账号密码。登录、验证码和安全验证只在你的浏览器中完成；恢复操作只影响所选任务。</p></div><button className="button ghost" onClick={onConnector}>打开连接器目录</button><button className="button ghost" onClick={onPause}><Icon name="pause" size={17}/>暂停活动任务</button></div>
+    <div className="job-list-header"><span>任务</span><span>状态</span><span>进度</span><span>操作 / 更新时间</span></div>
+    <div className="job-list">{jobs.length ? jobs.map((job) => <div className="job-row" key={job.id}><div><span className={`job-kind ${job.kind.split('.')[0]}`}><Icon name={job.kind.startsWith('collection') ? 'sync' : job.kind.startsWith('media') ? 'database' : 'key'} size={17}/></span><div><strong>{labels[job.kind] || job.kind}</strong><small>{job.status_message || job.error_message || `任务 #${job.id}`}</small></div></div><StatusPill status={job.state}/><div className="progress"><i style={{ width: `${Math.round(job.progress * 100)}%` }}/><span>{Math.round(job.progress * 100)}%</span></div><div className="job-actions">{job.resumable && <button className="button primary compact" onClick={() => onResume(job.id)}><Icon name="play" size={14}/>恢复此任务</button>}<time>{relativeTime(job.updated_at)}</time></div></div>) : <div className="empty-rows">还没有任务。点击右上角“小样本同步”，确认范围后建立第一条队列。</div>}</div>
   </section>
 }
 

@@ -28,9 +28,9 @@
 
 连接器 `0.1.6` 支持抖音本人主页顶部“关注数量”打开的关系弹窗。任务首次导航到本人主页后，如果弹窗尚未打开，会进入“需要操作”并保持零入库；用户打开弹窗、确认“关注（数量）”页签处于活动状态后，可在任务中心恢复。恢复不会再次刷新同一页面或关闭弹窗。候选必须同时位于唯一的 `data-e2e="user-fans-container"` 可见容器中，并在所属记录内具有“已关注”或“相互关注”关系标记；粉丝页签、背景作品区和其他任意用户链接不会被采集。
 
-连接器 `0.1.6` 还依据真实抖音作品页 DOM 收紧了评论采集：只从唯一可见的 `data-e2e="comment-list"` / `comment-mainContent` 容器读取精确的 `data-e2e="comment-item"`，要求每条记录同时具有 `comment-item-info-wrap` 公开作者信息和相邻正文节点，并向桌面端提交与目标作品和评论清单绑定的来源证明。评论按钮、输入框、数量、纯数字正文、全局类名模糊匹配和缺少作者结构的候选会安全拒绝，不会入库。
+连接器 `0.1.6` 还依据真实抖音作品页 DOM 收紧了旧版评论 shadow 采集：只从唯一可见的 `data-e2e="comment-list"` / `comment-mainContent` 容器读取精确的 `data-e2e="comment-item"`，要求每条记录同时具有 `comment-item-info-wrap` 公开作者信息和相邻正文节点，并拒绝评论按钮、输入框、数量、纯数字正文、全局类名模糊匹配和缺少作者结构的候选。它提交的 DOM v1 来源证明已退出正式入库门禁，只能作历史兼容与诊断；当前生产连接器未完成 v2 envelope 桥接，不得据此启动真实同步。
 
-R0～R4（2026-09-06）已经加入通用只读 Network Observer、关注列表离线适配器，以及 `/aweme/post/` 作品列表、`/aweme/detail/` 独立详情复核、statistics 白名单投影和 v2 作品入库门禁。扩展现在先通过 `chrome.debugger` attach 并启用 Network，再导航或触发页面；Observer 只处理允许 host 上的 GET Fetch/XHR 成功 JSON，使用 path + schema 双分类，内存有固定上限，只输出白名单投影和 SHA-256，随后 detach 并清空。当前仍处于离线合成验证阶段：生产连接器尚未把 Observer 投影转换为 v2 following/works envelope，R5 评论业务适配器也尚未实现；旧 DOM-only 关注或作品结果会被桌面端拒绝，`0.2.3/0.2.4` 已永久退役，不能据此恢复真实采集，也不能把本轮结果称为 E3/E4 验收。
+R0～R6（截至 2026-09-07）已经加入通用只读 Network Observer、关注/作品/详情/一级评论/二级回复离线适配器、v2 数据库前门禁，以及版本化 scope 的任务和临时测试库集成。扩展现在先通过 `chrome.debugger` attach 并启用 Network，再导航或触发页面；Observer 只处理允许 host 上的 GET Fetch/XHR 成功 JSON，使用 path + schema 双分类，内存有固定上限，只输出白名单投影和 SHA-256，随后 detach 并清空。当前仍处于离线合成验证阶段：生产连接器尚未把 Observer 投影组装成 v2 following/works/comments 业务 envelope；旧 DOM-only 结果会被桌面端拒绝，`0.2.3/0.2.4` 已永久退役，不能据此恢复真实采集，也不能把本轮结果称为 E3/E4 验收。
 
 ## 安全边界
 

@@ -19,3 +19,7 @@ cache/
 runtime/python311/*
 !runtime/python311/.gitkeep
 *.env
+
+# Foreign WSL_ProjectHistoryManagement artifact. This report belongs outside
+# Signal Desk and must never be reintroduced into this repository.
+WSL2 同 SHA 完整回归报告.md

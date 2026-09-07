@@ -1,0 +1,288 @@
+{
+  "fixture": "synthetic-douyin-comment-pages-r5/v1",
+  "workId": "synthetic-work-3001",
+  "rootCommentId": "synthetic-comment-3001",
+  "networkCommentPages": {
+    "0": {
+      "status_code": 0,
+      "comments": [
+        {
+          "cid": "synthetic-comment-3001",
+          "aweme_id": "synthetic-work-3001",
+          "text": "第一条完全合成的一级评论",
+          "create_time": 1788480000,
+          "digg_count": 7,
+          "reply_comment_total": 2,
+          "user": {
+            "uid": "synthetic-viewer-3001",
+            "sec_uid": "synthetic-sec-viewer-3001",
+            "nickname": "合成观众甲",
+            "authorization": "must-not-enter-comment-projection"
+          },
+          "private_token": "must-not-enter-comment-projection"
+        },
+        {
+          "cid": "synthetic-comment-3002",
+          "aweme_id": "synthetic-work-3001",
+          "text": "第二条用于验证原生 cid 的合成评论",
+          "create_time": "1788480060",
+          "digg_count": 0,
+          "reply_comment_total": 0,
+          "user": {
+            "uid": "synthetic-viewer-3002",
+            "nickname": "合成观众乙"
+          }
+        }
+      ],
+      "cursor": 20,
+      "has_more": 1,
+      "total": 3,
+      "cookie": "must-not-enter-comment-projection"
+    },
+    "20": {
+      "status_code": 0,
+      "comments": [
+        {
+          "cid": "synthetic-comment-3003",
+          "aweme_id": "synthetic-work-3001",
+          "text": "第三条合成评论",
+          "digg_count": -1,
+          "reply_comment_total": "2",
+          "user": {
+            "sec_uid": "synthetic-sec-viewer-3003",
+            "nickname": "合成观众丙"
+          }
+        }
+      ],
+      "cursor": 40,
+      "has_more": 0,
+      "total": 3,
+      "raw_headers": "must-not-enter-comment-projection"
+    }
+  },
+  "networkReplyPages": {
+    "0": {
+      "status_code": 0,
+      "comments": [
+        {
+          "cid": "synthetic-reply-3001",
+          "aweme_id": "synthetic-work-3001",
+          "root_comment_id": "synthetic-comment-3001",
+          "reply_to_comment_id": "synthetic-comment-3001",
+          "text": "第一条合成回复",
+          "digg_count": 2,
+          "user": {
+            "uid": "synthetic-replier-3001",
+            "nickname": "合成回复者甲"
+          },
+          "session_token": "must-not-enter-comment-projection"
+        },
+        {
+          "cid": "synthetic-reply-3002",
+          "aweme_id": "synthetic-work-3001",
+          "root_comment_id": "synthetic-comment-3001",
+          "parent_comment_id": "synthetic-reply-3001",
+          "text": "第二条合成回复，父级是上一条回复",
+          "digg_count": 0,
+          "user": {
+            "uid": "synthetic-replier-3002",
+            "nickname": "合成回复者乙"
+          }
+        }
+      ],
+      "cursor": 20,
+      "has_more": 0,
+      "total": 2,
+      "X-Bogus": "must-not-enter-comment-projection"
+    }
+  },
+  "verifiedEmptyComments": {
+    "status_code": 0,
+    "comments": [],
+    "cursor": 0,
+    "has_more": 0,
+    "total": 0
+  },
+  "verifiedEmptyReplies": {
+    "status_code": 0,
+    "comments": [],
+    "cursor": 0,
+    "has_more": 0,
+    "total": 0
+  },
+  "embeddedComments": {
+    "router": {
+      "loaderData": {
+        "commentPanel": {
+          "status_code": 0,
+          "target_aweme_id": "synthetic-work-3001",
+          "comments": [
+            {
+              "cid": "synthetic-comment-embedded",
+              "aweme_id": "synthetic-work-3001",
+              "text": "embedded 合成一级评论",
+              "digg_count": 1,
+              "reply_comment_total": 0,
+              "user": {
+                "uid": "synthetic-viewer-embedded",
+                "nickname": "Embedded 合成观众"
+              }
+            }
+          ],
+          "cursor": 0,
+          "has_more": 0,
+          "total": 1,
+          "private_token": "must-not-enter-comment-projection"
+        }
+      }
+    }
+  },
+  "embeddedReplies": {
+    "router": {
+      "loaderData": {
+        "replyPanel": {
+          "status_code": 0,
+          "target_aweme_id": "synthetic-work-3001",
+          "root_comment_id": "synthetic-comment-3001",
+          "comments": [
+            {
+              "cid": "synthetic-reply-embedded",
+              "aweme_id": "synthetic-work-3001",
+              "root_comment_id": "synthetic-comment-3001",
+              "reply_to_comment_id": "synthetic-comment-3001",
+              "text": "embedded 合成回复",
+              "user": {
+                "uid": "synthetic-replier-embedded",
+                "nickname": "Embedded 合成回复者"
+              }
+            }
+          ],
+          "cursor": 0,
+          "has_more": 0,
+          "total": 1
+        }
+      }
+    }
+  },
+  "commentsDisabled": {
+    "status_code": 0,
+    "comments_disabled": true,
+    "comments": [],
+    "cursor": 0,
+    "has_more": 0,
+    "total": 0
+  },
+  "schemaChanged": {
+    "status_code": 0,
+    "comment_items": [
+      {
+        "comment_id": "synthetic-schema-change"
+      }
+    ],
+    "next_cursor": 0,
+    "more": false
+  },
+  "emptyWithoutTotal": {
+    "status_code": 0,
+    "comments": [],
+    "cursor": 0,
+    "has_more": 0
+  },
+  "emptyHasMore": {
+    "status_code": 0,
+    "comments": [],
+    "cursor": 20,
+    "has_more": 1,
+    "total": 1
+  },
+  "cursorLoop": {
+    "status_code": 0,
+    "comments": [
+      {
+        "cid": "synthetic-comment-loop",
+        "aweme_id": "synthetic-work-3001",
+        "text": "游标循环评论",
+        "user": {
+          "uid": "synthetic-viewer-loop",
+          "nickname": "循环观众"
+        }
+      }
+    ],
+    "cursor": 0,
+    "has_more": 1,
+    "total": 2
+  },
+  "wrongWorkComment": {
+    "status_code": 0,
+    "comments": [
+      {
+        "cid": "synthetic-comment-wrong-work",
+        "aweme_id": "synthetic-other-work",
+        "text": "错误作品评论",
+        "user": {
+          "uid": "synthetic-viewer-wrong-work",
+          "nickname": "错误作品观众"
+        }
+      }
+    ],
+    "cursor": 0,
+    "has_more": 0,
+    "total": 1
+  },
+  "wrongRootReply": {
+    "status_code": 0,
+    "comments": [
+      {
+        "cid": "synthetic-reply-wrong-root",
+        "aweme_id": "synthetic-work-3001",
+        "root_comment_id": "synthetic-other-root",
+        "reply_to_comment_id": "synthetic-other-root",
+        "text": "错误 root 的回复",
+        "user": {
+          "uid": "synthetic-replier-wrong-root",
+          "nickname": "错误 Root 回复者"
+        }
+      }
+    ],
+    "cursor": 0,
+    "has_more": 0,
+    "total": 1
+  },
+  "missingParentReply": {
+    "status_code": 0,
+    "comments": [
+      {
+        "cid": "synthetic-reply-no-parent",
+        "aweme_id": "synthetic-work-3001",
+        "root_comment_id": "synthetic-comment-3001",
+        "text": "缺少 parent 的回复",
+        "user": {
+          "uid": "synthetic-replier-no-parent",
+          "nickname": "缺父级回复者"
+        }
+      }
+    ],
+    "cursor": 0,
+    "has_more": 0,
+    "total": 1
+  },
+  "rootWithReplyRelation": {
+    "status_code": 0,
+    "comments": [
+      {
+        "cid": "synthetic-root-with-parent",
+        "aweme_id": "synthetic-work-3001",
+        "root_comment_id": "synthetic-comment-3001",
+        "reply_to_comment_id": "synthetic-comment-3001",
+        "text": "错误混入一级接口的回复",
+        "user": {
+          "uid": "synthetic-viewer-root-relation",
+          "nickname": "错误一级关系观众"
+        }
+      }
+    ],
+    "cursor": 0,
+    "has_more": 0,
+    "total": 1
+  }
+}

@@ -1,12 +1,12 @@
 # Signal Desk V0.1
 
-> 结构化采集状态（2026-09-06）：R0～R4 已完成离线实现和合成/模拟测试；旧 `0.2.3/0.2.4` 路线已冻结并永久硬禁用。R5～R8 与真实平台验收尚未开始，当前不得恢复历史任务，也不得把 DOM-only 关注关系或作品写入正式数据。
+> 结构化采集状态（2026-09-07）：用户确认 R0～R5 联合离线人工验收此前已签署 `PASS`，并明确授权进入 R6；R6 已完成任务系统与临时测试库集成的离线实现。旧 `0.2.3/0.2.4` 路线继续永久硬禁用。R7、R8 和新的真实平台验收均未获授权，当前不得恢复历史任务，也不得把 DOM-only 关注关系、作品或评论写入正式数据。
 
 Signal Desk 是一个面向 Windows 11 的本地优先抖音个人账号内容情报台。浏览器只承担“读取当前登录状态下公开可见页面”的采集桥梁；关注博主管理、作品摘要、转写、OCR、评论分析、标签、搜索、批注、队列和导出全部在桌面应用中完成。
 
 当前仓库提供一个可运行、可打包的 V0.1，而不是只有提示词的 Skill：它包含 Electron 桌面端、SQLite 数据库、Chrome/Edge 只读连接器、Native Messaging 控制台 Host、Python 媒体工作器和 OpenAI-compatible BYOK 云端分析流程。
 
-Signal Desk 0.2 的平台事实获取层正在分阶段重构。阶段 A 已冻结适配器、分页、来源证明、结构化错误、敏感信息白名单和范围指纹合同；R0～R4 又完成旧路线冻结、`WorkAuthorProof/v2`、schema/projection hash、route trace、六类通用 Network Observer、关注列表适配器，以及 `/aweme/post/` 作品列表、`/aweme/detail/` 详情复核、五项 statistics 白名单投影和独立作者证明链。作品门禁要求 page-level proof、列表 observation、作者证明和详情验证全部精确绑定，任何详情或作者错配都会在数据库写入前拒绝整批。设计与阶段边界见 [`docs/architecture/platform-adapter-phase-a.md`](docs/architecture/platform-adapter-phase-a.md) 与 [`docs/architecture/signal-desk-structured-acquisition-optimization-plan.md`](docs/architecture/signal-desk-structured-acquisition-optimization-plan.md)。这些结果只来自仓库内合成 fixture、模拟 route/CDP 和内存数据库；生产连接器尚未把 Observer 投影转换为 v2 following/works envelope，R5 评论业务适配器也尚未实现，因此当前结果不是 E3/E4 或真实平台验收。
+Signal Desk 0.2 的平台事实获取层正在分阶段重构。阶段 A 已冻结适配器、分页、来源证明、结构化错误、敏感信息白名单和范围指纹合同；R0～R4 又完成旧路线冻结、`WorkAuthorProof/v2`、schema/projection hash、route trace、六类通用 Network Observer、关注列表适配器，以及 `/aweme/post/` 作品列表、`/aweme/detail/` 详情复核、五项 statistics 白名单投影和独立作者证明链。R5 新增一级评论与二级回复结构化适配器，固定使用 NETWORK → EMBEDDED → INPAGE → TRIGGER → STOP，要求原生 `cid`、独立 `aweme_id`、回复 request `comment_id` 与 root/parent 关系、严格 verified-empty、单 route 分页闭合和白名单 projection hash；TRIGGER 只能接纳触发后由 Network Observer 观察到的 JSON，旧 DOM 评论 proof 已退出正式门禁。R6 新增无损 comments native-cid migration、root/parent/reply 字段、适配器版本与 scope fingerprint 活动任务去重、scope 隔离 checkpoint、按 job 精确恢复和逐尝试 command ID。设计与阶段边界见 [`docs/architecture/platform-adapter-phase-a.md`](docs/architecture/platform-adapter-phase-a.md) 与 [`docs/architecture/signal-desk-structured-acquisition-optimization-plan.md`](docs/architecture/signal-desk-structured-acquisition-optimization-plan.md)。这些结果仍只来自仓库内合成 fixture、模拟 route/CDP 和内存/临时测试数据库；没有迁移正式用户数据库，生产连接器也尚未把 Observer 投影转换为 v2 following/works/comments envelope，因此当前结果不是 E3/E4 或真实平台验收。
 
 ## 已实现能力
 
@@ -83,6 +83,8 @@ npm run dev
 
 ## 真实小样本同步
 
+> 当前暂停：以下内容保留为旧 `0.1.x` 连接器的操作与安全边界说明，不是当前 R6 基线的执行指令。生产连接器仍生成旧 DOM v1 envelope，桌面端会在写库前拒绝；在 Observer 投影完成 v2 following/works/comments envelope 桥接并取得后续明确授权前，不要点击“小样本同步”或恢复旧采集任务。
+
 浏览器连接器显示“桌面端在线”、Signal Desk 显示“浏览器已连接”后，右上角入口为“小样本同步”。点击后必须先确认三项范围：
 
 - 博主上限：1～5，首次默认 3。
@@ -95,9 +97,9 @@ npm run dev
 
 当前抖音网页把本人关注账号显示在个人主页顶部“关注数量”打开的关系弹窗中，而不是普通作品页签。若首次任务进入“需要操作”，先在本人主页点击顶部关注数量，确认弹窗内“关注（数量）”页签已选中，再从任务中心恢复。恢复时连接器会保留已经打开的同一路由和弹窗；它只接受唯一活动的关注页签、同一弹窗内唯一的 `user-fans-container` 列表、账号主页链接，以及账号行中明确的“已关注”或“相互关注”关系标记。粉丝页签、背景作品区、左侧关注内容流和缺少关系标记的候选都会安全拒绝。
 
-评论采集也使用独立的双层来源闸门。连接器只接受目标作品详情页中唯一可见的 `data-e2e="comment-list"` 评论列表，并只读取其中精确的 `data-e2e="comment-item"` 记录；公开作者必须来自 `comment-item-info-wrap` 信息区，正文必须来自其相邻正文节点。评论数量、输入框、按钮、纯数字控件、缺少作者结构的元素和全局模糊匹配结果均会被拒绝。连接器生成与目标作品和评论 ID 清单绑定的 `douyin-comment-source-proof/v1`，桌面主进程在写库前再次核验作品、作者、正文、评论 ID 及证明。作品详情会明确显示评论正文、公开作者、评论 ID、ID 来源、采集时间、所属作品和来源验证状态；旧版评论保留但标为“来源未验证”，不会进入真实评论云分析批次。
+旧连接器评论采集使用独立的双层 DOM 来源闸门：只从目标作品详情页唯一可见的 `data-e2e="comment-list"` 容器读取精确 `data-e2e="comment-item"`，要求公开作者来自 `comment-item-info-wrap`、正文来自相邻正文节点，并拒绝数量、输入框、按钮、纯数字控件和缺少作者结构的元素。它生成的 `douyin-comment-source-proof/v1` 现在仅用于历史兼容与 shadow 诊断，不能作为正式事实来源；R5/R6 桌面端只接受带原生 `cid` 和结构化 projection 证明的 v2 comment/reply envelope。旧版已存评论仍保留并显示来源状态，不会被伪装成新的结构化评论。
 
-这一阶段只采集页面资料，不自动下载媒体、不启动 ASR/OCR，也不创建或执行云端分析任务。连接器会在后台依次打开关注页、博主主页和作品页；遇到登录、验证码、安全验证或频控时，任务进入“需要操作”。在浏览器中处理完毕后，可在任务中心点击“恢复”重新尝试。
+旧流程只采集页面资料，不自动下载媒体、不启动 ASR/OCR，也不创建或执行云端分析任务。当前不要启动该流程；未来恢复真实验证时也必须使用任务中心逐 job 的“恢复此任务”，不存在全局恢复。
 
 ## 本地 ASR/OCR
 

@@ -1,7 +1,7 @@
 import type { DatabaseSync } from 'node:sqlite'
 import { DEFAULT_DOMAINS } from '../shared/contracts'
 
-const MIGRATIONS = [
+export const DATABASE_MIGRATIONS = [
   `
   CREATE TABLE IF NOT EXISTS app_settings (
     key TEXT PRIMARY KEY,
@@ -283,16 +283,96 @@ const MIGRATIONS = [
   ALTER TABLE comments ADD COLUMN source_verified INTEGER NOT NULL DEFAULT 0
     CHECK (source_verified IN (0,1));
   ALTER TABLE comments ADD COLUMN source_proof_json TEXT NOT NULL DEFAULT '{}';
+  `,
+  `
+  CREATE TABLE comments_r6 (
+    id INTEGER PRIMARY KEY,
+    platform TEXT NOT NULL,
+    platform_comment_id TEXT NOT NULL,
+    platform_comment_id_kind TEXT NOT NULL DEFAULT 'legacy-unknown'
+      CHECK (platform_comment_id_kind IN ('native-cid','page-attribute','synthetic-content-hash','legacy-unknown')),
+    work_id INTEGER NOT NULL REFERENCES works(id) ON DELETE CASCADE,
+    parent_comment_id INTEGER REFERENCES comments_r6(id) ON DELETE CASCADE,
+    root_comment_id INTEGER REFERENCES comments_r6(id) ON DELETE CASCADE,
+    public_author_id TEXT,
+    public_author_name TEXT NOT NULL DEFAULT '',
+    anonymous_author_id TEXT NOT NULL,
+    body TEXT NOT NULL,
+    normalized_hash TEXT NOT NULL,
+    like_count INTEGER,
+    reply_count INTEGER,
+    endpoint_kind TEXT CHECK (endpoint_kind IN ('comment-list','comment-reply-list')),
+    published_at TEXT,
+    collected_at TEXT NOT NULL,
+    cloud_state TEXT NOT NULL DEFAULT 'pending',
+    exclusion_reason TEXT,
+    source_verified INTEGER NOT NULL DEFAULT 0 CHECK (source_verified IN (0,1)),
+    source_proof_json TEXT NOT NULL DEFAULT '{}',
+    UNIQUE(platform, platform_comment_id)
+  ) STRICT;
+
+  INSERT INTO comments_r6(
+    id, platform, platform_comment_id, platform_comment_id_kind, work_id,
+    parent_comment_id, root_comment_id, public_author_id, public_author_name,
+    anonymous_author_id, body, normalized_hash, like_count, reply_count,
+    endpoint_kind, published_at, collected_at, cloud_state, exclusion_reason,
+    source_verified, source_proof_json
+  )
+  SELECT
+    id, platform, platform_comment_id, platform_comment_id_kind, work_id,
+    parent_comment_id, NULL, public_author_id, public_author_name,
+    anonymous_author_id, body, normalized_hash, like_count, NULL,
+    NULL, published_at, collected_at, cloud_state, exclusion_reason,
+    source_verified, source_proof_json
+  FROM comments;
+
+  DROP TABLE comments;
+  ALTER TABLE comments_r6 RENAME TO comments;
+  CREATE INDEX idx_comments_work ON comments(work_id, published_at);
+
+  ALTER TABLE jobs ADD COLUMN adapter_name TEXT;
+  ALTER TABLE jobs ADD COLUMN adapter_version TEXT;
+  ALTER TABLE jobs ADD COLUMN scope_fingerprint TEXT;
+  CREATE UNIQUE INDEX idx_jobs_active_collection_scope
+    ON jobs(kind, adapter_version, scope_fingerprint)
+    WHERE scope_fingerprint IS NOT NULL
+      AND state IN ('queued','running','paused','blocked_user_action','retryable_failed');
+
+  CREATE TABLE collection_checkpoints_r6 (
+    scope_type TEXT NOT NULL,
+    scope_id TEXT NOT NULL,
+    scope_fingerprint TEXT NOT NULL,
+    job_id INTEGER REFERENCES jobs(id) ON DELETE SET NULL,
+    cursor TEXT,
+    has_more INTEGER NOT NULL DEFAULT 1 CHECK (has_more IN (0,1)),
+    completeness TEXT NOT NULL DEFAULT 'partial',
+    reason TEXT,
+    updated_at TEXT NOT NULL,
+    PRIMARY KEY(scope_type, scope_id, scope_fingerprint)
+  ) STRICT, WITHOUT ROWID;
+
+  INSERT INTO collection_checkpoints_r6(
+    scope_type, scope_id, scope_fingerprint, job_id, cursor,
+    has_more, completeness, reason, updated_at
+  )
+  SELECT
+    scope_type, scope_id, 'legacy-unversioned', NULL, cursor,
+    has_more, completeness, reason, updated_at
+  FROM collection_checkpoints;
+
+  DROP TABLE collection_checkpoints;
+  ALTER TABLE collection_checkpoints_r6 RENAME TO collection_checkpoints;
+  CREATE INDEX idx_collection_checkpoints_job ON collection_checkpoints(job_id);
   `
 ]
 
 export function migrateDatabase(db: DatabaseSync): void {
   db.exec('PRAGMA foreign_keys = ON; PRAGMA journal_mode = WAL; PRAGMA synchronous = NORMAL; PRAGMA busy_timeout = 5000;')
   const current = Number((db.prepare('PRAGMA user_version').get() as { user_version: number }).user_version)
-  for (let index = current; index < MIGRATIONS.length; index += 1) {
+  for (let index = current; index < DATABASE_MIGRATIONS.length; index += 1) {
     db.exec('BEGIN IMMEDIATE')
     try {
-      db.exec(MIGRATIONS[index])
+      db.exec(DATABASE_MIGRATIONS[index])
       db.exec(`PRAGMA user_version = ${index + 1}`)
       db.exec('COMMIT')
     } catch (error) {

@@ -1,9 +1,126 @@
 import type { BrowserCollectionEnvelope, BrowserEventReceipt, SampleSyncOptions } from '../shared/contracts'
+import { STRUCTURED_SYNC_AVAILABLE } from '../shared/featureFlags'
 import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema } from '../shared/platformAdapter'
-import { acceptStructuredWorkCandidate, assertWorkAuthorProofForPersistence, assertWorkDetailVerificationForPersistence } from '../shared/structuredAcquisition'
-import type { AppDatabase } from './database'
+import { COMMENT_ACQUISITION_ADAPTER_VERSION } from '../shared/commentAcquisition'
+import { acceptStructuredWorkCandidate, assertWorkAuthorProofForPersistence, assertWorkDetailVerificationForPersistence, STRUCTURED_ACQUISITION_ADAPTER_VERSION } from '../shared/structuredAcquisition'
+import type { AppDatabase, CollectionJobIdentity } from './database'
 import { BridgeServer, type BrowserCommand } from './bridgeServer'
+import { assertStructuredCommentEnvelopeForPersistence } from './commentCollectionGate'
+import { createCollectionScopeFingerprint } from './platformAdapterSecurity'
 import type { WorkerClient } from './workerClient'
+
+export type CollectionJobKind = 'collection.following' | 'collection.creator_works' | 'collection.work_comments'
+
+const LOCAL_OWNER_SCOPE_ID = 'local-owner-account:1'
+
+const COLLECTION_ADAPTERS = {
+  'collection.following': {
+    operation: 'following',
+    adapterName: 'douyin.following',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION
+  },
+  'collection.creator_works': {
+    operation: 'creator-works',
+    adapterName: 'douyin.creator-works',
+    adapterVersion: STRUCTURED_ACQUISITION_ADAPTER_VERSION
+  },
+  'collection.work_comments': {
+    operation: 'comments',
+    adapterName: 'douyin.comment-list',
+    adapterVersion: COMMENT_ACQUISITION_ADAPTER_VERSION
+  }
+} as const
+
+export function createCollectionJobIdentity(
+  kind: CollectionJobKind,
+  payload: Record<string, unknown>
+): CollectionJobIdentity {
+  const configuredAdapter = COLLECTION_ADAPTERS[kind]
+  const isReplyTask = kind === 'collection.work_comments'
+    && typeof payload.rootCommentId === 'string'
+    && payload.rootCommentId.length > 0
+  const adapter = isReplyTask
+    ? {
+        operation: 'comment-replies' as const,
+        adapterName: 'douyin.comment-replies' as const,
+        adapterVersion: COMMENT_ACQUISITION_ADAPTER_VERSION
+      }
+    : configuredAdapter
+  const scope = safeSampleSyncOptions(payload)
+  const entityId = kind === 'collection.following'
+    ? null
+    : String(kind === 'collection.creator_works'
+      ? payload.creatorId ?? ''
+      : isReplyTask
+        ? String(payload.workId ?? '') + ':reply:' + String(payload.rootCommentId)
+        : payload.workId ?? '')
+  const ownerAccountId = typeof payload.ownerAccountId === 'string' && payload.ownerAccountId.trim()
+    ? payload.ownerAccountId.trim()
+    : LOCAL_OWNER_SCOPE_ID
+  const scopeFingerprint = createCollectionScopeFingerprint({
+    contract: 'collection-scope/v1',
+    platform: 'douyin',
+    ownerAccountId,
+    operation: adapter.operation,
+    entityId,
+    limits: scope,
+    collectionMode: payload.collectionOnly === false ? 'with-media' : 'collection-only',
+    adapterName: adapter.adapterName,
+    adapterVersion: adapter.adapterVersion,
+    timeWindow: null
+  })
+  return {
+    adapterName: adapter.adapterName,
+    adapterVersion: adapter.adapterVersion,
+    scopeFingerprint
+  }
+}
+
+function scopedCollectionPayload(
+  kind: CollectionJobKind,
+  payload: Record<string, unknown>
+): { payload: Record<string, unknown>; identity: CollectionJobIdentity } {
+  const identity = createCollectionJobIdentity(kind, payload)
+  return {
+    payload: {
+      ...payload,
+      adapterName: identity.adapterName,
+      adapterVersion: identity.adapterVersion,
+      scopeFingerprint: identity.scopeFingerprint
+    },
+    identity
+  }
+}
+
+function requireCollectionJobKind(kind: string): CollectionJobKind {
+  if (kind !== 'collection.following' && kind !== 'collection.creator_works' && kind !== 'collection.work_comments') {
+    throw new Error('不支持的采集任务类型：' + kind)
+  }
+  return kind
+}
+
+function assertStoredCollectionIdentity(
+  job: {
+    kind: string
+    adapter_name: string | null
+    adapter_version: string | null
+    scope_fingerprint: string | null
+  },
+  payload: Record<string, unknown>
+): CollectionJobIdentity {
+  const expected = createCollectionJobIdentity(requireCollectionJobKind(job.kind), payload)
+  if (
+    job.adapter_name !== expected.adapterName
+    || job.adapter_version !== expected.adapterVersion
+    || job.scope_fingerprint !== expected.scopeFingerprint
+    || payload.adapterName !== expected.adapterName
+    || payload.adapterVersion !== expected.adapterVersion
+    || payload.scopeFingerprint !== expected.scopeFingerprint
+  ) {
+    throw new Error('采集任务的 adapter identity 或 scope fingerprint 不一致')
+  }
+  return expected
+}
 
 export class TaskRunner {
   private timer: NodeJS.Timeout | null = null
@@ -13,7 +130,8 @@ export class TaskRunner {
     private readonly database: AppDatabase,
     private readonly bridge: BridgeServer,
     private readonly worker: WorkerClient,
-    private readonly cacheRoot: string
+    private readonly cacheRoot: string,
+    private readonly structuredSyncEnabled = STRUCTURED_SYNC_AVAILABLE
   ) {
     this.bridge.setEnvelopeHandler((envelope: BrowserCollectionEnvelope) => this.onEnvelope(envelope))
     this.bridge.on('status', (status: Record<string, unknown>) => this.onBrowserStatus(status))
@@ -32,15 +150,28 @@ export class TaskRunner {
 
   startSampleSync(input: SampleSyncOptions): { jobId: number; scope: SampleSyncOptions } {
     const scope = validateSampleSyncOptions(input)
-    const active = this.database.db.prepare(`SELECT id FROM jobs WHERE kind LIKE 'collection.%' AND state IN ('queued','running','blocked_user_action','paused','retryable_failed') LIMIT 1`).get() as { id: number } | undefined
-    if (active) throw new Error('已有采集任务尚未结束，请先在任务中心等待完成，或处理后恢复现有任务')
+    if (!this.structuredSyncEnabled) {
+      throw new Error('结构化同步尚未接入生产连接器；R6 基线禁止启动真实采集')
+    }
     if (!this.bridge.isOnline()) throw new Error('浏览器只读连接器尚未在线，请先恢复连接')
-    const jobId = this.database.enqueueJob('collection.following', {
+    const definition = scopedCollectionPayload('collection.following', {
       commandId: `sync-following-${Date.now()}`,
       ...scope,
+      ownerAccountId: LOCAL_OWNER_SCOPE_ID,
       collectionOnly: true
-    }, 10, 'account', 1)
-    return { jobId, scope }
+    })
+    const result = this.database.enqueueCollectionJob(
+      'collection.following',
+      definition.payload,
+      definition.identity,
+      10,
+      'account',
+      1
+    )
+    if (!result.created) {
+      throw new Error('相同适配器版本和采集范围已有活动任务 #' + result.jobId)
+    }
+    return { jobId: result.jobId, scope }
   }
 
   private async tick(): Promise<void> {
@@ -52,7 +183,8 @@ export class TaskRunner {
       const kind = String(job.kind)
       const payload = JSON.parse(String(job.payload_json)) as Record<string, unknown>
       if (kind.startsWith('collection.')) {
-        const command = this.toBrowserCommand(Number(job.id), kind, payload)
+        const attempt = Number(job.attempt_count ?? 0) + 1
+        const command = this.toBrowserCommand(Number(job.id), kind, payload, attempt)
         if (!command) {
           this.database.updateJob(Number(job.id), 'permanent_failed', { error: `Unsupported job kind: ${kind}` })
           return
@@ -65,8 +197,9 @@ export class TaskRunner {
           return
         }
 
-        const transition = this.database.db.prepare(`UPDATE jobs SET state='running', status_message='已发送到浏览器连接器', payload_json=?, updated_at=? WHERE id=? AND state='queued'`).run(
-          JSON.stringify({ ...payload, commandId: command.commandId }),
+        const transition = this.database.db.prepare(`UPDATE jobs SET state='running', status_message='已发送到浏览器连接器', payload_json=?, attempt_count=?, updated_at=? WHERE id=? AND state='queued'`).run(
+          JSON.stringify(command.payload),
+          attempt,
           new Date().toISOString(),
           Number(job.id)
         )
@@ -109,20 +242,42 @@ export class TaskRunner {
     }
   }
 
-  private toBrowserCommand(jobId: number, kind: string, payload: Record<string, unknown>): BrowserCommand | null {
-    const commandId = String(payload.commandId || `job-${jobId}`)
+  private toBrowserCommand(jobId: number, kind: string, payload: Record<string, unknown>, attempt: number): BrowserCommand | null {
+    const commandId = 'job-' + jobId + '-attempt-' + attempt
     const actions: Record<string, BrowserCommand['action']> = {
       'collection.following': 'collect_following',
       'collection.creator_works': 'collect_creator_works',
       'collection.work_comments': 'collect_work_comments'
     }
     const action = actions[kind]
-    return action ? { contract: 'browser-command/v1', commandId, action, payload, createdAt: new Date().toISOString() } : null
+    return action ? {
+      contract: 'browser-command/v1',
+      commandId,
+      action,
+      payload: { ...payload, commandId },
+      createdAt: new Date().toISOString()
+    } : null
   }
 
   private onEnvelope(envelope: BrowserCollectionEnvelope): BrowserEventReceipt {
-    const sourceJob = this.database.db.prepare(`SELECT id, kind, state, payload_json FROM jobs WHERE kind LIKE 'collection.%' AND json_extract(payload_json, '$.commandId')=? ORDER BY id DESC LIMIT 1`).get(envelope.commandId) as { id: number; kind: string; state: string; payload_json: string } | undefined
+    const sourceJob = this.database.db.prepare(`
+      SELECT id, kind, state, payload_json, adapter_name, adapter_version, scope_fingerprint
+      FROM jobs
+      WHERE kind LIKE 'collection.%' AND json_extract(payload_json, '$.commandId')=?
+      ORDER BY id DESC LIMIT 1
+    `).get(envelope.commandId) as {
+      id: number
+      kind: string
+      state: string
+      payload_json: string
+      adapter_name: string | null
+      adapter_version: string | null
+      scope_fingerprint: string | null
+    } | undefined
     if (!sourceJob) return rejectedReceipt(envelope.commandId, 'unknown-command', '浏览器返回了未知或已经失效的采集命令，内容未入库')
+    if (!sourceJob.adapter_name || !sourceJob.adapter_version || !sourceJob.scope_fingerprint) {
+      return rejectedReceipt(envelope.commandId, 'stale-command', '旧版无作用域采集任务已冻结，返回内容未入库且任务状态未改变')
+    }
     if (sourceJob.state !== 'running') {
       return rejectedReceipt(envelope.commandId, 'stale-command', '该采集任务当前不接受返回内容，迟到或重复结果未入库')
     }
@@ -130,6 +285,7 @@ export class TaskRunner {
     const scope = safeSampleSyncOptions(payload)
     const collectionOnly = payload.collectionOnly !== false
     try {
+      assertStoredCollectionIdentity(sourceJob, payload)
       validateEnvelopeForJob(envelope, sourceJob.kind, payload)
     } catch (error) {
       const detail = error instanceof Error ? error.message : String(error)
@@ -140,38 +296,46 @@ export class TaskRunner {
 
     try {
       const scopedEnvelope = limitEnvelope(envelope, sourceJob.kind, scope, payload)
-      const counts = this.database.ingestEnvelope(scopedEnvelope, checkpointScopeForJob(sourceJob.kind, payload))
-      if (counts.creators > 0) {
+      const counts = this.database.ingestEnvelope(scopedEnvelope, checkpointScopeForJob(sourceJob.kind, payload, sourceJob.id))
+      if (sourceJob.kind === 'collection.following' && counts.creators > 0) {
         const creators = scopedEnvelope.items.filter((item) => item.entityType === 'creator')
         for (const item of creators) {
-          const existing = this.database.db.prepare(`SELECT id FROM jobs WHERE kind='collection.creator_works' AND json_extract(payload_json, '$.creatorId')=? AND state IN ('queued','running','blocked_user_action','completed') LIMIT 1`).get(item.creatorId)
-          if (!existing) {
-            this.database.enqueueJob('collection.creator_works', {
-              creatorId: item.creatorId,
-              profileUrl: item.profileUrl,
-              commandId: `works-${item.creatorId}-${Date.now()}`,
-              ...scope,
-              collectionOnly
-            }, 30)
-          }
+          const definition = scopedCollectionPayload('collection.creator_works', {
+            creatorId: item.creatorId,
+            profileUrl: item.profileUrl,
+            ownerAccountId: payload.ownerAccountId ?? LOCAL_OWNER_SCOPE_ID,
+            ...scope,
+            collectionOnly
+          })
+          this.database.enqueueCollectionJob(
+            'collection.creator_works',
+            definition.payload,
+            definition.identity,
+            30
+          )
         }
       }
-      if (counts.works > 0) {
+      if (sourceJob.kind === 'collection.creator_works' && counts.works > 0) {
         const works = scopedEnvelope.items.filter((item) => item.entityType === 'work')
         for (const item of works) {
           const row = this.database.db.prepare('SELECT id FROM works WHERE platform_work_id=?').get(item.workId) as { id: number } | undefined
           if (!row) continue
-          const existing = this.database.db.prepare(`SELECT id FROM jobs WHERE kind='collection.work_comments' AND subject_id=? AND state IN ('queued','running','blocked_user_action','completed') LIMIT 1`).get(row.id)
-          if (!existing) {
-            this.database.enqueueJob('collection.work_comments', {
-              workId: item.workId,
-              creatorId: item.creatorId,
-              sourceUrl: item.sourceUrl,
-              commandId: `comments-${item.workId}-${Date.now()}`,
-              ...scope,
-              collectionOnly
-            }, 200, 'work', row.id)
-          }
+          const definition = scopedCollectionPayload('collection.work_comments', {
+            workId: item.workId,
+            creatorId: item.creatorId,
+            sourceUrl: item.sourceUrl,
+            ownerAccountId: payload.ownerAccountId ?? LOCAL_OWNER_SCOPE_ID,
+            ...scope,
+            collectionOnly
+          })
+          this.database.enqueueCollectionJob(
+            'collection.work_comments',
+            definition.payload,
+            definition.identity,
+            200,
+            'work',
+            row.id
+          )
           if (!collectionOnly) {
             const mediaExists = this.database.db.prepare(`SELECT id FROM jobs WHERE kind='media.process' AND subject_id=? AND state IN ('queued','running','completed') AND json_extract(payload_json, '$.mediaUrl') IS NOT NULL LIMIT 1`).get(row.id)
             if (item.workType === 'video' && item.mediaUrl && !mediaExists) this.database.enqueueJob('media.process', { workId: item.workId, mediaUrl: item.mediaUrl }, 100, 'work', row.id)
@@ -187,7 +351,15 @@ export class TaskRunner {
       this.database.updateJob(sourceJob.id, 'completed', {
         progress: 1,
         message: `采集完成：${counts.creators} 位博主、${counts.works} 个作品、${counts.comments} 条评论`,
-        checkpoint: scopedEnvelope.sourceProof ? { sourceProof: scopedEnvelope.sourceProof } : undefined
+        checkpoint: {
+          adapterName: sourceJob.adapter_name,
+          adapterVersion: sourceJob.adapter_version,
+          scopeFingerprint: sourceJob.scope_fingerprint,
+          cursor: scopedEnvelope.cursor ?? null,
+          hasMore: scopedEnvelope.hasMore,
+          completeness: scopedEnvelope.completeness,
+          ...(scopedEnvelope.sourceProof ? { sourceProof: scopedEnvelope.sourceProof } : {})
+        }
       })
       return {
         contract: 'browser-event-receipt/v1',
@@ -203,7 +375,16 @@ export class TaskRunner {
 
   private onBrowserStatus(status: Record<string, unknown>): void {
     if (status.type === 'blocked' && status.commandId) {
-      this.database.db.prepare(`UPDATE jobs SET state='blocked_user_action', status_message=?, updated_at=? WHERE json_extract(payload_json, '$.commandId')=? AND state IN ('queued','running','blocked_user_action')`).run(String(status.message || '浏览器需要用户操作'), new Date().toISOString(), String(status.commandId))
+      this.database.db.prepare(`
+        UPDATE jobs SET state='blocked_user_action', status_message=?, updated_at=?
+        WHERE json_extract(payload_json, '$.commandId')=?
+          AND state IN ('queued','running','blocked_user_action')
+          AND adapter_name IS NOT NULL
+          AND adapter_version IS NOT NULL
+          AND length(scope_fingerprint)=73
+          AND substr(scope_fingerprint, 1, 9)='scope-v1:'
+          AND substr(scope_fingerprint, 10) NOT GLOB '*[^0-9a-f]*'
+      `).run(String(status.message || '浏览器需要用户操作'), new Date().toISOString(), String(status.commandId))
     }
   }
 }
@@ -259,16 +440,17 @@ function limitEnvelope(envelope: BrowserCollectionEnvelope, kind: string, scope:
   }
   if (kind === 'collection.work_comments') {
     const workId = typeof payload.workId === 'string' ? payload.workId : ''
-    const creatorId = typeof payload.creatorId === 'string' ? payload.creatorId : ''
-    const work = envelope.items.find((item) => item.entityType === 'work' && item.workId === workId && item.creatorId === creatorId)
     const candidates = envelope.items.filter((item): item is Extract<BrowserCollectionEnvelope['items'][number], { entityType: 'comment' }> => item.entityType === 'comment' && item.workId === workId)
     const limited = candidates.length > scope.commentsPerWork
     const comments = candidates.slice(0, scope.commentsPerWork)
     return {
       ...envelope,
-      items: work ? [work, ...comments] : comments,
-      sourceProof: envelope.sourceProof?.contract === 'douyin-comment-source-proof/v1'
-        ? { ...envelope.sourceProof, commentIds: comments.map((item) => item.commentId) }
+      // The work item is a preflight-only binding. Comment proofs do not cover
+      // mutable work metadata, so a comment job must never update the work row.
+      items: comments,
+      sourceProof: envelope.sourceProof?.contract === 'douyin-comment-list-structured-proof/v2'
+        || envelope.sourceProof?.contract === 'douyin-comment-reply-structured-proof/v2'
+        ? envelope.sourceProof
         : undefined,
       ...(limited ? { completeness: 'partial' as const, hasMore: true, reason: `桌面端小样本硬上限：每个作品 ${scope.commentsPerWork} 条评论` } : {})
     }
@@ -305,14 +487,18 @@ function requireProfileUrl(value: string, creatorId: string): void {
   }
 }
 
-function expectedSyntheticCommentId(workId: string, authorIdentity: string, body: string): string {
-  const value = `${workId}:${authorIdentity}:${body}`
-  let hash = 2166136261
-  for (let index = 0; index < value.length; index += 1) {
-    hash ^= value.charCodeAt(index)
-    hash = Math.imul(hash, 16777619)
+function assertProofAdapterIdentity(
+  proof: { adapterName: string; adapterVersion: string },
+  payload: Record<string, unknown>
+): void {
+  const adapterName = typeof payload.adapterName === 'string' ? payload.adapterName : null
+  const adapterVersion = typeof payload.adapterVersion === 'string' ? payload.adapterVersion : null
+  if (
+    (adapterName !== null && proof.adapterName !== adapterName)
+    || (adapterVersion !== null && proof.adapterVersion !== adapterVersion)
+  ) {
+    throw new Error('采集 proof 的 adapter identity 与任务不一致')
   }
-  return `comment-${(hash >>> 0).toString(16)}`
 }
 
 export function validateEnvelopeForJob(
@@ -339,6 +525,7 @@ export function validateEnvelopeForJob(
     const proofResult = douyinFollowingStructuredProofSchema.safeParse(candidateProof)
     if (!proofResult.success) throw new Error(`结构化关注证明无效：${proofResult.error.issues[0]?.message ?? 'schema mismatch'}`)
     const proof = proofResult.data
+    assertProofAdapterIdentity(proof, payload)
     const expectedRoute = {
       'network-response': 'DY-FOLLOW-NETWORK',
       'embedded-json': 'DY-FOLLOW-EMBEDDED',
@@ -399,6 +586,7 @@ export function validateEnvelopeForJob(
     const proofResult = douyinCreatorWorksStructuredProofSchema.safeParse(candidateProof)
     if (!proofResult.success) throw new Error(`结构化作品列表证明无效：${proofResult.error.issues[0]?.message ?? 'schema mismatch'}`)
     const proof = proofResult.data
+    assertProofAdapterIdentity(proof, payload)
     if (
       proof.followedCreatorId !== creatorId
       || proof.profileRouteCreatorId !== creatorId
@@ -476,52 +664,31 @@ export function validateEnvelopeForJob(
     return
   }
   if (kind === 'collection.work_comments') {
-    const workId = typeof payload.workId === 'string' ? payload.workId : ''
-    const creatorId = typeof payload.creatorId === 'string' ? payload.creatorId : ''
-    const source = requireDouyinUrl(envelope.sourceUrl, '作品评论来源')
-    const sourceMatch = normalizedPath(source.pathname).match(/^\/(?:video|note)\/([^/]+)$/)
-    if (!sourceMatch || decodeURIComponent(sourceMatch[1]) !== workId) throw new Error('评论来源与目标作品不一致')
-    const works = envelope.items.filter((item) => item.entityType === 'work')
-    if (works.length !== 1 || works[0].workId !== workId || works[0].creatorId !== creatorId) {
-      throw new Error('评论结果缺少唯一且匹配的作品实体')
-    }
-    if (!envelope.items.every((item) => item.entityType === 'work' || (item.entityType === 'comment' && item.workId === workId))) {
-      throw new Error('评论结果包含目标作品以外的数据')
-    }
-    const comments = envelope.items.filter((item) => item.entityType === 'comment')
-    if (comments.length === 0) throw new Error('评论结果没有可验证的真实评论')
-    const proof = envelope.sourceProof
-    if (!proof || proof.contract !== 'douyin-comment-source-proof/v1') throw new Error('缺少作品评论来源证明')
-    if (proof.workId !== workId) throw new Error('评论来源证明与目标作品不一致')
-    const commentIds = comments.map((item) => item.commentId)
-    if (JSON.stringify(proof.commentIds) !== JSON.stringify(commentIds)) {
-      throw new Error('评论来源证明与评论清单不一致')
-    }
-    for (const comment of comments) {
-      const body = comment.body.normalize('NFKC').trim().replace(/\s+/g, ' ')
-      const authorName = comment.publicAuthorName.normalize('NFKC').trim()
-      if (!body || body.length > 5000 || /^[\d\s.,，。+万亿]+$/.test(body)) {
-        throw new Error('评论正文缺失、超长或只有数字控件内容')
-      }
-      if (!authorName || authorName.length > 200 || authorName === '公开用户' || /^\d+$/.test(authorName)) {
-        throw new Error('评论缺少明确的公开作者结构')
-      }
-      if (comment.commentIdKind === 'legacy-unknown') throw new Error('评论 ID 来源未经验证')
-      if (comment.commentIdKind === 'page-attribute') {
-        if (comment.commentId.length > 240 || /\s/.test(comment.commentId)) throw new Error('页面评论 ID 格式无效')
-      } else {
-        const expected = expectedSyntheticCommentId(workId, comment.publicAuthorId || comment.publicAuthorName, comment.body)
-        if (comment.commentId !== expected) throw new Error('合成评论 ID 与作者和正文不一致')
-      }
-    }
+    assertStructuredCommentEnvelopeForPersistence(envelope, payload)
     return
   }
   throw new Error(`不支持的采集任务类型：${kind}`)
 }
 
-function checkpointScopeForJob(kind: string, payload: Record<string, unknown>): { scopeType: string; scopeId: string } {
-  if (kind === 'collection.following') return { scopeType: 'creator', scopeId: 'following' }
-  if (kind === 'collection.creator_works') return { scopeType: 'work', scopeId: String(payload.creatorId || '') }
-  if (kind === 'collection.work_comments') return { scopeType: 'work', scopeId: String(payload.workId || '') }
+function checkpointScopeForJob(kind: string, payload: Record<string, unknown>, jobId: number): {
+  scopeType: string
+  scopeId: string
+  scopeFingerprint: string
+  jobId: number
+} {
+  const scopeFingerprint = String(payload.scopeFingerprint || '')
+  if (!/^scope-v1:[a-f0-9]{64}$/.test(scopeFingerprint)) throw new Error('采集任务缺少有效的 scope fingerprint')
+  if (kind === 'collection.following') return { scopeType: 'creator', scopeId: 'following', scopeFingerprint, jobId }
+  if (kind === 'collection.creator_works') return { scopeType: 'work', scopeId: String(payload.creatorId || ''), scopeFingerprint, jobId }
+  if (kind === 'collection.work_comments') {
+    const workId = String(payload.workId || '')
+    const rootCommentId = typeof payload.rootCommentId === 'string' ? payload.rootCommentId : ''
+    return {
+      scopeType: rootCommentId ? 'comment-replies' : 'work',
+      scopeId: rootCommentId ? workId + ':reply:' + rootCommentId : workId,
+      scopeFingerprint,
+      jobId
+    }
+  }
   throw new Error(`不支持的采集检查点类型：${kind}`)
 }

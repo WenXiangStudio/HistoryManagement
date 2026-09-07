@@ -5,9 +5,35 @@
 > 当前开发交付版本：Signal Desk `0.1.11` / 浏览器连接器 `0.1.6`  
 > 用途：记录 Signal Desk 当前真实状态、结构化采集架构决策与 `0.2` 高稳定性优化实施方案，供下一窗口从设计冻结点继续。
 
+## 0.-7 2026-09-07 R0～R5 PASS 补录、R6 授权与项目边界纠正
+
+本节是当前最高优先级事实，覆盖下文所有仍把“R0～R5 联合离线人工验收”写成待办、或把 R6 写成未授权/未开始的历史文字。
+
+- 用户在 2026-09-07 明确纠正：R0～R5 联合离线人工验收此前已经签署整体 `PASS`，只是上一窗口没有把签署结果正确写入项目记录。该事实现正式补录，不得再次把 R0～R5 联合验收误列为未签署。
+- 用户同日明确授权“进入 R6”。该授权严格限于 R6 的源码、合成 fixture、内存/临时测试数据库和模拟任务事件，不包含 R7、R8、真实平台采集、正式用户数据库运行、历史任务恢复、媒体、ASR/OCR 或云调用。
+- R6 已实现 comments native-cid 无损 schema migration、root/parent/reply 字段、adapter version + scope fingerprint 活动任务去重、scope 隔离 checkpoint、按 job ID 精确恢复、逐 attempt command ID、旧响应拒绝和任务身份写前校验。
+- R6 migration 回归显式覆盖历史任务 `#7/#8/#10/#11/#12/#13/#14/#16`，确认状态、payload、checkpoint 与消息保持不变；本轮没有打开正式 `%APPDATA%\Signal Desk\signal-desk.sqlite`，也没有恢复任何历史任务。
+- R6 基线收口后的 `npm run check` 已整体通过：项目边界门禁通过，TypeScript 通过，Vitest 14 个文件 / 181 项通过，Python worker 2 项通过，Native Host 与 manifest 通过，连接器 content/background 通过，Network Observer 8 项通过，冻结 Phase B 15 项通过，Electron 生产构建通过。`npm run package` 及 packaged-renderer 冒烟通过，生产包中结构化同步 UI 与主进程均保持硬禁用；`npm audit --omit=dev --audit-level=high` 为 0 漏洞。
+- 工作区中误入的 `WSL2 同 SHA 完整回归报告.md` 属于另一个项目，已原样迁移到项目目录之外的 `D:\AI_WorkSpace\SpatialWarehouse\ExcludedProjectArtifacts\WSL_ProjectHistoryManagement\`，移动前后 SHA-256 均为 `3DE618212DEB967628BE24FAFC712225BE8866DB88AF2A70FAEA2F66EDF08453`；原项目路径不再存在，隔离副本保留。
+- 该外部报告及其来源仓库、分支、SHA、测试统计、handoff/Temporal/Agent Runtime 等信息均不是 Signal Desk 的需求、证据、状态或验收结果，明确禁止再次进入本仓库。`.gitignore` 已精确忽略该文件名，`npm run test:project-boundaries` 会扫描同名文件和外仓标识，`npm run check` 首步执行该门禁；若命中必须失败关闭，不能复制、改名或改写后重新引入。
+- R7 尚未授权；生产连接器尚未把 Network Observer 安全投影组装成 v2 following/works/comments 业务 envelope；R8 真实验证仍须用户另行明确批准。
+
 ## 0. 2026-09-04 23:18 基线、2026-09-05 社区路线研究与结构化重设计最新状态（优先于后文全部历史状态）
 
 本节是当前唯一有效的续接事实和下一阶段实施依据，优先于本文后续所有版本历史、旧测试顺序和旧开场提示。后文关于“`0.1.11` 尚未安装”“不得扩大到 `3/5/20`”“评论仍待第一次真实复验”等内容均只作为历史保留，不得据此重复执行旧操作。
+
+### 0.-6 2026-09-06 R5 离线实施状态（本节最优先事实）
+
+> 历史检查点：其中关于 R6 未实施和等待 R0～R5 联合验收的文字已由 0.-7 正式取代；不得再据此判断当前状态。
+
+- 用户已查看 R0～R4 离线人工验收证据，并明确签署整体 `PASS`、授权开始 R5；该授权没有扩展为真实平台、正式数据库、R6 或 R8 授权。
+- R5 已完成一级评论 `/aweme/v1/web/comment/list/` 与二级回复 `/aweme/v1/web/comment/list/reply/` 的离线结构化适配器：分别固定 NETWORK → EMBEDDED → INPAGE → TRIGGER → STOP，TRIGGER 只能接纳触发后由 Network Observer 观察到的 JSON，不能从 DOM 制造事实。
+- 新增 `0.2.0-r5` comment proof/route registry；每项必须有原生 `cid`，`comments[].aweme_id` 必须独立等于目标作品，回复还必须与请求 `comment_id`、root/parent 关系一致。verified-empty 严格要求 `comments=[]`、`total=0`、`has_more=false`。
+- 跨作品评论、错误 root/parent、重复 cid、cursor loop、空页继续、maxPages 未闭合、分页中途 schema change、评论关闭、未观察、401/403、429、非零平台状态和错误 path/参数/header 均有独立分类或终止测试；任一错误整批 comments/replies 为 0，不 fallback 掩盖终止错误。
+- 新的数据库前门禁会在 `database.ingestEnvelope` 前重算白名单 projection hash，并绑定 proof、route trace、work、root/parent、returned IDs、item、时间与分页。旧 `douyin-comment-source-proof/v1` 和 DOM/page-attribute/synthetic comment ID 已退出正式门禁。
+- 在当时的 R5 检查点，R6 尚未实施，正式 comments 表还不接受 `native-cid`；内存 TaskRunner 边界测试证明合法 R5 envelope 通过 preflight 后，会被 pre-R6 CHECK constraint 安全拒绝并整笔回滚，comments/checkpoint 均为 0。该状态已由 0.-7 记录的 R6 离线实现取代，但正式用户数据库至今没有运行迁移。
+- 本轮只使用合成 fixture、模拟 route/CDP 和 `AppDatabase(':memory:')`；没有连接真实平台/浏览器、读取凭据、写正式数据库、恢复历史任务/run、运行旧路线、媒体、ASR/OCR 或云分析。生产连接器仍未生成 v2 following/works/comments envelope，本结果保持 E2-doc。
+- 当时登记的下一检查点是 R0～R5 联合离线人工验收；用户现已在 0.-7 补录既有整体 `PASS` 并明确授权 R6，因此这条门禁已经满足，不再是当前待办。
 
 ### 0.-5 2026-09-06 下一窗口：R0～R4 离线人工验收检查点
 
@@ -37,7 +63,7 @@
 - 新的作品接纳门禁要求 `followedCreatorId = profileRouteCreatorId = requestTargetCreatorId = observedWorkAuthorId`；最后一个值必须直接来自结构化作品/详情响应，禁止从任务目标回填。评论必须有原生 `cid` 并独立验证 `aweme_id`；`synthetic-content-hash` 仅作历史兼容，不能用于新采集。
 - 社区项目的公开源码或文档只记为候选路线证据，不等于 Signal Desk 已在当前账号/当前平台通过。新的等级为 `E1-source / E2-doc / E3-local-poc / E4-product`；只有隔离 PoC、20～30 个自动样本和人工抽检全部通过才能达到产品级，任何作者错配、跨作品评论、敏感值泄漏或写请求都会令整批失败。
 - 本轮只新增两份 Markdown 文档并更新本节；没有连接抖音、没有开始新采集、没有读取或写入正式 SQLite、没有改生产连接器代码、没有恢复历史任务，也没有备份、清理、重置、媒体处理、ASR/OCR、BYOK 或云分析。
-- 历史上此处把 `R0～R2` 记为下一步；它们及 R3/R4 现已按 0.-4 完成离线实现。当前下一步为 `R5`，`0.2.4` 永久硬禁用；真实 `R8/T1/T2/T3` 仍需另行确认且只能写隔离输出目录。
+- 历史上此处把 `R0～R2` 记为下一步；它们及 R3/R4 现已按 0.-4 完成离线实现，R5 状态见 0.-6。0.-7 已补录 R0～R5 联合验收 `PASS` 和 R6 授权/实现；当前仍需另行确认的是 R7 与真实 `R8/T1/T2/T3`。
 
 ### 0.-1 2026-09-05 阶段 B 自动抽样最新状态（优先于本节后续旧授权描述）
 

@@ -168,6 +168,8 @@ h1 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: 34px; f
 .progress i { position: absolute; width: 0; max-width: 120px; height: 4px; border-radius: 9px; background: var(--green-2); }
 .progress span { color: #818680; font-size: 9px; }
 .job-row time { color: #8b8f8a; font-size: 9px; }
+.job-actions { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+.job-actions .button { padding: 6px 8px; white-space: nowrap; }
 .empty-rows { padding: 60px 20px; color: #8a8f89; font-size: 11px; text-align: center; }
 .settings-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 18px; align-items: start; }
 .settings-main { display: flex; flex-direction: column; gap: 16px; }

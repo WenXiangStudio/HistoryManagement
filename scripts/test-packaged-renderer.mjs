@@ -144,9 +144,16 @@ try {
   })
   const boundedSync = JSON.parse(boundedSyncResponse.result.result.value)
 
+  const productionSyncResponse = await send('Runtime.evaluate', {
+    expression: `window.signalDesk.startSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 }).then(() => JSON.stringify({ rejected: false })).catch((error) => JSON.stringify({ rejected: true, error: String(error) }))`,
+    awaitPromise: true,
+    returnByValue: true
+  })
+  const productionSync = JSON.parse(productionSyncResponse.result.result.value)
+
   const sampleSyncUiResponse = await send('Runtime.evaluate', {
     expression: `(async () => {
-      const trigger = [...document.querySelectorAll('button')].find((button) => button.textContent?.includes('小样本同步'))
+      const trigger = [...document.querySelectorAll('button')].find((button) => button.textContent?.includes('结构化同步待接入'))
       const triggerFound = trigger instanceof HTMLButtonElement
       const triggerInitiallyDisabled = triggerFound ? trigger.disabled : null
       trigger?.click()
@@ -220,16 +227,18 @@ try {
   if (state.rootChildCount < 1 || !state.rootText.includes('今日内容收件箱')) {
     throw new Error(`Renderer did not mount the application: ${JSON.stringify(state)}`)
   }
-  if (!state.rootText.includes('小样本同步')) throw new Error('Bounded sample-sync entry did not render')
+  if (!state.rootText.includes('结构化同步待接入')) throw new Error('Structured-sync availability gate did not render')
   if (!ipc.ok) throw new Error(`IPC dashboard call failed: ${ipc.error}`)
   if (!boundedSync.rejected || !boundedSync.error.includes('1～5')) throw new Error(`Main process did not enforce the creator hard limit: ${JSON.stringify(boundedSync)}`)
-  if (!sampleSyncUi.text.includes('确认真实小样本范围')
-    || !sampleSyncUi.text.includes('最多入库 15 个作品、300 条评论')
-    || JSON.stringify(sampleSyncUi.inputs) !== JSON.stringify([3, 5, 20])
-    || sampleSyncUi.triggerFound !== true
-    || sampleSyncUi.triggerInitiallyDisabled !== false
-    || sampleSyncUi.confirmDisabled !== false) {
-    throw new Error(`Bounded sample-sync confirmation is incomplete or unsafe: ${JSON.stringify(sampleSyncUi)}`)
+  if (!productionSync.rejected || !productionSync.error.includes('禁止启动真实采集')) {
+    throw new Error(`Production structured sync was not fail-closed: ${JSON.stringify(productionSync)}`)
+  }
+  if (sampleSyncUi.triggerFound !== true
+    || sampleSyncUi.triggerInitiallyDisabled !== true
+    || sampleSyncUi.text !== ''
+    || sampleSyncUi.inputs.length !== 0
+    || sampleSyncUi.confirmDisabled !== null) {
+    throw new Error(`Structured-sync UI gate is incomplete or unsafe: ${JSON.stringify(sampleSyncUi)}`)
   }
   if (!('textBaseUrl' in cloudSettings.settings) || !('visionBaseUrl' in cloudSettings.settings)) {
     throw new Error(`Independent cloud provider settings are missing: ${JSON.stringify(cloudSettings.settings)}`)
@@ -380,7 +389,7 @@ try {
     writeFileSync(resolve(process.env.SIGNAL_DESK_SMOKE_SCREENSHOT), Buffer.from(screenshot.result.data, 'base64'))
   }
 
-  console.log(JSON.stringify({ executable, preloadBridge: 'ok', renderer: 'ok', dashboardIpc: 'ok', boundedSync: 'ok', cloudProviders: 'ok', demoSearch: 'ok', demoDetail: 'ok', commentAuditUi: 'ok', demoCleanup, upgradeSnapshot: expectedSnapshot ? 'ok' : 'not-requested' }, null, 2))
+  console.log(JSON.stringify({ executable, preloadBridge: 'ok', renderer: 'ok', dashboardIpc: 'ok', structuredSyncGate: 'ok', cloudProviders: 'ok', demoSearch: 'ok', demoDetail: 'ok', commentAuditUi: 'ok', demoCleanup, upgradeSnapshot: expectedSnapshot ? 'ok' : 'not-requested' }, null, 2))
   await send('Runtime.evaluate', { expression: 'window.close()' })
 } finally {
   socket.close()
