@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="popup.css">
+  <title>Signal Desk R8 T1</title>
+</head>
+<body>
+  <main>
+    <p class="eyebrow">ISOLATED REAL VALIDATION</p>
+    <h1>R8 · T1 discovery</h1>
+    <p>只观察 3 个真实入口的 endpoint/schema。不会写正式 SQLite，不会恢复任务，不会下载媒体或调用云服务。</p>
+    <div class="guard">请确认当前 Chrome 已登录抖音。运行期间会打开并切换一个抖音标签页；遇到登录或安全验证会停止。</div>
+    <button id="start">开始 T1（3 个入口）</button>
+    <pre id="status">读取状态…</pre>
+  </main>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "manifest_version": 3,
+  "name": "Signal Desk 作者主页低请求量隔离试跑",
+  "version": "0.9.0",
+  "description": "手动启动；最多一位作者、一个作品页，不主动请求接口或评论。",
+  "permissions": ["tabs", "storage", "debugger", "scripting"],
+  "host_permissions": ["https://www.douyin.com/*", "http://127.0.0.1/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": { "default_title": "Signal Desk 低请求量试跑", "default_popup": "popup.html" },
+  "minimum_chrome_version": "120"
+}

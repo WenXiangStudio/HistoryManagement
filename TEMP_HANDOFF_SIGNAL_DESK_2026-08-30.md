@@ -5,6 +5,29 @@
 > 当前开发交付版本：Signal Desk `0.1.11` / 浏览器连接器 `0.1.6`  
 > 用途：记录 Signal Desk 当前真实状态、结构化采集架构决策与 `0.2` 高稳定性优化实施方案，供下一窗口从设计冻结点继续。
 
+## 0.-9 2026-09-24 R8 T1 隔离真实发现
+
+> 路线纠正：下列“第三次尚待开始”等文字为当时的历史快照。第三、四、五次 run 后来均已完成，五次 T1 全部为 `T1_BLOCKED`。第五次已观察到 following、works、detail、comment 四类目标响应，但逐页执行、uid/sec_uid 混同及全局 Observer issue 门暴露设计错误。旧 T1 启动脚本已停用，后续按 [`R8 采集路线纠正`](docs/architecture/r8-acquisition-route-correction-2026-09-24.md) 做离线重构，再以新独立 run 验证；不重复要求用户加载一批调试扩展。
+
+- 用户已明确授权开始 R8。只在系统临时目录的独立 run 中做真实 endpoint/schema 发现；正式 SQLite、历史任务、生产同步能力门、媒体/ASR/OCR 与云调用均未触碰。
+- 首次 run `r8-t1-20260924-154922-634-c815c794` 判定 `T1_BLOCKED`：仅观察到 works 列表，following/detail 缺失；旧页面触发器未打开关注关系弹窗。
+- 第二次 run `r8-t1-20260924-160320-747-bf1e24fe` 判定 `T1_BLOCKED`：实际观察到 following、works、detail；评论正式路径 `SCHEMA_CHANGED`，`/aweme/v1/web/solution/resource/list/` 与 `/aweme/v1/web/im/spotlight/relation/` 被当前泛化 schema 误分类，所有 bridge preview 因 Observer issue 失败关闭。公开作品作者 ID 与观察的 creator ID 一致，但这不足以形成验收结果。
+- 两次 run 均原样保留，controller 已一次性退出；无原始响应、完整 query URL、Cookie、Authorization、签名或 token 值落盘。
+- 第三次独立 T1 run `r8-t1-20260924-161104-712-a5f90b00` 已准备。R8 专用 Observer 模式只允许评论固定字段类型/存在性提纲，不记录任何字段值或未知字段名；离线泄漏与前置门测试已通过。该 run 尚待用户在当前 Chrome 加载隔离扩展并点击开始。
+- T1 仍阻断，T2-shadow 与 T3-acceptance 尚未开始。`STRUCTURED_SYNC_AVAILABLE=false`。
+
+## 0.-8 2026-09-07 正式 migration、R7 与 Observer v2 bridge
+
+本节覆盖下方仍写着“正式库未迁移”“R7 未授权”或“生产连接器尚未桥接”的历史状态。
+
+- 基线提交 `4069d02` 已纯 Git 推送到 `origin/main`，没有为推送启动应用或迁移数据库。
+- 正式 `%APPDATA%\Signal Desk` 已在独立授权下先完整备份，再从 `user_version=4` 迁移到 `5`。通过备份源/副本逐文件清单、迁移前只读检查、迁移后 `quick_check=ok`、外键违规 0，以及 27 张既有表按旧列投影的行数与内容 SHA-256 不变核验；没有恢复、调度或删除任务。
+- 通过备份目录为 `%APPDATA%\Signal Desk Backups\pre-r6-migration-20260907-230817-256-8b451d34`：128 个文件、15,957,688 字节，组合 SHA-256 `379305BC0DF61159B173DC83E727822B4926CCDC63BA9AA7990B98F36F4FEFDB`。更早一次完整备份在只读 preflight 后因仅 `signal-desk.sqlite-shm` 变化而安全中止，migration 未开始；该备份同样保留。
+- R7 离线合同工作包已完成：媒体、faster-whisper/whisper.cpp、PaddleOCR、evidence map、claim/evidence/verdict、外部调用授权和费用闸门 schema，配套合成 fixture、内存 benchmark 与 UI 状态。没有下载媒体、启动 ASR/OCR 或发起云调用。
+- 生产连接器已实现 Network Observer 白名单投影到 v2 following/works/comments/replies business envelope 的离线桥接，并新增 `check:r8-prerequisites` 作为 `npm run check` 第一关。bridge 对 Observer issue、投影 hash、分页闭合、目标身份与作品独立详情观察失败关闭。
+- 完整 `npm run check` 通过：R8 前置门 5 项、Vitest 17 个文件 / 199 项、Python worker 2 项、Network Observer 8 项、冻结 Phase B 15 项、Native Host/manifest、连接器 content/background、TypeScript 与 Electron 生产构建全部通过。
+- `STRUCTURED_SYNC_AVAILABLE` 仍为 `false`；本轮没有启动 R8、真实页面验证或采集。R8/T1/T2/T3 仍须用户另行明确批准，且只能输出到新的隔离目录，不写正式 SQLite。
+
 ## 0.-7 2026-09-07 R0～R5 PASS 补录、R6 授权与项目边界纠正
 
 本节是当前最高优先级事实，覆盖下文所有仍把“R0～R5 联合离线人工验收”写成待办、或把 R6 写成未授权/未开始的历史文字。

@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "Signal Desk R8 T2 六作品隔离验证（自动运行）",
+  "version": "0.8.4",
+  "description": "仅在已授权的 R8 T2 隔离目录中采集 6 个公开作品。",
+  "permissions": ["tabs", "storage", "debugger"],
+  "host_permissions": ["https://www.douyin.com/*", "http://127.0.0.1/*"],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "content_scripts": [{
+    "matches": ["https://www.douyin.com/*"],
+    "js": ["r8-trigger.js"],
+    "run_at": "document_idle"
+  }],
+  "action": { "default_title": "Signal Desk R8 T2", "default_popup": "popup.html" },
+  "minimum_chrome_version": "120"
+}

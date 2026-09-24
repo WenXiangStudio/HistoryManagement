@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "Signal Desk R8 隔离验证器",
+  "version": "0.8.0",
+  "description": "只用于获批的 R8 隔离真实验证；不连接正式 Signal Desk 数据库。",
+  "permissions": ["tabs", "storage", "debugger"],
+  "host_permissions": [
+    "https://www.douyin.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.douyin.com/*"],
+      "js": ["content.js", "r8-trigger.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Signal Desk R8 T1",
+    "default_popup": "popup.html"
+  },
+  "minimum_chrome_version": "120"
+}

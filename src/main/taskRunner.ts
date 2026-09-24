@@ -1,6 +1,6 @@
 import type { BrowserCollectionEnvelope, BrowserEventReceipt, SampleSyncOptions } from '../shared/contracts'
 import { STRUCTURED_SYNC_AVAILABLE } from '../shared/featureFlags'
-import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema } from '../shared/platformAdapter'
+import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema, douyinFollowingStructuredProofV3Schema } from '../shared/platformAdapter'
 import { COMMENT_ACQUISITION_ADAPTER_VERSION } from '../shared/commentAcquisition'
 import { acceptStructuredWorkCandidate, assertWorkAuthorProofForPersistence, assertWorkDetailVerificationForPersistence, STRUCTURED_ACQUISITION_ADAPTER_VERSION } from '../shared/structuredAcquisition'
 import type { AppDatabase, CollectionJobIdentity } from './database'
@@ -427,6 +427,7 @@ function limitEnvelope(envelope: BrowserCollectionEnvelope, kind: string, scope:
       ...envelope,
       items,
       sourceProof: envelope.sourceProof?.contract === 'douyin-following-structured-proof/v2'
+        || envelope.sourceProof?.contract === 'douyin-following-structured-proof/v3'
         ? envelope.sourceProof
         : undefined,
       ...(limited ? { completeness: 'partial' as const, hasMore: true, reason: `桌面端小样本硬上限：${scope.creatorLimit} 位博主` } : {})
@@ -519,10 +520,12 @@ export function validateEnvelopeForJob(
     if (candidateProof?.contract === 'douyin-following-source-proof/v1') {
       throw new Error('DOM_ONLY_SOURCE_REJECTED:旧 DOM 关注弹窗证明不能作为正式关注事实来源')
     }
-    if (!candidateProof || candidateProof.contract !== 'douyin-following-structured-proof/v2') {
+    if (!candidateProof || !['douyin-following-structured-proof/v2', 'douyin-following-structured-proof/v3'].includes(candidateProof.contract)) {
       throw new Error('DOM_ONLY_SOURCE_REJECTED:缺少结构化本人关注列表来源证明')
     }
-    const proofResult = douyinFollowingStructuredProofSchema.safeParse(candidateProof)
+    const proofResult = candidateProof.contract === 'douyin-following-structured-proof/v3'
+      ? douyinFollowingStructuredProofV3Schema.safeParse(candidateProof)
+      : douyinFollowingStructuredProofSchema.safeParse(candidateProof)
     if (!proofResult.success) throw new Error(`结构化关注证明无效：${proofResult.error.issues[0]?.message ?? 'schema mismatch'}`)
     const proof = proofResult.data
     assertProofAdapterIdentity(proof, payload)
@@ -552,9 +555,12 @@ export function validateEnvelopeForJob(
     ) {
       throw new Error('来源证明与博主清单不一致')
     }
-    for (const creator of creators) {
+    for (const [index, creator] of creators.entries()) {
       if (creator.isFollowing !== true) throw new Error('博主缺少明确的关注关系')
-      requireProfileUrl(creator.profileUrl, creator.creatorId)
+      const routeCreatorId = proof.contract === 'douyin-following-structured-proof/v3'
+        ? proof.creatorIdentityBindings[index]?.secCreatorId : creator.creatorId
+      if (!routeCreatorId) throw new Error('关注博主缺少 sec_uid 主页绑定')
+      requireProfileUrl(creator.profileUrl, routeCreatorId)
     }
     if (creators.length === 0) {
       if (proof.reportedTotal !== 0 || proof.hasMore || envelope.completeness !== 'complete') {

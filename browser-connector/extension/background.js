@@ -105,6 +105,8 @@ async function executeCommand(command) {
   const { NetworkObserver } = await import('./network-observer.js')
   const observer = new NetworkObserver({ debuggerApi: chrome.debugger })
   let tab
+  let legacyEnvelope
+  let snapshot
   try {
     tab = await openOrReuseTab(targetUrl, {
       beforeNavigation: async (tabId) => await observer.attach(tabId)
@@ -113,14 +115,30 @@ async function executeCommand(command) {
     try {
       const result = await chrome.tabs.sendMessage(tab.id, { type: 'signaldesk.collect', command })
       if (!result?.ok) throw new Error(result?.error || '页面采集失败')
-      return result.envelope
+      legacyEnvelope = result.envelope
+      if (command.action === 'collect_creator_works') await observeWorkDetails(tab.id, legacyEnvelope)
     } catch (error) {
       throw new Error(`无法读取抖音页面，请刷新页面或重新登录：${String(error)}`)
     }
   } finally {
-    // R2 only establishes the bounded observer. R3-R5 will bind its safe
-    // projections into operation-specific envelopes; raw bodies are already gone.
-    await observer.stop()
+    snapshot = await observer.stop()
+  }
+  const { buildV2BusinessEnvelope } = await import('./production-envelope-bridge.js')
+  return await buildV2BusinessEnvelope(command, legacyEnvelope, snapshot)
+}
+
+async function observeWorkDetails(tabId, legacyEnvelope) {
+  const works = Array.isArray(legacyEnvelope?.items)
+    ? legacyEnvelope.items.filter((item) => item?.entityType === 'work')
+    : []
+  for (const work of works) {
+    const url = new URL(String(work.sourceUrl || ''))
+    const match = url.pathname.replace(/\/+$/, '').match(/^\/(?:video|note)\/([^/]+)$/)
+    if (url.origin !== 'https://www.douyin.com' || !match || decodeURIComponent(match[1]) !== String(work.workId)) {
+      throw new Error('作品详情观察目标与页面候选不一致')
+    }
+    await chrome.tabs.update(tabId, { url: `${url.origin}${url.pathname}`, active: false })
+    await waitForTab(tabId, 45_000)
   }
 }
 

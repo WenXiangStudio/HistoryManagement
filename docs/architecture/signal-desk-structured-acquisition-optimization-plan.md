@@ -1,7 +1,7 @@
 # Signal Desk 结构化采集与理解可执行优化方案
 
 > 版本：规划基线 `2026-09-05`  
-> 状态：用户确认 `R0～R5` 联合离线人工验收此前已签署 `PASS`；`R6` 已于 2026-09-07 获明确授权并完成离线实现与临时测试库验证；`R7～R8` 未获授权，尚未开始新的真实采集或正式用户库迁移
+> 状态：`R0～R7` 已完成离线实现；R6 正式用户库已于 2026-09-07 在完整备份后迁移到 schema v5。`R8` 于 2026-09-24 获授权；五次独立 T1 均为 `T1_BLOCKED`。现有逐页桥接路线已停用，改按 [`R8 采集路线纠正`](r8-acquisition-route-correction-2026-09-24.md) 实施会话内批量结构化采集。生产同步能力门仍关闭，T2/T3 未开始。
 > 社区证据库：[`signal-desk-community-validated-routes-2026-09-05.md`](../research/signal-desk-community-validated-routes-2026-09-05.md)
 
 ## 1. 要解决的真实问题
@@ -393,19 +393,23 @@ trace 只保存 route、非敏感失败类、次数、耗时、schema fingerprin
 - comment envelope 中的 work item 只作为写前 ID/作者绑定，不进入通用 work upsert；评论 proof 未覆盖的标题、描述或指标不能借评论任务覆盖既有作品数据。
 - 生产主进程和 renderer 默认硬禁用“小样本同步”；只有 v2 connector bridge 完成后修改共享能力门，测试环境才可显式启用 R6 调度路径。
 
-退出条件：已由离线自动测试覆盖。没有触碰八个历史阻断任务；旧 completed 范围不阻碍新范围；任何来源证明或 adapter/scope identity 失败都在数据库写入前被拒绝。正式用户数据库仍未执行迁移，生产连接器仍未生成 v2 业务 envelope。
+退出条件：已由离线自动测试覆盖。没有恢复八个历史阻断任务；旧 completed 范围不阻碍新范围；任何来源证明或 adapter/scope identity 失败都在数据库写入前被拒绝。正式用户数据库已在完整备份、只读前检、仅 migration 写入和只读后检下从 v4 无损升级到 v5；27 张既有表按迁移前列投影的行数与内容 hash 保持不变。
 
 离线验证：`npm run check` 通过；其中 Vitest 为 14 个文件 / 181 项，Python worker 2 项，Network Observer 8 项，冻结 Phase B 15 项，Native Host、连接器协议和 Electron 生产构建均通过。`npm run package` 与 packaged-renderer 冒烟通过，生产包确认同步入口和主进程都失败关闭；生产依赖高危漏洞审计为 0。
 
 ### R7：媒体、ASR/OCR、总结和事实核验合同
 
-本阶段先实现合同、fixture、benchmark harness 和 UI 状态，不自动下载媒体或调用云服务。建立 faster-whisper/whisper.cpp、PaddleOCR、evidence map 和 claim/evidence/verdict schema。
+状态：已完成（2026-09-07，仅合同、合成 fixture、内存 benchmark 和 UI 状态）。没有下载媒体、启动 ASR/OCR 或调用云服务。
+
+已建立 faster-whisper/whisper.cpp、PaddleOCR、media artifact、evidence map、claim/evidence/verdict、外部调用授权与费用闸门 schema。provider 失败或 unavailable 必须返回空结果；低置信 OCR 必须待复核；evidence map 拒绝悬空、重复与跨作品引用；事实主张无外部证据时必须 `insufficient-evidence`，非事实主张必须 `not-a-factual-claim`。
+
+本阶段只实现合同、fixture、benchmark harness 和 UI 状态，不自动下载媒体或调用云服务。
 
 退出条件：provider 失败不会生成伪结果；每个总结点可追溯；事实核验无证据会 abstain；外部调用仍受授权和费用闸门控制。
 
 ### R8：隔离真实验证与正式上线门禁
 
-R8 必须由用户另行确认开始；输出只进新的隔离目录，不写正式 SQLite。
+R8 已由用户于 2026-09-24 明确授权开始；输出只进新的隔离目录，不写正式 SQLite。五次独立 T1 run 均为 `T1_BLOCKED`，报告原样保留。第五次实际观察到 following、works、detail 和 comment 四类响应，也暴露了当前桥接的身份命名空间、逐页执行和全局 issue 归属错误。现有 T1 启动入口已停用；后续按 [`R8 采集路线纠正`](r8-acquisition-route-correction-2026-09-24.md) 实现。T1 未重新完成前不进入 T2。
 
 验证分三级：
 
@@ -475,4 +479,4 @@ run/<run-id>/
 
 推荐按 `R0 → R1 → R2 → R3 → R4 → R5 → R6 → R7 → R8` 执行，不并行触碰真实平台。`R0～R7` 可以全部用源码、合成 fixture、临时测试库和浏览器事件模拟完成；到 `R8` 才需要真实页面验证。
 
-当前交付已完成 `R0～R6` 的离线实现与合成/模拟测试。用户在 2026-09-07 明确纠正记录：R0～R5 联合离线人工验收此前已经签署 `PASS`；同日明确授权进入 R6。R6 只在源码、内存/临时测试数据库与模拟任务事件中实施和验证，没有执行新采集、没有打开或迁移正式用户数据库、没有恢复历史任务。`0.2.3/0.2.4` 已永久退役并由代码硬禁用，也不得进入真实 `R8/T1/T2/T3`。生产连接器尚未把 R2 Observer 投影转换为业务 envelope，因此不能把本轮测试视为 E3/E4 或真实平台验收。下一授权点为 R7；R8 仍必须另行明确批准。
+当前交付已完成 `R0～R7` 的离线实现与合成/模拟测试。R6 正式数据库已在独立授权、完整备份和严格前后核验下从 schema v4 无损迁移到 v5，没有恢复或调度历史任务。R8 已获授权并完成五次隔离 T1 诊断，均未通过；`npm run check:r8-prerequisites` 现对已知的 uid/sec_uid 混同、逐作品 DOM 导航和全局 Observer issue 阻断失败关闭。`STRUCTURED_SYNC_AVAILABLE` 继续为 `false`，`0.2.3/0.2.4` 继续永久硬禁用。新路线须先完成离线回归，再生成独立的 T1 run；T2/T3 尚未开始。

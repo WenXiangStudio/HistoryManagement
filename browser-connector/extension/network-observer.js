@@ -36,7 +36,7 @@ export const NETWORK_ROUTE_DEFINITIONS = Object.freeze([
 ])
 
 const SAFE_PARAMETERS = Object.freeze({
-  'following-list': new Set(['aid', 'channel', 'count', 'cursor', 'device_platform', 'max_cursor', 'min_cursor', 'sec_user_id']),
+  'following-list': new Set(['aid', 'channel', 'count', 'cursor', 'device_platform', 'max_cursor', 'min_cursor', 'offset', 'min_time', 'max_time', 'sec_user_id']),
   'creator-work-list': new Set(['aid', 'channel', 'count', 'cursor', 'device_platform', 'max_cursor', 'min_cursor', 'sec_user_id']),
   'work-detail': new Set(['aid', 'aweme_id', 'channel', 'device_platform', 'item_id']),
   'comment-list': new Set(['aid', 'aweme_id', 'channel', 'count', 'cursor', 'device_platform']),
@@ -108,7 +108,7 @@ function validComment(entry) {
 
 function hasReplyRelationship(entry) {
   return isRecord(entry) && [entry.reply_id, entry.reply_to_comment_id, entry.root_comment_id, entry.parent_comment_id]
-    .some((value) => typeof value === 'string' && value.length > 0)
+    .some((value) => typeof value === 'string' && value.length > 0 && value !== '0')
 }
 
 function isReplySchema(payload) {
@@ -236,11 +236,15 @@ export async function projectionSha256(projection, cryptoImplementation = global
 
 function paginationProjection(payload) {
   const root = platformPayload(payload)
-  const cursor = root?.cursor ?? root?.max_cursor ?? null
-  const hasMoreValue = root?.has_more ?? root?.hasMore ?? false
+  const cursorFields = ['cursor', 'max_cursor', 'offset', 'min_time', 'max_time']
+  const cursorField = cursorFields.find((name) => root?.[name] !== null && root?.[name] !== undefined) ?? null
+  const cursor = cursorField === null ? null : root[cursorField]
+  const hasMoreValue = root?.has_more ?? root?.hasMore
   const total = root?.total ?? root?.total_count ?? null
   return {
+    cursorField,
     cursorOut: cursor === null || cursor === undefined ? null : String(cursor),
+    paginationKnown: hasMoreValue === true || hasMoreValue === false || hasMoreValue === 0 || hasMoreValue === 1,
     hasMore: hasMoreValue === true || hasMoreValue === 1,
     reportedTotal: Number.isSafeInteger(total) && total >= 0 ? total : null
   }
@@ -276,7 +280,8 @@ function projectFollowing(payload) {
       creatorId: nativeId(entry, ['uid', 'sec_uid']),
       secCreatorId: nativeId(entry, ['sec_uid']),
       nickname: typeof entry.nickname === 'string' ? entry.nickname.slice(0, 200) : '',
-      isFollowing: entry.is_following === true || entry.is_following === 1 || entry.follow_status === 1
+      isFollowing: entry.is_following === true || entry.is_following === 1
+        || entry.follow_status === 1 || entry.follow_status === 2
     }))
   }
 }
@@ -287,6 +292,13 @@ function workType(value) {
 
 function projectedWork(entry, sourcePrefix) {
   const authorIdField = nativeId(entry.author, ['uid']) ? 'uid' : 'sec_uid'
+  const createdAt = Number(entry?.create_time)
+  const publishedAt = Number.isSafeInteger(createdAt) && createdAt > 0
+    ? new Date(createdAt * 1_000).toISOString() : null
+  const description = typeof entry?.desc === 'string' ? entry.desc.slice(0, 4_000) : ''
+  const title = typeof entry?.title === 'string' && entry.title.trim()
+    ? entry.title.slice(0, 300) : description.split(/\r?\n/, 1)[0].slice(0, 300)
+  const rawDuration = entry?.video?.duration ?? entry?.duration
   return {
     workId: nativeId(entry, ['aweme_id']),
     workIdKind: 'native-aweme-id',
@@ -294,6 +306,10 @@ function projectedWork(entry, sourcePrefix) {
     ...authorProjection(entry.author),
     authorIdSourcePath: `${sourcePrefix}.author.${authorIdField}`,
     workType: workType(entry),
+    title,
+    description,
+    publishedAt,
+    durationMs: Number.isSafeInteger(rawDuration) && rawDuration >= 0 ? rawDuration : null,
     statistics: publicStatistics(entry)
   }
 }
@@ -318,18 +334,37 @@ function projectWorkDetail(payload) {
 }
 
 function projectedComment(entry, endpointKind) {
+  const relationshipId = (value) => value === undefined || value === null || value === '' || value === '0' || value === 0
+    ? null
+    : nativeId({ value }, ['value'])
+  const publishedAt = Number.isSafeInteger(Number(entry?.create_time)) && Number(entry.create_time) >= 0
+    ? new Date(Number(entry.create_time) * 1_000).toISOString()
+    : null
+  const replyToId = relationshipId(entry.reply_to_comment_id)
+  const parentId = relationshipId(entry.parent_comment_id)
+  const explicitRootId = relationshipId(entry.root_comment_id)
+  const replyId = relationshipId(entry.reply_id)
   return {
     commentId: nativeId(entry, ['cid']),
     commentIdKind: 'native-cid',
     commentIdSourcePath: 'comments[].cid',
     workId: nativeId(entry, ['aweme_id']),
     workIdSourcePath: 'comments[].aweme_id',
-    parentCommentId: nativeId(entry, ['reply_to_comment_id', 'parent_comment_id']),
-    rootCommentId: nativeId(entry, ['root_comment_id', 'reply_id']),
+    parentCommentId: replyToId ?? parentId,
+    rootCommentId: explicitRootId ?? replyId,
+    parentCommentIdSourceField: replyToId ? 'reply_to_comment_id' : parentId ? 'parent_comment_id' : null,
+    rootCommentIdSourceField: explicitRootId ? 'root_comment_id' : replyId ? 'reply_id' : null,
+    relationshipFieldConflict: Boolean((replyToId && parentId && replyToId !== parentId)
+      || (explicitRootId && replyId && explicitRootId !== replyId)),
     endpointKind,
     publicAuthorId: nativeId(entry?.user, ['uid', 'sec_uid']),
+    publicAuthorName: typeof entry?.user?.nickname === 'string' ? entry.user.nickname.slice(0, 200) : '',
     body: typeof entry?.text === 'string' ? entry.text.slice(0, 4_000) : '',
-    likeCount: Number.isSafeInteger(entry?.digg_count) && entry.digg_count >= 0 ? entry.digg_count : null
+    likeCount: Number.isSafeInteger(entry?.digg_count) && entry.digg_count >= 0 ? entry.digg_count : null,
+    replyCount: Number.isSafeInteger(entry?.reply_comment_total) && entry.reply_comment_total >= 0
+      ? entry.reply_comment_total
+      : null,
+    publishedAt
   }
 }
 
@@ -419,8 +454,79 @@ function issue(code, input = {}) {
     endpointKind: input.endpointKind ?? null,
     schemaFingerprint: input.schemaFingerprint ?? null,
     pathSha256: input.pathSha256 ?? null,
-    occurredAt: input.occurredAt
+    occurredAt: input.occurredAt,
+    ...(input.discoveryPathname ? { discoveryPathname: input.discoveryPathname } : {}),
+    ...(input.discoverySchemaOutline ? { discoverySchemaOutline: input.discoverySchemaOutline } : {})
   }
+}
+
+function discoverySchemaOutline(payload) {
+  const root = platformPayload(payload)
+  const comments = Array.isArray(root?.comments) ? root.comments : null
+  const first = comments?.find((entry) => isRecord(entry)) ?? null
+  const user = isRecord(first?.user) ? first.user : null
+  const fieldType = (value) => value === undefined ? 'missing' : schemaType(value)
+  const relationshipClass = (value, cid) => {
+    if (value === undefined || value === null) return 'missing'
+    if (value === '' || value === '0' || value === 0) return 'empty-or-zero'
+    if (typeof value !== 'string') return 'other-type'
+    return typeof cid === 'string' && value === cid ? 'self-cid' : 'other-id'
+  }
+  const relationshipClasses = (key) => [...new Set((comments ?? []).map((entry) => relationshipClass(entry?.[key], entry?.cid)))].sort()
+  const statusCode = payload?.status_code ?? root?.status_code
+  return {
+    wrapper: isRecord(payload?.data) ? 'data' : 'root',
+    statusCodeClass: statusCode === 0 ? 'zero' : typeof statusCode === 'number' ? 'nonzero' : 'missing-or-other',
+    comments: fieldType(root?.comments),
+    commentList: fieldType(root?.comment_list),
+    commentListCamel: fieldType(root?.commentList),
+    commentCountClass: comments === null ? 'not-array' : comments.length === 0 ? 'empty' : 'nonempty',
+    cursor: fieldType(root?.cursor),
+    hasMore: fieldType(root?.has_more),
+    total: fieldType(root?.total),
+    firstComment: {
+      cid: fieldType(first?.cid),
+      awemeId: fieldType(first?.aweme_id),
+      text: fieldType(first?.text),
+      user: fieldType(first?.user),
+      userUid: fieldType(user?.uid),
+      userSecUid: fieldType(user?.sec_uid),
+      replyId: fieldType(first?.reply_id),
+      rootCommentId: fieldType(first?.root_comment_id)
+    },
+    relationshipClasses: {
+      replyId: relationshipClasses('reply_id'),
+      replyToCommentId: relationshipClasses('reply_to_comment_id'),
+      rootCommentId: relationshipClasses('root_comment_id'),
+      parentCommentId: relationshipClasses('parent_comment_id')
+    }
+  }
+}
+
+function discoveryPaginationOutline(payload) {
+  const root = platformPayload(payload)
+  const fieldType = (value) => value === undefined ? 'missing' : schemaType(value)
+  return {
+    cursor: fieldType(root?.cursor),
+    maxCursor: fieldType(root?.max_cursor),
+    minCursor: fieldType(root?.min_cursor),
+    nextCursor: fieldType(root?.next_cursor),
+    offset: fieldType(root?.offset),
+    minTime: fieldType(root?.min_time),
+    maxTime: fieldType(root?.max_time),
+    hasMore: fieldType(root?.has_more),
+    total: fieldType(root?.total),
+    totalCount: fieldType(root?.total_count)
+  }
+}
+
+function safeDiscoveryPathname(url) {
+  const pathname = url?.pathname
+  return typeof pathname === 'string'
+    && /^\/aweme\/[A-Za-z0-9._~!$&'()*+,;=:@%\/-]{1,503}$/.test(pathname)
+    && pathname.length <= 512
+    ? pathname
+    : null
 }
 
 export class NetworkObserver {
@@ -429,7 +535,8 @@ export class NetworkObserver {
     maxBufferedResponses = DEFAULT_MAX_BUFFERED_RESPONSES,
     maxBodyBytes = DEFAULT_MAX_BODY_BYTES,
     now = () => new Date(),
-    cryptoImplementation = globalThis.crypto
+    cryptoImplementation = globalThis.crypto,
+    includeSafeDiscoveryPathnames = false
   }) {
     if (!debuggerApi?.attach || !debuggerApi?.sendCommand || !debuggerApi?.detach || !debuggerApi?.onEvent) {
       throw new Error('A chrome.debugger-compatible API is required')
@@ -445,6 +552,8 @@ export class NetworkObserver {
     this.maxBodyBytes = maxBodyBytes
     this.now = now
     this.cryptoImplementation = cryptoImplementation
+    if (typeof includeSafeDiscoveryPathnames !== 'boolean') throw new Error('includeSafeDiscoveryPathnames must be boolean')
+    this.includeSafeDiscoveryPathnames = includeSafeDiscoveryPathnames
     this.tabId = null
     this.attached = false
     this.requestMetadata = new Map()
@@ -455,9 +564,13 @@ export class NetworkObserver {
     this.bufferLimitReported = false
     this.listener = (source, method, params) => {
       if (source?.tabId !== this.tabId) return
-      const task = this.handleEvent(method, params)
+      const task = this.handleEvent(method, params).catch(() => {
+        // CDP events are observational. A late response-body failure must not
+        // terminate the extension worker or disappear as an unhandled promise.
+        this.recordIssue(issue('OBSERVER_EVENT_FAILED', { occurredAt: this.now().toISOString() }))
+      })
       this.tasks.add(task)
-      void task.finally(() => this.tasks.delete(task))
+      void task.then(() => this.tasks.delete(task))
     }
   }
 
@@ -505,6 +618,22 @@ export class NetworkObserver {
     this.issues.push(value)
   }
 
+  async responseTooLargeIssue(metadata) {
+    const pathDefinition = metadata.pathDefinition ?? classifyPath(metadata.url?.pathname ?? '')
+    const discoveryPathname = this.includeSafeDiscoveryPathnames && !pathDefinition
+      ? safeDiscoveryPathname(metadata.url)
+      : null
+    return issue('RESPONSE_TOO_LARGE', {
+      routeId: pathDefinition?.routeId,
+      endpointKind: pathDefinition?.endpointKind,
+      ...(discoveryPathname ? {
+        discoveryPathname,
+        pathSha256: await sha256Hex(discoveryPathname, this.cryptoImplementation)
+      } : {}),
+      occurredAt: this.now().toISOString()
+    })
+  }
+
   async handleEvent(method, params = {}) {
     if (!this.attached) return
     if (method === 'Network.requestWillBeSent') {
@@ -543,11 +672,7 @@ export class NetworkObserver {
       }
       const contentLength = declaredContentLength(response)
       if (contentLength !== null && contentLength > this.maxBodyBytes) {
-        this.recordIssue(issue('RESPONSE_TOO_LARGE', {
-          routeId: pathDefinition?.routeId,
-          endpointKind: pathDefinition?.endpointKind,
-          occurredAt: this.now().toISOString()
-        }))
+        this.recordIssue(await this.responseTooLargeIssue({ ...request, pathDefinition }))
         this.requestMetadata.delete(params.requestId)
         return
       }
@@ -572,11 +697,7 @@ export class NetworkObserver {
     this.responseMetadata.delete(params.requestId)
     this.requestMetadata.delete(params.requestId)
     if (Number(params.encodedDataLength) > this.maxBodyBytes) {
-      this.recordIssue(issue('RESPONSE_TOO_LARGE', {
-        routeId: metadata.pathDefinition?.routeId,
-        endpointKind: metadata.pathDefinition?.endpointKind,
-        occurredAt: this.now().toISOString()
-      }))
+      this.recordIssue(await this.responseTooLargeIssue(metadata))
       return
     }
     await this.consumeBody(params.requestId, metadata)
@@ -585,14 +706,22 @@ export class NetworkObserver {
   async consumeBody(requestId, metadata) {
     let rawBody = null
     try {
-      const responseBody = await this.debuggerApi.sendCommand({ tabId: this.tabId }, 'Network.getResponseBody', { requestId })
-      rawBody = decodeResponseBody(responseBody)
-      if (new TextEncoder().encode(rawBody).byteLength > this.maxBodyBytes) {
-        this.recordIssue(issue('RESPONSE_TOO_LARGE', {
+      let responseBody
+      try {
+        responseBody = await this.debuggerApi.sendCommand({ tabId: this.tabId }, 'Network.getResponseBody', { requestId })
+      } catch (error) {
+        const evicted = Number(error?.code) === -32000
+          && /evicted from inspector cache/i.test(String(error?.message ?? ''))
+        this.recordIssue(issue(evicted ? 'RESPONSE_BODY_EVICTED' : 'RESPONSE_BODY_UNAVAILABLE', {
           routeId: metadata.pathDefinition?.routeId,
           endpointKind: metadata.pathDefinition?.endpointKind,
           occurredAt: this.now().toISOString()
         }))
+        return
+      }
+      rawBody = decodeResponseBody(responseBody)
+      if (new TextEncoder().encode(rawBody).byteLength > this.maxBodyBytes) {
+        this.recordIssue(await this.responseTooLargeIssue(metadata))
         return
       }
       let payload
@@ -615,16 +744,27 @@ export class NetworkObserver {
           routeId: classification.routeId,
           endpointKind: classification.endpointKind,
           schemaFingerprint: fingerprint,
+          ...(this.includeSafeDiscoveryPathnames && classification.endpointKind === 'comment-list'
+            ? { discoverySchemaOutline: discoverySchemaOutline(payload) }
+            : {}),
           occurredAt: this.now().toISOString()
         }))
         return
       }
       if (classification.disposition === 'unrecognized-path') {
+        const discoveryPathname = this.includeSafeDiscoveryPathnames
+          && metadata.url.pathname.startsWith('/')
+          && !metadata.url.pathname.includes('?')
+          && !metadata.url.pathname.includes('#')
+          && metadata.url.pathname.length <= 512
+          ? metadata.url.pathname
+          : null
         this.recordIssue(issue('UNRECOGNIZED_PATH_WITH_KNOWN_SCHEMA', {
           routeId: classification.routeId,
           endpointKind: classification.endpointKind,
           schemaFingerprint: fingerprint,
           pathSha256: await sha256Hex(metadata.url.pathname, this.cryptoImplementation),
+          discoveryPathname,
           occurredAt: this.now().toISOString()
         }))
         return
@@ -644,6 +784,9 @@ export class NetworkObserver {
         schemaFingerprint: fingerprint,
         responseProjectionSha256: projectionHash,
         projection,
+        ...(this.includeSafeDiscoveryPathnames && ['following-list', 'creator-work-list', 'comment-list', 'comment-reply-list'].includes(classification.endpointKind)
+          ? { discoveryPaginationOutline: discoveryPaginationOutline(payload) }
+          : {}),
         observedAt: this.now().toISOString()
       })
     } finally {
@@ -675,5 +818,22 @@ export class NetworkObserver {
       this.bufferLimitReported = false
       return snapshot
     }
+  }
+
+  async snapshot() {
+    if (!this.attached || this.tabId === null) throw new Error('Network Observer is not attached')
+    await Promise.allSettled([...this.tasks])
+    return {
+      observations: structuredClone(this.observations),
+      issues: structuredClone(this.issues)
+    }
+  }
+
+  async pauseCapture() {
+    if (!this.attached || this.tabId === null) throw new Error('Network Observer is not attached')
+    this.debuggerApi.onEvent.removeListener(this.listener)
+    await Promise.allSettled([...this.tasks])
+    this.requestMetadata.clear()
+    this.responseMetadata.clear()
   }
 }

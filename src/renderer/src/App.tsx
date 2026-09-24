@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type JSX, type ReactNode } from 'react'
 import type { AppSettings, CreatorListItem, DashboardSummary, DemoDataSummary, InboxItem, SampleSyncOptions } from '../../shared/contracts'
 import { STRUCTURED_SYNC_AVAILABLE } from '../../shared/featureFlags'
+import { R7_CONTRACT_ONLY_UI_STATE } from '../../shared/r7EvidenceContracts'
 
 type Route = 'inbox' | 'creators' | 'jobs' | 'settings'
 type Job = {
@@ -403,6 +404,15 @@ function SettingsPage({ settings, onSave, onEstimate, onConnector, workerStatus,
           {workerStatus && <div className="local-ai-checks"><span className={workerStatus.ffmpeg ? 'ok' : 'missing'}>FFmpeg</span><span className={workerStatus.ffprobe ? 'ok' : 'missing'}>FFprobe</span><span className={(workerStatus.modules as Record<string, unknown> | undefined)?.faster_whisper ? 'ok' : 'missing'}>faster-whisper</span><span className={(workerStatus.modules as Record<string, unknown> | undefined)?.paddleocr ? 'ok' : 'missing'}>PaddleOCR</span></div>}
         </div>
         <div className="settings-actions"><button className="button ghost" onClick={onWorkerCheck} disabled={busy}>检查本地 AI</button><button className="button ghost" onClick={onWorkerSetup} disabled={busy}>安装本地 ASR/OCR</button><button className="button primary" onClick={() => onSave(form)} disabled={busy}>保存本地策略</button></div>
+      </SettingsCard>
+      <SettingsCard icon="check" title="R7 证据合同状态" description="媒体、ASR/OCR、证据映射与事实核验当前仅开放离线合同和合成基准，不会因此自动处理媒体或调用外部服务。">
+        <div className="r7-contract-state" data-external-calls={R7_CONTRACT_ONLY_UI_STATE.externalCallsAllowed ? 'allowed' : 'blocked'}>
+          <div><span>媒体处理</span><strong>合同已就绪</strong><small>未开始下载或解码</small></div>
+          <div><span>ASR / OCR</span><strong>等待显式任务</strong><small>当前未检查 provider</small></div>
+          <div><span>证据映射</span><strong>逐点引用</strong><small>悬空引用会被拒绝</small></div>
+          <div><span>事实核验</span><strong>无证据则弃权</strong><small>外部检索与费用仍锁定</small></div>
+        </div>
+        <div className="r7-boundary-note"><Icon name="check" size={15}/><span>离线基准不会读取媒体、启动浏览器或访问网络；真实外部调用必须同时取得网络与费用批准。</span></div>
       </SettingsCard>
       <SettingsCard icon="trash" title="演示资料管理" description="真实同步前可移除离线演示样本，避免演示内容与真实账号资料混在一起。">
         <div className="demo-cleanup-row"><div><strong>只清除带演示标记的资料</strong><span>执行前会列出准确范围。真实博主、真实作品及其收藏和批注不会受到影响。</span></div><button className="button danger" onClick={onPrepareDemoClear} disabled={busy}><Icon name="trash" size={16}/>查看并清除</button></div>

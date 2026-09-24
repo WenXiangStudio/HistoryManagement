@@ -13,6 +13,9 @@
     "package": "npm run build:native-host && npm run build && electron-builder --dir && npm run test:packaged-renderer",
     "dist:win": "npm run build:native-host && npm run build && electron-builder --win nsis && npm run test:packaged-renderer",
     "test": "vitest run",
+    "test:r7-contracts": "vitest run src/shared/r7EvidenceContracts.test.ts",
+    "check:r8-prerequisites": "vitest run src/main/productionEnvelopeBridge.test.ts && node scripts/check-r8-prerequisites.mjs && npm run test:r8-harness",
+    "test:r8-harness": "node --test poc/r8/test/*.test.mjs",
     "test:watch": "vitest",
     "test:worker": "powershell -ExecutionPolicy Bypass -File scripts/run-worker-tests.ps1",
     "build:native-host": "powershell -ExecutionPolicy Bypass -File browser-connector/build-native-host.ps1",
@@ -24,7 +27,7 @@
     "test:network-observer": "node --test scripts/test-network-observer.mjs",
     "test:phase-b": "node --test poc/phase-b/test/*.test.mjs",
     "test:project-boundaries": "node scripts/test-project-boundaries.mjs",
-    "check": "npm run test:project-boundaries && tsc --noEmit && npm run test && npm run test:worker && npm run test:native-host && npm run test:connector-content && npm run test:connector-background && npm run test:network-observer && npm run test:phase-b && node --check browser-connector/extension/popup.js && npm run build"
+    "check": "npm run check:r8-prerequisites && npm run test:project-boundaries && tsc --noEmit && npm run test && npm run test:worker && npm run test:native-host && npm run test:connector-content && npm run test:connector-background && npm run test:network-observer && npm run test:phase-b && node --check browser-connector/extension/popup.js && npm run build"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.6",

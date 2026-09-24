@@ -1,0 +1,249 @@
+{
+  "artifacts": [
+    {
+      "contract": "media-artifact/v1",
+      "artifactId": "audio-work-1",
+      "workId": "work-1",
+      "kind": "extracted-audio",
+      "contentSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "mimeType": "audio/wav",
+      "byteLength": 32000,
+      "durationMs": 4000,
+      "timeMs": null,
+      "cacheDisposition": "deleted",
+      "createdAt": "2026-09-07T12:00:00.000Z"
+    },
+    {
+      "contract": "media-artifact/v1",
+      "artifactId": "frame-work-1-2000",
+      "workId": "work-1",
+      "kind": "key-frame",
+      "contentSha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mimeType": "image/jpeg",
+      "byteLength": 12000,
+      "durationMs": null,
+      "timeMs": 2000,
+      "cacheDisposition": "scheduled-for-deletion",
+      "createdAt": "2026-09-07T12:00:01.000Z"
+    }
+  ],
+  "mediaResults": [
+    {
+      "contract": "media-processing-result/v1",
+      "resultId": "media-ok-1",
+      "jobId": "job-media-1",
+      "workId": "work-1",
+      "provider": { "id": "ffmpeg", "version": "7.1" },
+      "inputArtifactId": "source-work-1",
+      "startedAt": "2026-09-07T12:00:00.000Z",
+      "finishedAt": "2026-09-07T12:00:01.000Z",
+      "status": "succeeded",
+      "artifactRefs": ["audio-work-1", "frame-work-1-2000"],
+      "warnings": [],
+      "failure": null
+    },
+    {
+      "contract": "media-processing-result/v1",
+      "resultId": "media-failed-1",
+      "jobId": "job-media-2",
+      "workId": "work-2",
+      "provider": { "id": "ffmpeg", "version": "7.1" },
+      "inputArtifactId": "source-work-2",
+      "startedAt": "2026-09-07T12:01:00.000Z",
+      "finishedAt": "2026-09-07T12:01:01.000Z",
+      "status": "failed",
+      "artifactRefs": [],
+      "warnings": [],
+      "failure": { "code": "DECODE_FAILED", "message": "synthetic decode failure", "retryable": false }
+    }
+  ],
+  "asrResults": [
+    {
+      "contract": "asr-result/v1",
+      "resultId": "asr-fast-1",
+      "workId": "work-1",
+      "inputArtifactId": "audio-work-1",
+      "inputSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "provider": { "id": "faster-whisper", "version": "1.1.0", "model": "small", "device": "cpu", "computeType": "int8" },
+      "startedAt": "2026-09-07T12:00:02.000Z",
+      "finishedAt": "2026-09-07T12:00:03.000Z",
+      "warnings": [],
+      "status": "succeeded",
+      "segments": [
+        { "segmentId": "seg-1", "startMs": 0, "endMs": 1900, "text": "合成样本说明产品在本机处理音频。", "language": "zh", "confidence": 0.96 }
+      ],
+      "failure": null
+    },
+    {
+      "contract": "asr-result/v1",
+      "resultId": "asr-cpp-empty-1",
+      "workId": "work-1",
+      "inputArtifactId": "audio-work-1",
+      "inputSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "provider": { "id": "whisper.cpp", "version": "1.7.6", "model": "ggml-small", "device": "cpu" },
+      "startedAt": "2026-09-07T12:00:02.000Z",
+      "finishedAt": "2026-09-07T12:00:03.000Z",
+      "warnings": [],
+      "status": "verified-empty",
+      "segments": [],
+      "emptyReason": "no-speech-detected",
+      "failure": null
+    },
+    {
+      "contract": "asr-result/v1",
+      "resultId": "asr-failed-1",
+      "workId": "work-2",
+      "inputArtifactId": "audio-work-2",
+      "inputSha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc",
+      "provider": { "id": "faster-whisper", "version": "1.1.0", "model": "small", "device": "cpu", "computeType": "int8" },
+      "startedAt": "2026-09-07T12:02:00.000Z",
+      "finishedAt": "2026-09-07T12:02:01.000Z",
+      "warnings": [],
+      "status": "unavailable",
+      "segments": [],
+      "failure": { "code": "PROVIDER_NOT_INSTALLED", "message": "synthetic provider unavailable", "retryable": false }
+    }
+  ],
+  "ocrResults": [
+    {
+      "contract": "ocr-result/v1",
+      "resultId": "ocr-ok-1",
+      "workId": "work-1",
+      "inputFrameArtifactIds": ["frame-work-1-2000"],
+      "provider": { "id": "PaddleOCR", "version": "3.2.0", "language": "ch" },
+      "startedAt": "2026-09-07T12:00:04.000Z",
+      "finishedAt": "2026-09-07T12:00:05.000Z",
+      "warnings": [],
+      "status": "succeeded",
+      "blocks": [
+        {
+          "blockId": "ocr-block-1",
+          "frameArtifactId": "frame-work-1-2000",
+          "frameRef": "frame-0001",
+          "timeMs": 2000,
+          "text": "本机处理",
+          "confidence": 0.93,
+          "polygon": [[10, 20], [100, 20], [100, 50], [10, 50]],
+          "reviewState": "accepted"
+        }
+      ],
+      "failure": null
+    },
+    {
+      "contract": "ocr-result/v1",
+      "resultId": "ocr-failed-1",
+      "workId": "work-2",
+      "inputFrameArtifactIds": ["frame-work-2-1000"],
+      "provider": { "id": "PaddleOCR", "version": "3.2.0", "language": "ch" },
+      "startedAt": "2026-09-07T12:03:00.000Z",
+      "finishedAt": "2026-09-07T12:03:01.000Z",
+      "warnings": [],
+      "status": "failed",
+      "blocks": [],
+      "failure": { "code": "OCR_RUNTIME_FAILED", "message": "synthetic OCR failure", "retryable": true }
+    }
+  ],
+  "evidenceMap": {
+    "contract": "evidence-map/v1",
+    "subjectType": "work",
+    "subjectId": "work-1",
+    "summary": "该合成作品说明音频在本机处理。",
+    "summaryPoints": [
+      {
+        "pointId": "point-1",
+        "text": "作品说明音频在本机处理。",
+        "evidenceIds": ["evidence-transcript-1", "evidence-ocr-1"],
+        "inference": "synthesis",
+        "confidence": 0.91
+      }
+    ],
+    "coreExpression": {
+      "text": "强调本地处理边界。",
+      "evidenceIds": ["evidence-transcript-1"],
+      "confidence": 0.88
+    },
+    "evidence": [
+      {
+        "evidenceId": "evidence-transcript-1",
+        "workId": "work-1",
+        "kind": "transcript",
+        "text": "合成样本说明产品在本机处理音频。",
+        "confidence": 0.96,
+        "capturedAt": "2026-09-07T12:00:03.000Z",
+        "providerResultId": "asr-fast-1",
+        "segmentId": "seg-1",
+        "startMs": 0,
+        "endMs": 1900
+      },
+      {
+        "evidenceId": "evidence-ocr-1",
+        "workId": "work-1",
+        "kind": "ocr",
+        "text": "本机处理",
+        "confidence": 0.93,
+        "capturedAt": "2026-09-07T12:00:05.000Z",
+        "providerResultId": "ocr-ok-1",
+        "blockId": "ocr-block-1",
+        "frameArtifactId": "frame-work-1-2000",
+        "frameRef": "frame-0001",
+        "timeMs": 2000,
+        "reviewState": "accepted"
+      }
+    ],
+    "conflicts": [],
+    "generatedAt": "2026-09-07T12:00:06.000Z",
+    "generator": { "modelId": "synthetic-model", "promptVersion": "evidence-map/v1" }
+  },
+  "verdicts": [
+    {
+      "contract": "claim-evidence-verdict/v1",
+      "claim": {
+        "contract": "claim/v1",
+        "claimId": "claim-1",
+        "subjectId": "work-1",
+        "text": "该产品仅在本机处理音频。",
+        "classification": "factual",
+        "eligibleForVerification": true,
+        "sourceEvidenceIds": ["evidence-transcript-1"],
+        "speaker": null,
+        "observedAt": "2026-09-07T12:00:03.000Z"
+      },
+      "verdict": "insufficient-evidence",
+      "evidence": [],
+      "justification": "离线样本没有独立外部来源，因此弃权。",
+      "confidence": 0.99,
+      "generatedAt": "2026-09-07T12:00:07.000Z",
+      "verifier": { "modelId": "synthetic-verifier", "promptVersion": "claim-verification/v1" }
+    },
+    {
+      "contract": "claim-evidence-verdict/v1",
+      "claim": {
+        "contract": "claim/v1",
+        "claimId": "claim-2",
+        "subjectId": "work-1",
+        "text": "本机媒体处理会在完成证据提取后删除临时原片。",
+        "classification": "factual",
+        "eligibleForVerification": true,
+        "sourceEvidenceIds": ["evidence-transcript-1"],
+        "speaker": null,
+        "observedAt": "2026-09-07T12:00:03.000Z"
+      },
+      "verdict": "supported",
+      "evidence": [
+        {
+          "evidenceId": "external-doc-1",
+          "sourceUrl": "https://docs.example.test/local-media-policy",
+          "sourceTitle": "Synthetic local media policy",
+          "quote": "Temporary source media is deleted after evidence extraction.",
+          "sourcePublishedAt": "2026-09-01T00:00:00.000Z",
+          "retrievedAt": "2026-09-07T12:00:07.000Z",
+          "reliability": 0.9
+        }
+      ],
+      "justification": "合成独立文档明确支持该 claim。",
+      "confidence": 0.9,
+      "generatedAt": "2026-09-07T12:00:07.000Z",
+      "verifier": { "modelId": "synthetic-verifier", "promptVersion": "claim-verification/v1" }
+    }
+  ]
+}

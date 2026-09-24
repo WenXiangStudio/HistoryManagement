@@ -206,6 +206,14 @@ h1 { margin: 0; font-family: Georgia, "Noto Serif SC", serif; font-size: 34px; f
 .local-ai-checks { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 5px; }
 .local-ai-checks span { padding: 4px 7px; border-radius: 10px; background: #f4dfd4; color: #9b5d42; }
 .local-ai-checks span.ok { background: #deebe4; color: #316b58; }
+.r7-contract-state { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }
+.r7-contract-state > div { display: flex; min-width: 0; flex-direction: column; gap: 4px; padding: 12px; border: 1px solid #d9d6cc; border-radius: 9px; background: #fbfaf6; }
+.r7-contract-state span { color: #858a86; font-size: 8px; font-weight: 650; text-transform: uppercase; }
+.r7-contract-state strong { color: #35423b; font-size: 11px; }
+.r7-contract-state small { color: #7c827d; font-size: 8px; line-height: 1.5; }
+.r7-boundary-note { display: flex; align-items: flex-start; gap: 8px; margin-top: 11px; padding: 10px 12px; border: 1px solid #e4cda7; border-radius: 8px; background: #fff8e9; color: #76552e; }
+.r7-boundary-note svg { flex: 0 0 auto; margin-top: 1px; }
+.r7-boundary-note span { font-size: 9px; line-height: 1.6; }
 .visual-summary { margin: 0 0 12px; color: #58615c; font-size: 11px; line-height: 1.7; }
 .privacy-panel { position: sticky; top: 0; padding: 24px; overflow: hidden; border-radius: 13px; background: var(--green); color: white; }
 .privacy-panel::after { content: ''; position: absolute; width: 160px; height: 160px; right: -60px; top: -50px; border: 1px solid rgba(255,255,255,.12); border-radius: 50%; }

@@ -6,6 +6,7 @@ import {
   NETWORK_ROUTE_DEFINITIONS,
   NetworkObserver,
   classifyStructuredResponse,
+  projectStructuredResponse,
   projectionSha256,
   schemaFingerprint
 } from '../browser-connector/extension/network-observer.js'
@@ -121,6 +122,40 @@ test('mock CDP captures six projections, attaches before navigation, then detach
   assert.deepEqual(await observer.stop(), { observations: [], issues: [] })
 })
 
+test('evicted inspector response is attributed to its route and does not reject the observer task', async () => {
+  const debuggerApi = new MockDebugger()
+  const original = debuggerApi.sendCommand.bind(debuggerApi)
+  debuggerApi.sendCommand = async (target, method, params) => {
+    if (method === 'Network.getResponseBody') {
+      throw Object.assign(new Error('Request content was evicted from inspector cache'), { code: -32000 })
+    }
+    return original(target, method, params)
+  }
+  const observer = new NetworkObserver({ debuggerApi, now: fixedNow, cryptoImplementation: webcrypto })
+  await observer.attach(17)
+  emitLifecycle(debuggerApi, fixture.responses.find((entry) => entry.endpointKind === 'following-list'))
+  const snapshot = await observer.stop()
+  assert.equal(snapshot.observations.length, 0)
+  assert.deepEqual(snapshot.issues.map((entry) => ({ code: entry.code, routeId: entry.routeId })),
+    [{ code: 'RESPONSE_BODY_EVICTED', routeId: 'DY-FOLLOW-NETWORK' }])
+  assert.doesNotMatch(JSON.stringify(snapshot), /evicted from inspector cache|requestId|url/i)
+})
+
+test('reply projection uses a real relationship field when another field is a zero sentinel', async () => {
+  const reply = fixture.responses.find((entry) => entry.endpointKind === 'comment-reply-list')
+  const body = structuredClone(reply.body)
+  body.comments[0].reply_to_comment_id = '0'
+  body.comments[0].parent_comment_id = 'synthetic-comment-1'
+  body.comments[0].root_comment_id = '0'
+  body.comments[0].reply_id = 'synthetic-comment-1'
+  const projected = await projectStructuredResponse('comment-reply-list', body, webcrypto)
+  assert.equal(projected.items[0].rootCommentId, 'synthetic-comment-1')
+  assert.equal(projected.items[0].parentCommentId, 'synthetic-comment-1')
+  assert.equal(projected.items[0].rootCommentIdSourceField, 'reply_id')
+  assert.equal(projected.items[0].parentCommentIdSourceField, 'parent_comment_id')
+  assert.equal(projected.items[0].relationshipFieldConflict, false)
+})
+
 test('known-path schema changes stop the route and known-schema path variants stay quarantined', async () => {
   const knownPath = new URL(fixture.responses[1].url).pathname
   assert.equal(classifyStructuredResponse(knownPath, { status_code: 0, unexpected: [] }).disposition, 'schema-changed')
@@ -144,6 +179,82 @@ test('known-path schema changes stop the route and known-schema path variants st
   ])
   assert.match(snapshot.issues.find((entry) => entry.code.startsWith('UNRECOGNIZED')).pathSha256, /^[a-f0-9]{64}$/)
   assert.doesNotMatch(JSON.stringify(snapshot), /future|LEAK_VARIANT|https:\/\//)
+
+  const discoveryDebugger = new MockDebugger()
+  discoveryDebugger.bodies.set('discovery-path', JSON.stringify(fixture.responses[3].body))
+  const discoveryObserver = new NetworkObserver({
+    debuggerApi: discoveryDebugger,
+    now: fixedNow,
+    cryptoImplementation: webcrypto,
+    includeSafeDiscoveryPathnames: true
+  })
+  await discoveryObserver.attach(17)
+  emitLifecycle(discoveryDebugger, fixture.responses[3], {
+    requestId: 'discovery-path',
+    url: 'https://www.douyin.com/aweme/v1/web/comment/future/?token=NEVER_PERSIST'
+  })
+  const discoverySnapshot = await discoveryObserver.stop()
+  assert.equal(discoverySnapshot.issues[0].discoveryPathname, '/aweme/v1/web/comment/future/')
+  assert.doesNotMatch(JSON.stringify(discoverySnapshot), /NEVER_PERSIST|https:\/\//)
+
+  const largeDebugger = new MockDebugger()
+  const largeObserver = new NetworkObserver({
+    debuggerApi: largeDebugger,
+    now: fixedNow,
+    cryptoImplementation: webcrypto,
+    maxBodyBytes: 512,
+    includeSafeDiscoveryPathnames: true
+  })
+  await largeObserver.attach(17)
+  emitLifecycle(largeDebugger, fixture.responses[1], {
+    requestId: 'large-unknown-path',
+    url: 'https://www.douyin.com/aweme/v1/web/background/big/?token=NEVER_PERSIST',
+    headers: { 'content-type': 'application/json', 'content-length': '513' }
+  })
+  const largeSnapshot = await largeObserver.stop()
+  assert.equal(largeSnapshot.issues[0].code, 'RESPONSE_TOO_LARGE')
+  assert.equal(largeSnapshot.issues[0].discoveryPathname, '/aweme/v1/web/background/big/')
+  assert.match(largeSnapshot.issues[0].pathSha256, /^[a-f0-9]{64}$/)
+  assert.doesNotMatch(JSON.stringify(largeSnapshot), /NEVER_PERSIST|https:\/\//)
+
+  const paginationDebugger = new MockDebugger()
+  const paginationObserver = new NetworkObserver({
+    debuggerApi: paginationDebugger,
+    now: fixedNow,
+    cryptoImplementation: webcrypto,
+    includeSafeDiscoveryPathnames: true
+  })
+  await paginationObserver.attach(17)
+  emitLifecycle(paginationDebugger, fixture.responses[0])
+  const paginationSnapshot = await paginationObserver.stop()
+  assert.equal(paginationSnapshot.observations[0].discoveryPaginationOutline.hasMore, 'integer')
+  assert.equal(paginationSnapshot.observations[0].discoveryPaginationOutline.nextCursor, 'missing')
+
+  const changedCommentDebugger = new MockDebugger()
+  changedCommentDebugger.bodies.set('changed-comment', JSON.stringify({
+    status_code: 0,
+    comments: [{ cid: 'public-cid', text: 'SECRET_COMMENT_TEXT', user: { uid: 'public-user' } }],
+    cursor: 0, has_more: 0, total: 1
+  }))
+  const changedCommentObserver = new NetworkObserver({
+    debuggerApi: changedCommentDebugger,
+    now: fixedNow,
+    cryptoImplementation: webcrypto,
+    includeSafeDiscoveryPathnames: true
+  })
+  await changedCommentObserver.attach(17)
+  emitLifecycle(changedCommentDebugger, fixture.responses[3], {
+    requestId: 'changed-comment',
+    url: 'https://www.douyin.com/aweme/v1/web/comment/list/?aweme_id=SECRET_TARGET'
+  })
+  const changedCommentSnapshot = await changedCommentObserver.stop()
+  const outline = changedCommentSnapshot.issues[0].discoverySchemaOutline
+  assert.equal(outline.comments, 'array')
+  assert.equal(outline.firstComment.cid, 'string')
+  assert.equal(outline.firstComment.awemeId, 'missing')
+  assert.deepEqual(outline.relationshipClasses.replyId, ['missing'])
+  assert.deepEqual(outline.relationshipClasses.rootCommentId, ['missing'])
+  assert.doesNotMatch(JSON.stringify(changedCommentSnapshot), /SECRET_COMMENT_TEXT|SECRET_TARGET|public-cid|public-user/)
 })
 
 test('empty root-comment and reply pages remain distinguishable by their registered paths', () => {

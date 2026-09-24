@@ -1,0 +1,10 @@
+:root { font-family: Inter, "Noto Sans SC", system-ui, sans-serif; color: #17342f; }
+body { margin: 0; width: 360px; background: #f3f7f5; }
+main { padding: 18px; }
+.eyebrow { margin: 0 0 4px; color: #4e766e; font-size: 11px; letter-spacing: .12em; }
+h1 { margin: 0 0 10px; font-size: 22px; }
+p { font-size: 13px; line-height: 1.55; }
+.guard { margin: 12px 0; padding: 10px; border: 1px solid #bfd2cc; border-radius: 8px; background: #fff; font-size: 12px; line-height: 1.5; }
+button { width: 100%; border: 0; border-radius: 8px; padding: 11px; background: #155b4e; color: #fff; font-weight: 700; cursor: pointer; }
+button:disabled { opacity: .45; cursor: not-allowed; }
+pre { min-height: 46px; white-space: pre-wrap; margin: 12px 0 0; padding: 10px; border-radius: 8px; background: #e5eeeb; font: 12px/1.5 Consolas, monospace; }

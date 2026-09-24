@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema, workAuthorProofSchema } from './platformAdapter'
+import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema, douyinFollowingStructuredProofV3Schema, workAuthorProofSchema } from './platformAdapter'
 import { structuredWorkObservationSchema, workDetailVerificationSchema } from './structuredAcquisition'
 import { structuredCommentProofSchema } from './commentAcquisition'
 
@@ -70,6 +70,7 @@ export type DouyinCommentSourceProof = z.infer<typeof douyinCommentSourceProofSc
 
 export const collectionSourceProofSchema = z.union([
   douyinFollowingStructuredProofSchema,
+  douyinFollowingStructuredProofV3Schema,
   douyinCreatorWorksStructuredProofSchema,
   structuredCommentProofSchema,
   douyinFollowingSourceProofSchema,

@@ -496,6 +496,27 @@ export const douyinFollowingStructuredProofSchema = z.object({
   }
 })
 
+export const douyinFollowingStructuredProofV3Schema = z.object({
+  ...douyinFollowingStructuredProofSchema.shape,
+  contract: z.literal('douyin-following-structured-proof/v3'),
+  schemaVersion: z.literal(3),
+  creatorIdentityBindings: z.array(z.object({
+    creatorId: opaquePlatformIdSchema,
+    secCreatorId: opaquePlatformIdSchema
+  }).strict()).max(1_000)
+}).strict().superRefine((proof, context) => {
+  const legacy = { ...proof, contract: 'douyin-following-structured-proof/v2', schemaVersion: 2 }
+  delete (legacy as { creatorIdentityBindings?: unknown }).creatorIdentityBindings
+  const base = douyinFollowingStructuredProofSchema.safeParse(legacy)
+  if (!base.success) {
+    for (const issue of base.error.issues) context.addIssue({ code: 'custom', path: issue.path, message: issue.message })
+  }
+  if (JSON.stringify(proof.creatorIdentityBindings.map((item) => item.creatorId)) !== JSON.stringify(proof.creatorIds)
+    || new Set(proof.creatorIdentityBindings.map((item) => item.secCreatorId)).size !== proof.creatorIdentityBindings.length) {
+    context.addIssue({ code: 'custom', path: ['creatorIdentityBindings'], message: 'following v3 identity bindings must match the creator list and contain unique sec_uid values' })
+  }
+})
+
 export const mediaResourceProofSchema = z.object({
   contract: z.literal('media-resource-proof/v1'),
   platform: z.enum(['douyin', 'bilibili', 'youtube', 'xiaohongshu', 'kuaishou']),
@@ -524,6 +545,7 @@ export const platformSourceProofSchema = z.union([
   douyinWorkDetailStructuredProofSchema,
   douyinFollowingApiProofSchema,
   douyinFollowingStructuredProofSchema,
+  douyinFollowingStructuredProofV3Schema,
   mediaResourceProofSchema
 ])
 
