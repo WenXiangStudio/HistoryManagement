@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState, type JSX, type ReactNode } from 'react'
-import type { AppSettings, CreatorListItem, DashboardSummary, DemoDataSummary, InboxItem, SampleSyncOptions } from '../../shared/contracts'
+import type { AppSettings, CreatorListItem, DashboardSummary, DemoDataSummary, InboxItem, IsolatedPilotCatalog, IsolatedPilotState } from '../../shared/contracts'
 import { STRUCTURED_SYNC_AVAILABLE } from '../../shared/featureFlags'
 import { R7_CONTRACT_ONLY_UI_STATE } from '../../shared/r7EvidenceContracts'
+import type { FollowingSyncState } from '../../shared/followingDirectory'
 
 type Route = 'inbox' | 'creators' | 'jobs' | 'settings'
 type Job = {
@@ -101,10 +102,20 @@ export default function App(): JSX.Element {
   const [toast, setToast] = useState<string | null>(null)
   const [cloudEstimate, setCloudEstimate] = useState<Record<string, unknown> | null>(null)
   const [demoClearSummary, setDemoClearSummary] = useState<DemoDataSummary | null>(null)
-  const [syncConfirmOpen, setSyncConfirmOpen] = useState(false)
+  const [followingState, setFollowingState] = useState<FollowingSyncState | null>(null)
+  const [worksConfirmCreator, setWorksConfirmCreator] = useState<CreatorListItem | null>(null)
+  const [isolatedCatalog, setIsolatedCatalog] = useState<IsolatedPilotCatalog | null>(null)
+  const [isolatedPilotState, setIsolatedPilotState] = useState<IsolatedPilotState | null>(null)
   const [workerStatus, setWorkerStatus] = useState<Record<string, unknown> | null>(null)
   const [workerProgress, setWorkerProgress] = useState('')
   const refreshSequence = useRef(0)
+  const displayedFollowingRun = useRef<string | null>(null)
+
+  useEffect(() => {
+    if (followingState?.phase !== 'completed' || displayedFollowingRun.current === followingState.runId) return
+    displayedFollowingRun.current = followingState.runId
+    setRoute('creators')
+  }, [followingState])
 
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedInboxSearch(inboxSearch), 220)
@@ -118,12 +129,13 @@ export default function App(): JSX.Element {
 
   const refresh = useCallback(async () => {
     const sequence = ++refreshSequence.current
-    const [nextSummary, nextInbox, nextCreators, nextJobs, nextSettings] = await Promise.all([
+    const [nextSummary, nextInbox, nextCreators, nextJobs, nextSettings, nextFollowingState] = await Promise.all([
       window.signalDesk.getDashboard(),
       window.signalDesk.listInbox({ state: inboxFilter, search: debouncedInboxSearch, limit: 200 }),
       window.signalDesk.listCreators(debouncedCreatorSearch),
       window.signalDesk.listJobs(),
-      window.signalDesk.getSettings()
+      window.signalDesk.getSettings(),
+      window.signalDesk.getFollowingSyncStatus()
     ])
     if (sequence !== refreshSequence.current) return
     setSummary(nextSummary)
@@ -131,6 +143,7 @@ export default function App(): JSX.Element {
     setCreators(nextCreators)
     setJobs(nextJobs)
     setSettings(nextSettings)
+    setFollowingState(nextFollowingState)
   }, [debouncedCreatorSearch, debouncedInboxSearch, inboxFilter])
 
   useEffect(() => {
@@ -141,6 +154,24 @@ export default function App(): JSX.Element {
   }, [refresh])
 
   useEffect(() => window.signalDesk.onWorkerSetupProgress((event) => setWorkerProgress(event.message)), [])
+
+  useEffect(() => {
+    if (route !== 'jobs') return
+    let active = true
+    const update = async (): Promise<void> => {
+      try {
+        const [catalog, state] = await Promise.all([
+          window.signalDesk.getIsolatedPilotCatalog(), window.signalDesk.getIsolatedPilotStatus()
+        ])
+        if (active) { setIsolatedCatalog(catalog); setIsolatedPilotState(state) }
+      } catch (error) {
+        if (active) setToast(error instanceof Error ? error.message : String(error))
+      }
+    }
+    void update()
+    const timer = setInterval(() => void update(), 2000)
+    return () => { active = false; clearInterval(timer) }
+  }, [route])
 
   useEffect(() => {
     if (!toast) return
@@ -217,11 +248,12 @@ export default function App(): JSX.Element {
           </div>
           <div className="header-actions">
             <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.exportAll(true), '资料库已导出')} disabled={busy || !hasData}><Icon name="download" size={18}/>导出</button>
-            <button className="button primary" onClick={() => setSyncConfirmOpen(true)} disabled={busy || !summary.connectorOnline || !STRUCTURED_SYNC_AVAILABLE} title={!STRUCTURED_SYNC_AVAILABLE ? '等待生产连接器完成 v2 结构化 envelope 桥接' : summary.connectorOnline ? '确认小样本范围后开始采集' : '请先连接浏览器只读连接器'}><Icon name="sync" size={18}/>{STRUCTURED_SYNC_AVAILABLE ? '小样本同步' : '结构化同步待接入'}</button>
+            <button className="button primary" data-testid="start-following-sync" onClick={() => void runAction(() => window.signalDesk.refreshFollowing(10), 'Chrome 配置页已打开，请确认登录并加载关注扩展')} disabled={busy || followingState?.phase === 'running'} title="打开 Chrome，只保存前 10 位关注博主基础信息"><Icon name="sync" size={18}/>{followingState?.phase === 'awaiting-config' ? '返回 Chrome 配置' : followingState?.phase === 'running' ? '正在同步关注…' : '开始同步关注'}</button>
           </div>
         </header>
 
         {route !== 'settings' && <SummaryStrip summary={summary} />}
+        {followingState && followingState.phase !== 'idle' && <div className="following-status" role="status" data-testid="following-sync-status"><div><strong>{followingState.phase === 'completed' ? `关注目录已保存 · ${followingState.count} 位` : followingState.phase === 'blocked' ? '关注同步需要处理' : '独立关注目录同步'}</strong><p>{followingState.message}</p>{followingState.phase === 'completed' && <small>仅保存博主基础信息 · 本轮范围为关注列表前 10 位</small>}</div><div>{followingState.phase === 'completed' && <button className="button ghost" onClick={() => setRoute('creators')}>查看关注博主</button>}{['awaiting-config','running'].includes(followingState.phase) && <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.cancelFollowingSync(), '本轮关注同步已取消')}>取消本轮</button>}</div></div>}
 
         {route === 'inbox' && (
           <InboxPage
@@ -231,10 +263,18 @@ export default function App(): JSX.Element {
           />
         )}
         {route === 'creators' && (
-          <CreatorsPage creators={creators} search={creatorSearch} setSearch={setCreatorSearch} onUpdate={(id, input, success) => void runAction(() => window.signalDesk.updateCreator(id, input), success)} />
+          <CreatorsPage creators={creators} search={creatorSearch} setSearch={setCreatorSearch} onUpdate={(id, input, success) => void runAction(() => window.signalDesk.updateCreator(id, input), success)} onSyncWorks={setWorksConfirmCreator} />
         )}
         {route === 'jobs' && (
-          <JobsPage jobs={jobs} summary={summary} onPause={() => void runAction(() => window.signalDesk.pauseSync(), '队列已暂停')} onResume={(jobId) => void runAction(() => window.signalDesk.resumeSync(jobId), `任务 #${jobId} 已恢复`)} onConnector={() => void window.signalDesk.openConnectorFolder()} />
+          <JobsPage jobs={jobs} summary={summary} onPause={() => void runAction(() => window.signalDesk.pauseSync(), '队列已暂停')} onResume={(jobId) => void runAction(() => window.signalDesk.resumeSync(jobId), `任务 #${jobId} 已恢复`)} onConnector={() => void window.signalDesk.openConnectorFolder()}>
+            <IsolatedPilotPanel catalog={isolatedCatalog} state={isolatedPilotState} busy={busy}
+              onPrepare={(creatorUid) => void runAction(async () => {
+                setIsolatedPilotState(await window.signalDesk.prepareIsolatedPilot(creatorUid))
+              }, '隔离试跑已准备，请在 Chrome 加载扩展并从弹窗开始')}
+              onOpenExtension={() => void runAction(() => window.signalDesk.openIsolatedPilotExtension(), '已打开隔离扩展目录')}
+              onCancel={() => void runAction(async () => { setIsolatedPilotState(await window.signalDesk.cancelIsolatedPilot()) }, '本轮已结束，隔离报告保留')}
+              onOpenReport={() => void runAction(() => window.signalDesk.openIsolatedPilotReport(), '已打开隔离报告目录')} />
+          </JobsPage>
         )}
         {route === 'settings' && settings && (
           <SettingsPage
@@ -252,7 +292,7 @@ export default function App(): JSX.Element {
         )}
       </main>
 
-      {selectedWork && <WorkDrawer work={selectedWork} onClose={() => setSelectedWork(null)} onExternal={(url) => void window.signalDesk.openExternal(url)} />}
+      {selectedWork && <WorkDrawer work={selectedWork} onClose={() => setSelectedWork(null)} onExternal={(url) => void window.signalDesk.openExternal(url)} onComments={(workId) => void runAction(() => window.signalDesk.startCommentsSync(workId, 20), '已创建独立评论任务，最多 20 条')} />}
       {cloudEstimate && (
         <CloudConfirm estimate={cloudEstimate} onCancel={() => setCloudEstimate(null)} onConfirm={() => {
           const batchId = Number(cloudEstimate.batchId || 0)
@@ -260,9 +300,10 @@ export default function App(): JSX.Element {
           void runAction(() => window.signalDesk.runCloud(batchId), '云端分析批次已完成')
         }} />
       )}
-      {STRUCTURED_SYNC_AVAILABLE && syncConfirmOpen && <SampleSyncConfirm connectorOnline={summary.connectorOnline} onCancel={() => setSyncConfirmOpen(false)} onConfirm={(scope) => {
-        setSyncConfirmOpen(false)
-        void runAction(() => window.signalDesk.startSync(scope), `小样本同步已开始：最多 ${scope.creatorLimit} 位博主、每位 ${scope.worksPerCreator} 个作品`)
+      {STRUCTURED_SYNC_AVAILABLE && worksConfirmCreator && <CreatorWorksConfirm creator={worksConfirmCreator} connectorOnline={summary.connectorOnline} onCancel={() => setWorksConfirmCreator(null)} onConfirm={(worksPerCreator) => {
+        const creator = worksConfirmCreator
+        setWorksConfirmCreator(null)
+        void runAction(() => window.signalDesk.startCreatorWorksSync(creator.platformCreatorId, worksPerCreator), `已为 ${creator.nickname} 创建独立作品任务`)
       }} />}
       {demoClearSummary && <DemoClearConfirm summary={demoClearSummary} onCancel={() => setDemoClearSummary(null)} onConfirm={() => {
         const removed = demoClearSummary
@@ -322,7 +363,7 @@ function EmptyLibrary({ onSeed, search }: { onSeed: () => void; search: string }
   return <div className="empty-library"><div className="empty-visual"><span/><span/><span/><Icon name={search ? 'search' : 'inbox'} size={38}/></div><h2>{search ? '没有找到匹配内容' : '收件箱还是空的'}</h2><p>{search ? '没有内容包含这个关键词，请尝试作品标题、博主名称、领域或关键词。' : '连接 Chrome/Edge 后开始同步；也可以先载入一套离线演示资料，体验完整工作流。'}</p>{!search && <div><button className="button primary" onClick={onSeed}>载入演示资料</button><small>演示数据完全在本机生成，不访问抖音或云端。</small></div>}</div>
 }
 
-function CreatorsPage({ creators, search, setSearch, onUpdate }: { creators: CreatorListItem[]; search: string; setSearch: (value: string) => void; onUpdate: (id: number, input: { isStarred?: boolean; note?: string }, success: string) => void }): JSX.Element {
+function CreatorsPage({ creators, search, setSearch, onUpdate, onSyncWorks }: { creators: CreatorListItem[]; search: string; setSearch: (value: string) => void; onUpdate: (id: number, input: { isStarred?: boolean; note?: string }, success: string) => void; onSyncWorks: (creator: CreatorListItem) => void }): JSX.Element {
   const [editing, setEditing] = useState<number | null>(null)
   const [note, setNote] = useState('')
   return <section className="page-section">
@@ -330,19 +371,49 @@ function CreatorsPage({ creators, search, setSearch, onUpdate }: { creators: Cre
     {creators.length ? <div className="creator-grid">{creators.map((creator) => <article className="creator-card" key={creator.id}>
       <div className="creator-top"><Avatar name={creator.nickname} src={creator.avatarUrl} large/><button type="button" title={creator.isStarred ? '取消星标' : '星标博主'} aria-label={creator.isStarred ? `取消星标 ${creator.nickname}` : `星标 ${creator.nickname}`} className={`star-button ${creator.isStarred ? 'active' : ''}`} onClick={() => onUpdate(creator.id, { isStarred: !creator.isStarred }, creator.isStarred ? '已取消博主星标' : '已星标博主')}><Icon name="star" size={16}/><span>{creator.isStarred ? '已星标' : '星标'}</span></button></div>
       <h3>{creator.nickname}</h3><p>{creator.signature || '这个博主还没有可用的公开简介。'}</p>
+      <a className="creator-profile-link" href={creator.profileUrl} title={creator.profileUrl} onClick={(event) => { event.preventDefault(); void window.signalDesk.openExternal(creator.profileUrl) }}><Icon name="external" size={15}/><span>{creator.profileUrl}</span></a>
       <div className="tag-row">{creator.domains.length ? creator.domains.map((domain) => <span key={domain}>#{domain}</span>) : <span className="pending-tag">待分类</span>}</div>
       <div className="creator-stats"><div><strong>{creator.workCount}</strong><span>作品</span></div><div><strong>{creator.analyzedCount}</strong><span>已分析</span></div><div><strong>{creator.lastPublishedAt ? relativeTime(creator.lastPublishedAt) : '—'}</strong><span>最近更新</span></div></div>
       {editing === creator.id ? <div className="note-editor"><textarea autoFocus value={note} onChange={(event) => setNote(event.target.value)} placeholder="例如：宏观金融观点清楚，但不看荐股内容。"/><div><button onClick={() => setEditing(null)}>取消</button><button onClick={() => { onUpdate(creator.id, { note }, '博主批注已保存'); setEditing(null) }}>保存批注</button></div></div> : <button className="creator-note" onClick={() => { setEditing(creator.id); setNote(creator.note) }}>{creator.note || '＋ 添加我的批注'}</button>}
+      <button className="button ghost creator-sync-works" disabled={!STRUCTURED_SYNC_AVAILABLE || creator.isDemo} title={STRUCTURED_SYNC_AVAILABLE ? '只为这位已验证作者创建作品任务' : '作者身份与作品证明尚未完成正式验收'} onClick={() => onSyncWorks(creator)}>同步此作者作品</button>
     </article>)}</div> : <div className="empty-search"><Icon name="search" size={30}/><h3>没有找到匹配博主</h3><p>可以搜索博主名称、领域标签或你的批注；清空搜索后会恢复全部博主。</p></div>}
   </section>
 }
 
-function JobsPage({ jobs, summary, onPause, onResume, onConnector }: { jobs: Job[]; summary: DashboardSummary; onPause: () => void; onResume: (jobId: number) => void; onConnector: () => void }): JSX.Element {
+function JobsPage({ jobs, summary, onPause, onResume, onConnector, children }: { jobs: Job[]; summary: DashboardSummary; onPause: () => void; onResume: (jobId: number) => void; onConnector: () => void; children?: ReactNode }): JSX.Element {
   const labels: Record<string, string> = { 'collection.following': '同步关注列表', 'collection.creator_works': '采集博主历史作品', 'collection.work_comments': '补齐作品评论', 'media.process': '提取音频、关键帧与 OCR', 'cloud.work_text': '作品文本分析', 'cloud.work_vision': '精选关键帧分析', 'cloud.comments': '公开评论分析' }
   return <section className="page-section">
     <div className="pipeline-banner"><div className={`pipeline-icon ${summary.connectorOnline ? 'online' : ''}`}><Icon name="sync" size={26}/></div><div><h3>{summary.connectorOnline ? '浏览器连接器在线' : '真实同步需要浏览器连接器'}</h3><p>应用不会保存抖音账号密码。登录、验证码和安全验证只在你的浏览器中完成；恢复操作只影响所选任务。</p></div><button className="button ghost" onClick={onConnector}>打开连接器目录</button><button className="button ghost" onClick={onPause}><Icon name="pause" size={17}/>暂停活动任务</button></div>
+    {children}
     <div className="job-list-header"><span>任务</span><span>状态</span><span>进度</span><span>操作 / 更新时间</span></div>
-    <div className="job-list">{jobs.length ? jobs.map((job) => <div className="job-row" key={job.id}><div><span className={`job-kind ${job.kind.split('.')[0]}`}><Icon name={job.kind.startsWith('collection') ? 'sync' : job.kind.startsWith('media') ? 'database' : 'key'} size={17}/></span><div><strong>{labels[job.kind] || job.kind}</strong><small>{job.status_message || job.error_message || `任务 #${job.id}`}</small></div></div><StatusPill status={job.state}/><div className="progress"><i style={{ width: `${Math.round(job.progress * 100)}%` }}/><span>{Math.round(job.progress * 100)}%</span></div><div className="job-actions">{job.resumable && <button className="button primary compact" onClick={() => onResume(job.id)}><Icon name="play" size={14}/>恢复此任务</button>}<time>{relativeTime(job.updated_at)}</time></div></div>) : <div className="empty-rows">还没有任务。点击右上角“小样本同步”，确认范围后建立第一条队列。</div>}</div>
+    <div className="job-list">{jobs.length ? jobs.map((job) => <div className="job-row" key={job.id}><div><span className={`job-kind ${job.kind.split('.')[0]}`}><Icon name={job.kind.startsWith('collection') ? 'sync' : job.kind.startsWith('media') ? 'database' : 'key'} size={17}/></span><div><strong>{labels[job.kind] || job.kind}</strong><small>{job.status_message || job.error_message || `任务 #${job.id}`}</small></div></div><StatusPill status={job.state}/><div className="progress"><i style={{ width: `${Math.round(job.progress * 100)}%` }}/><span>{Math.round(job.progress * 100)}%</span></div><div className="job-actions">{job.resumable && <button className="button primary compact" onClick={() => onResume(job.id)}><Icon name="play" size={14}/>恢复此任务</button>}<time>{relativeTime(job.updated_at)}</time></div></div>) : <div className="empty-rows">正式任务队列为空。可在上方使用已验证作者进行隔离单作品试跑。</div>}</div>
+  </section>
+}
+
+function IsolatedPilotPanel({ catalog, state, busy, onPrepare, onOpenExtension, onOpenReport, onCancel }: {
+  catalog: IsolatedPilotCatalog | null; state: IsolatedPilotState | null; busy: boolean;
+  onPrepare: (creatorUid: string) => void; onOpenExtension: () => void; onOpenReport: () => void; onCancel: () => void
+}): JSX.Element {
+  const [creatorUid, setCreatorUid] = useState('')
+  const selected = catalog?.creators.find((entry) => entry.uid === creatorUid) ?? catalog?.creators[0]
+  const result = state?.result
+  return <section className="isolated-pilot-panel">
+    <div><p className="eyebrow">R8 · 独立作品任务</p><h3>从已保存作者验证一个作品</h3>
+      <p>这是单独的作者作品任务，只读取已保存目录。不会刷新当前账号关注，也不会创建关注任务。浏览器最多访问首页、作者主页和一个作品页；结果只写入系统临时目录。</p></div>
+    <div className="isolated-pilot-controls">
+      <label>已验证作者
+        <select value={selected?.uid ?? ''} onChange={(event) => setCreatorUid(event.target.value)} disabled={!catalog?.available || busy}>
+          {(catalog?.creators ?? []).map((creator) => <option key={creator.uid} value={creator.uid}>{creator.nickname} · {creator.followingState === 'stale' ? '关注状态待刷新' : '关注已验证'}</option>)}
+        </select>
+      </label>
+      <button className="button primary" disabled={!selected || busy || state?.phase === 'prepared'} onClick={() => selected && onPrepare(selected.uid)}>准备单作品试跑</button>
+    </div>
+    {!catalog?.available && <p className="isolated-pilot-hint">{catalog?.reason ?? '正在读取隔离作者目录…'}。首次自动关注发现与目录建立仍待验证。</p>}
+    {state?.phase === 'prepared' && <div className="isolated-pilot-result"><strong>已准备：{state.creatorName}</strong><p>打开扩展目录，在 Chrome 的扩展管理页首次加载或重新加载该固定目录，再从隔离扩展弹窗点击开始。页面出现安全验证时试跑会停止。</p><button className="button ghost" onClick={onOpenExtension}>打开扩展目录</button><button className="button ghost" onClick={onOpenReport}>打开报告目录</button><button className="button ghost" onClick={onCancel} disabled={busy}>结束本轮</button></div>}
+    {state?.phase === 'finished' && result && <div className="isolated-pilot-result"><strong>{result.status === 'verified' ? '作品已验证' : result.status === 'candidate-only' ? '仅有候选，证据不足' : '试跑被阻断'} · {state.creatorName}</strong><p>候选 {result.candidateCount} 个；页面导航 {result.navigationCount} 次；扩展主动接口请求 {result.activeApiRequests} 次。</p>{result.workId && <p>作品 {result.workId}：{result.title}</p>}{result.reason && <p>原因：{result.reason}</p>}{result.workProofHash && <p className="proof-hash">作品列表投影 SHA-256：{result.workProofHash}</p>}{result.detailProofHash && <p className="proof-hash">详情投影 SHA-256：{result.detailProofHash}</p>}<button className="button ghost" onClick={onOpenReport}>打开原始报告</button></div>}
+    {state?.phase === 'failed' && <p className="isolated-pilot-hint">隔离控制器已退出且没有有效报告。请查看报告目录后重新准备。</p>}
+    {state?.phase === 'cancelled' && <p className="isolated-pilot-hint">本轮已结束，已有隔离文件保留。可以选择作者准备下一轮。</p>}
+    {!!state?.tasks?.length && <div className="isolated-task-states">{state.tasks.map((task) => <p key={task.kind}><strong>作者作品同步</strong> · {task.message}</p>)}</div>}
   </section>
 }
 
@@ -430,7 +501,7 @@ function Field({ label, wide, children }: { label: string; wide?: boolean; child
   return <label className={`field ${wide ? 'wide' : ''}`}><span>{label}</span>{children}</label>
 }
 
-function WorkDrawer({ work, onClose, onExternal }: { work: Record<string, any>; onClose: () => void; onExternal: (url: string) => void }): JSX.Element {
+function WorkDrawer({ work, onClose, onExternal, onComments }: { work: Record<string, any>; onClose: () => void; onExternal: (url: string) => void; onComments: (workId: string) => void }): JSX.Element {
   const metrics = Array.isArray(work.metrics) ? work.metrics as Array<Record<string, unknown>> : []
   const latest = metrics[0] || {}
   const keyPoints = Array.isArray(work.keyPoints) ? work.keyPoints as string[] : []
@@ -480,6 +551,7 @@ function WorkDrawer({ work, onClose, onExternal }: { work: Record<string, any>; 
       </div>
       <div className="drawer-footer">
         <button className="button ghost" onClick={onClose}>关闭</button>
+        <button className="button ghost" disabled={isDemo || !STRUCTURED_SYNC_AVAILABLE} title={STRUCTURED_SYNC_AVAILABLE ? '为此作品创建独立任务，最多读取 20 条一级评论' : '评论采集待独立验收'} onClick={() => onComments(String(work.platform_work_id))}>按需补评论</button>
         <button className="button primary" disabled={isDemo} title={isDemo ? '演示作品不对应真实抖音页面' : '在默认浏览器打开抖音原页'} onClick={() => { if (!isDemo) onExternal(String(work.source_url)) }}>{isDemo ? '演示作品无原页' : '打开抖音原页'}<Icon name="external" size={16}/></button>
       </div>
     </aside>
@@ -528,15 +600,16 @@ function CloudConfirm({ estimate, onCancel, onConfirm }: { estimate: Record<stri
   return <div className="modal-backdrop"><div className="confirm-modal"><span className="confirm-icon"><Icon name="key" size={26}/></span><p className="eyebrow">EXPLICIT COST GATE · BATCH #{Number(estimate.batchId || 0)}</p><h2>确认本批云端分析</h2><p>只有点击确认后，派生文本和精选关键帧才会分别发往对应的文本或视觉服务。不会上传原视频；确认后执行的是此处固化的批次清单。</p><div className="estimate-grid"><div><span>文本作品 / 评论作品</span><strong>{Number(estimate.workCount || 0)} / {Number(estimate.commentWorkCount || 0)}</strong></div><div><span>视觉作品 / 关键帧</span><strong>{Number(estimate.visionWorkCount || 0)} / {Number(estimate.imageCount || 0)}</strong></div><div><span>文本输入 / 输出</span><strong>{Number(estimate.textInputTokens || 0).toLocaleString()} / {Number(estimate.textOutputTokens || 0).toLocaleString()}</strong></div><div><span>视觉输入 / 输出</span><strong>{Number(estimate.visionInputTokens || 0).toLocaleString()} / {Number(estimate.visionOutputTokens || 0).toLocaleString()}</strong></div><div><span>文本服务预计费用</span><strong>{formatCost(textCost)}</strong></div><div><span>视觉服务预计费用</span><strong>{formatCost(visionCost)}</strong></div><div><span>纳入评论</span><strong>{Number(estimate.commentCount || 0)}</strong></div><div><span>合计预计费用</span><strong>{cost === null || cost === undefined ? '单价不完整，无法估算' : `配置币种 ${Number(cost).toFixed(4)}`}</strong></div></div><div className="modal-actions"><button className="button ghost" onClick={onCancel}>取消</button><button className="button primary" onClick={onConfirm} disabled={!Number(estimate.subjectCount) || !Number(estimate.batchId)}>确认并执行</button></div></div></div>
 }
 
-function SampleSyncConfirm({ connectorOnline, onCancel, onConfirm }: { connectorOnline: boolean; onCancel: () => void; onConfirm: (scope: SampleSyncOptions) => void }): JSX.Element {
-  const [scope, setScope] = useState<SampleSyncOptions>({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })
-  const update = (key: keyof SampleSyncOptions, value: string): void => setScope((current) => ({ ...current, [key]: Number(value) }))
-  const valid = Number.isInteger(scope.creatorLimit) && scope.creatorLimit >= 1 && scope.creatorLimit <= 5
-    && Number.isInteger(scope.worksPerCreator) && scope.worksPerCreator >= 1 && scope.worksPerCreator <= 10
-    && Number.isInteger(scope.commentsPerWork) && scope.commentsPerWork >= 1 && scope.commentsPerWork <= 30
-  const workMaximum = valid ? scope.creatorLimit * scope.worksPerCreator : 0
-  const commentMaximum = valid ? workMaximum * scope.commentsPerWork : 0
-  return <div className="modal-backdrop"><div className="confirm-modal"><span className="confirm-icon"><Icon name="sync" size={25}/></span><p className="eyebrow">BOUNDED SAMPLE SYNC</p><h2>确认真实小样本范围</h2><p>连接器只读取当前 Chrome 登录权限下公开可见的抖音页面。以下数字是硬上限，即使页面返回更多记录，桌面端也会再次截断。</p><div className="sync-scope-grid"><label><span>最多采集博主</span><input type="number" min="1" max="5" value={scope.creatorLimit} onChange={(event) => update('creatorLimit', event.target.value)}/><small>允许范围 1～5，建议首次使用 3</small></label><label><span>每位博主最多作品</span><input type="number" min="1" max="10" value={scope.worksPerCreator} onChange={(event) => update('worksPerCreator', event.target.value)}/><small>允许范围 1～10，建议首次使用 5</small></label><label><span>每个作品最多评论</span><input type="number" min="1" max="30" value={scope.commentsPerWork} onChange={(event) => update('commentsPerWork', event.target.value)}/><small>允许范围 1～30，建议首次使用 20</small></label></div><div className="sample-boundary"><strong>本次最多入库 {workMaximum} 个作品、{commentMaximum} 条评论</strong><span>本阶段只采集页面资料，不启动媒体下载、ASR/OCR 或云端分析，也不会调用你配置的 API Key。连接器可能在后台依次打开抖音关注页、博主主页和作品页。</span></div>{!connectorOnline && <div className="destructive-note blocked"><strong>浏览器连接器当前离线</strong><span>请恢复到“浏览器已连接”后再开始。</span></div>}<div className="modal-actions"><button className="button ghost" onClick={onCancel}>取消</button><button className="button primary" onClick={() => onConfirm(scope)} disabled={!connectorOnline || !valid}>确认并开始小样本同步</button></div></div></div>
+function FollowingRefreshConfirm({ connectorOnline, onCancel, onConfirm }: { connectorOnline: boolean; onCancel: () => void; onConfirm: (creatorLimit: number) => void }): JSX.Element {
+  const [creatorLimit, setCreatorLimit] = useState(3)
+  const valid = Number.isInteger(creatorLimit) && creatorLimit >= 1 && creatorLimit <= 5
+  return <div className="modal-backdrop"><div className="confirm-modal"><span className="confirm-icon"><Icon name="sync" size={25}/></span><p className="eyebrow">FOLLOWING DIRECTORY</p><h2>确认关注目录刷新范围</h2><p>本动作只读取当前账号的关注关系，并更新已验证作者目录及刷新状态。</p><div className="sync-scope-grid"><label><span>本次最多确认作者</span><input type="number" min="1" max="5" value={creatorLimit} onChange={(event) => setCreatorLimit(Number(event.target.value))}/><small>允许范围 1～5</small></label></div><div className="sample-boundary"><strong>只刷新关注目录</strong><span>不会打开作者作品页、排入作品或评论任务，也不会启动媒体或云端处理。数量上限不代表完整关注快照；未闭合时不会据此判断取关。</span></div>{!connectorOnline && <div className="destructive-note blocked"><strong>浏览器连接器当前离线</strong><span>请恢复连接后再开始。</span></div>}<div className="modal-actions"><button className="button ghost" onClick={onCancel}>取消</button><button className="button primary" onClick={() => onConfirm(creatorLimit)} disabled={!connectorOnline || !valid}>确认刷新关注目录</button></div></div></div>
+}
+
+function CreatorWorksConfirm({ creator, connectorOnline, onCancel, onConfirm }: { creator: CreatorListItem; connectorOnline: boolean; onCancel: () => void; onConfirm: (worksPerCreator: number) => void }): JSX.Element {
+  const [worksPerCreator, setWorksPerCreator] = useState(1)
+  const valid = Number.isInteger(worksPerCreator) && worksPerCreator >= 1 && worksPerCreator <= 10
+  return <div className="modal-backdrop"><div className="confirm-modal"><span className="confirm-icon"><Icon name="sync" size={25}/></span><p className="eyebrow">SAVED AUTHOR WORKS</p><h2>同步 {creator.nickname} 的作品</h2><p>只从这位作者已验证的主页开始，独立记录作品任务状态。</p><div className="sync-scope-grid"><label><span>本次最多作品</span><input type="number" min="1" max="10" value={worksPerCreator} onChange={(event) => setWorksPerCreator(Number(event.target.value))}/><small>允许范围 1～10</small></label></div><div className="sample-boundary"><strong>仅同步此作者作品</strong><span>不会刷新账号关注目录，不会自动补充评论，也不会启动媒体或云端处理。</span></div>{!connectorOnline && <div className="destructive-note blocked"><strong>浏览器连接器当前离线</strong><span>请恢复连接后再开始。</span></div>}<div className="modal-actions"><button className="button ghost" onClick={onCancel}>取消</button><button className="button primary" onClick={() => onConfirm(worksPerCreator)} disabled={!connectorOnline || !valid}>确认同步作品</button></div></div></div>
 }
 
 function DemoClearConfirm({ summary, onCancel, onConfirm }: { summary: DemoDataSummary; onCancel: () => void; onConfirm: () => void }): JSX.Element {

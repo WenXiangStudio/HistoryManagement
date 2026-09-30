@@ -11,6 +11,7 @@ const output = resolve(String(args.get('--output') || ''))
 const port = Number(args.get('--port'))
 const token = String(args.get('--token') || '')
 const ownerSecUid = String(args.get('--owner-sec-uid') || '')
+const selectedCreatorUid = String(args.get('--selected-creator-uid') || '')
 const catalogPath = resolve(String(args.get('--catalog-path') || join(tmpdir(), 'signal-desk-r8', 'verified-catalog.sqlite')))
 const insideTemp = relative(resolve(tmpdir()), output)
 const catalogInsideTemp = relative(resolve(tmpdir()), catalogPath)
@@ -19,16 +20,20 @@ const HASH = /^[a-f0-9]{64}$/
 if (!isAbsolute(output) || !insideTemp || insideTemp.startsWith('..') || isAbsolute(insideTemp)
   || !catalogInsideTemp || catalogInsideTemp.startsWith('..') || isAbsolute(catalogInsideTemp)
   || !Number.isSafeInteger(port) || port < 1024 || port > 65535
-  || !/^[a-f0-9]{64}$/.test(token) || !ID.test(ownerSecUid)) {
+  || !/^[a-f0-9]{64}$/.test(token) || !ID.test(ownerSecUid)
+  || (selectedCreatorUid && !ID.test(selectedCreatorUid))) {
   throw new Error('homepage pilot requires isolated paths, port, token and verified owner')
 }
 const runId = output.split(/[\\/]/).at(-1)
 const db = new DatabaseSync(catalogPath, { readOnly: true })
 const owner = db.prepare('SELECT sec_uid FROM owners LIMIT 1').get()
 if (owner?.sec_uid !== ownerSecUid) { db.close(); throw new Error('CATALOG_OWNER_MISMATCH') }
-const creators = db.prepare(`SELECT uid,sec_uid AS secUid,nickname,profile_url AS profileUrl,
+const availableCreators = db.prepare(`SELECT uid,sec_uid AS secUid,nickname,profile_url AS profileUrl,
   following_state AS followingState FROM creators WHERE owner_sec_uid=?
   AND following_state IN ('active','stale') ORDER BY id`).all(ownerSecUid)
+const creators = selectedCreatorUid
+  ? availableCreators.filter((creator) => creator.uid === selectedCreatorUid)
+  : availableCreators
 if (!creators.length) { db.close(); throw new Error('NO_VERIFIED_CREATOR') }
 let completed = false
 function fail(message) { throw new Error(message) }

@@ -1,5 +1,5 @@
 import { spawn } from 'node:child_process'
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { createServer } from 'node:net'
 import { tmpdir } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
@@ -26,6 +26,17 @@ if (packagedConnectorIdentity.extensionId !== 'fejndacdabkgahmfpfjaghhedbdehonh'
 }
 
 const testData = mkdtempSync(resolve(tmpdir(), 'signal-desk-renderer-smoke-'))
+const isolatedRoot = join(testData, 'isolated-r8')
+mkdirSync(isolatedRoot)
+const isolatedCatalog = new DatabaseSync(join(isolatedRoot, 'verified-catalog.sqlite'))
+isolatedCatalog.exec(`PRAGMA application_id=1396986424;
+  CREATE TABLE owners(sec_uid TEXT PRIMARY KEY,verified_at TEXT NOT NULL,source TEXT NOT NULL);
+  CREATE TABLE creators(id INTEGER PRIMARY KEY,owner_sec_uid TEXT,uid TEXT,sec_uid TEXT,
+    nickname TEXT,profile_url TEXT,following_state TEXT,identity_source TEXT);`)
+isolatedCatalog.prepare("INSERT INTO owners VALUES('smoke-owner','2026-09-29T00:00:00.000Z','browser-following-route')").run()
+isolatedCatalog.prepare(`INSERT INTO creators VALUES(1,'smoke-owner','smoke-uid','smoke-sec',
+  '合成试跑作者','https://www.douyin.com/user/smoke-sec','active','following-list-structured-response')`).run()
+isolatedCatalog.close()
 const sourceDatabasePath = process.env.SIGNAL_DESK_SMOKE_SOURCE_DB
 let expectedSnapshot = null
 if (sourceDatabasePath) {
@@ -137,30 +148,114 @@ try {
   })
   const ipc = JSON.parse(ipcResponse.result.result.value)
 
+  const isolatedPilotResponse = await send('Runtime.evaluate', {
+    expression: `(async () => {
+      const catalog = await window.signalDesk.getIsolatedPilotCatalog()
+      const state = await window.signalDesk.prepareIsolatedPilot('smoke-uid')
+      const jobs = [...document.querySelectorAll('nav button')].find((button) => button.textContent?.includes('任务中心'))
+      jobs?.click()
+      await new Promise((resolveWait) => setTimeout(resolveWait, 500))
+      return JSON.stringify({ catalog, state, panelText: document.querySelector('.isolated-pilot-panel')?.innerText || '' })
+    })()`, awaitPromise: true, returnByValue: true
+  })
+  if (isolatedPilotResponse.result.exceptionDetails) throw new Error(`Isolated pilot IPC failed: ${JSON.stringify(isolatedPilotResponse.result.exceptionDetails)}`)
+  const isolatedPilot = JSON.parse(isolatedPilotResponse.result.result.value)
+  if (!isolatedPilot.catalog.available || isolatedPilot.catalog.creators.length !== 1
+    || isolatedPilot.state.phase !== 'prepared'
+    || !isolatedPilot.panelText.includes('从已保存作者验证一个作品')
+    || !isolatedPilot.panelText.includes('不会刷新当前账号关注')
+    || isolatedPilot.state.tasks.length !== 1
+    || isolatedPilot.state.tasks[0].kind !== 'collection.creator_works') {
+    throw new Error(`Isolated client entry is incomplete: ${JSON.stringify(isolatedPilot)}`)
+  }
+  const pilotConfigSource = readFileSync(join(isolatedPilot.state.extensionDirectory, 'session-config.js'), 'utf8')
+  const pilotConfig = JSON.parse(pilotConfigSource.match(/Object\.freeze\((.*)\)/)[1])
+  const pilotTime = new Date().toISOString()
+  const syntheticPilotReport = {
+    contract: 'signaldesk-homepage-pilot-report/v1', runId: isolatedPilot.state.runId,
+    startedAt: pilotTime, finishedAt: pilotTime, observerIssueCodes: [],
+    safety: { formalDatabaseTouched: false, activeApiRequests: 0, mediaProcessingStarted: false, externalProvidersCalled: false },
+    result: {
+      contract: 'signaldesk-homepage-pilot/v1', status: 'verified', stage: 'work-detail',
+      creator: { uid: 'smoke-uid', secUid: 'smoke-sec', profileUrl: 'https://www.douyin.com/user/smoke-sec' },
+      navigationCount: 2, activeApiRequests: 0,
+      candidates: [{ workId: '1234567890123456789', url: 'https://www.douyin.com/video/1234567890123456789', status: 'page-visible-candidate' }],
+      verifiedWork: { workId: '1234567890123456789', workIdKind: 'native-aweme-id',
+        workIdSourcePath: 'aweme_detail.aweme_id', authorId: 'smoke-uid', authorSecId: 'smoke-sec',
+        nickname: '合成试跑作者', authorIdSourcePath: 'aweme_detail.author.uid', workType: 'video',
+        title: '离线合成报告 · 不代表真实平台验收', description: '打包客户端闭环检查',
+        publishedAt: null, durationMs: null,
+        statistics: { likeCount: 1, commentCount: null, collectCount: null, shareCount: null, playCount: null } },
+      workProof: { routeId: 'DY-WORKS-NETWORK', endpointKind: 'creator-work-list', schemaFingerprint: 'a'.repeat(64), projectionSha256: 'b'.repeat(64), observedAt: pilotTime },
+      detailProof: { routeId: 'DY-DETAIL-NETWORK', endpointKind: 'work-detail', schemaFingerprint: 'c'.repeat(64), projectionSha256: 'd'.repeat(64), observedAt: pilotTime },
+      comments: 'not-requested', replies: 'not-requested', reason: null
+    }
+  }
+  const reportResponse = await fetch(`${pilotConfig.controllerOrigin}/v1/report`, {
+    method: 'POST', headers: { 'content-type': 'application/json', 'x-signaldesk-r8-token': pilotConfig.token,
+      'x-signaldesk-r8-client': 'signaldesk-homepage-pilot-extension' }, body: JSON.stringify(syntheticPilotReport)
+  })
+  if (reportResponse.status !== 201) throw new Error(`Synthetic pilot report rejected: ${await reportResponse.text()}`)
+  const finishedPilotResponse = await send('Runtime.evaluate', {
+    expression: `(async () => {
+      const state = await window.signalDesk.getIsolatedPilotStatus()
+      await new Promise((resolveWait) => setTimeout(resolveWait, 2200))
+      return JSON.stringify({ state, panelText: document.querySelector('.isolated-pilot-panel')?.innerText || '' })
+    })()`, awaitPromise: true, returnByValue: true
+  })
+  if (finishedPilotResponse.result.exceptionDetails) throw new Error(`Isolated report import failed: ${JSON.stringify(finishedPilotResponse.result.exceptionDetails)}`)
+  const finishedPilot = JSON.parse(finishedPilotResponse.result.result.value)
+  if (finishedPilot.state.phase !== 'finished' || finishedPilot.state.result.status !== 'verified'
+    || !finishedPilot.panelText.includes('作品已验证') || !finishedPilot.panelText.includes('评论未请求')) {
+    throw new Error(`Isolated client result UI is incomplete: ${JSON.stringify(finishedPilot)}`)
+  }
+  const pilotDatabase = new DatabaseSync(join(isolatedPilot.state.reportDirectory, 'isolated-sync.sqlite'), { readOnly: true })
+  try {
+    if (Number(pilotDatabase.prepare('PRAGMA user_version').get().user_version) !== 6
+      || Number(pilotDatabase.prepare('SELECT COUNT(*) AS n FROM works').get().n) !== 1
+      || Number(pilotDatabase.prepare('SELECT COUNT(*) AS n FROM isolated_pilot_sources').get().n) !== 1
+      || Number(pilotDatabase.prepare("SELECT COUNT(*) AS n FROM jobs WHERE kind='collection.following'").get().n) !== 0) {
+      throw new Error('Packaged isolated work, proof or temporary schema was not persisted')
+    }
+  } finally { pilotDatabase.close() }
+  if (process.env.SIGNAL_DESK_SMOKE_PILOT_SCREENSHOT) {
+    const screenshot = await send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: false })
+    writeFileSync(resolve(process.env.SIGNAL_DESK_SMOKE_PILOT_SCREENSHOT), Buffer.from(screenshot.result.data, 'base64'))
+  }
+  await send('Runtime.evaluate', {
+    expression: `[...document.querySelectorAll('nav button')].find((button) => button.textContent?.includes('今日收件箱'))?.click()`
+  })
+
   const boundedSyncResponse = await send('Runtime.evaluate', {
-    expression: `window.signalDesk.startSync({ creatorLimit: 6, worksPerCreator: 5, commentsPerWork: 20 }).then(() => JSON.stringify({ rejected: false })).catch((error) => JSON.stringify({ rejected: true, error: String(error) }))`,
+    expression: `window.signalDesk.refreshFollowing(6).then(() => JSON.stringify({ rejected: false })).catch((error) => JSON.stringify({ rejected: true, error: String(error) }))`,
     awaitPromise: true,
     returnByValue: true
   })
   const boundedSync = JSON.parse(boundedSyncResponse.result.result.value)
 
   const productionSyncResponse = await send('Runtime.evaluate', {
-    expression: `window.signalDesk.startSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 }).then(() => JSON.stringify({ rejected: false })).catch((error) => JSON.stringify({ rejected: true, error: String(error) }))`,
+    expression: `window.signalDesk.refreshFollowing(1).then(() => JSON.stringify({ rejected: false })).catch((error) => JSON.stringify({ rejected: true, error: String(error) }))`,
     awaitPromise: true,
     returnByValue: true
   })
   const productionSync = JSON.parse(productionSyncResponse.result.result.value)
 
+  const worksSyncResponse = await send('Runtime.evaluate', {
+    expression: `window.signalDesk.startCreatorWorksSync('smoke-uid', 1).then(() => JSON.stringify({ rejected: false })).catch((error) => JSON.stringify({ rejected: true, error: String(error) }))`,
+    awaitPromise: true,
+    returnByValue: true
+  })
+  const worksSync = JSON.parse(worksSyncResponse.result.result.value)
+
   const sampleSyncUiResponse = await send('Runtime.evaluate', {
     expression: `(async () => {
-      const trigger = [...document.querySelectorAll('button')].find((button) => button.textContent?.includes('结构化同步待接入'))
+      const trigger = document.querySelector('[data-testid="start-following-sync"]')
       const triggerFound = trigger instanceof HTMLButtonElement
       const triggerInitiallyDisabled = triggerFound ? trigger.disabled : null
-      trigger?.click()
       await new Promise((resolveWait) => setTimeout(resolveWait, 100))
       const modal = document.querySelector('.confirm-modal')
       const inputs = [...(modal?.querySelectorAll('input[type="number"]') || [])].map((input) => Number(input.value))
-      const confirm = [...(modal?.querySelectorAll('button') || [])].find((button) => button.textContent?.includes('确认并开始小样本同步'))
+      const confirm = [...(modal?.querySelectorAll('button') || [])].find((button) => button.textContent?.includes('确认刷新关注目录'))
       return JSON.stringify({ triggerFound, triggerInitiallyDisabled, buttonTexts: [...document.querySelectorAll('button')].map((button) => button.textContent?.trim()), text: modal?.textContent || '', inputs, confirmDisabled: confirm instanceof HTMLButtonElement ? confirm.disabled : null })
     })()`,
     awaitPromise: true,
@@ -227,18 +322,21 @@ try {
   if (state.rootChildCount < 1 || !state.rootText.includes('今日内容收件箱')) {
     throw new Error(`Renderer did not mount the application: ${JSON.stringify(state)}`)
   }
-  if (!state.rootText.includes('结构化同步待接入')) throw new Error('Structured-sync availability gate did not render')
+  if (!state.rootText.includes('开始同步关注')) throw new Error('Independent following-sync entry did not render')
   if (!ipc.ok) throw new Error(`IPC dashboard call failed: ${ipc.error}`)
-  if (!boundedSync.rejected || !boundedSync.error.includes('1～5')) throw new Error(`Main process did not enforce the creator hard limit: ${JSON.stringify(boundedSync)}`)
-  if (!productionSync.rejected || !productionSync.error.includes('禁止启动真实采集')) {
-    throw new Error(`Production structured sync was not fail-closed: ${JSON.stringify(productionSync)}`)
+  if (!boundedSync.rejected || !boundedSync.error.includes('前 10 位')) throw new Error(`Main process did not enforce the directory limit: ${JSON.stringify(boundedSync)}`)
+  if (!productionSync.rejected || !productionSync.error.includes('前 10 位')) {
+    throw new Error(`Following limit was not enforced: ${JSON.stringify(productionSync)}`)
+  }
+  if (!worksSync.rejected || !worksSync.error.includes('尚未接入正式连接器')) {
+    throw new Error(`Production works sync was not fail-closed: ${JSON.stringify(worksSync)}`)
   }
   if (sampleSyncUi.triggerFound !== true
-    || sampleSyncUi.triggerInitiallyDisabled !== true
+    || sampleSyncUi.triggerInitiallyDisabled !== false
     || sampleSyncUi.text !== ''
     || sampleSyncUi.inputs.length !== 0
     || sampleSyncUi.confirmDisabled !== null) {
-    throw new Error(`Structured-sync UI gate is incomplete or unsafe: ${JSON.stringify(sampleSyncUi)}`)
+    throw new Error(`Independent following entry is incomplete: ${JSON.stringify(sampleSyncUi)}`)
   }
   if (!('textBaseUrl' in cloudSettings.settings) || !('visionBaseUrl' in cloudSettings.settings)) {
     throw new Error(`Independent cloud provider settings are missing: ${JSON.stringify(cloudSettings.settings)}`)
@@ -389,7 +487,7 @@ try {
     writeFileSync(resolve(process.env.SIGNAL_DESK_SMOKE_SCREENSHOT), Buffer.from(screenshot.result.data, 'base64'))
   }
 
-  console.log(JSON.stringify({ executable, preloadBridge: 'ok', renderer: 'ok', dashboardIpc: 'ok', structuredSyncGate: 'ok', cloudProviders: 'ok', demoSearch: 'ok', demoDetail: 'ok', commentAuditUi: 'ok', demoCleanup, upgradeSnapshot: expectedSnapshot ? 'ok' : 'not-requested' }, null, 2))
+  console.log(JSON.stringify({ executable, preloadBridge: 'ok', renderer: 'ok', dashboardIpc: 'ok', isolatedPilotEntry: 'ok', structuredSyncGate: 'ok', cloudProviders: 'ok', demoSearch: 'ok', demoDetail: 'ok', commentAuditUi: 'ok', demoCleanup, upgradeSnapshot: expectedSnapshot ? 'ok' : 'not-requested' }, null, 2))
   await send('Runtime.evaluate', { expression: 'window.close()' })
 } finally {
   socket.close()

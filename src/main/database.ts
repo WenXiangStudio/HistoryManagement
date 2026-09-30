@@ -108,7 +108,8 @@ export class AppDatabase {
 
   ingestEnvelope(
     input: unknown,
-    checkpointScope?: CollectionCheckpointScope
+    checkpointScope?: CollectionCheckpointScope,
+    onPersist?: () => void
   ): { creators: number; works: number; comments: number } {
     const envelope = browserCollectionEnvelopeSchema.parse(input)
     return this.transaction(() => {
@@ -158,6 +159,7 @@ export class AppDatabase {
         envelope.collectedAt
       )
       this.db.prepare('UPDATE owner_accounts SET last_sync_at = ? WHERE platform = ?').run(envelope.collectedAt, envelope.platform)
+      onPersist?.()
       return counts
     })
   }
@@ -516,7 +518,8 @@ export class AppDatabase {
       ORDER BY c.is_starred DESC, COALESCE(MAX(w.published_at), c.updated_at) DESC
     `).all(...params) as Array<Record<string, unknown>>
     return rows.map((row) => ({
-      id: Number(row.id), platformCreatorId: String(row.platform_creator_id), nickname: String(row.nickname),
+      id: Number(row.id), isDemo: Boolean(row.is_demo),
+      platformCreatorId: String(row.platform_creator_id), nickname: String(row.nickname),
       avatarUrl: row.avatar_url as string | null, signature: String(row.signature), profileUrl: String(row.profile_url),
       isFollowing: Boolean(row.is_following), isStarred: Boolean(row.is_starred), note: String(row.user_note),
       domains: JSON.parse(String(row.domains)), workCount: Number(row.work_count), analyzedCount: Number(row.analyzed_count || 0),
@@ -698,10 +701,11 @@ export class AppDatabase {
     return Number(result.changes) === 1
   }
 
-  nextQueuedJob(): Record<string, unknown> | null {
+  nextQueuedJob(allowCollection = true): Record<string, unknown> | null {
     return (this.db.prepare(`
       SELECT * FROM jobs
       WHERE state='queued' AND (next_attempt_at IS NULL OR next_attempt_at<=?)
+        AND (?=1 OR kind NOT LIKE 'collection.%')
         AND (
           kind NOT LIKE 'collection.%'
           OR (
@@ -713,7 +717,7 @@ export class AppDatabase {
           )
         )
       ORDER BY priority, created_at LIMIT 1
-    `).get(nowIso()) as Record<string, unknown> | undefined) ?? null
+    `).get(nowIso(), allowCollection ? 1 : 0) as Record<string, unknown> | undefined) ?? null
   }
 
   getSettings(): AppSettings {

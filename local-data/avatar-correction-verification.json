@@ -1,0 +1,37 @@
+{
+  "correctedAt": "2026-09-30T09:56:38.399Z",
+  "count": 10,
+  "avatarCount": 10,
+  "correctionCount": 5,
+  "corrections": [
+    {
+      "nickname": "AI，我俩和一百万",
+      "before": null,
+      "after": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_754a4d6a89cf4003a8ca1219bbe5f84b"
+    },
+    {
+      "nickname": "浙大猫学长",
+      "before": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_5fd31d2c53d5a55efaa92a203fe7c64c",
+      "after": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ccd7e86482d342a5b5e4ab5aeca13f1d"
+    },
+    {
+      "nickname": "曲木古也",
+      "before": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_df46cae59577a33b4650679ae5675439",
+      "after": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_5fd31d2c53d5a55efaa92a203fe7c64c"
+    },
+    {
+      "nickname": "周话多GOGOGO",
+      "before": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_3503eb4af3b049798b63f628bcdf1bba",
+      "after": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_df46cae59577a33b4650679ae5675439"
+    },
+    {
+      "nickname": "oil欧呦",
+      "before": null,
+      "after": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_0d5042dbd75870119e7873ac2abb97fa"
+    }
+  ],
+  "integrity": "ok",
+  "bindingsSha256": "22af706b2dbca0be0a200fe6463787e9ab360d9b9362ed5d170cd35c549bcba0",
+  "observedImageLoadedCount": 10,
+  "bindingMethod": "Exact profile anchor contains img with matching nickname alt; verified in live Chrome DOM"
+}

@@ -93,6 +93,8 @@ async function run(creatorUid) {
       await observer.attach(tabId)
       result = await runHomepagePilot({ creator,
         navigate: async (url) => {
+          const health = await controller('/health').catch(() => null)
+          if (!health?.ok) throw new Error('PILOT_CONTROLLER_STOPPED')
           if (/\/(?:video|note)\//.test(new URL(url).pathname)) lastStage = 'work-detail'
           await chrome.tabs.update(tabId, { url, active: false })
           await waitForTab(tabId)

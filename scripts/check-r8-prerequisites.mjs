@@ -39,7 +39,7 @@ requireText(bridge, /projection hash mismatch/,
   'bridge must verify every Observer projection hash before assembly')
 
 // Five isolated T1 runs exposed faults that the earlier static gate missed.
-// Keep R8 closed until namespace-aware identity and session-level batching
+// Keep R8 closed until namespace-aware identity and bounded passive collection
 // replace the current production bridge.
 if (/followedCreatorId:\s*creatorId,\s*profileRouteCreatorId:\s*creatorId,\s*requestTargetCreatorId:\s*creatorId/.test(bridge)) {
   failures.push('works proof still equates public uid with route/request sec_uid')
@@ -47,11 +47,11 @@ if (/followedCreatorId:\s*creatorId,\s*profileRouteCreatorId:\s*creatorId,\s*req
 if (/await observeWorkDetails\(tab\.id, legacyEnvelope\)/.test(background)) {
   failures.push('works detail still navigates once per DOM candidate')
 }
-if (!/collectR8Batch\(/.test(background)) {
-  failures.push('production connector has not wired the session-level batch collector')
+if (!/runHomepagePilot\(/.test(background)) {
+  failures.push('production connector has not wired the bounded passive homepage collector')
 }
-if (!/createR8BrowserRequest\(/.test(background)) {
-  failures.push('production connector has not wired the browser-session GET transport')
+if (!/creatorSecUid/.test(background)) {
+  failures.push('production command path has no independently bound author sec_uid')
 }
 if (/if \(value\.issues\.length\) reject\(/.test(bridge)) {
   failures.push('bridge still rejects a target result for unrelated observer issues')

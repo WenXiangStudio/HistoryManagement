@@ -206,6 +206,7 @@ export type InboxItem = {
 
 export type CreatorListItem = {
   id: number
+  isDemo: boolean
   platformCreatorId: string
   nickname: string
   avatarUrl: string | null
@@ -246,10 +247,37 @@ export type DemoDataSummary = {
   blockingOperationCount: number
 }
 
-export type SampleSyncOptions = {
-  creatorLimit: number
-  worksPerCreator: number
-  commentsPerWork: number
+export type IsolatedPilotCatalog = {
+  available: boolean
+  ownerSecUid: string | null
+  reason: string | null
+  creators: Array<{
+    uid: string
+    secUid: string
+    nickname: string
+    profileUrl: string
+    followingState: 'active' | 'stale'
+  }>
+}
+
+export type IsolatedPilotState = {
+  phase: 'idle' | 'prepared' | 'finished' | 'failed' | 'cancelled'
+  runId: string | null
+  creatorName: string | null
+  extensionDirectory: string | null
+  reportDirectory: string | null
+  tasks?: Array<{ kind: string; state: string; message: string }>
+  result: null | {
+    status: 'verified' | 'candidate-only' | 'blocked'
+    reason: string | null
+    navigationCount: number
+    activeApiRequests: number
+    candidateCount: number
+    workId: string | null
+    title: string | null
+    workProofHash: string | null
+    detailProofHash: string | null
+  }
 }
 
 export type AppSettings = {

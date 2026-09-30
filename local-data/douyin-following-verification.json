@@ -1,0 +1,66 @@
+{
+  "runId": "desktop-following-20260930093609",
+  "collectedAt": "2026-09-30T09:36:09.3425301Z",
+  "databasePath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\local-data\\douyin-following.sqlite",
+  "count": 10,
+  "integrity": "ok",
+  "appDirectoryPath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+  "appCount": 10,
+  "profileLinks": [
+    {
+      "position": 1,
+      "nickname": "爱学习的乔同学",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAkRmmB7F5OVdNAIVJWfjnfo8hQjiXKCbYIXlT3u3cAE83eUp0NN92tXEnLRdIJqJ2"
+    },
+    {
+      "position": 2,
+      "nickname": "雪踏乌云",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAANchjI4dTDuTqyCM8xcfFWYshBcPFVOvWarHtXRVtomU"
+    },
+    {
+      "position": 3,
+      "nickname": "小涛AI大讲堂",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAir7XTbvFjc7gRAyIUMTPduNlbbS85lNujaWPvKvV9aPRh3iXY9CI5sONiVR70OzD"
+    },
+    {
+      "position": 4,
+      "nickname": "AI，我俩和一百万",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs"
+    },
+    {
+      "position": 5,
+      "nickname": "浙大猫学长",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA_gr4GldpYARx-VmGCOQrqhgxR4RNkMctuViE-QegVCvByxWkIHDaESG9tKagAY_H"
+    },
+    {
+      "position": 6,
+      "nickname": "曲木古也",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAApLyNZTs1SZ1yRU6prjfTJ4EfLuqDwAC4Ggr8re9SUhRzC9FLieaK8Q6rhrXdZb8x"
+    },
+    {
+      "position": 7,
+      "nickname": "周话多GOGOGO",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA85pVGNmKyRaaPgiIBG-aAYPQqjWNrugRfEIm9auf5libHj7z04a4HUATcU4MMDKv"
+    },
+    {
+      "position": 8,
+      "nickname": "阿星不是程序员",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAbq1mUQee_ybJ03ScbRbdWjPoQ89qQMacLEhE9piS0fA"
+    },
+    {
+      "position": 9,
+      "nickname": "每日英语",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAZpsQ1KjsRLgmYLsvLAwyR-zbnG8WjVraaUHNsbWkLiWo2EMIW3P8H2q-dA4v-vhO"
+    },
+    {
+      "position": 10,
+      "nickname": "oil欧呦",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA8jd-n1rIuyxpZjCEZS77_iddWn0SylAKGldswlA4JVsHUVn-rwJUVGGIG6SUNvUj"
+    }
+  ],
+  "avatarUrlCount": 10,
+  "workCollectionCount": 0,
+  "commentCollectionCount": 0,
+  "source": "Current logged-in account following popup, Chrome copy-link action",
+  "htmlPath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\local-data\\douyin-following-result.html"
+}

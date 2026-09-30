@@ -1,4 +1,4 @@
-import type { BrowserCollectionEnvelope, BrowserEventReceipt, SampleSyncOptions } from '../shared/contracts'
+import type { BrowserCollectionEnvelope, BrowserEventReceipt } from '../shared/contracts'
 import { STRUCTURED_SYNC_AVAILABLE } from '../shared/featureFlags'
 import { douyinCreatorWorksStructuredProofSchema, douyinFollowingStructuredProofSchema, douyinFollowingStructuredProofV3Schema } from '../shared/platformAdapter'
 import { COMMENT_ACQUISITION_ADAPTER_VERSION } from '../shared/commentAcquisition'
@@ -8,6 +8,7 @@ import { BridgeServer, type BrowserCommand } from './bridgeServer'
 import { assertStructuredCommentEnvelopeForPersistence } from './commentCollectionGate'
 import { createCollectionScopeFingerprint } from './platformAdapterSecurity'
 import type { WorkerClient } from './workerClient'
+import { VerifiedFollowingDirectory } from './verifiedFollowingDirectory'
 
 export type CollectionJobKind = 'collection.following' | 'collection.creator_works' | 'collection.work_comments'
 
@@ -46,11 +47,20 @@ export function createCollectionJobIdentity(
         adapterVersion: COMMENT_ACQUISITION_ADAPTER_VERSION
       }
     : configuredAdapter
-  const scope = safeSampleSyncOptions(payload)
+  const limits = {
+    creatorLimit: kind === 'collection.following'
+      ? rangedInteger(payload.creatorLimit, 3, 5, '博主上限', false) : null,
+    worksPerCreator: kind === 'collection.creator_works'
+      ? rangedInteger(payload.worksPerCreator, 5, 10, '每位博主作品上限', false) : null,
+    commentsPerWork: kind === 'collection.work_comments'
+      ? rangedInteger(payload.commentsPerWork, 20, 30, '每个作品评论上限', false) : null
+  }
   const entityId = kind === 'collection.following'
     ? null
     : String(kind === 'collection.creator_works'
-      ? payload.creatorId ?? ''
+      ? typeof payload.creatorSecUid === 'string' && payload.creatorSecUid
+        ? String(payload.creatorId ?? '') + ':' + payload.creatorSecUid
+        : payload.creatorId ?? ''
       : isReplyTask
         ? String(payload.workId ?? '') + ':reply:' + String(payload.rootCommentId)
         : payload.workId ?? '')
@@ -63,7 +73,7 @@ export function createCollectionJobIdentity(
     ownerAccountId,
     operation: adapter.operation,
     entityId,
-    limits: scope,
+    limits,
     collectionMode: payload.collectionOnly === false ? 'with-media' : 'collection-only',
     adapterName: adapter.adapterName,
     adapterVersion: adapter.adapterVersion,
@@ -148,17 +158,18 @@ export class TaskRunner {
     this.timer = null
   }
 
-  startSampleSync(input: SampleSyncOptions): { jobId: number; scope: SampleSyncOptions } {
-    const scope = validateSampleSyncOptions(input)
+  startFollowingRefresh(creatorLimit: number): { jobId: number; creatorLimit: number } {
+    const limit = validateCreatorLimit(creatorLimit)
     if (!this.structuredSyncEnabled) {
       throw new Error('结构化同步尚未接入生产连接器；R6 基线禁止启动真实采集')
     }
     if (!this.bridge.isOnline()) throw new Error('浏览器只读连接器尚未在线，请先恢复连接')
     const definition = scopedCollectionPayload('collection.following', {
-      commandId: `sync-following-${Date.now()}`,
-      ...scope,
+      commandId: `refresh-following-${Date.now()}`,
+      creatorLimit: limit,
       ownerAccountId: LOCAL_OWNER_SCOPE_ID,
-      collectionOnly: true
+      collectionOnly: true,
+      purpose: 'following-directory-only'
     })
     const result = this.database.enqueueCollectionJob(
       'collection.following',
@@ -171,12 +182,68 @@ export class TaskRunner {
     if (!result.created) {
       throw new Error('相同适配器版本和采集范围已有活动任务 #' + result.jobId)
     }
-    return { jobId: result.jobId, scope }
+    return { jobId: result.jobId, creatorLimit: limit }
+  }
+
+  startCreatorWorksSync(creatorUid: string, worksPerCreator: number): { jobId: number } {
+    if (!this.structuredSyncEnabled) throw new Error('结构化作品同步尚未接入正式连接器')
+    if (!this.bridge.isOnline()) throw new Error('浏览器只读连接器尚未在线，请先恢复连接')
+    if (typeof creatorUid !== 'string' || !/^[A-Za-z0-9._-]{1,240}$/.test(creatorUid)) {
+      throw new Error('作者公开 uid 无效')
+    }
+    const limit = validateWorksLimit(worksPerCreator)
+    const schemaVersion = Number((this.database.db.prepare('PRAGMA user_version').get() as { user_version: number }).user_version)
+    if (schemaVersion !== 6) throw new Error('已验证作者目录尚未迁入正式数据库')
+    const owner = this.database.db.prepare(`SELECT id,platform_sec_uid AS secUid FROM owner_accounts
+      WHERE platform='douyin' AND local_label='我的抖音'`).get() as { id: number; secUid: string | null } | undefined
+    if (!owner?.secUid) throw new Error('当前账号身份尚未验证，不能启动作者作品同步')
+    const directory = new VerifiedFollowingDirectory(this.database.db)
+    const author = directory.syncableAuthors(owner.id).find((entry) => entry.uid === creatorUid)
+    if (!author) throw new Error('作者不在当前账号的已验证关注目录中')
+    const definition = scopedCollectionPayload('collection.creator_works', {
+      creatorId: author.uid,
+      creatorSecUid: author.secUid,
+      profileUrl: author.profileUrl,
+      ownerAccountId: owner.secUid,
+      followingState: author.followingState,
+      worksPerCreator: limit,
+      collectionOnly: true,
+      purpose: 'saved-author-works-only'
+    })
+    const result = this.database.enqueueCollectionJob('collection.creator_works',
+      definition.payload, definition.identity, 30)
+    if (!result.created) throw new Error('该作者已有同范围的活动作品任务 #' + result.jobId)
+    return { jobId: result.jobId }
+  }
+
+  startCommentsSync(workId: string, commentsPerWork: number): { jobId: number } {
+    if (!this.structuredSyncEnabled) throw new Error('结构化评论同步尚未接入正式连接器')
+    if (!this.bridge.isOnline()) throw new Error('浏览器只读连接器尚未在线，请先恢复连接')
+    if (typeof workId !== 'string' || !/^[0-9]{8,30}$/.test(workId)) throw new Error('作品原生 ID 无效')
+    const limit = validateCommentsLimit(commentsPerWork)
+    const row = this.database.db.prepare(`SELECT w.id, w.source_url AS sourceUrl,
+      c.platform_creator_id AS creatorId FROM works w JOIN creators c ON c.id=w.creator_id
+      WHERE w.platform='douyin' AND w.platform_work_id=? AND w.is_demo=0`).get(workId) as {
+        id: number; sourceUrl: string; creatorId: string
+      } | undefined
+    if (!row) throw new Error('只允许为已入库的真实作品按需补齐评论')
+    const source = new URL(row.sourceUrl)
+    if (source.origin !== 'https://www.douyin.com'
+      || !['/video/' + workId, '/note/' + workId].includes(source.pathname.replace(/\/$/, ''))
+      || source.username || source.password) throw new Error('已存作品来源地址与原生 ID 不一致')
+    const definition = scopedCollectionPayload('collection.work_comments', {
+      workId, creatorId: row.creatorId, sourceUrl: row.sourceUrl,
+      ownerAccountId: LOCAL_OWNER_SCOPE_ID, commentsPerWork: limit, collectionOnly: true
+    })
+    const result = this.database.enqueueCollectionJob('collection.work_comments', definition.payload,
+      definition.identity, 200, 'work', row.id)
+    if (!result.created) throw new Error('该作品已有同范围的活动评论任务 #' + result.jobId)
+    return { jobId: result.jobId }
   }
 
   private async tick(): Promise<void> {
     if (this.dispatching) return
-    const job = this.database.nextQueuedJob()
+    const job = this.database.nextQueuedJob(this.structuredSyncEnabled)
     if (!job) return
     this.dispatching = true
     try {
@@ -282,7 +349,7 @@ export class TaskRunner {
       return rejectedReceipt(envelope.commandId, 'stale-command', '该采集任务当前不接受返回内容，迟到或重复结果未入库')
     }
     const payload = JSON.parse(sourceJob.payload_json) as Record<string, unknown>
-    const scope = safeSampleSyncOptions(payload)
+    const scope = safeCollectionLimits(payload)
     const collectionOnly = payload.collectionOnly !== false
     try {
       assertStoredCollectionIdentity(sourceJob, payload)
@@ -297,45 +364,11 @@ export class TaskRunner {
     try {
       const scopedEnvelope = limitEnvelope(envelope, sourceJob.kind, scope, payload)
       const counts = this.database.ingestEnvelope(scopedEnvelope, checkpointScopeForJob(sourceJob.kind, payload, sourceJob.id))
-      if (sourceJob.kind === 'collection.following' && counts.creators > 0) {
-        const creators = scopedEnvelope.items.filter((item) => item.entityType === 'creator')
-        for (const item of creators) {
-          const definition = scopedCollectionPayload('collection.creator_works', {
-            creatorId: item.creatorId,
-            profileUrl: item.profileUrl,
-            ownerAccountId: payload.ownerAccountId ?? LOCAL_OWNER_SCOPE_ID,
-            ...scope,
-            collectionOnly
-          })
-          this.database.enqueueCollectionJob(
-            'collection.creator_works',
-            definition.payload,
-            definition.identity,
-            30
-          )
-        }
-      }
       if (sourceJob.kind === 'collection.creator_works' && counts.works > 0) {
         const works = scopedEnvelope.items.filter((item) => item.entityType === 'work')
         for (const item of works) {
           const row = this.database.db.prepare('SELECT id FROM works WHERE platform_work_id=?').get(item.workId) as { id: number } | undefined
           if (!row) continue
-          const definition = scopedCollectionPayload('collection.work_comments', {
-            workId: item.workId,
-            creatorId: item.creatorId,
-            sourceUrl: item.sourceUrl,
-            ownerAccountId: payload.ownerAccountId ?? LOCAL_OWNER_SCOPE_ID,
-            ...scope,
-            collectionOnly
-          })
-          this.database.enqueueCollectionJob(
-            'collection.work_comments',
-            definition.payload,
-            definition.identity,
-            200,
-            'work',
-            row.id
-          )
           if (!collectionOnly) {
             const mediaExists = this.database.db.prepare(`SELECT id FROM jobs WHERE kind='media.process' AND subject_id=? AND state IN ('queued','running','completed') AND json_extract(payload_json, '$.mediaUrl') IS NOT NULL LIMIT 1`).get(row.id)
             if (item.workType === 'video' && item.mediaUrl && !mediaExists) this.database.enqueueJob('media.process', { workId: item.workId, mediaUrl: item.mediaUrl }, 100, 'work', row.id)
@@ -389,8 +422,9 @@ export class TaskRunner {
   }
 }
 
-const SAMPLE_SYNC_DEFAULTS: SampleSyncOptions = { creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 }
-const SAMPLE_SYNC_MAXIMUMS: SampleSyncOptions = { creatorLimit: 5, worksPerCreator: 10, commentsPerWork: 30 }
+type CollectionLimits = { creatorLimit: number; worksPerCreator: number; commentsPerWork: number }
+const COLLECTION_DEFAULTS: CollectionLimits = { creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 }
+const COLLECTION_MAXIMUMS: CollectionLimits = { creatorLimit: 5, worksPerCreator: 10, commentsPerWork: 30 }
 
 function rangedInteger(value: unknown, fallback: number, maximum: number, label: string, strict: boolean): number {
   if (value === undefined && !strict) return fallback
@@ -401,24 +435,22 @@ function rangedInteger(value: unknown, fallback: number, maximum: number, label:
   return value
 }
 
-export function validateSampleSyncOptions(input: SampleSyncOptions): SampleSyncOptions {
-  if (!input || typeof input !== 'object') throw new Error('请先确认小样本同步范围')
+export const validateCreatorLimit = (value: number): number => rangedInteger(value, COLLECTION_DEFAULTS.creatorLimit,
+  COLLECTION_MAXIMUMS.creatorLimit, '博主上限', true)
+export const validateWorksLimit = (value: number): number => rangedInteger(value, COLLECTION_DEFAULTS.worksPerCreator,
+  COLLECTION_MAXIMUMS.worksPerCreator, '每位博主作品上限', true)
+export const validateCommentsLimit = (value: number): number => rangedInteger(value, COLLECTION_DEFAULTS.commentsPerWork,
+  COLLECTION_MAXIMUMS.commentsPerWork, '每个作品评论上限', true)
+
+function safeCollectionLimits(input: Record<string, unknown>): CollectionLimits {
   return {
-    creatorLimit: rangedInteger(input.creatorLimit, SAMPLE_SYNC_DEFAULTS.creatorLimit, SAMPLE_SYNC_MAXIMUMS.creatorLimit, '博主上限', true),
-    worksPerCreator: rangedInteger(input.worksPerCreator, SAMPLE_SYNC_DEFAULTS.worksPerCreator, SAMPLE_SYNC_MAXIMUMS.worksPerCreator, '每位博主作品上限', true),
-    commentsPerWork: rangedInteger(input.commentsPerWork, SAMPLE_SYNC_DEFAULTS.commentsPerWork, SAMPLE_SYNC_MAXIMUMS.commentsPerWork, '每个作品评论上限', true)
+    creatorLimit: rangedInteger(input.creatorLimit, COLLECTION_DEFAULTS.creatorLimit, COLLECTION_MAXIMUMS.creatorLimit, '博主上限', false),
+    worksPerCreator: rangedInteger(input.worksPerCreator, COLLECTION_DEFAULTS.worksPerCreator, COLLECTION_MAXIMUMS.worksPerCreator, '每位博主作品上限', false),
+    commentsPerWork: rangedInteger(input.commentsPerWork, COLLECTION_DEFAULTS.commentsPerWork, COLLECTION_MAXIMUMS.commentsPerWork, '每个作品评论上限', false)
   }
 }
 
-function safeSampleSyncOptions(input: Record<string, unknown>): SampleSyncOptions {
-  return {
-    creatorLimit: rangedInteger(input.creatorLimit, SAMPLE_SYNC_DEFAULTS.creatorLimit, SAMPLE_SYNC_MAXIMUMS.creatorLimit, '博主上限', false),
-    worksPerCreator: rangedInteger(input.worksPerCreator, SAMPLE_SYNC_DEFAULTS.worksPerCreator, SAMPLE_SYNC_MAXIMUMS.worksPerCreator, '每位博主作品上限', false),
-    commentsPerWork: rangedInteger(input.commentsPerWork, SAMPLE_SYNC_DEFAULTS.commentsPerWork, SAMPLE_SYNC_MAXIMUMS.commentsPerWork, '每个作品评论上限', false)
-  }
-}
-
-function limitEnvelope(envelope: BrowserCollectionEnvelope, kind: string, scope: SampleSyncOptions, payload: Record<string, unknown>): BrowserCollectionEnvelope {
+function limitEnvelope(envelope: BrowserCollectionEnvelope, kind: string, scope: CollectionLimits, payload: Record<string, unknown>): BrowserCollectionEnvelope {
   if (kind === 'collection.following') {
     const candidates = envelope.items.filter((item) => item.entityType === 'creator')
     const limited = candidates.length > scope.creatorLimit

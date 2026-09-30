@@ -1,0 +1,8 @@
+{
+  "runId": "r8-homepage-client-20260930065027-7ce58f08",
+  "hashes": {
+    "pilot-report.json": "5d81a1b2865f90ecf7be53572c42e34a0a1b2c32f698dfd34960919613165bf5",
+    "manifest.json": "8d23ec80d707fce9c57b88e5c2c22da355cf8dba49ce0149b3672ac550079d1e",
+    "isolated-sync.sqlite": "9b6f120d1632dee4108b7641a97d9051917578fef4dc63ad1bcfe5ebb761be2b"
+  }
+}

@@ -1,5 +1,4 @@
 import { contextBridge, ipcRenderer } from 'electron'
-import type { SampleSyncOptions } from '../shared/contracts'
 
 const api = {
   getDashboard: () => ipcRenderer.invoke('dashboard:get'),
@@ -9,7 +8,17 @@ const api = {
   listCreators: (search?: string) => ipcRenderer.invoke('creators:list', search),
   updateCreator: (creatorId: number, input: { isStarred?: boolean; note?: string }) => ipcRenderer.invoke('creators:update', creatorId, input),
   listJobs: () => ipcRenderer.invoke('jobs:list'),
-  startSync: (options: SampleSyncOptions) => ipcRenderer.invoke('sync:start', options),
+  refreshFollowing: (creatorLimit: number) => ipcRenderer.invoke('following:refresh', creatorLimit),
+  getFollowingSyncStatus: () => ipcRenderer.invoke('following:status'),
+  cancelFollowingSync: () => ipcRenderer.invoke('following:cancel'),
+  startCreatorWorksSync: (creatorUid: string, worksPerCreator: number) => ipcRenderer.invoke('works:sync', creatorUid, worksPerCreator),
+  startCommentsSync: (workId: string, commentsPerWork: number) => ipcRenderer.invoke('sync:comments', workId, commentsPerWork),
+  getIsolatedPilotCatalog: () => ipcRenderer.invoke('isolated-pilot:catalog'),
+  prepareIsolatedPilot: (creatorUid: string) => ipcRenderer.invoke('isolated-pilot:prepare', creatorUid),
+  getIsolatedPilotStatus: () => ipcRenderer.invoke('isolated-pilot:status'),
+  cancelIsolatedPilot: () => ipcRenderer.invoke('isolated-pilot:cancel'),
+  openIsolatedPilotExtension: () => ipcRenderer.invoke('isolated-pilot:open-extension'),
+  openIsolatedPilotReport: () => ipcRenderer.invoke('isolated-pilot:open-report'),
   pauseSync: () => ipcRenderer.invoke('sync:pause'),
   resumeSync: (jobId: number) => ipcRenderer.invoke('sync:resume', jobId),
   seedDemo: () => ipcRenderer.invoke('demo:seed'),

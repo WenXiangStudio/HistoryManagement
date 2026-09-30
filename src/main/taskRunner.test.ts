@@ -4,7 +4,9 @@ import type { BrowserCollectionEnvelope, BrowserEventReceipt, DouyinCommentSourc
 import { syntheticCreatorWorksProof, syntheticR4WorkEvidence } from '../shared/fixtures/syntheticR4Proofs'
 import { AppDatabase } from './database'
 import type { BridgeServer, BrowserCommand } from './bridgeServer'
-import { TaskRunner, validateSampleSyncOptions } from './taskRunner'
+import { TaskRunner, createCollectionJobIdentity, validateCreatorLimit, validateWorksLimit, validateCommentsLimit } from './taskRunner'
+import { applyFollowingSchemaV6Draft } from '../../poc/r8/following-schema-v6-draft.mjs'
+import { VerifiedFollowingDirectory } from './verifiedFollowingDirectory'
 import type { WorkerClient } from './workerClient'
 
 class FakeBridge extends EventEmitter {
@@ -48,6 +50,13 @@ function createRunner(structuredSyncEnabled = true): { runner: TaskRunner; bridg
 
 async function dispatchNext(runner: TaskRunner): Promise<void> {
   await (runner as unknown as { tick: () => Promise<void> }).tick()
+}
+
+function enqueueSyntheticWorks(creatorId: string, worksPerCreator = 2): number {
+  const payload = { creatorId, profileUrl: `https://www.douyin.com/user/${creatorId}`,
+    ownerAccountId: 'local-owner-account:1', worksPerCreator, collectionOnly: true }
+  const identity = createCollectionJobIdentity('collection.creator_works', payload)
+  return database!.enqueueCollectionJob('collection.creator_works', payload, identity, 30).jobId
 }
 
 function followingProof(creatorIds: string[], empty = false): DouyinFollowingStructuredProof {
@@ -139,7 +148,18 @@ function envelope(
 describe('bounded sample synchronization', () => {
   it('keeps production structured sync hard-disabled until the v2 connector bridge exists', () => {
     const { runner } = createRunner(false)
-    expect(() => runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })).toThrow(/禁止启动真实采集/)
+    expect(() => runner.startFollowingRefresh(1)).toThrow(/禁止启动真实采集/)
+    expect(() => runner.startCreatorWorksSync('creator-1', 1)).toThrow(/尚未接入正式连接器/)
+  })
+
+  it('never dispatches an already queued collection job while the production capability gate is closed', async () => {
+    const { runner, bridge } = createRunner(false)
+    const payload = { creatorLimit: 1, ownerAccountId: 'local-owner-account:1', collectionOnly: true }
+    const identity = createCollectionJobIdentity('collection.following', payload)
+    const queued = database!.enqueueCollectionJob('collection.following', payload, identity)
+    await dispatchNext(runner)
+    expect(bridge.commands).toEqual([])
+    expect(database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(queued.jobId)).toEqual({ state: 'queued' })
   })
 
   it('keeps legacy unscoped collection jobs immutable across dispatch, pause, envelope, and status paths', async () => {
@@ -166,30 +186,80 @@ describe('bounded sample synchronization', () => {
   })
 
   it('rejects limits outside the main-process hard boundary', () => {
-    expect(validateSampleSyncOptions({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })).toEqual({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })
-    expect(() => validateSampleSyncOptions({ creatorLimit: 6, worksPerCreator: 5, commentsPerWork: 20 })).toThrow(/1～5/)
-    expect(() => validateSampleSyncOptions({ creatorLimit: 3, worksPerCreator: 11, commentsPerWork: 20 })).toThrow(/1～10/)
-    expect(() => validateSampleSyncOptions({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 31 })).toThrow(/1～30/)
+    expect(validateCreatorLimit(3)).toBe(3)
+    expect(validateWorksLimit(5)).toBe(5)
+    expect(validateCommentsLimit(20)).toBe(20)
+    expect(() => validateCreatorLimit(6)).toThrow(/1～5/)
+    expect(() => validateWorksLimit(11)).toThrow(/1～10/)
+    expect(() => validateCommentsLimit(31)).toThrow(/1～30/)
 
     const { runner, bridge } = createRunner()
     bridge.online = false
-    expect(() => runner.startSampleSync({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })).toThrow(/尚未在线/)
+    expect(() => runner.startFollowingRefresh(3)).toThrow(/尚未在线/)
     bridge.online = true
-    const started = runner.startSampleSync({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })
-    expect(started.scope).toEqual({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })
+    const started = runner.startFollowingRefresh(3)
+    expect(started.creatorLimit).toBe(3)
     const payload = JSON.parse(String((database!.db.prepare('SELECT payload_json FROM jobs WHERE id=?').get(started.jobId) as { payload_json: string }).payload_json))
-    expect(payload).toMatchObject({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20, collectionOnly: true })
-    expect(() => runner.startSampleSync({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })).toThrow(/相同适配器版本和采集范围/)
-    const independent = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    expect(payload).toMatchObject({ creatorLimit: 3, collectionOnly: true, purpose: 'following-directory-only' })
+    expect(payload).not.toHaveProperty('worksPerCreator')
+    expect(payload).not.toHaveProperty('commentsPerWork')
+    expect(() => runner.startFollowingRefresh(3)).toThrow(/相同适配器版本和采集范围/)
+    const independent = runner.startFollowingRefresh(1)
     expect(independent.jobId).not.toBe(started.jobId)
     database!.updateJob(started.jobId, 'completed')
-    const rerun = runner.startSampleSync({ creatorLimit: 3, worksPerCreator: 5, commentsPerWork: 20 })
+    const rerun = runner.startFollowingRefresh(3)
     expect(rerun.jobId).not.toBe(started.jobId)
   })
 
-  it('enforces following/work limits and rejects the legacy DOM comment result without starting media or cloud work', async () => {
+  it('keeps each collection scope fingerprint independent of unrelated task limits', () => {
+    const ownerAccountId = 'verified-owner'
+    const following = createCollectionJobIdentity('collection.following', { ownerAccountId, creatorLimit: 2 })
+    const unrelatedWorkAndComments = createCollectionJobIdentity('collection.following', {
+      ownerAccountId, creatorLimit: 2, worksPerCreator: 10, commentsPerWork: 30
+    })
+    expect(following.scopeFingerprint).toBe(unrelatedWorkAndComments.scopeFingerprint)
+    const works = createCollectionJobIdentity('collection.creator_works', {
+      ownerAccountId, creatorId: 'uid-a', creatorSecUid: 'sec-a', worksPerCreator: 2
+    })
+    const unrelatedFollowingAndComments = createCollectionJobIdentity('collection.creator_works', {
+      ownerAccountId, creatorId: 'uid-a', creatorSecUid: 'sec-a', creatorLimit: 5,
+      worksPerCreator: 2, commentsPerWork: 30
+    })
+    expect(works.scopeFingerprint).toBe(unrelatedFollowingAndComments.scopeFingerprint)
+    const changedIdentity = createCollectionJobIdentity('collection.creator_works', {
+      ownerAccountId, creatorId: 'uid-a', creatorSecUid: 'different-sec-a', worksPerCreator: 2
+    })
+    expect(changedIdentity.scopeFingerprint).not.toBe(works.scopeFingerprint)
+  })
+
+  it('starts saved-author works only by explicit action against a verified v6 owner directory', async () => {
     const { runner, bridge } = createRunner()
-    const started = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 2, commentsPerWork: 2 })
+    expect(() => runner.startCreatorWorksSync('uid-a', 1)).toThrow(/尚未迁入正式数据库/)
+    applyFollowingSchemaV6Draft(database!.db)
+    const directory = new VerifiedFollowingDirectory(database!.db)
+    const owner = database!.db.prepare("SELECT id FROM owner_accounts WHERE local_label='我的抖音'").get() as { id: number }
+    const at = '2026-09-30T00:00:00.000Z'
+    directory.bindOwner(owner.id, 'owner-sec', at)
+    directory.upsertFollowing(owner.id, { uid: 'uid-a', secUid: 'sec-a', nickname: '作者甲', isFollowing: true }, at)
+    expect(() => runner.startCreatorWorksSync('uid-b', 1)).toThrow(/已验证关注目录/)
+    const refresh = runner.startFollowingRefresh(1)
+    database!.updateJob(refresh.jobId, 'blocked_user_action', { message: '独立关注刷新失败' })
+    const started = runner.startCreatorWorksSync('uid-a', 1)
+    expect(database!.db.prepare('SELECT kind FROM jobs WHERE id=?').get(started.jobId)).toEqual({ kind: 'collection.creator_works' })
+    expect(database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(refresh.jobId)).toEqual({ state: 'blocked_user_action' })
+    expect(Number(database!.db.prepare("SELECT COUNT(*) AS n FROM jobs WHERE kind='collection.following'").get()!.n)).toBe(1)
+    await dispatchNext(runner)
+    expect(bridge.commands).toHaveLength(1)
+    expect(bridge.commands[0].action).toBe('collect_creator_works')
+    expect(bridge.commands[0].payload).toMatchObject({ creatorId: 'uid-a', creatorSecUid: 'sec-a',
+      profileUrl: 'https://www.douyin.com/user/sec-a', purpose: 'saved-author-works-only' })
+    expect(bridge.commands[0].payload).not.toHaveProperty('creatorLimit')
+    expect(bridge.commands[0].payload).not.toHaveProperty('commentsPerWork')
+  })
+
+  it('keeps a following refresh catalog-only, then processes a separately requested work and comment job', async () => {
+    const { runner, bridge } = createRunner()
+    const started = runner.startFollowingRefresh(1)
     await dispatchNext(runner)
     const followingCommand = bridge.commands.at(-1)!
     const followingItems = [
@@ -212,13 +282,16 @@ describe('bounded sample synchronization', () => {
     expect(followingCheckpoint.sourceProof.creatorIds).toEqual(['real-c1', 'real-c2', 'real-c3'])
     expect(followingCheckpoint.sourceProof.returnedIds).toEqual(['real-c1', 'real-c2', 'real-c3'])
     expect(followingCheckpoint.sourceProof.responseProjectionSha256).toBe('b'.repeat(64))
-    expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind='collection.creator_works' AND state='queued'`).get() as { count: number }).count)).toBe(1)
+    expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind='collection.creator_works'`).get() as { count: number }).count)).toBe(0)
+    await dispatchNext(runner)
+    expect(bridge.commands).toHaveLength(1)
 
+    enqueueSyntheticWorks('real-c1')
     await dispatchNext(runner)
     const creatorJob = database!.db.prepare(`SELECT id, payload_json FROM jobs WHERE kind='collection.creator_works' ORDER BY id LIMIT 1`).get() as { id: number; payload_json: string }
     const creatorPayload = JSON.parse(creatorJob.payload_json) as Record<string, unknown>
     const creatorId = String(creatorPayload.creatorId)
-    const workIds = [1, 2, 3].map((index) => `${creatorId}-w${index}`)
+    const workIds = [1, 2, 3].map((index) => `76622180430444168${index}1`)
     const workItems = workIds.map((workId, offset) => {
       const index = offset + 1
       const statistics = { likeCount: index, commentCount: null, collectCount: null, shareCount: null, playCount: null }
@@ -241,7 +314,11 @@ describe('bounded sample synchronization', () => {
 
     expect(database!.getSummary().workCount).toBe(2)
     expect((database!.db.prepare('SELECT state FROM jobs WHERE id=?').get(creatorJob.id) as { state: string }).state).toBe('completed')
-    expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind='collection.work_comments'`).get() as { count: number }).count)).toBe(2)
+    expect(Number((database!.db.prepare(`SELECT COUNT(*) AS count FROM jobs WHERE kind='collection.work_comments'`).get() as { count: number }).count)).toBe(0)
+    expect(() => runner.startCommentsSync('not-a-native-id', 2)).toThrow(/原生 ID/)
+    const requested = runner.startCommentsSync(workIds[0], 2)
+    expect(requested.jobId).toBeGreaterThan(0)
+    expect(() => runner.startCommentsSync(workIds[0], 2)).toThrow(/已有同范围/)
 
     await dispatchNext(runner)
     const commentJob = database!.db.prepare(`SELECT id, payload_json FROM jobs WHERE kind='collection.work_comments' ORDER BY id LIMIT 1`).get() as { id: number; payload_json: string }
@@ -273,7 +350,7 @@ describe('bounded sample synchronization', () => {
 
   it('rejects a legacy DOM-only following envelope before any database write', async () => {
     const { runner, bridge } = createRunner()
-    const started = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    const started = runner.startFollowingRefresh(1)
     await dispatchNext(runner)
     const command = bridge.commands.at(-1)!
     const receipt = bridge.deliverEnvelope(envelope(command.commandId, 'https://www.douyin.com/user/self?showTab=follow', [
@@ -301,7 +378,7 @@ describe('bounded sample synchronization', () => {
 
   it('rejects an R4 work without independent detail verification before any work-side database write', async () => {
     const { runner, bridge } = createRunner()
-    runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    runner.startFollowingRefresh(1)
     await dispatchNext(runner)
     const followingCommand = bridge.commands.at(-1)!
     const creatorId = 'synthetic-r4-creator'
@@ -315,6 +392,7 @@ describe('bounded sample synchronization', () => {
       followingProof([creatorId])
     ))).toMatchObject({ accepted: true })
 
+    enqueueSyntheticWorks(creatorId, 1)
     await dispatchNext(runner)
     const creatorJob = database!.db.prepare(`SELECT id, payload_json FROM jobs WHERE kind='collection.creator_works' ORDER BY id LIMIT 1`).get() as { id: number; payload_json: string }
     const creatorPayload = JSON.parse(creatorJob.payload_json) as Record<string, unknown>
@@ -350,7 +428,7 @@ describe('bounded sample synchronization', () => {
 
   it('rejects proof whose creator list or profile identity does not match the returned items', async () => {
     const { runner, bridge } = createRunner()
-    const started = runner.startSampleSync({ creatorLimit: 2, worksPerCreator: 1, commentsPerWork: 1 })
+    const started = runner.startFollowingRefresh(2)
     await dispatchNext(runner)
     const command = bridge.commands.at(-1)!
     const receipt = bridge.deliverEnvelope(envelope(command.commandId, 'https://www.douyin.com/user/self?showTab=follow', [
@@ -364,7 +442,7 @@ describe('bounded sample synchronization', () => {
 
   it('accepts a verified empty following list and writes the explicit following checkpoint', async () => {
     const { runner, bridge } = createRunner()
-    const started = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    const started = runner.startFollowingRefresh(1)
     await dispatchNext(runner)
     const command = bridge.commands.at(-1)!
     const receipt = bridge.deliverEnvelope(envelope(
@@ -385,7 +463,7 @@ describe('bounded sample synchronization', () => {
 
   it('requeues a browser-blocked collection task after the user chooses resume', async () => {
     const { runner, bridge } = createRunner()
-    const started = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    const started = runner.startFollowingRefresh(1)
     await dispatchNext(runner)
     const command = bridge.commands.at(-1)!
     bridge.emit('status', { type: 'blocked', commandId: command.commandId, message: '请完成登录验证' })
@@ -416,8 +494,8 @@ describe('bounded sample synchronization', () => {
 
   it('continues an unrelated scope after one collection job is rejected', async () => {
     const { runner, bridge } = createRunner()
-    const first = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
-    const second = runner.startSampleSync({ creatorLimit: 2, worksPerCreator: 1, commentsPerWork: 1 })
+    const first = runner.startFollowingRefresh(1)
+    const second = runner.startFollowingRefresh(2)
     database!.db.prepare('UPDATE jobs SET created_at=? WHERE id=?').run('2026-09-06T00:00:00.000Z', first.jobId)
     database!.db.prepare('UPDATE jobs SET created_at=? WHERE id=?').run('2026-09-06T00:00:01.000Z', second.jobId)
 
@@ -446,7 +524,7 @@ describe('bounded sample synchronization', () => {
 
   it('does not expose a cold-start command until the task is running', async () => {
     const { runner, bridge } = createRunner()
-    const started = runner.startSampleSync({ creatorLimit: 1, worksPerCreator: 1, commentsPerWork: 1 })
+    const started = runner.startFollowingRefresh(1)
 
     bridge.online = false
     await dispatchNext(runner)

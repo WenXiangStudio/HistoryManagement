@@ -16,6 +16,7 @@
     "test:r7-contracts": "vitest run src/shared/r7EvidenceContracts.test.ts",
     "check:r8-prerequisites": "vitest run src/main/productionEnvelopeBridge.test.ts && node scripts/check-r8-prerequisites.mjs && npm run test:r8-harness",
     "test:r8-harness": "node --test poc/r8/test/*.test.mjs",
+    "check:r8-client": "vitest run src/main/verifiedFollowingDirectory.test.ts src/main/isolatedSyncRun.test.ts src/main/isolatedPilot.test.ts src/main/taskRunner.test.ts && npm run test:r8-harness && tsc --noEmit",
     "test:watch": "vitest",
     "test:worker": "powershell -ExecutionPolicy Bypass -File scripts/run-worker-tests.ps1",
     "build:native-host": "powershell -ExecutionPolicy Bypass -File browser-connector/build-native-host.ps1",
@@ -78,6 +79,14 @@
           "**/*",
           "!native-host/bin/com.signaldesk.bridge.json"
         ]
+      },
+      {
+        "from": "poc/r8/homepage-extension",
+        "to": "isolated-pilot/homepage-extension"
+      },
+      {
+        "from": "poc/r8/homepage-pilot-controller.mjs",
+        "to": "isolated-pilot/homepage-pilot-controller.mjs"
       },
       {
         "from": "runtime/python311",

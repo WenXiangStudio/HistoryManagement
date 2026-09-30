@@ -1,0 +1,11 @@
+{
+  "contract": "signaldesk-homepage-pilot-manifest/v1",
+  "runId": "r8-homepage-client-20260930065027-7ce58f08",
+  "status": "verified",
+  "verifiedCount": 1,
+  "candidateCount": 6,
+  "navigationCount": 3,
+  "activeApiRequests": 0,
+  "commentsRequested": false,
+  "formalDatabaseTouched": false
+}

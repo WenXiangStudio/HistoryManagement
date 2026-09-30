@@ -1,0 +1,99 @@
+{
+  "contract": "signaldesk-homepage-pilot-report/v1",
+  "runId": "r8-homepage-client-20260930065027-7ce58f08",
+  "startedAt": "2026-09-30T06:52:32.077Z",
+  "finishedAt": "2026-09-30T06:52:48.055Z",
+  "result": {
+    "contract": "signaldesk-homepage-pilot/v1",
+    "creator": {
+      "uid": "7606571592415511601",
+      "secUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs"
+    },
+    "status": "verified",
+    "stage": "work-detail",
+    "navigationCount": 3,
+    "activeApiRequests": 0,
+    "candidates": [
+      {
+        "workId": "7662218043044416811",
+        "url": "https://www.douyin.com/video/7662218043044416811",
+        "status": "page-visible-candidate"
+      },
+      {
+        "workId": "7658180443711360298",
+        "url": "https://www.douyin.com/video/7658180443711360298",
+        "status": "page-visible-candidate"
+      },
+      {
+        "workId": "7690394261895892278",
+        "url": "https://www.douyin.com/video/7690394261895892278",
+        "status": "page-visible-candidate"
+      },
+      {
+        "workId": "7679664350700784931",
+        "url": "https://www.douyin.com/video/7679664350700784931",
+        "status": "page-visible-candidate"
+      },
+      {
+        "workId": "7670819524781886747",
+        "url": "https://www.douyin.com/video/7670819524781886747",
+        "status": "page-visible-candidate"
+      },
+      {
+        "workId": "7669059593955200296",
+        "url": "https://www.douyin.com/video/7669059593955200296",
+        "status": "page-visible-candidate"
+      }
+    ],
+    "verifiedWork": {
+      "workId": "7662218043044416811",
+      "workIdKind": "native-aweme-id",
+      "workIdSourcePath": "aweme_detail.aweme_id",
+      "authorId": "7606571592415511601",
+      "authorSecId": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "nickname": "AI，我俩和一百万",
+      "authorIdSourcePath": "aweme_detail.author.uid",
+      "workType": "video",
+      "title": "挑战Codex从小白到大神最快入门教程！全阶段适用！ #ai #codex #百万AI大挑战",
+      "description": "挑战Codex从小白到大神最快入门教程！全阶段适用！ #ai #codex #百万AI大挑战",
+      "publishedAt": "2026-07-14T03:19:24.000Z",
+      "durationMs": 171689,
+      "statistics": {
+        "likeCount": 543,
+        "commentCount": 16,
+        "collectCount": 306,
+        "shareCount": 45,
+        "playCount": 0
+      }
+    },
+    "workProof": {
+      "routeId": "DY-WORKS-NETWORK",
+      "endpointKind": "creator-work-list",
+      "schemaFingerprint": "347894dda893c2fcb6862e882e21a6b457dfd4906f59176a8de4e913c2a29ad3",
+      "projectionSha256": "e3db5b95a12f4e3b5e906be1ddd7f62f384fa8ac195e29e94ffc741d1c57f98a",
+      "observedAt": "2026-09-30T06:52:40.173Z"
+    },
+    "detailProof": {
+      "routeId": "DY-DETAIL-NETWORK",
+      "endpointKind": "work-detail",
+      "schemaFingerprint": "86087f9f7388fa13b73d6ab62662f38f53681a97b9bffd0fe25ac71e0f10379c",
+      "projectionSha256": "c24dc9750b7e4c90f8fb5adfe71c1f88cd07116a4b1153c0266f24f5688afec2",
+      "observedAt": "2026-09-30T06:52:45.080Z"
+    },
+    "comments": "not-requested",
+    "replies": "not-requested",
+    "reason": null
+  },
+  "observerIssueCodes": [
+    "RESPONSE_BODY_UNAVAILABLE",
+    "RESPONSE_TOO_LARGE",
+    "UNRECOGNIZED_PATH_WITH_KNOWN_SCHEMA"
+  ],
+  "safety": {
+    "formalDatabaseTouched": false,
+    "activeApiRequests": 0,
+    "mediaProcessingStarted": false,
+    "externalProvidersCalled": false
+  }
+}

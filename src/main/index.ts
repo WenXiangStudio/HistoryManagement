@@ -7,7 +7,8 @@ import { CredentialStore } from './credentialStore'
 import { ExportService } from './exportService'
 import { CloudService } from './cloudService'
 import { WorkerClient } from './workerClient'
-import type { SampleSyncOptions } from '../shared/contracts'
+import { IsolatedPilotService } from './isolatedPilot'
+import { FollowingSyncService } from './followingSync'
 
 app.setName('Signal Desk')
 if (process.env.SIGNAL_DESK_SMOKE_TEST === '1') app.disableHardwareAcceleration()
@@ -17,6 +18,8 @@ let database: AppDatabase | null = null
 let bridge: BridgeServer | null = null
 let runner: TaskRunner | null = null
 let worker: WorkerClient | null = null
+let isolatedPilot = new IsolatedPilotService()
+let followingSync: FollowingSyncService | null = null
 
 function requireServices(): { database: AppDatabase; bridge: BridgeServer; runner: TaskRunner; worker: WorkerClient } {
   if (!database || !bridge || !runner || !worker) throw new Error('Application services are not ready')
@@ -62,7 +65,12 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
   let workerSetup: Promise<Record<string, unknown>> | null = null
   ipcMain.handle('dashboard:get', () => {
     const services = requireServices()
-    return services.database.getSummary(services.bridge.isOnline())
+    const summary = services.database.getSummary(services.bridge.isOnline())
+    if (followingSync?.store.latest()) {
+      summary.followingCount = followingSync.store.list().length
+      summary.lastSyncAt = followingSync.store.latest()!.collectedAt
+    }
+    return summary
   })
   ipcMain.handle('inbox:list', (_event, options) => requireServices().database.getInbox(options || {}))
   ipcMain.handle('work:get', (_event, workId: number) => requireServices().database.getWorkDetail(workId))
@@ -70,13 +78,42 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
     requireServices().database.updateInboxState(workId, state, feedback)
     return { ok: true }
   })
-  ipcMain.handle('creators:list', (_event, search = '') => requireServices().database.getCreators(String(search)))
+  ipcMain.handle('creators:list', (_event, search = '') => {
+    const existing = requireServices().database.getCreators(String(search))
+    return followingSync?.store.latest()
+      ? [...followingSync.store.list(String(search)), ...existing.filter((entry) => entry.isDemo)] : existing
+  })
   ipcMain.handle('creators:update', (_event, creatorId: number, input) => {
-    requireServices().database.updateCreator(creatorId, input)
+    if (creatorId < 0 && followingSync) followingSync.store.update(creatorId, input)
+    else requireServices().database.updateCreator(creatorId, input)
     return { ok: true }
   })
   ipcMain.handle('jobs:list', () => requireServices().database.getJobs())
-  ipcMain.handle('sync:start', (_event, options: SampleSyncOptions) => requireServices().runner.startSampleSync(options))
+  ipcMain.handle('following:refresh', (_event, creatorLimit = 10) => {
+    if (creatorLimit !== 10) throw new Error('本轮独立关注同步固定读取前 10 位博主')
+    if (!followingSync) throw new Error('关注同步服务未就绪')
+    return followingSync.start()
+  })
+  ipcMain.handle('following:status', () => followingSync?.status())
+  ipcMain.handle('following:cancel', () => followingSync?.cancel())
+  ipcMain.handle('works:sync', (_event, creatorUid: string, worksPerCreator: number) => requireServices().runner.startCreatorWorksSync(creatorUid, worksPerCreator))
+  ipcMain.handle('sync:comments', (_event, workId: string, commentsPerWork: number) => requireServices().runner.startCommentsSync(workId, commentsPerWork))
+  ipcMain.handle('isolated-pilot:catalog', () => isolatedPilot.catalog())
+  ipcMain.handle('isolated-pilot:prepare', (_event, creatorUid: string) => isolatedPilot.prepare(creatorUid))
+  ipcMain.handle('isolated-pilot:status', () => isolatedPilot.status())
+  ipcMain.handle('isolated-pilot:cancel', () => isolatedPilot.cancel())
+  ipcMain.handle('isolated-pilot:open-extension', async () => {
+    const path = isolatedPilot.extensionDirectory()
+    if (!path) throw new Error('请先准备一轮隔离试跑')
+    await shell.openPath(path)
+    return { path }
+  })
+  ipcMain.handle('isolated-pilot:open-report', async () => {
+    const path = isolatedPilot.reportDirectory()
+    if (!path) throw new Error('目前没有隔离报告目录')
+    await shell.openPath(path)
+    return { path }
+  })
   ipcMain.handle('sync:pause', () => {
     requireServices().database.cancelActiveJobs()
     return { ok: true }
@@ -140,7 +177,9 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
 async function startDesktop(): Promise<void> {
   await app.whenReady()
   const userData = app.getPath('userData')
+  if (process.env.SIGNAL_DESK_SMOKE_TEST === '1') isolatedPilot = new IsolatedPilotService({ tempRoot: join(userData, 'isolated-r8') })
   database = new AppDatabase(join(userData, 'signal-desk.sqlite'))
+  followingSync = new FollowingSyncService(userData, () => mainWindow?.webContents.send('data:changed', { source: 'following-directory' }))
   bridge = new BridgeServer(userData)
   await bridge.start()
   worker = new WorkerClient(join(userData, 'runtime'))
@@ -165,6 +204,8 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 app.on('before-quit', () => {
+  void followingSync?.stop()
+  void isolatedPilot.stop()
   runner?.stop()
   worker?.stop()
   void bridge?.stop()
