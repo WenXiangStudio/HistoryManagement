@@ -1,0 +1,29 @@
+{
+  "runId": "following-20261003081049-f57ba611448f397c",
+  "previousCount": 150,
+  "newCount": 10,
+  "totalCount": 160,
+  "duplicateCount": 0,
+  "oldRowsUnchanged": true,
+  "oldStarsNotesUnchanged": true,
+  "structuredFieldsMatch": true,
+  "nativeOwnerVerified": true,
+  "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+  "nativeAuthorUids": 10,
+  "appCards": 160,
+  "loadedAvatars": 160,
+  "blankSignatures": 0,
+  "pageCount": 8,
+  "apiRequests": 9,
+  "domQueries": 0,
+  "uiClicks": 0,
+  "displayedTotalMs": 2713.5457,
+  "observedTotalMs": 2810.600000000559,
+  "boundaryCounts": {
+    "works": 0,
+    "comments": 0,
+    "metric_snapshots": 0,
+    "jobs": 0,
+    "analyses": 0
+  }
+}

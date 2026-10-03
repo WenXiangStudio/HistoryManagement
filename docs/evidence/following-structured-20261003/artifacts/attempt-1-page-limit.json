@@ -1,0 +1,35 @@
+{
+  "ok": false,
+  "startedAt": "2026-10-03T08:09:36.665Z",
+  "elapsedMs": 2063.5,
+  "state": {
+    "phase": "blocked",
+    "runId": "following-20261003080936-14415ece20a944ae",
+    "message": "关注数据接口未就绪（INSUFFICIENT_NEW_CREATORS），已停止本次检查。",
+    "count": 0,
+    "ownerSecUid": null,
+    "extensionDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-extension",
+    "reportDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-runs\\following-20261003080936-14415ece20a944ae",
+    "databasePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+    "setupUrl": "http://127.0.0.1:63404/following-connect",
+    "accountStatus": "unavailable",
+    "readiness": {
+      "phase": "blocked",
+      "preparationId": "7e7bb7c93f4f2009758f68a1",
+      "message": "账号页面需要重新准备。",
+      "code": "INSUFFICIENT_NEW_CREATORS"
+    },
+    "totalCount": 150,
+    "timing": {
+      "startedAt": "2026-10-03T08:09:36.665Z",
+      "dispatchMs": 3.670399999999063
+    },
+    "requestedCount": 10,
+    "errorCode": "INSUFFICIENT_NEW_CREATORS",
+    "connection": {
+      "online": true,
+      "version": "0.5.0",
+      "expectedVersion": "0.5.0"
+    }
+  }
+}

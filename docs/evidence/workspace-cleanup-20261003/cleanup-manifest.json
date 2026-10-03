@@ -1,0 +1,803 @@
+{
+  "createdAt": "2026-10-03T10:11:56.895Z",
+  "keptApp": "release-following-background-final",
+  "archived": [
+    {
+      "source": "local-data/following-account-config-20261003/configuration-validation.json",
+      "target": "docs/evidence/following-account-config-20261003/artifacts/configuration-validation.json",
+      "sha256": "93866468b40aac1cd5bc8eeb5ccefaaa2ba70aa9e071fb23057657449bc78975"
+    },
+    {
+      "source": "local-data/following-account-config-20261003/verification.json",
+      "target": "docs/evidence/following-account-config-20261003/artifacts/verification.json",
+      "sha256": "40dfe34abf7e880e200f7fd0677227115d1f62a7140f42a2baeb2fd9667732a8"
+    },
+    {
+      "source": "local-data/following-background-20261001/app-benchmark.json",
+      "target": "docs/evidence/following-background-20261001/artifacts/app-benchmark.json",
+      "sha256": "b4c2c65be9030f45606bb4b3b01a2bad809516908ea73ac4c40f96e5f313085e"
+    },
+    {
+      "source": "local-data/following-background-20261001/capture.json",
+      "target": "docs/evidence/following-background-20261001/artifacts/capture.json",
+      "sha256": "86fba39dbe8578334252948a085198cae7dbc42eb1c781fea8b8148547243297"
+    },
+    {
+      "source": "local-data/following-background-20261001/attempt-summary.json",
+      "target": "docs/evidence/following-background-20261001/artifacts/attempt-summary.json",
+      "sha256": "35695089a0b7a9e7d25fc7be95ece5c661f45f3d701708513022ead0684ecfb0"
+    },
+    {
+      "source": "local-data/following-background-20261001/attempt-1-blocked.json",
+      "target": "docs/evidence/following-background-20261001/artifacts/attempt-1-blocked.json",
+      "sha256": "947c95f0407a6629522e69cb3f8ddc978db5fba1beaecd13534b8287a4c9a822"
+    },
+    {
+      "source": "local-data/following-background-20261001/report.json",
+      "target": "docs/evidence/following-background-20261001/artifacts/report.json",
+      "sha256": "dda371b6b4656694c20aad3d9718c10d208663e003692694a37875f0d168bb80"
+    },
+    {
+      "source": "local-data/following-batch2-20261001/capture.json",
+      "target": "docs/evidence/following-client-20261001-batch2/artifacts/capture.json",
+      "sha256": "3f8d30f78b123a2ee28cb9b5148e1002b5ef268f81b837d57fa75f71733e306a"
+    },
+    {
+      "source": "local-data/following-batch2-20261001/verification.json",
+      "target": "docs/evidence/following-client-20261001-batch2/artifacts/verification.json",
+      "sha256": "0d807262cf11082645c4a8e5bed771763f3e49098b52916388ff6e342a6b2674"
+    },
+    {
+      "source": "local-data/following-batch2-20261001/app-readback.json",
+      "target": "docs/evidence/following-client-20261001-batch2/artifacts/app-readback.json",
+      "sha256": "eef6149a0233ad8f5dcf12001954f7fa86a7bc9ee522a31f06aa8d7b0677ac18"
+    },
+    {
+      "source": "local-data/following-batch2-20261001/app-verification.json",
+      "target": "docs/evidence/following-client-20261001-batch2/artifacts/app-verification.json",
+      "sha256": "39f37db4e2856d49062607f43d2d570670629c94ca072e1c51a2c52664ca2bc6"
+    },
+    {
+      "source": "local-data/following-batch2-20261001/app-batch2-upper.png",
+      "target": "docs/evidence/following-client-20261001-batch2/artifacts/app-batch2-upper.png",
+      "sha256": "91739a0784a50b88ed2e3d5a7b5ea90351e4a40ffccb7ce8350b5077b40be6d8"
+    },
+    {
+      "source": "local-data/following-batch2-20261001/app-batch2-lower.png",
+      "target": "docs/evidence/following-client-20261001-batch2/artifacts/app-batch2-lower.png",
+      "sha256": "61d4dc32bcfef0eccc1f0e09154faffcdbf56c70e75a33a4e1df515ac701e7a6"
+    },
+    {
+      "source": "local-data/following-batch2-20261001/result.html",
+      "target": "docs/evidence/following-client-20261001-batch2/artifacts/result.html",
+      "sha256": "7bbee74656a79aa082eb77023698dac5eb8b8f0c8b138cf4f6b12a668b88dff8"
+    },
+    {
+      "source": "local-data/following-batch2-20261001/following-report.json",
+      "target": "docs/evidence/following-client-20261001-batch2/artifacts/following-report.json",
+      "sha256": "60d7e66e80467e72ef9c70a49927f8d3732625783f7b42116235342bd8051880"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/capture.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/capture.json",
+      "sha256": "23bc15e7b1b2b721d9df8820e28c660001fea16e14692f8e64c4e09fe6521b1e"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/timing-summary.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/timing-summary.json",
+      "sha256": "00d482b7e8d0f7c6ea5a6ef161e1b6a460d1ee6d20692033b0c04c59900b649d"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/verification.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/verification.json",
+      "sha256": "f1e06c274c7315618920642d4629c94c9e1e28bf300eb5f6a1abf9d675814246"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/app-readback.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/app-readback.json",
+      "sha256": "0191ab58c8047505e8378bc678fdf3e19449ef589c7ce36b34e24f367f2b821a"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/app-verification.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/app-verification.json",
+      "sha256": "d101449d6092024cb2b254f6e120ed6ff807aada4f50f5e37694c3c190b59a65"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/app-third-batch-upper.png",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/app-third-batch-upper.png",
+      "sha256": "b5fc071fdce6df5e7fcea26e4c1dbcac023495a3bcef29d74f254d397336d5a8"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/app-third-batch-lower.png",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/app-third-batch-lower.png",
+      "sha256": "9580a5336e6ed316f4e1f5a130c33b84a81a75ee24fa75dfba5266c06e04b6c2"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/app-all-creators-top.png",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/app-all-creators-top.png",
+      "sha256": "513d22a841f18ed346ee5f16534172258523dcf71ac1f526c7eeee2655fa7f8a"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/result.html",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/result.html",
+      "sha256": "0a805c7ef1798cdde3701628387d84aba4c5885047caca507783ccce57159a74"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/preparation.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/preparation.json",
+      "sha256": "46f1404f76e0dfd3389eb02e7ea16a8768dadad65f0b9650609890d3b2f38048"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/attempt-1-failed.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/attempt-1-failed.json",
+      "sha256": "87208bf7ebe27488c0202191cda76aa8f090ffefef850e02bd6f1ee13f9dca35"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/attempt-1-failed.command-timing.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/attempt-1-failed.command-timing.json",
+      "sha256": "51bf9e8c6d3de530bf6bc7407cbcc609be4daf10cf6b3d86f04d948dfcdfba18"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/attempt-2-failed.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/attempt-2-failed.json",
+      "sha256": "d266df142cb518453b0f99abcbed93523cffd44fa1b1b8522628286ff8ab3647"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/attempt-2-failed.command-timing.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/attempt-2-failed.command-timing.json",
+      "sha256": "b2e2024e925fe308a5daaf5805ea855dc195f4351101209063d9d82891cf3a11"
+    },
+    {
+      "source": "local-data/following-batch3-20261001/capture.json.command-timing.json",
+      "target": "docs/evidence/following-client-20261001-batch3/artifacts/capture.json.command-timing.json",
+      "sha256": "b5bd4bd436d7fa13c01efcbba738038791dd3cf362b40149447c7379222b061f"
+    },
+    {
+      "source": "local-data/following-retention-20261001/database-verification.json",
+      "target": "docs/evidence/following-retention-20261001/artifacts/database-verification.json",
+      "sha256": "7fb7630755966b96f357518c4c44a7951573a67601b5e8b9b3b13f08c8ce1edf"
+    },
+    {
+      "source": "local-data/following-retention-20261001/app-verification.json",
+      "target": "docs/evidence/following-retention-20261001/artifacts/app-verification.json",
+      "sha256": "3b50b842a6ce640c6f72eb8aa505169eb539871ea233d99d041cac548a70e90a"
+    },
+    {
+      "source": "local-data/following-retention-20261001/app-readback.json",
+      "target": "docs/evidence/following-retention-20261001/artifacts/app-readback.json",
+      "sha256": "fe69deeead1238beb3fc510d453de5cfdba3b6a25c86cbe046d8a38b3994cd76"
+    },
+    {
+      "source": "local-data/following-retention-20261001/app-restored-upper.png",
+      "target": "docs/evidence/following-retention-20261001/artifacts/app-restored-upper.png",
+      "sha256": "8b774beca92b2ec79a37b1a4271169c25d1b410d5d0132aa45805ce2cd80c1dc"
+    },
+    {
+      "source": "local-data/following-retention-20261001/app-restored-lower.png",
+      "target": "docs/evidence/following-retention-20261001/artifacts/app-restored-lower.png",
+      "sha256": "33adce2edf1cde59766480f04ada04ba6f3cef1e02136dbf95828a64101b5854"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/app-benchmark.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/app-benchmark.json",
+      "sha256": "ec4ba036363bbaed1c71f0cded4d6bba1a33ae5d411225af56e1c685039803b7"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/verification.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/verification.json",
+      "sha256": "0802c648ed6ffe7a0398bf0b4a1aa06e83bbbc461d21300182a1f82d202881d3"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/capture.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/capture.json",
+      "sha256": "7cea886ab831138227f67a04f082dd0c79b48e7d517ac7c38daf9abea09301b6"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/report.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/report.json",
+      "sha256": "687cb62d573ef0d0a712c413f02568b8351def54fc210af54158d92593a91610"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/timing.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/timing.json",
+      "sha256": "4745ea9342b87bfe62a1118efabd9e6c5fe30612fadf88668c05d03abc369421"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/final-repeat/app-benchmark.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/final-repeat/app-benchmark.json",
+      "sha256": "daa2e7ce05a8fd0254e65b68a4c6cd4765dbf0ee1d7587fa008fb2aeecdc4803"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/final-repeat/verification.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/final-repeat/verification.json",
+      "sha256": "2ca1398c07522f17bc35bbf155cf22e246eda89fd70ce3f3c781155d3143e26d"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/final-repeat/capture.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/final-repeat/capture.json",
+      "sha256": "c0c1909228255f7d527720949d84418d29e5531d99545cd4b0f1985abd19d3f2"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/final-repeat/report.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/final-repeat/report.json",
+      "sha256": "8e6326a3c16a04101a0d6e511e5c8cc6e1f98c0e4d55c7d9209cb7862cf3162e"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/final-repeat/timing.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/final-repeat/timing.json",
+      "sha256": "6922a0edb57ed1614836310d5097c97ac4b3a1d6efb05bed43a0ec45610fa38a"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/final-app-readback.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/final-app-readback.json",
+      "sha256": "7325f7fa662edc28f746e4a465f113f38dbea318753711758b4e3a45fa1c7dc2"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/app-sixty-upper.png",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/app-sixty-upper.png",
+      "sha256": "106215ddb7487ad20941db1f818a306cc005f8e5ba323828309fc3523aaaf1fb"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/app-new-batch.png",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/app-new-batch.png",
+      "sha256": "dd7403c8da99844caa865ac671a6d76fa9c4a6cbb9c6de4a579e9e6c19f93ea7"
+    },
+    {
+      "source": "local-data/following-fast-flow-20261001/collector-initial-blocked.json",
+      "target": "docs/evidence/following-fast-flow-20261001/artifacts/collector-initial-blocked.json",
+      "sha256": "006b88c823a590e519fc49bad48d5a4cf04a3b2167f574e761597cab0f85acbc"
+    },
+    {
+      "source": "local-data/following-fast-validation-20261001/verification.json",
+      "target": "docs/evidence/following-fast-validation-20261001/artifacts/verification.json",
+      "sha256": "0ef001b60fad3604e5a034e5b0dd2441b180847365d69dee898a918f21e94869"
+    },
+    {
+      "source": "local-data/following-fast-validation-20261001/timing.json",
+      "target": "docs/evidence/following-fast-validation-20261001/artifacts/timing.json",
+      "sha256": "71a70a382024166ea5f78faf9d6d0525dc25fc23d4144709e8e59ea399161ed8"
+    },
+    {
+      "source": "local-data/following-fast-validation-20261001/capture.json",
+      "target": "docs/evidence/following-fast-validation-20261001/artifacts/capture.json",
+      "sha256": "b7e5e273b84aa66debcf29c54622fac6b03c6b67661a7b3660cc17586f92a7d1"
+    },
+    {
+      "source": "local-data/following-fast-validation-20261001/report.json",
+      "target": "docs/evidence/following-fast-validation-20261001/artifacts/report.json",
+      "sha256": "b051eda67a679ffd7efc3ddb502636577ba196913133b721a070202ece649960"
+    },
+    {
+      "source": "local-data/following-fast-validation-20261001/app-benchmark.json",
+      "target": "docs/evidence/following-fast-validation-20261001/artifacts/app-benchmark.json",
+      "sha256": "671ae079c6df1247561c1f95bc2c83a8722fbbd02f0453d9254eeb0cd9346f48"
+    },
+    {
+      "source": "local-data/following-fast-validation-20261001/attempt-1-blocked.json",
+      "target": "docs/evidence/following-fast-validation-20261001/artifacts/attempt-1-blocked.json",
+      "sha256": "2de4dbb948167c096d3e9ed3a5d0d41fba0ad747d85bbf7a81919d8c39a540de"
+    },
+    {
+      "source": "local-data/following-startup-fix-20261003/app-benchmark.json",
+      "target": "docs/evidence/following-startup-fix-20261003/artifacts/app-benchmark.json",
+      "sha256": "a0861837f2eab3846fe0a29df7993d95a7083fb213d714ef79b9ec296dabd87e"
+    },
+    {
+      "source": "local-data/following-startup-fix-20261003/capture.json",
+      "target": "docs/evidence/following-startup-fix-20261003/artifacts/capture.json",
+      "sha256": "b20523e98d41cc45e2066f21091fe72ac579a26f9e69a3b8d8d4fbee5e7b6308"
+    },
+    {
+      "source": "local-data/following-startup-fix-20261003/report.json",
+      "target": "docs/evidence/following-startup-fix-20261003/artifacts/report.json",
+      "sha256": "f0d8288d0d208f644318626f97873a7183698795f9b00f1d8ab5dc842e5c9511"
+    },
+    {
+      "source": "local-data/following-startup-fix-20261003/reported-failures/following-20261002035038-f417e2d5341688bd/following-progress.json",
+      "target": "docs/evidence/following-startup-fix-20261003/artifacts/reported-failures/following-20261002035038-f417e2d5341688bd/following-progress.json",
+      "sha256": "8ef2849eb9ee1938bf34a5ecd749e28702dae9485230f6ef3b257d6a05262185"
+    },
+    {
+      "source": "local-data/following-startup-fix-20261003/reported-failures/following-20261002035038-f417e2d5341688bd/following-failure.json",
+      "target": "docs/evidence/following-startup-fix-20261003/artifacts/reported-failures/following-20261002035038-f417e2d5341688bd/following-failure.json",
+      "sha256": "36cf2c9492c975b0e77828fadc126986808e26046a28d81a5c7c90dba03d5ee6"
+    },
+    {
+      "source": "local-data/following-startup-fix-20261003/reported-failures/following-20261003051726-2c2731f9c92080b1/following-progress.json",
+      "target": "docs/evidence/following-startup-fix-20261003/artifacts/reported-failures/following-20261003051726-2c2731f9c92080b1/following-progress.json",
+      "sha256": "920f80d19c5348b1b59a99bdf5bedb42aeeb5bf7096b8e1f8d2d01ebd6f9b1a8"
+    },
+    {
+      "source": "local-data/following-startup-fix-20261003/reported-failures/following-20261003051726-2c2731f9c92080b1/following-failure.json",
+      "target": "docs/evidence/following-startup-fix-20261003/artifacts/reported-failures/following-20261003051726-2c2731f9c92080b1/following-failure.json",
+      "sha256": "8670e9973e1148d4e5202b5ca6ddf3513db050427f25777a882fb61fb0301a25"
+    },
+    {
+      "source": "local-data/following-structured-20261003/probe.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/probe.json",
+      "sha256": "19fece622615ba23153a9c79f6cb7c0384c310e83ece2cee5593959bf0825c8d"
+    },
+    {
+      "source": "local-data/following-structured-20261003/final-preparation.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/final-preparation.json",
+      "sha256": "35ed1484fd270e1d84c709f5dc77c62ef3527453e980803a6ba6c37e1d8bd46b"
+    },
+    {
+      "source": "local-data/following-structured-20261003/attempt-1-page-limit.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/attempt-1-page-limit.json",
+      "sha256": "08687c63a1410d1b09eaeb7f1ac13051eeb95b695e3d1400447f9a9748e9c860"
+    },
+    {
+      "source": "local-data/following-structured-20261003/verification.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/verification.json",
+      "sha256": "3bbd952d2f8f876a67b520fb4a4235fe954ae0baa79c2c753c37a5ffeff93245"
+    },
+    {
+      "source": "local-data/following-structured-20261003/capture.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/capture.json",
+      "sha256": "227fe29f97db9520861171e8a95f01b3d9a65297456fbc7c15d092f82324ec08"
+    },
+    {
+      "source": "local-data/following-structured-20261003/report.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/report.json",
+      "sha256": "22db062d7119bcefcd2bf176e3ee6a559277daab3f0b254e56247526b14a9da2"
+    },
+    {
+      "source": "local-data/following-structured-20261003/timing.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/timing.json",
+      "sha256": "ec87cf93e59939ef572a00b2ffe12d62cf237051ccf172fe0e42306646f11259"
+    },
+    {
+      "source": "local-data/following-structured-20261003/browser-execution.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/browser-execution.json",
+      "sha256": "018abce5b1bc27dda7cb019adbf382e84bcbe27be3ba238eadc4dd83f45485ae"
+    },
+    {
+      "source": "local-data/following-structured-20261003/app-benchmark.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/app-benchmark.json",
+      "sha256": "68d27e4a7208f93973904d94a01f6e4a99900fe0ac1b49dcb58e1a076bfb8f00"
+    },
+    {
+      "source": "local-data/following-structured-20261003/readiness-observation.json",
+      "target": "docs/evidence/following-structured-20261003/artifacts/readiness-observation.json",
+      "sha256": "cb43b30a16c1d2f94bc38a38e0e83e880acbd3dc0b8120317c93ca43d72a10b8"
+    },
+    {
+      "source": "local-data/following-cold-start-20261003/browser-launch-probe.json",
+      "target": "docs/evidence/following-cold-start-20261003/artifacts/browser-launch-probe.json",
+      "sha256": "054e03c12e3c0908269ad211b671b9a08256d391af7908b09a5f99497bacab61"
+    },
+    {
+      "source": "local-data/following-cold-start-20261003/final-verified/cold-start.json",
+      "target": "docs/evidence/following-cold-start-20261003/artifacts/final-verified/cold-start.json",
+      "sha256": "6ccbabc26faa0f015a1a920dc6ef576ace87147c66d2dc58057a5b6138332a97"
+    },
+    {
+      "source": "local-data/following-cold-start-20261003/final-verified/preparation.json",
+      "target": "docs/evidence/following-cold-start-20261003/artifacts/final-verified/preparation.json",
+      "sha256": "831d69f5320c40c16c2352719d333e2e91ee4e035999c8f63ed82123eb4bdcc5"
+    },
+    {
+      "source": "local-data/following-cold-start-20261003/final-verified/browser-windows.json",
+      "target": "docs/evidence/following-cold-start-20261003/artifacts/final-verified/browser-windows.json",
+      "sha256": "51d98bcc4b38b9d9a426702b1dd81a713029b61c310a3b6da4422b73a10a1510"
+    },
+    {
+      "source": "local-data/following-cold-start-20261003/final-verified/retained-status.json",
+      "target": "docs/evidence/following-cold-start-20261003/artifacts/final-verified/retained-status.json",
+      "sha256": "e3568328e3ee695aad1b489bfe6dbd02f49d9921347c44c53f141b72cd3762e8"
+    },
+    {
+      "source": "local-data/following-cold-start-20261003/database-audit.json",
+      "target": "docs/evidence/following-cold-start-20261003/artifacts/database-audit.json",
+      "sha256": "3cad8ff8d9bb1e5de62334f775fea121cb16efab7ac79c0f6d486b2a2c85063e"
+    },
+    {
+      "source": "local-data/following-timing-20261001/historical-command-timing.json",
+      "target": "docs/evidence/following-timing-20261001/artifacts/historical-command-timing.json",
+      "sha256": "c30f386b621d70e813ad4d56d04cbff6df36125fe0fffe3fba056cd5d50355e0"
+    },
+    {
+      "source": "local-data/app-following-avatar-corrected-lower.png",
+      "target": "docs/evidence/following-client-20260930/artifacts/app-following-avatar-corrected-lower.png",
+      "sha256": "98e545f80591d4fca85b8b24a6d67bedc1e3aa0275061981efbf66c0c36dad95"
+    },
+    {
+      "source": "local-data/app-following-avatar-corrected.png",
+      "target": "docs/evidence/following-client-20260930/artifacts/app-following-avatar-corrected.png",
+      "sha256": "7c9d027d76d3759299a19be725a6f49430cdbd83051e21e63af7fd4e3944edb0"
+    },
+    {
+      "source": "local-data/app-following-avatar-readback.json",
+      "target": "docs/evidence/following-client-20260930/artifacts/app-following-avatar-readback.json",
+      "sha256": "a2a785b9f26aa040eee5ca2cd7e73be704fe885f501d037046eefa70e2ff1ecb"
+    },
+    {
+      "source": "local-data/app-following-readback.json",
+      "target": "docs/evidence/following-client-20260930/artifacts/app-following-readback.json",
+      "sha256": "b547bb4b66b7a703a26ac811420b759965be3c9e835ad1a4064bbe6c11bd1912"
+    },
+    {
+      "source": "local-data/app-following-success.png",
+      "target": "docs/evidence/following-client-20260930/artifacts/app-following-success.png",
+      "sha256": "0610fc0089b5b1651719eae2925521f02665dca5d200e1e6b3174c2f1fe17eb6"
+    },
+    {
+      "source": "local-data/avatar-correction-verification.json",
+      "target": "docs/evidence/following-client-20260930/artifacts/avatar-correction-verification.json",
+      "sha256": "460387a247a39f72c0e2c37a6710e24d16fd62c8c260536a4c67db33a9501eb1"
+    },
+    {
+      "source": "local-data/douyin-following-20260930.json",
+      "target": "docs/evidence/following-client-20260930/artifacts/douyin-following-20260930.json",
+      "sha256": "32735d7f75f741bdd5a3d5cb84830f53bd355e3a4f9f82eea1a625ad78d5df30"
+    },
+    {
+      "source": "local-data/douyin-following-before-avatar-fix.json",
+      "target": "docs/evidence/following-client-20260930/artifacts/douyin-following-before-avatar-fix.json",
+      "sha256": "03458104a43690445024ece44766c2c734c8ae487dad5171e20a6f2c2ac5b1f3"
+    },
+    {
+      "source": "local-data/douyin-following-result.html",
+      "target": "docs/evidence/following-client-20260930/artifacts/douyin-following-result.html",
+      "sha256": "ff27708eed1509a90873500e7ff24c337867bf76483bf15b942f401719bbad9c"
+    },
+    {
+      "source": "local-data/douyin-following-verification.json",
+      "target": "docs/evidence/following-client-20260930/artifacts/douyin-following-verification.json",
+      "sha256": "26db5a3e588b5b8485425e0290519f5b6a4ac309d13f18112c50fc9ab531934e"
+    },
+    {
+      "source": "local-data/following-avatar-bindings.json",
+      "target": "docs/evidence/following-client-20260930/artifacts/following-avatar-bindings.json",
+      "sha256": "22af706b2dbca0be0a200fe6463787e9ab360d9b9362ed5d170cd35c549bcba0"
+    },
+    {
+      "source": "local-data/following-cold-start-20261003/renderer-smoke.log",
+      "target": "docs/evidence/following-cold-start-20261003/artifacts/renderer-smoke.txt",
+      "sha256": "80feaec099900972408681f77c659ca9e5475a842e2f1d9c0a4f01b51ef327fb"
+    },
+    {
+      "source": "TEMP_HANDOFF_SIGNAL_DESK_2026-08-30.md",
+      "target": "docs/handoff/archive/signal-desk-2026-08-30.md",
+      "sha256": "aa376d92de3e90b3fdf3c6fe6164cae3dbf5ff3194fea35395c6d20d39539a27"
+    }
+  ],
+  "redactedFiles": [],
+  "normalizedFiles": [
+    "docs/evidence/following-client-20260930/artifacts/app-following-avatar-readback.json",
+    "docs/evidence/following-client-20260930/artifacts/app-following-readback.json"
+  ],
+  "removed": [
+    {
+      "path": "release",
+      "kind": "directory",
+      "bytes": 816484687,
+      "files": 131
+    },
+    {
+      "path": "release-commit-review",
+      "kind": "directory",
+      "bytes": 594600467,
+      "files": 141
+    },
+    {
+      "path": "release-following-account-config",
+      "kind": "directory",
+      "bytes": 594697030,
+      "files": 147
+    },
+    {
+      "path": "release-following-account-config-final",
+      "kind": "directory",
+      "bytes": 594697067,
+      "files": 147
+    },
+    {
+      "path": "release-following-background",
+      "kind": "directory",
+      "bytes": 594633982,
+      "files": 145
+    },
+    {
+      "path": "release-following-cold-start-052",
+      "kind": "directory",
+      "bytes": 594697814,
+      "files": 147
+    },
+    {
+      "path": "release-following-cold-start-delivered",
+      "kind": "directory",
+      "bytes": 594697907,
+      "files": 147
+    },
+    {
+      "path": "release-following-cold-start-delivery",
+      "kind": "directory",
+      "bytes": 594697753,
+      "files": 147
+    },
+    {
+      "path": "release-following-cold-start-final",
+      "kind": "directory",
+      "bytes": 594587580,
+      "files": 145
+    },
+    {
+      "path": "release-following-dom",
+      "kind": "directory",
+      "bytes": 594600467,
+      "files": 141
+    },
+    {
+      "path": "release-following-fast-final",
+      "kind": "directory",
+      "bytes": 594620965,
+      "files": 143
+    },
+    {
+      "path": "release-following-fast-review",
+      "kind": "directory",
+      "bytes": 594624398,
+      "files": 144
+    },
+    {
+      "path": "release-following-readiness",
+      "kind": "directory",
+      "bytes": 594653138,
+      "files": 145
+    },
+    {
+      "path": "release-following-readiness-bounded",
+      "kind": "directory",
+      "bytes": 594656918,
+      "files": 145
+    },
+    {
+      "path": "release-following-readiness-complete",
+      "kind": "directory",
+      "bytes": 594654941,
+      "files": 145
+    },
+    {
+      "path": "release-following-readiness-delivery",
+      "kind": "directory",
+      "bytes": 594655309,
+      "files": 145
+    },
+    {
+      "path": "release-following-readiness-final",
+      "kind": "directory",
+      "bytes": 594653177,
+      "files": 145
+    },
+    {
+      "path": "release-following-readiness-v043",
+      "kind": "directory",
+      "bytes": 594656037,
+      "files": 145
+    },
+    {
+      "path": "release-following-retention-review",
+      "kind": "directory",
+      "bytes": 594601347,
+      "files": 141
+    },
+    {
+      "path": "release-following-review",
+      "kind": "directory",
+      "bytes": 594576610,
+      "files": 137
+    },
+    {
+      "path": "release-following-review-v2",
+      "kind": "directory",
+      "bytes": 594580903,
+      "files": 139
+    },
+    {
+      "path": "release-following-review-v3",
+      "kind": "directory",
+      "bytes": 594588694,
+      "files": 140
+    },
+    {
+      "path": "release-following-startup-fix",
+      "kind": "directory",
+      "bytes": 594641338,
+      "files": 145
+    },
+    {
+      "path": "release-following-structured",
+      "kind": "directory",
+      "bytes": 594676825,
+      "files": 147
+    },
+    {
+      "path": "release-following-structured-delivery",
+      "kind": "directory",
+      "bytes": 594672612,
+      "files": 147
+    },
+    {
+      "path": "release-following-structured-final",
+      "kind": "directory",
+      "bytes": 594676922,
+      "files": 147
+    },
+    {
+      "path": "release-following-structured-probe",
+      "kind": "directory",
+      "bytes": 594662171,
+      "files": 146
+    },
+    {
+      "path": "release-following-structured-probe-final",
+      "kind": "directory",
+      "bytes": 594662273,
+      "files": 146
+    },
+    {
+      "path": "release-r8-decoupled-review",
+      "kind": "directory",
+      "bytes": 594538978,
+      "files": 132
+    },
+    {
+      "path": "release-r8-review",
+      "kind": "directory",
+      "bytes": 594536981,
+      "files": 132
+    },
+    {
+      "path": "local-data/following-account-config-20261003",
+      "kind": "directory",
+      "bytes": 734184,
+      "files": 7
+    },
+    {
+      "path": "local-data/following-background-20261001",
+      "kind": "directory",
+      "bytes": 1302735,
+      "files": 26
+    },
+    {
+      "path": "local-data/following-batch2-20261001",
+      "kind": "directory",
+      "bytes": 696020,
+      "files": 24
+    },
+    {
+      "path": "local-data/following-batch3-20261001",
+      "kind": "directory",
+      "bytes": 890725,
+      "files": 29
+    },
+    {
+      "path": "local-data/following-cold-start-20261003",
+      "kind": "directory",
+      "bytes": 1676356,
+      "files": 39
+    },
+    {
+      "path": "local-data/following-fast-flow-20261001",
+      "kind": "directory",
+      "bytes": 2742551,
+      "files": 31
+    },
+    {
+      "path": "local-data/following-fast-validation-20261001",
+      "kind": "directory",
+      "bytes": 2015530,
+      "files": 12
+    },
+    {
+      "path": "local-data/following-readiness-20261003",
+      "kind": "directory",
+      "bytes": 4667275,
+      "files": 13
+    },
+    {
+      "path": "local-data/following-retention-20261001",
+      "kind": "directory",
+      "bytes": 397852,
+      "files": 8
+    },
+    {
+      "path": "local-data/following-startup-fix-20261003",
+      "kind": "directory",
+      "bytes": 1317141,
+      "files": 19
+    },
+    {
+      "path": "local-data/following-structured-20261003",
+      "kind": "directory",
+      "bytes": 1838017,
+      "files": 25
+    },
+    {
+      "path": "local-data/following-timing-20261001",
+      "kind": "directory",
+      "bytes": 5169,
+      "files": 2
+    },
+    {
+      "path": "local-data/app-following-avatar-corrected-lower.png",
+      "kind": "file",
+      "bytes": 131603
+    },
+    {
+      "path": "local-data/app-following-avatar-corrected.png",
+      "kind": "file",
+      "bytes": 164739
+    },
+    {
+      "path": "local-data/app-following-avatar-readback.json",
+      "kind": "file",
+      "bytes": 8183
+    },
+    {
+      "path": "local-data/app-following-readback.json",
+      "kind": "file",
+      "bytes": 7972
+    },
+    {
+      "path": "local-data/app-following-success.png",
+      "kind": "file",
+      "bytes": 158333
+    },
+    {
+      "path": "local-data/avatar-correction-verification.json",
+      "kind": "file",
+      "bytes": 1644
+    },
+    {
+      "path": "local-data/douyin-following-20260930.json",
+      "kind": "file",
+      "bytes": 5454
+    },
+    {
+      "path": "local-data/douyin-following-before-avatar-fix.json",
+      "kind": "file",
+      "bytes": 5187
+    },
+    {
+      "path": "local-data/douyin-following-result.html",
+      "kind": "file",
+      "bytes": 6332
+    },
+    {
+      "path": "local-data/douyin-following-verification.json",
+      "kind": "file",
+      "bytes": 2671
+    },
+    {
+      "path": "local-data/following-avatar-bindings.json",
+      "kind": "file",
+      "bytes": 6736
+    },
+    {
+      "path": "TEMP_HANDOFF_SIGNAL_DESK_2026-08-30.md",
+      "kind": "file",
+      "bytes": 114149
+    },
+    {
+      "path": "scripts/deliver-following-account-config.ps1",
+      "kind": "file",
+      "bytes": 1343
+    },
+    {
+      "path": "scripts/deliver-following-structured.ps1",
+      "kind": "file",
+      "bytes": 2601
+    },
+    {
+      "path": "out",
+      "kind": "directory",
+      "bytes": 18270385,
+      "files": 600
+    }
+  ],
+  "bytesToRemove": 18098156178,
+  "cleanupCompleted": true
+}

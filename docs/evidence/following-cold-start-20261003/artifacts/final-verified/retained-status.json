@@ -1,0 +1,34 @@
+{
+  "state": {
+    "phase": "completed",
+    "runId": "following-20261003081049-f57ba611448f397c",
+    "message": "最近一次新增 10 位博主，资料库累计 160 位。",
+    "count": 10,
+    "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+    "extensionDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-extension",
+    "reportDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-runs\\following-20261003081049-f57ba611448f397c",
+    "databasePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+    "setupUrl": "http://127.0.0.1:55730/following-connect",
+    "accountStatus": "verified",
+    "readiness": {
+      "phase": "ready",
+      "preparationId": "b19a426d055bcde5b33cac37",
+      "message": "登录账号身份和关注数据接口已就绪，可以同步关注。"
+    },
+    "totalCount": 160,
+    "timing": {
+      "startedAt": "2026-10-03T08:10:49.192Z",
+      "dispatchMs": 3.5731000000000677,
+      "acquisitionMs": 2545.2000000001863,
+      "persistenceMs": 16.974199999999655,
+      "savedTotalMs": 2582.7923000000005,
+      "displayedTotalMs": 2713.5457,
+      "averageDisplayedMs": 271.35457
+    },
+    "connection": {
+      "online": true,
+      "version": "0.5.2",
+      "expectedVersion": "0.5.2"
+    }
+  }
+}

@@ -14,3 +14,8 @@ New-Item -ItemType Directory -Force -Path $binDir | Out-Null
 & $compiler /nologo /target:exe /platform:x64 /optimize+ /codepage:65001 /reference:System.Web.Extensions.dll "/out:$output" $source
 if ($LASTEXITCODE -ne 0 -or -not (Test-Path -LiteralPath $output)) { throw 'Native Messaging Host compilation failed.' }
 Write-Host "Native Messaging Host generated: $output"
+$followingSource = Join-Path $connectorRoot 'native-host\SignalDesk.FollowingHost.cs'
+$followingOutput = Join-Path $binDir 'SignalDesk.FollowingHost.exe'
+& $compiler /nologo /target:exe /platform:x64 /optimize+ /codepage:65001 /reference:System.Web.Extensions.dll "/out:$followingOutput" $followingSource
+if ($LASTEXITCODE -ne 0) { throw 'Following discovery host compilation failed.' }
+Write-Host "Following discovery host generated: $followingOutput"

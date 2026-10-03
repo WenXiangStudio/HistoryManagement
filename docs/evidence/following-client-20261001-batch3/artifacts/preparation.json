@@ -1,0 +1,12 @@
+{
+  "preparedAt": "2026-10-01T09:27:55.116Z",
+  "status": "prepared-not-started",
+  "batchNumber": 3,
+  "requestedCount": 20,
+  "excludedSavedCount": 20,
+  "localRowCount": 20,
+  "appRowCount": 20,
+  "acquisitionTimer": "Starts when the page acquisition script begins; no elapsed acquisition time exists yet",
+  "capturePath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\local-data\\following-batch3-20261001\\capture.json",
+  "timingSummaryPath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\local-data\\following-batch3-20261001\\timing-summary.json"
+}

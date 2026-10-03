@@ -20,6 +20,14 @@ body { margin: 0; min-width: 1120px; min-height: 100vh; overflow: hidden; }
 .startup-failure p { line-height: 1.75; }
 .startup-failure-code { margin-top: 24px; color: #766f63; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; font-size: 13px; }
 button, input, select, textarea { font: inherit; }
+.following-connection { display:flex; align-items:center; gap:12px; margin:0 0 12px; font-size:12px; color:#637265; }
+.following-config-note { font-size:12px; color:#557264; line-height:1.7; }
+.following-account-bind { margin-top:24px; padding-top:20px; border-top:1px solid var(--line); }
+.following-account-bind > strong { font-size:14px; }
+.following-account-bind > p { font-size:12px; color:var(--muted); line-height:1.7; }
+.following-connector-details { margin-top:20px; font-size:12px; color:var(--muted); }
+.following-connector-details summary { cursor:pointer; }
+.following-connector-details p { overflow-wrap:anywhere; line-height:1.7; }
 button { color: inherit; }
 .icon { flex: 0 0 auto; }
 .app-shell { display: grid; grid-template-columns: 244px minmax(0, 1fr); height: 100vh; background: var(--cream); }

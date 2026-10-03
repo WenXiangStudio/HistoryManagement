@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-10-01T09:33:06.8488723Z",
+  "finishedAt": "2026-10-01T09:33:13.7279567Z",
+  "elapsedMs": 6875.9312,
+  "clock": "Stopwatch",
+  "scope": "desktop command including page acquisition and JSON transport; excludes database and APP",
+  "status": "completed"
+}

@@ -20,15 +20,15 @@
 
 ## 修改与验证
 
-- 修正 `local-data/douyin-following-20260930.json`、`local-data/douyin-following.sqlite` 和 APP `%LOCALAPPDATA%/SignalDeskFollowingReview/following-directory.sqlite`；原错误数据保留为 `local-data/douyin-following-before-avatar-fix.json`。
-- 重新生成 `local-data/douyin-following-result.html`。
+- 修正 `docs/evidence/following-client-20260930/artifacts/douyin-following-20260930.json`、`local-data/douyin-following.sqlite` 和 APP `%LOCALAPPDATA%/SignalDeskFollowingReview/following-directory.sqlite`；原错误数据保留为 `docs/evidence/following-client-20260930/artifacts/douyin-following-before-avatar-fix.json`。
+- 重新生成 `docs/evidence/following-client-20260930/artifacts/douyin-following-result.html`。
 - 新增 `scripts/read-following-avatar-bindings.js`、`scripts/capture-following-avatar-bindings.ps1`、`scripts/apply-following-avatar-bindings.mjs`。采集固定使用已保存的十位身份，不按坐标或作者行顺序分配图片。
 - 旧 `scripts/capture-following-avatars.ps1` 已替换为新方式的调用入口；`scripts/capture-following-desktop.ps1` 删除了右键图片坐标复制，后续也从准确的主页 anchor 读取头像。
 - `browser-connector/following-extension/following-dom.js` 改为从匹配该作者主页的 anchor 中查找匹配昵称的图片。此扩展修改未单独开展新的自动关注试跑，不据此宣称原扩展流程验收通过。
-- 当前 Chrome 原始归属数据：`local-data/following-avatar-bindings.json`，10 条、图片加载 10/10。
-- SQLite 回读与修改差异：`local-data/avatar-correction-verification.json`，10 个头像 URL，5 处修正，完整性 `ok`。
-- APP 实际检查：`local-data/app-following-avatar-readback.json`，10 张卡片、10 个实际加载头像、10 个不同头像地址，逐条与 Chrome 当前页面中的对应主页图片一致。
-- APP 上部截图：`local-data/app-following-avatar-corrected.png`；下部截图：`local-data/app-following-avatar-corrected-lower.png`，可查看周话多、阿星与 oil欧呦的照片。
+- 当前 Chrome 原始归属数据：`docs/evidence/following-client-20260930/artifacts/following-avatar-bindings.json`，10 条、图片加载 10/10。
+- SQLite 回读与修改差异：`docs/evidence/following-client-20260930/artifacts/avatar-correction-verification.json`，10 个头像 URL，5 处修正，完整性 `ok`。
+- APP 实际检查：`docs/evidence/following-client-20260930/artifacts/app-following-avatar-readback.json`，10 张卡片、10 个实际加载头像、10 个不同头像地址，逐条与 Chrome 当前页面中的对应主页图片一致。
+- APP 上部截图：`docs/evidence/following-client-20260930/artifacts/app-following-avatar-corrected.png`；下部截图：`docs/evidence/following-client-20260930/artifacts/app-following-avatar-corrected-lower.png`，可查看周话多、阿星与 oil欧呦的照片。
 - 当前 APP 作品数和评论数仍为 0。
 
 辅助 SOP 入口返回 `unavailable/SessionNotBound`，没有已读人工反馈的正式 ID 与修订；保存真实本地修正报告并尝试同步，不虚构关联或人工通过。

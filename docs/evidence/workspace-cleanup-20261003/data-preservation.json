@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-10-03T10:20:14.263Z",
+  "tables": {
+    "directory_runs": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "unchanged": true
+    },
+    "directory_creators": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "unchanged": true
+    },
+    "visible_directory_runs": {
+      "rows": 11,
+      "sha256": "fee0bc67aeb11d1e6e8cc4705e0faf0129c26fd36529b1645528fadc055a2296",
+      "unchanged": true
+    },
+    "visible_directory_creators": {
+      "rows": 170,
+      "sha256": "5ce881d944dfba706da9ac1b9efef53838b2775b32e4cbeb7afd1cd6db892f05",
+      "unchanged": true
+    },
+    "following_account_owners": {
+      "rows": 1,
+      "sha256": "facbb7417026a8f86d5bba984a95760145eca1355fd3445eaad235f7be7b397e",
+      "unchanged": true
+    }
+  },
+  "settingsUnchanged": true,
+  "historicalStandaloneUnchanged": true,
+  "integrity": "ok",
+  "foreignKeyViolations": 0,
+  "newCollectionStarted": false
+}

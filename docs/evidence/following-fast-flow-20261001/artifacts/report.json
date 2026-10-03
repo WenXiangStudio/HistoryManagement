@@ -1,0 +1,178 @@
+{
+  "contract": "signaldesk-visible-following/v1",
+  "runId": "following-20261001104050-7f0ac06504488215",
+  "collectedAt": "2026-10-01T10:40:52.154Z",
+  "ownerSecUid": null,
+  "ownerNickname": "无限♾️进步",
+  "sourceUrl": "https://www.douyin.com/user/self",
+  "sourceKind": "visible-following-list",
+  "activeFollowingTab": true,
+  "listStartedAtTop": true,
+  "hasMore": true,
+  "visibleItemCount": 60,
+  "creators": [
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAwmE-l6oONkP3R29nUSrJlE6gov-8Qq7VinKzNcUvRU0",
+      "nickname": "马克的技术工作坊",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_327cc5401a414146abab350d8998854e",
+      "signature": "分享技术与工具，提升生产力。",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwmE-l6oONkP3R29nUSrJlE6gov-8Qq7VinKzNcUvRU0"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAP2fPRxpW_Whh5NigfRS_ICRyRwqnbbrZQJA4ZSrEw77TU8u0-CGRaLuBXGCN5j7x",
+      "nickname": "Nathan英语屋",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oMxPDlApUtBIPMpQsACgCiR35AYqJiEaA0cA4",
+      "signature": "• I keep the English simple and natural, so you can enjoy the story while improving your English along the way.and maybe see life from a slightly different perspective.",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAP2fPRxpW_Whh5NigfRS_ICRyRwqnbbrZQJA4ZSrEw77TU8u0-CGRaLuBXGCN5j7x"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA96jvu_C3eIvapc_BNKqKZ-JCzuvkT8zCf2dfEgDkBvOJbMSwCcYFk23S54TxNsc6",
+      "nickname": "ami.moment",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_5d8bf669f3a7fdabe6ce71c653207939",
+      "signature": "影像 ◌ 数码AI ◌ vlog ◌ 旅行",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA96jvu_C3eIvapc_BNKqKZ-JCzuvkT8zCf2dfEgDkBvOJbMSwCcYFk23S54TxNsc6"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAoC3N2ta6eJ_Eqg5ByWfFglSdgz39EdSKKnSZyoVux6vZyzYpK_4zykdfikKimaJs",
+      "nickname": "张大丸",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_52b952b7839b91e48e9bd9c13727e306",
+      "signature": "不从万个梦想中找需求，而从万个需求中找梦想",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAoC3N2ta6eJ_Eqg5ByWfFglSdgz39EdSKKnSZyoVux6vZyzYpK_4zykdfikKimaJs"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAXW_vNSmo8WPVNxOXDSTnoSIPhSGF5soquM25V02sH38",
+      "nickname": "刘涛Todd",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_bd208d3e9113124946bf1694a957b14e",
+      "signature": "Zen7 Labs 联创 | 产品@世纪互联  | 上财硕导",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAXW_vNSmo8WPVNxOXDSTnoSIPhSGF5soquM25V02sH38"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAy6accXEsUOoMqMGUeQhLVUDFWZdQqYkO0f2MZSoHJNg",
+      "nickname": "Cui",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_35f1c32dce73d7988bb38c0b9e9d5709",
+      "signature": "",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAy6accXEsUOoMqMGUeQhLVUDFWZdQqYkO0f2MZSoHJNg"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAJQYh1R2LUhmN8sLR_m2uxBKpLPrYISSudrYML3vTCGg",
+      "nickname": "双越AI club",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_f94e155ef29041ce9bd4083ae31c091a",
+      "signature": "wangEditor作者，前百度 滴滴资深软件工程师，慕课网金牌老师，掘金优秀作者，PMP",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAJQYh1R2LUhmN8sLR_m2uxBKpLPrYISSudrYML3vTCGg"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+      "nickname": "mmguo",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_623b4b03a99f8472631c2d0d0e7a0e61",
+      "signature": "正在做有效且美的AI应用",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAID6HO3Jq1zUNUqIDG1m-lfhTZgAk43k-ysOnLrIgpUE",
+      "nickname": "费曼学徒冬瓜",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oIwAJYADLiVpAEeAE0xWenwAxiE2fEoBIGGK3h",
+      "signature": "pi 在线阅读： https://dg-ai-notes.pages.dev/",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAID6HO3Jq1zUNUqIDG1m-lfhTZgAk43k-ysOnLrIgpUE"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAvJ6XMabMMVfH3-HGuHQUAOzV5s2gnNM-It6vdTiDSJibSFP3IUC2wmlsvj2ESr6s",
+      "nickname": "知行煮义",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oUiYliDpIFABQtEfwAEEAsBABrrcf7EeSWGDAl",
+      "signature": "一介煮夫",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAvJ6XMabMMVfH3-HGuHQUAOzV5s2gnNM-It6vdTiDSJibSFP3IUC2wmlsvj2ESr6s"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA_HhUPR0_L-poLvbF1138uSPN9PmmYB1xvH_2hXPUQHI",
+      "nickname": "英雄编程",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oAgthGHEAj9RAQEIZCFmAgFDgoNIAALefstA3x",
+      "signature": "大号：@英雄哪里出来",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA_HhUPR0_L-poLvbF1138uSPN9PmmYB1xvH_2hXPUQHI"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAeg7zj-udhJpBK_jOlcAq1hzDPxn2UxhyNlUxp5VWKLU",
+      "nickname": "赵里昂Liang英语老师",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_226d77d26d93bd4de39223417bd5f0d1",
+      "signature": "一个在英国语言学校教国际学生英语的东北人。",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAeg7zj-udhJpBK_jOlcAq1hzDPxn2UxhyNlUxp5VWKLU"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAYhJDGSuzkIry3vG5ugd9f0dK6o0cItZEL2jyjM21IlRGc_JEv4KETvLHR51UzYEo",
+      "nickname": "liliMozi",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_o0yvYAAr0CA6xI91Cziig7BCA2AewXAIEcf5Nt",
+      "signature": "目标是做真正的具身智能，开发了@HanaAgent",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAYhJDGSuzkIry3vG5ugd9f0dK6o0cItZEL2jyjM21IlRGc_JEv4KETvLHR51UzYEo"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAT7-Z9A33Rto45bSreupLwUxz5CvGJh2GRnF3JuEDV6Q",
+      "nickname": "张司机在路上",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_6a8e63db03cd4b46a1bd8f15e5c419fa",
+      "signature": "☕️ 每天vibe coding尝试把我老婆的生意自动化",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAT7-Z9A33Rto45bSreupLwUxz5CvGJh2GRnF3JuEDV6Q"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAwA2suCv_7KvIm6Khpgl6G9wxg9i-8Oq3vnaapwVzv4eJu1SYKr3I2SwyzR9IlQYI",
+      "nickname": "布鲁404",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_owAjAAsKIxPBMAsjSPqaSEBbEn7uEii4AB2W6",
+      "signature": "🗿AI 你就学吧",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwA2suCv_7KvIm6Khpgl6G9wxg9i-8Oq3vnaapwVzv4eJu1SYKr3I2SwyzR9IlQYI"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAT4iFvoTOtlJCDuUMyovtft5NLQOnQZ-HECl7EGe-rT0",
+      "nickname": "金枪大叔",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_268aa4e823b8ddcc06b92a3f135d4997",
+      "signature": "千年一遇的广告鬼才",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAT4iFvoTOtlJCDuUMyovtft5NLQOnQZ-HECl7EGe-rT0"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAfWp593V0UP4zecruaE89hhjBFQUUu-Qo8O9MW__PfmuW6H8RPrZG8pi9s7nEtuLg",
+      "nickname": "Simon林（日常）",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ed8d09b4b6508a8c3d1fe2ca1b090b4d",
+      "signature": "独立开发者，专注 AI Agent 与实用工具开发，分享实用AI 项目。",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAfWp593V0UP4zecruaE89hhjBFQUUu-Qo8O9MW__PfmuW6H8RPrZG8pi9s7nEtuLg"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAZB285oi0dc7f_DV4sjMalOIE0U9BOrkJgTXE2UI4NmuWAtxmBABUo4DohekZyOID",
+      "nickname": "Unitree宇树科技",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oAyKeRulzECAAAA2MChi1AkiI8BAQtAPtgfzlD",
+      "signature": "",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAZB285oi0dc7f_DV4sjMalOIE0U9BOrkJgTXE2UI4NmuWAtxmBABUo4DohekZyOID"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAATJX5oEerUYmVJZ7peIurePrk35tfTHZvb8FyNdWo9wnZLtmPi5tUV4DZja_IPVs2",
+      "nickname": "杰森Jason",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_c1e36f6d1c51e1a87ae8f8732c966194",
+      "signature": "数据主权｜在AI的巨大范式转移前，我们该如何自处？",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAATJX5oEerUYmVJZ7peIurePrk35tfTHZvb8FyNdWo9wnZLtmPi5tUV4DZja_IPVs2"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAm-xPDmDstvdrD-gEQ6rzW2M5npKeNuQmCBt5iUyffs0",
+      "nickname": "鲁大魔",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1538749da661a0405c0aef5f0123b769",
+      "signature": "找到一群不输给任何人的伙伴，成为路飞一样的男人！",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAm-xPDmDstvdrD-gEQ6rzW2M5npKeNuQmCBt5iUyffs0"
+    }
+  ],
+  "projectionSha256": "b3424a192ddc5d546243584fe693b244bb0c00accd914db6c1374c33bb8999a8",
+  "activeApiRequests": 0,
+  "workResponseBodiesRead": 0
+}

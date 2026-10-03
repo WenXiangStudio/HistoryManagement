@@ -29,11 +29,19 @@ export const visibleFollowingReportSchema = z.object({
   creators: z.array(z.object({
     uid: z.null(), secUid: publicId, nickname: z.string().min(1).max(200),
     avatarUrl: z.string().url().nullable(), signature: z.string().max(2000), profileUrl: z.string().url()
-  }).strict().refine((item) => item.profileUrl === `https://www.douyin.com/user/${encodeURIComponent(item.secUid)}`)).max(10),
+  }).strict().refine((item) => item.profileUrl === `https://www.douyin.com/user/${encodeURIComponent(item.secUid)}`)).max(20),
   projectionSha256: z.string().regex(/^[a-f0-9]{64}$/),
   activeApiRequests: z.literal(0), workResponseBodiesRead: z.literal(0)
 }).strict().refine((report) => new Set(report.creators.map((item) => item.secUid)).size === report.creators.length)
-export const followingDirectoryReportSchema = z.union([networkFollowingReportSchema, visibleFollowingReportSchema])
+export const structuredFollowingReportSchema=z.object({
+  contract:z.literal('signaldesk-structured-following/v1'),runId:z.string().min(1),collectedAt:z.string().datetime(),
+  ownerSecUid:publicId,ownerUid:publicId,ownerNickname:z.string().min(1).max(200),
+  sourceUrl:z.literal('https://www.douyin.com/user/self'),sourceKind:z.literal('structured-following-api'),
+  endpointPath:z.literal('/aweme/v1/web/user/following/list/'),hasMore:z.boolean(),pageCount:z.number().int().min(1).max(20),
+  creators:z.array(followingCreatorSchema).min(1).max(20),projectionSha256:z.string().regex(/^[a-f0-9]{64}$/),
+  activeApiRequests:z.number().int().min(2).max(21),workResponseBodiesRead:z.literal(0),domQueries:z.literal(0),uiClicks:z.literal(0)
+}).strict().refine(report=>new Set(report.creators.map(item=>item.secUid)).size===report.creators.length&&new Set(report.creators.map(item=>item.uid)).size===report.creators.length)
+export const followingDirectoryReportSchema = z.union([networkFollowingReportSchema, visibleFollowingReportSchema,structuredFollowingReportSchema])
 export type FollowingDirectoryReport = z.infer<typeof followingDirectoryReportSchema>
 export const followingDiagnosticSchema = z.object({
   stage: z.enum(['starting', 'opening-self', 'opening-following', 'waiting-response', 'verifying', 'saving', 'finished']),
@@ -49,5 +57,26 @@ export type FollowingSyncState = {
   runId: string | null; message: string; count: number; ownerSecUid: string | null
   extensionDirectory: string | null; reportDirectory: string | null; databasePath: string
   setupUrl: string | null
+  connection?: {online:boolean;version:string|null;expectedVersion:string}
+  readiness?: {phase:'offline'|'connecting'|'checking'|'ready'|'blocked';preparationId:string|null;message:string;code?:string}
+  accountStatus?: 'unchecked'|'checking'|'verified'|'login-required'|'unavailable'
+  errorCode?: string
   diagnostic?: FollowingDiagnostic
+  requestedCount?: number
+  totalCount?: number
+  timing?: {
+    startedAt: string
+    acquisitionMs?: number
+    dispatchMs?: number
+    persistenceMs?: number
+    savedTotalMs?: number
+    displayedTotalMs?: number
+    averageDisplayedMs?: number
+  }
 }
+export type FollowingAccountIdentity={uid:string;secUid:string;nickname:string}
+export type FollowingAccount=FollowingAccountIdentity & {label:string;chromeProfile:string|null;creatorCount:number}
+export type FollowingBrowserProfile={directory:string;name:string;extensionInstalled:boolean}
+export type FollowingConfiguration={chromeProfile:string|null;activeOwnerSecUid:string|null;profiles:FollowingBrowserProfile[];
+  accounts:FollowingAccount[];bindingPending:boolean;connected:boolean;connectorVersion:string|null;expectedVersion:string;
+  extensionDirectory:string|null}

@@ -1,0 +1,24 @@
+{
+  "verifiedAt": "2026-10-01T09:08:02.779Z",
+  "directoryPath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+  "snapshotSha256": "3ddc3c97783699d6dc1211f965f8b43b528f2d2bab496d2b6071abdd63949b13",
+  "tableCounts": {
+    "directory_runs": 0,
+    "directory_creators": 0,
+    "visible_directory_runs": 2,
+    "visible_directory_creators": 20
+  },
+  "businessCounts": {
+    "works": 0,
+    "comments": 0,
+    "metric_snapshots": 0,
+    "jobs": 0,
+    "analyses": 0
+  },
+  "originalRowsUnchanged": true,
+  "fieldBindingsMatch": true,
+  "count": 20,
+  "distinctCount": 20,
+  "integrity": "ok",
+  "foreignKeyViolations": 0
+}

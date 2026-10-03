@@ -1,0 +1,16 @@
+(node:9088) ExperimentalWarning: SQLite is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+{
+  "executable": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-cold-start-052\\win-unpacked\\Signal Desk.exe",
+  "preloadBridge": "ok",
+  "renderer": "ok",
+  "dashboardIpc": "ok",
+  "isolatedPilotEntry": "ok",
+  "structuredSyncGate": "ok",
+  "cloudProviders": "ok",
+  "demoSearch": "ok",
+  "demoDetail": "ok",
+  "commentAuditUi": "ok",
+  "demoCleanup": "ok",
+  "upgradeSnapshot": "not-requested"
+}

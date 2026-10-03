@@ -1,0 +1,98 @@
+{
+  "contract": "signaldesk-visible-following/v1",
+  "runId": "desktop-following-batch2-20261001084722",
+  "collectedAt": "2026-10-01T08:47:22.644Z",
+  "ownerSecUid": null,
+  "ownerNickname": "无限♾️进步",
+  "sourceUrl": "https://www.douyin.com/user/self",
+  "sourceKind": "visible-following-list",
+  "activeFollowingTab": true,
+  "listStartedAtTop": true,
+  "hasMore": true,
+  "visibleItemCount": 20,
+  "creators": [
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAy_5W-LNi-cp7QbySyzEm3PskTDnDMUF34XijUKmZvywSej4Pm4UtLhQHiY_7Fryj",
+      "nickname": "木子不写代码",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_860ae15805214d2fb1ca733f89897248",
+      "signature": "图卢兹大学机器博士，前空客研发工程师",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAy_5W-LNi-cp7QbySyzEm3PskTDnDMUF34XijUKmZvywSej4Pm4UtLhQHiY_7Fryj"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAwU33jOgLTqUV9Ub1h-Vgcd0VbQa-vV4lifYAzQSqgZ4",
+      "nickname": "数字生命卡兹克",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_f4f31e6a89ed4f1eb193e7144d6f935e",
+      "signature": "希望能激发你对AI的好奇。",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwU33jOgLTqUV9Ub1h-Vgcd0VbQa-vV4lifYAzQSqgZ4"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAFehT7Ul6A7w8DZNGU9WEAd4LI6hE3a6yY6wayWRGwW-PJdqZdQAT6Sv7ukeOUcqp",
+      "nickname": "老袁讲AI",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_884f002bda7d4ce38967b3f31e893c48",
+      "signature": "哈尔滨工业大学硕士，带大家跑步进入AI时代",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAFehT7Ul6A7w8DZNGU9WEAd4LI6hE3a6yY6wayWRGwW-PJdqZdQAT6Sv7ukeOUcqp"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA5D28jzH21yvvBcf6mgwNBW-a5PoCYt30ZQmhUZlp4h_HMPdpMBD9saoxzKzjvaPb",
+      "nickname": "躺在废墟里",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_453dc5e92801fcb18688c13cf0b9b7f0",
+      "signature": "复旦新传➡️4年记者➡️AI 初创公司",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA5D28jzH21yvvBcf6mgwNBW-a5PoCYt30ZQmhUZlp4h_HMPdpMBD9saoxzKzjvaPb"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAxXpim7xF5cS7xXVOiT0eoeKb1SGQlxKwJ9iC6JYB0hgyVf73k72212cBKg2HBrPx",
+      "nickname": "浩瀚烟火日记",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oEAgcZff9oE8DNAPCWDG7vFiA9PxgAyEunKAIA",
+      "signature": "看众生相——各行各业、万般热爱的真实故事。",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxXpim7xF5cS7xXVOiT0eoeKb1SGQlxKwJ9iC6JYB0hgyVf73k72212cBKg2HBrPx"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA0pI5mTcao4YpP4MHmpwfEcieDK-Ia36CEttsKWUdqvudr044H_cy_JES67O9r2SZ",
+      "nickname": "涌现EmergenceHK",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oQOA7BaigIAamiVAPi6nAooExPkAvAQGqg66I",
+      "signature": "技术x经济模型|新资产在涌现",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA0pI5mTcao4YpP4MHmpwfEcieDK-Ia36CEttsKWUdqvudr044H_cy_JES67O9r2SZ"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA-uO4JDJdM_Dh4LaHzzgBotL7RAbhGAHiRfvv8N7czJU",
+      "nickname": "Fateless",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oUBPALFETPfDB487frgAnlAEovAbI8FAANoQfn",
+      "signature": "CineART超创@CineART",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA-uO4JDJdM_Dh4LaHzzgBotL7RAbhGAHiRfvv8N7czJU"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAuB4VmBi2W4eg-mmEhrft4anoVvHWmusGGA9LHUxTC4HduubH0NVLDzBoVTiuO-Di",
+      "nickname": "刺猬星球super-i",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oAbainBmEiARIwCU3AioAkAAE0e3PeVn1CZCw2",
+      "signature": "刺猬星球 —— 一个聚焦新时代ai人才的乌托邦",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAuB4VmBi2W4eg-mmEhrft4anoVvHWmusGGA9LHUxTC4HduubH0NVLDzBoVTiuO-Di"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAPjlJkMcpTxq865qIViaCDzXMRLOhRUFL9Xlr4mdYPQ0TFwT4sOD_dgNIg6OtvmVE",
+      "nickname": "Mx-Shell",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_73812d6040b5ccf64e22acb4c4c25b51",
+      "signature": "🎗️ 独立音乐人 摄影师 AIGC创作者（非科班 业余爱好者）",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAPjlJkMcpTxq865qIViaCDzXMRLOhRUFL9Xlr4mdYPQ0TFwT4sOD_dgNIg6OtvmVE"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA9G0BvdbFGZOZy7UgtYAQ7GGPvX9Lsi0vifEW82JUfr4Q5rl-KUti1sMsgSaacbsx",
+      "nickname": "盐选财经",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_c4d7581c8e8671fad5dfea06c7973b24",
+      "signature": "找我可：Travis1942",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA9G0BvdbFGZOZy7UgtYAQ7GGPvX9Lsi0vifEW82JUfr4Q5rl-KUti1sMsgSaacbsx"
+    }
+  ],
+  "projectionSha256": "483a3c65df8dec6e865c27208e227d59bf9df6d6f35f74fd41613fb144019838",
+  "activeApiRequests": 0,
+  "workResponseBodiesRead": 0
+}

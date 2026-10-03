@@ -322,17 +322,17 @@ try {
   if (state.rootChildCount < 1 || !state.rootText.includes('今日内容收件箱')) {
     throw new Error(`Renderer did not mount the application: ${JSON.stringify(state)}`)
   }
-  if (!state.rootText.includes('开始同步关注')) throw new Error('Independent following-sync entry did not render')
+  if (!state.rootText.includes('等待同步准备')) throw new Error('Independent following readiness entry did not render')
   if (!ipc.ok) throw new Error(`IPC dashboard call failed: ${ipc.error}`)
-  if (!boundedSync.rejected || !boundedSync.error.includes('前 10 位')) throw new Error(`Main process did not enforce the directory limit: ${JSON.stringify(boundedSync)}`)
-  if (!productionSync.rejected || !productionSync.error.includes('前 10 位')) {
+  if (!boundedSync.rejected || !boundedSync.error.includes('10 或 20')) throw new Error(`Main process did not enforce the directory limit: ${JSON.stringify(boundedSync)}`)
+  if (!productionSync.rejected || !productionSync.error.includes('10 或 20')) {
     throw new Error(`Following limit was not enforced: ${JSON.stringify(productionSync)}`)
   }
   if (!worksSync.rejected || !worksSync.error.includes('尚未接入正式连接器')) {
     throw new Error(`Production works sync was not fail-closed: ${JSON.stringify(worksSync)}`)
   }
   if (sampleSyncUi.triggerFound !== true
-    || sampleSyncUi.triggerInitiallyDisabled !== false
+    || sampleSyncUi.triggerInitiallyDisabled !== true
     || sampleSyncUi.text !== ''
     || sampleSyncUi.inputs.length !== 0
     || sampleSyncUi.confirmDisabled !== null) {

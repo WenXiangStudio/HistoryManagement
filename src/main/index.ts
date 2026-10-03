@@ -66,9 +66,9 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
   ipcMain.handle('dashboard:get', () => {
     const services = requireServices()
     const summary = services.database.getSummary(services.bridge.isOnline())
-    if (followingSync?.store.latest()) {
+    if (followingSync?.hasDirectory()) {
       summary.followingCount = followingSync.store.list().length
-      summary.lastSyncAt = followingSync.store.latest()!.collectedAt
+      summary.lastSyncAt = followingSync.store.latest()?.collectedAt??null
     }
     return summary
   })
@@ -80,7 +80,7 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
   })
   ipcMain.handle('creators:list', (_event, search = '') => {
     const existing = requireServices().database.getCreators(String(search))
-    return followingSync?.store.latest()
+    return followingSync?.hasDirectory()
       ? [...followingSync.store.list(String(search)), ...existing.filter((entry) => entry.isDemo)] : existing
   })
   ipcMain.handle('creators:update', (_event, creatorId: number, input) => {
@@ -90,12 +90,22 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
   })
   ipcMain.handle('jobs:list', () => requireServices().database.getJobs())
   ipcMain.handle('following:refresh', (_event, creatorLimit = 10) => {
-    if (creatorLimit !== 10) throw new Error('本轮独立关注同步固定读取前 10 位博主')
+    if (![10,20].includes(creatorLimit)) throw new Error('请选择 10 或 20 位新博主')
     if (!followingSync) throw new Error('关注同步服务未就绪')
-    return followingSync.start()
+    return followingSync.start(creatorLimit)
   })
   ipcMain.handle('following:status', () => followingSync?.status())
+  ipcMain.handle('following:configuration', () => followingSync?.configuration())
+  ipcMain.handle('following:configuration-save', (_event,input) => followingSync?.saveConfiguration(input))
+  ipcMain.handle('following:account-switch', (_event,secUid:string) => followingSync?.switchAccount(secUid))
+  ipcMain.handle('following:account-bind', (_event,input) => followingSync?.bindCurrentAccount(input))
+  ipcMain.handle('following:account-bind-cancel', () => followingSync?.cancelBinding())
+  ipcMain.handle('following:configure', () => followingSync?.configure())
+  ipcMain.handle('following:login', () => followingSync?.login())
+  ipcMain.handle('following:prepare', () => followingSync?.prepare(true,true))
+  ipcMain.handle('following:structured-probe', () => followingSync?.probeStructured())
   ipcMain.handle('following:cancel', () => followingSync?.cancel())
+  ipcMain.handle('following:rendered', (_event,runId:string,loadedCount:number) => followingSync?.rendered(runId,loadedCount))
   ipcMain.handle('works:sync', (_event, creatorUid: string, worksPerCreator: number) => requireServices().runner.startCreatorWorksSync(creatorUid, worksPerCreator))
   ipcMain.handle('sync:comments', (_event, workId: string, commentsPerWork: number) => requireServices().runner.startCommentsSync(workId, commentsPerWork))
   ipcMain.handle('isolated-pilot:catalog', () => isolatedPilot.catalog())
@@ -180,6 +190,7 @@ async function startDesktop(): Promise<void> {
   if (process.env.SIGNAL_DESK_SMOKE_TEST === '1') isolatedPilot = new IsolatedPilotService({ tempRoot: join(userData, 'isolated-r8') })
   database = new AppDatabase(join(userData, 'signal-desk.sqlite'))
   followingSync = new FollowingSyncService(userData, () => mainWindow?.webContents.send('data:changed', { source: 'following-directory' }))
+  if(process.env.SIGNAL_DESK_SMOKE_TEST !== '1')await followingSync.initialize()
   bridge = new BridgeServer(userData)
   await bridge.start()
   worker = new WorkerClient(join(userData, 'runtime'))
@@ -194,6 +205,7 @@ async function startDesktop(): Promise<void> {
   bridge.on('envelope', () => mainWindow?.webContents.send('data:changed', { source: 'browser' }))
   bridge.on('status', () => mainWindow?.webContents.send('data:changed', { source: 'connector' }))
   mainWindow = createWindow()
+  if(process.env.SIGNAL_DESK_SMOKE_TEST !== '1'&&!process.argv.includes('--structured-probe'))void followingSync.prepare()
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) mainWindow = createWindow()
   })

@@ -20,6 +20,10 @@ runtime/python311/*
 !runtime/python311/.gitkeep
 *.env
 
+# Runtime captures, account settings and local database backups stay local.
+# Reviewed evidence belongs under docs/evidence.
+local-data/
+
 # Local pending records for the external development helper are not project artifacts.
 local-data/sop-pending*.json
 

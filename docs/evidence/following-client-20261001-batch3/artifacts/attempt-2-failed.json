@@ -1,0 +1,21 @@
+{
+  "ok": false,
+  "collectedAt": "2026-10-01T09:32:45.344Z",
+  "error": "Avatar identity missing for 木子不写代码头像",
+  "timing": {
+    "contract": "signaldesk-following-timing/v1",
+    "status": "failed",
+    "requestedCount": 20,
+    "startedAt": "2026-10-01T09:32:45.085Z",
+    "finishedAt": "2026-10-01T09:32:45.344Z",
+    "clock": "monotonic",
+    "scope": "page acquisition including verification, discovery, deduplication, scrolling and avatar loading; excludes database and APP",
+    "perCreatorScope": "author card verification and field read after shared discovery, including scroll and avatar waiting",
+    "totalMs": 259.5,
+    "successfulCount": 0,
+    "averageMsPerCreator": null,
+    "authorProcessingMs": 0,
+    "sharedOverheadMs": 259.5,
+    "records": []
+  }
+}

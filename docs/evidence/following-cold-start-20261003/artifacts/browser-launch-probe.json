@@ -1,0 +1,304 @@
+{
+  "baseline": {
+    "args": [
+      "--profile-directory=Default",
+      "--no-startup-window"
+    ],
+    "exitCode": 0,
+    "elapsedMs": 289.8849,
+    "chromeProcessesAfter8s": 0
+  },
+  "before": {
+    "phase": "completed",
+    "runId": "following-20261003081049-f57ba611448f397c",
+    "message": "最近一次新增 10 位博主，资料库累计 160 位。",
+    "count": 10,
+    "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+    "extensionDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-extension",
+    "reportDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-runs\\following-20261003081049-f57ba611448f397c",
+    "databasePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+    "setupUrl": "http://127.0.0.1:56126/following-connect",
+    "accountStatus": "unavailable",
+    "readiness": {
+      "phase": "blocked",
+      "preparationId": "1029b2107c3a77844ed295b8",
+      "message": "尚未连接到关注扩展，请检查扩展是否启用。",
+      "code": "PREPARATION_TIMEOUT"
+    },
+    "totalCount": 160,
+    "timing": {
+      "startedAt": "2026-10-03T08:10:49.192Z",
+      "dispatchMs": 3.5731000000000677,
+      "acquisitionMs": 2545.2000000001863,
+      "persistenceMs": 16.974199999999655,
+      "savedTotalMs": 2582.7923000000005,
+      "displayedTotalMs": 2713.5457,
+      "averageDisplayedMs": 271.35457
+    },
+    "connection": {
+      "online": false,
+      "version": null,
+      "expectedVersion": "0.5.1"
+    }
+  },
+  "args": [
+    "--profile-directory=Default",
+    "--new-window",
+    "--start-minimized",
+    "https://www.douyin.com/user/self"
+  ],
+  "childPid": 15304,
+  "elapsedMs": 3817.1866,
+  "samples": [
+    {
+      "elapsedMs": 4.578499999999998,
+      "readiness": {
+        "phase": "blocked",
+        "preparationId": "1029b2107c3a77844ed295b8",
+        "message": "尚未连接到关注扩展，请检查扩展是否启用。",
+        "code": "PREPARATION_TIMEOUT"
+      },
+      "connection": {
+        "online": false,
+        "version": null,
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 209.4637,
+      "readiness": {
+        "phase": "blocked",
+        "preparationId": "1029b2107c3a77844ed295b8",
+        "message": "尚未连接到关注扩展，请检查扩展是否启用。",
+        "code": "PREPARATION_TIMEOUT"
+      },
+      "connection": {
+        "online": false,
+        "version": null,
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 426.1095,
+      "readiness": {
+        "phase": "blocked",
+        "preparationId": "1029b2107c3a77844ed295b8",
+        "message": "尚未连接到关注扩展，请检查扩展是否启用。",
+        "code": "PREPARATION_TIMEOUT"
+      },
+      "connection": {
+        "online": false,
+        "version": null,
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 641.2180000000001,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 844.011,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 1048.259,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 1264.1058,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 1479.6445,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 1682.3049,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 1895.5102000000002,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 2097.2158,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 2312.3156,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 2528.6755,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 2743.3992,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 2956.3441,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 3172.939,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 3385.2906,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 3601.0386999999996,
+      "readiness": {
+        "phase": "checking",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "正在验证登录账号与关注数据接口…"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    },
+    {
+      "elapsedMs": 3817.1679999999997,
+      "readiness": {
+        "phase": "ready",
+        "preparationId": "fe1420f982c238a28ce35962",
+        "message": "登录账号身份和关注数据接口已就绪，可以同步关注。"
+      },
+      "connection": {
+        "online": true,
+        "version": "0.5.1",
+        "expectedVersion": "0.5.1"
+      }
+    }
+  ]
+}

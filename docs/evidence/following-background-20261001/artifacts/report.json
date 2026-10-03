@@ -1,0 +1,178 @@
+{
+  "contract": "signaldesk-visible-following/v1",
+  "runId": "following-20261001131849-c1e10c5349603978",
+  "collectedAt": "2026-10-01T13:18:51.978Z",
+  "ownerSecUid": null,
+  "ownerNickname": "无限♾️进步",
+  "sourceUrl": "https://www.douyin.com/user/self",
+  "sourceKind": "visible-following-list",
+  "activeFollowingTab": true,
+  "listStartedAtTop": true,
+  "hasMore": true,
+  "visibleItemCount": 100,
+  "creators": [
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAHvDljN799o2UOYJslMbwZdVEP00VyTqMXeL8JrfpS0xd-EFMCkhOwnhmagv71A6j",
+      "nickname": "VibeLearning AI",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oMPDcLGr2DTfngAPV5IQb1KAfAmAU6AzfmeswL",
+      "signature": "🖥️大厂五百强在职数据分析挖掘/智能体工作流研发",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAHvDljN799o2UOYJslMbwZdVEP00VyTqMXeL8JrfpS0xd-EFMCkhOwnhmagv71A6j"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAYDsFipAOOHnmh_AqLptXdgMN-fNVYN7vkOOyT-XSiuI",
+      "nickname": "扑通同学",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_17019b440b667a410899ec63636fe6d2",
+      "signature": "🔅10岁",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAYDsFipAOOHnmh_AqLptXdgMN-fNVYN7vkOOyT-XSiuI"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA7Yc28I_bO9MdDBCXEjJUEhmmgTHUAnZQmOVi3H2aSD85iOAzbtI-m5F6YbWWhjeW",
+      "nickname": "阿酥在Coding",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1fff7d5b8e5e6c49e5bcdc737486fca3",
+      "signature": "AI女工👩‍💻大一开始四段大厂实习",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA7Yc28I_bO9MdDBCXEjJUEhmmgTHUAnZQmOVi3H2aSD85iOAzbtI-m5F6YbWWhjeW"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA5ouSO6eKn3rNuN31WZNCLAOueFgtKwBv5aM-znWcT84",
+      "nickname": "程序员豆腐",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_3a0275367da8874a72367c013723abe8",
+      "signature": "👨‍💻 程序员一枚，热衷于探索技术世界💻",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA5ouSO6eKn3rNuN31WZNCLAOueFgtKwBv5aM-znWcT84"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA_4Rk2Esd5jBcAaq7Kna9CPyWKCh5pLBHDbhyXxFa1jM",
+      "nickname": "后常不是后羿",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e04824d507dfd4d2bce2321aa8617e58",
+      "signature": "⭐️夜深了，聊点外面听不到的社会规则和商业秘密~",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA_4Rk2Esd5jBcAaq7Kna9CPyWKCh5pLBHDbhyXxFa1jM"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAV8HHWgS_rk8QdqAtGbZii0QmxvZ5n35cLqbgVUiCnPLP6hZGsMN6GoLS2Xum_DfJ",
+      "nickname": "北方Befun",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/douyin-user-image-file_100311a232871352df0f75bb026211ee",
+      "signature": "不要轻易按下你的快门",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAV8HHWgS_rk8QdqAtGbZii0QmxvZ5n35cLqbgVUiCnPLP6hZGsMN6GoLS2Xum_DfJ"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAZ_9WV-GKSpjalwvuBQtByd1ZuYiO1AhCvIzgHVDCvlm801PucDO8aD7iFOclBoFU",
+      "nickname": "Xi Xu",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oEAU6nVqBIDgn83UAHiADD9C6CfimAAEiFgZAf",
+      "signature": "ai @youware · xi-xu.me/#contact",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAZ_9WV-GKSpjalwvuBQtByd1ZuYiO1AhCvIzgHVDCvlm801PucDO8aD7iFOclBoFU"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAflFs8DkU0tE6zIZauXozRVPZJFUSJ8knXd60De7L2snDAI2gEMob4NimkI5idVia",
+      "nickname": "帧数燃烧",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oselFAnDpCGqN1FFEAARFAEFAExhfYvwq9IWBr",
+      "signature": "「AIGC专家」「AI产品经理」「剪辑拍摄」",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAflFs8DkU0tE6zIZauXozRVPZJFUSJ8knXd60De7L2snDAI2gEMob4NimkI5idVia"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAf4YXZg6syjTaiXTR6NAjrTsJXcUH9hrM2YoSv_2L771dOb0Yv1da1JW--xatJGIg",
+      "nickname": "比格熊",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oU69oCEAmAM3oLeAAtwKLJwEDfAMFEAe5EAoyI",
+      "signature": "日常更新...",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAf4YXZg6syjTaiXTR6NAjrTsJXcUH9hrM2YoSv_2L771dOb0Yv1da1JW--xatJGIg"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA8Gu7OrgX27THzhYvivEzkNVKv1pBlyGHWdLyPJg7FJ_d9SjYs6-XqapH5MuX16xh",
+      "nickname": "胡泊Hubo",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_a567490ac9949f91f8cdd7a15a778a69",
+      "signature": "AI bulider @Lollipop.ai",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA8Gu7OrgX27THzhYvivEzkNVKv1pBlyGHWdLyPJg7FJ_d9SjYs6-XqapH5MuX16xh"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAmHpOwinAN7C6pJpSP-20hpWknuERPLIZiW5T99zsYeU",
+      "nickname": "划水的青蛙",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oQA2JcIgCVAFKEsxAw9RjHf7AZDPACAQ6Alqje",
+      "signature": "全网同名",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAmHpOwinAN7C6pJpSP-20hpWknuERPLIZiW5T99zsYeU"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAX4enn5sxJQWvIqyONRmab7wNVacTbrmAXJXAfaR6ENM",
+      "nickname": "慢学AI",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oAiacPgPSg1iXBIAbN2BAAyLAamIAcVCE1554",
+      "signature": "慢即是快。",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAX4enn5sxJQWvIqyONRmab7wNVacTbrmAXJXAfaR6ENM"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAk2XQ1epqpbpBpOevNt-fnzMnc-RkUEKuUK7_rIhC4B_mIC2yxRQ568eg-uBuYJov",
+      "nickname": "老白的分镜",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e6798db71fb04970cd4e2def0561fa37",
+      "signature": "私信无法一一回复请见谅。",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAk2XQ1epqpbpBpOevNt-fnzMnc-RkUEKuUK7_rIhC4B_mIC2yxRQ568eg-uBuYJov"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAg_yIdIuVAlPrNyuf9dvOym9XKJeBtOpt4LNJxiL9li0",
+      "nickname": "Also",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oA3kSjviAte1AIUErCi0AtBBwgouAEO6flsA0w",
+      "signature": "创作不易禁止搬运",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAg_yIdIuVAlPrNyuf9dvOym9XKJeBtOpt4LNJxiL9li0"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA6cLFP6uL4NmSxtnd9miQb-9S6GweLvikkmvKKFUT74A",
+      "nickname": "严伯钧",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/mosaic-legacy_2d4180006c296ce64fb4b",
+      "signature": "科普作家",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA6cLFP6uL4NmSxtnd9miQb-9S6GweLvikkmvKKFUT74A"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAANxfZzJAT2_2sLq1dJz2DBCd3AUfZRw5i-IyH4JHiRZ2L8fENp6vFRDBoFsbjn1w3",
+      "nickname": "麻省理工Rui同学",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_420c20e17c40f7e4877e292f9efedd88",
+      "signature": "每期用一张AI地图，看懂一个人文故事",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAANxfZzJAT2_2sLq1dJz2DBCd3AUfZRw5i-IyH4JHiRZ2L8fENp6vFRDBoFsbjn1w3"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA1hcSX5Vw0f_uolcKMCpHWxN-u8oTgSerCglvkeRW6Qk",
+      "nickname": "戏京同志",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_d1795fa85846def090e110de987393a6",
+      "signature": "你好，我们一起迈入新步伐！长脑子了",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA1hcSX5Vw0f_uolcKMCpHWxN-u8oTgSerCglvkeRW6Qk"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAJcPSF4MvhBAWhlB0D_k20Z3U7LJAcPD-Vrn5-6JNeSk",
+      "nickname": "Ai-Agent",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_6e158740367cc8f11176bfa13bb4fdc4",
+      "signature": "一个90后科技独立开发者，Ai个大模型 Ai- Agent AGI 开发",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAJcPSF4MvhBAWhlB0D_k20Z3U7LJAcPD-Vrn5-6JNeSk"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAOcPp5WgDRSX9KaiwY8qt0rO0u1CENqZUDMQ40cSRstPoPNYobtpoQuNgkjolS4rX",
+      "nickname": "一蛙AI",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_f8bda2f973617a47b05df0139fb318a9",
+      "signature": "大模型做题家",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAOcPp5WgDRSX9KaiwY8qt0rO0u1CENqZUDMQ40cSRstPoPNYobtpoQuNgkjolS4rX"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAB3Qx5iT-XPUp54-wBHTac06qDEKdyWUmKhcIwTIyS5Q25jt7CBoRK-OS-N1ha4Yk",
+      "nickname": "学院派Academia",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o4XyVlH3AAAIAehugEfkkADzKtxcx5ghAACAkI",
+      "signature": "把世界顶尖大学的知识漂洋过海带给你",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAB3Qx5iT-XPUp54-wBHTac06qDEKdyWUmKhcIwTIyS5Q25jt7CBoRK-OS-N1ha4Yk"
+    }
+  ],
+  "projectionSha256": "15a1f29bf21460b5cae04935b02cca9567866f673373426cf031943e26d653a7",
+  "activeApiRequests": 0,
+  "workResponseBodiesRead": 0
+}

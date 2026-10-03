@@ -1,0 +1,1027 @@
+[
+  {
+    "source": "cold-background-observation.json",
+    "ok": true,
+    "originalSamples": 340,
+    "transitions": [
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "connecting",
+            "preparationId": "d5e24079d7bb43e4a3e77e4c",
+            "message": "正在自动启动浏览器并连接关注扩展…"
+          },
+          "connection": {
+            "online": false,
+            "version": null
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 73.34850000000006,
+        "lastElapsedMs": 73.34850000000006
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "d5e24079d7bb43e4a3e77e4c",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 32,
+        "firstElapsedMs": 770.2573,
+        "lastElapsedMs": 4134.374
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "d5e24079d7bb43e4a3e77e4c",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 58,
+        "firstElapsedMs": 4244.348,
+        "lastElapsedMs": 10448.0103
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "d5e24079d7bb43e4a3e77e4c",
+            "code": "FOLLOWING_DIALOG_NOT_READY",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 50,
+        "firstElapsedMs": 10557.9882,
+        "lastElapsedMs": 15908.011199999999
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "095c8bdcdd6ec0ebde41737b",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 16041.088600000001,
+        "lastElapsedMs": 16041.088600000001
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "095c8bdcdd6ec0ebde41737b",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 34,
+        "firstElapsedMs": 16154.0202,
+        "lastElapsedMs": 19740.686599999997
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "095c8bdcdd6ec0ebde41737b",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 58,
+        "firstElapsedMs": 19876.1763,
+        "lastElapsedMs": 26084.4185
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "095c8bdcdd6ec0ebde41737b",
+            "code": "FOLLOWING_DIALOG_NOT_READY",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 46,
+        "firstElapsedMs": 26192.6855,
+        "lastElapsedMs": 31103.2882
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "05e0437f52ef4fcdfa5d5fa3",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 32,
+        "firstElapsedMs": 31221.3907,
+        "lastElapsedMs": 34593.386600000005
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "05e0437f52ef4fcdfa5d5fa3",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 27,
+        "firstElapsedMs": 34702.040100000006,
+        "lastElapsedMs": 37524.1852
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "verified",
+          "readiness": {
+            "phase": "ready",
+            "preparationId": "05e0437f52ef4fcdfa5d5fa3",
+            "message": "关注连接器和账号页面已准备好，可以同步关注。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 37664.721000000005,
+        "lastElapsedMs": 37664.721000000005
+      }
+    ]
+  },
+  {
+    "source": "initial-recovery-observation.json",
+    "ok": true,
+    "originalSamples": 477,
+    "transitions": [
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "connecting",
+            "preparationId": "90955d6854a7b05298bec43e",
+            "message": "正在自动启动浏览器并连接关注扩展…"
+          },
+          "connection": {
+            "online": false,
+            "version": null
+          }
+        },
+        "samples": 3,
+        "firstElapsedMs": 54.921299999999974,
+        "lastElapsedMs": 914.256
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "90955d6854a7b05298bec43e",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 1053.8620999999998,
+        "lastElapsedMs": 1053.8620999999998
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "90955d6854a7b05298bec43e",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 36,
+        "firstElapsedMs": 1165.6311999999998,
+        "lastElapsedMs": 4975.3989
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "90955d6854a7b05298bec43e",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 64,
+        "firstElapsedMs": 5084.6123,
+        "lastElapsedMs": 11952.005
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "90955d6854a7b05298bec43e",
+            "code": "FOLLOWING_DIALOG_NOT_READY",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 45,
+        "firstElapsedMs": 12071.2938,
+        "lastElapsedMs": 16886.0363
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "8ea5c742b34616422f58d2ee",
+            "message": "正在自动检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 17003.766900000002,
+        "lastElapsedMs": 17003.766900000002
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "8ea5c742b34616422f58d2ee",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 31,
+        "firstElapsedMs": 17105.4143,
+        "lastElapsedMs": 20360.349400000003
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "8ea5c742b34616422f58d2ee",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 63,
+        "firstElapsedMs": 20469.886300000002,
+        "lastElapsedMs": 27202.9644
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "8ea5c742b34616422f58d2ee",
+            "code": "FOLLOWING_DIALOG_NOT_READY",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 53,
+        "firstElapsedMs": 27354.4415,
+        "lastElapsedMs": 33067.3673
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "5b41687af26e2bee5f7d9eee",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 33212.9447,
+        "lastElapsedMs": 33212.9447
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "5b41687af26e2bee5f7d9eee",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 39,
+        "firstElapsedMs": 33316.2705,
+        "lastElapsedMs": 37460.6604
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "5b41687af26e2bee5f7d9eee",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 59,
+        "firstElapsedMs": 37625.351,
+        "lastElapsedMs": 43942.2188
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "5b41687af26e2bee5f7d9eee",
+            "code": "FOLLOWING_DIALOG_NOT_READY",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 48,
+        "firstElapsedMs": 44082.8977,
+        "lastElapsedMs": 49218.440500000004
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "722eac1d0f8539329e6dca09",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 2,
+        "firstElapsedMs": 49371.288,
+        "lastElapsedMs": 49482.04
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "722eac1d0f8539329e6dca09",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 30,
+        "firstElapsedMs": 49592.2497,
+        "lastElapsedMs": 52742.7797
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "verified",
+          "readiness": {
+            "phase": "ready",
+            "preparationId": "722eac1d0f8539329e6dca09",
+            "message": "关注连接器和账号页面已准备好，可以同步关注。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 52884.5408,
+        "lastElapsedMs": 52884.5408
+      }
+    ]
+  },
+  {
+    "source": "readiness-observation.json",
+    "ok": true,
+    "originalSamples": 54,
+    "transitions": [
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "connecting",
+            "preparationId": "7f973795a7f57ce88908e030",
+            "message": "正在自动启动浏览器并连接关注扩展…"
+          },
+          "connection": {
+            "online": false,
+            "version": null
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 93.67969999999997,
+        "lastElapsedMs": 93.67969999999997
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "7f973795a7f57ce88908e030",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 32,
+        "firstElapsedMs": 815.7181,
+        "lastElapsedMs": 4173.742
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "7f973795a7f57ce88908e030",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 20,
+        "firstElapsedMs": 4281.776,
+        "lastElapsedMs": 6341.128900000001
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "verified",
+          "readiness": {
+            "phase": "ready",
+            "preparationId": "7f973795a7f57ce88908e030",
+            "message": "关注连接器和账号页面已准备好，可以同步关注。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 6449.7514,
+        "lastElapsedMs": 6449.7514
+      }
+    ]
+  },
+  {
+    "source": "upgrade-not-yet-loaded.json",
+    "ok": false,
+    "originalSamples": 543,
+    "transitions": [
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "connecting",
+            "preparationId": "c940157e2689648d99bec53e",
+            "message": "正在自动启动浏览器并连接关注扩展…"
+          },
+          "connection": {
+            "online": false,
+            "version": null
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 33.1395,
+        "lastElapsedMs": 33.1395
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "c940157e2689648d99bec53e",
+            "code": "EXTENSION_VERSION_MISMATCH",
+            "message": "关注扩展需要更新，请重新加载扩展。"
+          },
+          "connection": {
+            "online": false,
+            "version": "0.4.1"
+          }
+        },
+        "samples": 542,
+        "firstElapsedMs": 752.4950999999999,
+        "lastElapsedMs": 59986.5951
+      }
+    ]
+  },
+  {
+    "source": "v043-before-bounded.json",
+    "ok": false,
+    "originalSamples": 544,
+    "transitions": [
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "connecting",
+            "preparationId": "9e1c5e966ec0459d8dcd9bd9",
+            "message": "正在自动启动浏览器并连接关注扩展…"
+          },
+          "connection": {
+            "online": false,
+            "version": null
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 12.703399999999988,
+        "lastElapsedMs": 12.703399999999988
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "9e1c5e966ec0459d8dcd9bd9",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 32,
+        "firstElapsedMs": 564.4697000000001,
+        "lastElapsedMs": 4169.418
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "9e1c5e966ec0459d8dcd9bd9",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 18,
+        "firstElapsedMs": 4276.8728,
+        "lastElapsedMs": 6123.6532
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "9e1c5e966ec0459d8dcd9bd9",
+            "code": "A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 53,
+        "firstElapsedMs": 6232.2273000000005,
+        "lastElapsedMs": 11885.3093
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "e3491af4742b915eb8ca4f24",
+            "message": "正在自动检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 11998.5953,
+        "lastElapsedMs": 11998.5953
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "e3491af4742b915eb8ca4f24",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 42,
+        "firstElapsedMs": 12102.3422,
+        "lastElapsedMs": 16559.130599999997
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "e3491af4742b915eb8ca4f24",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 18,
+        "firstElapsedMs": 16670.5829,
+        "lastElapsedMs": 18522.3989
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "e3491af4742b915eb8ca4f24",
+            "code": "A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 50,
+        "firstElapsedMs": 18651.550600000002,
+        "lastElapsedMs": 24003.007299999997
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "7c9b9794d3778b9ac891caea",
+            "message": "正在自动检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 24116.7918,
+        "lastElapsedMs": 24116.7918
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "7c9b9794d3778b9ac891caea",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 45,
+        "firstElapsedMs": 24220.4576,
+        "lastElapsedMs": 29000.0196
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "7c9b9794d3778b9ac891caea",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 63,
+        "firstElapsedMs": 29115.0418,
+        "lastElapsedMs": 35845.891500000005
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "7c9b9794d3778b9ac891caea",
+            "code": "FOLLOWING_DIALOG_NOT_READY",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 49,
+        "firstElapsedMs": 35957.524000000005,
+        "lastElapsedMs": 41198.1731
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "3735be030952ed2e1e65fcc7",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 2,
+        "firstElapsedMs": 41314.7656,
+        "lastElapsedMs": 41419.0716
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "3735be030952ed2e1e65fcc7",
+            "message": "正在恢复账号页面并检查登录状态…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 17,
+        "firstElapsedMs": 41526.263100000004,
+        "lastElapsedMs": 43263.7656
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "3735be030952ed2e1e65fcc7",
+            "code": "A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 45,
+        "firstElapsedMs": 43373.942,
+        "lastElapsedMs": 48208.4028
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "14dd50b260506b2d08484438",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 42,
+        "firstElapsedMs": 48346.575600000004,
+        "lastElapsedMs": 52812.0929
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "14dd50b260506b2d08484438",
+            "message": "账号页面尚未就绪，正在自动恢复并重新打开关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 18,
+        "firstElapsedMs": 52946.6123,
+        "lastElapsedMs": 54791.8082
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "unavailable",
+          "readiness": {
+            "phase": "blocked",
+            "preparationId": "14dd50b260506b2d08484438",
+            "code": "A listener indicated an asynchronous response by returning true, but the message channel closed before a response was received",
+            "message": "账号页面准备未完成，正在等待恢复。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.3"
+          }
+        },
+        "samples": 47,
+        "firstElapsedMs": 54952.594600000004,
+        "lastElapsedMs": 59941.4823
+      }
+    ]
+  },
+  {
+    "source": "warm-start-observation.json",
+    "ok": true,
+    "originalSamples": 3,
+    "transitions": [
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "connecting",
+            "preparationId": "c4e83d16325ba2144ebe72e5",
+            "message": "正在自动启动浏览器并连接关注扩展…"
+          },
+          "connection": {
+            "online": false,
+            "version": null
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 82.40100000000001,
+        "lastElapsedMs": 82.40100000000001
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "checking",
+          "readiness": {
+            "phase": "checking",
+            "preparationId": "c4e83d16325ba2144ebe72e5",
+            "message": "正在检查账号页面和关注列表…"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 764.2891,
+        "lastElapsedMs": 764.2891
+      },
+      {
+        "state": {
+          "phase": "completed",
+          "accountStatus": "verified",
+          "readiness": {
+            "phase": "ready",
+            "preparationId": "c4e83d16325ba2144ebe72e5",
+            "message": "关注连接器和账号页面已准备好，可以同步关注。"
+          },
+          "connection": {
+            "online": true,
+            "version": "0.4.2"
+          }
+        },
+        "samples": 1,
+        "firstElapsedMs": 922.6110000000001,
+        "lastElapsedMs": 922.6110000000001
+      }
+    ]
+  }
+]

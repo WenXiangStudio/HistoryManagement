@@ -2,7 +2,9 @@
 
 工作区：`D:\AI_WorkSpace\SpatialWarehouse\AI_InformationWorkflowCreationCenter`。
 
-本文件是当前最新交接入口。它接续 [R8 客户端隔离链路交接](signal-desk-r8-client-isolated-path-2026-09-29.md)，记录本轮真实十位博主资料入库、头像修正和最终工作区状态。用户随后授权整理提交并推送；提交前发现旧测试未适配新增目录表，经用户授权修正后，当前 22 个测试文件、217 项全部通过。此次提交保存实现和真实结果，不启动新的采集或扩大自动同步验收。
+> 最新交接已转至 [2026-10-01 第二批关注资料测试交接](signal-desk-following-second-batch-2026-10-01.md)：又保存十位不同博主，两批共 20 位、重复 0 位；APP 展示最新一批十位。本文记录 9 月 30 日的结果与基线。
+
+本文件接续 [R8 客户端隔离链路交接](signal-desk-r8-client-isolated-path-2026-09-29.md)，记录本轮真实十位博主资料入库、头像修正和当时工作区状态。用户随后授权整理提交并推送；提交前发现旧测试未适配新增目录表，经用户授权修正后，当时 22 个测试文件、217 项全部通过。此次提交保存实现和真实结果，不启动新的采集或扩大自动同步验收。
 
 ## 1. 当前结论
 
@@ -44,14 +46,14 @@
 主要文件：
 
 - [独立 SQLite](../../local-data/douyin-following.sqlite)：`following_runs`、`following_creators`；十条顺序、昵称、`sec_uid`、主页、头像和简介。
-- [当前资料 JSON](../../local-data/douyin-following-20260930.json)：已包含修正后的十个头像地址。
-- [本地结果页](../../local-data/douyin-following-result.html)：十位博主卡片，主页可点击。
-- [数据库验证结果](../../local-data/douyin-following-verification.json)：10 条、10 个主页、10 个头像、完整性 `ok`。
-- [头像原始归属](../../local-data/following-avatar-bindings.json)：Chrome 实际页面读取；每条包含准确主页 anchor、昵称、图片 alt、URL 和加载状态。
-- [头像修正差异](../../local-data/avatar-correction-verification.json)：五处修正与原始归属文件 SHA-256。
-- [APP 最终回读](../../local-data/app-following-avatar-readback.json)：10 张卡片、10 个已加载头像。
-- APP 截图：[上部](../../local-data/app-following-avatar-corrected.png)、[下部](../../local-data/app-following-avatar-corrected-lower.png)。
-- [修正前 JSON](../../local-data/douyin-following-before-avatar-fix.json) 和旧截图保留为历史记录，不能用作当前头像结果。
+- [当前资料 JSON](../evidence/following-client-20260930/artifacts/douyin-following-20260930.json)：已包含修正后的十个头像地址。
+- [本地结果页](../evidence/following-client-20260930/artifacts/douyin-following-result.html)：十位博主卡片，主页可点击。
+- [数据库验证结果](../evidence/following-client-20260930/artifacts/douyin-following-verification.json)：10 条、10 个主页、10 个头像、完整性 `ok`。
+- [头像原始归属](../evidence/following-client-20260930/artifacts/following-avatar-bindings.json)：Chrome 实际页面读取；每条包含准确主页 anchor、昵称、图片 alt、URL 和加载状态。
+- [头像修正差异](../evidence/following-client-20260930/artifacts/avatar-correction-verification.json)：五处修正与原始归属文件 SHA-256。
+- [APP 最终回读](../evidence/following-client-20260930/artifacts/app-following-avatar-readback.json)：10 张卡片、10 个已加载头像。
+- APP 截图：[上部](../evidence/following-client-20260930/artifacts/app-following-avatar-corrected.png)、[下部](../evidence/following-client-20260930/artifacts/app-following-avatar-corrected-lower.png)。
+- [修正前 JSON](../evidence/following-client-20260930/artifacts/douyin-following-before-avatar-fix.json) 和旧截图保留为历史记录，不能用作当前头像结果。
 
 SQLite 在 `.gitignore` 中排除，实际数据库保留本机；`local-data/` 中本轮采集的 JSON、HTML、头像差异和 APP 截图作为可复核证据纳入提交。后续交接或打包仍须另外保留实际数据库，不要假定 Git 自动包含它。
 

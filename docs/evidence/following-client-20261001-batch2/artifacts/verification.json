@@ -1,0 +1,85 @@
+{
+  "runId": "desktop-following-batch2-20261001084722",
+  "collectedAt": "2026-10-01T08:47:22.644Z",
+  "databasePath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\local-data\\douyin-following.sqlite",
+  "appDirectoryPath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+  "savedCount": 10,
+  "duplicateCountAgainstPriorRuns": 0,
+  "totalSavedCount": 20,
+  "totalDistinctCount": 20,
+  "avatarCount": 10,
+  "loadedBrowserAvatarCount": 10,
+  "nicknameProfileAvatarSignatureBindingsMatch": true,
+  "priorRowsUnchanged": true,
+  "firstCaptureUnchanged": true,
+  "localIntegrity": "ok",
+  "appIntegrity": "ok",
+  "boundaryCountsBefore": {
+    "works": 0,
+    "comments": 0,
+    "metric_snapshots": 0,
+    "jobs": 0,
+    "analyses": 0
+  },
+  "boundaryCountsAfter": {
+    "works": 0,
+    "comments": 0,
+    "metric_snapshots": 0,
+    "jobs": 0,
+    "analyses": 0
+  },
+  "originalCaptureSha256": "3f8d30f78b123a2ee28cb9b5148e1002b5ef268f81b837d57fa75f71733e306a",
+  "projectionSha256": "483a3c65df8dec6e865c27208e227d59bf9df6d6f35f74fd41613fb144019838",
+  "profileLinks": [
+    {
+      "position": 1,
+      "nickname": "木子不写代码",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAy_5W-LNi-cp7QbySyzEm3PskTDnDMUF34XijUKmZvywSej4Pm4UtLhQHiY_7Fryj"
+    },
+    {
+      "position": 2,
+      "nickname": "数字生命卡兹克",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwU33jOgLTqUV9Ub1h-Vgcd0VbQa-vV4lifYAzQSqgZ4"
+    },
+    {
+      "position": 3,
+      "nickname": "老袁讲AI",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAFehT7Ul6A7w8DZNGU9WEAd4LI6hE3a6yY6wayWRGwW-PJdqZdQAT6Sv7ukeOUcqp"
+    },
+    {
+      "position": 4,
+      "nickname": "躺在废墟里",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA5D28jzH21yvvBcf6mgwNBW-a5PoCYt30ZQmhUZlp4h_HMPdpMBD9saoxzKzjvaPb"
+    },
+    {
+      "position": 5,
+      "nickname": "浩瀚烟火日记",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxXpim7xF5cS7xXVOiT0eoeKb1SGQlxKwJ9iC6JYB0hgyVf73k72212cBKg2HBrPx"
+    },
+    {
+      "position": 6,
+      "nickname": "涌现EmergenceHK",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA0pI5mTcao4YpP4MHmpwfEcieDK-Ia36CEttsKWUdqvudr044H_cy_JES67O9r2SZ"
+    },
+    {
+      "position": 7,
+      "nickname": "Fateless",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA-uO4JDJdM_Dh4LaHzzgBotL7RAbhGAHiRfvv8N7czJU"
+    },
+    {
+      "position": 8,
+      "nickname": "刺猬星球super-i",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAuB4VmBi2W4eg-mmEhrft4anoVvHWmusGGA9LHUxTC4HduubH0NVLDzBoVTiuO-Di"
+    },
+    {
+      "position": 9,
+      "nickname": "Mx-Shell",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAPjlJkMcpTxq865qIViaCDzXMRLOhRUFL9Xlr4mdYPQ0TFwT4sOD_dgNIg6OtvmVE"
+    },
+    {
+      "position": 10,
+      "nickname": "盐选财经",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA9G0BvdbFGZOZy7UgtYAQ7GGPvX9Lsi0vifEW82JUfr4Q5rl-KUti1sMsgSaacbsx"
+    }
+  ]
+}

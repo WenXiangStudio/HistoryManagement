@@ -16,11 +16,11 @@
 
 - SQLite：`local-data/douyin-following.sqlite`。
 - 表：`following_runs` 和 `following_creators`。
-- 原始可见页面采集：`local-data/douyin-following-20260930.json`。
-- 可点击主页的本地结果页：`local-data/douyin-following-result.html`，已打开。
-- 原始数据库回读验证：`local-data/douyin-following-verification.json`。
+- 原始可见页面采集：`docs/evidence/following-client-20260930/artifacts/douyin-following-20260930.json`。
+- 可点击主页的本地结果页：`docs/evidence/following-client-20260930/artifacts/douyin-following-result.html`，已打开。
+- 原始数据库回读验证：`docs/evidence/following-client-20260930/artifacts/douyin-following-verification.json`。
 - 同样的数据已写入本次验证 APP 的 `%LOCALAPPDATA%/SignalDeskFollowingReview/following-directory.sqlite` 中 `visible_directory_runs`、`visible_directory_creators`；已打开 APP 的“博主资料库”。
-- APP 读取与卡片检查：`local-data/app-following-readback.json`；截图：`local-data/app-following-success.png`。
+- APP 读取与卡片检查：`docs/evidence/following-client-20260930/artifacts/app-following-readback.json`；截图：`docs/evidence/following-client-20260930/artifacts/app-following-success.png`。
 
 ## 实际验证
 

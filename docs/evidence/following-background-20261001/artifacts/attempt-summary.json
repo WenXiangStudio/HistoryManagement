@@ -1,0 +1,29 @@
+{
+  "scope": "current account following, new creators only; no old rows removed",
+  "attempts": [
+    {
+      "status": "blocked",
+      "runId": "following-20261001131219-47bf6c39f2a2ba86",
+      "startedAt": "2026-10-01T13:12:19.014Z",
+      "observedElapsedMs": 18182,
+      "reason": "关注同步未完成：FOLLOWING_NO_MORE_NEW_AUTHORS",
+      "insertedCount": 0
+    },
+    {
+      "status": "completed",
+      "runId": "following-20261001131849-c1e10c5349603978",
+      "startedAt": "2026-10-01T13:18:49.993Z",
+      "finishedAt": "2026-10-01T13:18:52.373Z",
+      "observedElapsedMs": 2380.300000011921,
+      "displayedTotalMs": 2273.1500000000005,
+      "insertedCount": 20
+    }
+  ],
+  "elapsedAcrossBothAttemptsMs": 393359,
+  "elapsedAcrossBothAttemptsScope": "includes targeted page inspection, implementation correction, build/restart/extension upgrade and benchmark helper correction; not a normal synchronization measurement",
+  "foregroundEvidence": "successful browser-execution.json proves tabActive=false and hidden before internal focus emulation; continuous OS foreground sampling was interrupted by a PowerShell 5 syntax error and is not claimed for success",
+  "priorFailureForegroundEvidence": "attempt-1-foreground.json sampled OS foreground through the failed run",
+  "finalCount": 100,
+  "priorCount": 80,
+  "newCount": 20
+}

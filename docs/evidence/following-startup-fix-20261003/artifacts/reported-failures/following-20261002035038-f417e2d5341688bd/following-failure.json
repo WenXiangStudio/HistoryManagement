@@ -1,0 +1,22 @@
+{
+  "ok": false,
+  "collectedAt": "2026-10-02T03:50:50.093Z",
+  "error": "FOLLOWING_DIALOG_NOT_READY",
+  "diagnostic": {},
+  "timing": {
+    "contract": "signaldesk-following-timing/v1",
+    "status": "failed",
+    "requestedCount": 20,
+    "startedAt": "2026-10-02T03:50:40.252Z",
+    "finishedAt": "2026-10-02T03:50:50.094Z",
+    "clock": "monotonic",
+    "scope": "page acquisition including verification, discovery, deduplication, scrolling and avatar loading; excludes database and APP",
+    "perCreatorScope": "author card verification and field read after shared discovery, including scroll and avatar waiting",
+    "totalMs": 9841.5,
+    "successfulCount": 0,
+    "averageMsPerCreator": null,
+    "authorProcessingMs": 0,
+    "sharedOverheadMs": 9841.5,
+    "records": []
+  }
+}

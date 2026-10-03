@@ -1,0 +1,51 @@
+{
+  "recoveredAt": "2026-10-01T09:27:55.192Z",
+  "batches": [
+    {
+      "batchNumber": 1,
+      "creatorCount": 10,
+      "completedAt": "2026-09-30T09:36:09.389Z",
+      "elapsedMs": 12444.6994,
+      "averageCommandMsPerCreator": 1244.46994,
+      "perCreatorMeasuredTimes": null,
+      "scope": "successful desktop capture command; excludes preparation, code changes, previous failed attempts, persistence and APP verification",
+      "finalAvatarCorrectionIncluded": false,
+      "limitation": "Initial ten-author capture had avatar mismatches and missing avatars; later correction was a separate operation",
+      "evidence": {
+        "sessionLog": "C:/Users/Administrator/.codex/sessions/2026/09/29/rollout-2026-09-29T20-21-45-01a0ed1d-2625-72c3-a490-e8e6d1a9a77d.jsonl",
+        "command": "& ./scripts/capture-following-desktop.ps1",
+        "eventId": "exec-cc1efcd2-5ee2-419d-ad21-5dca49b9fd40",
+        "duration": {
+          "secs": 12,
+          "nanos": 444699400
+        },
+        "exitCode": 0
+      }
+    },
+    {
+      "batchNumber": 2,
+      "creatorCount": 10,
+      "completedAt": "2026-10-01T08:47:23.268Z",
+      "elapsedMs": 4425.5797,
+      "averageCommandMsPerCreator": 442.55797,
+      "perCreatorMeasuredTimes": null,
+      "scope": "successful desktop capture command; excludes preparation, code changes, previous failed attempts, persistence and APP verification",
+      "finalAvatarCorrectionIncluded": true,
+      "limitation": "Successful final capture command also contains JSON readback and console formatting; exact page-only duration was not measured",
+      "evidence": {
+        "sessionLog": "C:/Users/Administrator/.codex/sessions/2026/10/01/rollout-2026-10-01T16-07-46-01a0f681-5716-7700-8363-ef3478723211.jsonl",
+        "command": "& scripts/read-following-desktop-page.ps1 -ScriptPath scripts/read-following-distinct-batch.js",
+        "eventId": "exec-24e33946-1410-495b-ab5e-e772cfca87f6",
+        "duration": {
+          "secs": 4,
+          "nanos": 425579700
+        },
+        "exitCode": 0
+      }
+    }
+  ],
+  "combinedSuccessfulCaptureCommandMs": 16870.2791,
+  "combinedAverageCommandMsPerCreator": 843.513955,
+  "completeTaskElapsedMs": null,
+  "limitation": "These are command-level historical durations, not full validated task time. Per-author measurements were not recorded."
+}

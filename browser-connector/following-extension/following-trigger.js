@@ -92,9 +92,36 @@ async function r8OpenFollowingDialog() {
   return { ok: false, code: 'FOLLOWING_DIALOG_NOT_READY', uiOutline: r8FollowingUiOutline() }
 }
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+document.getElementById('signaldesk-following-page-result')?.remove()
+document.getElementById('signaldesk-following-feedback')?.remove()
+globalThis.signalDeskReadinessObserver?.disconnect()
+clearTimeout(globalThis.signalDeskReadinessDebounce)
+if(globalThis.signalDeskFollowingListener)chrome.runtime.onMessage.removeListener(globalThis.signalDeskFollowingListener)
+globalThis.signalDeskFollowingListener=(message, _sender, sendResponse) => {
+  if(message?.type==='signaldesk.following.track-readiness'){
+    globalThis.signalDeskReadinessObserver?.disconnect()
+    let invalid=false
+    const check=()=>{
+      clearTimeout(globalThis.signalDeskReadinessDebounce)
+      globalThis.signalDeskReadinessDebounce=setTimeout(()=>{
+        if(invalid)return
+        const root=[...document.querySelectorAll('[data-e2e="user-fans-container"]')].filter(r8Visible)
+        const selected=root.length===1?[...root[0].parentElement.querySelectorAll('[role="tab"][aria-selected="true"]')].filter(r8Visible):[]
+        const owner=[...document.images].some(image=>image.alt===`${message.ownerNickname}头像`&&!image.closest('[data-e2e="user-fans-container"]'))
+        if(location.pathname.replace(/\/$/,'')==='/user/self'&&owner&&root.length===1&&selected.length===1&&/^关注\s*[（(]\d+[）)]$/.test(r8Text(selected[0])))return
+        invalid=true
+        void chrome.runtime.sendMessage({type:'signaldesk.following.page-invalidated'}).catch(()=>{})
+      },250)
+    }
+    globalThis.signalDeskReadinessObserver=new MutationObserver(check)
+    globalThis.signalDeskReadinessObserver.observe(document.body,{childList:true,subtree:true,attributes:true})
+    sendResponse({ok:true});return false
+  }
+  if(message?.type==='signaldesk.following.ping'){
+    sendResponse({ok:true,version:chrome.runtime.getManifest().version});return false
+  }
   if(message?.type === 'signaldesk.following.collect-visible') {
-    collectVisibleFollowingCreators(10).then(value=>sendResponse({ok:true,...value}))
+    collectVisibleFollowingBatch(message.config).then(sendResponse)
       .catch(error=>sendResponse({ok:false,error:String(error.message)}))
     return true
   }
@@ -120,4 +147,5 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message?.type !== 'signaldesk.r8.open-following-dialog') return false
   r8OpenFollowingDialog().then(sendResponse).catch(() => sendResponse({ ok: false, code: 'FOLLOWING_TRIGGER_EXCEPTION' }))
   return true
-})
+}
+chrome.runtime.onMessage.addListener(globalThis.signalDeskFollowingListener)

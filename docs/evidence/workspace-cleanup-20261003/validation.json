@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-03T10:17:49.325Z",
+  "applicationTests": {
+    "files": 25,
+    "passed": 228
+  },
+  "followingFlowTests": {
+    "passed": 16,
+    "initialIssue": "jsdom fixture lacked document.elementFromPoint; added browser API fixture, production code unchanged"
+  },
+  "typeScript": "passed",
+  "projectBoundaries": "passed",
+  "productionBuild": "passed",
+  "keptAppMatchesCompiledMain": true,
+  "compiledMainSha256": "ece4e65dfc2b27c11d432c4dfb9fcf4c4543ff0425147e381ac738cd7bb7f67c",
+  "documentLinks": "passed",
+  "evidenceJson": "passed",
+  "credentialScan": "passed",
+  "desktopReboot": "pending-user-validation",
+  "newCollectionStarted": false,
+  "cleanupDataPreservation": "passed",
+  "validationCompletedAt": "2026-10-03T10:19:03.860Z"
+}

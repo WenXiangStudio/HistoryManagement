@@ -1,0 +1,27 @@
+{
+  "ok": false,
+  "startedAt": "2026-10-01T13:12:19.014Z",
+  "elapsedMs": 18182,
+  "state": {
+    "phase": "blocked",
+    "runId": "following-20261001131219-47bf6c39f2a2ba86",
+    "message": "关注同步未完成：FOLLOWING_NO_MORE_NEW_AUTHORS",
+    "count": 0,
+    "ownerSecUid": null,
+    "extensionDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-extension",
+    "reportDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-runs\\following-20261001131219-47bf6c39f2a2ba86",
+    "databasePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+    "setupUrl": "http://127.0.0.1:51084/following-connect",
+    "requestedCount": 20,
+    "totalCount": 80,
+    "timing": {
+      "startedAt": "2026-10-01T13:12:19.014Z",
+      "dispatchMs": 2.98509999999078
+    },
+    "connection": {
+      "online": true,
+      "version": "0.4.0",
+      "expectedVersion": "0.4.0"
+    }
+  }
+}

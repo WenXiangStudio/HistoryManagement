@@ -1,3 +1,7 @@
+# 历史归档：2026-08-30 长交接
+
+此文保留历史设计与验收记录。当前入口见 [交接索引](../README.md)，下文旧构建/操作说明不作为现在的执行指令。
+
 # Signal Desk 临时交接文档
 
 > 文档日期：2026-09-05（Asia/Shanghai）  
@@ -7,7 +11,7 @@
 
 ## 0.-9 2026-09-24 R8 T1 隔离真实发现
 
-> 路线纠正：下列“第三次尚待开始”等文字为当时的历史快照。第三、四、五次 run 后来均已完成，五次 T1 全部为 `T1_BLOCKED`。第五次已观察到 following、works、detail、comment 四类目标响应，但逐页执行、uid/sec_uid 混同及全局 Observer issue 门暴露设计错误。旧 T1 启动脚本已停用，后续按 [`R8 采集路线纠正`](docs/architecture/r8-acquisition-route-correction-2026-09-24.md) 做离线重构，再以新独立 run 验证；不重复要求用户加载一批调试扩展。
+> 路线纠正：下列“第三次尚待开始”等文字为当时的历史快照。第三、四、五次 run 后来均已完成，五次 T1 全部为 `T1_BLOCKED`。第五次已观察到 following、works、detail、comment 四类目标响应，但逐页执行、uid/sec_uid 混同及全局 Observer issue 门暴露设计错误。旧 T1 启动脚本已停用，后续按 [`R8 采集路线纠正`](../../architecture/r8-acquisition-route-correction-2026-09-24.md) 做离线重构，再以新独立 run 验证；不重复要求用户加载一批调试扩展。
 
 - 用户已明确授权开始 R8。只在系统临时目录的独立 run 中做真实 endpoint/schema 发现；正式 SQLite、历史任务、生产同步能力门、媒体/ASR/OCR 与云调用均未触碰。
 - 首次 run `r8-t1-20260924-154922-634-c815c794` 判定 `T1_BLOCKED`：仅观察到 works 列表，following/detail 缺失；旧页面触发器未打开关注关系弹窗。
@@ -60,7 +64,7 @@
 
 ### 0.-5 2026-09-06 下一窗口：R0～R4 离线人工验收检查点
 
-- 下一窗口的首要且唯一任务不是直接实施 R5，而是按照 [`docs/architecture/signal-desk-r0-r4-offline-human-acceptance-handoff.md`](docs/architecture/signal-desk-r0-r4-offline-human-acceptance-handoff.md)，以固定实现基线 `8d9cc5e` 执行 R0～R4 离线人工验收检查点；其后的提交只允许包含本交接文档和索引入口，不允许有生产代码漂移。
+- 下一窗口的首要且唯一任务不是直接实施 R5，而是按照 [`docs/architecture/signal-desk-r0-r4-offline-human-acceptance-handoff.md`](../../architecture/signal-desk-r0-r4-offline-human-acceptance-handoff.md)，以固定实现基线 `8d9cc5e` 执行 R0～R4 离线人工验收检查点；其后的提交只允许包含本交接文档和索引入口，不允许有生产代码漂移。
 - 验收只使用合成 fixture、模拟 route/CDP、内存 SQLite 和系统临时证据目录；不得连接真实平台或真实浏览器，不得读取凭据、写正式数据库、恢复历史任务/run、运行旧 `0.2.3/0.2.4`，也不得启动媒体、ASR/OCR、BYOK 或真实云分析。
 - 执行代理必须逐项展示 R0 冻结、R1 独立证明、安全合同、R2 六类 Observer、R3 关注分页/空结果、R4 作品详情/statistics/整批归零、数据库无副作用和敏感 canary 清除证据；自动测试通过不能代替用户人工签署。
 - 本检查点始终属于 `E2-doc`，不是 E3/E4。发现失败只记录并阻断，不得在验收任务中擅自修复或继续实施 R5。

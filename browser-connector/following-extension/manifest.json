@@ -1,14 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Signal Desk 关注目录同步",
-  "version": "0.2.0",
-  "description": "从 APP 配置页启动，仅保存当前账号前 10 位关注博主的基础信息。",
-  "permissions": ["tabs", "storage"],
+  "version": "0.5.2",
+  "description": "与 APP 保持连接，在后台同步授权账号的关注资料。",
+  "permissions": ["tabs", "storage", "nativeMessaging", "scripting", "debugger"],
   "host_permissions": ["https://www.douyin.com/*", "http://127.0.0.1/*"],
   "background": { "service_worker": "background.js", "type": "module" },
   "content_scripts": [
-    { "matches": ["http://127.0.0.1/*"], "js": ["setup-content.js"], "run_at": "document_idle" },
-    { "matches": ["https://www.douyin.com/user/self*"], "js": ["following-dom.js", "following-trigger.js"], "run_at": "document_idle" }
+    { "matches": ["http://127.0.0.1/*"], "js": ["setup-content.js"], "run_at": "document_idle" }
   ],
   "action": { "default_title": "Signal Desk 关注目录同步", "default_popup": "popup.html" },
   "minimum_chrome_version": "120"

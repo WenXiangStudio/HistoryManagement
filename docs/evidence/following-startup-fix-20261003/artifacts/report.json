@@ -1,0 +1,98 @@
+{
+  "contract": "signaldesk-visible-following/v1",
+  "runId": "following-20261003053055-4f56cfded4addf87",
+  "collectedAt": "2026-10-03T05:31:05.201Z",
+  "ownerSecUid": null,
+  "ownerNickname": "无限♾️进步",
+  "sourceUrl": "https://www.douyin.com/user/self",
+  "sourceKind": "visible-following-list",
+  "activeFollowingTab": true,
+  "listStartedAtTop": true,
+  "hasMore": true,
+  "visibleItemCount": 153,
+  "creators": [
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAe-hAJmfhgoauAnPMn7xIKixL6QX22o-WF3jYVX1Mztg",
+      "nickname": "硅谷101陈茜",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_fd8cf3e812a49275fdb802334efcff73",
+      "signature": "📙分享商业财经·前沿科技·创业访谈",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAe-hAJmfhgoauAnPMn7xIKixL6QX22o-WF3jYVX1Mztg"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAr6S6z7GR9pSEoJN28eTf1-KhyJXMV7M86R7kDJLGapbFkdGKQ26OIvsTwMMsvgxE",
+      "nickname": "阿彦能行",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_598c622e5820825ba269618aac97c10a",
+      "signature": "▪️AI产品经理 | 运营策划 | 企业服务",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAr6S6z7GR9pSEoJN28eTf1-KhyJXMV7M86R7kDJLGapbFkdGKQ26OIvsTwMMsvgxE"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAkGPUlxhANi-quQ-g2HAFIHVArZmHUNeyutqfY_bKvS0",
+      "nickname": "程序员鱼皮",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_84b49a03858249aa97f01dfff9375c3b",
+      "signature": "⬆️ 上方图片，免费领编程学习资料路线",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAkGPUlxhANi-quQ-g2HAFIHVArZmHUNeyutqfY_bKvS0"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAADBh-jUk9v7E7KNECLoVzxFBsoRNGaXNQ0U1Fyf5KOSlQQq0b38ulL6fObIsagi2T",
+      "nickname": "名字就叫 30",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oI3AqeAD9id0ACCAm09De9gAgiEHPAwBIt4Awp",
+      "signature": "30aitool 站长",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAADBh-jUk9v7E7KNECLoVzxFBsoRNGaXNQ0U1Fyf5KOSlQQq0b38ulL6fObIsagi2T"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAGLwNfNCA8cwEhJTEqlXlvKFYVrVYwUKcF3sAr11jHs0",
+      "nickname": "傻白呀",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_60123167d3c47073841b539e99e9cfdc",
+      "signature": "To see a bigger world",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAGLwNfNCA8cwEhJTEqlXlvKFYVrVYwUKcF3sAr11jHs0"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAML6vt8UstUMWeKKStFAJo3b59dzFdz8wUHNQzCLQROw",
+      "nickname": "杰森的效率工坊",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b76c4bf279e1c251f73f83e991265dce",
+      "signature": "让你的工具，不止停留在“收藏”和“好看”！",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAML6vt8UstUMWeKKStFAJo3b59dzFdz8wUHNQzCLQROw"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAnVCQPCy6KOdAxfj6LJj4DDFyknf74LQQUMVjYA8PLL-jPrgQpcgSScTEo2s3nS1V",
+      "nickname": "飞天闪客",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o03uy6gbfAEJCCBuAD9n4LC60EANFAAvatAIEe",
+      "signature": "专治不明白～合作：dibingfa2020",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAnVCQPCy6KOdAxfj6LJj4DDFyknf74LQQUMVjYA8PLL-jPrgQpcgSScTEo2s3nS1V"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAlYL3JuEkYQ8z-Tw6oMGxnYjJ9Zkm0Fhmh7kkvBPbFX8",
+      "nickname": "陶渊小明",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oMmBiCm8pAyAXBoFEAAGifz0NNov0IAnDAPeg1",
+      "signature": "非正经程序员｜喜欢分享计算机和AI技术！",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAlYL3JuEkYQ8z-Tw6oMGxnYjJ9Zkm0Fhmh7kkvBPbFX8"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAAG903XilEJrRl_910CXimFO23rlcdNhAeJFCKHHHExkM",
+      "nickname": "超梦进化论",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_229b6f1c3fb709187a3e783a42e75353",
+      "signature": "产品经理/产品体验设计师/AI学习者",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAG903XilEJrRl_910CXimFO23rlcdNhAeJFCKHHHExkM"
+    },
+    {
+      "uid": null,
+      "secUid": "MS4wLjABAAAA2jrmr3GC29_7n7GzH4rYyutlB5aHK2mzg6s0YZdTXhy2FxVdfHexmzl-EBv17_Tt",
+      "nickname": "WhynotTV",
+      "avatarUrl": "https://p11.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1d5aa1b7e2a176ac545699201a213fb8",
+      "signature": "何泰然",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA2jrmr3GC29_7n7GzH4rYyutlB5aHK2mzg6s0YZdTXhy2FxVdfHexmzl-EBv17_Tt"
+    }
+  ],
+  "projectionSha256": "be35d0ef22addc24ac2e19c07caa595f68b15d065e1f0caceffffc029de05b9a",
+  "activeApiRequests": 0,
+  "workResponseBodiesRead": 0
+}

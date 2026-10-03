@@ -1,0 +1,100 @@
+{
+  "contract": "signaldesk-structured-following/v1",
+  "runId": "following-20261003081049-f57ba611448f397c",
+  "collectedAt": "2026-10-03T08:10:51.749Z",
+  "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+  "ownerUid": "2131296669408333",
+  "ownerNickname": "无限♾️进步",
+  "sourceUrl": "https://www.douyin.com/user/self",
+  "sourceKind": "structured-following-api",
+  "endpointPath": "/aweme/v1/web/user/following/list/",
+  "hasMore": true,
+  "pageCount": 8,
+  "creators": [
+    {
+      "uid": "2316016054967980",
+      "secUid": "MS4wLjABAAAAAOWFdhre1cL5XEk0LrEz_TOn4FwvtgWSzOipsYA63Kea1Uyp189UU71k6_nghskU",
+      "nickname": "IT咖啡馆",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b7596b9157d1885a3ba59abc15150062.jpeg?from=2956013662",
+      "signature": "👨🏻‍💻NextArch Fundation开源大使，连续创业者。\n🤖AI领域探索者和GitHub 寻宝者。\n分享有价值的产品，技术和观点，把握AI浪潮。\n合作：zbhlove100",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAAOWFdhre1cL5XEk0LrEz_TOn4FwvtgWSzOipsYA63Kea1Uyp189UU71k6_nghskU"
+    },
+    {
+      "uid": "152170356291923",
+      "secUid": "MS4wLjABAAAAHdZa5gi3PoqM0qVknxmSOrNzXJ9XoSNhSH8sMPFB2o8",
+      "nickname": "西瓜的皮",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e6b7dbaf01d655cdcadc8e8a13b10a5d.jpeg?from=2956013662",
+      "signature": "🍉 西瓜中间给你吃，我吃西瓜皮\n🛰️ 合作w8nrind\n💻 提示词 丨 工作流 丨 智能体\n🧑‍💻 Python，Java，C++\n上面这些都不会，就是凑点字数\n爱发电：afdian.com/a/w8nrind",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAHdZa5gi3PoqM0qVknxmSOrNzXJ9XoSNhSH8sMPFB2o8"
+    },
+    {
+      "uid": "105451453035",
+      "secUid": "MS4wLjABAAAA2CMoY_dGIGBfboPFuiwv0ezVNqDYDOz5wjJNbT_n1WQ",
+      "nickname": "黄阳的学习分享",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_0104049fc4d59a8642bd308e4be7fd8a.jpeg?from=2956013662",
+      "signature": "重铸A股荣光，吾辈义不容辞🔥\n桃李不言，下自成蹊☀\n不私聊，无小号，无助理，谨防受骗🔨",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA2CMoY_dGIGBfboPFuiwv0ezVNqDYDOz5wjJNbT_n1WQ"
+    },
+    {
+      "uid": "104529153543",
+      "secUid": "MS4wLjABAAAADMu1beICCFvxqO67RWi8EnGb2UNUoHmBsFQwSjvAl8Q",
+      "nickname": "不自由摄影师Winga",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_2540e9126d79159f291219782f9e326d.jpeg?from=2956013662",
+      "signature": "做好玩的视频。偶尔更新教程，关注我哟",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAADMu1beICCFvxqO67RWi8EnGb2UNUoHmBsFQwSjvAl8Q"
+    },
+    {
+      "uid": "84360535891",
+      "secUid": "MS4wLjABAAAAqCKZMgSWTpSWurUmlhbJzIRHEC-A6MVjDAPk2A9Q_Dg",
+      "nickname": "任毅Steven",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e53bdf53f3cb74a1fff41c15fcd7ddd5.jpeg?from=2956013662",
+      "signature": "Ex国内头部教育科技公司副总裁\n厦门大学未来教育研究中心副主任\nAI领域研究者、创业者、Vibe coding\nAI正在重塑整个世界以及商业规则\n日常朋友圈@任毅",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAqCKZMgSWTpSWurUmlhbJzIRHEC-A6MVjDAPk2A9Q_Dg"
+    },
+    {
+      "uid": "1948810070203812",
+      "secUid": "MS4wLjABAAAANQGXnO9UQ7Yrl9HWqevJk003gYle_cHBp3Gn1WIzRGKsAlm44cH_8epbUY0j7XVR",
+      "nickname": "Richard在加州",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_a5e9afcec8e3b3f738efd7d65db77da9.jpeg?from=2956013662",
+      "signature": "谢谢关注",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAANQGXnO9UQ7Yrl9HWqevJk003gYle_cHBp3Gn1WIzRGKsAlm44cH_8epbUY0j7XVR"
+    },
+    {
+      "uid": "2010354091828364",
+      "secUid": "MS4wLjABAAAAtIuGLfZIbAEB5XpXrMsqjJeWS-kGr2H-rrT0TJ-H9M0NiuVqD5_8QmH8staEwVzm",
+      "nickname": "投哥不请自来",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oYTkIkQ7ABDCLDD6JAgF836zEfFjTgEFeAe7uA.jpeg?from=2956013662",
+      "signature": "🪫残血互联网大厂从业猿\n🔋满血智能体实战创业者\n🌈AI智能化重塑各行各业\n🈴 touge1618（注明来意）",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAtIuGLfZIbAEB5XpXrMsqjJeWS-kGr2H-rrT0TJ-H9M0NiuVqD5_8QmH8staEwVzm"
+    },
+    {
+      "uid": "1736859358333095",
+      "secUid": "MS4wLjABAAAAETKuR4IY0cnmo2toCs0IHqQngrriMQZ9zC88EVY_kCWG_LpyDxT_sYaRDIWBXZGV",
+      "nickname": "大又元",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_2022b69a637a47f58c3a2baa04ce8a21.jpeg?from=2956013662",
+      "signature": "我们最熟悉的东西，却往往是最不了解的\n商务合作: dayouyuan123",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAETKuR4IY0cnmo2toCs0IHqQngrriMQZ9zC88EVY_kCWG_LpyDxT_sYaRDIWBXZGV"
+    },
+    {
+      "uid": "466608609563304",
+      "secUid": "MS4wLjABAAAALbktAD7bGp8BfcAzVUK9HHTxJ7ZZ8qJwwU2WlftDcUc",
+      "nickname": "圈圈包子（周末更新，偶尔日更）",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_0e0d95adb42048969d605f9f0352bb61.jpeg?from=2956013662",
+      "signature": "分享一点有用的东西\n工作日主业比较忙，周六周末闲下来更新。\n PS：主动联系你们的都是骗子\n找我合作上星图\n年卡699门槛年费VIP🛰会员群，月卡抖音会员，你能获得的是信心，VIP🛰会员群：circaboyBBA\n如果你看完视频还问会员群里面有什么，那你就没看懂视频，我建议你别加群，先看视频。",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALbktAD7bGp8BfcAzVUK9HHTxJ7ZZ8qJwwU2WlftDcUc"
+    },
+    {
+      "uid": "75350479061",
+      "secUid": "MS4wLjABAAAAtLTamz3gZsmTq5nomzJbSN3UmQ5RvzLezhCIdrTuqGw",
+      "nickname": "水球泡",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1e905941e4bee348e333d0058edfa267.jpeg?from=2956013662",
+      "signature": "周日周三周五晚上九点开始直播很久，周二上午播不一定在这个平台，晚上就不播了。可以聊聊职场，人生，苦难，实事，我懂的我教你，我不懂的我唬你",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAtLTamz3gZsmTq5nomzJbSN3UmQ5RvzLezhCIdrTuqGw"
+    }
+  ],
+  "projectionSha256": "8399f32500ca2a52d0fe1abe8ac81621c76f9d9ae3cd70419dd6384987d10b2c",
+  "activeApiRequests": 9,
+  "workResponseBodiesRead": 0,
+  "domQueries": 0,
+  "uiClicks": 0
+}

@@ -1,0 +1,28 @@
+{
+  "runId": "following-20261001124247-633a4bef4b8e9a56",
+  "verifiedAt": "2026-10-01T12:59:41.548Z",
+  "previousCount": 60,
+  "newCount": 20,
+  "totalDistinctCount": 80,
+  "duplicateCount": 0,
+  "priorRowsUnchanged": true,
+  "bindingsMatch": true,
+  "appCardCount": 80,
+  "appLoadedAvatarCount": 80,
+  "blankSignatureCount": 0,
+  "directoryIntegrity": "ok",
+  "foreignKeyViolations": 0,
+  "boundaryCounts": {
+    "works": 0,
+    "comments": 0,
+    "metric_snapshots": 0,
+    "jobs": 0,
+    "analyses": 0
+  },
+  "clickToAllDisplayedMs": 2237.5241000000387,
+  "observedClickToReadyMs": 2794.399999976158,
+  "averageDisplayedMsPerNewAuthor": 111.87620500000193,
+  "acquisitionMs": 1856,
+  "persistenceMs": 15.296500000171363,
+  "productionWorksGateEnabled": false
+}

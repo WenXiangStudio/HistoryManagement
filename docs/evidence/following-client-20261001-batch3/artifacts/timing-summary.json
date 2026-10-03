@@ -1,0 +1,267 @@
+{
+  "runId": "desktop-following-batch3-20261001093313",
+  "acquisition": {
+    "contract": "signaldesk-following-timing/v1",
+    "status": "completed",
+    "requestedCount": 20,
+    "startedAt": "2026-10-01T09:33:07.728Z",
+    "finishedAt": "2026-10-01T09:33:13.128Z",
+    "clock": "monotonic",
+    "scope": "page acquisition including verification, discovery, deduplication, scrolling and avatar loading; excludes database and APP",
+    "perCreatorScope": "author card verification and field read after shared discovery, including scroll and avatar waiting",
+    "totalMs": 5400,
+    "successfulCount": 20,
+    "averageMsPerCreator": 270,
+    "authorProcessingMs": 5143.000000059605,
+    "sharedOverheadMs": 256.99999994039536,
+    "records": [
+      {
+        "secUid": "MS4wLjABAAAAF9_gcrvRn_mzg0ZLe_VFxwtgj9OyUZTnJNMidsIB6XLOaO0K6JEqayQYZS7BfTSF",
+        "nickname": "杜一聊Ai增长",
+        "startedAt": "2026-10-01T09:33:07.984Z",
+        "finishedAt": "2026-10-01T09:33:08.244Z",
+        "startedOffsetMs": 256,
+        "finishedOffsetMs": 516,
+        "elapsedMs": 260,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAEvxm3Ni_ropFSk4oKlWpe-_w3ZbdWWxnkHK6-zP_XqUAta8uQKjh2hEEqCB_55Hj",
+        "nickname": "大锋1",
+        "startedAt": "2026-10-01T09:33:08.244Z",
+        "finishedAt": "2026-10-01T09:33:08.497Z",
+        "startedOffsetMs": 516,
+        "finishedOffsetMs": 768.8999999761581,
+        "elapsedMs": 252.89999997615814,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAqWn2xBrotvlEsc7_ta832D6zKfXbiLlroDcouacbkYk",
+        "nickname": "Capitalistic",
+        "startedAt": "2026-10-01T09:33:08.497Z",
+        "finishedAt": "2026-10-01T09:33:08.748Z",
+        "startedOffsetMs": 768.8999999761581,
+        "finishedOffsetMs": 1020,
+        "elapsedMs": 251.10000002384186,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAhIMY-k9jfehKtHHWMlyVyCBRrU-oixh2GBYoyG76Hmxxn2GYEFv7lYlGRR1hWamP",
+        "nickname": "以太Max",
+        "startedAt": "2026-10-01T09:33:08.748Z",
+        "finishedAt": "2026-10-01T09:33:09.014Z",
+        "startedOffsetMs": 1020.0999999642372,
+        "finishedOffsetMs": 1285.5999999642372,
+        "elapsedMs": 265.5,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAf-ASkZWMJVCH0S8SLFqeT6Le2OCf5kG4P4wdbGO_1L7PcGiw-upsvGqZBPA2OWbP",
+        "nickname": "超级AI客",
+        "startedAt": "2026-10-01T09:33:09.014Z",
+        "finishedAt": "2026-10-01T09:33:09.277Z",
+        "startedOffsetMs": 1285.699999988079,
+        "finishedOffsetMs": 1549.2999999523163,
+        "elapsedMs": 263.5999999642372,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAe2bFn8j9AYtKOUy-CHJcAAOkcKO8CaBebWTbGRG0p2GrmpGL7kOKI7N621_vOaAd",
+        "nickname": "Work-Fisher",
+        "startedAt": "2026-10-01T09:33:09.277Z",
+        "finishedAt": "2026-10-01T09:33:09.544Z",
+        "startedOffsetMs": 1549.2999999523163,
+        "finishedOffsetMs": 1815.3999999761581,
+        "elapsedMs": 266.10000002384186,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAq5UIz3urhEf4NK9TdN7EbmSzQfiy8lMdO1doGlEUW5E",
+        "nickname": "foyege",
+        "startedAt": "2026-10-01T09:33:09.544Z",
+        "finishedAt": "2026-10-01T09:33:09.794Z",
+        "startedOffsetMs": 1815.3999999761581,
+        "finishedOffsetMs": 2066.199999988079,
+        "elapsedMs": 250.80000001192093,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAT-5sEzj6TfDpdfzsBD0HfhUz7EBuRJl4WXOxIoZtwNaRlJIKPRCQqBKAPhWWfmW2",
+        "nickname": "nature-skills",
+        "startedAt": "2026-10-01T09:33:09.794Z",
+        "finishedAt": "2026-10-01T09:33:10.056Z",
+        "startedOffsetMs": 2066.199999988079,
+        "finishedOffsetMs": 2328,
+        "elapsedMs": 261.80000001192093,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAODNyF4Z1XuL7v4-gWopgu3RTguKuc9MOM-m5pAG0Th8",
+        "nickname": "花颜白茶",
+        "startedAt": "2026-10-01T09:33:10.056Z",
+        "finishedAt": "2026-10-01T09:33:10.31Z",
+        "startedOffsetMs": 2328.099999964237,
+        "finishedOffsetMs": 2582.2999999523163,
+        "elapsedMs": 254.19999998807907,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAxCiCtYrn3ZncdPnkeoMfKMHENwAQulNipJdpmU18ndpSJeCcscz0k_WBh4fWvrVx",
+        "nickname": "许工跑得通",
+        "startedAt": "2026-10-01T09:33:10.31Z",
+        "finishedAt": "2026-10-01T09:33:10.563Z",
+        "startedOffsetMs": 2582.399999976158,
+        "finishedOffsetMs": 2835,
+        "elapsedMs": 252.60000002384186,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAvNJhYIy_k4knmAnBx2e-HyLn72wzt2EHpSzvhNTGp9w",
+        "nickname": "🇨🇳挪威老王🇳🇴",
+        "startedAt": "2026-10-01T09:33:10.563Z",
+        "finishedAt": "2026-10-01T09:33:10.82Z",
+        "startedOffsetMs": 2835.099999964237,
+        "finishedOffsetMs": 3091.699999988079,
+        "elapsedMs": 256.60000002384186,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAs0gafN7aFsONV-GrGZMUyIGnMKbrX6yqxfGYItfpgxvcJdrIHwoZVyXu0nkAoFl9",
+        "nickname": "李明昊",
+        "startedAt": "2026-10-01T09:33:10.82Z",
+        "finishedAt": "2026-10-01T09:33:11.077Z",
+        "startedOffsetMs": 3091.7999999523163,
+        "finishedOffsetMs": 3349.099999964237,
+        "elapsedMs": 257.30000001192093,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAANV8iagjbupI4FDXTSZhPNg3BEfn1bY1H-43aS6dKSSK0Daz2OMUhGpbECoZ6ShuC",
+        "nickname": "痕继痕迹",
+        "startedAt": "2026-10-01T09:33:11.077Z",
+        "finishedAt": "2026-10-01T09:33:11.331Z",
+        "startedOffsetMs": 3349.099999964237,
+        "finishedOffsetMs": 3602.5,
+        "elapsedMs": 253.4000000357628,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAxTiJdGR92gFAUslQi3nogoPKmRPaH0JvVpFmdpSfwXerxmz7m2bu3fxmblbb2OOB",
+        "nickname": "卡比的小镇",
+        "startedAt": "2026-10-01T09:33:11.331Z",
+        "finishedAt": "2026-10-01T09:33:11.594Z",
+        "startedOffsetMs": 3602.599999964237,
+        "finishedOffsetMs": 3866.199999988079,
+        "elapsedMs": 263.60000002384186,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAykXKbsl7xSwAk4wdkJpjmFnbz5kJzrU3zlCCkgHfTRU",
+        "nickname": "老阳的奇妙电波",
+        "startedAt": "2026-10-01T09:33:11.594Z",
+        "finishedAt": "2026-10-01T09:33:11.858Z",
+        "startedOffsetMs": 3866.199999988079,
+        "finishedOffsetMs": 4129.599999964237,
+        "elapsedMs": 263.39999997615814,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAyiFzv3jU8mdXv_iVwLsdkvvEJiZW21cj-29LfJZqFYA6iqqe5k2WZXP2Fz86Pjaf",
+        "nickname": "清华鑫哥讲AI智能体",
+        "startedAt": "2026-10-01T09:33:11.858Z",
+        "finishedAt": "2026-10-01T09:33:12.111Z",
+        "startedOffsetMs": 4129.599999964237,
+        "finishedOffsetMs": 4382.5,
+        "elapsedMs": 252.9000000357628,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAkts3qtHhmx1jHWm8273s8A0vK9D54uhL5qHLFSSEJ-k",
+        "nickname": "张笑笑（此人智商极高）",
+        "startedAt": "2026-10-01T09:33:12.111Z",
+        "finishedAt": "2026-10-01T09:33:12.371Z",
+        "startedOffsetMs": 4382.5,
+        "finishedOffsetMs": 4642.599999964237,
+        "elapsedMs": 260.0999999642372,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAX3f2Jwi_ly0v9lNjkdgAcwCoIp8sivsNXU7bSVYSi_4AvUp3glwZoTkabOj_V5Ki",
+        "nickname": "Shane做AI产品",
+        "startedAt": "2026-10-01T09:33:12.371Z",
+        "finishedAt": "2026-10-01T09:33:12.624Z",
+        "startedOffsetMs": 4642.699999988079,
+        "finishedOffsetMs": 4895.799999952316,
+        "elapsedMs": 253.0999999642372,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAAHekEa4VUztBwIlXsJ4HiTooNvLgNSzvsoI3YW4FQbnwwlvgoxJz4kQMXZTYV3uk6",
+        "nickname": "陈天狼AI编程实战",
+        "startedAt": "2026-10-01T09:33:12.624Z",
+        "finishedAt": "2026-10-01T09:33:12.877Z",
+        "startedOffsetMs": 4895.799999952316,
+        "finishedOffsetMs": 5148.699999988079,
+        "elapsedMs": 252.9000000357628,
+        "success": true
+      },
+      {
+        "secUid": "MS4wLjABAAAACRKcpxqZWA2k5g3RIapQ2X13QOcS6v1fSoGZlTa_S8Wx1U8hZMvVDT4QYX3yM0PL",
+        "nickname": "一探究竟的小庄Sir",
+        "startedAt": "2026-10-01T09:33:12.877Z",
+        "finishedAt": "2026-10-01T09:33:13.128Z",
+        "startedOffsetMs": 5148.699999988079,
+        "finishedOffsetMs": 5399.799999952316,
+        "elapsedMs": 251.0999999642372,
+        "success": true
+      }
+    ]
+  },
+  "command": {
+    "startedAt": "2026-10-01T09:33:06.8488723Z",
+    "finishedAt": "2026-10-01T09:33:13.7279567Z",
+    "elapsedMs": 6875.9312,
+    "clock": "Stopwatch",
+    "scope": "desktop command including page acquisition and JSON transport; excludes database and APP",
+    "status": "completed"
+  },
+  "persistence": {
+    "startedAt": "2026-10-01T09:33:36.054Z",
+    "finishedAt": "2026-10-01T09:33:36.083Z",
+    "elapsedMs": 28.082600000000003,
+    "scope": "validation, backups, database append, readback and local artifacts"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "status": "failed",
+      "successfulCount": 0,
+      "pageMs": 263.9000000357628,
+      "commandMs": 1609.1654,
+      "error": "Avatar identity missing for 挪威老王"
+    },
+    {
+      "attempt": 2,
+      "status": "failed",
+      "successfulCount": 0,
+      "pageMs": 259.5,
+      "commandMs": 1621.5145,
+      "error": "Avatar identity missing for 木子不写代码头像"
+    },
+    {
+      "attempt": 3,
+      "status": "completed",
+      "successfulCount": 20,
+      "pageMs": 5400,
+      "commandMs": 6875.9312,
+      "error": null
+    }
+  ],
+  "attemptTotals": {
+    "activePageAcquisitionMs": 5923.400000035763,
+    "activeDesktopCommandMs": 10106.6111,
+    "wallElapsedFromFirstStartToTwentyCompleteMs": 75000.0,
+    "averageWallElapsedMsPerCreator": 3750.0,
+    "wallElapsedScope": "First page attempt start to completed capture, including diagnosis, code corrections and retries; excludes earlier navigation, persistence and APP verification"
+  }
+}

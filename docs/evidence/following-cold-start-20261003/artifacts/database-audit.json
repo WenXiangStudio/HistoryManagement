@@ -1,0 +1,26 @@
+{
+  "tables": {
+    "directory_runs": {
+      "unchanged": true,
+      "rows": 0
+    },
+    "directory_creators": {
+      "unchanged": true,
+      "rows": 0
+    },
+    "visible_directory_runs": {
+      "unchanged": true,
+      "rows": 10
+    },
+    "visible_directory_creators": {
+      "unchanged": true,
+      "rows": 160
+    }
+  },
+  "integrity": [
+    {
+      "integrity_check": "ok"
+    }
+  ],
+  "foreignKeyViolations": []
+}

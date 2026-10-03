@@ -1,0 +1,135 @@
+{
+  "runId": "desktop-following-batch3-20261001093313",
+  "collectedAt": "2026-10-01T09:33:13.128Z",
+  "databasePath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\local-data\\douyin-following.sqlite",
+  "appDirectoryPath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+  "savedCount": 20,
+  "duplicateCountAgainstPriorRuns": 0,
+  "totalSavedCount": 40,
+  "totalDistinctCount": 40,
+  "avatarCount": 20,
+  "loadedBrowserAvatarCount": 20,
+  "nicknameProfileAvatarSignatureBindingsMatch": true,
+  "priorRowsUnchanged": true,
+  "firstCaptureUnchanged": true,
+  "localIntegrity": "ok",
+  "appIntegrity": "ok",
+  "boundaryCountsBefore": {
+    "works": 0,
+    "comments": 0,
+    "metric_snapshots": 0,
+    "jobs": 0,
+    "analyses": 0
+  },
+  "boundaryCountsAfter": {
+    "works": 0,
+    "comments": 0,
+    "metric_snapshots": 0,
+    "jobs": 0,
+    "analyses": 0
+  },
+  "originalCaptureSha256": "23bc15e7b1b2b721d9df8820e28c660001fea16e14692f8e64c4e09fe6521b1e",
+  "projectionSha256": "adc06d70d5ab332ebdeac30a34f6558a685f168bee48aa0d10658e52a4e93d4c",
+  "profileLinks": [
+    {
+      "position": 1,
+      "nickname": "杜一聊Ai增长",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAF9_gcrvRn_mzg0ZLe_VFxwtgj9OyUZTnJNMidsIB6XLOaO0K6JEqayQYZS7BfTSF"
+    },
+    {
+      "position": 2,
+      "nickname": "大锋1",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAEvxm3Ni_ropFSk4oKlWpe-_w3ZbdWWxnkHK6-zP_XqUAta8uQKjh2hEEqCB_55Hj"
+    },
+    {
+      "position": 3,
+      "nickname": "Capitalistic",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAqWn2xBrotvlEsc7_ta832D6zKfXbiLlroDcouacbkYk"
+    },
+    {
+      "position": 4,
+      "nickname": "以太Max",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAhIMY-k9jfehKtHHWMlyVyCBRrU-oixh2GBYoyG76Hmxxn2GYEFv7lYlGRR1hWamP"
+    },
+    {
+      "position": 5,
+      "nickname": "超级AI客",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAf-ASkZWMJVCH0S8SLFqeT6Le2OCf5kG4P4wdbGO_1L7PcGiw-upsvGqZBPA2OWbP"
+    },
+    {
+      "position": 6,
+      "nickname": "Work-Fisher",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAe2bFn8j9AYtKOUy-CHJcAAOkcKO8CaBebWTbGRG0p2GrmpGL7kOKI7N621_vOaAd"
+    },
+    {
+      "position": 7,
+      "nickname": "foyege",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAq5UIz3urhEf4NK9TdN7EbmSzQfiy8lMdO1doGlEUW5E"
+    },
+    {
+      "position": 8,
+      "nickname": "nature-skills",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAT-5sEzj6TfDpdfzsBD0HfhUz7EBuRJl4WXOxIoZtwNaRlJIKPRCQqBKAPhWWfmW2"
+    },
+    {
+      "position": 9,
+      "nickname": "花颜白茶",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAODNyF4Z1XuL7v4-gWopgu3RTguKuc9MOM-m5pAG0Th8"
+    },
+    {
+      "position": 10,
+      "nickname": "许工跑得通",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxCiCtYrn3ZncdPnkeoMfKMHENwAQulNipJdpmU18ndpSJeCcscz0k_WBh4fWvrVx"
+    },
+    {
+      "position": 11,
+      "nickname": "🇨🇳挪威老王🇳🇴",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAvNJhYIy_k4knmAnBx2e-HyLn72wzt2EHpSzvhNTGp9w"
+    },
+    {
+      "position": 12,
+      "nickname": "李明昊",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAs0gafN7aFsONV-GrGZMUyIGnMKbrX6yqxfGYItfpgxvcJdrIHwoZVyXu0nkAoFl9"
+    },
+    {
+      "position": 13,
+      "nickname": "痕继痕迹",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAANV8iagjbupI4FDXTSZhPNg3BEfn1bY1H-43aS6dKSSK0Daz2OMUhGpbECoZ6ShuC"
+    },
+    {
+      "position": 14,
+      "nickname": "卡比的小镇",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxTiJdGR92gFAUslQi3nogoPKmRPaH0JvVpFmdpSfwXerxmz7m2bu3fxmblbb2OOB"
+    },
+    {
+      "position": 15,
+      "nickname": "老阳的奇妙电波",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAykXKbsl7xSwAk4wdkJpjmFnbz5kJzrU3zlCCkgHfTRU"
+    },
+    {
+      "position": 16,
+      "nickname": "清华鑫哥讲AI智能体",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAyiFzv3jU8mdXv_iVwLsdkvvEJiZW21cj-29LfJZqFYA6iqqe5k2WZXP2Fz86Pjaf"
+    },
+    {
+      "position": 17,
+      "nickname": "张笑笑（此人智商极高）",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAkts3qtHhmx1jHWm8273s8A0vK9D54uhL5qHLFSSEJ-k"
+    },
+    {
+      "position": 18,
+      "nickname": "Shane做AI产品",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAX3f2Jwi_ly0v9lNjkdgAcwCoIp8sivsNXU7bSVYSi_4AvUp3glwZoTkabOj_V5Ki"
+    },
+    {
+      "position": 19,
+      "nickname": "陈天狼AI编程实战",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAHekEa4VUztBwIlXsJ4HiTooNvLgNSzvsoI3YW4FQbnwwlvgoxJz4kQMXZTYV3uk6"
+    },
+    {
+      "position": 20,
+      "nickname": "一探究竟的小庄Sir",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAACRKcpxqZWA2k5g3RIapQ2X13QOcS6v1fSoGZlTa_S8Wx1U8hZMvVDT4QYX3yM0PL"
+    }
+  ]
+}

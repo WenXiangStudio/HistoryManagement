@@ -1,0 +1,12 @@
+{
+  "reusedTab": true,
+  "tabActive": false,
+  "before": {
+    "visibility": "hidden",
+    "focused": false
+  },
+  "after": {
+    "visibility": "visible",
+    "focused": true
+  }
+}

@@ -1,55 +1,104 @@
-let running=false
-const sleep=ms=>new Promise(resolve=>setTimeout(resolve,ms))
-async function run(config){
-  const post=async(path,body)=>{
-    const response=await fetch(config.origin+path,{method:'POST',headers:{authorization:`Bearer ${config.token}`,
-      'content-type':'application/json'},body:JSON.stringify({...body,runId:config.runId})})
-    const result=await response.json();if(!response.ok)throw new Error(result.error||'APP 未接收结果');return result
-  }
-  let tab=null
-  const feedback=async(phase,message,count=0)=>{
-    try{await chrome.action.setBadgeText({text:phase==='completed'?String(count):phase==='blocked'?'!':'…'})}catch{}
-    if(tab)try{await chrome.tabs.sendMessage(tab.id,{type:'signaldesk.following.feedback',phase,message})}catch{}
-  }
-  const progress=async message=>{await post('/progress',{phase:'running',message});await feedback('running',message)}
-  try{
-    await progress('正在读取当前 Chrome 账号的关注列表…')
-    tab=await chrome.tabs.create({url:'https://www.douyin.com/user/self',active:true})
-    await chrome.tabs.update(tab.id,{active:true})
-    let opened=null
-    for(let attempt=0;attempt<30;attempt++){
-      try{opened=await chrome.tabs.sendMessage(tab.id,{type:'signaldesk.r8.open-following-dialog'});break}
-      catch{await sleep(500)}
-    }
-    if(!opened?.ok && ['LOGIN_REQUIRED','CAPTCHA_OR_SECURITY_CHALLENGE'].includes(opened?.code))throw new Error(opened.code)
-    await progress('关注列表已打开，正在提取前 10 位博主的头像、昵称和主页链接…')
-    const result=await chrome.tabs.sendMessage(tab.id,{type:'signaldesk.following.collect-visible'})
-    if(!result?.ok)throw new Error(result?.error||'未读到关注列表')
-    if(result.creators.length===0)throw new Error('当前关注列表没有读到博主链接')
-    const hash=[...new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(JSON.stringify(result.creators))))]
-      .map(value=>value.toString(16).padStart(2,'0')).join('')
-    const report={contract:'signaldesk-visible-following/v1',runId:config.runId,collectedAt:new Date().toISOString(),
-      ownerSecUid:null,ownerNickname:result.ownerNickname,sourceUrl:'https://www.douyin.com/user/self',
-      sourceKind:'visible-following-list',activeFollowingTab:true,listStartedAtTop:true,hasMore:result.creators.length===10,
-      visibleItemCount:result.visibleItemCount,creators:result.creators,projectionSha256:hash,
-      activeApiRequests:0,workResponseBodiesRead:0}
-    const saved=await post('/report',report)
-    await feedback(saved.phase,saved.message,saved.count)
-    await chrome.storage.local.set({lastFollowingResult:{runId:config.runId,count:saved.count,status:saved.phase==='completed'?'saved':'partial',message:saved.message}})
-  }catch(error){
-    const message=`关注同步未完成：${String(error.message).slice(0,300)}`
-    try{await post('/progress',{phase:'blocked',message})}catch{}
-    await feedback('blocked',message)
-    await chrome.storage.local.set({lastFollowingResult:{runId:config.runId,status:'blocked',message}})
-  }finally{running=false}
+import {runStructuredFollowingSync} from './structured-runner.js'
+import {runStructuredFollowingProbe} from './structured-probe.js'
+const version=chrome.runtime.getManifest().version
+let nativePort=null,reconnecting=false,connection=null,running=false
+let activePreparationId=null,preparedTabId=null
+async function connectorIdentity(){
+  const {followingConnectorId}=await chrome.storage.local.get('followingConnectorId')
+  if(followingConnectorId)return followingConnectorId
+  const id=crypto.randomUUID();await chrome.storage.local.set({followingConnectorId:id});return id
 }
-chrome.runtime.onMessage.addListener((message,sender,respond)=>{
-  if(message?.type!=='signaldesk.following.start')return false
+function invalidatePage(){
+  if(!connection||!activePreparationId||running)return
+  void fetch(connection.origin+'/readiness',{method:'POST',headers:{authorization:`Bearer ${connection.token}`,'content-type':'application/json'},body:JSON.stringify({preparationId:activePreparationId,phase:'blocked',message:'账号页面已变化，正在重新检查。',code:'PAGE_INVALIDATED'})}).catch(()=>{})
+  activePreparationId=null
+}
+chrome.tabs.onUpdated.addListener((tabId,change)=>{if(tabId===preparedTabId&&(change.status==='loading'||change.discarded||change.url))invalidatePage()})
+chrome.tabs.onRemoved.addListener(tabId=>{if(tabId===preparedTabId)invalidatePage()})
+function disconnect(port){
+  if(nativePort!==port)return
+  nativePort=null;connection=null
+  port.disconnect()
+  void chrome.storage.local.set({followingConnection:{online:false,version}})
+  setTimeout(connect,1000)
+}
+
+// Native Messaging holds the worker alive; long polling delivers APP clicks
+// immediately without a setup tab or periodic browser launches.
+async function connect(){
+  if(nativePort||reconnecting)return
+  reconnecting=true
+  let port
   try{
-    const config=message.config;const url=new URL(sender.url)
-    if(url.hostname!=='127.0.0.1'||url.origin!==config?.origin||url.pathname!==`/following-setup/${config.runId}`)throw new Error('配置页无效')
-    if(running)throw new Error('正在同步')
-    running=true;void run(config);respond({ok:true})
-  }catch(error){respond({ok:false,error:String(error.message)})}
+    port=chrome.runtime.connectNative('com.signaldesk.following')
+    nativePort=port
+    port.onDisconnect.addListener(()=>{
+      void chrome.runtime.lastError
+      if(nativePort!==port)return
+      nativePort=null;connection=null
+      void chrome.storage.local.set({followingConnection:{online:false,version}})
+      setTimeout(connect,1000)
+    })
+    port.onMessage.addListener(message=>{
+      if(!message.ok){disconnect(port);return}
+      connection=message.discovery
+      void listen(port,connection)
+    })
+    port.postMessage({type:'discover'})
+  }catch{if(nativePort===port)nativePort=null;setTimeout(connect,1000)}
+  finally{reconnecting=false}
+}
+async function listen(port,bridge){
+  const instanceId=crypto.randomUUID()
+  const connectorId=await connectorIdentity()
+  try{
+    while(nativePort===port){
+      const response=await fetch(bridge.origin+'/commands',{headers:{authorization:`Bearer ${bridge.token}`,'x-following-version':version,'x-following-instance':instanceId,'x-following-connector':connectorId}})
+      const result=await response.json()
+      if(!response.ok)throw new Error(result.error||'APP_OFFLINE')
+      await chrome.storage.local.set({followingConnection:{online:true,version}})
+      if(!result.command)continue
+      if(running)continue
+      running=true
+      try{
+        if(result.command.action==='probe'){
+          await runStructuredFollowingProbe(result.command)
+          continue
+        }
+        if(result.command.action==='prepare')activePreparationId=null
+        const {followingTabId}=await chrome.storage.local.get('followingTabId')
+        const saved=await runStructuredFollowingSync({...result.command,preferredTabId:followingTabId})
+        if(result.command.action==='prepare'){
+          activePreparationId=result.command.preparationId
+          preparedTabId=saved.tabId??null
+        }
+      }finally{running=false}
+    }
+  }catch{disconnect(port)}
+}
+chrome.runtime.onStartup.addListener(connect)
+chrome.runtime.onInstalled.addListener(connect)
+chrome.runtime.onMessage.addListener((message,_sender,respond)=>{
+  if(message?.type==='signaldesk.following.enroll'){
+    const config=message.config
+    try{
+      const senderUrl=new URL(_sender.url)
+      if(senderUrl.origin!==config.origin||senderUrl.hostname!=='127.0.0.1'||senderUrl.pathname!=='/following-connect')throw new Error('连接页面无效')
+      void connectorIdentity().then(async connectorId=>{
+        const response=await fetch(config.origin+'/connector-enroll',{method:'POST',headers:{authorization:`Bearer ${config.token}`,'content-type':'application/json'},body:JSON.stringify({nonce:config.nonce,connectorId})})
+        const result=await response.json();respond(result)
+      }).catch(error=>respond({ok:false,error:String(error.message)}))
+    }catch(error){respond({ok:false,error:String(error.message)})}
+    return true
+  }
+  if(message?.type==='signaldesk.following.page-invalidated'){
+    respond({ok:true})
+    invalidatePage()
+    return false
+  }
+  if(message?.type!=='signaldesk.following.connection')return false
+  respond({ok:true,online:!!connection,version,running})
+  if(!nativePort)void connect()
   return false
 })
+void connect()

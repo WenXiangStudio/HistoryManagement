@@ -36,8 +36,9 @@ try {
     await new Promise((resolve) => setTimeout(resolve, 1000))
     if (action === 'screenshot' && process.argv[4] !== undefined) {
       const index = Number(process.argv[4])
-      if (!Number.isInteger(index) || index < 0 || index > 9) throw new Error('Invalid screenshot card index')
+      if (!Number.isInteger(index) || index < 0) throw new Error('Invalid screenshot card index')
       await send('Runtime.evaluate', { expression: `document.querySelectorAll('.creator-card')[${index}]?.scrollIntoView({block:'start'})` })
+      if(index===0)await send('Runtime.evaluate',{expression:`document.querySelector('.workspace').scrollTop=0`})
     }
   }
   const result = await send('Runtime.evaluate', { expression: `(async()=>JSON.stringify({
@@ -46,6 +47,7 @@ try {
     ui:{text:document.querySelector('[data-testid="following-sync-status"]')?.innerText,
       cards:[...document.querySelectorAll('.creator-card')].map(card=>({nickname:card.querySelector('h3')?.innerText,
         profileUrl:card.querySelector('.creator-profile-link')?.getAttribute('href'),
+        avatarUrl:card.querySelector('.avatar img')?.currentSrc || card.querySelector('.avatar img')?.src || null,
         avatarLoaded:!!card.querySelector('.avatar img')?.naturalWidth}))}
   }))()`, awaitPromise: true, returnByValue: true })
   if (result.exceptionDetails) throw new Error(JSON.stringify(result.exceptionDetails))

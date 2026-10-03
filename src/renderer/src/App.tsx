@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState, type JSX, type ReactNode } fr
 import type { AppSettings, CreatorListItem, DashboardSummary, DemoDataSummary, InboxItem, IsolatedPilotCatalog, IsolatedPilotState } from '../../shared/contracts'
 import { STRUCTURED_SYNC_AVAILABLE } from '../../shared/featureFlags'
 import { R7_CONTRACT_ONLY_UI_STATE } from '../../shared/r7EvidenceContracts'
-import type { FollowingSyncState } from '../../shared/followingDirectory'
+import type { FollowingSyncState,FollowingConfiguration } from '../../shared/followingDirectory'
 
 type Route = 'inbox' | 'creators' | 'jobs' | 'settings'
 type Job = {
@@ -103,6 +103,8 @@ export default function App(): JSX.Element {
   const [cloudEstimate, setCloudEstimate] = useState<Record<string, unknown> | null>(null)
   const [demoClearSummary, setDemoClearSummary] = useState<DemoDataSummary | null>(null)
   const [followingState, setFollowingState] = useState<FollowingSyncState | null>(null)
+  const [followingConfiguration,setFollowingConfiguration]=useState<FollowingConfiguration|null>(null)
+  const [followingLimit,setFollowingLimit]=useState(20)
   const [worksConfirmCreator, setWorksConfirmCreator] = useState<CreatorListItem | null>(null)
   const [isolatedCatalog, setIsolatedCatalog] = useState<IsolatedPilotCatalog | null>(null)
   const [isolatedPilotState, setIsolatedPilotState] = useState<IsolatedPilotState | null>(null)
@@ -110,12 +112,39 @@ export default function App(): JSX.Element {
   const [workerProgress, setWorkerProgress] = useState('')
   const refreshSequence = useRef(0)
   const displayedFollowingRun = useRef<string | null>(null)
+  const timedFollowingRun=useRef<string|null>(null)
+  const notifiedPreparation=useRef<string|null>(null)
+  useEffect(()=>{
+    const readiness=followingState?.readiness
+    if(!readiness||!['ready','blocked'].includes(readiness.phase))return
+    const key=`${readiness.preparationId}:${readiness.phase}:${readiness.code||''}`
+    if(notifiedPreparation.current===key)return
+    notifiedPreparation.current=key;setToast(readiness.message)
+  },[followingState?.readiness])
 
   useEffect(() => {
     if (followingState?.phase !== 'completed' || displayedFollowingRun.current === followingState.runId) return
     displayedFollowingRun.current = followingState.runId
+    setCreatorSearch('')
     setRoute('creators')
   }, [followingState])
+
+  useEffect(()=>{
+    if(route!=='creators'||followingState?.phase!=='completed'||!followingState.runId||!followingState.timing
+      ||timedFollowingRun.current===followingState.runId||debouncedCreatorSearch||creators.filter(item=>!item.isDemo).length!==followingState.totalCount)return
+    const runId=followingState.runId,total=creators.filter(item=>!item.isDemo).length
+    let disposed=false,deadline:ReturnType<typeof setTimeout>
+    const check=():void=>{
+      const images=[...document.querySelectorAll<HTMLImageElement>('.creator-card[data-directory="true"] .avatar img')]
+      if(disposed||images.length!==total||images.some(image=>!image.complete||!image.naturalWidth))return
+      timedFollowingRun.current=runId
+      void window.signalDesk.ackFollowingRendered(runId,total).then(state=>{if(!disposed)setFollowingState(state)})
+    }
+    const frame=requestAnimationFrame(check)
+    document.addEventListener('load',check,true)
+    deadline=setTimeout(()=>{document.removeEventListener('load',check,true)},10000)
+    return ()=>{disposed=true;cancelAnimationFrame(frame);clearTimeout(deadline);document.removeEventListener('load',check,true)}
+  },[route,followingState,creators,debouncedCreatorSearch])
 
   useEffect(() => {
     const timer = setTimeout(() => setDebouncedInboxSearch(inboxSearch), 220)
@@ -129,13 +158,14 @@ export default function App(): JSX.Element {
 
   const refresh = useCallback(async () => {
     const sequence = ++refreshSequence.current
-    const [nextSummary, nextInbox, nextCreators, nextJobs, nextSettings, nextFollowingState] = await Promise.all([
+    const [nextSummary, nextInbox, nextCreators, nextJobs, nextSettings, nextFollowingState,nextFollowingConfiguration] = await Promise.all([
       window.signalDesk.getDashboard(),
       window.signalDesk.listInbox({ state: inboxFilter, search: debouncedInboxSearch, limit: 200 }),
       window.signalDesk.listCreators(debouncedCreatorSearch),
       window.signalDesk.listJobs(),
       window.signalDesk.getSettings(),
-      window.signalDesk.getFollowingSyncStatus()
+      window.signalDesk.getFollowingSyncStatus(),
+      window.signalDesk.getFollowingConfiguration()
     ])
     if (sequence !== refreshSequence.current) return
     setSummary(nextSummary)
@@ -144,6 +174,7 @@ export default function App(): JSX.Element {
     setJobs(nextJobs)
     setSettings(nextSettings)
     setFollowingState(nextFollowingState)
+    setFollowingConfiguration(nextFollowingConfiguration)
   }, [debouncedCreatorSearch, debouncedInboxSearch, inboxFilter])
 
   useEffect(() => {
@@ -233,8 +264,8 @@ export default function App(): JSX.Element {
           <NavItem active={route === 'settings'} icon="settings" label="设置" onClick={() => setRoute('settings')} />
         </nav>
         <div className="connector-card">
-          <span className={`presence ${summary.connectorOnline ? 'online' : ''}`} />
-          <div><strong>{summary.connectorOnline ? '浏览器已连接' : '等待浏览器连接'}</strong><small>{summary.lastSyncAt ? `同步于 ${relativeTime(summary.lastSyncAt)}` : '尚未同步真实账号'}</small></div>
+          <span className={`presence ${followingState?.connection?.online || summary.connectorOnline ? 'online' : ''}`} />
+          <div><strong>{followingState?.connection?.online ? '关注连接器已连接' : summary.connectorOnline ? '浏览器已连接' : '等待浏览器连接'}</strong><small>{summary.lastSyncAt ? `同步于 ${relativeTime(summary.lastSyncAt)}` : '尚未同步真实账号'}</small></div>
         </div>
         <div className="local-note"><Icon name="database" size={17}/><span>数据保存在这台电脑</span></div>
       </aside>
@@ -248,12 +279,14 @@ export default function App(): JSX.Element {
           </div>
           <div className="header-actions">
             <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.exportAll(true), '资料库已导出')} disabled={busy || !hasData}><Icon name="download" size={18}/>导出</button>
-            <button className="button primary" data-testid="start-following-sync" onClick={() => void runAction(() => window.signalDesk.refreshFollowing(10), 'Chrome 配置页已打开，请确认登录并加载关注扩展')} disabled={busy || followingState?.phase === 'running'} title="打开 Chrome，只保存前 10 位关注博主基础信息"><Icon name="sync" size={18}/>{followingState?.phase === 'awaiting-config' ? '返回 Chrome 配置' : followingState?.phase === 'running' ? '正在同步关注…' : '开始同步关注'}</button>
+            <select aria-label="本次新增博主数量" value={followingLimit} onChange={event=>setFollowingLimit(Number(event.target.value))} disabled={busy||['awaiting-config','running'].includes(followingState?.phase||'')}><option value={10}>新增 10 位</option><option value={20}>新增 20 位</option></select>
+            <button className="button primary" data-testid="start-following-sync" onClick={() => void runAction(() => window.signalDesk.refreshFollowing(followingLimit), '正在后台获取新博主，已有资料保留')} disabled={busy || !followingState?.connection?.online || followingState?.readiness?.phase!=='ready' || ['awaiting-config','running'].includes(followingState?.phase||'')} title={followingState?.readiness?.phase==='ready'?'后台获取新博主，已有资料保留':'连接器和账号页面准备完成后即可同步'}><Icon name="sync" size={18}/>{followingState?.phase === 'running' ? '正在同步关注…' : followingState?.readiness?.phase==='ready'?'同步关注':'等待同步准备'}</button>
           </div>
         </header>
 
         {route !== 'settings' && <SummaryStrip summary={summary} />}
-        {followingState && followingState.phase !== 'idle' && <div className="following-status" role="status" data-testid="following-sync-status"><div><strong>{followingState.phase === 'completed' ? `关注目录已保存 · ${followingState.count} 位` : followingState.phase === 'blocked' ? '关注同步需要处理' : '独立关注目录同步'}</strong><p>{followingState.message}</p>{followingState.phase === 'completed' && <small>仅保存博主基础信息 · 本轮范围为关注列表前 10 位</small>}</div><div>{followingState.phase === 'completed' && <button className="button ghost" onClick={() => setRoute('creators')}>查看关注博主</button>}{['awaiting-config','running'].includes(followingState.phase) && <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.cancelFollowingSync(), '本轮关注同步已取消')}>取消本轮</button>}</div></div>}
+        {followingState && <div className="following-connection" role="status" aria-live="polite" data-testid="following-connection"><span>{followingState.readiness?.message||'正在自动准备关注同步…'}</span>{followingState.readiness?.phase==='blocked'&&<><button className="button ghost" onClick={()=>void runAction(()=>window.signalDesk.prepareFollowing(),'正在重新准备关注同步')}>重新检查</button>{!followingState.connection?.online?<button className="button ghost" onClick={()=>void runAction(()=>window.signalDesk.configureFollowing(),'已打开连接说明')}>连接扩展</button>:<button className="button ghost" onClick={()=>void runAction(()=>window.signalDesk.loginFollowing(),'请在浏览器处理登录或验证，APP 将自动检查')}>{followingState.readiness.code==='LOGIN_REQUIRED'?'登录账号':'查看账号页面'}</button>}</>}</div>}
+        {followingState && followingState.phase !== 'idle' && <div className="following-status" role="status" data-testid="following-sync-status"><div><strong>{followingState.phase === 'completed' ? `关注目录已保存 · 新增 ${followingState.count} 位` : followingState.phase === 'blocked' ? '关注同步需要处理' : '正在后台同步关注'}</strong><p>{followingState.message}</p>{followingState.phase === 'completed' && <small>已有资料保留{followingState.timing?.displayedTotalMs!==undefined&&` · 点击到全部显示 ${(followingState.timing.displayedTotalMs/1000).toFixed(2)} 秒 · 平均 ${(followingState.timing.averageDisplayedMs!/1000).toFixed(3)} 秒/新增博主`}</small>}{followingState.phase==='completed'&&followingState.timing?.displayedTotalMs!==undefined&&<details><summary>查看耗时</summary><small>连接与派发 {((followingState.timing.dispatchMs||0)/1000).toFixed(3)} 秒 · 页面读取 {((followingState.timing.acquisitionMs||0)/1000).toFixed(3)} 秒 · 校验与保存 {((followingState.timing.persistenceMs||0)/1000).toFixed(3)} 秒 · 其余传输与展示 {((followingState.timing.displayedTotalMs-(followingState.timing.dispatchMs||0)-(followingState.timing.acquisitionMs||0)-(followingState.timing.persistenceMs||0))/1000).toFixed(3)} 秒</small></details>}</div><div>{followingState.phase === 'completed' && <button className="button ghost" onClick={() => setRoute('creators')}>查看关注博主</button>}{['awaiting-config','running'].includes(followingState.phase) && <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.cancelFollowingSync(), '本轮关注同步已取消')}>取消本轮</button>}</div></div>}
 
         {route === 'inbox' && (
           <InboxPage
@@ -278,6 +311,14 @@ export default function App(): JSX.Element {
         )}
         {route === 'settings' && settings && (
           <SettingsPage
+            followingConfiguration={followingConfiguration}
+            followingState={followingState}
+            onFollowingSave={(value)=>void runAction(()=>window.signalDesk.saveFollowingConfiguration(value),'浏览器与账号备注已保存')}
+            onFollowingBind={(value)=>void runAction(()=>window.signalDesk.bindFollowingAccount(value),'正在读取并绑定当前登录账号，历史账号资料保留')}
+            onFollowingSwitch={(secUid)=>void runAction(()=>window.signalDesk.switchFollowingAccount(secUid),'已切换资料账号，正在验证浏览器登录状态')}
+            onFollowingLogin={()=>void runAction(()=>window.signalDesk.loginFollowing(),'已打开所选浏览器的账号页面')}
+            onFollowingConnector={()=>void runAction(()=>window.signalDesk.configureFollowing(),'已打开所选浏览器的连接说明')}
+            onFollowingCancelBind={()=>void runAction(()=>window.signalDesk.cancelFollowingAccountBinding(),'已取消新账号绑定，当前资料账号保留')}
             settings={settings}
             onSave={(value) => void runAction(() => window.signalDesk.saveSettings(value), '设置已安全保存')}
             onEstimate={async () => setCloudEstimate(await window.signalDesk.estimateCloud(100))}
@@ -368,7 +409,7 @@ function CreatorsPage({ creators, search, setSearch, onUpdate, onSyncWorks }: { 
   const [note, setNote] = useState('')
   return <section className="page-section">
     <div className="toolbar"><SearchBox value={search} onChange={setSearch} placeholder="搜索博主、领域或你的批注"/><span className="result-count">{creators.length} 位博主</span></div>
-    {creators.length ? <div className="creator-grid">{creators.map((creator) => <article className="creator-card" key={creator.id}>
+    {creators.length ? <div className="creator-grid">{creators.map((creator) => <article className="creator-card" data-directory={!creator.isDemo} key={creator.id}>
       <div className="creator-top"><Avatar name={creator.nickname} src={creator.avatarUrl} large/><button type="button" title={creator.isStarred ? '取消星标' : '星标博主'} aria-label={creator.isStarred ? `取消星标 ${creator.nickname}` : `星标 ${creator.nickname}`} className={`star-button ${creator.isStarred ? 'active' : ''}`} onClick={() => onUpdate(creator.id, { isStarred: !creator.isStarred }, creator.isStarred ? '已取消博主星标' : '已星标博主')}><Icon name="star" size={16}/><span>{creator.isStarred ? '已星标' : '星标'}</span></button></div>
       <h3>{creator.nickname}</h3><p>{creator.signature || '这个博主还没有可用的公开简介。'}</p>
       <a className="creator-profile-link" href={creator.profileUrl} title={creator.profileUrl} onClick={(event) => { event.preventDefault(); void window.signalDesk.openExternal(creator.profileUrl) }}><Icon name="external" size={15}/><span>{creator.profileUrl}</span></a>
@@ -422,7 +463,16 @@ function StatusPill({ status }: { status: string }): JSX.Element {
   return <span className={`status-pill ${status}`}>{status === 'completed' && <Icon name="check" size={13}/>} {labels[status] || status}</span>
 }
 
-function SettingsPage({ settings, onSave, onEstimate, onConnector, workerStatus, workerProgress, onWorkerCheck, onWorkerSetup, onPrepareDemoClear, busy }: {
+function SettingsPage({ settings, onSave, onEstimate, onConnector, workerStatus, workerProgress, onWorkerCheck, onWorkerSetup, onPrepareDemoClear, busy,
+  followingConfiguration,followingState,onFollowingSave,onFollowingBind,onFollowingSwitch,onFollowingLogin,onFollowingConnector,onFollowingCancelBind }: {
+  followingConfiguration:FollowingConfiguration|null
+  followingState:FollowingSyncState|null
+  onFollowingSave:(value:{chromeProfile:string;label:string})=>void
+  onFollowingBind:(value:{label:string;profileUrl:string})=>void
+  onFollowingSwitch:(secUid:string)=>void
+  onFollowingLogin:()=>void
+  onFollowingConnector:()=>void
+  onFollowingCancelBind:()=>void
   settings: AppSettings
   onSave: (value: Record<string, unknown>) => void
   onEstimate: () => void
@@ -443,6 +493,8 @@ function SettingsPage({ settings, onSave, onEstimate, onConnector, workerStatus,
   const update = (key: string, value: unknown): void => setForm((current) => ({ ...current, [key]: value }))
   return <section className="settings-layout">
     <div className="settings-main">
+      {followingConfiguration&&<FollowingAccountSettings configuration={followingConfiguration} state={followingState} busy={busy}
+        onSave={onFollowingSave} onBind={onFollowingBind} onSwitch={onFollowingSwitch} onLogin={onFollowingLogin} onConnector={onFollowingConnector} onCancelBind={onFollowingCancelBind}/>}
       <SettingsCard icon="key" title="云端兼容 API" description="文本与视觉服务可分别选择服务商和密钥；批次执行前始终再次确认。">
         <div className="cloud-provider-group">
           <div className="cloud-provider-head"><div><strong>文本分析服务</strong><span>用于作品、转写、OCR 与评论分析</span></div><span className={settings.hasTextApiKey ? 'credential-state saved' : 'credential-state'}>{settings.hasTextApiKey ? '密钥已安全保存' : '未保存密钥'}</span></div>
@@ -489,8 +541,60 @@ function SettingsPage({ settings, onSave, onEstimate, onConnector, workerStatus,
         <div className="demo-cleanup-row"><div><strong>只清除带演示标记的资料</strong><span>执行前会列出准确范围。真实博主、真实作品及其收藏和批注不会受到影响。</span></div><button className="button danger" onClick={onPrepareDemoClear} disabled={busy}><Icon name="trash" size={16}/>查看并清除</button></div>
       </SettingsCard>
     </div>
-    <aside className="privacy-panel"><p className="eyebrow">COLLECTION BOUNDARY</p><h2>浏览器只是一座桥</h2><p>所有管理、搜索和分析都在桌面端完成。连接器只在你点击同步后读取当前登录权限下公开可见的内容。</p><ul><li><Icon name="check" size={15}/>不保存抖音密码</li><li><Icon name="check" size={15}/>不导出 Cookie 或请求令牌</li><li><Icon name="check" size={15}/>不点赞、评论、关注或私信</li><li><Icon name="check" size={15}/>遇到验证码立即暂停</li></ul><button className="button dark" onClick={onConnector}>查看安装说明<Icon name="external" size={16}/></button><div className="privacy-foot"><span className="presence"/><div><strong>Native Messaging</strong><small>只连接本机回环地址</small></div></div></aside>
+    <aside className="privacy-panel"><p className="eyebrow">COLLECTION BOUNDARY</p><h2>浏览器只是一座桥</h2><p>所有管理、搜索和分析都在桌面端完成。APP 启动时检查授权账号与连接状态，点击同步后按账号保存博主资料。</p><ul><li><Icon name="check" size={15}/>不保存抖音密码</li><li><Icon name="check" size={15}/>不导出 Cookie 或请求令牌</li><li><Icon name="check" size={15}/>不点赞、评论、关注或私信</li><li><Icon name="check" size={15}/>遇到验证码立即暂停</li></ul><button className="button dark" onClick={onConnector}>查看安装说明<Icon name="external" size={16}/></button><div className="privacy-foot"><span className="presence"/><div><strong>Native Messaging</strong><small>只连接本机回环地址</small></div></div></aside>
   </section>
+}
+
+function FollowingAccountSettings({configuration,state,busy,onSave,onBind,onSwitch,onLogin,onConnector,onCancelBind}:{
+  configuration:FollowingConfiguration;state:FollowingSyncState|null;busy:boolean;
+  onSave:(value:{chromeProfile:string;label:string})=>void;onBind:(value:{label:string;profileUrl:string})=>void;
+  onSwitch:(secUid:string)=>void;onLogin:()=>void;onConnector:()=>void
+  onCancelBind:()=>void
+}):JSX.Element{
+  const active=configuration.accounts.find(account=>account.secUid===configuration.activeOwnerSecUid)
+  const [profile,setProfile]=useState(configuration.chromeProfile||'')
+  const [label,setLabel]=useState(active?.label||'')
+  const [newLabel,setNewLabel]=useState('')
+  const [profileUrl,setProfileUrl]=useState('')
+  useEffect(()=>{setProfile(configuration.chromeProfile||'');setLabel(active?.label||'')},[configuration.chromeProfile,active?.secUid,active?.label])
+  const locked=busy||state?.phase==='running'||state?.phase==='awaiting-config'
+  return <SettingsCard icon="people" title="关注账号与浏览器" description="选择登录账号所在的浏览器配置；各账号的博主资料、星标和批注分别累计保存。">
+    <div data-testid="following-account-settings">
+      <div className="field-grid">
+        <Field label="Chrome 用户配置"><select aria-label="关注同步 Chrome 用户配置" value={profile} disabled={locked} onChange={event=>setProfile(event.target.value)}>
+          {!profile&&<option value="">请选择浏览器配置</option>}
+          {configuration.profiles.map(item=><option key={item.directory} value={item.directory}>{item.name} · {item.directory}{item.extensionInstalled?' · 扩展已安装':' · 需安装扩展'}</option>)}
+        </select></Field>
+        <Field label="当前资料账号"><select aria-label="当前关注资料账号" value={configuration.activeOwnerSecUid||''} disabled={locked} onChange={event=>{if(event.target.value)onSwitch(event.target.value)}}>
+          {!configuration.activeOwnerSecUid&&<option value="">尚未绑定账号</option>}
+          {configuration.accounts.map(account=><option key={account.secUid} value={account.secUid}>{account.label} · {account.creatorCount} 位博主</option>)}
+        </select></Field>
+        <Field label="账号备注名"><input aria-label="关注账号备注名" value={label} onChange={event=>setLabel(event.target.value)} maxLength={100} placeholder="例如：个人账号、工作账号" disabled={locked}/></Field>
+        <Field label="接口确认的账号昵称"><input readOnly value={active?.nickname||'等待接口验证'} /></Field>
+      </div>
+      <p className="following-config-note">{state?.readiness?.message||'正在读取连接状态'}{configuration.bindingPending?' · 正在绑定当前浏览器账号':''}</p>
+      <div className="settings-actions">
+        <button className="button ghost" disabled={locked||!profile} onClick={()=>onSave({chromeProfile:profile,label})}>保存浏览器与备注</button>
+        <button className="button ghost" disabled={locked||profile!==configuration.chromeProfile} onClick={onLogin}>打开浏览器登录 / 切换账号</button>
+        <button className="button ghost" disabled={locked||profile!==configuration.chromeProfile} onClick={onConnector}>连接所选浏览器</button>
+      </div>
+      <div className="following-account-bind">
+        <strong>绑定另一个登录账号</strong>
+        <p>先保存浏览器配置，在该浏览器中登录目标抖音账号，再读取并绑定。账号身份由接口确认，旧账号可随时切回。</p>
+        <div className="field-grid">
+          <Field label="新账号备注名"><input aria-label="新关注账号备注名" value={newLabel} onChange={event=>setNewLabel(event.target.value)} maxLength={100} placeholder="留空使用账号昵称" disabled={locked}/></Field>
+          <Field label="目标账号主页链接（可选）"><input aria-label="目标关注账号主页链接" value={profileUrl} onChange={event=>setProfileUrl(event.target.value)} placeholder="留空自动读取；填写后会核对身份" disabled={locked}/></Field>
+        </div>
+        <div className="settings-actions"><button className="button primary" disabled={locked||!configuration.connected||profile!==configuration.chromeProfile||configuration.bindingPending} onClick={()=>onBind({label:newLabel,profileUrl})}>读取并绑定当前登录账号</button>{configuration.bindingPending&&<button className="button ghost" disabled={locked} onClick={onCancelBind}>取消新账号绑定</button>}</div>
+      </div>
+      <details className="following-connector-details"><summary>账号身份与连接器信息</summary>
+        <p>当前账号主页：{active?`https://www.douyin.com/user/${active.secUid}`:'尚未绑定'}</p>
+        <p>账号 UID：{active?.uid||'等待接口读取'}</p>
+        <p>连接器：{configuration.connected?'已连接':'待连接'} · 扩展 {configuration.connectorVersion||'未连接'} / APP 需要 {configuration.expectedVersion}</p>
+        <p>扩展目录：{configuration.extensionDirectory||'正在准备'}</p>
+      </details>
+    </div>
+  </SettingsCard>
 }
 
 function SettingsCard({ icon, title, description, children }: { icon: string; title: string; description: string; children: ReactNode }): JSX.Element {

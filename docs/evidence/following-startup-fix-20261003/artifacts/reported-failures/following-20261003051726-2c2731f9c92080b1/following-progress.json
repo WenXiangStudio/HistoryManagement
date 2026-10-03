@@ -1,0 +1,23 @@
+{
+  "updatedAt": "2026-10-03T05:17:38.225Z",
+  "phase": "blocked",
+  "runId": "following-20261003051726-2c2731f9c92080b1",
+  "message": "关注同步未完成：FOLLOWING_DIALOG_NOT_READY",
+  "count": 0,
+  "ownerSecUid": null,
+  "extensionDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-extension",
+  "reportDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-runs\\following-20261003051726-2c2731f9c92080b1",
+  "databasePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+  "setupUrl": "http://127.0.0.1:52649/following-connect",
+  "totalCount": 120,
+  "timing": {
+    "startedAt": "2026-10-03T05:17:26.141Z",
+    "dispatchMs": 3.1957000000111293
+  },
+  "requestedCount": 20,
+  "connection": {
+    "online": true,
+    "version": "0.4.0",
+    "expectedVersion": "0.4.0"
+  }
+}

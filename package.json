@@ -25,6 +25,7 @@
     "test:packaged-renderer": "node scripts/test-packaged-renderer.mjs",
     "test:connector-content": "node scripts/test-connector-content.mjs",
     "test:connector-background": "node scripts/test-connector-background.mjs",
+    "test:following-flow": "node --test scripts/test-following-visible-runner.mjs scripts/test-following-distinct-batch.mjs scripts/test-following-batch-timer.mjs",
     "test:network-observer": "node --test scripts/test-network-observer.mjs",
     "test:phase-b": "node --test poc/phase-b/test/*.test.mjs",
     "test:project-boundaries": "node scripts/test-project-boundaries.mjs",
