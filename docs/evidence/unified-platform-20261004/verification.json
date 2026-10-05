@@ -1,0 +1,559 @@
+{
+  "recordedAt": "2026-10-04T10:31:22.326647+00:00",
+  "scope": {
+    "authors": 1,
+    "author": "Boujoy",
+    "appAttempts": 1,
+    "fullOrResumeRuns": 0,
+    "newFollowingRuns": 0,
+    "realFollowingPagination": "not tested; covered offline",
+    "realBrowserRestart": "not tested; persisted fresh-module state covered offline"
+  },
+  "preparationBeforeSingle": {
+    "updatedAt": "2026-10-04T10:28:08.462Z",
+    "phase": "ready",
+    "elapsedMs": 9429.196,
+    "activeApiRequests": 2,
+    "browserExecution": {
+      "source": "authorized same-origin structured GET",
+      "tabId": 193483676,
+      "tabActive": true,
+      "domQueries": 0,
+      "uiClicks": 0,
+      "pageReloads": 0,
+      "requests": 2,
+      "requestPolicy": {
+        "intervalMs": 8000,
+        "successRate": 1,
+        "cooldownUntil": 0,
+        "maximumActionsPerWindow": 6,
+        "windowMs": 60000
+      },
+      "controlledActions": [
+        {
+          "kind": "self-get",
+          "at": "2026-10-04T10:27:59.100Z",
+          "waitMs": 10,
+          "intervalMs": 8000
+        },
+        {
+          "kind": "following-list-get",
+          "at": "2026-10-04T10:28:08.092Z",
+          "waitMs": 8652,
+          "intervalMs": 8000
+        }
+      ],
+      "backgroundStart": false,
+      "backgroundWindowState": null
+    }
+  },
+  "preparationAfterReopen": {
+    "updatedAt": "2026-10-04T10:29:46.098Z",
+    "phase": "ready",
+    "elapsedMs": 9895.9691,
+    "browserExecution": {
+      "source": "authorized same-origin structured GET",
+      "tabId": 193483676,
+      "tabActive": true,
+      "domQueries": 0,
+      "uiClicks": 0,
+      "pageReloads": 0,
+      "requests": 2,
+      "requestPolicy": {
+        "intervalMs": 7200,
+        "successRate": 1,
+        "cooldownUntil": 0,
+        "maximumActionsPerWindow": 6,
+        "windowMs": 60000
+      },
+      "controlledActions": [
+        {
+          "kind": "self-get",
+          "at": "2026-10-04T10:29:36.728Z",
+          "waitMs": 6,
+          "intervalMs": 8000
+        },
+        {
+          "kind": "following-list-get",
+          "at": "2026-10-04T10:29:45.790Z",
+          "waitMs": 8826,
+          "intervalMs": 7200
+        }
+      ],
+      "backgroundStart": true,
+      "backgroundWindowState": "minimized"
+    }
+  },
+  "timeline": {
+    "controlledActions": [
+      {
+        "kind": "self-get",
+        "at": "2026-10-04T10:27:59.100Z",
+        "waitMs": 10,
+        "intervalMs": 8000
+      },
+      {
+        "kind": "following-list-get",
+        "at": "2026-10-04T10:28:08.092Z",
+        "waitMs": 8652,
+        "intervalMs": 8000
+      },
+      {
+        "kind": "self-get",
+        "at": "2026-10-04T10:28:22.814Z",
+        "waitMs": 7,
+        "intervalMs": 8000
+      },
+      {
+        "kind": "author-page-navigation",
+        "at": "2026-10-04T10:28:32.792Z",
+        "waitMs": 9724,
+        "intervalMs": 8000
+      },
+      {
+        "kind": "self-get",
+        "at": "2026-10-04T10:29:36.728Z",
+        "waitMs": 6,
+        "intervalMs": 8000
+      },
+      {
+        "kind": "following-list-get",
+        "at": "2026-10-04T10:29:45.790Z",
+        "waitMs": 8826,
+        "intervalMs": 7200
+      }
+    ],
+    "adjacentGapsMs": [
+      8992.0,
+      14722.0,
+      9978.0,
+      63936.0,
+      9062.0
+    ],
+    "minimumGapAtLeast5000Ms": true,
+    "atMost6ControlledActionsPerRolling60000Ms": true
+  },
+  "requestMeasurement": {
+    "singleExplicitWeeklyListGets": 0,
+    "singleSelfVerificationGets": 1,
+    "singleReusedNativePages": 1,
+    "singleNativeListRequests": 1,
+    "singleAuthorPageObservedEvents": {
+      "totalObservedRequests": 267,
+      "douyinRequests": 17,
+      "otherRequests": 250
+    },
+    "preparationRequestsSeparateFromSingle": true,
+    "observedEventsIncludePotentialCacheReads": true,
+    "unobservedTrafficNotClaimedComplete": true
+  },
+  "timing": {
+    "appClickToAvailableMs": 13402.238900000004,
+    "independentObservedClickToAvailableMs": 13692.689100000001
+  },
+  "storage": {
+    "integrity": "ok",
+    "foreignKeyViolations": 0,
+    "uniqueCreators": 200,
+    "preservation": {
+      "creator_activity_attempts": {
+        "originalRows": 491,
+        "currentRows": 492,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_runs": {
+        "originalRows": 17,
+        "currentRows": 18,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_snapshots": {
+        "originalRows": 491,
+        "currentRows": 492,
+        "originalRowsUnchanged": true
+      },
+      "directory_creators": {
+        "originalRows": 0,
+        "currentRows": 0,
+        "originalRowsUnchanged": true
+      },
+      "directory_runs": {
+        "originalRows": 0,
+        "currentRows": 0,
+        "originalRowsUnchanged": true
+      },
+      "following_account_owners": {
+        "originalRows": 1,
+        "currentRows": 1,
+        "originalRowsUnchanged": true
+      },
+      "visible_directory_creators": {
+        "originalRows": 200,
+        "currentRows": 200,
+        "originalRowsUnchanged": true
+      },
+      "visible_directory_runs": {
+        "originalRows": 13,
+        "currentRows": 13,
+        "originalRowsUnchanged": true
+      }
+    },
+    "accountConfigurationUnchanged": true,
+    "tableCounts": {
+      "creator_activity_attempts": 492,
+      "creator_activity_runs": 18,
+      "creator_activity_snapshots": 492,
+      "directory_creators": 0,
+      "directory_runs": 0,
+      "following_account_owners": 1,
+      "visible_directory_creators": 200,
+      "visible_directory_runs": 13
+    }
+  },
+  "boujoy": {
+    "snapshot": {
+      "workCount": 18,
+      "workCountSource": "profile-tab",
+      "workCountCheckedAt": "2026-10-04T10:28:35.952Z",
+      "checkedAt": "2026-10-04T10:28:35.956Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "weeklyUpdateCount": 1,
+      "latestPublishedAt": "2026-10-02T13:13:10.000Z",
+      "weeklyStatus": "updated",
+      "coverage": "list-end",
+      "errorCode": null
+    },
+    "contract": "signaldesk-creator-activity/v5",
+    "activeApiRequests": 0,
+    "reusedNativePages": 1,
+    "nativeListRequests": 1,
+    "selfVerificationRequests": 1,
+    "controlledActions": [
+      {
+        "kind": "self-get",
+        "at": "2026-10-04T10:28:22.814Z",
+        "waitMs": 7,
+        "intervalMs": 8000
+      },
+      {
+        "kind": "author-page-navigation",
+        "at": "2026-10-04T10:28:32.792Z",
+        "waitMs": 9724,
+        "intervalMs": 8000
+      }
+    ],
+    "pageNetwork": {
+      "totalObservedRequests": 267,
+      "douyinRequests": 17,
+      "otherRequests": 250
+    },
+    "pages": 1,
+    "sourceProofs": [
+      {
+        "endpoint": "/aweme/v1/web/aweme/post/",
+        "method": "GET",
+        "requestCursor": 0,
+        "httpStatus": 200,
+        "observedAt": "2026-10-04T10:28:35.031Z"
+      }
+    ],
+    "fieldObservations": [
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      },
+      {
+        "status": {
+          "private_status": 0,
+          "is_delete": false,
+          "is_prohibited": false,
+          "allow_share": true
+        },
+        "content": {
+          "aweme_type": 0,
+          "is_story": 0,
+          "is_24_story": 0
+        }
+      }
+    ]
+  },
+  "ui": {
+    "recordedAt": "2026-10-04T10:28:54.563Z",
+    "normal": {
+      "creators": 200,
+      "cards": 200,
+      "unique": 200,
+      "name": "Boujoy",
+      "saved": 18,
+      "displayed": "18",
+      "checkedAt": "2026-10-04T10:28:35.952Z",
+      "noHorizontalOverflow": true,
+      "noBiographyOverlap": true,
+      "analyzedPreserved": true,
+      "zones": {
+        "today": 8,
+        "week": 106,
+        "none": 86
+      }
+    },
+    "compact": {
+      "creators": 200,
+      "cards": 200,
+      "unique": 200,
+      "name": "Boujoy",
+      "saved": 18,
+      "displayed": "18",
+      "checkedAt": "2026-10-04T10:28:35.952Z",
+      "noHorizontalOverflow": true,
+      "noBiographyOverlap": true,
+      "analyzedPreserved": true,
+      "zones": {
+        "today": 8,
+        "week": 106,
+        "none": 86
+      }
+    },
+    "newCollectionStarted": false
+  },
+  "finalReopen": {
+    "noRemoteDebugArguments": true,
+    "extensionVersion": "0.6.6",
+    "readiness": "ready",
+    "activityPhase": "completed",
+    "followingPhase": "completed",
+    "totalCreators": 200,
+    "noRunningCollection": true
+  },
+  "validation": {
+    "applicationTests": 258,
+    "applicationFiles": 29,
+    "browserTests": 29,
+    "typescript": "passed",
+    "packageRenderer": "passed",
+    "projectBoundaries": "passed"
+  },
+  "limitations": [
+    "Policy bounds are local load controls; reduction of restriction probability is unmeasured.",
+    "Page-native traffic is observed, not individually paced; cached events are not measured remote HTTP requests.",
+    "Manual user browsing is outside the extension-controlled schedule.",
+    "Feedback control is not trained reinforcement learning; visibility semantics remain unproven.",
+    "Changed zero-Chrome cold startup, real multi-page following and real browser restart were not exercised in this single-author run."
+  ]
+}

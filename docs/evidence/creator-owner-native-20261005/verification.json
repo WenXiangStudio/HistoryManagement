@@ -1,0 +1,385 @@
+{
+  "recordedAt": "2026-10-05T07:06:57.214Z",
+  "version": "0.7.3",
+  "scope": {
+    "authors": 2,
+    "pagesPerAuthorLimit": 2,
+    "extraListGetLimit": 2,
+    "allOrResumeRuns": 0,
+    "followingRuns": 0
+  },
+  "verified": [
+    {
+      "name": "Xi Xu",
+      "runId": "activity-2e407667922a5b3850b91286",
+      "ownerVerification": {
+        "contract": "signaldesk-activity-owner/v1",
+        "kind": "active-get",
+        "runId": "activity-2e407667922a5b3850b91286",
+        "uid": "2131296669408333",
+        "secUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+        "endpoint": "/aweme/v1/web/user/profile/self/",
+        "method": "GET",
+        "httpStatus": 200,
+        "observedAt": "2026-10-05T07:03:10.111Z",
+        "navigationStartedAt": "2026-10-05T07:03:05.077Z",
+        "firstAuthorSecUid": "MS4wLjABAAAAZ_9WV-GKSpjalwvuBQtByd1ZuYiO1AhCvIzgHVDCvlm801PucDO8aD7iFOclBoFU",
+        "tabId": 193483986
+      },
+      "backendAccountGatePassed": true,
+      "frontendTotal": 16,
+      "records": 16,
+      "types": {
+        "0": 3,
+        "68": 13
+      },
+      "weeklyCount": 0,
+      "latestPublishedAt": null,
+      "coverage": "list-end",
+      "authorDoubleIdsVerified": true,
+      "independentRecountMatches": true,
+      "pages": 1,
+      "extraListGets": 0,
+      "reusedNativePages": 1,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 1,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 385,
+        "platformApiGetsObserved": 17,
+        "selfGetsObserved": 2,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "active-get",
+        "nativeOwnerRequestsObserved": 0
+      },
+      "appClickToDisplayedMs": 6490.564200000001,
+      "observedClickToAvailableMs": 6653.4000000059605,
+      "clickToSavedMs": 6355.606900000001,
+      "cachedListProcessingMs": 14.900000005960464,
+      "ui": {
+        "count": "16",
+        "weekly": "0",
+        "latest": null,
+        "zone": "creator-zone-none"
+      },
+      "previousVersionSameAuthor": {
+        "version": "0.7.2",
+        "ownerVerificationGets": 1,
+        "selfGetsObserved": 2,
+        "platformApiGetsObserved": 16,
+        "networkRequestsObserved": 394,
+        "appClickToDisplayedMs": 6870.482199999999
+      }
+    },
+    {
+      "name": "Boujoy",
+      "runId": "activity-ff62ce90241fb5be69437892",
+      "ownerVerification": {
+        "contract": "signaldesk-activity-owner/v1",
+        "kind": "native-network",
+        "runId": "activity-ff62ce90241fb5be69437892",
+        "uid": "2131296669408333",
+        "secUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+        "endpoint": "/aweme/v1/web/user/profile/self/",
+        "method": "GET",
+        "httpStatus": 200,
+        "observedAt": "2026-10-05T07:03:16.115Z",
+        "navigationStartedAt": "2026-10-05T07:03:11.997Z",
+        "firstAuthorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+        "tabId": 193483991
+      },
+      "backendAccountGatePassed": true,
+      "frontendTotal": 18,
+      "records": 18,
+      "types": {
+        "0": 18
+      },
+      "weeklyCount": 0,
+      "latestPublishedAt": null,
+      "coverage": "list-end",
+      "authorDoubleIdsVerified": true,
+      "independentRecountMatches": true,
+      "pages": 1,
+      "extraListGets": 0,
+      "reusedNativePages": 1,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 382,
+        "platformApiGetsObserved": 17,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1
+      },
+      "appClickToDisplayedMs": 6420.5468,
+      "observedClickToAvailableMs": 6613.0999999940395,
+      "clickToSavedMs": 6264.437600000001,
+      "cachedListProcessingMs": 13,
+      "ui": {
+        "count": "18",
+        "weekly": "0",
+        "latest": null,
+        "zone": "creator-zone-none"
+      },
+      "previousVersionSameAuthor": {
+        "version": "0.7.2",
+        "ownerVerificationGets": 1,
+        "selfGetsObserved": 2,
+        "platformApiGetsObserved": 18,
+        "networkRequestsObserved": 388,
+        "appClickToDisplayedMs": 6482.386800000002
+      }
+    }
+  ],
+  "requestComparison": {
+    "previousTwoSingleRunsExplicitOwnerGets": 2,
+    "currentTwoSingleRunsExplicitOwnerGets": 1,
+    "boujoy": {
+      "previousExplicitOwnerGets": 1,
+      "currentExplicitOwnerGets": 0,
+      "previousObservedSelfGets": 2,
+      "currentObservedSelfGets": 1
+    },
+    "xiXu": {
+      "currentExplicitOwnerGets": 1,
+      "currentObservedSelfGets": 2,
+      "nativeOwnerAbsentAtDecision": true
+    },
+    "fullBrowserSavingsMeasured": false
+  },
+  "finalIteration": {
+    "change": "Read the already required first frontend count before deciding native owner reuse/fallback, to overlap useful work with late native response.",
+    "addsWaitTimer": false,
+    "countReadOnce": true,
+    "lateDuringCountBranchCoveredOffline": true,
+    "additionalLiveRuns": 0,
+    "limitation": "This ordering refinement was added after the two real samples; improved reuse on Xi Xu has not been remeasured and is not claimed."
+  },
+  "measurementBoundary": "Request events in attached tabs during this run; includes cache/redirect/native traffic, not all browser traffic or wire transfer count. No URLs/query/headers/credentials retained.",
+  "preservation": {
+    "recordedAt": "2026-10-05T07:04:51.331Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 517,
+          "currentRows": 519,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 25,
+          "currentRows": 27,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 517,
+          "currentRows": 519,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "validation": {
+    "applicationTests": 272,
+    "applicationFiles": 31,
+    "browserTests": 32,
+    "temporaryGuardTests": 4,
+    "typeScript": true,
+    "build": true,
+    "packagedRenderer": true,
+    "projectBoundaries": true
+  },
+  "limitations": [
+    "Only one real native-owner sample and one fallback sample. Late responses can still cause an extra GET after fallback.",
+    "Both real weekly counts are zero. Positive-week, necessary next-page and restricted/temporary-state branches remain unverified live.",
+    "Old/new page traffic varies; full request-event differences are not attributed solely to this optimization."
+  ]
+}

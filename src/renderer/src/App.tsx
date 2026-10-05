@@ -3,6 +3,9 @@ import type { AppSettings, CreatorListItem, DashboardSummary, DemoDataSummary, I
 import { STRUCTURED_SYNC_AVAILABLE } from '../../shared/featureFlags'
 import { R7_CONTRACT_ONLY_UI_STATE } from '../../shared/r7EvidenceContracts'
 import type { FollowingSyncState,FollowingConfiguration } from '../../shared/followingDirectory'
+import { calendarWeek } from '../../shared/calendarWeek'
+import type { CreatorActivityState } from '../../shared/creatorActivity'
+import { partitionCreatorActivity, shanghaiDateKey, type CreatorActivitySection } from '../../shared/creatorActivitySections'
 
 type Route = 'inbox' | 'creators' | 'jobs' | 'settings'
 type Job = {
@@ -38,6 +41,7 @@ function Icon({ name, size = 20 }: { name: string; size?: number }): JSX.Element
     bookmark: <path d="M7 4h10v16l-5-3-5 3Z"/>,
     external: <><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v6H4V6h6"/></>,
     chevron: <path d="m9 5 7 7-7 7"/>,
+    'chevron-up': <path d="m5 15 7-7 7 7"/>,
     pause: <><path d="M8 5v14M16 5v14"/></>,
     play: <path d="m7 4 13 8-13 8Z"/>,
     download: <><path d="M12 3v12m-5-5 5 5 5-5"/><path d="M4 19h16"/></>,
@@ -104,7 +108,7 @@ export default function App(): JSX.Element {
   const [demoClearSummary, setDemoClearSummary] = useState<DemoDataSummary | null>(null)
   const [followingState, setFollowingState] = useState<FollowingSyncState | null>(null)
   const [followingConfiguration,setFollowingConfiguration]=useState<FollowingConfiguration|null>(null)
-  const [followingLimit,setFollowingLimit]=useState(20)
+
   const [worksConfirmCreator, setWorksConfirmCreator] = useState<CreatorListItem | null>(null)
   const [isolatedCatalog, setIsolatedCatalog] = useState<IsolatedPilotCatalog | null>(null)
   const [isolatedPilotState, setIsolatedPilotState] = useState<IsolatedPilotState | null>(null)
@@ -114,6 +118,16 @@ export default function App(): JSX.Element {
   const displayedFollowingRun = useRef<string | null>(null)
   const timedFollowingRun=useRef<string|null>(null)
   const notifiedPreparation=useRef<string|null>(null)
+  const displayedActivityRun=useRef<string|null>(null)
+  useEffect(()=>{
+    const activity=followingState?.activity
+    if(route!=='creators'||activity?.phase!=='completed'||!activity.runId||displayedActivityRun.current===activity.runId)return
+    const frame=requestAnimationFrame(()=>{
+      displayedActivityRun.current=activity.runId
+      void window.signalDesk.ackCreatorActivityRendered(activity.runId!)
+    })
+    return()=>cancelAnimationFrame(frame)
+  },[route,followingState?.activity,creators])
   useEffect(()=>{
     const readiness=followingState?.readiness
     if(!readiness||!['ready','blocked'].includes(readiness.phase))return
@@ -136,7 +150,7 @@ export default function App(): JSX.Element {
     let disposed=false,deadline:ReturnType<typeof setTimeout>
     const check=():void=>{
       const images=[...document.querySelectorAll<HTMLImageElement>('.creator-card[data-directory="true"] .avatar img')]
-      if(disposed||images.length!==total||images.some(image=>!image.complete||!image.naturalWidth))return
+      if(disposed||images.length!==creators.filter(item=>!item.isDemo&&item.avatarUrl).length||images.some(image=>!image.complete||!image.naturalWidth))return
       timedFollowingRun.current=runId
       void window.signalDesk.ackFollowingRendered(runId,total).then(state=>{if(!disposed)setFollowingState(state)})
     }
@@ -279,14 +293,19 @@ export default function App(): JSX.Element {
           </div>
           <div className="header-actions">
             <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.exportAll(true), '资料库已导出')} disabled={busy || !hasData}><Icon name="download" size={18}/>导出</button>
-            <select aria-label="本次新增博主数量" value={followingLimit} onChange={event=>setFollowingLimit(Number(event.target.value))} disabled={busy||['awaiting-config','running'].includes(followingState?.phase||'')}><option value={10}>新增 10 位</option><option value={20}>新增 20 位</option></select>
-            <button className="button primary" data-testid="start-following-sync" onClick={() => void runAction(() => window.signalDesk.refreshFollowing(followingLimit), '正在后台获取新博主，已有资料保留')} disabled={busy || !followingState?.connection?.online || followingState?.readiness?.phase!=='ready' || ['awaiting-config','running'].includes(followingState?.phase||'')} title={followingState?.readiness?.phase==='ready'?'后台获取新博主，已有资料保留':'连接器和账号页面准备完成后即可同步'}><Icon name="sync" size={18}/>{followingState?.phase === 'running' ? '正在同步关注…' : followingState?.readiness?.phase==='ready'?'同步关注':'等待同步准备'}</button>
+            {followingState?.plan?.resumable&&<button className="button ghost" onClick={()=>void runAction(()=>window.signalDesk.refreshFollowing(true),'正在继续未完成的关注清单')} disabled={busy||!followingState.connection?.online||followingState.basic?.phase==='running'||followingState.activity?.phase==='running'}>继续关注清单</button>}
+            <button className="button primary" data-testid="start-following-sync" onClick={() => void runAction(() => window.signalDesk.refreshFollowing(), '正在同步完整关注清单')} disabled={busy || !followingState?.connection?.online || ['awaiting-config','running'].includes(followingState?.phase||'')||followingState?.basic?.phase==='running'||followingState?.activity?.phase==='running'} title="读取关注清单并保存基础资料"><Icon name="sync" size={18}/>{followingState?.phase === 'running' ? '正在同步关注清单…' : followingState?.connection?.online?'同步关注清单':'等待扩展连接'}</button>
           </div>
         </header>
 
         {route !== 'settings' && <SummaryStrip summary={summary} />}
         {followingState && <div className="following-connection" role="status" aria-live="polite" data-testid="following-connection"><span>{followingState.readiness?.message||'正在自动准备关注同步…'}</span>{followingState.readiness?.phase==='blocked'&&<><button className="button ghost" onClick={()=>void runAction(()=>window.signalDesk.prepareFollowing(),'正在重新准备关注同步')}>重新检查</button>{!followingState.connection?.online?<button className="button ghost" onClick={()=>void runAction(()=>window.signalDesk.configureFollowing(),'已打开连接说明')}>连接扩展</button>:<button className="button ghost" onClick={()=>void runAction(()=>window.signalDesk.loginFollowing(),'请在浏览器处理登录或验证，APP 将自动检查')}>{followingState.readiness.code==='LOGIN_REQUIRED'?'登录账号':'查看账号页面'}</button>}</>}</div>}
-        {followingState && followingState.phase !== 'idle' && <div className="following-status" role="status" data-testid="following-sync-status"><div><strong>{followingState.phase === 'completed' ? `关注目录已保存 · 新增 ${followingState.count} 位` : followingState.phase === 'blocked' ? '关注同步需要处理' : '正在后台同步关注'}</strong><p>{followingState.message}</p>{followingState.phase === 'completed' && <small>已有资料保留{followingState.timing?.displayedTotalMs!==undefined&&` · 点击到全部显示 ${(followingState.timing.displayedTotalMs/1000).toFixed(2)} 秒 · 平均 ${(followingState.timing.averageDisplayedMs!/1000).toFixed(3)} 秒/新增博主`}</small>}{followingState.phase==='completed'&&followingState.timing?.displayedTotalMs!==undefined&&<details><summary>查看耗时</summary><small>连接与派发 {((followingState.timing.dispatchMs||0)/1000).toFixed(3)} 秒 · 页面读取 {((followingState.timing.acquisitionMs||0)/1000).toFixed(3)} 秒 · 校验与保存 {((followingState.timing.persistenceMs||0)/1000).toFixed(3)} 秒 · 其余传输与展示 {((followingState.timing.displayedTotalMs-(followingState.timing.dispatchMs||0)-(followingState.timing.acquisitionMs||0)-(followingState.timing.persistenceMs||0))/1000).toFixed(3)} 秒</small></details>}</div><div>{followingState.phase === 'completed' && <button className="button ghost" onClick={() => setRoute('creators')}>查看关注博主</button>}{['awaiting-config','running'].includes(followingState.phase) && <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.cancelFollowingSync(), '本轮关注同步已取消')}>取消本轮</button>}</div></div>}
+        {followingState && followingState.phase !== 'idle' && <div className="following-status" role="status" data-testid="following-sync-status"><div><strong>{followingState.phase === 'completed' ? `关注清单已保存 · 本轮 ${followingState.count} 位` : followingState.phase === 'blocked' ? '关注同步需要处理' : '正在同步关注清单'}</strong><p>{followingState.message}</p>{followingState.phase === 'completed' && <small>已有资料保留{followingState.timing?.displayedTotalMs!==undefined&&` · 点击到全部显示 ${(followingState.timing.displayedTotalMs/1000).toFixed(2)} 秒`}</small>}{followingState.phase==='completed'&&followingState.timing?.displayedTotalMs!==undefined&&<details><summary>查看耗时</summary><small>连接与派发 {((followingState.timing.dispatchMs||0)/1000).toFixed(3)} 秒 · 页面读取 {((followingState.timing.acquisitionMs||0)/1000).toFixed(3)} 秒 · 校验与保存 {((followingState.timing.persistenceMs||0)/1000).toFixed(3)} 秒 · 其余传输与展示 {((followingState.timing.displayedTotalMs-(followingState.timing.dispatchMs||0)-(followingState.timing.acquisitionMs||0)-(followingState.timing.persistenceMs||0))/1000).toFixed(3)} 秒</small></details>}</div><div>{followingState.phase === 'completed' && <button className="button ghost" onClick={() => setRoute('creators')}>查看关注博主</button>}{['awaiting-config','running'].includes(followingState.phase) && <button className="button ghost" onClick={() => void runAction(() => window.signalDesk.cancelFollowingSync(), '本轮关注同步已取消')}>取消本轮</button>}</div></div>}
+
+        {followingState?.plan?.runId&&<div className="following-status" role="status"><div><strong>{followingState.plan.complete?'本地关注清单已完成':'本地关注清单尚未完成'}</strong><p>已保存 {followingState.plan.count} 位 · {followingState.basic?.pending||0} 位基础资料待补充</p><small>作品总数与本周动态由“更新全部博主资料”独立更新</small></div><div>
+          {followingState.basic?.phase==='running'?<button className="button ghost" onClick={()=>void runAction(()=>window.signalDesk.cancelFollowingBasics(),'已取消补充，已完成资料保留')}>取消补充</button>:<button className="button ghost" data-testid="complete-following-basics" onClick={()=>void runAction(()=>window.signalDesk.completeFollowingBasics(),'正在补全缺失的基础资料')} disabled={busy||!followingState.connection?.online||!followingState.plan.complete||!followingState.basic?.pending||followingState.phase==='running'||followingState.activity?.phase==='running'}>补全基础资料（最多 20 位）</button>}
+        </div></div>}
+        {followingState?.basic&&followingState.basic.phase!=='idle'&&<div className="following-connection" role="status"><span>{followingState.basic.message} · {followingState.basic.done}/{followingState.basic.total}{followingState.basic.currentName&&` · ${followingState.basic.currentName}`}</span></div>}
 
         {route === 'inbox' && (
           <InboxPage
@@ -296,7 +315,10 @@ export default function App(): JSX.Element {
           />
         )}
         {route === 'creators' && (
-          <CreatorsPage creators={creators} search={creatorSearch} setSearch={setCreatorSearch} onUpdate={(id, input, success) => void runAction(() => window.signalDesk.updateCreator(id, input), success)} onSyncWorks={setWorksConfirmCreator} />
+          <CreatorsPage creators={creators} search={creatorSearch} setSearch={setCreatorSearch} onUpdate={(id, input, success) => void runAction(() => window.signalDesk.updateCreator(id, input), success)} onSyncWorks={setWorksConfirmCreator}
+            activityState={followingState?.activity??null} canRefresh={!busy&&followingState?.connection?.online===true&&followingState.readiness?.phase==='ready'&&!['running','awaiting-config'].includes(followingState.phase)&&followingState.basic?.phase!=='running'}
+            onRefresh={(id,resume,ids)=>void runAction(()=>window.signalDesk.refreshCreatorActivity(id,resume,ids),'正在更新作品总数与本周动态')}
+            onCancelRefresh={()=>void runAction(()=>window.signalDesk.cancelCreatorActivity(),'已取消刷新，已更新资料保留')} />
         )}
         {route === 'jobs' && (
           <JobsPage jobs={jobs} summary={summary} onPause={() => void runAction(() => window.signalDesk.pauseSync(), '队列已暂停')} onResume={(jobId) => void runAction(() => window.signalDesk.resumeSync(jobId), `任务 #${jobId} 已恢复`)} onConnector={() => void window.signalDesk.openConnectorFolder()}>
@@ -404,20 +426,113 @@ function EmptyLibrary({ onSeed, search }: { onSeed: () => void; search: string }
   return <div className="empty-library"><div className="empty-visual"><span/><span/><span/><Icon name={search ? 'search' : 'inbox'} size={38}/></div><h2>{search ? '没有找到匹配内容' : '收件箱还是空的'}</h2><p>{search ? '没有内容包含这个关键词，请尝试作品标题、博主名称、领域或关键词。' : '连接 Chrome/Edge 后开始同步；也可以先载入一套离线演示资料，体验完整工作流。'}</p>{!search && <div><button className="button primary" onClick={onSeed}>载入演示资料</button><small>演示数据完全在本机生成，不访问抖音或云端。</small></div>}</div>
 }
 
-function CreatorsPage({ creators, search, setSearch, onUpdate, onSyncWorks }: { creators: CreatorListItem[]; search: string; setSearch: (value: string) => void; onUpdate: (id: number, input: { isStarred?: boolean; note?: string }, success: string) => void; onSyncWorks: (creator: CreatorListItem) => void }): JSX.Element {
+function creatorDateTime(value:string):string {
+  const parts=new Intl.DateTimeFormat('zh-CN',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hourCycle:'h23'}).formatToParts(new Date(value))
+  const part=(name:string)=>parts.find(item=>item.type===name)?.value||''
+  return `${part('year')}-${part('month')}-${part('day')} ${part('hour')}:${part('minute')}`
+}
+function CreatorBiography({creator}: {creator:CreatorListItem}):JSX.Element {
+  const [expanded,setExpanded]=useState(false)
+  const [truncated,setTruncated]=useState(false)
+  const preview=useRef<HTMLParagraphElement|null>(null)
+  const text=creator.signature||'这个博主还没有可用的公开简介。'
+  useEffect(()=>{
+    const element=preview.current
+    if(!element||expanded)return
+    let disposed=false
+    const measure=():void=>{if(!disposed)setTruncated(element.scrollHeight>element.clientHeight+1)}
+    measure()
+    const observer=new ResizeObserver(measure);observer.observe(element)
+    void document.fonts.ready.then(measure)
+    return()=>{disposed=true;observer.disconnect()}
+  },[text,expanded])
+  const descriptionId=`creator-biography-${creator.id}`
+  return <div className={`creator-biography${expanded?' expanded':''}`} data-testid="creator-biography">
+    <p ref={preview} id={descriptionId} className={expanded?'creator-biography-full':'creator-biography-preview'} data-testid="creator-biography-text">{text}</p>
+    {(truncated||expanded)&&<button type="button" className="creator-biography-toggle" data-testid="creator-biography-toggle"
+      aria-expanded={expanded} aria-controls={descriptionId} aria-label={`${expanded?'收起':'展开'} ${creator.nickname} 的完整简介`}
+      onClick={()=>setExpanded(value=>!value)}>{expanded?'收起简介':'展开简介'}<Icon name={expanded?'chevron-up':'chevron'} size={12}/></button>}
+  </div>
+}
+function CreatorsPage({ creators, search, setSearch, onUpdate, onSyncWorks, activityState,canRefresh,onRefresh,onCancelRefresh }: {
+  creators: CreatorListItem[]; search: string; setSearch: (value: string) => void;
+  onUpdate: (id: number, input: { isStarred?: boolean; note?: string }, success: string) => void; onSyncWorks: (creator: CreatorListItem) => void;
+  activityState:CreatorActivityState|null;canRefresh:boolean;onRefresh:(creatorId?:number,resume?:boolean,creatorIds?:number[])=>void;onCancelRefresh:()=>void
+}): JSX.Element {
   const [editing, setEditing] = useState<number | null>(null)
   const [note, setNote] = useState('')
-  return <section className="page-section">
-    <div className="toolbar"><SearchBox value={search} onChange={setSearch} placeholder="搜索博主、领域或你的批注"/><span className="result-count">{creators.length} 位博主</span></div>
-    {creators.length ? <div className="creator-grid">{creators.map((creator) => <article className="creator-card" data-directory={!creator.isDemo} key={creator.id}>
+  const [selected,setSelected]=useState<number[]>([])
+  const selectedVisible=creators.filter(creator=>!creator.isDemo&&selected.includes(creator.id)).map(creator=>creator.id)
+  const [, setCalendarDay] = useState(() => shanghaiDateKey())
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>
+    const refreshToday = (): void => {
+      clearTimeout(timer)
+      const now=Date.now(),day=86_400_000,offset=8*3_600_000
+      setCalendarDay(shanghaiDateKey(now))
+      const nextMidnight=(Math.floor((now+offset)/day)+1)*day-offset
+      timer=setTimeout(refreshToday,Math.max(1,nextMidnight-now))
+    }
+    refreshToday()
+    window.addEventListener('focus',refreshToday)
+    document.addEventListener('visibilitychange',refreshToday)
+    return () => {clearTimeout(timer);window.removeEventListener('focus',refreshToday);document.removeEventListener('visibilitychange',refreshToday)}
+  }, [])
+  const now=Date.now(),week=calendarWeek(now),running=activityState?.phase==='running'
+  const weekLabel=`${week.startDate.slice(5).replace('-','.')}～${week.endDate.slice(5).replace('-','.')}`
+  const todayLabel=shanghaiDateKey(now)!.slice(5).replace('-','.')
+  const sections=partitionCreatorActivity(creators,now)
+  const pendingCount=sections.none.filter(item=>item.activity?.weeklyStatus!=='empty'||item.activity?.weeklyUpdateCount!==0).length
+  const sectionMeta: Record<CreatorActivitySection,{title:string;description:string}> = {
+    today:{title:'今日更新',description:`${todayLabel} 发布作品的博主 · 北京时间`},
+    week:{title:'本周有更新',description:`${weekLabel} 更新至少 1 条，今日未记录到更新`},
+    none:{title:'今日 / 本周暂无更新',description:`截至最近一次检查，本周未记录到更新${pendingCount?` · ${pendingCount} 位待检查或待确认`:''}`}
+  }
+  const renderCreatorCard = (creator: CreatorListItem): JSX.Element => <article className="creator-card" data-directory={!creator.isDemo} data-creator-id={creator.id} key={creator.id}>
       <div className="creator-top"><Avatar name={creator.nickname} src={creator.avatarUrl} large/><button type="button" title={creator.isStarred ? '取消星标' : '星标博主'} aria-label={creator.isStarred ? `取消星标 ${creator.nickname}` : `星标 ${creator.nickname}`} className={`star-button ${creator.isStarred ? 'active' : ''}`} onClick={() => onUpdate(creator.id, { isStarred: !creator.isStarred }, creator.isStarred ? '已取消博主星标' : '已星标博主')}><Icon name="star" size={16}/><span>{creator.isStarred ? '已星标' : '星标'}</span></button></div>
-      <h3>{creator.nickname}</h3><p>{creator.signature || '这个博主还没有可用的公开简介。'}</p>
+      {!creator.isDemo&&<label className="creator-refresh-selection"><input type="checkbox" data-testid="select-creator-refresh" aria-label={`选择刷新 ${creator.nickname}`} disabled={running}
+        checked={selected.includes(creator.id)} onChange={event=>setSelected(ids=>event.target.checked?[...ids,creator.id]:ids.filter(id=>id!==creator.id))}/>选择刷新</label>}
+      <h3>{creator.nickname}</h3><CreatorBiography creator={creator}/>{creator.basicPending&&<small className="pending-tag">基础资料待补充</small>}
       <a className="creator-profile-link" href={creator.profileUrl} title={creator.profileUrl} onClick={(event) => { event.preventDefault(); void window.signalDesk.openExternal(creator.profileUrl) }}><Icon name="external" size={15}/><span>{creator.profileUrl}</span></a>
       <div className="tag-row">{creator.domains.length ? creator.domains.map((domain) => <span key={domain}>#{domain}</span>) : <span className="pending-tag">待分类</span>}</div>
-      <div className="creator-stats"><div><strong>{creator.workCount}</strong><span>作品</span></div><div><strong>{creator.analyzedCount}</strong><span>已分析</span></div><div><strong>{creator.lastPublishedAt ? relativeTime(creator.lastPublishedAt) : '—'}</strong><span>最近更新</span></div></div>
+      <div className="creator-stats creator-activity-stats"><div title="读取博主主页“作品”标签显示的数量"><strong data-testid="creator-public-work-count">{creator.isDemo?creator.workCount:creator.activity?.workCount??'待更新'}</strong><span>公开作品总数</span></div>
+        <div title="分析数量暂未接入"><strong data-testid="creator-analyzed-count">—</strong><span>已分析</span></div></div>
+      <div className="creator-weekly-activity" data-testid="creator-weekly-activity"><p>
+        <span>{creator.activity?.weeklyUpdateCount!==null&&creator.activity?.weeklyUpdateCount!==undefined?<>
+          本周更新 <strong data-testid="creator-weekly-count">{creator.activity.weeklyUpdateCount}</strong> 条</>:<span data-testid="creator-weekly-count">本周更新{creator.activity?.weeklyStatus==='partial'?'待确认':'待检查'}</span>}</span>
+        <span className="creator-weekly-divider" aria-hidden="true">·</span><span>最近更新 <time data-testid="creator-weekly-update"
+          dateTime={creator.activity?.latestPublishedAt??undefined}>{creator.activity?.latestPublishedAt?creatorDateTime(creator.activity.latestPublishedAt):'—'}</time></span>
+      </p><small>本周记录周期：{weekLabel}</small></div>
+      {!creator.isDemo&&<div className="creator-activity-check"><span>{creator.activity?.checkedAt?`检查于 ${creatorDateTime(creator.activity.checkedAt)}`:'尚未检查本周动态'}
+        {creator.activity?.countCheckedAt&&creator.activity.countCheckedAt!==creator.activity.checkedAt&&<small>作品数截至 {creatorDateTime(creator.activity.countCheckedAt)}</small>}</span>
+        {(creator.activity?.errorCode||creator.activity?.weeklyStatus==='partial'||creator.activity?.workCount===null)&&<small className="creator-activity-warning">{creator.activity?.workCount===null?'主页作品数待更新，已取得资料保留':creator.activity?.errorCode?.startsWith('PROFILE_')?'本次主页计数未取得，保留上次总数':creator.activity?.weeklyStatus==='partial'?'作品总数已保存，本周动态待确认':'本次动态刷新未完成，保留上次结果'}</small>}
+        <button className="button ghost compact" data-testid="refresh-one-creator" disabled={!canRefresh||running} onClick={()=>onRefresh(creator.id)}>刷新</button>
+      </div>}
       {editing === creator.id ? <div className="note-editor"><textarea autoFocus value={note} onChange={(event) => setNote(event.target.value)} placeholder="例如：宏观金融观点清楚，但不看荐股内容。"/><div><button onClick={() => setEditing(null)}>取消</button><button onClick={() => { onUpdate(creator.id, { note }, '博主批注已保存'); setEditing(null) }}>保存批注</button></div></div> : <button className="creator-note" onClick={() => { setEditing(creator.id); setNote(creator.note) }}>{creator.note || '＋ 添加我的批注'}</button>}
       <button className="button ghost creator-sync-works" disabled={!STRUCTURED_SYNC_AVAILABLE || creator.isDemo} title={STRUCTURED_SYNC_AVAILABLE ? '只为这位已验证作者创建作品任务' : '作者身份与作品证明尚未完成正式验收'} onClick={() => onSyncWorks(creator)}>同步此作者作品</button>
-    </article>)}</div> : <div className="empty-search"><Icon name="search" size={30}/><h3>没有找到匹配博主</h3><p>可以搜索博主名称、领域标签或你的批注；清空搜索后会恢复全部博主。</p></div>}
+    </article>
+  const renderSection = (key: CreatorActivitySection, position: string): JSX.Element => {
+    const items=sections[key],meta=sectionMeta[key]
+    return <section className={`creator-zone creator-zone-${key}`} data-testid={`creator-zone-${key}`}>
+      <div className="creator-zone-heading"><div><p className="eyebrow">{position}区域</p><h2>{meta.title}</h2><small>{meta.description}</small></div><strong data-testid={`creator-zone-${key}-count`}>{items.length} 位</strong></div>
+      {items.length?<div className="creator-grid">{items.map(renderCreatorCard)}</div>:<div className="creator-zone-empty">当前没有符合此分区的博主</div>}
+    </section>
+  }
+  return <section className="page-section">
+    <div className="toolbar"><SearchBox value={search} onChange={setSearch} placeholder="搜索博主、领域或你的批注"/><span className="result-count">{creators.length} 位博主</span></div>
+    <div className="creator-activity-toolbar"><div><strong>本周动态 · {weekLabel}</strong><small>北京时间 · 周一至周日 · 作品数读取主页“作品”计数</small></div><div>
+      {running?<button className="button ghost" onClick={onCancelRefresh}>取消刷新</button>:<>
+        {!!activityState?.remainingIds.length&&<button className="button ghost" disabled={!canRefresh} onClick={()=>onRefresh(undefined,true)}>继续剩余 {activityState.remainingIds.length} 位</button>}
+        <button className="button primary" data-testid="refresh-creator-activity" disabled={!canRefresh||!creators.some(item=>!item.isDemo)} onClick={()=>onRefresh()}>更新全部博主资料</button>
+        {!!selectedVisible.length&&<button className="button primary" data-testid="refresh-selected-creators" disabled={!canRefresh} onClick={()=>onRefresh(undefined,false,selectedVisible)}>更新所选 {selectedVisible.length} 位</button>}
+      </>}
+    </div></div>
+    {activityState&&activityState.phase!=='idle'&&<div className="creator-activity-progress" role="status" data-testid="creator-activity-progress"><span>{activityState.message}{activityState.currentName&&` · ${activityState.currentName}`}</span>
+      {running&&<progress max={activityState.total} value={activityState.done}/>}<small>{activityState.phase==='completed'&&activityState.displayedTotalMs!==undefined?`点击到资料显示 ${(activityState.displayedTotalMs/1000).toFixed(2)} 秒`:''}</small>
+      {activityState.reusedNativePages!==undefined&&<small>已复用主页列表 {activityState.reusedNativePages} 页 · 额外列表请求 {activityState.activeListRequests||0} 次{activityState.unverifiedVisibilityCount?` · ${activityState.unverifiedVisibilityCount} 条作品状态待确认`:''}</small>}
+      {activityState.requestAudit&&<small title="只统计本轮已连接标签的网络观察窗口；包含网页自身流量，不代表浏览器总请求数">{activityState.requestAudit.ownerVerificationSource==='native-network'?'已复用本轮账号响应 · ':''}主动账号核验 {activityState.requestAudit.ownerVerificationGets} 次 · 专用账号页加载 {activityState.requestAudit.accountPageNavigations} 次 · 作者主页加载 {activityState.requestAudit.authorHomepageNavigations} 次 · 观察到平台 GET {activityState.requestAudit.platformApiGetsObserved} 次</small>}
+    </div>}
+    {creators.length ? <div className="creator-zones">{renderSection('today','上')}{renderSection('week','中')}{renderSection('none','下')}</div> : <div className="empty-search"><Icon name="search" size={30}/><h3>没有找到匹配博主</h3><p>可以搜索博主名称、领域标签或你的批注；清空搜索后会恢复全部博主。</p></div>}
   </section>
 }
 

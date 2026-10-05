@@ -1,0 +1,25 @@
+{
+  "testedAt": "2026-10-04T12:08:40.998Z",
+  "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+  "period": {
+    "start": "2026-09-28T00:00:00+08:00",
+    "endExclusive": "2026-10-05T00:00:00+08:00"
+  },
+  "loginUi": {
+    "visibleLoginLabels": []
+  },
+  "frontendWorkCount": "12",
+  "profileName": "AI，我俩和一百万",
+  "activeApiRequests": 1,
+  "request": {
+    "endpoint": "/aweme/v1/web/aweme/post/",
+    "source": "target-page-native-request",
+    "cursor": "0",
+    "count": "18"
+  },
+  "httpStatus": 200,
+  "contentType": "text/html; charset=utf-8",
+  "bodyLength": 811776,
+  "ok": false,
+  "errorCode": "NON_JSON_RESPONSE"
+}

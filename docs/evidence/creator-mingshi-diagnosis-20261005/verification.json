@@ -1,0 +1,339 @@
+{
+  "versionTested": "0.7.7",
+  "selected": {
+    "target": {
+      "nickname": "明石飛行社",
+      "secUid": "MS4wLjABAAAA0usjisX7XYa1Iii0ryNZUvevuNTxxBFDyIVt_wY5pPw-5LRTg4pUKmJmXClTCUvQ",
+      "uid": "2722825287250987",
+      "mode": "first-author-page"
+    },
+    "reason": "Explicitly authorized diagnosis of prior failed sample; one attempt, two pages maximum"
+  },
+  "actual": [
+    {
+      "name": "明石飛行社",
+      "runId": "activity-1483723335e93c5038276de5",
+      "phase": "completed",
+      "count": 47,
+      "weekly": 0,
+      "latest": null,
+      "records": 21,
+      "pinned": 3,
+      "pages": 1,
+      "error": null,
+      "savedStageMs": 6859.597099999999,
+      "activityReadStageMs": 576.7999999821186,
+      "observedAvailabilityUpperBoundMs": 7179,
+      "observedClickToStoppedMs": null,
+      "appClickToDisplayedMs": 7013.730499999998,
+      "independentClickToAvailableMs": 7179,
+      "activeExecutionAttempts": 1,
+      "confirmedExplicitResponses": 1,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 390,
+        "platformApiGetsObserved": 17,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1,
+        "ownerSourceDiagnostics": {
+          "contract": "signaldesk-activity-owner-diagnostics/v1",
+          "navigationBound": true,
+          "navigationFailed": false,
+          "navigationLoaderPresent": true,
+          "navigationFramePresent": true,
+          "observedRequests": 1,
+          "documents": [
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            }
+          ],
+          "currentDocument": {
+            "document": "first-author",
+            "committed": true,
+            "loader": "match",
+            "frame": "match"
+          },
+          "transitions": [
+            {
+              "document": "first-author",
+              "loader": "match",
+              "frame": "match"
+            }
+          ],
+          "requests": [
+            {
+              "loader": "match",
+              "frame": "match",
+              "document": "first-author",
+              "childSession": false,
+              "currentLoader": "match",
+              "currentFrame": "match",
+              "requestType": "XHR",
+              "stage": "identity-checked",
+              "json": "valid",
+              "identity": "matched",
+              "httpStatus": 200,
+              "responseSource": "network"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "unexecuted": [],
+  "outcome": "One authorized diagnostic run succeeded; prior failure did not reproduce; root cause remains unknown",
+  "limits": {
+    "authors": 1,
+    "pagesPerAuthor": 2,
+    "totalExplicitGetBudget": 2
+  },
+  "diagnostic": {
+    "offlineVerified": true,
+    "realFailureTriggered": false,
+    "previousFailureRootCauseKnown": false
+  },
+  "requestCaveat": "Browser event counts do not cover all explicit responses. One successful source proof confirms one active response, not complete browser traffic totals.",
+  "preservation": {
+    "recordedAt": "2026-10-05T14:12:17.660Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 532,
+          "currentRows": 533,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_diagnostics": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 42,
+          "currentRows": 43,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 532,
+          "currentRows": 533,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "restored": {
+    "version": "0.7.5",
+    "ready": true,
+    "creators": 295,
+    "pending": 0,
+    "noRunningCollection": true,
+    "mainInstances": 1,
+    "noRemoteDebugging": true,
+    "originalPackageHashesUnchanged": true
+  },
+  "rollbackDisplayCaveat": "Old 0.7.5 does not project v7 snapshots; new results remain in SQLite and test evidence, current normal UI retains prior supported snapshots."
+}

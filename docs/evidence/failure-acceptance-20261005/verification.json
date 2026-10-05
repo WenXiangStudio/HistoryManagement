@@ -1,0 +1,51 @@
+{
+  "injected": true,
+  "realChromeApis": true,
+  "productionService": true,
+  "originSubstitution": "https://www.douyin.com → http://127.0.0.1:9341 in test copies only",
+  "platformRequests": 0,
+  "results": [
+    {
+      "mode": "debugger-detach",
+      "blocked": true,
+      "pageRetained": true,
+      "cacheComplete": true,
+      "screenshot": true,
+      "dom": true,
+      "noNextAuthor": true,
+      "noBusinessRetry": true,
+      "firstReasonPreserved": true,
+      "firstError": "DEBUGGER_NOT_ATTACHED",
+      "databaseSaved": true,
+      "extensionCacheSaved": true
+    },
+    {
+      "mode": "context-destroyed",
+      "blocked": true,
+      "pageRetained": true,
+      "cacheComplete": true,
+      "screenshot": true,
+      "dom": true,
+      "noNextAuthor": true,
+      "noBusinessRetry": true,
+      "firstReasonPreserved": true,
+      "firstError": "TARGET_NAVIGATED_OR_CLOSED",
+      "databaseSaved": true,
+      "extensionCacheSaved": true
+    },
+    {
+      "mode": "persistence-failure",
+      "blocked": true,
+      "pageRetained": true,
+      "cacheComplete": true,
+      "screenshot": true,
+      "dom": true,
+      "noNextAuthor": true,
+      "noBusinessRetry": true,
+      "firstReasonPreserved": true,
+      "firstError": "DEBUGGER_NOT_ATTACHED",
+      "databaseSaved": false,
+      "extensionCacheSaved": true
+    }
+  ]
+}

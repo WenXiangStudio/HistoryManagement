@@ -1,0 +1,345 @@
+{
+  "recordedAt": "2026-10-05T06:38:46.144Z",
+  "version": "0.7.2",
+  "scope": {
+    "authors": 2,
+    "pagesPerAuthorLimit": 2,
+    "extraListGetLimit": 2
+  },
+  "verified": [
+    {
+      "name": "Xi Xu",
+      "runId": "activity-1de56f5627defb138dc79bfe",
+      "contextSource": "existing-page",
+      "coldModeInjected": false,
+      "coldModeMeaning": null,
+      "frontendTotal": 16,
+      "records": 16,
+      "types": {
+        "0": 3,
+        "68": 13
+      },
+      "weeklyCount": 0,
+      "latestPublishedAt": null,
+      "coverage": "list-end",
+      "authorDoubleIdsVerified": true,
+      "independentRecountMatches": true,
+      "pages": 1,
+      "extraListGets": 0,
+      "reusedNativePages": 1,
+      "requestAudit": {
+        "contextSource": "existing-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 1,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 394,
+        "platformApiGetsObserved": 16,
+        "selfGetsObserved": 2,
+        "listGetsObserved": 1
+      },
+      "appClickToDisplayedMs": 6870.482199999999,
+      "observedClickToAvailableMs": 7026,
+      "clickToSavedMs": 6690.718799999999,
+      "cachedListProcessingMs": 17.099999994039536,
+      "ui": {
+        "count": "16",
+        "weekly": "0",
+        "latest": null,
+        "zone": "creator-zone-none"
+      }
+    },
+    {
+      "name": "Boujoy",
+      "runId": "activity-dd889fa2d112eaa63c8b3b03",
+      "contextSource": "first-author-page",
+      "coldModeInjected": true,
+      "coldModeMeaning": "Candidate reuse disabled for this test; existing user tabs not closed or changed",
+      "frontendTotal": 18,
+      "records": 18,
+      "types": {
+        "0": 18
+      },
+      "weeklyCount": 0,
+      "latestPublishedAt": null,
+      "coverage": "list-end",
+      "authorDoubleIdsVerified": true,
+      "independentRecountMatches": true,
+      "pages": 1,
+      "extraListGets": 0,
+      "reusedNativePages": 1,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 1,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 388,
+        "platformApiGetsObserved": 18,
+        "selfGetsObserved": 2,
+        "listGetsObserved": 1
+      },
+      "appClickToDisplayedMs": 6482.386800000002,
+      "observedClickToAvailableMs": 6653.5999999940395,
+      "clickToSavedMs": 6321.082700000001,
+      "cachedListProcessingMs": 21.099999994039536,
+      "ui": {
+        "count": "18",
+        "weekly": "0",
+        "latest": null,
+        "zone": "creator-zone-none"
+      }
+    }
+  ],
+  "requestComparison": {
+    "n": "number of requested authors",
+    "p": "missing subsequent list pages actually requested",
+    "previousWhenSelfPageReady": {
+      "dedicatedAccountPageNavigations": 0,
+      "authorHomepageNavigations": "n",
+      "explicitSelfGets": 1,
+      "explicitExtraListGets": "p"
+    },
+    "previousWhenSelfPageUnavailable": {
+      "result": "ACCOUNT_CONTEXT_UNAVAILABLE before GET; not successful low-request acquisition"
+    },
+    "naiveRepairWhenPageMissing": {
+      "dedicatedAccountPageNavigations": 1,
+      "authorHomepageNavigations": "n",
+      "explicitSelfGets": 1,
+      "explicitExtraListGets": "p"
+    },
+    "deliveredRepair": {
+      "dedicatedAccountPageNavigations": 0,
+      "authorHomepageNavigations": "n",
+      "explicitSelfGets": 1,
+      "explicitExtraListGets": "p"
+    },
+    "realObservation": {
+      "selfGetEventsPerSample": 2,
+      "knownExplicitSelfGetsPerSample": 1,
+      "additionalNativeSelfGetsPerSample": 1
+    },
+    "residualOptimization": "Reusing a freshly observed native self identity could remove one explicit GET; not implemented or claimed as verified."
+  },
+  "measurementBoundary": "Network.requestWillBeSent events only in attached tabs during this run, including native traffic/cache/redirect events. Not all browser traffic or a count of wire transfers. No URLs, headers, credentials or query values retained.",
+  "preservation": {
+    "recordedAt": "2026-10-05T06:38:46.104Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 515,
+          "currentRows": 517,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 23,
+          "currentRows": 25,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 515,
+          "currentRows": 517,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "validation": {
+    "applicationTests": 271,
+    "applicationFiles": 31,
+    "browserTests": 24,
+    "typeScript": true,
+    "build": true,
+    "packagedRenderer": true,
+    "projectBoundaries": true
+  },
+  "limitations": [
+    "Cold mode deliberately ignores candidate pages; it is a real first-author-page run in the existing logged-in Chrome profile, not a full browser/OS restart.",
+    "Both real weekly counts are zero. Positive-week, native later-page and restricted/temporary-state branches remain unverified live.",
+    "No old-versus-new matched traffic benchmark; prior runs had no full page request-event measurement."
+  ]
+}

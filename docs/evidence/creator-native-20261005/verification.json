@@ -1,0 +1,307 @@
+{
+  "recordedAt": "2026-10-04T16:18:13.411Z",
+  "scope": {
+    "authors": 1,
+    "author": "Boujoy",
+    "allOrResumeRuns": 0,
+    "followingRuns": 0
+  },
+  "state": {
+    "phase": "completed",
+    "runId": "activity-a71501c327d77c35414850da",
+    "message": "已确认 1 位，0 位资料待补齐；原资料保留",
+    "total": 1,
+    "done": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "currentName": null,
+    "remainingIds": [],
+    "startedAt": "2026-10-04T16:16:31.291Z",
+    "weekStart": "2026-10-04T16:00:00.000Z",
+    "weekEndExclusive": "2026-10-11T16:00:00.000Z",
+    "activeListRequests": 0,
+    "reusedNativePages": 1,
+    "observedNativeListRequests": 1,
+    "excludedNonPublicCount": 0,
+    "unverifiedVisibilityCount": 0,
+    "savedTotalMs": 4923.607800000005,
+    "displayedTotalMs": 5686.4568
+  },
+  "contract": "signaldesk-creator-activity/v6",
+  "requestMeasurement": {
+    "explicitSelfGets": 1,
+    "explicitListGets": 0,
+    "reusedNativePages": 1,
+    "observedNativeListRequests": 1,
+    "totalPageTrafficMeasured": false
+  },
+  "snapshot": {
+    "workCount": 18,
+    "workCountSource": "profile-tab",
+    "workCountCheckedAt": "2026-10-04T16:16:35.890Z",
+    "checkedAt": "2026-10-04T16:16:35.911Z",
+    "weekStart": "2026-10-04T16:00:00.000Z",
+    "weekEndExclusive": "2026-10-11T16:00:00.000Z",
+    "weeklyUpdateCount": 0,
+    "latestPublishedAt": null,
+    "weeklyStatus": "empty",
+    "coverage": "list-end",
+    "errorCode": null,
+    "authorUid": "2141457830379949",
+    "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5"
+  },
+  "pages": 1,
+  "observedRecords": 18,
+  "sourceProofs": [
+    {
+      "kind": "native-network",
+      "endpoint": "/aweme/v1/web/aweme/post/",
+      "method": "GET",
+      "secUid": "verified-target",
+      "requestCursor": 0,
+      "httpStatus": 200,
+      "observedAt": "2026-10-04T16:16:33.848Z"
+    }
+  ],
+  "fieldObservations": [
+    {
+      "privateStatus": 0,
+      "isDelete": false,
+      "isProhibited": false,
+      "allowShare": true,
+      "isStory": 0,
+      "is24Story": 0,
+      "awemeType": 0
+    }
+  ],
+  "authorDoubleIdsMatch": true,
+  "latestReturnedPublication": "2026-10-02T13:13:10.000Z",
+  "timing": {
+    "independentlyObservedClickToAvailableMs": 5581.8359,
+    "appClickToRenderedMs": 5686.4568,
+    "appClickToSavedMs": 4923.607800000005,
+    "listAcquisitionMs": 14.900000005960464
+  },
+  "ui": {
+    "creators": 295,
+    "loadedAvatars": 295,
+    "card": {
+      "name": "Boujoy",
+      "count": "18",
+      "weekly": "—",
+      "check": "检查于 2026-10-05 00:16作品数截至 2026-10-05 00:16刷新"
+    }
+  },
+  "preservation": {
+    "recordedAt": "2026-10-04T16:17:13.823Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 512,
+          "currentRows": 513,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 19,
+          "currentRows": 20,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 512,
+          "currentRows": 513,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "limitations": [
+    "Only one live author; no real restricted or temporary work in this sample.",
+    "Unknown web visibility remains partial; no Open Platform enum mapping.",
+    "Later-page branch validated offline; no 295-author refresh."
+  ]
+}

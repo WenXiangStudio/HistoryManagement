@@ -1,0 +1,52 @@
+{
+  "runId": "activity-5030c4ac66afc75d640925c4",
+  "diagnostics": {
+    "contract": "signaldesk-activity-owner-diagnostics/v1",
+    "navigationBound": true,
+    "navigationFailed": false,
+    "navigationLoaderPresent": true,
+    "navigationFramePresent": true,
+    "observedRequests": 1,
+    "documents": [
+      {
+        "document": "first-author",
+        "redirect": false,
+        "loader": "match",
+        "frame": "match"
+      },
+      {
+        "document": "first-author",
+        "redirect": false,
+        "loader": "different",
+        "frame": "match"
+      },
+      {
+        "document": "other-origin",
+        "redirect": false,
+        "loader": "different",
+        "frame": "different"
+      },
+      {
+        "document": "other-origin",
+        "redirect": false,
+        "loader": "different",
+        "frame": "different"
+      }
+    ],
+    "requests": [
+      {
+        "loader": "different",
+        "frame": "match",
+        "document": "first-author",
+        "childSession": false,
+        "requestType": "XHR",
+        "stage": "identity-checked",
+        "json": "valid",
+        "identity": "matched",
+        "httpStatus": 200,
+        "responseSource": "network"
+      }
+    ],
+    "errorCode": "ACCOUNT_NATIVE_NAVIGATION_MISMATCH"
+  }
+}

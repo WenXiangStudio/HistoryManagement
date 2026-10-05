@@ -1,0 +1,272 @@
+{
+  "testedAt": "2026-10-04T12:12:46.535Z",
+  "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+  "activeApiRequests": 1,
+  "request": {
+    "endpoint": "/aweme/v1/web/aweme/post/",
+    "source": "existing-project-parameters",
+    "cursor": 0,
+    "count": 20
+  },
+  "httpStatus": 200,
+  "contentType": "application/json",
+  "redirected": false,
+  "finalLocation": {
+    "origin": "https://www.douyin.com",
+    "path": "/aweme/v1/web/aweme/post/"
+  },
+  "bodyLength": 934405,
+  "statusCode": 0,
+  "statusMessage": null,
+  "hasMore": 0,
+  "nextCursor": 1782965836000,
+  "returnedCount": 11,
+  "otherAuthorCount": 0,
+  "items": [
+    {
+      "workId": "7662218043044416811",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-07-14T03:19:24.000Z",
+      "pinned": 1,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7658180443711360298",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-07-03T06:11:28.000Z",
+      "pinned": 1,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7679664350700784931",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-08-30T06:05:00.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7670819524781886747",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-08-06T07:37:32.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7669059593955200296",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-08-02T04:00:00.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 1,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7666381736384777514",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-07-25T08:36:39.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7665557119667653928",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-07-23T03:16:46.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7664148371088280858",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-07-19T08:10:06.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7660379220610125098",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-07-09T04:23:49.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7659430374400871699",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-07-06T15:01:50.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    },
+    {
+      "workId": "7657779913159675171",
+      "authorSecUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+      "authorUid": "7606571592415511601",
+      "publishedAt": "2026-07-02T04:17:16.000Z",
+      "pinned": 0,
+      "workType": 0,
+      "status": {
+        "not_allow_soft_del_reason": "ab",
+        "is_delete": false,
+        "allow_share": true,
+        "allow_friend_recommend_guide": true,
+        "part_see": 0,
+        "private_status": 0,
+        "listen_video_status": 2,
+        "in_reviewing": false,
+        "allow_self_recommend_to_friend": true,
+        "allow_friend_recommend": true,
+        "is_prohibited": false,
+        "enable_soft_delete": 0
+      }
+    }
+  ],
+  "latestObservedPublishedAt": "2026-08-30T06:05:00.000Z",
+  "observedPeriodCount": 0,
+  "ok": true
+}

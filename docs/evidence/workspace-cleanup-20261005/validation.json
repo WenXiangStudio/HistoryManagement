@@ -1,0 +1,553 @@
+{
+  "at": "2026-10-05T15:22:46.248Z",
+  "appTests": 277,
+  "appTestFiles": 31,
+  "browserWorkflowTests": 74,
+  "networkObserverTests": 10,
+  "phaseBTests": 15,
+  "r8HarnessTests": 28,
+  "workerTests": 2,
+  "relevantRegressionBuildAndPackagedChecksPassed": true,
+  "fullNpmRunCheckPassed": false,
+  "r8PrerequisiteGate": {
+    "passed": false,
+    "expectedClosed": true,
+    "exitCode": 1,
+    "knownReasons": [
+      "- works proof still equates public uid with route/request sec_uid",
+      "- works detail still navigates once per DOM candidate",
+      "- production connector has not wired the bounded passive homepage collector",
+      "- production command path has no independently bound author sec_uid"
+    ]
+  },
+  "suites": [
+    {
+      "suite": "app",
+      "passed": true,
+      "results": [
+        {
+          "command": "node",
+          "args": [
+            "node_modules/vitest/vitest.mjs",
+            "run"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 6627,
+          "log": "local-data\\workspace-cleanup-20261005\\app-1.log",
+          "summary": [
+            " Test Files  31 passed (31)",
+            "      Tests  277 passed (277)"
+          ]
+        }
+      ]
+    },
+    {
+      "suite": "browser",
+      "passed": true,
+      "results": [
+        {
+          "command": "node",
+          "args": [
+            "--test",
+            "scripts\\test-creator-activity-context.mjs",
+            "scripts\\test-creator-activity-diagnostics.mjs",
+            "scripts\\test-creator-activity-network.mjs",
+            "scripts\\test-creator-activity-owner-network.mjs",
+            "scripts\\test-creator-activity-runner.mjs",
+            "scripts\\test-following-batch-timer.mjs",
+            "scripts\\test-following-distinct-batch.mjs",
+            "scripts\\test-following-plan-runner.mjs",
+            "scripts\\test-following-visible-runner.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 2355,
+          "log": "local-data\\workspace-cleanup-20261005\\browser-1.log",
+          "summary": [
+            "ℹ tests 74",
+            "ℹ pass 74",
+            "ℹ fail 0"
+          ]
+        }
+      ]
+    },
+    {
+      "suite": "connector",
+      "passed": true,
+      "results": [
+        {
+          "command": "node",
+          "args": [
+            "scripts\\test-connector-content.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 1260,
+          "log": "local-data\\workspace-cleanup-20261005\\connector-1.log",
+          "summary": [
+            "Browser connector verified following and comment provenance, fail-closed behavior, bounded collection and nullable metrics OK"
+          ]
+        },
+        {
+          "command": "node",
+          "args": [
+            "scripts\\test-connector-background.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 115,
+          "log": "local-data\\workspace-cleanup-20261005\\connector-2.log",
+          "summary": [
+            "Browser connector reconnect, receipt, attach-before-navigation and relationship-dialog-preserving tab reuse OK"
+          ]
+        },
+        {
+          "command": "node",
+          "args": [
+            "scripts\\test-network-observer.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 140,
+          "log": "local-data\\workspace-cleanup-20261005\\connector-3.log",
+          "summary": [
+            "ℹ tests 10",
+            "ℹ pass 10",
+            "ℹ fail 0"
+          ]
+        },
+        {
+          "command": "node",
+          "args": [
+            "--test",
+            "poc\\phase-b\\test\\core.test.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 349,
+          "log": "local-data\\workspace-cleanup-20261005\\connector-4.log",
+          "summary": [
+            "ℹ tests 15",
+            "ℹ pass 15",
+            "ℹ fail 0"
+          ]
+        }
+      ]
+    },
+    {
+      "suite": "native",
+      "passed": true,
+      "results": [
+        {
+          "command": "pwsh",
+          "args": [
+            "-NoProfile",
+            "-File",
+            "browser-connector/build-native-host.ps1"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 1872,
+          "log": "local-data\\workspace-cleanup-20261005\\native-1.log",
+          "summary": []
+        },
+        {
+          "command": "node",
+          "args": [
+            "scripts/test-native-host.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 1299,
+          "log": "local-data\\workspace-cleanup-20261005\\native-2.log",
+          "summary": [
+            "Native Messaging offline framing, authenticated proxy, event receipt OK"
+          ]
+        },
+        {
+          "command": "node",
+          "args": [
+            "scripts/test-native-manifest.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 785,
+          "log": "local-data\\workspace-cleanup-20261005\\native-3.log",
+          "summary": [
+            "Stable connector deployment, fixed extension ID fejndacdabkgahmfpfjaghhedbdehonh, Native Messaging manifest and package hook OK"
+          ]
+        }
+      ]
+    },
+    {
+      "suite": "worker",
+      "passed": true,
+      "results": [
+        {
+          "command": "pwsh",
+          "args": [
+            "-NoProfile",
+            "-File",
+            "scripts/run-worker-tests.ps1"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 1810,
+          "log": "local-data\\workspace-cleanup-20261005\\worker-1.log",
+          "summary": [
+            "Ran 2 tests in 0.005s",
+            "OK"
+          ]
+        }
+      ]
+    },
+    {
+      "suite": "build",
+      "passed": true,
+      "results": [
+        {
+          "command": "node",
+          "args": [
+            "node_modules/typescript/bin/tsc",
+            "--noEmit"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 4791,
+          "log": "local-data\\workspace-cleanup-20261005\\build-1.log",
+          "summary": []
+        },
+        {
+          "command": "node",
+          "args": [
+            "scripts/test-project-boundaries.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 289,
+          "log": "local-data\\workspace-cleanup-20261005\\build-2.log",
+          "summary": [
+            "Signal Desk project-boundary check passed"
+          ]
+        },
+        {
+          "command": "node",
+          "args": [
+            "node_modules/electron-vite/bin/electron-vite.js",
+            "build"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 1996,
+          "log": "local-data\\workspace-cleanup-20261005\\build-3.log",
+          "summary": []
+        }
+      ]
+    },
+    {
+      "suite": "packaged",
+      "passed": true,
+      "results": [
+        {
+          "command": "node",
+          "args": [
+            "scripts/test-packaged-renderer.mjs",
+            "release-stable-20261005/win-unpacked/Signal Desk.exe"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 8780,
+          "log": "local-data\\workspace-cleanup-20261005\\packaged-1.log",
+          "summary": []
+        }
+      ]
+    },
+    {
+      "suite": "r8",
+      "passed": true,
+      "results": [
+        {
+          "command": "node",
+          "args": [
+            "--test",
+            "poc\\r8\\test\\batch-controller.test.mjs",
+            "poc\\r8\\test\\batch-core.test.mjs",
+            "poc\\r8\\test\\browser-transport.test.mjs",
+            "poc\\r8\\test\\homepage-pilot-controller.test.mjs",
+            "poc\\r8\\test\\homepage-pilot-core.test.mjs",
+            "poc\\r8\\test\\homepage-pilot-presentation.test.mjs",
+            "poc\\r8\\test\\t1-harness.test.mjs",
+            "poc\\r8\\test\\t2-controller.test.mjs",
+            "poc\\r8\\test\\verified-catalog.test.mjs"
+          ],
+          "exitCode": 0,
+          "expectedExitCode": 0,
+          "passed": true,
+          "elapsedMs": 4310,
+          "log": "local-data\\workspace-cleanup-20261005\\r8-1.log",
+          "summary": [
+            "ℹ tests 28",
+            "ℹ pass 28",
+            "ℹ fail 0"
+          ]
+        },
+        {
+          "command": "node",
+          "args": [
+            "scripts/check-r8-prerequisites.mjs"
+          ],
+          "exitCode": 1,
+          "expectedExitCode": 1,
+          "passed": true,
+          "elapsedMs": 51,
+          "log": "local-data\\workspace-cleanup-20261005\\r8-2.log",
+          "summary": [
+            "R8 real-validation prerequisites are CLOSED:",
+            "- works proof still equates public uid with route/request sec_uid",
+            "- works detail still navigates once per DOM candidate",
+            "- production connector has not wired the bounded passive homepage collector",
+            "- production command path has no independently bound author sec_uid"
+          ],
+          "classification": "Existing R8 capability gate remains closed; full npm run check does not pass"
+        }
+      ]
+    }
+  ],
+  "livePlatformRequestsStarted": 0,
+  "liveAppRestarted": false,
+  "productSourceChangedDuringCleanup": false,
+  "preservation": {
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 550,
+          "currentRows": 550,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_diagnostics": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 51,
+          "currentRows": 51,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 550,
+          "currentRows": 550,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "protectedPackagesUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "evidenceReview": {
+    "checkedMarkdownFiles": 103,
+    "parsedJsonFiles": 177,
+    "brokenLinks": [],
+    "sensitiveFields": [],
+    "backupContentAndHardlinksVerified": true
+  }
+}

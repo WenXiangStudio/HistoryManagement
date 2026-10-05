@@ -1,0 +1,38 @@
+{
+  "profileName": "AI，我俩和一百万",
+  "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+  "testedAt": "2026-10-04T12:13:58.894Z",
+  "testedAtBeijing": "2026-10-04 20:13:58",
+  "authenticated": false,
+  "authenticationEvidence": {
+    "endpoint": "/aweme/v1/web/user/profile/self/",
+    "httpStatus": 200,
+    "contentType": "application/json",
+    "statusCode": 8,
+    "hasAccountIdentity": false,
+    "authenticated": false,
+    "loginMessage": "用户未登录"
+  },
+  "period": {
+    "startBeijing": "2026-09-28 00:00:00",
+    "endExclusiveBeijing": "2026-10-05 00:00:00",
+    "observedThroughBeijing": "2026-10-04 20:12:46"
+  },
+  "guestVisiblePeriodCount": 0,
+  "latestGuestVisiblePublishedAt": "2026-08-30T06:05:00.000Z",
+  "latestGuestVisiblePublishedAtBeijing": "2026-08-30 14:05:00",
+  "latestWorkUrl": "https://www.douyin.com/video/7679664350700784931",
+  "guestVisibleListCount": 11,
+  "frontendReportedCount": 12,
+  "hasMore": 0,
+  "visibleProfileListMatchesApi": true,
+  "allReturnedWorksHaveVideoLinks": true,
+  "pinnedWorkCount": 2,
+  "activeApiRequests": {
+    "postList": 2,
+    "authenticationCheck": 1,
+    "total": 3,
+    "note": "Excludes target-page native loading; one post-list request returned HTML, one returned JSON."
+  },
+  "limitation": "One logged-out profile sample. Results describe this guest-visible list; the homepage count of 12 differs from the 11 API/visible items. No hidden, removed, audience-limited or temporary-work semantics are inferred."
+}

@@ -1,0 +1,736 @@
+{
+  "recordedAt": "2026-10-05T09:12:58.677Z",
+  "version": "0.7.5",
+  "authorizedLimits": {
+    "authors": 6,
+    "pagesPerAuthor": 2,
+    "extraWorksGets": 6,
+    "oneAttemptPerAuthor": true,
+    "stopOnFailure": true
+  },
+  "selected": [
+    "曲木古也",
+    "王文远",
+    "大锅饭评房记",
+    "oil欧呦",
+    "杜一聊Ai增长",
+    "老袁讲AI"
+  ],
+  "excludedPreviousCandidates": [
+    "杰森Jason",
+    "Xi Xu",
+    "口罩哥直播号",
+    "Boujoy",
+    "外行人搞AI",
+    "浙大猫学长",
+    "每日英语",
+    "划水的青蛙",
+    "周话多GOGOGO",
+    "灵鲸科技袁亮"
+  ],
+  "actual": [
+    {
+      "name": "曲木古也",
+      "runId": "activity-086b142ba40d15d37e6e35e9",
+      "phase": "completed",
+      "errorCode": null,
+      "ownerProofAccepted": true,
+      "authorDoubleIdsVerified": true,
+      "frontendCountVerified": true,
+      "total": 628,
+      "previousTotal": 622,
+      "weekly": 3,
+      "latest": "2026-10-05T06:36:53.000Z",
+      "weeklyStatus": "updated",
+      "coverage": "week-boundary",
+      "records": 21,
+      "publicRecords": 21,
+      "pinned": 3,
+      "types": {
+        "0": 21
+      },
+      "pages": 1,
+      "extraWorksGets": 0,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 369,
+        "platformApiGetsObserved": 17,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1,
+        "ownerSourceDiagnostics": {
+          "contract": "signaldesk-activity-owner-diagnostics/v1",
+          "navigationBound": true,
+          "navigationFailed": false,
+          "navigationLoaderPresent": true,
+          "navigationFramePresent": true,
+          "observedRequests": 1,
+          "documents": [
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            }
+          ],
+          "currentDocument": {
+            "document": "first-author",
+            "committed": true,
+            "loader": "match",
+            "frame": "match"
+          },
+          "transitions": [
+            {
+              "document": "first-author",
+              "loader": "match",
+              "frame": "match"
+            }
+          ],
+          "requests": [
+            {
+              "loader": "match",
+              "frame": "match",
+              "document": "first-author",
+              "childSession": false,
+              "currentLoader": "match",
+              "currentFrame": "match",
+              "requestType": "XHR",
+              "stage": "identity-checked",
+              "json": "valid",
+              "identity": "matched",
+              "httpStatus": 200,
+              "responseSource": "network"
+            }
+          ]
+        }
+      },
+      "appClickToDisplayedMs": 5774.276399999999,
+      "appClickToStopMs": null,
+      "independentClickToAvailableMs": 6073.200000017881,
+      "independentClickToStopMs": null,
+      "independentWeeklyRecountPassed": true,
+      "weekBoundaryIndependentlyVerified": true,
+      "ui": {
+        "count": "628",
+        "weekly": "3",
+        "latest": "2026-10-05T06:36:53.000Z",
+        "zone": "creator-zone-today"
+      },
+      "creators": 295,
+      "avatars": 295
+    },
+    {
+      "name": "王文远",
+      "runId": "activity-d59a3743e2a374e9a497cb3e",
+      "phase": "completed",
+      "errorCode": null,
+      "ownerProofAccepted": true,
+      "authorDoubleIdsVerified": true,
+      "frontendCountVerified": true,
+      "total": 336,
+      "previousTotal": 335,
+      "weekly": 1,
+      "latest": "2026-10-05T08:52:24.000Z",
+      "weeklyStatus": "updated",
+      "coverage": "week-boundary",
+      "records": 21,
+      "publicRecords": 21,
+      "pinned": 3,
+      "types": {
+        "0": 21
+      },
+      "pages": 1,
+      "extraWorksGets": 0,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 359,
+        "platformApiGetsObserved": 17,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1,
+        "ownerSourceDiagnostics": {
+          "contract": "signaldesk-activity-owner-diagnostics/v1",
+          "navigationBound": true,
+          "navigationFailed": false,
+          "navigationLoaderPresent": true,
+          "navigationFramePresent": true,
+          "observedRequests": 1,
+          "documents": [
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            }
+          ],
+          "currentDocument": {
+            "document": "first-author",
+            "committed": true,
+            "loader": "match",
+            "frame": "match"
+          },
+          "transitions": [
+            {
+              "document": "first-author",
+              "loader": "match",
+              "frame": "match"
+            }
+          ],
+          "requests": [
+            {
+              "loader": "match",
+              "frame": "match",
+              "document": "first-author",
+              "childSession": false,
+              "currentLoader": "match",
+              "currentFrame": "match",
+              "requestType": "XHR",
+              "stage": "identity-checked",
+              "json": "valid",
+              "identity": "matched",
+              "httpStatus": 200,
+              "responseSource": "network"
+            }
+          ]
+        }
+      },
+      "appClickToDisplayedMs": 5426.383999999998,
+      "appClickToStopMs": null,
+      "independentClickToAvailableMs": 5615.5999999940395,
+      "independentClickToStopMs": null,
+      "independentWeeklyRecountPassed": true,
+      "weekBoundaryIndependentlyVerified": true,
+      "ui": {
+        "count": "336",
+        "weekly": "1",
+        "latest": "2026-10-05T08:52:24.000Z",
+        "zone": "creator-zone-today"
+      },
+      "creators": 295,
+      "avatars": 295
+    },
+    {
+      "name": "大锅饭评房记",
+      "runId": "activity-77f6f3b930393a7df0b26c5e",
+      "phase": "completed",
+      "errorCode": null,
+      "ownerProofAccepted": true,
+      "authorDoubleIdsVerified": true,
+      "frontendCountVerified": true,
+      "total": 2186,
+      "previousTotal": 2184,
+      "weekly": 2,
+      "latest": "2026-10-05T09:05:00.000Z",
+      "weeklyStatus": "updated",
+      "coverage": "week-boundary",
+      "records": 21,
+      "publicRecords": 21,
+      "pinned": 3,
+      "types": {
+        "0": 21
+      },
+      "pages": 1,
+      "extraWorksGets": 0,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 342,
+        "platformApiGetsObserved": 17,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1,
+        "ownerSourceDiagnostics": {
+          "contract": "signaldesk-activity-owner-diagnostics/v1",
+          "navigationBound": true,
+          "navigationFailed": false,
+          "navigationLoaderPresent": true,
+          "navigationFramePresent": true,
+          "observedRequests": 1,
+          "documents": [
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            }
+          ],
+          "currentDocument": {
+            "document": "first-author",
+            "committed": true,
+            "loader": "match",
+            "frame": "match"
+          },
+          "transitions": [
+            {
+              "document": "first-author",
+              "loader": "match",
+              "frame": "match"
+            }
+          ],
+          "requests": [
+            {
+              "loader": "match",
+              "frame": "match",
+              "document": "first-author",
+              "childSession": false,
+              "currentLoader": "match",
+              "currentFrame": "match",
+              "requestType": "XHR",
+              "stage": "identity-checked",
+              "json": "valid",
+              "identity": "matched",
+              "httpStatus": 200,
+              "responseSource": "network"
+            }
+          ]
+        }
+      },
+      "appClickToDisplayedMs": 5556.1033000000025,
+      "appClickToStopMs": null,
+      "independentClickToAvailableMs": 5837.200000017881,
+      "independentClickToStopMs": null,
+      "independentWeeklyRecountPassed": true,
+      "weekBoundaryIndependentlyVerified": true,
+      "ui": {
+        "count": "2186",
+        "weekly": "2",
+        "latest": "2026-10-05T09:05:00.000Z",
+        "zone": "creator-zone-today"
+      },
+      "creators": 295,
+      "avatars": 295
+    },
+    {
+      "name": "oil欧呦",
+      "runId": "activity-1a72cabba9ddeaaece9a5287",
+      "phase": "blocked",
+      "errorCode": "ACTIVITY_NATIVE_LIST_UNAVAILABLE",
+      "ownerProofAccepted": true,
+      "authorDoubleIdsVerified": false,
+      "frontendCountVerified": true,
+      "total": 109,
+      "previousTotal": 109,
+      "weekly": null,
+      "latest": null,
+      "weeklyStatus": "partial",
+      "coverage": "partial",
+      "records": 0,
+      "publicRecords": 0,
+      "pinned": 0,
+      "types": {},
+      "pages": 0,
+      "extraWorksGets": 0,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 431,
+        "platformApiGetsObserved": 16,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 0,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1,
+        "ownerSourceDiagnostics": {
+          "contract": "signaldesk-activity-owner-diagnostics/v1",
+          "navigationBound": true,
+          "navigationFailed": false,
+          "navigationLoaderPresent": true,
+          "navigationFramePresent": true,
+          "observedRequests": 1,
+          "documents": [
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            }
+          ],
+          "currentDocument": {
+            "document": "first-author",
+            "committed": true,
+            "loader": "match",
+            "frame": "match"
+          },
+          "transitions": [
+            {
+              "document": "first-author",
+              "loader": "match",
+              "frame": "match"
+            }
+          ],
+          "requests": [
+            {
+              "loader": "match",
+              "frame": "match",
+              "document": "first-author",
+              "childSession": false,
+              "currentLoader": "match",
+              "currentFrame": "match",
+              "requestType": "XHR",
+              "stage": "identity-checked",
+              "json": "valid",
+              "identity": "matched",
+              "httpStatus": 200,
+              "responseSource": "network"
+            }
+          ]
+        }
+      },
+      "appClickToDisplayedMs": null,
+      "appClickToStopMs": 14110.620000000003,
+      "independentClickToAvailableMs": null,
+      "independentClickToStopMs": 14416.09999999404,
+      "independentWeeklyRecountPassed": false,
+      "weekBoundaryIndependentlyVerified": false,
+      "ui": {
+        "count": "109",
+        "weekly": "本周更新待确认",
+        "latest": null,
+        "zone": "creator-zone-none"
+      },
+      "creators": 295,
+      "avatars": 295
+    }
+  ],
+  "unexecuted": [
+    "杜一聊Ai增长",
+    "老袁讲AI"
+  ],
+  "outcome": {
+    "attempted": 4,
+    "completed": 3,
+    "blocked": 1,
+    "unexecuted": 2,
+    "allSixSucceeded": false,
+    "nativeOwnerBindingPassed": 4,
+    "nativeOwnerOnChangedLoaderProven": false,
+    "firstPageMissingWithoutReplacementGet": true
+  },
+  "totals": {
+    "ownerVerificationGets": 0,
+    "extraWorksGets": 0,
+    "authorHomepageNavigations": 4,
+    "accountPageNavigations": 0,
+    "nativeOwnerProofs": 4,
+    "nativeWorksPages": 3,
+    "selfGetEvents": 4,
+    "listGetEvents": 3,
+    "platformApiGetEvents": 67,
+    "networkRequestEvents": 1501
+  },
+  "failure": {
+    "code": "ACTIVITY_NATIVE_LIST_UNAVAILABLE",
+    "stage": "native-first-works-page",
+    "nativeOwnerVerified": true,
+    "frontendWorksCount": 109,
+    "observedNativeListRequests": 0,
+    "listGetEvents": 0,
+    "extraWorksGets": 0,
+    "firstPageNativeWaitLimitMs": 8000,
+    "conclusion": "No matching native works-list request was observed during this attached-tab window and bounded first-page wait. The browser/page cause is not recorded.",
+    "doesNotProve": [
+      "No works exist",
+      "Account logged out",
+      "Platform 403 or 429",
+      "A specific page filter/captcha/lazy-load cause"
+    ],
+    "resultStored": "Fresh frontend count plus a partial weekly snapshot and failed attempt; weekly unknown stays null."
+  },
+  "validation": {
+    "productCodeChanged": false,
+    "productVersionChanged": false,
+    "guardTests": 4,
+    "syntaxCheck": "passed",
+    "sourceBeforeAfterHashesMatch": true,
+    "normalPackageUnchanged": true
+  },
+  "preservation": {
+    "recordedAt": "2026-10-05T09:10:42.833Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 522,
+          "currentRows": 526,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 32,
+          "currentRows": 36,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 522,
+          "currentRows": 526,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "delivery": {
+    "recordedAt": "2026-10-05T09:11:04.741Z",
+    "version": "0.7.5",
+    "originalShortcut": true,
+    "mainInstances": 1,
+    "noRemoteDebugging": true,
+    "readiness": "ready",
+    "creators": 295,
+    "basicPending": 0,
+    "noRunningCollection": true,
+    "latestActivityPhase": "blocked",
+    "allExtensionFileHashesMatch": true,
+    "executableAndAsarHashesMatch": true,
+    "temporaryModulesRemoved": true,
+    "restoration": {
+      "temporaryGuardRemoved": true,
+      "productionPackageChanged": false,
+      "forcedValidationShutdown": true,
+      "normalShortcutStarted": true,
+      "version": "0.7.5"
+    }
+  }
+}

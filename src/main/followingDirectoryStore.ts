@@ -3,6 +3,7 @@ import { DatabaseSync } from 'node:sqlite'
 import type { CreatorListItem } from '../shared/contracts'
 import type {FollowingAccount,FollowingAccountIdentity} from '../shared/followingDirectory'
 import { followingDirectoryReportSchema, type FollowingDirectoryReport } from '../shared/followingDirectory'
+import type {PlanCreator} from '../shared/followingPlan'
 
 // This directory has its own versioned database. It does not change the v5 work database.
 export class FollowingDirectoryStore {
@@ -94,6 +95,29 @@ export class FollowingDirectoryStore {
     if (visible && (!network || visible.collectedAt >= network.collectedAt)) return { ...visible, visible: true }
     return network
   }
+  // The caller owns the page transaction. Append observations while retaining original IDs/annotations.
+  savePlanRows(runId:string,owner:{uid:string;secUid:string;nickname:string},collectedAt:string,creators:PlanCreator[]):void{
+    const priorOwner=this.account(owner.secUid)
+    if(priorOwner&&priorOwner.uid!==owner.uid)throw Error('账号 UID 与主页身份冲突')
+    this.recordAccount(owner,{adoptLegacy:this.accounts().length===0})
+    const prior=this.db.prepare('SELECT report_json FROM visible_directory_runs WHERE run_id=?').get(runId)
+    const priorRows=prior?JSON.parse(String(prior.report_json)).creators as PlanCreator[]:[]
+    const existing=new Map(this.list().map(row=>[new URL(row.profileUrl).pathname.split('/').at(-1)!,row]))
+    const merged=new Map(priorRows.map(row=>[row.secUid,row]))
+    const updates:PlanCreator[]=[]
+    for(const creator of creators){
+      const saved=existing.get(creator.secUid)
+      if(saved?.nativeUid&&saved.nativeUid!==creator.uid)throw Error('博主 UID 与主页身份冲突')
+      const row={...creator,signature:creator.signature??saved?.signature??'',avatarUrl:creator.avatarUrl??saved?.avatarUrl??null}
+      updates.push(row);merged.set(row.secUid,row)
+    }
+    this.db.prepare(`INSERT INTO visible_directory_runs(run_id,collected_at,account_label,status,report_json,owner_sec_uid)
+      VALUES(?,?,?,'plan-observation',?,?) ON CONFLICT(run_id) DO UPDATE SET collected_at=excluded.collected_at,report_json=excluded.report_json`)
+      .run(runId,collectedAt,owner.nickname,JSON.stringify({contract:'signaldesk-following-plan/v1',ownerSecUid:owner.secUid,creators:[...merged.values()]}),owner.secUid)
+    const upsert=this.db.prepare(`INSERT INTO visible_directory_creators(run_id,sec_uid,nickname,avatar_url,signature,profile_url,position,native_uid)
+      VALUES(?,?,?,?,?,?,?,?) ON CONFLICT(run_id,sec_uid) DO UPDATE SET nickname=excluded.nickname,avatar_url=excluded.avatar_url,signature=excluded.signature,native_uid=excluded.native_uid`)
+    for(const row of updates)upsert.run(runId,row.secUid,row.nickname,row.avatarUrl,row.signature,row.profileUrl,[...merged.keys()].indexOf(row.secUid)+1,row.uid)
+  }
   selectAccount(secUid:string|null):void{this.accountSelected=true;this.selectedOwner=secUid}
   recordAccount(owner:FollowingAccountIdentity,options:{adoptLegacy?:boolean;label?:string;chromeProfile?:string|null}={}):void{
     const existing=this.db.prepare('SELECT * FROM following_account_owners WHERE sec_uid=?').get(owner.secUid)
@@ -138,6 +162,7 @@ export class FollowingDirectoryStore {
         FROM observed JOIN visible_directory_creators saved ON saved.id=observed.saved_id
         WHERE revision=1 ORDER BY saved_id`).all(...scopeValues)
       return rows.map((row): CreatorListItem => ({ id: -1000000000-Number(row.saved_id), isDemo:false,
+          nativeUid:row.native_uid?String(row.native_uid):null,
           platformCreatorId:`profile:${row.sec_uid}`, nickname:String(row.nickname),avatarUrl:row.avatar_url?String(row.avatar_url):null,
           signature:String(row.signature),profileUrl:String(row.profile_url),isFollowing:true,isStarred:Boolean(row.saved_starred),
           note:String(row.saved_note),domains:[],workCount:0,analyzedCount:0,lastPublishedAt:null }))
@@ -147,6 +172,7 @@ export class FollowingDirectoryStore {
     const query = search.normalize('NFKC').trim().toLocaleLowerCase()
     return rows.map((row): CreatorListItem => ({
       id: -Number(row.id), isDemo: false, platformCreatorId: String(row.uid), nickname: String(row.nickname),
+      nativeUid:String(row.uid),
       avatarUrl: row.avatar_url ? String(row.avatar_url) : null, signature: String(row.signature),
       profileUrl: String(row.profile_url), isFollowing: true, isStarred: Boolean(row.is_starred), note: String(row.user_note),
       domains: [], workCount: 0, analyzedCount: 0, lastPublishedAt: null

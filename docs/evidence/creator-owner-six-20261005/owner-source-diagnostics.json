@@ -1,0 +1,246 @@
+[
+  {
+    "name": "曲木古也",
+    "runId": "activity-086b142ba40d15d37e6e35e9",
+    "diagnostics": {
+      "contract": "signaldesk-activity-owner-diagnostics/v1",
+      "navigationBound": true,
+      "navigationFailed": false,
+      "navigationLoaderPresent": true,
+      "navigationFramePresent": true,
+      "observedRequests": 1,
+      "documents": [
+        {
+          "document": "first-author",
+          "redirect": false,
+          "loader": "match",
+          "frame": "match"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        }
+      ],
+      "currentDocument": {
+        "document": "first-author",
+        "committed": true,
+        "loader": "match",
+        "frame": "match"
+      },
+      "transitions": [
+        {
+          "document": "first-author",
+          "loader": "match",
+          "frame": "match"
+        }
+      ],
+      "requests": [
+        {
+          "loader": "match",
+          "frame": "match",
+          "document": "first-author",
+          "childSession": false,
+          "currentLoader": "match",
+          "currentFrame": "match",
+          "requestType": "XHR",
+          "stage": "identity-checked",
+          "json": "valid",
+          "identity": "matched",
+          "httpStatus": 200,
+          "responseSource": "network"
+        }
+      ]
+    }
+  },
+  {
+    "name": "王文远",
+    "runId": "activity-d59a3743e2a374e9a497cb3e",
+    "diagnostics": {
+      "contract": "signaldesk-activity-owner-diagnostics/v1",
+      "navigationBound": true,
+      "navigationFailed": false,
+      "navigationLoaderPresent": true,
+      "navigationFramePresent": true,
+      "observedRequests": 1,
+      "documents": [
+        {
+          "document": "first-author",
+          "redirect": false,
+          "loader": "match",
+          "frame": "match"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        }
+      ],
+      "currentDocument": {
+        "document": "first-author",
+        "committed": true,
+        "loader": "match",
+        "frame": "match"
+      },
+      "transitions": [
+        {
+          "document": "first-author",
+          "loader": "match",
+          "frame": "match"
+        }
+      ],
+      "requests": [
+        {
+          "loader": "match",
+          "frame": "match",
+          "document": "first-author",
+          "childSession": false,
+          "currentLoader": "match",
+          "currentFrame": "match",
+          "requestType": "XHR",
+          "stage": "identity-checked",
+          "json": "valid",
+          "identity": "matched",
+          "httpStatus": 200,
+          "responseSource": "network"
+        }
+      ]
+    }
+  },
+  {
+    "name": "大锅饭评房记",
+    "runId": "activity-77f6f3b930393a7df0b26c5e",
+    "diagnostics": {
+      "contract": "signaldesk-activity-owner-diagnostics/v1",
+      "navigationBound": true,
+      "navigationFailed": false,
+      "navigationLoaderPresent": true,
+      "navigationFramePresent": true,
+      "observedRequests": 1,
+      "documents": [
+        {
+          "document": "first-author",
+          "redirect": false,
+          "loader": "match",
+          "frame": "match"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        }
+      ],
+      "currentDocument": {
+        "document": "first-author",
+        "committed": true,
+        "loader": "match",
+        "frame": "match"
+      },
+      "transitions": [
+        {
+          "document": "first-author",
+          "loader": "match",
+          "frame": "match"
+        }
+      ],
+      "requests": [
+        {
+          "loader": "match",
+          "frame": "match",
+          "document": "first-author",
+          "childSession": false,
+          "currentLoader": "match",
+          "currentFrame": "match",
+          "requestType": "XHR",
+          "stage": "identity-checked",
+          "json": "valid",
+          "identity": "matched",
+          "httpStatus": 200,
+          "responseSource": "network"
+        }
+      ]
+    }
+  },
+  {
+    "name": "oil欧呦",
+    "runId": "activity-1a72cabba9ddeaaece9a5287",
+    "diagnostics": {
+      "contract": "signaldesk-activity-owner-diagnostics/v1",
+      "navigationBound": true,
+      "navigationFailed": false,
+      "navigationLoaderPresent": true,
+      "navigationFramePresent": true,
+      "observedRequests": 1,
+      "documents": [
+        {
+          "document": "first-author",
+          "redirect": false,
+          "loader": "match",
+          "frame": "match"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        }
+      ],
+      "currentDocument": {
+        "document": "first-author",
+        "committed": true,
+        "loader": "match",
+        "frame": "match"
+      },
+      "transitions": [
+        {
+          "document": "first-author",
+          "loader": "match",
+          "frame": "match"
+        }
+      ],
+      "requests": [
+        {
+          "loader": "match",
+          "frame": "match",
+          "document": "first-author",
+          "childSession": false,
+          "currentLoader": "match",
+          "currentFrame": "match",
+          "requestType": "XHR",
+          "stage": "identity-checked",
+          "json": "valid",
+          "identity": "matched",
+          "httpStatus": 200,
+          "responseSource": "network"
+        }
+      ]
+    }
+  }
+]

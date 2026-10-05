@@ -1,0 +1,34 @@
+{
+  "version": "0.7.9",
+  "temporaryGuardRemoved": true,
+  "originalExtensionAndPackageRestored": true,
+  "mainInstances": 1,
+  "remoteDebugging": false,
+  "appWindowVisible": true,
+  "libraryOpened": true,
+  "passiveObservationSeconds": 10,
+  "samples": [
+    {
+      "at": "2026-10-05T15:01:08.562Z",
+      "version": "0.7.9",
+      "online": true,
+      "ready": true,
+      "activityRun": "activity-fc93763b283e49c99c72340e",
+      "activityPhase": "completed",
+      "succeeded": 8,
+      "creators": 295,
+      "pending": 0
+    },
+    {
+      "at": "2026-10-05T15:01:18.581Z",
+      "version": "0.7.9",
+      "online": true,
+      "ready": true,
+      "activityRun": "activity-fc93763b283e49c99c72340e",
+      "activityPhase": "completed",
+      "succeeded": 8,
+      "creators": 295,
+      "pending": 0
+    }
+  ]
+}

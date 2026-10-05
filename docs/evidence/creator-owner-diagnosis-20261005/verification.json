@@ -1,0 +1,328 @@
+{
+  "recordedAt": "2026-10-05T07:57:16.972Z",
+  "originalFailure": {
+    "code": "ACCOUNT_NATIVE_NAVIGATION_MISMATCH",
+    "historicalRun": "activity-67902b4eecace339e414fd95",
+    "exactIdentifierDifferenceRecoverable": false,
+    "rootCauseConfirmed": false,
+    "localRejectionRuleConfirmed": true
+  },
+  "realDiagnostics": [
+    {
+      "runId": "activity-9dcb87e22ac7aa17ebbcb459",
+      "mode": "page-enabled-before-navigation",
+      "name": "外行人搞AI",
+      "phase": "completed",
+      "total": 200,
+      "weekly": 1,
+      "latest": "2026-10-05T03:50:21.000Z",
+      "records": 19,
+      "publicRecords": 19,
+      "coverage": "week-boundary",
+      "pages": 1,
+      "extraWorksGets": 0,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 404,
+        "platformApiGetsObserved": 18,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1
+      },
+      "appClickToDisplayedMs": 7013.177999999985,
+      "independentClickToAvailableMs": 7260.5,
+      "cards": 295,
+      "avatars": 295,
+      "independentWeeklyRecountPassed": true
+    },
+    {
+      "runId": "activity-1f773f36298aba11d21944c1",
+      "mode": "original-command-order-passive-network",
+      "name": "外行人搞AI",
+      "phase": "completed",
+      "total": 200,
+      "weekly": 1,
+      "latest": "2026-10-05T03:50:21.000Z",
+      "records": 19,
+      "publicRecords": 19,
+      "coverage": "week-boundary",
+      "pages": 1,
+      "extraWorksGets": 0,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 362,
+        "platformApiGetsObserved": 16,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1
+      },
+      "appClickToDisplayedMs": 6088.784800000023,
+      "independentClickToAvailableMs": 6271.5,
+      "cards": 295,
+      "avatars": 295,
+      "independentWeeklyRecountPassed": true
+    }
+  ],
+  "productChange": {
+    "version": "0.7.4",
+    "durableSourceDiagnostics": true,
+    "sourceVerificationPolicyChanged": false,
+    "extraPlatformRequestsAdded": 0,
+    "realFailureReproduced": false,
+    "diagnosisVersionTestedOffline": true,
+    "realTestsUsedOriginal073Policy": true
+  },
+  "validation": {
+    "browserTests": 35,
+    "activityApplicationTests": 30,
+    "temporaryGuardTests": 2,
+    "typeScript": "passed",
+    "build": "passed",
+    "packagedRenderer": "passed",
+    "projectBoundaries": "passed"
+  },
+  "preservation": {
+    "recordedAt": "2026-10-05T07:56:03.968Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 519,
+          "currentRows": 521,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 28,
+          "currentRows": 30,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 519,
+          "currentRows": 521,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "delivery": {
+    "recordedAt": "2026-10-05T07:56:03.869Z",
+    "version": "0.7.4",
+    "originalShortcut": true,
+    "mainInstances": 1,
+    "noRemoteDebugging": true,
+    "readiness": "ready",
+    "creators": 295,
+    "basicPending": 0,
+    "noRunningCollection": true,
+    "latestActivityPhase": "completed",
+    "allExtensionFileHashesMatch": true,
+    "executableAndAsarHashesMatch": true,
+    "temporaryModulesRemoved": true,
+    "restoration": {
+      "version": "0.7.4",
+      "normalShortcutStarted": true,
+      "sourceVerificationPolicyChanged": false,
+      "forcedValidationShutdown": true,
+      "temporaryGuardRemoved": true,
+      "productionPackageChanged": true,
+      "extraPlatformRequestsAdded": 0
+    }
+  },
+  "unresolved": [
+    "Historical failure did not retain which identifier was missing/different or its response processing stage.",
+    "Two real diagnostic runs passed; no evidence identifies the original navigation transition or proves a source-binding repair.",
+    "No relaxation, automatic retry, full-library or additional-creator collection."
+  ]
+}

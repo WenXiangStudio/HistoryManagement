@@ -1,0 +1,200 @@
+{
+  "recordedAt": "2026-10-04T06:27:29.050Z",
+  "author": {
+    "nickname": "闭关修炼",
+    "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAyVdTQtLjhTGRsOblWHe1s_blN15P4puFLUuFteCuJ5o"
+  },
+  "savedCreators": 200,
+  "runs": [
+    {
+      "startedAt": "2026-10-04T06:21:53.267Z",
+      "phase": "completed",
+      "total": 1,
+      "done": 1,
+      "succeeded": 0,
+      "failed": 1
+    },
+    {
+      "startedAt": "2026-10-04T06:21:46.621Z",
+      "phase": "completed",
+      "total": 1,
+      "done": 1,
+      "succeeded": 0,
+      "failed": 1
+    },
+    {
+      "startedAt": "2026-10-04T06:20:54.566Z",
+      "phase": "completed",
+      "total": 20,
+      "done": 20,
+      "succeeded": 19,
+      "failed": 1
+    }
+  ],
+  "attempts": [
+    {
+      "attempted_at": "2026-10-04T06:21:54.009Z",
+      "error_code": "WEEK_COVERAGE_INCOMPLETE"
+    },
+    {
+      "attempted_at": "2026-10-04T06:21:47.381Z",
+      "error_code": "WEEK_COVERAGE_INCOMPLETE"
+    },
+    {
+      "attempted_at": "2026-10-04T06:21:08.345Z",
+      "error_code": "WEEK_COVERAGE_INCOMPLETE"
+    }
+  ],
+  "snapshots": [
+    {
+      "checkedAt": "2026-10-04T06:21:54.007Z",
+      "profileTotal": 2,
+      "authorIdentityMatches": true,
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1684046577000,
+          "hasMore": false,
+          "acceptedItems": 0,
+          "excludedAuthors": 0
+        }
+      ],
+      "transportError": null,
+      "requests": 2,
+      "weeklyStatus": "partial",
+      "weeklyUpdateCount": null,
+      "validationError": "WEEK_COVERAGE_INCOMPLETE"
+    },
+    {
+      "checkedAt": "2026-10-04T06:21:47.379Z",
+      "profileTotal": 2,
+      "authorIdentityMatches": true,
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1684046577000,
+          "hasMore": false,
+          "acceptedItems": 0,
+          "excludedAuthors": 0
+        }
+      ],
+      "transportError": null,
+      "requests": 2,
+      "weeklyStatus": "partial",
+      "weeklyUpdateCount": null,
+      "validationError": "WEEK_COVERAGE_INCOMPLETE"
+    },
+    {
+      "checkedAt": "2026-10-04T06:21:08.343Z",
+      "profileTotal": 2,
+      "authorIdentityMatches": true,
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1684046577000,
+          "hasMore": false,
+          "acceptedItems": 0,
+          "excludedAuthors": 0
+        }
+      ],
+      "transportError": null,
+      "requests": 2,
+      "weeklyStatus": "partial",
+      "weeklyUpdateCount": null,
+      "validationError": "WEEK_COVERAGE_INCOMPLETE"
+    }
+  ],
+  "realHomepage": {
+    "checkedAt": "2026-10-04T06:25:20.008Z",
+    "title": "闭关修炼的抖音 - 抖音",
+    "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAyVdTQtLjhTGRsOblWHe1s_blN15P4puFLUuFteCuJ5o",
+    "visibleWorkTotal": 0,
+    "emptyState": "暂无内容 / 该账号还未发布过作品哦～"
+  },
+  "publicParameterObservation": [
+    {
+      "path": "/aweme/v1/web/aweme/post/",
+      "publicParameters": {
+        "device_platform": "webapp",
+        "aid": "6383",
+        "channel": "channel_pc_web",
+        "publish_video_strategy_type": "2",
+        "pc_client_type": "1",
+        "version_code": "290100",
+        "version_name": "29.1.0",
+        "update_version_code": "170400",
+        "pc_libra_divert": "Windows",
+        "count": "18",
+        "max_cursor": "0",
+        "sec_user_id": "MS4wLjABAAAAyVdTQtLjhTGRsOblWHe1s_blN15P4puFLUuFteCuJ5o"
+      }
+    },
+    {
+      "path": "/aweme/v1/web/user/profile/other/",
+      "publicParameters": {
+        "device_platform": "webapp",
+        "aid": "6383",
+        "channel": "channel_pc_web",
+        "publish_video_strategy_type": "2",
+        "pc_client_type": "1",
+        "version_code": "170400",
+        "version_name": "17.4.0",
+        "update_version_code": "170400",
+        "pc_libra_divert": "Windows",
+        "sec_user_id": "MS4wLjABAAAAyVdTQtLjhTGRsOblWHe1s_blN15P4puFLUuFteCuJ5o"
+      }
+    }
+  ],
+  "profileComparison": {
+    "at": "2026-10-04T06:26:36.222Z",
+    "results": [
+      {
+        "name": "product-current-17.4",
+        "httpStatus": 200,
+        "statusCode": 0,
+        "user": {
+          "uid": "68806300619",
+          "sec_uid": "MS4wLjABAAAAyVdTQtLjhTGRsOblWHe1s_blN15P4puFLUuFteCuJ5o",
+          "nickname": "闭关修炼",
+          "aweme_count": 2,
+          "dongtai_count": 0
+        }
+      },
+      {
+        "name": "observed-web-29.1",
+        "httpStatus": 200,
+        "statusCode": 0,
+        "user": {
+          "uid": "68806300619",
+          "sec_uid": "MS4wLjABAAAAyVdTQtLjhTGRsOblWHe1s_blN15P4puFLUuFteCuJ5o",
+          "nickname": "闭关修炼",
+          "aweme_count": 2,
+          "dongtai_count": 0
+        }
+      },
+      {
+        "name": "basic-public-parameters",
+        "httpStatus": 200,
+        "statusCode": 0,
+        "user": {
+          "uid": "68806300619",
+          "sec_uid": "MS4wLjABAAAAyVdTQtLjhTGRsOblWHe1s_blN15P4puFLUuFteCuJ5o",
+          "nickname": "闭关修炼",
+          "aweme_count": 1,
+          "dongtai_count": 0
+        }
+      }
+    ]
+  },
+  "diagnosis": {
+    "code": "WEEK_COVERAGE_INCOMPLETE",
+    "reason": "Profile total is positive while verified author list ends empty; coverage cannot prove zero under the current acceptance rule.",
+    "deletedOrPrivateReasonUnverified": true,
+    "newCollectionStarted": false,
+    "rawResponsesOrCredentialsStored": false
+  },
+  "integrity": {
+    "integrity_check": "ok"
+  },
+  "foreignKeyViolations": 0
+}

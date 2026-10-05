@@ -1,0 +1,127 @@
+{
+  "recordedAt": "2026-10-04T08:22:58.736Z",
+  "scope": {
+    "authors": 1,
+    "author": "Boujoy",
+    "appAttempts": 2,
+    "fullOrResumeRuns": 0,
+    "explicitWeeklyListRequestsInCompletedCapture": 1,
+    "weeklyListPages": 1,
+    "extraDiagnosticInterfaceRequests": 0,
+    "browserNativePageTrafficAndAppPreparationNotIncludedInWeeklyRequestCount": true
+  },
+  "first": {
+    "phase": "blocked",
+    "done": 0,
+    "message": "资料刷新已停止（{\"code\":-32000,\"message\":\"Inspected target navigated or closed\"}），可继续剩余博主",
+    "weeklyResultNotReached": true
+  },
+  "second": {
+    "phase": "completed",
+    "succeeded": 1,
+    "failed": 0,
+    "displayedTotalMs": 6980.208200000001,
+    "frontendCount": 18,
+    "checkedAt": "2026-10-04T08:20:07.495Z",
+    "weeklyCount": 1,
+    "latestPublishedAt": "2026-10-02T13:13:10.000Z",
+    "errorCode": null,
+    "observedUniquePublicItems": 18,
+    "authorAndPublicVisibilityVerified": true
+  },
+  "ui": {
+    "recordedAt": "2026-10-04T08:21:09.259Z",
+    "normal": {
+      "creators": 200,
+      "cards": 200,
+      "unique": 200,
+      "name": "Boujoy",
+      "saved": 18,
+      "displayed": "18",
+      "checkedAt": "2026-10-04T08:20:06.908Z",
+      "noHorizontalOverflow": true,
+      "noBiographyOverlap": true,
+      "analyzedPreserved": true,
+      "zones": {
+        "today": 8,
+        "week": 106,
+        "none": 86
+      }
+    },
+    "compact": {
+      "creators": 200,
+      "cards": 200,
+      "unique": 200,
+      "name": "Boujoy",
+      "saved": 18,
+      "displayed": "18",
+      "checkedAt": "2026-10-04T08:20:06.908Z",
+      "noHorizontalOverflow": true,
+      "noBiographyOverlap": true,
+      "analyzedPreserved": true,
+      "zones": {
+        "today": 8,
+        "week": 106,
+        "none": 86
+      }
+    },
+    "newCollectionStarted": false
+  },
+  "desktopReopen": {
+    "NoDebugArguments": true,
+    "BoujoyPresent": true,
+    "AnalyzedLabels": 200,
+    "SuccessfulStatusVisible": 1
+  },
+  "storage": {
+    "tables": {
+      "creator_activity_attempts": {
+        "originalRows": 489,
+        "currentRows": 490,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_runs": {
+        "originalRows": 14,
+        "currentRows": 16,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_snapshots": {
+        "originalRows": 489,
+        "currentRows": 490,
+        "originalRowsUnchanged": true
+      },
+      "directory_creators": {
+        "originalRows": 0,
+        "currentRows": 0,
+        "originalRowsUnchanged": true
+      },
+      "directory_runs": {
+        "originalRows": 0,
+        "currentRows": 0,
+        "originalRowsUnchanged": true
+      },
+      "following_account_owners": {
+        "originalRows": 1,
+        "currentRows": 1,
+        "originalRowsUnchanged": true
+      },
+      "visible_directory_creators": {
+        "originalRows": 200,
+        "currentRows": 200,
+        "originalRowsUnchanged": true
+      },
+      "visible_directory_runs": {
+        "originalRows": 13,
+        "currentRows": 13,
+        "originalRowsUnchanged": true
+      }
+    },
+    "accountConfigurationUnchanged": true,
+    "integrity": {
+      "integrity_check": "ok"
+    },
+    "foreignKeyViolations": 0
+  },
+  "noRunningCollection": true,
+  "causalClaim": "Recovery observed after user cleanup and restart; specific prior cause not proven."
+}

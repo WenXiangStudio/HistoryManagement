@@ -1,0 +1,78 @@
+{
+  "recordedAt": "2026-10-05T09:55:32.541Z",
+  "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+  "scope": "One main-document response in the existing Chrome profile; no login check and no target-page JavaScript or later requests.",
+  "browserSessionProbe": {
+    "recordedAt": "2026-10-05T09:46:07.586Z",
+    "requestedUrl": "https://www.douyin.com/user/MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+    "browserProfileSessionUsed": true,
+    "loginVerificationGets": 0,
+    "scriptsExecuted": false,
+    "subresourceRequestsAllowed": 0,
+    "additionalDocumentRequestsAllowed": 0,
+    "httpStatus": 200,
+    "contentType": "text/html",
+    "fromDiskCache": false,
+    "fromServiceWorker": false,
+    "documentRequestsAllowed": 1,
+    "otherRequestsBlocked": 22,
+    "bodyBytes": 858803
+  },
+  "target": {
+    "nickname": "mmguo",
+    "uid": "81301761209",
+    "secUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+    "signature": "正在做有效且美的AI应用\n发点儿原创的交互实验和文章🤓\n\n个人网站：mmguo.dev（整理了projects&prompts）",
+    "avatarAddressPresent": true,
+    "followingCount": 56,
+    "followerCount": 29481,
+    "frontendWorksTabCount": 11,
+    "embeddedAuthorAwemeCount": 11
+  },
+  "fields": {
+    "creatorBasicInfo": true,
+    "avatarAddress": true,
+    "homepageWorksTabCount": true,
+    "targetWorkList": false,
+    "targetWorkIds": false,
+    "targetPublishedTimes": false,
+    "mostRecentTargetWorkTime": false,
+    "periodUpdateCount": false,
+    "pinnedWorkRecords": false
+  },
+  "evidence": {
+    "htmlSha256": "7b03639a5c4b14d0d72cd02e13ace6e6a5d40de75fc6b73950abc206cafa56f7",
+    "htmlBytes": 858803,
+    "embeddedTargetSource": "argument-160-0:self.__pace_f.push:stream-record",
+    "workObjects": 0,
+    "workLinks": 0,
+    "targetTimeElements": 0,
+    "embeddedViewerDataPresent": true,
+    "viewerDateWasNotUsedAsAuthorDate": true
+  },
+  "conclusion": "This authenticated single homepage response provides creator identity, basic profile and the works-tab count 11; it does not provide the target work records needed to verify last publication or count a date range.",
+  "earlierStandaloneProbe": {
+    "issuedGet": 1,
+    "authenticatedBrowserSession": false,
+    "notUsedForThisConclusion": true
+  },
+  "restoration": {
+    "extensionVersion": "0.7.5",
+    "online": true,
+    "ready": true,
+    "sourceAndUserExtensionHashesMatch": true,
+    "temporaryProbeRemoved": true,
+    "noRunningCollection": true,
+    "noCreatorLibraryWrite": true,
+    "persistentActivityRows": {
+      "runs": 36,
+      "snapshots": 526,
+      "attempts": 526
+    }
+  },
+  "limitations": [
+    "This exact page/session/time response was inspected; it is not a claim that every author or session returns the same initial data.",
+    "Avatar address is present; the actual image bytes were not requested. Existing cached images can be reused.",
+    "A browser navigation followed by automatic script/API calls is several HTTP requests, even when initiated by one click."
+  ]
+}

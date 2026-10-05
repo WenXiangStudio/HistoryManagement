@@ -1,0 +1,153 @@
+{
+  "recordedAt": "2026-10-04T14:19:31.440Z",
+  "tables": {
+    "directory_runs": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "directory_creators": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "visible_directory_runs": {
+      "count": 14,
+      "hash": "60189b196320da4398efa313f4607006b8afb7718ee558b5e5da150dfc31a77d"
+    },
+    "visible_directory_creators": {
+      "count": 220,
+      "hash": "094c0cb4200cba85effdbff718785bc3c6741ea0c55cb4dc91fb8b73b3fea291"
+    },
+    "following_account_owners": {
+      "count": 1,
+      "hash": "facbb7417026a8f86d5bba984a95760145eca1355fd3445eaad235f7be7b397e"
+    },
+    "creator_activity_runs": {
+      "count": 19,
+      "hash": "c3558c4aa7547a7aa8e22df0627d40a6db65eae0857ab519fd0f467d743d46c4"
+    },
+    "creator_activity_snapshots": {
+      "count": 512,
+      "hash": "1e577f8830f01d550b46bb3626ec0448da0d2c19bed029c41f6dbcaf82804134"
+    },
+    "creator_activity_attempts": {
+      "count": 512,
+      "hash": "87d82d49a377c931af7b34997f05966e86de788b8c8897c294033a5e843cd2cb"
+    }
+  },
+  "integrity": "ok",
+  "foreignKeys": [],
+  "configurationHash": "525256397d3dee90d814ba574912be1875827e5a5c0de4c4ba63565d03158eab",
+  "businessTables": {
+    "app_settings": {
+      "count": 1,
+      "hash": "2af9bca772e43bce5f8245d0836c9b3bd28f7d4589f1db9b9aca71b8ac298ebc"
+    },
+    "owner_accounts": {
+      "count": 1,
+      "hash": "7476484dc940a4b24d7d1732ce659f38f4c8383b085c8e9a0f01e07122bd7794"
+    },
+    "creators": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "works": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "metric_snapshots": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "transcript_segments": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ocr_blocks": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "evidence_frames": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "analyses": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "taxonomy_tags": {
+      "count": 22,
+      "hash": "626a101674d68de0d6940c22a5ad9137c2ff06a470f05b8d42ec314f201ac894"
+    },
+    "creator_tags": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "work_keywords": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "inbox_states": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "interest_weights": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "sync_runs": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "jobs": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "analysis_batches": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "audit_events": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "work_tags": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "comments": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "collection_checkpoints": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "search_index": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "search_index_data": {
+      "count": 2,
+      "hash": "e50e0b3e88ff317f25df3980e51e6c6d024ca0cba64bd4243522563b3d428b10"
+    },
+    "search_index_idx": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "search_index_content": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "search_index_docsize": {
+      "count": 0,
+      "hash": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "search_index_config": {
+      "count": 1,
+      "hash": "65642436c0afc30f002b4ffc2bb040fbe3482e13da6fc0b90500c31f80144192"
+    }
+  },
+  "originalTablesUnchanged": true,
+  "businessTablesUnchanged": true,
+  "configurationUnchanged": true
+}

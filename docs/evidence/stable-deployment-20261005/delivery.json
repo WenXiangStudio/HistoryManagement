@@ -1,0 +1,56 @@
+{
+  "version": "0.7.9",
+  "normalDesktopPathUpgraded": true,
+  "sourcePackageAndDeployedExtensionMatch": true,
+  "extensionHashes": {
+    "background.js": "525811e2be31af89f3c3f5a6ae87ecec50856a2762369f48ca259712280070c8",
+    "creator-activity-context.js": "0148cfe88516da81e55e02e9937ccc5ee1ec71d8236c50597400412f820cd781",
+    "creator-activity-diagnostics.js": "61598f8aaa7416a78ac8476845f66740bf236309c07d7eb4308beda77b5b075c",
+    "creator-activity-network.js": "192ef69ec8c7d06595636bacc5c13b15dd5302024cc69bb0695f40266e977622",
+    "creator-activity-owner-network.js": "fb45ac4e203a03267cc4342195cecd2b50452e74bf8cc8340780c98e2a52b89d",
+    "creator-activity-runner.js": "3a6d02fb04e000f3f773583f985ec6efe23414c807e753e9fdf657498643494f",
+    "following-batch.js": "2bd8fcba7a08aecf5fd8e02c6b3076b010239bdf3e65c8ad6f2ffc61d5770570",
+    "following-core.js": "5b2ed6c05e5ed163f6bad1834cca0d837ab09ba558fd21494b520e073b02686f",
+    "following-plan-runner.js": "5ec22149656cd712fa548e6ca0dfbc4c9741e07e49b4d7ffc2c12ed2e2799a7a",
+    "following-runner.js": "7817de6933c6456559475469e7becaf636bda7a659d884bdce2d8ddb0d80f0ab",
+    "following-timing.js": "37e9ad88c779353eaa51e5248d687fe0313a046a787210c07fc2a7bd5c76d90b",
+    "following-trigger.js": "e63dec0ba2646088770370434d70f47d732ded288fd3cbd54b22858956be276e",
+    "manifest.json": "6730abcf81b750a9961a923c8da4c898a02f50f4eb04c7bab963beef79adcd6e",
+    "popup.html": "476f961277e40a7b3963de1ad11c6a7592186af476b1cb4eb91f573cb9fd5c7f",
+    "popup.js": "9ead96dae2edc943cea2b8c0399f264eb946c8e5f5ae58683c66be94ff4457d5",
+    "setup-content.js": "1f56ceec5e653b57a94fb0354afa2db7f243276ac982dd613fb526e076f9ea8f",
+    "structured-probe.js": "747305d3c156a2266cbf0668ed2862ae324875861016c217eb8d00add6c053df",
+    "structured-runner.js": "bb6a72579d673cf300d13eaaedd422fac646299deea3efee4a071188a4acec0b",
+    "visible-runner.js": "90271f930b0718219982f46cf8bd71a587f71e2d06c79bb0c8c5f64a144fe32d"
+  },
+  "temporaryGuardRemoved": true,
+  "mainInstances": 1,
+  "remoteDebugging": false,
+  "passiveObservationSeconds": 30,
+  "samples": [
+    {
+      "at": "2026-10-05T14:46:15.399Z",
+      "version": "0.7.9",
+      "ready": true,
+      "activityRun": "activity-5aecf9aa600256f88c7c01ab",
+      "activityPhase": "completed",
+      "creators": 295
+    },
+    {
+      "at": "2026-10-05T14:46:30.427Z",
+      "version": "0.7.9",
+      "ready": true,
+      "activityRun": "activity-5aecf9aa600256f88c7c01ab",
+      "activityPhase": "completed",
+      "creators": 295
+    },
+    {
+      "at": "2026-10-05T14:46:45.446Z",
+      "version": "0.7.9",
+      "ready": true,
+      "activityRun": "activity-5aecf9aa600256f88c7c01ab",
+      "activityPhase": "completed",
+      "creators": 295
+    }
+  ]
+}

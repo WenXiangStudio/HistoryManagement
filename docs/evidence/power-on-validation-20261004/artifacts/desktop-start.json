@@ -1,0 +1,179 @@
+{
+  "StartedAt": "2026-10-04T04:17:09.6542237Z",
+  "LaunchedViaShortcut": "C:\\Users\\Administrator\\Desktop\\Signal Desk.lnk",
+  "TargetPath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-background-final\\win-unpacked\\Signal Desk.exe",
+  "Arguments": "--user-data-dir=\"C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\"",
+  "AppPid": 1228,
+  "AppCommandLine": "\"D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-background-final\\win-unpacked\\Signal Desk.exe\" --user-data-dir=\"C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\"",
+  "AppCreationDate": "2026-10-04T12:17:09.6918090+08:00",
+  "FirstWindowObservedMs": 486.6044,
+  "LaunchToReadyObservedMs": 4333.94,
+  "SawDisabledButton": true,
+  "FinalButtonName": "同步关注",
+  "FinalButtonEnabled": true,
+  "State": {
+    "phase": "completed",
+    "runId": "following-20261003100046-c04163ed2cbaf2e5",
+    "message": "最近一次新增 10 位博主，资料库累计 170 位。",
+    "count": 10,
+    "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+    "extensionDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-extension",
+    "reportDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-runs\\following-20261003100046-c04163ed2cbaf2e5",
+    "databasePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+    "setupUrl": "http://127.0.0.1:62329/following-connect",
+    "accountStatus": "verified",
+    "readiness": {
+      "phase": "ready",
+      "preparationId": "37268cfc89301219ac864b4a",
+      "message": "登录账号身份和关注数据接口已就绪，可以同步关注。"
+    },
+    "totalCount": 170,
+    "timing": {
+      "startedAt": "2026-10-03T10:00:46.281Z",
+      "dispatchMs": 4.461099999956787,
+      "acquisitionMs": 2923.10000000149,
+      "persistenceMs": 14.221400000154972,
+      "savedTotalMs": 2961.310100000119,
+      "displayedTotalMs": 3099.214200000046,
+      "averageDisplayedMs": 309.92142000000456
+    },
+    "activity": {
+      "phase": "completed",
+      "runId": "activity-3d04b6d71f32f66adef6bdc2",
+      "message": "已更新 1 位，0 位需重试；原资料保留",
+      "total": 1,
+      "done": 1,
+      "succeeded": 1,
+      "failed": 0,
+      "currentName": null,
+      "remainingIds": [],
+      "startedAt": "2026-10-03T15:23:08.639Z",
+      "weekStart": "2026-09-27T16:00:00Z",
+      "weekEndExclusive": "2026-10-04T16:00:00Z",
+      "savedTotalMs": 1376.032300000079,
+      "displayedTotalMs": 1440.4866000004113
+    },
+    "connection": {
+      "online": true,
+      "version": "0.6.2",
+      "expectedVersion": "0.6.2"
+    }
+  },
+  "PreparationIdMatches": true,
+  "PreparationServiceMs": 3752.7346,
+  "StructuredApiMs": 749.9000000059605,
+  "BrowserExecution": {
+    "source": "authorized same-origin structured GET",
+    "tabId": 193482206,
+    "tabActive": true,
+    "domQueries": 0,
+    "uiClicks": 0,
+    "pageReloads": 0,
+    "requests": 2,
+    "backgroundStart": true,
+    "backgroundWindowState": "minimized"
+  },
+  "Chrome": [
+    {
+      "ProcessId": 3812,
+      "CreationDate": "2026-10-04T12:17:10.0336900+08:00",
+      "WindowMinimized": true,
+      "IsForeground": false
+    }
+  ],
+  "Samples": [
+    {
+      "ElapsedMs": 785.7445,
+      "ConnectionOnline": false,
+      "Readiness": "connecting",
+      "ButtonName": null,
+      "ButtonEnabled": null
+    },
+    {
+      "ElapsedMs": 922.4809,
+      "ConnectionOnline": false,
+      "Readiness": "connecting",
+      "ButtonName": null,
+      "ButtonEnabled": null
+    },
+    {
+      "ElapsedMs": 1037.3957,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": null,
+      "ButtonEnabled": null
+    },
+    {
+      "ElapsedMs": 1159.7495,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": null,
+      "ButtonEnabled": null
+    },
+    {
+      "ElapsedMs": 1268.264,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": null,
+      "ButtonEnabled": null
+    },
+    {
+      "ElapsedMs": 1573.1143,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": "等待同步准备",
+      "ButtonEnabled": false
+    },
+    {
+      "ElapsedMs": 1908.6812,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": "等待同步准备",
+      "ButtonEnabled": false
+    },
+    {
+      "ElapsedMs": 2218.4621,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": "等待同步准备",
+      "ButtonEnabled": false
+    },
+    {
+      "ElapsedMs": 2650.2568,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": "等待同步准备",
+      "ButtonEnabled": false
+    },
+    {
+      "ElapsedMs": 3067.9161,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": "等待同步准备",
+      "ButtonEnabled": false
+    },
+    {
+      "ElapsedMs": 3514.8981,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": "等待同步准备",
+      "ButtonEnabled": false
+    },
+    {
+      "ElapsedMs": 3933.2693,
+      "ConnectionOnline": true,
+      "Readiness": "checking",
+      "ButtonName": "等待同步准备",
+      "ButtonEnabled": false
+    },
+    {
+      "ElapsedMs": 4333.4308,
+      "ConnectionOnline": true,
+      "Readiness": "ready",
+      "ButtonName": "同步关注",
+      "ButtonEnabled": true
+    }
+  ],
+  "NoManualAccountConfirmation": true,
+  "RemoteDebuggingArgument": false
+}

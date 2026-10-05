@@ -1,0 +1,355 @@
+{
+  "recordedAt": "2026-10-05T08:19:16.317Z",
+  "version": "0.7.4",
+  "authorizedLimits": {
+    "authors": 3,
+    "pagesPerAuthor": 2,
+    "sharedExtraWorksGets": 2,
+    "oneAttemptPerCreator": true,
+    "stopOnFailure": true
+  },
+  "excludedPreviousSix": [
+    "杰森Jason",
+    "Xi Xu",
+    "口罩哥直播号",
+    "Boujoy",
+    "外行人搞AI",
+    "浙大猫学长"
+  ],
+  "selected": [
+    "每日英语",
+    "划水的青蛙",
+    "周话多GOGOGO"
+  ],
+  "actual": [
+    {
+      "name": "每日英语",
+      "runId": "activity-5030c4ac66afc75d640925c4",
+      "phase": "blocked",
+      "done": 0,
+      "errorCode": "ACCOUNT_NATIVE_NAVIGATION_MISMATCH",
+      "ownerProofAccepted": false,
+      "creatorCaptureSaved": false,
+      "newSnapshot": false,
+      "newAttempt": false,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 345,
+        "platformApiGetsObserved": 15,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "pending",
+        "nativeOwnerRequestsObserved": 1,
+        "ownerSourceDiagnostics": {
+          "contract": "signaldesk-activity-owner-diagnostics/v1",
+          "navigationBound": true,
+          "navigationFailed": false,
+          "navigationLoaderPresent": true,
+          "navigationFramePresent": true,
+          "observedRequests": 1,
+          "documents": [
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "different",
+              "frame": "match"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            }
+          ],
+          "requests": [
+            {
+              "loader": "different",
+              "frame": "match",
+              "document": "first-author",
+              "childSession": false,
+              "requestType": "XHR",
+              "stage": "identity-checked",
+              "json": "valid",
+              "identity": "matched",
+              "httpStatus": 200,
+              "responseSource": "network"
+            }
+          ],
+          "errorCode": "ACCOUNT_NATIVE_NAVIGATION_MISMATCH"
+        }
+      },
+      "appClickToStopMs": 5959.7294999999995,
+      "independentClickToStopMs": 6258.399999976158,
+      "successfulDataAvailabilityMs": null,
+      "oldWorkCountRetained": 596,
+      "weeklyPending": true
+    }
+  ],
+  "unexecuted": [
+    "划水的青蛙",
+    "周话多GOGOGO"
+  ],
+  "findings": {
+    "mismatchedField": "loaderId",
+    "frameIdMatched": true,
+    "requestDocumentIsFirstAuthor": true,
+    "childSession": false,
+    "http200": true,
+    "jsonValid": true,
+    "boundOwnerDoubleIdsMatched": true,
+    "secondFirstAuthorDocumentWithDifferentLoaderObserved": true,
+    "ownerLoaderEqualsSecondDocumentLoaderProven": false,
+    "originalNavigationMismatchReproducedOnDifferentCreator": true,
+    "limitation": "Stored relations compare each event only with Page.navigate. They cannot prove the account request uses the second document loader or show why the page initiated that document request."
+  },
+  "validation": {
+    "productCodeChanged": false,
+    "guardTests": 4,
+    "syntaxCheck": "passed",
+    "deployedAndSourceHashesVerified": true
+  },
+  "preservation": {
+    "recordedAt": "2026-10-05T08:17:57.832Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 521,
+          "currentRows": 521,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 30,
+          "currentRows": 31,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 521,
+          "currentRows": 521,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "delivery": {
+    "recordedAt": "2026-10-05T08:18:23.620Z",
+    "version": "0.7.4",
+    "originalShortcut": true,
+    "mainInstances": 1,
+    "noRemoteDebugging": true,
+    "readiness": "ready",
+    "creators": 295,
+    "basicPending": 0,
+    "noRunningCollection": true,
+    "latestActivityPhase": "blocked",
+    "allExtensionFileHashesMatch": true,
+    "executableAndAsarHashesMatch": true,
+    "temporaryModulesRemoved": true,
+    "restoration": {
+      "temporaryGuardRemoved": true,
+      "productionPackageChanged": false,
+      "forcedValidationShutdown": true,
+      "normalShortcutStarted": true,
+      "version": "0.7.4"
+    }
+  }
+}

@@ -1,0 +1,287 @@
+{
+  "mode": "context-destroyed",
+  "runId": "activity-add127e2408a95ec0050708a",
+  "checks": {
+    "blocked": true,
+    "pageRetained": true,
+    "cacheComplete": true,
+    "screenshot": true,
+    "dom": true,
+    "noNextAuthor": true,
+    "noBusinessRetry": true,
+    "firstReasonPreserved": true
+  },
+  "actions": [
+    {
+      "method": "Page.enable",
+      "at": "2026-10-05T14:36:18.910Z",
+      "operation": null
+    },
+    {
+      "method": "Page.enable",
+      "at": "2026-10-05T14:36:18.912Z",
+      "operation": null
+    },
+    {
+      "method": "Runtime.enable",
+      "at": "2026-10-05T14:36:18.913Z",
+      "operation": null
+    },
+    {
+      "method": "Network.enable",
+      "at": "2026-10-05T14:36:18.913Z",
+      "operation": null
+    },
+    {
+      "method": "Page.navigate",
+      "at": "2026-10-05T14:36:18.915Z",
+      "operation": null
+    },
+    {
+      "method": "Runtime.evaluate",
+      "at": "2026-10-05T14:36:19.033Z",
+      "operation": "profile-count"
+    },
+    {
+      "method": "Runtime.evaluate",
+      "at": "2026-10-05T14:36:19.147Z",
+      "operation": null
+    },
+    {
+      "method": "Page.captureScreenshot",
+      "at": "2026-10-05T14:36:19.147Z",
+      "operation": null
+    }
+  ],
+  "diagnostic": {
+    "attempts": [],
+    "browser": {
+      "commands": [
+        {
+          "at": "2026-10-05T14:36:18.910Z",
+          "elapsedMs": 2.600000023841858,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 1,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:18.912Z",
+          "elapsedMs": 0.699999988079071,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 2,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:18.913Z",
+          "elapsedMs": 0.4000000059604645,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 3,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:18.913Z",
+          "elapsedMs": 0.19999998807907104,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 4,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:18.915Z",
+          "elapsedMs": 7.0999999940395355,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "navigate",
+          "resultType": null,
+          "sequence": 5,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.033Z",
+          "elapsedMs": 111.90000000596046,
+          "error": "TARGET_NAVIGATED_OR_CLOSED",
+          "exceptionClass": null,
+          "operation": "profile-count",
+          "resultType": null,
+          "sequence": 6,
+          "stage": "rejected"
+        }
+      ],
+      "connections": [
+        {
+          "at": "2026-10-05T14:36:18.906Z",
+          "event": "target-selected",
+          "reason": null
+        }
+      ],
+      "dropped": 0
+    },
+    "captureBrowser": {
+      "commands": [
+        {
+          "at": "2026-10-05T14:36:18.910Z",
+          "elapsedMs": 2.600000023841858,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 1,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:18.912Z",
+          "elapsedMs": 0.699999988079071,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 2,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:18.913Z",
+          "elapsedMs": 0.4000000059604645,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 3,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:18.913Z",
+          "elapsedMs": 0.19999998807907104,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 4,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:18.915Z",
+          "elapsedMs": 7.0999999940395355,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "navigate",
+          "resultType": null,
+          "sequence": 5,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.033Z",
+          "elapsedMs": 111.90000000596046,
+          "error": "TARGET_NAVIGATED_OR_CLOSED",
+          "exceptionClass": null,
+          "operation": "profile-count",
+          "resultType": null,
+          "sequence": 6,
+          "stage": "rejected"
+        },
+        {
+          "at": "2026-10-05T14:36:19.147Z",
+          "elapsedMs": 10.099999994039536,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "failure-page",
+          "resultType": "object",
+          "sequence": 7,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.147Z",
+          "elapsedMs": 58.900000005960464,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "failure-screenshot",
+          "resultType": null,
+          "sequence": 8,
+          "stage": "complete"
+        }
+      ],
+      "connections": [
+        {
+          "at": "2026-10-05T14:36:18.906Z",
+          "event": "target-selected",
+          "reason": null
+        }
+      ],
+      "dropped": 0
+    },
+    "capturePhase": "complete",
+    "capturedAt": "2026-10-05T14:36:19.145Z",
+    "completedAt": "2026-10-05T14:36:19.206Z",
+    "contract": "signaldesk-activity-failure/v1",
+    "creatorId": -1,
+    "environment": {
+      "diagnosticReattached": false,
+      "discarded": false,
+      "pageSource": "debugger",
+      "pathRelation": "target",
+      "recoveryError": null,
+      "status": "loading",
+      "tabError": null,
+      "tabExists": true
+    },
+    "errorCode": "ACTIVITY_READ_FAILED",
+    "network": {
+      "documents": [
+        {
+          "at": "2026-10-05T14:36:18.924Z",
+          "childSession": false,
+          "kind": "committed",
+          "pathRelation": "target"
+        }
+      ],
+      "dropped": 0,
+      "events": [],
+      "runtime": [
+        {
+          "at": "2026-10-05T14:36:18.923Z",
+          "exceptionClass": null,
+          "kind": "contexts-cleared"
+        },
+        {
+          "at": "2026-10-05T14:36:18.924Z",
+          "exceptionClass": null,
+          "kind": "contexts-cleared"
+        }
+      ],
+      "scriptExceptions": 0
+    },
+    "page": {
+      "markers": {
+        "empty": false,
+        "login": false,
+        "unavailable": false,
+        "verification": false
+      },
+      "panelPresent": true,
+      "panelVisible": true,
+      "pathRelation": "target",
+      "readyState": "complete",
+      "visibilityState": "hidden",
+      "visibleWorkLinks": 0,
+      "worksTabPresent": true,
+      "worksTabSelected": true,
+      "worksTabVisible": true
+    },
+    "pageError": null,
+    "retainedTabId": 193484149,
+    "screenshot": "saved in adjacent jpg",
+    "screenshotError": null,
+    "secUid": "local-first",
+    "stage": "reading-count"
+  }
+}

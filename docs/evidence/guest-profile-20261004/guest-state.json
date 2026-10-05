@@ -1,0 +1,62 @@
+{
+  "testedAt": "2026-10-04T12:13:58.894Z",
+  "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+  "activeApiRequests": 1,
+  "authenticationCheck": {
+    "endpoint": "/aweme/v1/web/user/profile/self/",
+    "httpStatus": 200,
+    "contentType": "application/json",
+    "statusCode": 8,
+    "hasAccountIdentity": false,
+    "authenticated": false,
+    "loginMessage": "用户未登录"
+  },
+  "frontendWorkCount": "12",
+  "profileWorkListFound": true,
+  "visibleWorkLinks": [
+    {
+      "workId": "7662218043044416811",
+      "path": "/video/7662218043044416811"
+    },
+    {
+      "workId": "7658180443711360298",
+      "path": "/video/7658180443711360298"
+    },
+    {
+      "workId": "7679664350700784931",
+      "path": "/video/7679664350700784931"
+    },
+    {
+      "workId": "7670819524781886747",
+      "path": "/video/7670819524781886747"
+    },
+    {
+      "workId": "7669059593955200296",
+      "path": "/video/7669059593955200296"
+    },
+    {
+      "workId": "7666381736384777514",
+      "path": "/video/7666381736384777514"
+    },
+    {
+      "workId": "7665557119667653928",
+      "path": "/video/7665557119667653928"
+    },
+    {
+      "workId": "7664148371088280858",
+      "path": "/video/7664148371088280858"
+    },
+    {
+      "workId": "7660379220610125098",
+      "path": "/video/7660379220610125098"
+    },
+    {
+      "workId": "7659430374400871699",
+      "path": "/video/7659430374400871699"
+    },
+    {
+      "workId": "7657779913159675171",
+      "path": "/video/7657779913159675171"
+    }
+  ]
+}

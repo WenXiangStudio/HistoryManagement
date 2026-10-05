@@ -1,0 +1,137 @@
+{
+  "recordedAt": "2026-10-04T04:24:24.624Z",
+  "verdict": {
+    "powerOffThenPowerOn": "passed",
+    "appAndChromeInitiallyAbsent": "passed",
+    "desktopShortcutStartup": "passed",
+    "newFollowingSync": "passed",
+    "newAuthorsAutomaticActivityRefresh": "passed",
+    "persistedDataAndAnnotations": "passed",
+    "appReopen": "passed",
+    "fullWindowsRestart": "not-tested"
+  },
+  "boot": {
+    "userConfirmed": "Long power-off then power-on; did not manually start Chrome",
+    "powerOnEventTime": "2026-10-04T12:10:11.7136078+08:00",
+    "windowsBootType": "0x1 (hybrid / Fast Startup)",
+    "reportedKernelBootTime": "2026-10-03T14:37:57.5000000+08:00",
+    "chromeInitiallyAutoStarted": true,
+    "chromeClosedNormallyBeforeTest": true
+  },
+  "desktopStartup": {
+    "actualShortcut": true,
+    "remoteDebuggingArgument": false,
+    "launchToReadyAndButtonEnabledMs": 4333.94,
+    "initialButtonDisabledObserved": true,
+    "finalButtonEnabled": true,
+    "newPreparationProof": true,
+    "preparationServiceMs": 3752.7346,
+    "structuredApiMs": 749.9000000059605,
+    "apiRequests": 2,
+    "manualAccountConfirmation": false,
+    "backgroundWindowMinimized": true
+  },
+  "followingSync": {
+    "requestedNewAuthors": 10,
+    "beforeCount": 170,
+    "afterCount": 180,
+    "runId": "following-20261004041944-3fc7dec08ea0e5cc",
+    "clickToBasicInfoAndAllAvatarsMs": 3225.064700000017,
+    "independentlyObservedClickToBasicInfoAndAvatarsMs": 3470.1642,
+    "acquisitionMs": 2853.7999999970198,
+    "persistenceMs": 13.315999999991618,
+    "pages": 9,
+    "apiRequests": 10,
+    "domQueries": 0,
+    "uiClicks": 0,
+    "sourceRevalidated": true,
+    "allOldRowsPreserved": true
+  },
+  "automaticMetadata": {
+    "runId": "activity-5757d5729c093681ff634e59",
+    "succeeded": 10,
+    "failed": 0,
+    "separateStartCommand": false,
+    "observedOriginalSyncClickToAllMetadataFinishedMs": 15704.344,
+    "apiRequestsIncludingOwnerSelf": 21,
+    "sourceRevalidated": true,
+    "newWeeklyStatuses": {
+      "updated": 3,
+      "empty": 7
+    },
+    "metadataStageStartToDisplayMs": 12746.122000000003
+  },
+  "savedData": {
+    "total": 180,
+    "distinctProfiles": 180,
+    "publicWorkCountsKnown": 180,
+    "savedWeekCounts": {
+      "updated": 100,
+      "empty": 80
+    },
+    "oldRecordRetention": {
+      "creator_activity_attempts": {
+        "priorRows": 360,
+        "currentRows": 370,
+        "oldRowsUnchanged": true
+      },
+      "creator_activity_runs": {
+        "priorRows": 7,
+        "currentRows": 8,
+        "oldRowsUnchanged": true
+      },
+      "creator_activity_snapshots": {
+        "priorRows": 360,
+        "currentRows": 370,
+        "oldRowsUnchanged": true
+      },
+      "directory_creators": {
+        "priorRows": 0,
+        "currentRows": 0,
+        "oldRowsUnchanged": true
+      },
+      "directory_runs": {
+        "priorRows": 0,
+        "currentRows": 0,
+        "oldRowsUnchanged": true
+      },
+      "following_account_owners": {
+        "priorRows": 1,
+        "currentRows": 1,
+        "oldRowsUnchanged": true
+      },
+      "visible_directory_creators": {
+        "priorRows": 170,
+        "currentRows": 180,
+        "oldRowsUnchanged": true
+      },
+      "visible_directory_runs": {
+        "priorRows": 11,
+        "currentRows": 12,
+        "oldRowsUnchanged": true
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0,
+    "profileLinksDisplayed": 180,
+    "analyzedPlaceholders": 180
+  },
+  "reopened": {
+    "throughActualShortcut": true,
+    "remoteDebuggingArgument": false,
+    "total": 180,
+    "online": true,
+    "ready": "ready",
+    "followingRunAndTimingRestored": true,
+    "metadataRunAndTimingRestored": true
+  },
+  "noProductCodeChanged": true,
+  "extensionVersion": "0.6.2",
+  "limits": [
+    "Windows full restart not exercised",
+    "Second real account or Chrome profile not exercised",
+    "Formal works/comments, media and cloud analysis not exercised",
+    "Current week data checks stop at each observation time"
+  ]
+}

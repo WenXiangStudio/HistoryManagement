@@ -4,7 +4,7 @@ import { promisify } from 'node:util'
 import { cp, mkdir, readFile, readdir, writeFile } from 'node:fs/promises'
 import { join, resolve } from 'node:path'
 
-export const FOLLOWING_VERSION = '0.5.2'
+export const FOLLOWING_VERSION = '0.7.9'
 const execute = promisify(execFile)
 
 // Deployment happens at APP startup, outside the user's collection critical path.

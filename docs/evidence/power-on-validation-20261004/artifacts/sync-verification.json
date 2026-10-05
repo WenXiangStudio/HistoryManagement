@@ -1,0 +1,1435 @@
+{
+  "StartedAt": "2026-10-04T04:19:43.8763879Z",
+  "StartedBy": "Windows UI Automation invoked actual APP sync button",
+  "RequestedNewAuthors": 10,
+  "PreviousRunId": "following-20261003100046-c04163ed2cbaf2e5",
+  "RunId": "following-20261004041944-3fc7dec08ea0e5cc",
+  "ObservedClickToBasicInfoAndAvatarsMs": 3470.1642,
+  "ObservedClickToAutomaticMetadataFinishedMs": 15704.344,
+  "State": {
+    "phase": "completed",
+    "runId": "following-20261004041944-3fc7dec08ea0e5cc",
+    "message": "已新增 10 位博主，资料库累计 180 位，已有资料保留。",
+    "count": 10,
+    "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+    "extensionDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-extension",
+    "reportDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-runs\\following-20261004041944-3fc7dec08ea0e5cc",
+    "databasePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+    "setupUrl": "http://127.0.0.1:62329/following-connect",
+    "accountStatus": "verified",
+    "readiness": {
+      "phase": "ready",
+      "preparationId": "37268cfc89301219ac864b4a",
+      "message": "登录账号身份和关注数据接口已就绪，可以同步关注。"
+    },
+    "totalCount": 180,
+    "timing": {
+      "startedAt": "2026-10-04T04:19:44.027Z",
+      "dispatchMs": 5.6793000000179745,
+      "acquisitionMs": 2853.7999999970198,
+      "persistenceMs": 13.315999999991618,
+      "savedTotalMs": 2919.7293000000063,
+      "displayedTotalMs": 3225.064700000017,
+      "averageDisplayedMs": 322.50647000000174
+    },
+    "requestedCount": 10,
+    "activity": {
+      "phase": "completed",
+      "runId": "activity-5757d5729c093681ff634e59",
+      "message": "已更新 10 位，0 位需重试；原资料保留",
+      "total": 10,
+      "done": 10,
+      "succeeded": 10,
+      "failed": 0,
+      "currentName": null,
+      "remainingIds": [],
+      "startedAt": "2026-10-04T04:19:46.952Z",
+      "weekStart": "2026-09-27T16:00:00Z",
+      "weekEndExclusive": "2026-10-04T16:00:00Z",
+      "savedTotalMs": 12616.802599999995,
+      "displayedTotalMs": 12746.122000000003
+    },
+    "connection": {
+      "online": true,
+      "version": "0.6.2",
+      "expectedVersion": "0.6.2"
+    }
+  },
+  "ProfileLinksDisplayed": 180,
+  "AnalyzedLabelsDisplayed": 180,
+  "Samples": [
+    {
+      "ElapsedMs": 281.9956,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 421.5153,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 543.1208,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 656.1184,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 764.6338,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 873.6161,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 981.9291,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1090.0885,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1200.7377,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1304.8699,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1414.3968,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1521.4114,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1631.7996,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1741.1336,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1849.3347,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 1958.9486,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 2066.3739,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 2189.5851,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 2314.6204,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 2425.2666,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 2534.1302,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 2643.5363,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 2753.1152,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 2875.7559,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3002.3608,
+      "Phase": "running",
+      "Count": 0,
+      "TotalCount": 170,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "completed",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3126.5817,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3250.2798,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3358.5167,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": null,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3468.9008,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3592.4066,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3737.3809,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3859.8886,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 3970.5085,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 4094.3584,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 4203.3026,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 4312.121,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 0,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 4423.2151,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 4548.2856,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 4674.134,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 4784.1524,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 4893.415,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5016.554,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5129.7751,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5251.3024,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5360.2608,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 1,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5469.9371,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5594.9924,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5705.772,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5815.0182,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 5925.9527,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6034.5449,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6144.7911,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6267.5648,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6392.2021,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6514.6281,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6624.5688,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6731.5134,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6845.9015,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 2,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 6965.2483,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7075.5637,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7186.6027,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7294.0601,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7407.1853,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7513.3058,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7621.9576,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7730.4416,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7840.708,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 7950.7073,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 8058.1909,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 8168.091,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 3,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 8286.7346,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 8439.8092,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 8558.2522,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 8668.361,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 8779.8753,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 8890.5113,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9001.3082,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9126.0744,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9253.6576,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9376.5245,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9498.4499,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9607.2947,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9714.4754,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 4,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9823.0229,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 9931.2018,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10040.4611,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10152.0566,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10261.5214,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10371.6032,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10479.647,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10589.5801,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10698.1935,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10806.555,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 10914.1433,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 5,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11023.6772,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11132.228,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11241.6454,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11379.6877,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11492.7756,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11604.1176,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11713.6412,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11824.5458,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 11932.8844,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 6,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12041.1949,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12151.4565,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12261.2081,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12370.0472,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12478.9539,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12586.7263,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12696.3814,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12806.3491,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 12913.6819,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 7,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13023.1833,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13132.1955,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13243.8549,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13353.0592,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13466.8074,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13571.2048,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13679.3489,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13788.7378,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 13898.7981,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14006.1472,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14116.343,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14224.395,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 8,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14345.5796,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14457.3686,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14567.8534,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14689.1368,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14799.3421,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 14908.6995,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 15019.6692,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 15127.3414,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 15236.8295,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 15346.4021,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 15469.6379,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 9,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 15579.1567,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "running",
+      "ActivityDone": 10,
+      "ActivityFailed": 0
+    },
+    {
+      "ElapsedMs": 15704.2983,
+      "Phase": "completed",
+      "Count": 10,
+      "TotalCount": 180,
+      "DisplayedTotalMs": 3225.064700000017,
+      "ActivityPhase": "completed",
+      "ActivityDone": 10,
+      "ActivityFailed": 0
+    }
+  ],
+  "AutomaticMetadataRunId": "activity-5757d5729c093681ff634e59",
+  "NoExtraStartCommandForMetadata": true,
+  "RemoteDebuggingArgument": false
+}

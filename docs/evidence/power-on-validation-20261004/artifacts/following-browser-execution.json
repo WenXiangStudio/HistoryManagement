@@ -1,0 +1,11 @@
+{
+  "source": "authorized same-origin structured GET",
+  "tabId": 193482206,
+  "tabActive": true,
+  "domQueries": 0,
+  "uiClicks": 0,
+  "pageReloads": 0,
+  "requests": 10,
+  "backgroundStart": false,
+  "backgroundWindowState": null
+}

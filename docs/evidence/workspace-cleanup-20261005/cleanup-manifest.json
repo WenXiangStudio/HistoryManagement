@@ -1,0 +1,511 @@
+{
+  "removedPackages": [
+    {
+      "path": "release",
+      "files": 154,
+      "bytes": 594835084
+    },
+    {
+      "path": "release-creator-activity-review",
+      "files": 148,
+      "bytes": 594661879
+    },
+    {
+      "path": "release-creator-context-20261005",
+      "files": 153,
+      "bytes": 594816625
+    },
+    {
+      "path": "release-creator-diagnostics-20261005",
+      "files": 153,
+      "bytes": 594745233
+    },
+    {
+      "path": "release-creator-explicit-20261005",
+      "files": 153,
+      "bytes": 594739329
+    },
+    {
+      "path": "release-creator-native-20261005",
+      "files": 152,
+      "bytes": 594808914
+    },
+    {
+      "path": "release-creator-owner-current-20261005",
+      "files": 152,
+      "bytes": 594724798
+    },
+    {
+      "path": "release-creator-owner-current-final-20261005",
+      "files": 152,
+      "bytes": 594725743
+    },
+    {
+      "path": "release-creator-owner-diagnosis-20261005",
+      "files": 152,
+      "bytes": 594721043
+    },
+    {
+      "path": "release-creator-owner-diverse-20261005",
+      "files": 153,
+      "bytes": 594828435
+    },
+    {
+      "path": "release-creator-owner-native-20261005",
+      "files": 154,
+      "bytes": 594826608
+    },
+    {
+      "path": "release-creator-retained-20261005",
+      "files": 153,
+      "bytes": 594752106
+    },
+    {
+      "path": "release-following-plan-20261004",
+      "files": 149,
+      "bytes": 594683029
+    }
+  ],
+  "removedPackageBytes": 7731868826,
+  "reclaimedDuplicateBytes": 7003755260,
+  "deduplicatedBackupAliases": [
+    {
+      "bytes": 107429602,
+      "path": "local-data\\following-plan-20261004\\before\\app.asar",
+      "sha256": "2956536551dd8d172f1672aeb24aa13ee6d7de924a85b1852c9f3085c5476b3b",
+      "canonical": "local-data\\activity-load-20261004\\app-before\\app.asar"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\following-plan-20261004\\before\\Signal Desk.exe",
+      "sha256": "67857459ef462dcb4ef6fd932129a3d9f42935cfd06ee43f201a1cfff2c29084",
+      "canonical": "local-data\\activity-load-20261004\\app-before\\Signal Desk.exe"
+    },
+    {
+      "bytes": 107450235,
+      "path": "local-data\\creator-context-20261005\\before\\release\\app.asar",
+      "sha256": "075afb9e9f8c543dc9fb0596de0e22b054333bf9a288403806d8047d6c11e104",
+      "canonical": "local-data\\creator-context-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 210897408,
+      "path": "local-data\\creator-context-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "f730b669ee600dc916c79afb4ad6b1839947aef5951c52ce99b783d6b06bf841",
+      "canonical": "local-data\\creator-context-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-diagnostics-four-20261005\\before\\release\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-explicit-six-20261005\\before\\normal\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-explicit-six-20261005\\before\\release\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-mingshi-diagnosis-20261005\\before\\normal\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-mingshi-diagnosis-20261005\\before\\release\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-new-eight-20261005\\before\\release\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-owner-six-20261005\\before\\normal\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-owner-six-20261005\\before\\release\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-retained-six-20261005\\before\\normal\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\creator-retained-six-20261005\\before\\release\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\stable-deployment-20261005\\before\\normal\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107458831,
+      "path": "local-data\\stable-deployment-20261005\\before\\release\\app.asar",
+      "sha256": "474e88ff39b8f40ab3af40f0b1816b57f69a938e2231c2d9e70bfa7ac0d1eecd",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-diagnostics-four-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-explicit-six-20261005\\before\\normal\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-explicit-six-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-mingshi-diagnosis-20261005\\before\\normal\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-mingshi-diagnosis-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-new-eight-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-owner-six-20261005\\before\\normal\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-owner-six-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-retained-six-20261005\\before\\normal\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-retained-six-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\stable-deployment-20261005\\before\\normal\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\stable-deployment-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "db40529e8791c3cb718d89017c7c8368a5a54c67cd3d25762e5b1a17b5b4b4c9",
+      "canonical": "local-data\\creator-diagnostics-four-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 107442489,
+      "path": "local-data\\creator-native-20261005\\before\\release\\app.asar",
+      "sha256": "eab8299c2a1cca278c1992402a0eb30ac221cd9a5c8d4f6f74db7688ee7b2bb1",
+      "canonical": "local-data\\creator-native-20261005\\before\\app.asar"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-native-20261005\\before\\Signal Desk.exe",
+      "sha256": "8d6779014b0e7650be9df2f3224d714d19f145342684a598c81f0aa1f3eba726",
+      "canonical": "local-data\\creator-native-20261005\\before\\release\\Signal Desk.exe"
+    },
+    {
+      "bytes": 107457446,
+      "path": "local-data\\creator-owner-current-20261005\\before\\release\\app.asar",
+      "sha256": "641d1db4ff2c96d8e357b955786f51679995f5c90883b60ad32a25ec89becc84",
+      "canonical": "local-data\\creator-owner-current-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107457446,
+      "path": "local-data\\creator-owner-new-samples-20261005\\before\\normal\\app.asar",
+      "sha256": "641d1db4ff2c96d8e357b955786f51679995f5c90883b60ad32a25ec89becc84",
+      "canonical": "local-data\\creator-owner-current-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107457446,
+      "path": "local-data\\creator-owner-new-samples-20261005\\before\\release\\app.asar",
+      "sha256": "641d1db4ff2c96d8e357b955786f51679995f5c90883b60ad32a25ec89becc84",
+      "canonical": "local-data\\creator-owner-current-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-owner-current-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "c779f889fe657264def7d13086b0d4b9041f0bfbeee1c673eeb01cd1f53f0e5a",
+      "canonical": "local-data\\creator-owner-current-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-owner-new-samples-20261005\\before\\normal\\Signal Desk.exe",
+      "sha256": "c779f889fe657264def7d13086b0d4b9041f0bfbeee1c673eeb01cd1f53f0e5a",
+      "canonical": "local-data\\creator-owner-current-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210896896,
+      "path": "local-data\\creator-owner-new-samples-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "c779f889fe657264def7d13086b0d4b9041f0bfbeee1c673eeb01cd1f53f0e5a",
+      "canonical": "local-data\\creator-owner-current-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 107455825,
+      "path": "local-data\\creator-owner-diagnosis-20261005\\before\\release\\app.asar",
+      "sha256": "fab25d6ec15bf311d33a2694ae06ab0e2fb683ddd3b414dc9e23b188d6a45b43",
+      "canonical": "local-data\\creator-owner-diagnosis-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107455825,
+      "path": "local-data\\creator-owner-diverse-20261005\\before\\normal\\app.asar",
+      "sha256": "fab25d6ec15bf311d33a2694ae06ab0e2fb683ddd3b414dc9e23b188d6a45b43",
+      "canonical": "local-data\\creator-owner-diagnosis-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 107455825,
+      "path": "local-data\\creator-owner-diverse-20261005\\before\\release\\app.asar",
+      "sha256": "fab25d6ec15bf311d33a2694ae06ab0e2fb683ddd3b414dc9e23b188d6a45b43",
+      "canonical": "local-data\\creator-owner-diagnosis-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 210897408,
+      "path": "local-data\\creator-owner-diagnosis-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "d47e7406d4fd800d12faf5ffa5b4c77cf8a24e075f665338d9d56fbff05c69fd",
+      "canonical": "local-data\\creator-owner-diagnosis-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210897408,
+      "path": "local-data\\creator-owner-diverse-20261005\\before\\normal\\Signal Desk.exe",
+      "sha256": "d47e7406d4fd800d12faf5ffa5b4c77cf8a24e075f665338d9d56fbff05c69fd",
+      "canonical": "local-data\\creator-owner-diagnosis-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 210897408,
+      "path": "local-data\\creator-owner-diverse-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "d47e7406d4fd800d12faf5ffa5b4c77cf8a24e075f665338d9d56fbff05c69fd",
+      "canonical": "local-data\\creator-owner-diagnosis-20261005\\before\\normal\\Signal Desk.exe"
+    },
+    {
+      "bytes": 107452877,
+      "path": "local-data\\creator-owner-native-20261005\\before\\release\\app.asar",
+      "sha256": "e0d23467e6867d5204f1bd39ff0e3f8f00650104f6688801918599adea441812",
+      "canonical": "local-data\\creator-owner-native-20261005\\before\\normal\\app.asar"
+    },
+    {
+      "bytes": 210897408,
+      "path": "local-data\\creator-owner-native-20261005\\before\\release\\Signal Desk.exe",
+      "sha256": "2353b7668e919cb456980f9991f278a7b960d1aee8b1a585d1e8b6e58a009aff",
+      "canonical": "local-data\\creator-owner-native-20261005\\before\\normal\\Signal Desk.exe"
+    }
+  ],
+  "totalReclaimedBytes": 14735624086,
+  "moved": [
+    {
+      "from": "docs/handoff/signal-desk-activity-load-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-activity-load-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-command-diagnostics-four-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-command-diagnostics-four-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-activity-2026-10-03.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-activity-2026-10-03.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-card-layout-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-card-layout-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-context-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-context-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-controlled-validation-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-controlled-validation-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-native-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-native-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-owner-current-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-owner-current-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-owner-diagnosis-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-owner-diagnosis-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-owner-diverse-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-owner-diverse-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-owner-native-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-owner-native-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-owner-new-samples-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-owner-new-samples-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-owner-six-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-owner-six-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-creator-zones-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-creator-zones-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-desktop-regression-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-desktop-regression-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-explicit-activity-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-explicit-activity-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-explicit-six-validation-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-explicit-six-validation-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-account-config-2026-10-03.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-account-config-2026-10-03.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-background-2026-10-01.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-background-2026-10-01.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-cold-start-2026-10-03.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-cold-start-2026-10-03.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-directory-2026-09-30.md",
+      "to": "docs/handoff/archive/2026-09/signal-desk-following-directory-2026-09-30.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-fast-flow-2026-10-01.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-fast-flow-2026-10-01.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-plan-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-plan-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-retention-fix-2026-10-01.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-retention-fix-2026-10-01.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-second-batch-2026-10-01.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-second-batch-2026-10-01.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-startup-fix-2026-10-03.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-startup-fix-2026-10-03.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-structured-2026-10-03.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-structured-2026-10-03.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-sync-redesign-handoff-2026-09-24.md",
+      "to": "docs/handoff/archive/2026-09/signal-desk-following-sync-redesign-handoff-2026-09-24.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-following-third-batch-2026-10-01.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-following-third-batch-2026-10-01.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-frontend-work-count-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-frontend-work-count-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-mingshi-diagnosis-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-mingshi-diagnosis-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-mmguo-two-response-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-mmguo-two-response-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-power-on-validation-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-power-on-validation-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-public-visibility-next-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-public-visibility-next-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-public-visible-count-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-public-visible-count-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-r8-client-isolated-path-2026-09-29.md",
+      "to": "docs/handoff/archive/2026-09/signal-desk-r8-client-isolated-path-2026-09-29.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-retained-failure-six-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-retained-failure-six-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-risk-rollback-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-risk-rollback-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-single-profile-response-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-single-profile-response-2026-10-05.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-unified-platform-2026-10-04.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-unified-platform-2026-10-04.md"
+    },
+    {
+      "from": "docs/handoff/signal-desk-window-close-2026-10-05.md",
+      "to": "docs/handoff/archive/2026-10/signal-desk-window-close-2026-10-05.md"
+    }
+  ],
+  "linksRewritten": 168,
+  "keptPackages": [
+    "release-following-background-final",
+    "release-stable-20261005"
+  ],
+  "uniqueBinaryVersionsRetained": true,
+  "originalBackupPathsRetained": true
+}

@@ -4,7 +4,7 @@ Add-Type -AssemblyName UIAutomationTypes
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type -TypeDefinition 'using System; using System.Runtime.InteropServices; public static class FollowingUpgrade { [DllImport("user32.dll")] public static extern bool SetForegroundWindow(IntPtr hWnd); [DllImport("user32.dll")] public static extern bool ShowWindow(IntPtr hWnd,int command); }'
 $windows=[System.Windows.Automation.AutomationElement]::RootElement.FindAll([System.Windows.Automation.TreeScope]::Children,[System.Windows.Automation.Condition]::TrueCondition)
-$window=@($windows|Where-Object{$_.Current.Name -match '.+ - Google Chrome$'})[0]
+$window=@($windows|Where-Object{$_.Current.Name -match 'Google Chrome'})[0]
 if(!$window){throw 'Chrome window unavailable'}
 $null=[FollowingUpgrade]::ShowWindow([IntPtr]$window.Current.NativeWindowHandle,9)
 $null=[FollowingUpgrade]::SetForegroundWindow([IntPtr]$window.Current.NativeWindowHandle)

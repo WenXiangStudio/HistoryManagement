@@ -1,0 +1,62 @@
+{
+  "recordedAt": "2026-10-05T07:30:56.694Z",
+  "version": "0.7.3",
+  "originalShortcut": true,
+  "mainInstances": 1,
+  "noRemoteDebugging": true,
+  "readiness": "ready",
+  "creators": 295,
+  "basicPending": 0,
+  "activity": {
+    "phase": "blocked",
+    "runId": "activity-67902b4eecace339e414fd95",
+    "message": "资料刷新已停止（ACCOUNT_NATIVE_NAVIGATION_MISMATCH），已有资料保留",
+    "total": 1,
+    "done": 0,
+    "succeeded": 0,
+    "failed": 0,
+    "currentName": null,
+    "remainingIds": [
+      -1000000080
+    ],
+    "startedAt": "2026-10-05T07:27:18.421Z",
+    "weekStart": "2026-10-04T16:00:00.000Z",
+    "weekEndExclusive": "2026-10-11T16:00:00.000Z",
+    "activeListRequests": 0,
+    "reusedNativePages": 0,
+    "observedNativeListRequests": 0,
+    "excludedNonPublicCount": 0,
+    "unverifiedVisibilityCount": 0,
+    "ownerVerificationRequired": true,
+    "requestAudit": {
+      "contextSource": "first-author-page",
+      "accountPageNavigations": 0,
+      "ownerVerificationGets": 0,
+      "authorHomepageNavigations": 1,
+      "networkRequestsObserved": 313,
+      "platformApiGetsObserved": 15,
+      "selfGetsObserved": 1,
+      "listGetsObserved": 1,
+      "ownerVerificationSource": "pending",
+      "nativeOwnerRequestsObserved": 1
+    },
+    "savedTotalMs": 3694.4193000000014
+  },
+  "noRunningCollection": true,
+  "allExtensionFileHashesMatch": true,
+  "executableAndAsarHashesMatch": true,
+  "temporaryGuardRemoved": true,
+  "restoration": {
+    "forcedValidationShutdown": true,
+    "productionPackageChanged": false,
+    "temporaryGuardRemoved": true,
+    "version": "0.7.3",
+    "normalShortcutStarted": true
+  },
+  "ui": {
+    "librarySelected": true,
+    "collectionButtonInvoked": false,
+    "normalWindowVisible": true,
+    "creatorLabels": 295
+  }
+}

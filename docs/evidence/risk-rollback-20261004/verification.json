@@ -1,0 +1,101 @@
+{
+  "scope": "Roll back every runtime/source change introduced during the restriction-risk optimization round; retain databases.",
+  "baseline": "Original extension 0.6.4, frontend works-tab count and weekly metadata implementation before optimization.",
+  "runtimeHashes": {
+    "executable": {
+      "baseline": "67857459ef462dcb4ef6fd932129a3d9f42935cfd06ee43f201a1cfff2c29084",
+      "restored": "67857459ef462dcb4ef6fd932129a3d9f42935cfd06ee43f201a1cfff2c29084"
+    },
+    "asar": {
+      "baseline": "2956536551dd8d172f1672aeb24aa13ee6d7de924a85b1852c9f3085c5476b3b",
+      "restored": "2956536551dd8d172f1672aeb24aa13ee6d7de924a85b1852c9f3085c5476b3b"
+    }
+  },
+  "extensionFilesMatchBaseline": true,
+  "sourceBuildCriticalFilesMatchOriginalAsar": true,
+  "runtime": {
+    "version": "0.6.4",
+    "online": true,
+    "readiness": "ready",
+    "noRunningCollection": true
+  },
+  "ui": {
+    "recordedAt": "2026-10-04T11:31:08.6014906Z",
+    "singleApp": true,
+    "noRemoteDebugArguments": true,
+    "syncEnabled": true,
+    "refreshAllEnabled": true,
+    "collectionButtonsClicked": false,
+    "blankChromeWindowsRemaining": 0
+  },
+  "storage": {
+    "integrity": "ok",
+    "foreignKeyViolations": 0,
+    "uniqueCreators": 200,
+    "preservation": {
+      "creator_activity_attempts": {
+        "originalRows": 492,
+        "currentRows": 492,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_runs": {
+        "originalRows": 18,
+        "currentRows": 18,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_snapshots": {
+        "originalRows": 492,
+        "currentRows": 492,
+        "originalRowsUnchanged": true
+      },
+      "directory_creators": {
+        "originalRows": 0,
+        "currentRows": 0,
+        "originalRowsUnchanged": true
+      },
+      "directory_runs": {
+        "originalRows": 0,
+        "currentRows": 0,
+        "originalRowsUnchanged": true
+      },
+      "following_account_owners": {
+        "originalRows": 1,
+        "currentRows": 1,
+        "originalRowsUnchanged": true
+      },
+      "visible_directory_creators": {
+        "originalRows": 200,
+        "currentRows": 200,
+        "originalRowsUnchanged": true
+      },
+      "visible_directory_runs": {
+        "originalRows": 13,
+        "currentRows": 13,
+        "originalRowsUnchanged": true
+      }
+    },
+    "accountConfigurationUnchanged": true
+  },
+  "currentRows": {
+    "creator_activity_attempts": 492,
+    "creator_activity_runs": 18,
+    "creator_activity_snapshots": 492,
+    "directory_creators": 0,
+    "directory_runs": 0,
+    "following_account_owners": 1,
+    "visible_directory_creators": 200,
+    "visible_directory_runs": 13
+  },
+  "validation": {
+    "applicationTests": 255,
+    "applicationFiles": 28,
+    "runnerTests": 9,
+    "typescript": "passed",
+    "build": "passed",
+    "packageRenderer": "passed",
+    "projectBoundaries": "passed"
+  },
+  "noNewFollowingOrActivityCollectionStarted": true,
+  "speedNotRetested": true,
+  "preservedHistoryIncludesOptimizationValidationRows": true
+}

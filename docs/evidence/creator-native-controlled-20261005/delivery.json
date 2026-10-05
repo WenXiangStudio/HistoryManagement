@@ -1,0 +1,49 @@
+{
+  "recordedAt": "2026-10-05T06:11:40.082Z",
+  "normalShortcut": true,
+  "mainInstances": 1,
+  "noRemoteDebugging": true,
+  "version": "0.7.1",
+  "readiness": "ready",
+  "creators": 295,
+  "basicPending": 0,
+  "activity": {
+    "phase": "completed",
+    "runId": "activity-071329a88141e0c5828f422b",
+    "message": "已确认 1 位，0 位资料待补齐；原资料保留",
+    "total": 1,
+    "done": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "currentName": null,
+    "remainingIds": [],
+    "startedAt": "2026-10-05T06:03:51.886Z",
+    "weekStart": "2026-10-04T16:00:00.000Z",
+    "weekEndExclusive": "2026-10-11T16:00:00.000Z",
+    "activeListRequests": 0,
+    "reusedNativePages": 1,
+    "observedNativeListRequests": 1,
+    "excludedNonPublicCount": 0,
+    "unverifiedVisibilityCount": 0,
+    "savedTotalMs": 6504.200900000054,
+    "displayedTotalMs": 6644.612800000003
+  },
+  "noRunningCollection": true,
+  "allOriginalExtensionHashesMatch": true,
+  "temporaryValidationModuleRemoved": true,
+  "sourceProductCodeUnchanged": true,
+  "productionPackageUnchanged": true,
+  "restoration": {
+    "windowCloseRequested": false,
+    "closedValidationRoot": 13728,
+    "productionPackageChanged": false,
+    "normalShortcutStarted": true,
+    "forcedAfterTenSeconds": true
+  },
+  "ui": {
+    "collectionButtonsInvoked": false,
+    "normalWindowVisible": true,
+    "libraryNavigationInvoked": true,
+    "creatorAnalyzedLabels": 295
+  }
+}

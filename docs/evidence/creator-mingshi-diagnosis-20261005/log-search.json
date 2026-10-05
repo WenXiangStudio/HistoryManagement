@@ -1,0 +1,28 @@
+{
+  "applicationEventCount": 0,
+  "note": "No events is not proof that no debugger disconnection occurred",
+  "chromeArtifacts": [
+    {
+      "exists": false,
+      "relativePath": "chrome_debug.log",
+      "recentFiles": []
+    },
+    {
+      "exists": true,
+      "relativePath": "Crashpad\\reports",
+      "recentFiles": []
+    },
+    {
+      "exists": false,
+      "relativePath": "Crashpad\\pending",
+      "recentFiles": []
+    },
+    {
+      "exists": false,
+      "relativePath": "Crashpad\\completed",
+      "recentFiles": []
+    }
+  ],
+  "checkedAt": "2026-10-05T14:13:00.5442244Z",
+  "crashOrHangEvents": []
+}

@@ -1,0 +1,237 @@
+{
+  "contract": "signaldesk-activity-failure/v1",
+  "creatorId": -1000000458,
+  "secUid": "MS4wLjABAAAA0usjisX7XYa1Iii0ryNZUvevuNTxxBFDyIVt_wY5pPw-5LRTg4pUKmJmXClTCUvQ",
+  "capturedAt": "2026-10-05T13:57:26.266Z",
+  "errorCode": "ACTIVITY_PAGE_EXECUTION_FAILED",
+  "stage": "reading-list",
+  "page": null,
+  "pageError": "UNAVAILABLE",
+  "screenshot": null,
+  "screenshotError": "UNAVAILABLE",
+  "network": {
+    "events": [
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "POST",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "works-list",
+        "method": "GET",
+        "match": "target",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "POST",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "profile",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "self",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "GET",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      },
+      {
+        "endpoint": "other-api",
+        "method": "POST",
+        "match": "other-endpoint",
+        "phase": "page",
+        "stage": "loaded",
+        "httpStatus": 200,
+        "json": "mime-json"
+      }
+    ],
+    "documents": [
+      {
+        "kind": "committed",
+        "pathRelation": "target",
+        "childSession": false
+      },
+      {
+        "kind": "same-document",
+        "pathRelation": "target",
+        "childSession": false
+      }
+    ],
+    "dropped": 0,
+    "scriptExceptions": 2
+  },
+  "attempts": [
+    {
+      "cursor": 0,
+      "stage": "execution",
+      "httpStatus": null,
+      "json": "pending",
+      "errorCode": "ACTIVITY_PAGE_EXECUTION_FAILED"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "source": "local-data/creator-explicit-six-20261005/guarded-extension/creator-activity-runner.js",
+  "method": "Execute exact archived catch block with synthetic CDP outcomes",
+  "platformRequests": 0,
+  "results": [
+    {
+      "underlying": "debugger detached",
+      "stored": "ACTIVITY_PAGE_EXECUTION_FAILED",
+      "attempt": {
+        "cursor": 0,
+        "stage": "execution",
+        "httpStatus": null,
+        "json": "pending",
+        "errorCode": "ACTIVITY_PAGE_EXECUTION_FAILED"
+      }
+    },
+    {
+      "underlying": "execution context destroyed",
+      "stored": "ACTIVITY_PAGE_EXECUTION_FAILED",
+      "attempt": {
+        "cursor": 0,
+        "stage": "execution",
+        "httpStatus": null,
+        "json": "pending",
+        "errorCode": "ACTIVITY_PAGE_EXECUTION_FAILED"
+      }
+    },
+    {
+      "underlying": "page script exception",
+      "stored": "ACTIVITY_PAGE_EXECUTION_FAILED",
+      "attempt": {
+        "cursor": 0,
+        "stage": "execution",
+        "httpStatus": null,
+        "json": "pending",
+        "errorCode": "ACTIVITY_PAGE_EXECUTION_FAILED"
+      }
+    },
+    {
+      "underlying": "missing returned value",
+      "stored": "ACTIVITY_PAGE_EXECUTION_FAILED",
+      "attempt": {
+        "cursor": 0,
+        "stage": "execution",
+        "httpStatus": null,
+        "json": "pending",
+        "errorCode": "ACTIVITY_PAGE_EXECUTION_FAILED"
+      }
+    }
+  ],
+  "conclusion": "The original persisted error cannot distinguish these causes. This does not identify which happened."
+}

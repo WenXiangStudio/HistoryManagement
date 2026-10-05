@@ -81,7 +81,7 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
   ipcMain.handle('creators:list', (_event, search = '') => {
     const existing = requireServices().database.getCreators(String(search))
     return followingSync?.hasDirectory()
-      ? [...followingSync.store.list(String(search)), ...existing.filter((entry) => entry.isDemo)] : existing
+      ? [...followingSync.listCreators(String(search)), ...existing.filter((entry) => entry.isDemo)] : existing
   })
   ipcMain.handle('creators:update', (_event, creatorId: number, input) => {
     if (creatorId < 0 && followingSync) followingSync.store.update(creatorId, input)
@@ -89,12 +89,19 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
     return { ok: true }
   })
   ipcMain.handle('jobs:list', () => requireServices().database.getJobs())
-  ipcMain.handle('following:refresh', (_event, creatorLimit = 10) => {
-    if (![10,20].includes(creatorLimit)) throw new Error('请选择 10 或 20 位新博主')
+  ipcMain.handle('following:refresh', (_event, resume = false) => {
     if (!followingSync) throw new Error('关注同步服务未就绪')
-    return followingSync.start(creatorLimit)
+    return followingSync.start(undefined,Boolean(resume))
   })
+  ipcMain.handle('following:basic-start', () => followingSync?.startBasic())
+  ipcMain.handle('following:basic-cancel', () => followingSync?.cancelBasic())
   ipcMain.handle('following:status', () => followingSync?.status())
+  ipcMain.handle('creators:activity-refresh', (_event,creatorId?:number,resume=false,creatorIds?:number[]) => {
+    if(creatorId!==undefined&&(!Number.isSafeInteger(creatorId)||creatorId>=0))throw new Error('博主目录身份无效')
+    return followingSync?.startActivity(creatorId,Boolean(resume),creatorIds)
+  })
+  ipcMain.handle('creators:activity-cancel', () => followingSync?.cancelActivity())
+  ipcMain.handle('creators:activity-rendered', (_event,runId:string) => followingSync?.activity.rendered(runId))
   ipcMain.handle('following:configuration', () => followingSync?.configuration())
   ipcMain.handle('following:configuration-save', (_event,input) => followingSync?.saveConfiguration(input))
   ipcMain.handle('following:account-switch', (_event,secUid:string) => followingSync?.switchAccount(secUid))
@@ -189,7 +196,7 @@ async function startDesktop(): Promise<void> {
   const userData = app.getPath('userData')
   if (process.env.SIGNAL_DESK_SMOKE_TEST === '1') isolatedPilot = new IsolatedPilotService({ tempRoot: join(userData, 'isolated-r8') })
   database = new AppDatabase(join(userData, 'signal-desk.sqlite'))
-  followingSync = new FollowingSyncService(userData, () => mainWindow?.webContents.send('data:changed', { source: 'following-directory' }))
+  followingSync = new FollowingSyncService(userData, () => {if(mainWindow&&!mainWindow.webContents.isDestroyed())mainWindow.webContents.send('data:changed', { source: 'following-directory' })})
   if(process.env.SIGNAL_DESK_SMOKE_TEST !== '1')await followingSync.initialize()
   bridge = new BridgeServer(userData)
   await bridge.start()

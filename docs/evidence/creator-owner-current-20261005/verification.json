@@ -1,0 +1,363 @@
+{
+  "recordedAt": "2026-10-05T08:58:37.879Z",
+  "sample": {
+    "name": "灵鲸科技袁亮",
+    "runId": "activity-1560b316d6b46be3457d0f69",
+    "phase": "completed",
+    "total": 630,
+    "weekly": 0,
+    "latest": null,
+    "coverage": "week-boundary",
+    "records": 21,
+    "publicRecords": 21,
+    "pinned": 3,
+    "types": {
+      "0": 21
+    },
+    "requestAudit": {
+      "contextSource": "first-author-page",
+      "accountPageNavigations": 0,
+      "ownerVerificationGets": 1,
+      "authorHomepageNavigations": 1,
+      "networkRequestsObserved": 310,
+      "platformApiGetsObserved": 13,
+      "selfGetsObserved": 1,
+      "listGetsObserved": 1,
+      "ownerVerificationSource": "active-get",
+      "nativeOwnerRequestsObserved": 0,
+      "ownerSourceDiagnostics": {
+        "contract": "signaldesk-activity-owner-diagnostics/v1",
+        "navigationBound": true,
+        "navigationFailed": false,
+        "navigationLoaderPresent": true,
+        "navigationFramePresent": true,
+        "observedRequests": 0,
+        "documents": [
+          {
+            "document": "first-author",
+            "redirect": false,
+            "loader": "match",
+            "frame": "match"
+          },
+          {
+            "document": "first-author",
+            "redirect": false,
+            "loader": "different",
+            "frame": "match"
+          },
+          {
+            "document": "other-origin",
+            "redirect": false,
+            "loader": "different",
+            "frame": "different"
+          }
+        ],
+        "currentDocument": {
+          "document": "first-author",
+          "committed": true,
+          "loader": "different",
+          "frame": "match"
+        },
+        "transitions": [
+          {
+            "document": "first-author",
+            "loader": "match",
+            "frame": "match"
+          },
+          {
+            "document": "first-author",
+            "loader": "different",
+            "frame": "match"
+          }
+        ],
+        "requests": []
+      }
+    },
+    "pages": 1,
+    "extraWorksGets": 0,
+    "appClickToDisplayedMs": 4286.591199999995,
+    "independentClickToAvailableMs": 4463.800000011921,
+    "independentWeeklyRecountPassed": true,
+    "cards": 295,
+    "avatars": 295
+  },
+  "excludedPreviousIdentities": [
+    "杰森Jason",
+    "Xi Xu",
+    "口罩哥直播号",
+    "Boujoy",
+    "外行人搞AI",
+    "浙大猫学长",
+    "每日英语",
+    "划水的青蛙",
+    "周话多GOGOGO"
+  ],
+  "proofBoundary": {
+    "mainDocumentTransitionObserved": true,
+    "nativeOwnerAbsentAtDecision": true,
+    "activeOwnerVerificationPassed": true,
+    "nativeReuseAfterTransitionLiveProven": false,
+    "additionalPlatformTestsAfterThisSample": 0,
+    "finalHardeningAfterLive": "Require an observed commit even on the initial page, retain rejection of all observed errors/stale sources, recheck pending navigation during body waiting; backend validates current-document diagnostics before native proof."
+  },
+  "version": "0.7.5",
+  "authorizedLimits": {
+    "authors": 1,
+    "pagesPerAuthor": 2,
+    "extraWorksGets": 2,
+    "oneAttemptOnly": true,
+    "stopOnFailure": true
+  },
+  "validation": {
+    "applicationTests": 273,
+    "applicationFiles": 31,
+    "browserTests": 43,
+    "relatedApplicationTestsIncluded": 30,
+    "temporaryGuardTests": 1,
+    "typeScript": "passed",
+    "projectBoundaries": "passed",
+    "build": "passed",
+    "packagedRenderer": "passed"
+  },
+  "implementation": {
+    "sourceBinding": "Current committed main frame of the first author page; same tab/run/frame/author; matching owner loader and both account IDs.",
+    "addedPlatformGets": 0,
+    "addedAuthorNavigations": 0,
+    "addedLocalDebuggerCommands": "Page.enable once before first-author navigation",
+    "explicitOwnerFallback": "Only when no native self request was observed and the main document is committed/stable.",
+    "finalGuardTighteningAfterSample": true,
+    "automaticRetry": false,
+    "newNativeProofDiagnosticsCheckedByBackend": true
+  },
+  "preservation": {
+    "recordedAt": "2026-10-05T08:58:37.868Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 521,
+          "currentRows": 522,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 31,
+          "currentRows": 32,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 521,
+          "currentRows": 522,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "delivery": {
+    "recordedAt": "2026-10-05T09:00:04.177Z",
+    "version": "0.7.5",
+    "originalShortcut": true,
+    "mainInstances": 1,
+    "noRemoteDebugging": true,
+    "readiness": "ready",
+    "creators": 295,
+    "basicPending": 0,
+    "noRunningCollection": true,
+    "latestActivityPhase": "completed",
+    "allExtensionFileHashesMatch": true,
+    "executableAndAsarHashesMatch": true,
+    "temporaryModulesRemoved": true,
+    "restoration": {
+      "version": "0.7.5",
+      "normalShortcutStarted": true,
+      "sourceVerificationPolicyChanged": true,
+      "forcedValidationShutdown": true,
+      "temporaryGuardRemoved": true,
+      "productionPackageChanged": true,
+      "extraPlatformRequestsAdded": 0
+    }
+  }
+}

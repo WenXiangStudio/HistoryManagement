@@ -1,0 +1,100 @@
+{
+  "contract": "signaldesk-structured-following/v1",
+  "runId": "following-20261004041944-3fc7dec08ea0e5cc",
+  "collectedAt": "2026-10-04T04:19:46.924Z",
+  "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+  "ownerUid": "2131296669408333",
+  "ownerNickname": "无限♾️进步",
+  "sourceUrl": "https://www.douyin.com/user/self",
+  "sourceKind": "structured-following-api",
+  "endpointPath": "/aweme/v1/web/user/following/list/",
+  "hasMore": true,
+  "pageCount": 9,
+  "creators": [
+    {
+      "uid": "2141457830379949",
+      "secUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+      "nickname": "Boujoy",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_okpACu9NCCOEWAF9mApIecKAAvA6gufC63bDEk.jpeg?from=2956013662",
+      "signature": "感恩",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5"
+    },
+    {
+      "uid": "3035124260682812",
+      "secUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+      "nickname": "直男山禾",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_9bcba3d86f924153864523764bac95ff.jpeg?from=2956013662",
+      "signature": "👆🏻就职于一家AI公司\n🎈分享各种Ai工具的使用技巧\n👀关注我，早一步踏进Ai时代\n领🎁去绿色软件搜【直男山禾】",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn"
+    },
+    {
+      "uid": "3474930275464078",
+      "secUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+      "nickname": "痴五安chammy",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_73214579d917897fad4e3d56121c0fb4.jpeg?from=2956013662",
+      "signature": "👦🏻165cm 52kg 小个子55分身材\n✌️165穿成179 绝不无可能！\n视频同款都在橱窗的对应【清单】没穿过的不会上橱窗！！\n粉丝V：chammy666\n🈴 yuntunn\n可能会有日常：@川桑儿",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h"
+    },
+    {
+      "uid": "820694472199033",
+      "secUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+      "nickname": "笨鸟怎么飞",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_o89h3SAxsIA3fAZMA4AfQGIOetBDHEBa3Gb7zL.jpeg?from=2956013662",
+      "signature": "医疗科技财经都能扯一扯的笨鸟一枚\n平台就这一个号，不主动加人",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k"
+    },
+    {
+      "uid": "211552108032775",
+      "secUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+      "nickname": "黄大圣叨叨叨",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_58b7a29483bd415da82c9688c61b3f0e.jpeg?from=2956013662",
+      "signature": "博主周中要上班\n每周末更新\n日常讲财经|经常锐评川宝|最近常讲周期",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4"
+    },
+    {
+      "uid": "105246634576",
+      "secUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+      "nickname": "小德MOMO",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_3bac6620bdd23099e1aab8eec67c75fd.jpeg?from=2956013662",
+      "signature": "每周日下午6点更新视频\n梦想是可以得到你的关注！如果对视频内容有疑问或者建议，欢迎加入小德的会员群～",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k"
+    },
+    {
+      "uid": "18560574259",
+      "secUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+      "nickname": "派大和小葵",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/mosaic-legacy_2f4a60003c69b54dfb3d0.jpeg?from=2956013662",
+      "signature": "商务合作➕wx：paidakuwan",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4"
+    },
+    {
+      "uid": "7546511620906812474",
+      "secUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+      "nickname": "亦玖",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_7a27f6b9c65c2134b41ae68071a3ae6a.jpeg?from=2956013662",
+      "signature": "白天是生活\n夜晚是梦想\n挣钱养梦，为自己干杯",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1"
+    },
+    {
+      "uid": "100441820893",
+      "secUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+      "nickname": "彭春花本人",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_598310fc5def4930916fd76db4774f44.jpeg?from=2956013662",
+      "signature": "自我养育幸存者｜坚持写日记20年｜独居2年+｜聊心理，聊文化，知识的终点就是使用\n合作联系：chybtalk",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA"
+    },
+    {
+      "uid": "4147012152328413",
+      "secUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+      "nickname": "大要",
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b59398e92819a13c303bb012d275db01.jpeg?from=2956013662",
+      "signature": "咱有专门改善发音的系统课程：yaosleepy",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw"
+    }
+  ],
+  "projectionSha256": "da534c4b030bb7a408fd2723272ca568f14c2419cc387ab64254929fc04be9ba",
+  "activeApiRequests": 10,
+  "workResponseBodiesRead": 0,
+  "domQueries": 0,
+  "uiClicks": 0
+}

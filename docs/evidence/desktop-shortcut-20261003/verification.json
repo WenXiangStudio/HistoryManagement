@@ -1,0 +1,74 @@
+{
+  "recordedAt": "2026-10-03 12:09:10 UTC",
+  "operation": "Update the existing desktop shortcut to the current validated APP and persistent data directory",
+  "shortcut": {
+    "path": "C:\\Users\\Administrator\\Desktop\\Signal Desk.lnk",
+    "previousTargetPath": "E:\\InforWork\\Signal Desk\\Signal Desk.exe",
+    "targetPath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-background-final\\win-unpacked\\Signal Desk.exe",
+    "arguments": "--user-data-dir=\"C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\"",
+    "workingDirectory": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-background-final\\win-unpacked",
+    "iconLocation": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-background-final\\win-unpacked\\Signal Desk.exe,0",
+    "readbackVerified": true,
+    "previousShortcutBackedUpLocally": true
+  },
+  "launch": {
+    "viaDesktopShortcut": true,
+    "previousAppClosedNormally": true,
+    "processId": 7440,
+    "executablePath": "D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-background-final\\win-unpacked\\Signal Desk.exe",
+    "commandLine": "\"D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-background-final\\win-unpacked\\Signal Desk.exe\" --user-data-dir=\"C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\"",
+    "remoteDebuggingArgument": false,
+    "mainWindowVisible": true,
+    "newPreparationSession": true,
+    "connection": {
+      "online": true,
+      "version": "0.5.2",
+      "expectedVersion": "0.5.2"
+    },
+    "readinessPhase": "ready",
+    "creatorCount": 170,
+    "preparationServiceMs": 2446.395,
+    "structuredApiMs": 804.8000000007451,
+    "preparationApiRequests": 2,
+    "domQueries": 0,
+    "uiClicks": 0
+  },
+  "storage": {
+    "tables": {
+      "directory_runs": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "unchanged": true
+      },
+      "directory_creators": {
+        "rows": 0,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "unchanged": true
+      },
+      "visible_directory_runs": {
+        "rows": 11,
+        "sha256": "fee0bc67aeb11d1e6e8cc4705e0faf0129c26fd36529b1645528fadc055a2296",
+        "unchanged": true
+      },
+      "visible_directory_creators": {
+        "rows": 170,
+        "sha256": "5ce881d944dfba706da9ac1b9efef53838b2775b32e4cbeb7afd1cd6db892f05",
+        "unchanged": true
+      },
+      "following_account_owners": {
+        "rows": 1,
+        "sha256": "facbb7417026a8f86d5bba984a95760145eca1355fd3445eaad235f7be7b397e",
+        "unchanged": true
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0,
+    "newCollectionStarted": false
+  },
+  "validationScope": {
+    "appRelaunchViaShortcut": "passed",
+    "chromeWasAlreadyRunning": true,
+    "fullComputerReboot": "pending-user-validation"
+  }
+}

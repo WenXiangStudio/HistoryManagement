@@ -1,0 +1,64 @@
+{
+  "RecordedAt": "2026-10-04T04:15:16.6738690Z",
+  "ReportedLastBootUpTime": "2026-10-03T14:37:57.5000000+08:00",
+  "BootEventTime": "2026-10-04T12:10:11.7136078+08:00",
+  "BootTypeEvent": "引导类型为 0x1。",
+  "UserReportedComputerRestart": true,
+  "InitialAppProcessCount": 0,
+  "InitialChromeProcesses": [
+    {
+      "ProcessId": 10768,
+      "ParentProcessId": 14576,
+      "CreationDate": "2026-10-04T12:11:21.5721430+08:00"
+    },
+    {
+      "ProcessId": 9596,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:21.7153440+08:00"
+    },
+    {
+      "ProcessId": 6216,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:21.8917240+08:00"
+    },
+    {
+      "ProcessId": 5080,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:21.8950980+08:00"
+    },
+    {
+      "ProcessId": 16348,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:21.9542690+08:00"
+    },
+    {
+      "ProcessId": 14172,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:22.0385300+08:00"
+    },
+    {
+      "ProcessId": 14072,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:22.0401270+08:00"
+    },
+    {
+      "ProcessId": 13140,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:24.8163240+08:00"
+    },
+    {
+      "ProcessId": 4300,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:32.6565310+08:00"
+    },
+    {
+      "ProcessId": 14244,
+      "ParentProcessId": 10768,
+      "CreationDate": "2026-10-04T12:11:33.1814840+08:00"
+    }
+  ],
+  "Explorer": {
+    "ProcessId": 14576,
+    "CreationDate": "2026-10-04T12:10:15.3480530+08:00"
+  }
+}

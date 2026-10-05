@@ -1,0 +1,284 @@
+{
+  "recordedAt": "2026-10-05T07:30:05.808Z",
+  "version": "0.7.3",
+  "scope": {
+    "maxAuthors": 3,
+    "maxPagesPerAuthor": 2,
+    "maxExtraListGets": 2,
+    "approvedAuthors": [
+      "外行人搞AI",
+      "浙大猫学长",
+      "杰森Jason"
+    ],
+    "actualClicks": 1,
+    "unattemptedAuthors": [
+      "浙大猫学长",
+      "杰森Jason"
+    ],
+    "retryCount": 0,
+    "allOrResumeRuns": 0,
+    "followingRuns": 0
+  },
+  "finalDeliveredOrderingVerified": true,
+  "sourceAndDeliveredPackageUnchanged": true,
+  "outcome": {
+    "name": "外行人搞AI",
+    "runId": "activity-67902b4eecace339e414fd95",
+    "phase": "blocked",
+    "errorCode": "ACCOUNT_NATIVE_NAVIGATION_MISMATCH",
+    "done": 0,
+    "ownerProofAccepted": false,
+    "authorResultPersisted": false,
+    "newCapture": false,
+    "newSnapshot": false,
+    "newAttempt": false,
+    "previousTotalRetained": 198,
+    "currentWeekly": "pending",
+    "ui": {
+      "count": "198",
+      "weekly": "本周更新待检查",
+      "latest": null,
+      "zone": "creator-zone-none"
+    },
+    "clickToStoppedMs": 3694.4193000000014,
+    "independentlyObservedClickToStoppedMs": 4057.5,
+    "successClickToAvailableMs": null,
+    "requestAudit": {
+      "contextSource": "first-author-page",
+      "accountPageNavigations": 0,
+      "ownerVerificationGets": 0,
+      "authorHomepageNavigations": 1,
+      "networkRequestsObserved": 313,
+      "platformApiGetsObserved": 15,
+      "selfGetsObserved": 1,
+      "listGetsObserved": 1,
+      "ownerVerificationSource": "pending",
+      "nativeOwnerRequestsObserved": 1
+    }
+  },
+  "diagnosis": {
+    "confirmed": "Network.requestWillBeSent account request loaderId or frameId did not satisfy the identifiers returned by Page.navigate.",
+    "notEstablished": "Which identifier differed or was absent, the values, and whether this was a legitimate new document/redirect/worker-origin request or an unrelated request.",
+    "responseStatusAndIdentityNotRecorded": true,
+    "nextInvestigation": "Add value-free diagnostics for loader/frame presence and equality, navigation transitions and response outcome; reproduce only under a new small explicit validation scope. Do not remove source validation solely to pass."
+  },
+  "preservation": {
+    "recordedAt": "2026-10-05T07:27:38.588Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 519,
+          "currentRows": 519,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 27,
+          "currentRows": 28,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 519,
+          "currentRows": 519,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "validation": {
+    "temporaryGuardTests": 4,
+    "additionalProductCodeEdits": false,
+    "additionalLiveRuns": 0,
+    "productBaseline": "Previously passed 272 application tests and 32 browser tests; this real failure adds a missing integration scenario."
+  },
+  "measurementBoundary": "313 request events and 15 platform API GET events in attached-tab window, including native/cache/redirect traffic. Not all browser traffic or network transfers.",
+  "limitations": [
+    "No new successful author reading. This batch cannot extend positive evidence for native owner reuse or weekly counting.",
+    "Other approved authors were not collected after the source-check failure.",
+    "Previous Boujoy native-owner success remains valid for that sample; generalized robustness is not established."
+  ]
+}

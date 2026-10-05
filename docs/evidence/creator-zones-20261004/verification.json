@@ -1,0 +1,172 @@
+{
+  "recordedAt": "2026-10-04T06:11:35.384Z",
+  "ui": {
+    "recordedAt": "2026-10-04T06:05:50.890Z",
+    "normal": {
+      "at": 1791093946627,
+      "counts": {
+        "today": 0,
+        "week": 100,
+        "none": 80
+      },
+      "headings": {
+        "today": "今日更新",
+        "week": "本周有更新",
+        "none": "今日 / 本周暂无更新"
+      },
+      "total": 180,
+      "unique": 180,
+      "noHorizontalOverflow": true,
+      "noBiographyOverlap": true,
+      "analyzedPreserved": true
+    },
+    "compact": {
+      "at": 1791093947334,
+      "counts": {
+        "today": 0,
+        "week": 100,
+        "none": 80
+      },
+      "headings": {
+        "today": "今日更新",
+        "week": "本周有更新",
+        "none": "今日 / 本周暂无更新"
+      },
+      "total": 180,
+      "unique": 180,
+      "noHorizontalOverflow": true,
+      "noBiographyOverlap": true,
+      "analyzedPreserved": true
+    },
+    "midnight": {
+      "before": {
+        "at": 1791043198631,
+        "counts": {
+          "today": 27,
+          "week": 73,
+          "none": 80
+        },
+        "headings": {
+          "today": "今日更新",
+          "week": "本周有更新",
+          "none": "今日 / 本周暂无更新"
+        },
+        "total": 180,
+        "unique": 180,
+        "noHorizontalOverflow": true,
+        "noBiographyOverlap": true,
+        "analyzedPreserved": true
+      },
+      "after": {
+        "at": 1791043200496,
+        "counts": {
+          "today": 0,
+          "week": 100,
+          "none": 80
+        },
+        "headings": {
+          "today": "今日更新",
+          "week": "本周有更新",
+          "none": "今日 / 本周暂无更新"
+        },
+        "total": 180,
+        "unique": 180,
+        "noHorizontalOverflow": true,
+        "noBiographyOverlap": true,
+        "analyzedPreserved": true
+      },
+      "automaticTimerPassed": true
+    },
+    "rollover": {
+      "view": {
+        "at": 1791129600185,
+        "counts": {
+          "today": 0,
+          "week": 0,
+          "none": 180
+        },
+        "headings": {
+          "today": "今日更新",
+          "week": "本周有更新",
+          "none": "今日 / 本周暂无更新"
+        },
+        "total": 180,
+        "unique": 180,
+        "noHorizontalOverflow": true,
+        "noBiographyOverlap": true,
+        "analyzedPreserved": true
+      },
+      "allPending": true,
+      "newPeriod": true,
+      "publicTotalsRetained": true
+    },
+    "search": {
+      "matched": 1,
+      "restored": 180
+    },
+    "newCollectionStarted": false,
+    "rendererClockRestored": true
+  },
+  "storage": {
+    "tableComparison": {
+      "creator_activity_attempts": {
+        "rows": 370,
+        "unchanged": true
+      },
+      "creator_activity_runs": {
+        "rows": 8,
+        "unchanged": true
+      },
+      "creator_activity_snapshots": {
+        "rows": 370,
+        "unchanged": true
+      },
+      "directory_creators": {
+        "rows": 0,
+        "unchanged": true
+      },
+      "directory_runs": {
+        "rows": 0,
+        "unchanged": true
+      },
+      "following_account_owners": {
+        "rows": 1,
+        "unchanged": true
+      },
+      "visible_directory_creators": {
+        "rows": 180,
+        "unchanged": true
+      },
+      "visible_directory_runs": {
+        "rows": 12,
+        "unchanged": true
+      }
+    },
+    "accountConfigurationUnchanged": true,
+    "integrity": {
+      "integrity_check": "ok"
+    },
+    "foreignKeyViolations": 0
+  },
+  "desktopReopen": {
+    "RecordedAt": "2026-10-04T14:08:47.6588888+08:00",
+    "DesktopShortcutReopen": true,
+    "SectionHeaders": [
+      "今日更新",
+      "本周有更新",
+      "今日 / 本周暂无更新"
+    ],
+    "AnalyzedLabels": 180,
+    "NoDebugArguments": true,
+    "PackageMatchesStaging": true
+  },
+  "checks": {
+    "applicationFiles": 28,
+    "applicationTests": 248,
+    "typeScript": true,
+    "productionBuild": true,
+    "package": true,
+    "stagedAndDeliveredRendererSmoke": true,
+    "projectBoundaries": true
+  }
+}

@@ -1,0 +1,261 @@
+{
+  "runId": "activity-9dcb87e22ac7aa17ebbcb459",
+  "result": {
+    "phase": "completed",
+    "done": 1,
+    "requestAudit": {
+      "contextSource": "first-author-page",
+      "accountPageNavigations": 0,
+      "ownerVerificationGets": 0,
+      "authorHomepageNavigations": 1,
+      "networkRequestsObserved": 404,
+      "platformApiGetsObserved": 18,
+      "selfGetsObserved": 1,
+      "listGetsObserved": 1,
+      "ownerVerificationSource": "native-network",
+      "nativeOwnerRequestsObserved": 1
+    }
+  },
+  "events": [
+    {
+      "ms": 38,
+      "method": "frame-before",
+      "loader": "loader-0",
+      "frame": "frame-1",
+      "session": null,
+      "page": "blank"
+    },
+    {
+      "ms": 50,
+      "method": "Network.requestWillBeSent",
+      "kind": "document",
+      "request": "request-2",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "document": "first-author",
+      "type": "Document",
+      "initiator": "other",
+      "redirect": false
+    },
+    {
+      "ms": 453,
+      "method": "Network.responseReceived",
+      "kind": "document",
+      "request": "request-2",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "status": 200,
+      "serviceWorker": false,
+      "cache": false,
+      "failed": false
+    },
+    {
+      "ms": 453,
+      "method": "navigate-result",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "error": false
+    },
+    {
+      "ms": 455,
+      "method": "Page.frameNavigated",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "parent": null,
+      "page": "first-author"
+    },
+    {
+      "ms": 749,
+      "method": "Page.navigatedWithinDocument",
+      "loader": null,
+      "frame": "frame-1",
+      "session": null,
+      "page": "first-author"
+    },
+    {
+      "ms": 939,
+      "method": "Network.loadingFinished",
+      "kind": "document",
+      "request": "request-2",
+      "loader": null,
+      "frame": null,
+      "session": null,
+      "failed": false
+    },
+    {
+      "ms": 2286,
+      "method": "Network.requestWillBeSent",
+      "kind": "works",
+      "request": "request-4",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "document": "first-author",
+      "type": "XHR",
+      "initiator": "script",
+      "redirect": false
+    },
+    {
+      "ms": 2827,
+      "method": "Network.responseReceived",
+      "kind": "works",
+      "request": "request-4",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "status": 200,
+      "serviceWorker": false,
+      "cache": false,
+      "failed": false
+    },
+    {
+      "ms": 2872,
+      "method": "Network.requestWillBeSent",
+      "kind": "document",
+      "request": "request-5",
+      "loader": "loader-6",
+      "frame": "frame-7",
+      "session": null,
+      "document": "other-origin",
+      "type": "Document",
+      "initiator": "script",
+      "redirect": false
+    },
+    {
+      "ms": 2874,
+      "method": "Network.responseReceived",
+      "kind": "document",
+      "request": "request-5",
+      "loader": "loader-6",
+      "frame": "frame-7",
+      "session": null,
+      "status": 200,
+      "serviceWorker": false,
+      "cache": true,
+      "failed": false
+    },
+    {
+      "ms": 2967,
+      "method": "Network.loadingFinished",
+      "kind": "works",
+      "request": "request-4",
+      "loader": null,
+      "frame": null,
+      "session": null,
+      "failed": false
+    },
+    {
+      "ms": 2968,
+      "method": "Page.frameNavigated",
+      "loader": "loader-6",
+      "frame": "frame-7",
+      "session": null,
+      "parent": "frame-1",
+      "page": "other-origin"
+    },
+    {
+      "ms": 3166,
+      "method": "Network.loadingFinished",
+      "kind": "document",
+      "request": "request-5",
+      "loader": null,
+      "frame": null,
+      "session": null,
+      "failed": false
+    },
+    {
+      "ms": 3881,
+      "method": "Page.frameNavigated",
+      "loader": "loader-8",
+      "frame": "frame-9",
+      "session": null,
+      "parent": "frame-1",
+      "page": "blank"
+    },
+    {
+      "ms": 3885,
+      "method": "Network.requestWillBeSent",
+      "kind": "document",
+      "request": "request-10",
+      "loader": "loader-11",
+      "frame": "frame-9",
+      "session": null,
+      "document": "other-origin",
+      "type": "Document",
+      "initiator": "script",
+      "redirect": false
+    },
+    {
+      "ms": 3887,
+      "method": "Network.responseReceived",
+      "kind": "document",
+      "request": "request-10",
+      "loader": "loader-11",
+      "frame": "frame-9",
+      "session": null,
+      "status": 200,
+      "serviceWorker": false,
+      "cache": true,
+      "failed": false
+    },
+    {
+      "ms": 4557,
+      "method": "Network.requestWillBeSent",
+      "kind": "self",
+      "request": "request-12",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "document": "first-author",
+      "type": "XHR",
+      "initiator": "script",
+      "redirect": false
+    },
+    {
+      "ms": 4714,
+      "method": "Network.responseReceived",
+      "kind": "self",
+      "request": "request-12",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "status": 200,
+      "serviceWorker": false,
+      "cache": false,
+      "failed": false
+    },
+    {
+      "ms": 4719,
+      "method": "Network.loadingFinished",
+      "kind": "self",
+      "request": "request-12",
+      "loader": null,
+      "frame": null,
+      "session": null,
+      "failed": false
+    },
+    {
+      "ms": 4721,
+      "method": "owner-body",
+      "request": "request-12",
+      "json": true,
+      "statusCode": 0,
+      "uidPresent": true,
+      "secUidPresent": true,
+      "uidMatches": true,
+      "secUidMatches": true
+    },
+    {
+      "ms": 6847,
+      "method": "frame-after",
+      "loader": "loader-3",
+      "frame": "frame-1",
+      "session": null,
+      "page": "first-author"
+    }
+  ]
+}

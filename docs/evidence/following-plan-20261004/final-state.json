@@ -1,0 +1,15 @@
+{
+  "connected": true,
+  "version": "0.7.0",
+  "readiness": "ready",
+  "listPhase": "completed",
+  "planCount": 295,
+  "planComplete": true,
+  "pendingBasics": 0,
+  "basicPhase": "idle",
+  "activityPhase": "completed",
+  "mainInstances": 1,
+  "remoteDebugging": 0,
+  "followingNativeHosts": 1,
+  "legacyNativeHosts": 0
+}

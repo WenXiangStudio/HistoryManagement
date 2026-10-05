@@ -1,5 +1,6 @@
-import {runStructuredFollowingSync} from './structured-runner.js'
+import {runFollowingPlan} from './following-plan-runner.js'
 import {runStructuredFollowingProbe} from './structured-probe.js'
+import {runCreatorActivityRefresh} from './creator-activity-runner.js'
 const version=chrome.runtime.getManifest().version
 let nativePort=null,reconnecting=false,connection=null,running=false
 let activePreparationId=null,preparedTabId=null
@@ -61,17 +62,15 @@ async function listen(port,bridge){
       if(running)continue
       running=true
       try{
+        if(result.command.action==='activity'){
+          await runCreatorActivityRefresh(result.command)
+          continue
+        }
         if(result.command.action==='probe'){
           await runStructuredFollowingProbe(result.command)
           continue
         }
-        if(result.command.action==='prepare')activePreparationId=null
-        const {followingTabId}=await chrome.storage.local.get('followingTabId')
-        const saved=await runStructuredFollowingSync({...result.command,preferredTabId:followingTabId})
-        if(result.command.action==='prepare'){
-          activePreparationId=result.command.preparationId
-          preparedTabId=saved.tabId??null
-        }
+        await runFollowingPlan(result.command)
       }finally{running=false}
     }
   }catch{disconnect(port)}

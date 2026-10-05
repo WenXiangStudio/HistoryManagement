@@ -1,0 +1,50 @@
+{
+  "runId": "activity-1560b316d6b46be3457d0f69",
+  "diagnostics": {
+    "contract": "signaldesk-activity-owner-diagnostics/v1",
+    "navigationBound": true,
+    "navigationFailed": false,
+    "navigationLoaderPresent": true,
+    "navigationFramePresent": true,
+    "observedRequests": 0,
+    "documents": [
+      {
+        "document": "first-author",
+        "redirect": false,
+        "loader": "match",
+        "frame": "match"
+      },
+      {
+        "document": "first-author",
+        "redirect": false,
+        "loader": "different",
+        "frame": "match"
+      },
+      {
+        "document": "other-origin",
+        "redirect": false,
+        "loader": "different",
+        "frame": "different"
+      }
+    ],
+    "currentDocument": {
+      "document": "first-author",
+      "committed": true,
+      "loader": "different",
+      "frame": "match"
+    },
+    "transitions": [
+      {
+        "document": "first-author",
+        "loader": "match",
+        "frame": "match"
+      },
+      {
+        "document": "first-author",
+        "loader": "different",
+        "frame": "match"
+      }
+    ],
+    "requests": []
+  }
+}

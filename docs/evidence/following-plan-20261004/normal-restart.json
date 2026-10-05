@@ -1,0 +1,29 @@
+{
+  "normalShortcutRestarted": true,
+  "connected": true,
+  "version": "0.7.0",
+  "plan": {
+    "runId": "following-e32ff89610f6ff655a6bf647",
+    "complete": true,
+    "pageCount": 15,
+    "count": 295,
+    "nextCursor": 1734239426,
+    "nextOffset": 0,
+    "resumable": false,
+    "checkedAt": "2026-10-04T14:23:02.257Z"
+  },
+  "basic": {
+    "phase": "idle",
+    "runId": null,
+    "total": 0,
+    "done": 0,
+    "succeeded": 0,
+    "failed": 0,
+    "pending": 0,
+    "currentName": null,
+    "message": "仅补全缺失的基础资料"
+  },
+  "activityPhase": "completed",
+  "followingPhase": "completed",
+  "persistedDisplayMs": 7921.882600000012
+}

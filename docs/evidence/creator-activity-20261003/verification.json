@@ -1,0 +1,156 @@
+{
+  "recordedAt": "2026-10-03T13:44:29.839Z",
+  "extensionVersion": "0.6.2",
+  "compiledMainSha256": "08b61f18794ae5cd7e61281436957476138e726c2a6c2f4778dec5f69eae5dab",
+  "originalDirectoryPreserved": {
+    "latestVerifiedAuthors": 170,
+    "statusCounts": {
+      "updated": 97,
+      "empty": 73
+    },
+    "countContradictions": 0,
+    "foreignAuthorPostsExcluded": 27,
+    "directoryComparison": {
+      "directory_runs": {
+        "count": 0,
+        "unchanged": true
+      },
+      "directory_creators": {
+        "count": 0,
+        "unchanged": true
+      },
+      "visible_directory_runs": {
+        "count": 11,
+        "unchanged": true
+      },
+      "visible_directory_creators": {
+        "count": 170,
+        "unchanged": true
+      },
+      "following_account_owners": {
+        "count": 1,
+        "unchanged": true
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "fullRefresh": {
+    "runId": "activity-c5adfb2b5fce1457ade78ab0",
+    "total": 170,
+    "success": 154,
+    "incomplete": 16,
+    "clickToDisplayedMs": 226139.0938,
+    "independentObservationMs": 226551.76129999998
+  },
+  "remainingRefresh": {
+    "runId": "activity-13c7b783211a38efefc5ff38",
+    "total": 16,
+    "success": 16,
+    "incomplete": 0,
+    "clickToDisplayedMs": 22332.9346,
+    "independentObservationMs": 22802.813599999998
+  },
+  "finalUi": {
+    "creatorCount": 170,
+    "countsKnown": 170,
+    "weeklyStatuses": {
+      "updated": 97,
+      "empty": 73
+    },
+    "cardCount": 170,
+    "loadedAvatars": 170,
+    "weeklyTextExamples": [
+      "2026-10-03 10:24",
+      "本周暂无更新",
+      "本周暂无更新",
+      "2026-09-28 09:37",
+      "2026-10-02 19:30",
+      "2026-10-03 12:37"
+    ],
+    "displayedCounts": [
+      "79",
+      "11",
+      "84",
+      "12",
+      "21",
+      "622"
+    ]
+  },
+  "reopenedThroughDesktopShortcut": {
+    "creatorCount": 170,
+    "connection": {
+      "online": true,
+      "version": "0.6.2",
+      "expectedVersion": "0.6.2"
+    },
+    "ready": "ready",
+    "latestResultRestored": true,
+    "timingRestored": true,
+    "remoteDebuggingArgument": false
+  },
+  "tests": {
+    "application": {
+      "files": 27,
+      "passed": 238
+    },
+    "browserRunner": 6,
+    "typeScript": "passed",
+    "productionBuild": "passed",
+    "packagedRenderer": "passed",
+    "projectBoundaries": "passed"
+  },
+  "noNewFollowingRun": true,
+  "formalWorksGate": false,
+  "fullComputerReboot": "pending-user-validation",
+  "newAuthorAutomaticMetadata": "wired; no new-author live collection in this change",
+  "analyzedPlaceholderUpdate": {
+    "recordedAt": "2026-10-03T15:27:31.235Z",
+    "display": "—",
+    "label": "已分析",
+    "verification": {
+      "creatorCount": 170,
+      "cardCount": 170,
+      "placeholderCount": 170,
+      "allPlaceholders": true,
+      "allLabels": true,
+      "columns": "63.7969px 63.7969px 191.406px",
+      "firstCardStats": "79作品总数—已分析2026-10-03 10:24最近更新 · 本周 09.28～10.04",
+      "allPublicCountsPresent": true,
+      "weeklyStatuses": {
+        "updated": 97,
+        "empty": 73
+      }
+    },
+    "typeScript": "passed",
+    "productionBuild": "passed",
+    "packagedAppUpdated": true,
+    "desktopShortcutReopened": true,
+    "connectionReady": true,
+    "screenshot": "app-analyzed-placeholder.png",
+    "newCollectionStarted": false
+  },
+  "singleLineProfileLinks": {
+    "recordedAt": "2026-10-03T15:40:08.514Z",
+    "normal": {
+      "linkCount": 170,
+      "allSingleLine": true,
+      "allEllipsis": true,
+      "allFullTargets": true,
+      "clippedLinks": 170,
+      "noHorizontalOverflow": true
+    },
+    "compact": {
+      "linkCount": 170,
+      "allSingleLine": true,
+      "allEllipsis": true,
+      "allFullTargets": true,
+      "clippedLinks": 170,
+      "noHorizontalOverflow": true
+    },
+    "actualClickOpenedFullHomepage": true,
+    "screenshot": "app-single-line-links.png",
+    "newCollectionStarted": false
+  }
+}

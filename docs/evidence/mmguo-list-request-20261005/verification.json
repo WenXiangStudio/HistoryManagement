@@ -1,0 +1,265 @@
+{
+  "recordedAt": "2026-10-05T10:18:25.459Z",
+  "target": {
+    "nickname": "mmguo",
+    "uid": "81301761209",
+    "secUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE"
+  },
+  "secondRequest": {
+    "kind": "credentialed-same-origin-list-get",
+    "endpoint": "/aweme/v1/web/aweme/post/",
+    "cursor": 0,
+    "count": 20,
+    "issued": 1,
+    "httpStatus": 200,
+    "contentType": "application/json",
+    "redirected": false,
+    "responseBytes": 895252,
+    "elapsedMs": 537.2999999821186
+  },
+  "response": {
+    "statusCode": 0,
+    "hasMore": 0,
+    "nextCursor": 1773985264000,
+    "returned": 11,
+    "unique": 11,
+    "records": [
+      {
+        "workId": "7683806296597033594",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-09-10T07:32:46.000Z",
+        "pinned": false,
+        "workType": 163,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7676387588320310906",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-08-21T07:44:23.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7631240906314063537",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-04-21T15:52:12.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7628863698207290043",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-04-15T06:07:26.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7627717687385141873",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-04-12T04:00:19.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7626225837532341489",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-04-08T03:31:11.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7621414148248726137",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-03-26T04:19:22.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7621054530252516282",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-03-25T05:03:52.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7620811503016447665",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-03-24T13:20:48.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7619530160128127089",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-03-21T02:28:32.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      },
+      {
+        "workId": "7619208688750171825",
+        "authorUid": "81301761209",
+        "authorSecUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+        "publishedAt": "2026-03-20T05:41:04.000Z",
+        "pinned": false,
+        "workType": 0,
+        "status": {
+          "privateStatus": 0,
+          "isDelete": false,
+          "isProhibited": false,
+          "allowShare": true,
+          "isStory": 0,
+          "is24Story": 0
+        }
+      }
+    ],
+    "publicRecords": 11,
+    "pinned": 0,
+    "types": {
+      "0": 10,
+      "163": 1
+    },
+    "latestPublishedAt": null,
+    "weekStart": "2026-10-04T16:00:00.000Z",
+    "weekEndExclusive": "2026-10-11T16:00:00.000Z",
+    "weeklyUpdateCount": 0,
+    "independentRecountPassed": true
+  },
+  "firstResponse": {
+    "httpRequestsAllowed": 1,
+    "worksTabCount": 11,
+    "creatorBasicInfo": true,
+    "avatarAddress": true,
+    "targetWorkList": false,
+    "targetPublishedTimes": false
+  },
+  "twoCoreResponses": {
+    "coreHttpRequests": 2,
+    "loginVerificationGets": 0,
+    "authorNavigations": 0,
+    "additionalPagesNeeded": 0,
+    "totalWorksInformationObtained": true
+  },
+  "requestAccounting": {
+    "secondProbeApiGets": 1,
+    "secondProbeRetries": 0,
+    "secondProbePaginationGets": 0,
+    "secondProbeObservedTargetListEvents": 0,
+    "contextTraceIsReadOnly": true,
+    "contextTraceDoesNotAddRequest": true,
+    "note": "The browser page had a prior resource entry from page loading; the deliberate second probe itself issued one credentialed GET. Full navigation traffic is not equated to two total browser requests."
+  },
+  "comparison": {
+    "currentNativeReusePath": {
+      "authorHomepageNavigation": 1,
+      "ownerVerificationGets": 0,
+      "worksNativePages": 1,
+      "extraWorksGets": 0,
+      "platformApiGetEvents": "17 in each successful six-sample run",
+      "allNetworkEvents": "342-431 in those runs"
+    },
+    "twoResponsePath": {
+      "documentGet": 1,
+      "explicitListGet": 1,
+      "loginVerificationGet": 0,
+      "additionalPageGets": 0,
+      "wholePageSubresourcesBlocked": true
+    },
+    "conclusion": "For a first page that covers the week, both paths have two core data responses. The two-response path does not depend on the page naturally emitting a works request; it makes the list GET explicit. It still may need later list pages for a wider date range, and a normal UI navigation has additional browser traffic beyond the two core requests."
+  },
+  "restoration": {
+    "extensionVersion": "0.7.5",
+    "temporaryProbeRemoved": true,
+    "normalAppRestored": true,
+    "noRunningCollection": true,
+    "activityDatabaseRowsUnchanged": true
+  }
+}

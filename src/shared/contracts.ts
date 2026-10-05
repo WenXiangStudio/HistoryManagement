@@ -205,6 +205,9 @@ export type InboxItem = {
 }
 
 export type CreatorListItem = {
+  basicPending?: boolean
+  activity?: import('./creatorActivity').CreatorActivityView
+  nativeUid?: string | null
   id: number
   isDemo: boolean
   platformCreatorId: string

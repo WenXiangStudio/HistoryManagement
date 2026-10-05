@@ -6,18 +6,24 @@ import { createServer, type Server, type ServerResponse } from 'node:http'
 import { join } from 'node:path'
 import { app, shell } from 'electron'
 import { FollowingDirectoryStore } from './followingDirectoryStore'
-import { followingDiagnosticSchema, type FollowingSyncState,type FollowingConfiguration } from '../shared/followingDirectory'
+import { type FollowingSyncState,type FollowingConfiguration } from '../shared/followingDirectory'
 import {z} from 'zod'
-import {acceptStructuredFollowingCapture,verifyStructuredSource} from './structuredFollowingAcceptance'
+import {FollowingPlanStore} from './followingPlanStore'
+import {planOwnerSchema} from '../shared/followingPlan'
 import { deployFollowingConnection, FOLLOWING_VERSION } from './followingConnection'
 import {FollowingPreferences,followingBrowserProfiles} from './followingPreferences'
+import {CreatorActivityService} from './creatorActivityService'
+import type {CreatorListItem} from '../shared/contracts'
+import {creatorActivityProgressSchema} from '../shared/creatorActivity'
 
 const escapeHtml = (value: string): string => value.replace(/[&<>"']/g, (entry) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[entry]!)
-type Scope = {runId:string;limit:10|20;ownerNickname:string|null;ownerSecUid:string|null;excludeSecUids:string[]}
-type PrepareCommand={action:'prepare';preparationId:string;ownerNickname:string|null;ownerSecUid:string|null;origin:string;token:string;backgroundStart?:boolean}
+type Scope = {action:'list';runId:string;ownerSecUid:string|null;cursor:number;offset:number;pageCount:number}
+type PrepareCommand={action:'account';preparationId:string;ownerNickname:string|null;ownerSecUid:string|null;origin:string;token:string}
 type ProbeCommand={action:'probe';probeId:string;origin:string;token:string}
 export class FollowingSyncService {
   readonly store: FollowingDirectoryStore
+  readonly activity: CreatorActivityService
+  readonly plan: FollowingPlanStore
   private readonly preferences:FollowingPreferences
   private pendingBinding:{label:string;expectedOwner:string|null}|null=null
   private enrollmentNonce:string|null=null
@@ -28,14 +34,12 @@ export class FollowingSyncService {
   private started=0
   private scope: Scope | null=null
   private waiting: ServerResponse | null=null
-  private command: (Scope & {origin:string;token:string}|PrepareCommand|ProbeCommand) | null=null
+  private command: (Scope & {origin:string;token:string}|PrepareCommand|ProbeCommand|(ReturnType<CreatorActivityService['begin']>&{origin:string;token:string})|(ReturnType<FollowingPlanStore['beginBasic']>&{origin:string;token:string})) | null=null
   private probeId:string|null=null
-  private preparationStarted=0
   private preparationDeadline:ReturnType<typeof setTimeout>|null=null
   private monitor:ReturnType<typeof setInterval>|null=null
   private monitoredOnline=false
   private retryPreparationAt=0
-  private preparationRecoveryCount=0
   private lastSeen=0
   private extensionVersion: string | null=null
   private connectorInstance:string|null=null
@@ -43,14 +47,16 @@ export class FollowingSyncService {
   private runDeadline: ReturnType<typeof setTimeout> | null=null
   constructor(private readonly userData: string, private readonly changed: () => void) {
     this.store = new FollowingDirectoryStore(join(userData, 'following-directory.sqlite'))
+    this.activity = new CreatorActivityService(this.store.db, changed)
+    this.plan = new FollowingPlanStore(this.store)
     const defaultProfile=this.browserProfiles().find(profile=>profile.extensionInstalled)?.directory??this.browserProfiles()[0]?.directory??null
     this.preferences=new FollowingPreferences(userData,this.store.latest()?.ownerSecUid??null,defaultProfile)
     if(this.preferences.value.activeOwnerSecUid)this.store.selectAccount(this.preferences.value.activeOwnerSecUid)
     const latest = this.store.latest()
-    this.state = { phase: 'idle', runId: latest?.runId ?? null, message: '点击同步，自动获取新博主资料',
+    this.state = { phase: 'idle', runId: latest?.runId ?? null, message: '同步完整关注清单，基础资料按需补全',
       count: this.store.list().length, ownerSecUid: latest?.ownerSecUid ?? null, extensionDirectory: null,
       reportDirectory: null, databasePath: this.store.path, setupUrl: null,accountStatus:'unchecked',
-      readiness:{phase:'offline',preparationId:null,message:'正在准备关注连接器和账号页面…'} }
+      readiness:{phase:'offline',preparationId:null,message:'正在连接关注扩展…'} }
     if(latest?.visible){
       try{
         const reportDirectory=join(userData,'following-runs',latest.runId)
@@ -64,7 +70,7 @@ export class FollowingSyncService {
       }catch{ /* Historical imports without a display receipt remain idle. */ }
     }
   }
-  status(): FollowingSyncState { return { ...this.state, connection:{online:this.extensionVersion===FOLLOWING_VERSION&&Date.now()-this.lastSeen<30000,
+  status(): FollowingSyncState { return { ...this.state, plan:this.plan.plan(this.preferences.value.activeOwnerSecUid),basic:this.plan.basicStatus(this.preferences.value.activeOwnerSecUid),activity:this.activity.status(this.preferences.value.activeOwnerSecUid), connection:{online:this.extensionVersion===FOLLOWING_VERSION&&Date.now()-this.lastSeen<30000,
     version:this.extensionVersion,expectedVersion:FOLLOWING_VERSION} } }
   private browserProfiles(){return followingBrowserProfiles(join(process.env.LOCALAPPDATA||'','Google','Chrome','User Data'),join(this.userData,'following-extension'))}
   configuration():FollowingConfiguration{
@@ -80,7 +86,30 @@ export class FollowingSyncService {
       readiness:{phase:'offline',preparationId:null,message:'正在重新连接并验证所选账号…'}}
     this.changed()
   }
-  private requireAccountIdle():void{if(['running','awaiting-config'].includes(this.state.phase))throw new Error('请等待本轮同步完成或取消后再切换账号')}
+  private requireAccountIdle():void{if(['running','awaiting-config'].includes(this.state.phase)||this.status().activity?.phase==='running'||this.status().basic?.phase==='running')throw new Error('请等待本轮同步或资料刷新完成，或取消后再切换账号')}
+  listCreators(search=''):CreatorListItem[]{
+    const owner=this.preferences.value.activeOwnerSecUid
+    const pending=new Set(owner?this.store.db.prepare("SELECT sec_uid FROM following_basic_fields WHERE owner_sec_uid=? AND (signature_status<>'done' OR avatar_status<>'done')").all(owner).map(row=>String(row.sec_uid)):[])
+    return this.activity.decorate(owner,this.store.list(search)).map(row=>({...row,basicPending:pending.has(new URL(row.profileUrl).pathname.split('/').at(-1)!)}))
+  }
+  startActivity(creatorId?:number,resume=false,creatorIds?:number[]):FollowingSyncState{
+    if(creatorIds!==undefined&&(!Array.isArray(creatorIds)||!creatorIds.length||creatorIds.length>10000
+      ||creatorIds.some(id=>!Number.isSafeInteger(id)||id>=0)||new Set(creatorIds).size!==creatorIds.length
+      ||creatorId!==undefined||resume))throw new Error('所选博主范围无效')
+    if(this.status().basic?.phase==='running')throw new Error('请等待基础资料补充完成')
+    if(['running','awaiting-config'].includes(this.state.phase))throw new Error('请等待新增博主同步完成')
+    if(!this.status().connection?.online||this.state.readiness?.phase!=='ready')throw new Error('请等待连接器与账号准备完成')
+    const owner=this.preferences.value.activeOwnerSecUid
+    if(!owner)throw new Error('请先绑定当前资料账号')
+    let targets=this.listCreators().map(item=>({id:item.id,secUid:new URL(item.profileUrl).pathname.split('/').at(-1)!,uid:item.nativeUid??null,nickname:item.nickname}))
+    if(creatorIds){
+      targets=targets.filter(item=>creatorIds.includes(item.id))
+      if(targets.length!==creatorIds.length)throw new Error('部分所选博主不属于当前账号，请重新选择')
+    }
+    const command=this.activity.begin(owner,targets,creatorId,resume,true)
+    this.command={...command,origin:this.origin,token:this.token};this.dispatch();return this.status()
+  }
+  cancelActivity():FollowingSyncState{if(this.command&&'action' in this.command&&this.command.action==='activity')this.command=null;this.activity.cancel();return this.status()}
   async saveConfiguration(input:unknown):Promise<FollowingConfiguration>{
     this.requireAccountIdle()
     const values=z.object({chromeProfile:z.string().regex(/^(Default|Profile \d+)$/),label:z.string().trim().max(100).optional()}).parse(input)
@@ -119,7 +148,12 @@ export class FollowingSyncService {
     }
     this.pendingBinding={label:values.label,expectedOwner}
     this.resetAccountState()
-    await this.prepare(true,true)
+    await this.initialize()
+    if(!this.status().connection?.online)throw new Error('请先连接关注扩展')
+    const preparationId=randomBytes(12).toString('hex')
+    this.state.readiness={phase:'checking',preparationId,message:'正在核验要绑定的抖音账号…'}
+    this.command={action:'account',preparationId,...this.expectedOwner(),origin:this.origin,token:this.token}
+    this.dispatch();this.changed()
     return this.configuration()
   }
   async cancelBinding():Promise<FollowingConfiguration>{
@@ -154,17 +188,17 @@ export class FollowingSyncService {
           const expected=selectedProfile?this.preferences.value.connectors[selectedProfile]:null
           if(this.enrollmentNonce||(expected&&expected!==connector)){response.writeHead(409);response.end(JSON.stringify({error:'请连接 APP 所选 Chrome 用户配置'}));return}
           if(selectedProfile&&!expected){this.preferences.value.connectors[selectedProfile]=connector;this.preferences.save()}
+          const wasOnline=this.status().connection!.online
           this.extensionVersion=String(request.headers['x-following-version']||'')
           if(this.extensionVersion!==FOLLOWING_VERSION){
             this.blockPreparation('关注扩展需要更新，请重新加载扩展。','EXTENSION_VERSION_MISMATCH')
             response.writeHead(409);response.end(JSON.stringify({error:'请重新加载新版关注扩展'}));return
           }
-          const wasOnline=this.status().connection!.online
           this.lastSeen=Date.now()
           const instance=String(request.headers['x-following-instance']||'')
           const restarted=!!this.connectorInstance&&instance!==this.connectorInstance
           this.connectorInstance=instance
-          if(!process.argv.includes('--structured-probe')&&(!wasOnline||restarted)&&!['running','awaiting-config'].includes(this.state.phase))void this.prepare(false,restarted)
+          if(!process.argv.includes('--structured-probe')&&(!wasOnline||restarted)&&!['running','awaiting-config'].includes(this.state.phase)&&this.status().activity?.phase!=='running'&&this.status().basic?.phase!=='running')void this.prepare(false,restarted)
           if(!wasOnline)this.changed()
           if(this.waiting&&!this.waiting.writableEnded)this.waiting.end(JSON.stringify({command:null}))
           this.waiting=response
@@ -173,6 +207,8 @@ export class FollowingSyncService {
           this.dispatch();return
         }
         if(path==='/status'&&request.method==='GET'){response.end(JSON.stringify(this.status()));return}
+        if(path==='/basic-state'&&request.method==='GET'){response.end(JSON.stringify(this.plan.basicStatus(this.preferences.value.activeOwnerSecUid)));return}
+        if(path==='/activity-state'&&request.method==='GET'){this.lastSeen=Date.now();response.end(JSON.stringify(this.status().activity));return}
         if(path==='/open-folder'&&request.method==='POST'){
           const error=await shell.openPath(this.state.extensionDirectory!);if(error)throw new Error(error)
           response.end(JSON.stringify({message:'扩展目录已打开'}));return
@@ -180,11 +216,20 @@ export class FollowingSyncService {
         if(path==='/open-extensions'&&request.method==='POST'){
           this.openChrome('chrome://extensions/');response.end(JSON.stringify({message:'扩展管理页已打开'}));return
         }
-        if(request.method!=='POST'||!['/progress','/report','/readiness','/structured-probe','/connector-enroll'].includes(path)){response.writeHead(404);response.end('{}');return}
+        if(request.method!=='POST'||!['/progress','/report','/readiness','/structured-probe','/connector-enroll','/activity-progress','/activity-report','/list-owner','/list-page','/basic-progress','/basic-report'].includes(path)){response.writeHead(404);response.end('{}');return}
         let size=0
         const chunks:Buffer[]=[]
-        for await(const chunk of request){size+=chunk.length;if(size>512*1024)throw new Error('关注报告过大');chunks.push(chunk)}
+        for await(const chunk of request){size+=chunk.length;if(size>512*1024)throw new Error('同步报告过大');chunks.push(chunk)}
         const body=JSON.parse(Buffer.concat(chunks).toString('utf8'))
+        if(path==='/activity-report'||path==='/activity-progress'){
+          this.lastSeen=Date.now()
+          const runId=z.string().parse(body.runId)
+          const state=path==='/activity-report'?this.activity.receive(runId,z.number().int().negative().parse(body.creatorId),body.capture,
+            body.errorCode===undefined?undefined:z.string().regex(/^[A-Z0-9_-]{1,100}$/).parse(body.errorCode))
+            :this.activity.progress(runId,creatorActivityProgressSchema.parse(body))
+          if(body.blocked&&body.errorCode==='OWNER_IDENTITY_MISMATCH')this.blockPreparation('浏览器登录账号已变化，请重新检查所选账号。','OWNER_IDENTITY_MISMATCH')
+          response.end(JSON.stringify(state));return
+        }
         if(path==='/connector-enroll'){
           if(!this.enrollmentNonce||body.nonce!==this.enrollmentNonce||!this.preferences.value.chromeProfile||!/^[a-f0-9-]{36}$/.test(body.connectorId))throw new Error('浏览器连接绑定已失效')
           this.preferences.value.connectors[this.preferences.value.chromeProfile]=body.connectorId;this.preferences.save();this.enrollmentNonce=null
@@ -198,88 +243,45 @@ export class FollowingSyncService {
           await writeFile(join(directory,'latest.json'),JSON.stringify(body.report,null,2))
           response.end(JSON.stringify({ok:true,report:body.report}));return
         }
+        if(path==='/basic-report'||path==='/basic-progress'){
+          const runId=z.string().parse(body.runId)
+          const state=path==='/basic-report'?this.plan.receiveBasic(runId,z.string().parse(body.secUid),body.capture,body.errorCode)
+            :this.plan.basicProgress(runId,z.object({secUid:z.string().optional(),finished:z.boolean().optional(),blocked:z.boolean().optional(),errorCode:z.string().max(100).optional()}).parse(body))
+          this.changed();response.end(JSON.stringify(state));return
+        }
         if(path==='/readiness'){
-          if(body.preparationId!==this.state.readiness?.preparationId||!['checking','ready','blocked'].includes(body.phase))throw new Error('准备会话已失效')
-          this.lastSeen=Date.now()
+          if(body.preparationId!==this.state.readiness?.preparationId)throw new Error('账号核验会话已失效')
           if(body.phase==='ready'){
-            if(!['connecting','checking'].includes(this.state.readiness!.phase))throw new Error('准备会话已结束')
-            const proof=verifyStructuredSource(body.proof,this.expectedOwner())
-            if(!proof.prepared)throw new Error('账号页面准备证明不一致')
-            const firstBinding=!this.preferences.value.activeOwnerSecUid&&!this.pendingBinding
-            this.store.recordAccount(proof.owner,{label:this.pendingBinding?.label||undefined,chromeProfile:this.preferences.value.chromeProfile,adoptLegacy:firstBinding})
-            if(this.pendingBinding||firstBinding){
-              this.preferences.value.activeOwnerSecUid=proof.owner.secUid;this.preferences.save();this.store.selectAccount(proof.owner.secUid)
-              this.pendingBinding=null
-              this.state={...this.state,phase:'idle',runId:null,timing:undefined,count:this.store.list().length,totalCount:this.store.list().length,
-                ownerSecUid:proof.owner.secUid,message:'当前账号已绑定，已有账号资料分别保留。'}
-            }
-            this.preparedOwnerSecUid=proof.owner.secUid
-            this.clearPreparationDeadline()
-            this.state.readiness={phase:'ready',preparationId:body.preparationId,message:'登录账号身份和关注数据接口已就绪，可以同步关注。'}
-            this.state.accountStatus='verified'
-            this.retryPreparationAt=0
-          }else if(body.phase==='blocked')this.blockPreparation(String(body.message),String(body.code||'PREPARATION_FAILED'))
-          else{
-            if(!['connecting','checking'].includes(this.state.readiness!.phase))throw new Error('准备会话已结束')
-            this.state.readiness={...this.state.readiness!,phase:'checking',message:String(body.message).slice(0,300)}
-          }
-          await mkdir(join(this.userData,'following-preparation'),{recursive:true})
-          const preparationRecord=JSON.stringify({updatedAt:new Date().toISOString(),elapsedMs:performance.now()-this.preparationStarted,...body,readiness:this.state.readiness},null,2)
-          await writeFile(join(this.userData,'following-preparation','latest.json'),preparationRecord)
-          await writeFile(join(this.userData,'following-preparation',`${body.preparationId}.json`),preparationRecord)
-          this.changed();response.end(JSON.stringify({...this.status(),phase:body.phase}));return
+            const owner=planOwnerSchema.parse(body.owner),expected=this.expectedOwner()
+            if(expected.ownerSecUid&&owner.secUid!==expected.ownerSecUid)throw new Error('OWNER_IDENTITY_MISMATCH')
+            this.adoptOwner(owner);this.state.accountStatus='verified'
+            this.state.readiness={phase:'ready',preparationId:body.preparationId,message:'扩展已连接，账号已绑定'}
+          }else this.blockPreparation(String(body.message||'账号核验失败'),String(body.code||'LOGIN_REQUIRED'))
+          this.changed();response.end(JSON.stringify(this.status()));return
         }
         const runId=this.state.runId,reportDirectory=this.state.reportDirectory!
-        if(body.runId!==runId||!['awaiting-config','running'].includes(this.state.phase))throw new Error('关注同步会话已失效')
+        if(body.runId!==runId||this.state.phase!=='running')throw new Error('关注清单会话已结束')
         this.lastSeen=Date.now()
-        if(path==='/report'){
-          const scope=this.scope
-          if(!scope)throw new Error('关注范围已失效')
-          const persistenceStart=performance.now()
-          const accepted=acceptStructuredFollowingCapture(body.capture,scope)
-          const currentIds=new Set(this.store.list().map(item=>new URL(item.profileUrl).pathname.split('/').at(-1)))
-          if(accepted.report.creators.some(item=>currentIds.has(item.secUid)))throw new Error('本轮结果包含已保存博主')
-          // Archive once before committing; the APP store owns the transaction.
-          await writeFile(join(reportDirectory,'following-capture.json'),JSON.stringify(body.capture,null,2),'utf8')
-          await writeFile(join(reportDirectory,'following-report.json'),JSON.stringify(accepted.report,null,2),'utf8')
-          if(body.browserExecution)await writeFile(join(reportDirectory,'following-browser-execution.json'),JSON.stringify(body.browserExecution,null,2),'utf8')
-          if(this.state.runId!==runId||!['awaiting-config','running'].includes(this.state.phase))throw new Error('关注同步已取消或会话已结束')
-          const latestIds=new Set(this.store.list().map(item=>new URL(item.profileUrl).pathname.split('/').at(-1)))
-          if(accepted.report.creators.some(item=>latestIds.has(item.secUid)))throw new Error('另一请求已经保存了本轮博主')
-          const report = this.store.accept(accepted.report)
-          const savedRows=this.store.list()
-          for(const creator of report.creators){
-            const saved=savedRows.find(item=>item.profileUrl===creator.profileUrl)
-            if(!saved || saved.nickname!==creator.nickname || saved.avatarUrl!==creator.avatarUrl || saved.signature!==creator.signature)throw new Error('保存后的博主字段不一致')
-          }
-          this.state.count = report.creators.length; this.state.ownerSecUid = report.ownerSecUid
-          this.state.totalCount=savedRows.length
-          this.state.timing={...this.state.timing!,acquisitionMs:accepted.acquisitionMs,
-            persistenceMs:performance.now()-persistenceStart,savedTotalMs:performance.now()-this.started}
-          this.state.phase = 'completed'
-          this.state.accountStatus='verified'
-          this.state.errorCode=undefined
-          this.clearRunDeadline()
-          this.state.message = `已新增 ${report.creators.length} 位博主，资料库累计 ${savedRows.length} 位，已有资料保留。`
-          if (this.state.diagnostic) this.state.diagnostic = { ...this.state.diagnostic, stage: 'finished' }
-          await writeFile(join(reportDirectory,'following-timing.json'),JSON.stringify(this.state.timing,null,2),'utf8')
-        } else {
-          if (!['running','blocked'].includes(body.phase) || typeof body.message !== 'string') throw new Error('无效关注进度')
-          const diagnostic = body.diagnostic === undefined ? undefined : followingDiagnosticSchema.parse(body.diagnostic)
+        if(path==='/list-owner'){
+          const owner=this.plan.bindOwner(runId!,body.owner,this.scope?.ownerSecUid??null)
+          this.adoptOwner(owner);this.state.ownerSecUid=owner.secUid;this.state.accountStatus='verified'
+        }else if(path==='/list-page'){
+          const persistenceStart=performance.now(),result=this.plan.page(runId!,body.page)
+          this.state.count=result.count;this.state.totalCount=this.store.list().length
+          this.state.timing={...this.state.timing!,persistenceMs:(this.state.timing?.persistenceMs||0)+performance.now()-persistenceStart}
+          if(result.complete){
+            this.state.phase='completed';this.state.errorCode=undefined;this.clearRunDeadline()
+            this.state.timing={...this.state.timing!,acquisitionMs:body.acquisitionMs,savedTotalMs:performance.now()-this.started}
+            this.state.message=`关注清单已完成：本轮 ${result.count} 位，资料库累计 ${this.state.totalCount} 位。`
+            await writeFile(join(reportDirectory,'following-timing.json'),JSON.stringify(this.state.timing,null,2),'utf8')
+          }else this.state.message=`已保存 ${result.count} 位博主的基础资料，继续读取关注清单…`
+        }else if(path==='/progress'){
           if(body.phase==='blocked'){
-            this.clearRunDeadline()
-            if(body.failureCapture)await writeFile(join(reportDirectory,'following-failure.json'),JSON.stringify(body.failureCapture,null,2),'utf8')
-            if(body.browserExecution)await writeFile(join(reportDirectory,'following-browser-execution.json'),JSON.stringify(body.browserExecution,null,2),'utf8')
-            this.state.errorCode=typeof body.code==='string'?body.code.slice(0,100):'FOLLOWING_CAPTURE_FAILED'
-            this.state.accountStatus=body.code==='LOGIN_REQUIRED'?'login-required':'unavailable'
-            this.blockPreparation('账号数据接口需要重新检查。',String(body.code||'SYNC_FAILED'))
+            this.clearRunDeadline();this.plan.stop(runId!,'blocked');this.state.phase='blocked'
+            this.state.errorCode=String(body.code||'FOLLOWING_LIST_FAILED');this.state.accountStatus=body.code==='LOGIN_REQUIRED'?'login-required':'unavailable'
           }
-          this.state.phase = body.phase; this.state.message = body.message.slice(0,500)
-          if (diagnostic) this.state.diagnostic = diagnostic
-          await writeFile(join(reportDirectory, 'following-progress.json'), JSON.stringify({
-            updatedAt: new Date().toISOString(), ...this.status()
-          }, null, 2), 'utf8')
-        }
+          this.state.message=String(body.message||'正在读取关注清单').slice(0,500)
+        }else throw new Error('当前版本不接受旧关注同步回报')
         this.changed();response.end(JSON.stringify(this.status()))
       })().catch(error=>{if(!response.headersSent)response.writeHead(400);response.end(JSON.stringify({error:error instanceof Error?error.message:'关注同步失败'}))})
     })
@@ -306,85 +308,74 @@ export class FollowingSyncService {
     this.command={action:'probe',probeId:this.probeId,origin:this.origin,token:this.token}
     this.dispatch();this.changed();return this.status()
   }
-  async prepare(launchBrowser=true,force=false,automaticRecovery=false):Promise<FollowingSyncState>{
-    if(['running','awaiting-config'].includes(this.state.phase))return this.status()
-    if(!force&&['connecting','checking'].includes(this.state.readiness?.phase||''))return this.status()
+  async prepare(_launchBrowser=true,_force=false):Promise<FollowingSyncState>{
     await this.initialize()
-    if(automaticRecovery)this.preparationRecoveryCount++
-    else this.preparationRecoveryCount=0
-    this.clearPreparationDeadline()
-    const preparationId=randomBytes(12).toString('hex')
-    this.retryPreparationAt=0
-    this.preparationStarted=performance.now()
-    this.state.readiness={phase:this.status().connection!.online?'checking':'connecting',preparationId,
-      message:this.status().connection!.online?'正在自动检查账号身份和关注数据接口…':'正在自动启动浏览器并连接关注扩展…'}
-    this.state.accountStatus='checking'
-    const backgroundStart=launchBrowser&&!this.status().connection!.online
-    this.command={action:'prepare',preparationId,...this.expectedOwner(),origin:this.origin,token:this.token,backgroundStart}
-    this.preparationDeadline=setTimeout(()=>this.blockPreparation(this.status().connection!.online?'账号数据准备超时，请检查登录状态。':'尚未连接到关注扩展，请检查扩展是否启用。','PREPARATION_TIMEOUT'),35000)
-    this.dispatch();this.changed()
-    if(backgroundStart){
-      try{this.openChrome()}catch(error){this.blockPreparation(error instanceof Error?error.message:'Chrome 启动失败','CHROME_START_FAILED')}
-    }
+    if(this.pendingBinding&&this.state.readiness?.phase==='checking')return this.status()
+    if(this.status().connection?.online){
+      this.state.readiness={phase:'ready',preparationId:null,message:'关注扩展已连接，点击同步时核验抖音账号'}
+    }else this.state.readiness={phase:'offline',preparationId:null,message:'等待关注扩展连接，请在 Chrome 启用扩展'}
     if(!this.monitor)this.monitor=setInterval(()=>{
       const online=this.status().connection!.online
-      if(!online&&this.monitoredOnline){
-        this.blockPreparation('关注连接器已离线，正在自动恢复连接。','CONNECTOR_OFFLINE')
-        void this.prepare(true,true)
-      }else if(online&&this.retryPreparationAt&&Date.now()>=this.retryPreparationAt)void this.prepare(false,true,true)
-      this.monitoredOnline=online
+      if(online!==this.monitoredOnline){
+        this.monitoredOnline=online
+        if(!online){
+          if(this.state.phase==='running'&&this.state.runId){this.plan.stop(this.state.runId,'blocked');this.state.phase='blocked';this.state.message='连接已断开，已保存清单保留'}
+          this.plan.cancelBasic()
+          if(this.status().activity?.phase==='running')this.activity.cancel()
+        }
+        this.state.readiness={phase:online?'ready':'offline',preparationId:null,message:online?'关注扩展已连接，点击同步时核验抖音账号':'等待关注扩展连接，请在 Chrome 启用扩展'}
+        this.changed()
+      }
     },1000)
-    return this.status()
+    this.changed();return this.status()
   }
   private clearPreparationDeadline():void{if(this.preparationDeadline)clearTimeout(this.preparationDeadline);this.preparationDeadline=null}
   private blockPreparation(message:string,code:string):void{
-    this.clearPreparationDeadline()
-    if(this.command&&'action' in this.command)this.command=null
-    this.state.readiness={...this.state.readiness!,phase:'blocked',message:message.slice(0,300),code}
-    this.state.accountStatus=code==='LOGIN_REQUIRED'?'login-required':'unavailable'
-    const recoverable=['PAGE_INVALIDATED','CONNECTOR_OFFLINE','OWNER_PAGE_NOT_READY','FOLLOWING_DIALOG_NOT_READY','FOLLOWING_EXTENSION_NOT_READY'].includes(code)
-      ||code.includes('message channel closed')
-    this.retryPreparationAt=recoverable&&this.preparationRecoveryCount<1?Date.now()+1000:0
-    this.changed()
+    this.clearPreparationDeadline();this.state.readiness={phase:'blocked',preparationId:null,message:message.slice(0,300),code}
+    this.state.accountStatus=code==='LOGIN_REQUIRED'?'login-required':'unavailable';this.changed()
   }
-  async start(limit:10|20=20): Promise<FollowingSyncState> {
-    if(![10,20].includes(limit))throw new Error('请选择 10 或 20 位新博主')
-    if(['awaiting-config','running'].includes(this.state.phase))return this.status()
-    if(!this.status().connection!.online||this.state.readiness?.phase!=='ready')throw new Error('关注连接器和账号页面尚未准备好，请等待自动准备完成')
-    this.started=performance.now()
-    const startedAt=new Date().toISOString()
-    await this.initialize()
-    const runId=`following-${new Date().toISOString().replace(/[-:.TZ]/g,'').slice(0,14)}-${randomBytes(8).toString('hex')}`
-    const reportDirectory=join(this.userData,'following-runs',runId)
-    await mkdir(reportDirectory,{recursive:true})
-    const ownerNickname=this.ownerNickname()
-    this.scope={runId,limit,ownerNickname,ownerSecUid:this.preferences.value.activeOwnerSecUid??this.preparedOwnerSecUid,excludeSecUids:this.store.list().map(item=>new URL(item.profileUrl).pathname.split('/').at(-1)!)}
-    this.state={...this.state,phase:'running',runId,reportDirectory,count:0,ownerSecUid:null,requestedCount:limit,totalCount:this.store.list().length,
-      message:`正在后台获取另外 ${limit} 位博主…`,timing:{startedAt},diagnostic:undefined,accountStatus:'checking',errorCode:undefined}
+  private adoptOwner(owner:{uid:string;secUid:string;nickname:string}):void{
+    const firstBinding=!this.preferences.value.activeOwnerSecUid&&!this.pendingBinding
+    this.store.recordAccount(owner,{label:this.pendingBinding?.label||undefined,chromeProfile:this.preferences.value.chromeProfile,adoptLegacy:firstBinding})
+    if(this.pendingBinding||firstBinding){this.preferences.value.activeOwnerSecUid=owner.secUid;this.preferences.save();this.store.selectAccount(owner.secUid);this.pendingBinding=null}
+  }
+  async start(_legacyLimit?:number,resume=false):Promise<FollowingSyncState>{
+    this.requireAccountIdle()
+    if(!this.status().connection?.online)throw new Error('请先连接关注扩展')
+    if(this.pendingBinding)throw new Error('请先完成账号绑定')
+    await this.initialize();this.started=performance.now()
+    const owner=this.preferences.value.activeOwnerSecUid,previous=this.plan.plan(owner)
+    const runId=resume&&previous.resumable?previous.runId!:'following-'+randomBytes(12).toString('hex')
+    if(resume&&!previous.resumable)throw new Error('没有可以继续的关注清单')
+    const checkpoint=this.plan.begin(runId,owner,resume)
+    const reportDirectory=join(this.userData,'following-runs',runId);await mkdir(reportDirectory,{recursive:true})
+    this.scope={action:'list',runId,ownerSecUid:owner,...checkpoint}
+    this.state={...this.state,phase:'running',runId,reportDirectory,count:resume?previous.count:0,totalCount:this.store.list().length,
+      message:'正在核验账号并读取完整关注清单…',timing:{startedAt:new Date().toISOString()},errorCode:undefined}
     this.command={...this.scope,origin:this.origin,token:this.token}
-    this.clearRunDeadline()
-    this.runDeadline=setTimeout(()=>{
+    this.clearRunDeadline();this.runDeadline=setTimeout(()=>{
       if(this.state.runId!==runId||this.state.phase!=='running')return
-      this.command=null;this.state.phase='blocked'
-      this.state.accountStatus='unavailable'
-      this.state.errorCode='FOLLOWING_TIMEOUT'
-      this.blockPreparation('同步超时，正在重新检查账号页面。','FOLLOWING_TIMEOUT')
-      this.state.message=this.status().connection!.online?'本轮读取未完成，请确认抖音登录状态后重试。':'关注连接未就绪，请连接扩展后重试。'
-      this.changed()
-    },30000)
-    this.dispatch()
-    if(!this.status().connection!.online)this.openChrome()
-    this.changed();return this.status()
+      this.command=null;this.plan.stop(runId,'blocked');this.state.phase='blocked';this.state.errorCode='FOLLOWING_TIMEOUT'
+      this.state.message='关注清单读取超时，已保存数据保留，可继续剩余页';this.changed()
+    },180000)
+    this.dispatch();this.changed();return this.status()
   }
+  startBasic():FollowingSyncState{
+    this.requireAccountIdle()
+    if(!this.status().connection?.online)throw new Error('请先连接关注扩展')
+    const owner=this.preferences.value.activeOwnerSecUid;if(!owner)throw new Error('请先同步关注清单')
+    this.command={...this.plan.beginBasic(owner),origin:this.origin,token:this.token};this.dispatch();this.changed();return this.status()
+  }
+  cancelBasic():FollowingSyncState{if(this.command&&'action' in this.command&&this.command.action==='basic')this.command=null;this.plan.cancelBasic();this.changed();return this.status()}
   private dispatch():void{
     if(!this.command||!this.waiting||this.waiting.writableEnded)return
     const response=this.waiting,command=this.command
     this.waiting=null;this.command=null
-    if(!('action' in command))this.state.timing={...this.state.timing!,dispatchMs:performance.now()-this.started}
+    if('action' in command&&command.action==='list')this.state.timing={...this.state.timing!,dispatchMs:performance.now()-this.started}
     response.end(JSON.stringify({command}))
   }
   configure():FollowingSyncState{this.openChrome(this.state.setupUrl!);return this.status()}
-  login():FollowingSyncState{this.openChrome('https://www.douyin.com/user/self');this.retryPreparationAt=Date.now()+1000;return this.status()}
+  login():FollowingSyncState{this.openChrome('https://www.douyin.com/user/self');return this.status()}
   private openChrome(url?: string): void {
     const candidates = [process.env.PROGRAMFILES, process.env['PROGRAMFILES(X86)'], process.env.LOCALAPPDATA]
       .filter((value): value is string => Boolean(value)).map((root) => join(root, 'Google', 'Chrome', 'Application', 'chrome.exe'))
@@ -444,20 +435,22 @@ export class FollowingSyncService {
   private clearRunDeadline():void{if(this.runDeadline)clearTimeout(this.runDeadline);this.runDeadline=null}
   async cancel(): Promise<FollowingSyncState> {
     this.clearRunDeadline();this.command=null
+    if(this.state.runId)this.plan.stop(this.state.runId)
     this.state.phase='cancelled';this.state.accountStatus='unchecked';this.state.message='本轮关注同步已取消，已有目录保留';this.changed()
     return this.status()
   }
   async rendered(runId:string,loadedCount:number):Promise<FollowingSyncState>{
-    if(this.state.phase!=='completed'||this.state.runId!==runId||loadedCount!==this.state.totalCount)return this.status()
+    if(this.state.phase!=='completed'||this.state.runId!==runId||loadedCount!==this.state.totalCount||!this.state.timing||!this.started)return this.status()
     if(!this.state.timing!.displayedTotalMs){
       const displayedTotalMs=performance.now()-this.started
-      this.state.timing={...this.state.timing!,displayedTotalMs,averageDisplayedMs:displayedTotalMs/this.state.count}
+      this.state.timing={...this.state.timing!,displayedTotalMs,averageDisplayedMs:this.state.count?displayedTotalMs/this.state.count:0}
       await writeFile(join(this.state.reportDirectory!,'following-timing.json'),JSON.stringify(this.state.timing,null,2),'utf8')
       this.changed()
     }
     return this.status()
   }
   async stop():Promise<void>{
+    this.activity.cancel();this.plan.cancelBasic()
     this.clearRunDeadline()
     this.clearPreparationDeadline()
     if(this.monitor)clearInterval(this.monitor)

@@ -1,0 +1,321 @@
+{
+  "recordedAt": "2026-10-05T06:06:14.581Z",
+  "scope": {
+    "maxAuthors": 3,
+    "maxPagesPerAuthor": 2,
+    "maxExtraListGets": 2,
+    "authorClicks": 3,
+    "completedAuthorReads": 2,
+    "firstAuthorRetried": false,
+    "allLibraryRuns": 0,
+    "followingRuns": 0
+  },
+  "localPreconditionFailure": {
+    "name": "杰森Jason",
+    "runId": "activity-edd773e6af7f564001f7a455",
+    "code": "ACCOUNT_CONTEXT_UNAVAILABLE",
+    "beforePlatformRequest": true,
+    "authorNavigations": 0,
+    "listReads": 0,
+    "newSnapshot": false,
+    "recovery": "APP login/account-page action once; only two other authors then tested"
+  },
+  "verified": [
+    {
+      "name": "Xi Xu",
+      "runId": "activity-b2b0df1ea52f44b447fc734a",
+      "ownerAndAuthorIdsVerified": true,
+      "contract": "signaldesk-creator-activity/v6",
+      "frontendTotal": 16,
+      "totalSource": "profile-tab",
+      "records": 16,
+      "types": {
+        "0": 3,
+        "68": 13
+      },
+      "pinned": 0,
+      "latestReturned": "2026-07-05T14:26:10.000Z",
+      "weekStart": "2026-10-04T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-11T16:00:00.000Z",
+      "weeklyCount": 0,
+      "latestPublishedAt": null,
+      "coverage": "list-end",
+      "pages": 1,
+      "extraListGets": 0,
+      "reusedNativePages": 1,
+      "observedNativeListRequests": 1,
+      "independentSourceRecountMatches": true,
+      "appClickToDisplayedMs": 6274.254000000015,
+      "observedClickToAvailableMs": 6470.699999988079,
+      "clickToSavedMs": 6109.410900000017,
+      "cachedListProcessingMs": 12.699999988079071,
+      "ui": {
+        "count": "16",
+        "weekly": "0",
+        "latest": null,
+        "zone": "creator-zone-none"
+      }
+    },
+    {
+      "name": "口罩哥直播号",
+      "runId": "activity-071329a88141e0c5828f422b",
+      "ownerAndAuthorIdsVerified": true,
+      "contract": "signaldesk-creator-activity/v6",
+      "frontendTotal": 3201,
+      "totalSource": "profile-tab",
+      "records": 21,
+      "types": {
+        "0": 21
+      },
+      "pinned": 3,
+      "latestReturned": "2026-10-04T09:56:54.000Z",
+      "weekStart": "2026-10-04T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-11T16:00:00.000Z",
+      "weeklyCount": 0,
+      "latestPublishedAt": null,
+      "coverage": "week-boundary",
+      "pages": 1,
+      "extraListGets": 0,
+      "reusedNativePages": 1,
+      "observedNativeListRequests": 1,
+      "independentSourceRecountMatches": true,
+      "appClickToDisplayedMs": 6644.612800000003,
+      "observedClickToAvailableMs": 6820,
+      "clickToSavedMs": 6504.200900000054,
+      "cachedListProcessingMs": 12.299999982118607,
+      "ui": {
+        "count": "3201",
+        "weekly": "0",
+        "latest": null,
+        "zone": "creator-zone-none"
+      }
+    }
+  ],
+  "requestMeasurement": {
+    "explicitSelfGets": 2,
+    "explicitExtraListGets": 0,
+    "observedNativeListRequests": 2,
+    "authorHomeNavigations": 2,
+    "totalPageTrafficMeasured": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-05T06:05:11.967Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 513,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 20,
+          "currentRows": 23,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 513,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "validation": {
+    "guardTests": 5,
+    "originalBrowserTests": 15,
+    "sourceProductCodeChanged": false,
+    "reviewAppBytesMatchDeliveredApp": true
+  },
+  "limitations": [
+    "Both real samples have zero current-week publications. Positive current-week statistics remain unverified.",
+    "No natural second page was required; real later-page GET remains unverified.",
+    "The 13 image-post records are old publications; positive image-post weekly counting remains unverified.",
+    "No restricted, deleted, prohibited, temporary or unknown-visibility items appeared; those remain offline coverage.",
+    "Extension readiness does not guarantee a loaded /user/self page; the local context gap was recorded, not fixed."
+  ]
+}

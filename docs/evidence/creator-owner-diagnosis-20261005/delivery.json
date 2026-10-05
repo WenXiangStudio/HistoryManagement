@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-10-05T07:56:03.869Z",
+  "version": "0.7.4",
+  "originalShortcut": true,
+  "mainInstances": 1,
+  "noRemoteDebugging": true,
+  "readiness": "ready",
+  "creators": 295,
+  "basicPending": 0,
+  "noRunningCollection": true,
+  "latestActivityPhase": "completed",
+  "allExtensionFileHashesMatch": true,
+  "executableAndAsarHashesMatch": true,
+  "temporaryModulesRemoved": true,
+  "restoration": {
+    "version": "0.7.4",
+    "normalShortcutStarted": true,
+    "sourceVerificationPolicyChanged": false,
+    "forcedValidationShutdown": true,
+    "temporaryGuardRemoved": true,
+    "productionPackageChanged": true,
+    "extraPlatformRequestsAdded": 0
+  }
+}

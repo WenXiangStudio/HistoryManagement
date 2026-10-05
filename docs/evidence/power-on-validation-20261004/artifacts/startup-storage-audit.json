@@ -1,0 +1,39 @@
+{
+  "tables": {
+    "creator_activity_attempts": {
+      "rows": 360,
+      "unchanged": true
+    },
+    "creator_activity_runs": {
+      "rows": 7,
+      "unchanged": true
+    },
+    "creator_activity_snapshots": {
+      "rows": 360,
+      "unchanged": true
+    },
+    "directory_creators": {
+      "rows": 0,
+      "unchanged": true
+    },
+    "directory_runs": {
+      "rows": 0,
+      "unchanged": true
+    },
+    "following_account_owners": {
+      "rows": 1,
+      "unchanged": true
+    },
+    "visible_directory_creators": {
+      "rows": 170,
+      "unchanged": true
+    },
+    "visible_directory_runs": {
+      "rows": 11,
+      "unchanged": true
+    }
+  },
+  "settingsUnchanged": true,
+  "integrity": "ok",
+  "foreignKeyViolations": 0
+}

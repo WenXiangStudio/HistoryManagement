@@ -1,0 +1,129 @@
+{
+  "recordedAt": "2026-10-04T04:54:43.386Z",
+  "ui": {
+    "recordedAt": "2026-10-04T04:53:45.419Z",
+    "normal": {
+      "cardCount": 180,
+      "overlapping": 0,
+      "overThreeLines": 0,
+      "badLinks": 0,
+      "expandable": 13,
+      "noHorizontalOverflow": true
+    },
+    "compact": {
+      "cardCount": 180,
+      "overlapping": 0,
+      "overThreeLines": 0,
+      "badLinks": 0,
+      "expandable": 13,
+      "noHorizontalOverflow": true
+    },
+    "expanded": {
+      "name": "圈圈包子（周末更新，偶尔日更）",
+      "expanded": true,
+      "background": "rgb(255, 255, 255)",
+      "opacity": "1",
+      "inNormalFlow": true,
+      "noLinkOverlap": true,
+      "bubbleHeight": 200.5,
+      "fullTextMatchesSaved": true
+    },
+    "linksAndCounts": {
+      "creators": 180,
+      "countsKnown": 180,
+      "allCountsMatch": true,
+      "allPeriodLabels": true,
+      "allAnalyzedPlaceholders": true
+    },
+    "examples": [
+      {
+        "name": "爱学习的乔同学",
+        "summary": "本周更新 2 条·最近更新 2026-10-03 10:24本周记录周期：09.28～10.04",
+        "weeklyCount": "2",
+        "expandable": false,
+        "previewHeight": 18.6875
+      },
+      {
+        "name": "圈圈包子（周末更新，偶尔日更）",
+        "summary": "本周更新 4 条·最近更新 2026-10-01 23:36本周记录周期：09.28～10.04",
+        "weeklyCount": "4",
+        "expandable": true,
+        "previewHeight": 56.0625
+      },
+      {
+        "name": "林文冠AI",
+        "summary": "本周更新 5 条·最近更新 2026-09-30 09:58本周记录周期：09.28～10.04",
+        "weeklyCount": "5",
+        "expandable": true,
+        "previewHeight": 56.0625
+      }
+    ],
+    "newCollectionStarted": false
+  },
+  "weeklyCountSources": {
+    "verifiedAuthors": 180,
+    "allCountsKnown": true,
+    "totalRecordedWeekWorks": 329,
+    "authorsWithUpdates": 100,
+    "authorsWithoutUpdates": 80,
+    "noNewRequests": true
+  },
+  "storage": {
+    "tableComparison": {
+      "creator_activity_attempts": {
+        "rows": 370,
+        "unchanged": true
+      },
+      "creator_activity_runs": {
+        "rows": 8,
+        "unchanged": true
+      },
+      "creator_activity_snapshots": {
+        "rows": 370,
+        "unchanged": true
+      },
+      "directory_creators": {
+        "rows": 0,
+        "unchanged": true
+      },
+      "directory_runs": {
+        "rows": 0,
+        "unchanged": true
+      },
+      "following_account_owners": {
+        "rows": 1,
+        "unchanged": true
+      },
+      "visible_directory_creators": {
+        "rows": 180,
+        "unchanged": true
+      },
+      "visible_directory_runs": {
+        "rows": 12,
+        "unchanged": true
+      }
+    },
+    "integrity": "ok",
+    "foreignKeyViolations": 0,
+    "noHistoryRewritten": true
+  },
+  "checks": {
+    "applicationFiles": 27,
+    "applicationTests": 240,
+    "typeScript": "passed",
+    "productionBuild": "passed",
+    "packagedRenderer": "passed"
+  },
+  "scope": {
+    "newCollectionStarted": false,
+    "extensionVersionUnchanged": "0.6.2",
+    "formalWorksCommentsGate": false
+  },
+  "desktopReopen": {
+    "ActualDesktopShortcut": true,
+    "WeeklyCountLabels": 180,
+    "WeeklyPeriodLabels": 180,
+    "PeriodValues": 181,
+    "ExpansionButtons": 13
+  }
+}

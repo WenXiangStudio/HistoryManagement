@@ -1,0 +1,1654 @@
+{
+  "acquisitionMs": 2853.7999999970198,
+  "activeApiRequests": 10,
+  "collectedAt": "2026-10-04T04:19:46.924Z",
+  "contract": "signaldesk-structured-following-capture/v1",
+  "creators": [
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_okpACu9NCCOEWAF9mApIecKAAvA6gufC63bDEk.jpeg?from=2956013662",
+      "nickname": "Boujoy",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+      "secUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+      "signature": "感恩",
+      "uid": "2141457830379949"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_9bcba3d86f924153864523764bac95ff.jpeg?from=2956013662",
+      "nickname": "直男山禾",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+      "secUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+      "signature": "👆🏻就职于一家AI公司\n🎈分享各种Ai工具的使用技巧\n👀关注我，早一步踏进Ai时代\n领🎁去绿色软件搜【直男山禾】",
+      "uid": "3035124260682812"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_73214579d917897fad4e3d56121c0fb4.jpeg?from=2956013662",
+      "nickname": "痴五安chammy",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+      "secUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+      "signature": "👦🏻165cm 52kg 小个子55分身材\n✌️165穿成179 绝不无可能！\n视频同款都在橱窗的对应【清单】没穿过的不会上橱窗！！\n粉丝V：chammy666\n🈴 yuntunn\n可能会有日常：@川桑儿",
+      "uid": "3474930275464078"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_o89h3SAxsIA3fAZMA4AfQGIOetBDHEBa3Gb7zL.jpeg?from=2956013662",
+      "nickname": "笨鸟怎么飞",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+      "secUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+      "signature": "医疗科技财经都能扯一扯的笨鸟一枚\n平台就这一个号，不主动加人",
+      "uid": "820694472199033"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_58b7a29483bd415da82c9688c61b3f0e.jpeg?from=2956013662",
+      "nickname": "黄大圣叨叨叨",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+      "secUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+      "signature": "博主周中要上班\n每周末更新\n日常讲财经|经常锐评川宝|最近常讲周期",
+      "uid": "211552108032775"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_3bac6620bdd23099e1aab8eec67c75fd.jpeg?from=2956013662",
+      "nickname": "小德MOMO",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+      "secUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+      "signature": "每周日下午6点更新视频\n梦想是可以得到你的关注！如果对视频内容有疑问或者建议，欢迎加入小德的会员群～",
+      "uid": "105246634576"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/mosaic-legacy_2f4a60003c69b54dfb3d0.jpeg?from=2956013662",
+      "nickname": "派大和小葵",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+      "secUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+      "signature": "商务合作➕wx：paidakuwan",
+      "uid": "18560574259"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_7a27f6b9c65c2134b41ae68071a3ae6a.jpeg?from=2956013662",
+      "nickname": "亦玖",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+      "secUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+      "signature": "白天是生活\n夜晚是梦想\n挣钱养梦，为自己干杯",
+      "uid": "7546511620906812474"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_598310fc5def4930916fd76db4774f44.jpeg?from=2956013662",
+      "nickname": "彭春花本人",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+      "secUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+      "signature": "自我养育幸存者｜坚持写日记20年｜独居2年+｜聊心理，聊文化，知识的终点就是使用\n合作联系：chybtalk",
+      "uid": "100441820893"
+    },
+    {
+      "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b59398e92819a13c303bb012d275db01.jpeg?from=2956013662",
+      "nickname": "大要",
+      "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+      "secUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+      "signature": "咱有专门改善发音的系统课程：yaosleepy",
+      "uid": "4147012152328413"
+    }
+  ],
+  "domQueries": 0,
+  "followingStatusCode": 0,
+  "hasMore": true,
+  "ok": true,
+  "owner": {
+    "nickname": "无限♾️进步",
+    "secUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+    "uid": "2131296669408333"
+  },
+  "pages": [
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_okpACu9NCCOEWAF9mApIecKAAvA6gufC63bDEk.jpeg?from=2956013662",
+          "nickname": "Boujoy",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+          "secUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+          "signature": "感恩",
+          "uid": "2141457830379949"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_fe1ee4cecfc9a00804d3ac2956d9e210.jpeg?from=2956013662",
+          "nickname": "子牧说 | 且曼学院",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAKXmb-8mv9WORgwGXgDntz9ff0tcINHmDeAnYBx33DKY",
+          "secUid": "MS4wLjABAAAAKXmb-8mv9WORgwGXgDntz9ff0tcINHmDeAnYBx33DKY",
+          "signature": "🥸分享设计审美干货 | AIGC设计等内容\n·《转行指南》：zimuoxo(小助理)\n·设计新出路，就来找子牧\n·喜欢唱歌但只有KTV水平",
+          "uid": "109005996423"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_860ae15805214d2fb1ca733f89897248.jpeg?from=2956013662",
+          "nickname": "木子不写代码",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAy_5W-LNi-cp7QbySyzEm3PskTDnDMUF34XijUKmZvywSej4Pm4UtLhQHiY_7Fryj",
+          "secUid": "MS4wLjABAAAAy_5W-LNi-cp7QbySyzEm3PskTDnDMUF34XijUKmZvywSej4Pm4UtLhQHiY_7Fryj",
+          "signature": "图卢兹大学机器博士，前空客研发工程师\nAI公司创始人\n专注于AI Agent及AI自动化商业落地",
+          "uid": "1104325021272861"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_f4f31e6a89ed4f1eb193e7144d6f935e.jpeg?from=2956013662",
+          "nickname": "数字生命卡兹克",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwU33jOgLTqUV9Ub1h-Vgcd0VbQa-vV4lifYAzQSqgZ4",
+          "secUid": "MS4wLjABAAAAwU33jOgLTqUV9Ub1h-Vgcd0VbQa-vV4lifYAzQSqgZ4",
+          "signature": "希望能激发你对AI的好奇。",
+          "uid": "354469019649443"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_884f002bda7d4ce38967b3f31e893c48.jpeg?from=2956013662",
+          "nickname": "老袁讲AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAFehT7Ul6A7w8DZNGU9WEAd4LI6hE3a6yY6wayWRGwW-PJdqZdQAT6Sv7ukeOUcqp",
+          "secUid": "MS4wLjABAAAAFehT7Ul6A7w8DZNGU9WEAd4LI6hE3a6yY6wayWRGwW-PJdqZdQAT6Sv7ukeOUcqp",
+          "signature": "哈尔滨工业大学硕士，带大家跑步进入AI时代",
+          "uid": "1366035156438155"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_453dc5e92801fcb18688c13cf0b9b7f0.jpeg?from=2956013662",
+          "nickname": "躺在废墟里",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA5D28jzH21yvvBcf6mgwNBW-a5PoCYt30ZQmhUZlp4h_HMPdpMBD9saoxzKzjvaPb",
+          "secUid": "MS4wLjABAAAA5D28jzH21yvvBcf6mgwNBW-a5PoCYt30ZQmhUZlp4h_HMPdpMBD9saoxzKzjvaPb",
+          "signature": "复旦新传➡️4年记者➡️AI 初创公司\n分享AI开源资源｜AI教程｜AI设计| AI写作\n持续开源：写作蒸馏器.skill｜Lieflat Charts｜Lieflat less ai tone \n保持好奇心～",
+          "uid": "2528493636688974"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_dc72389bdfc7e85764e07dbeae288b32.jpeg?from=2956013662",
+          "nickname": "爱学习的乔同学",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAkRmmB7F5OVdNAIVJWfjnfo8hQjiXKCbYIXlT3u3cAE83eUp0NN92tXEnLRdIJqJ2",
+          "secUid": "MS4wLjABAAAAkRmmB7F5OVdNAIVJWfjnfo8hQjiXKCbYIXlT3u3cAE83eUp0NN92tXEnLRdIJqJ2",
+          "signature": "🏫西工大飞行器本｜港大计算机硕\n💻大厂AI算法工程师\n👉穿着简历去深圳招聘会拿下12个算法Offer\n📖畅销书《7天玩转扣子智能体》唯一作者",
+          "uid": "1902591186318516"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e6003d26638dd7116f9dfed6e20ea5de.jpeg?from=2956013662",
+          "nickname": "雪踏乌云",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAANchjI4dTDuTqyCM8xcfFWYshBcPFVOvWarHtXRVtomU",
+          "secUid": "MS4wLjABAAAANchjI4dTDuTqyCM8xcfFWYshBcPFVOvWarHtXRVtomU",
+          "signature": "🎓 985毕业，AI公司创始人\n✨ AI  | AI全球资讯 | AI宏观视野  |  科技数码\n🥇 关注我学习AI编程、AI工具、AI产品变现\n📧 合作私信",
+          "uid": "650501175644173"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_f447bfe651899683a5a2400e9a1d8db3.jpeg?from=2956013662",
+          "nickname": "小涛AI大讲堂",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAir7XTbvFjc7gRAyIUMTPduNlbbS85lNujaWPvKvV9aPRh3iXY9CI5sONiVR70OzD",
+          "secUid": "MS4wLjABAAAAir7XTbvFjc7gRAyIUMTPduNlbbS85lNujaWPvKvV9aPRh3iXY9CI5sONiVR70OzD",
+          "signature": "做老百姓的AI教程，本人专注爬虫web逆向安卓逆向多年\n最新课程，爬虫+Ai编程课程+逆向，侵权联系我下架\n🛰️wang12345pw\n🛰️wang1234567pw",
+          "uid": "1665135495091180"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_754a4d6a89cf4003a8ca1219bbe5f84b.jpeg?from=2956013662",
+          "nickname": "AI，我俩和一百万",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+          "secUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+          "signature": "AI，产品，创业\n做世界需要的疯子，只做自己真正想做的事\n人生哲学：我们需要一个亿 💴\n企业AI落地和咨询：@与君AI",
+          "uid": "7606571592415511601"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ccd7e86482d342a5b5e4ab5aeca13f1d.jpeg?from=2956013662",
+          "nickname": "浙大猫学长",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA_gr4GldpYARx-VmGCOQrqhgxR4RNkMctuViE-QegVCvByxWkIHDaESG9tKagAY_H",
+          "secUid": "MS4wLjABAAAA_gr4GldpYARx-VmGCOQrqhgxR4RNkMctuViE-QegVCvByxWkIHDaESG9tKagAY_H",
+          "signature": "浙大数学硕士｜前腾讯AI lab研发\n致敬steve🫡 vibe different",
+          "uid": "1418797132560580"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_5fd31d2c53d5a55efaa92a203fe7c64c.jpeg?from=2956013662",
+          "nickname": "曲木古也",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAApLyNZTs1SZ1yRU6prjfTJ4EfLuqDwAC4Ggr8re9SUhRzC9FLieaK8Q6rhrXdZb8x",
+          "secUid": "MS4wLjABAAAApLyNZTs1SZ1yRU6prjfTJ4EfLuqDwAC4Ggr8re9SUhRzC9FLieaK8Q6rhrXdZb8x",
+          "signature": "穆尔西亚大学 研究生｜共 30w+粉丝\n有海内外教学经历｜去过的国家有:\n🇹🇭🇵🇭 🇱🇺 🇳🇵 🇪🇸🇱🇰 🇭🇺 🇦🇩🇲🇨🇧🇪🇳🇱🇫🇷🇵🇹🇻🇦🇮🇹🇨🇿\n一位宝藏老师，自成一派，带你看懂英语底层逻辑\n小宝贝：@曲木艾琳娜",
+          "uid": "1830044627643447"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_df46cae59577a33b4650679ae5675439.jpeg?from=2956013662",
+          "nickname": "周话多GOGOGO",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA85pVGNmKyRaaPgiIBG-aAYPQqjWNrugRfEIm9auf5libHj7z04a4HUATcU4MMDKv",
+          "secUid": "MS4wLjABAAAA85pVGNmKyRaaPgiIBG-aAYPQqjWNrugRfEIm9auf5libHj7z04a4HUATcU4MMDKv",
+          "signature": "一个已经从0到1搭出一家“AI Native Company”的真实经营者\n【关注AI Business Engineering】全球视野分析AI从技术到产业，也讲背后的个体、组织、财富与秩序\n\n上过班：外企（PM）｜GWY直属研究院（主任建筑师-参数化）\n然后就：0背景｜0经验｜0资源，多次单兵开场0到1：\n医学 → 医疗器械 → 建筑设计 → 算力｜数据｜AI｜机器人\n反正每次都干成了，公司都还在经营……\n一个只信仰真理的老实人。也长期主义爱好者。",
+          "uid": "7664168751043265585"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_3503eb4af3b049798b63f628bcdf1bba.jpeg?from=2956013662",
+          "nickname": "阿星不是程序员",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAbq1mUQee_ybJ03ScbRbdWjPoQ89qQMacLEhE9piS0fA",
+          "secUid": "MS4wLjABAAAAbq1mUQee_ybJ03ScbRbdWjPoQ89qQMacLEhE9piS0fA",
+          "signature": "来这里就对啦😎\n听我给你唠各种科技狠活儿",
+          "uid": "98700288471"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o0APEDEDAKfAPePA8pvyAVbI8AFov9AM0DCzGg.jpeg?from=2956013662",
+          "nickname": "每日英语",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAZpsQ1KjsRLgmYLsvLAwyR-zbnG8WjVraaUHNsbWkLiWo2EMIW3P8H2q-dA4v-vhO",
+          "secUid": "MS4wLjABAAAAZpsQ1KjsRLgmYLsvLAwyR-zbnG8WjVraaUHNsbWkLiWo2EMIW3P8H2q-dA4v-vhO",
+          "signature": "❤️软件名称：带背单词App\n🌈自然拼读➕思维导图➕词根定律8倍效率速记单词\n🎈艾宾浩斯记忆法抗遗忘\n🥰带背单词，学会为止！！",
+          "uid": "2263275872454889"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_0d5042dbd75870119e7873ac2abb97fa.jpeg?from=2956013662",
+          "nickname": "oil欧呦",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA8jd-n1rIuyxpZjCEZS77_iddWn0SylAKGldswlA4JVsHUVn-rwJUVGGIG6SUNvUj",
+          "secUid": "MS4wLjABAAAA8jd-n1rIuyxpZjCEZS77_iddWn0SylAKGldswlA4JVsHUVn-rwJUVGGIG6SUNvUj",
+          "signature": "00年 AI  产品经理/前端工程师，infj 分享日常生活，产品设计心得。 产品，skill，交流答疑+：oil-oil6",
+          "uid": "3109877063627015"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oEAgcZff9oE8DNAPCWDG7vFiA9PxgAyEunKAIA.jpeg?from=2956013662",
+          "nickname": "浩瀚烟火日记",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxXpim7xF5cS7xXVOiT0eoeKb1SGQlxKwJ9iC6JYB0hgyVf73k72212cBKg2HBrPx",
+          "secUid": "MS4wLjABAAAAxXpim7xF5cS7xXVOiT0eoeKb1SGQlxKwJ9iC6JYB0hgyVf73k72212cBKg2HBrPx",
+          "signature": "看众生相——各行各业、万般热爱的真实故事。\n记录普通人当下和未来一生的轨迹，跨越岁月，愿故事永远未完待续…",
+          "uid": "1408901132066411"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oQOA7BaigIAamiVAPi6nAooExPkAvAQGqg66I.jpeg?from=2956013662",
+          "nickname": "涌现EmergenceHK",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA0pI5mTcao4YpP4MHmpwfEcieDK-Ia36CEttsKWUdqvudr044H_cy_JES67O9r2SZ",
+          "secUid": "MS4wLjABAAAA0pI5mTcao4YpP4MHmpwfEcieDK-Ia36CEttsKWUdqvudr044H_cy_JES67O9r2SZ",
+          "signature": "技术x经济模型|新资产在涌现\nHost:所长林超、Bill Qian\nProducer:曹美英木\n前沿科技投啥好?私信我闭门聊😀",
+          "uid": "2535940755836467"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oUBPALFETPfDB487frgAnlAEovAbI8FAANoQfn.jpeg?from=2956013662",
+          "nickname": "Fateless",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA-uO4JDJdM_Dh4LaHzzgBotL7RAbhGAHiRfvv8N7czJU",
+          "secUid": "MS4wLjABAAAA-uO4JDJdM_Dh4LaHzzgBotL7RAbhGAHiRfvv8N7czJU",
+          "signature": "CineART超创@CineART \nShotlab /Youart /dreamo签约创作者",
+          "uid": "443843619588344"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oAbainBmEiARIwCU3AioAkAAE0e3PeVn1CZCw2.jpeg?from=2956013662",
+          "nickname": "刺猬星球super-i",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAuB4VmBi2W4eg-mmEhrft4anoVvHWmusGGA9LHUxTC4HduubH0NVLDzBoVTiuO-Di",
+          "secUid": "MS4wLjABAAAAuB4VmBi2W4eg-mmEhrft4anoVvHWmusGGA9LHUxTC4HduubH0NVLDzBoVTiuO-Di",
+          "signature": "刺猬星球 —— 一个聚焦新时代ai人才的乌托邦",
+          "uid": "3754190990751643"
+        }
+      ],
+      "hasMore": true,
+      "position": 1,
+      "requestMaxTime": 0,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1789785502,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    },
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_73812d6040b5ccf64e22acb4c4c25b51.jpeg?from=2956013662",
+          "nickname": "Mx-Shell",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAPjlJkMcpTxq865qIViaCDzXMRLOhRUFL9Xlr4mdYPQ0TFwT4sOD_dgNIg6OtvmVE",
+          "secUid": "MS4wLjABAAAAPjlJkMcpTxq865qIViaCDzXMRLOhRUFL9Xlr4mdYPQ0TFwT4sOD_dgNIg6OtvmVE",
+          "signature": "🎗️ 独立音乐人 摄影师 AIGC创作者（非科班 业余爱好者）\n🎞️ 小云雀超创丨新片场Shotlab签约创作人\n🎬 青丘文化合作导演丨硅基智能首席AI创作顾问\n🕹️ Yoroll签约游戏创作者",
+          "uid": "1970803041905383"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_c4d7581c8e8671fad5dfea06c7973b24.jpeg?from=2956013662",
+          "nickname": "盐选财经",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA9G0BvdbFGZOZy7UgtYAQ7GGPvX9Lsi0vifEW82JUfr4Q5rl-KUti1sMsgSaacbsx",
+          "secUid": "MS4wLjABAAAA9G0BvdbFGZOZy7UgtYAQ7GGPvX9Lsi0vifEW82JUfr4Q5rl-KUti1sMsgSaacbsx",
+          "signature": "找我可：Travis1942\n写文章的地方可搜：咸盐碎语不让讲、地产圈下半场",
+          "uid": "3368506990017837"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_66a7cbfe81d307cc07531f9c9404de88.jpeg?from=2956013662",
+          "nickname": "杜一聊Ai增长",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAF9_gcrvRn_mzg0ZLe_VFxwtgj9OyUZTnJNMidsIB6XLOaO0K6JEqayQYZS7BfTSF",
+          "secUid": "MS4wLjABAAAAF9_gcrvRn_mzg0ZLe_VFxwtgj9OyUZTnJNMidsIB6XLOaO0K6JEqayQYZS7BfTSF",
+          "signature": "做了7年营销，现在用AI重新做一遍。\n靠AI开了家传媒公司，2个月6位数营收。\nAI营销｜自媒体｜Agent工作流\n研究一件事：AI怎么真正带来增长。",
+          "uid": "3496904717771005"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oMeO5G7AB7GCNEBIxALa5EA1B4AfIAEfAHAE1A.jpeg?from=2956013662",
+          "nickname": "大锋1",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAEvxm3Ni_ropFSk4oKlWpe-_w3ZbdWWxnkHK6-zP_XqUAta8uQKjh2hEEqCB_55Hj",
+          "secUid": "MS4wLjABAAAAEvxm3Ni_ropFSk4oKlWpe-_w3ZbdWWxnkHK6-zP_XqUAta8uQKjh2hEEqCB_55Hj",
+          "signature": "下班后搞AI | 记录搞钱过程\n普通打工人，用AI从0到1做产品\n赚钱思维 | 副业 | 自媒体",
+          "uid": "1434233808355629"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_okLGPAEGQEuqUAvLIAAXGAEeBBeaetnAk7IMBT.jpeg?from=2956013662",
+          "nickname": "Capitalistic",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAqWn2xBrotvlEsc7_ta832D6zKfXbiLlroDcouacbkYk",
+          "secUid": "MS4wLjABAAAAqWn2xBrotvlEsc7_ta832D6zKfXbiLlroDcouacbkYk",
+          "signature": "顺境养人『』逆境造神\nv：ooO_CM_Ooo",
+          "uid": "73358694224"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b325e0af5a3d80e89a75d2f3b9f5fa82.jpeg?from=2956013662",
+          "nickname": "以太Max",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAhIMY-k9jfehKtHHWMlyVyCBRrU-oixh2GBYoyG76Hmxxn2GYEFv7lYlGRR1hWamP",
+          "secUid": "MS4wLjABAAAAhIMY-k9jfehKtHHWMlyVyCBRrU-oixh2GBYoyG76Hmxxn2GYEFv7lYlGRR1hWamP",
+          "signature": "🏢 AI科技公司在职 | 万人AI社群主理人 \n👨🏻‍💻 一线AI从业者 | 日均实操 8h+\n🎯 只分享验证过的【教程·工具·心法】\n👇️ 关注我，带你用行内人的视角看AI",
+          "uid": "3406705361950872"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_445b2eb5d9fce852c06f1679b2455c35.jpeg?from=2956013662",
+          "nickname": "超级AI客",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAf-ASkZWMJVCH0S8SLFqeT6Le2OCf5kG4P4wdbGO_1L7PcGiw-upsvGqZBPA2OWbP",
+          "secUid": "MS4wLjABAAAAf-ASkZWMJVCH0S8SLFqeT6Le2OCf5kG4P4wdbGO_1L7PcGiw-upsvGqZBPA2OWbP",
+          "signature": "AIP超级AI客\n即梦AI首批「造梦者」认证创作者\n部分教程已在公众号开源\n❤️ 学习加：Xiaohou_Keai",
+          "uid": "1904003947969928"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_o8EAh03AtEMAPweqyyIAAiiEMhBgwkA1WfYule.jpeg?from=2956013662",
+          "nickname": "Work-Fisher",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAe2bFn8j9AYtKOUy-CHJcAAOkcKO8CaBebWTbGRG0p2GrmpGL7kOKI7N621_vOaAd",
+          "secUid": "MS4wLjABAAAAe2bFn8j9AYtKOUy-CHJcAAOkcKO8CaBebWTbGRG0p2GrmpGL7kOKI7N621_vOaAd",
+          "signature": "《相亲对象她居然打直球》作者\n人物角色已登记版权，不允许使用。\n商务合作Vx：mybd0097(非本人)",
+          "uid": "4413893593804651"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_262c149ae8053e704e46fb416e1254fd.jpeg?from=2956013662",
+          "nickname": "foyege",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAq5UIz3urhEf4NK9TdN7EbmSzQfiy8lMdO1doGlEUW5E",
+          "secUid": "MS4wLjABAAAAq5UIz3urhEf4NK9TdN7EbmSzQfiy8lMdO1doGlEUW5E",
+          "signature": "“从AI的视角重构世界”\nAI学习&合作&学习群：@AI.Foyege \nAI视频承制：Foyege2424-\n\nAIGC技术导师｜LibTV-签约导演｜INFINITY创始人",
+          "uid": "99024415262"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1ccf7fab0e5b42ffd2ae5eb02238a519.jpeg?from=2956013662",
+          "nickname": "nature-skills",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAT-5sEzj6TfDpdfzsBD0HfhUz7EBuRJl4WXOxIoZtwNaRlJIKPRCQqBKAPhWWfmW2",
+          "secUid": "MS4wLjABAAAAT-5sEzj6TfDpdfzsBD0HfhUz7EBuRJl4WXOxIoZtwNaRlJIKPRCQqBKAPhWWfmW2",
+          "signature": "Nature Skill创立者袁一哲，目前45k stars！\nSkills已经全部免费开源到github，可自由获取！\nNature Skill网页版可在github获取！",
+          "uid": "3501288822418040"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_o8EQ9vAPM34IB07anhwiGi0udwBaxHAtAAWA1.jpeg?from=2956013662",
+          "nickname": "花颜白茶",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAODNyF4Z1XuL7v4-gWopgu3RTguKuc9MOM-m5pAG0Th8",
+          "secUid": "MS4wLjABAAAAODNyF4Z1XuL7v4-gWopgu3RTguKuc9MOM-m5pAG0Th8",
+          "signature": "",
+          "uid": "97881001234"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_f11d0279f3748e649f1e55b344e4d021.jpeg?from=2956013662",
+          "nickname": "许工跑得通",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxCiCtYrn3ZncdPnkeoMfKMHENwAQulNipJdpmU18ndpSJeCcscz0k_WBh4fWvrVx",
+          "secUid": "MS4wLjABAAAAxCiCtYrn3ZncdPnkeoMfKMHENwAQulNipJdpmU18ndpSJeCcscz0k_WBh4fWvrVx",
+          "signature": "不讲原理，只分享怎么把 AI 用起来\n10 年 iOSer / 苹果独立开发者盈利版\n🐱vince-hz\nBuilding: oomol.com\n🛰 zjxuyunshi",
+          "uid": "7634428395657790501"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_593433977a1b1cb3e53eb49fa18e121a.jpeg?from=2956013662",
+          "nickname": "🇨🇳挪威老王🇳🇴",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAvNJhYIy_k4knmAnBx2e-HyLn72wzt2EHpSzvhNTGp9w",
+          "secUid": "MS4wLjABAAAAvNJhYIy_k4knmAnBx2e-HyLn72wzt2EHpSzvhNTGp9w",
+          "signature": "🇨🇳中挪情侣🇳🇴这是一段北京人与维京人故事\n《很高兴认识你第二季》嘉宾 《开门大吉》嘉宾\n职业漫画家，笔名冰婪 代表作《御念师》《蛊真人》《致幻毁灭者》\n个人V：wangdadiule 请标明来意\n星图与直播商务：NSQYBP",
+          "uid": "54875526260"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_561ac16670a22e52f44557575256b574.jpeg?from=2956013662",
+          "nickname": "李明昊",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAs0gafN7aFsONV-GrGZMUyIGnMKbrX6yqxfGYItfpgxvcJdrIHwoZVyXu0nkAoFl9",
+          "secUid": "MS4wLjABAAAAs0gafN7aFsONV-GrGZMUyIGnMKbrX6yqxfGYItfpgxvcJdrIHwoZVyXu0nkAoFl9",
+          "signature": "小地图是：星火意愿征集 \nAlan79888 （记得备注来意）\n目前还没有上线，是下载不到的，不要下错了\n不会收费招加盟，谨防上当\n成都测试入驻可联系\n全国都会开，但是需要时间\n前大厂程序员 前端+产品经理 \n独立思考，明辨是非。\n用技术拆解外卖行业 记录一个新外卖平台从 0 到 1 \n核心价值观：真实｜透明｜尊重｜克制｜公平\n成都｜骑手视角｜真实创业 \n回复有次数限制 产品上线之后会争取全部回完",
+          "uid": "7639242635736204325"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_fbd4c2ca58f742a9be1ab07a7a3171a5.jpeg?from=2956013662",
+          "nickname": "痕继痕迹",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAANV8iagjbupI4FDXTSZhPNg3BEfn1bY1H-43aS6dKSSK0Daz2OMUhGpbECoZ6ShuC",
+          "secUid": "MS4wLjABAAAANV8iagjbupI4FDXTSZhPNg3BEfn1bY1H-43aS6dKSSK0Daz2OMUhGpbECoZ6ShuC",
+          "signature": "AI！软件！科技！",
+          "uid": "1301475728826733"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_585e8651d5366e02f5057aa84ebdd743.jpeg?from=2956013662",
+          "nickname": "卡比的小镇",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxTiJdGR92gFAUslQi3nogoPKmRPaH0JvVpFmdpSfwXerxmz7m2bu3fxmblbb2OOB",
+          "secUid": "MS4wLjABAAAAxTiJdGR92gFAUslQi3nogoPKmRPaH0JvVpFmdpSfwXerxmz7m2bu3fxmblbb2OOB",
+          "signature": "全栈开发 × AI × 原创 IP\n汪汪日记 （记录宠物的一生）： @汪汪日记\nios已上线 安卓即将上线",
+          "uid": "2538105836938718"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_8e3574ce8739eea8265018ccbff81958.jpeg?from=2956013662",
+          "nickname": "老阳的奇妙电波",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAykXKbsl7xSwAk4wdkJpjmFnbz5kJzrU3zlCCkgHfTRU",
+          "secUid": "MS4wLjABAAAAykXKbsl7xSwAk4wdkJpjmFnbz5kJzrU3zlCCkgHfTRU",
+          "signature": "潜心金谷，耽思往籍，好奇不倦\n商务联系：qimiaodianbo888（注明来意）",
+          "uid": "108850228929"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_6ad9dff8b42f411ed89e1c39b6a8d6f4.jpeg?from=2956013662",
+          "nickname": "清华鑫哥讲AI智能体",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAyiFzv3jU8mdXv_iVwLsdkvvEJiZW21cj-29LfJZqFYA6iqqe5k2WZXP2Fz86Pjaf",
+          "secUid": "MS4wLjABAAAAyiFzv3jU8mdXv_iVwLsdkvvEJiZW21cj-29LfJZqFYA6iqqe5k2WZXP2Fz86Pjaf",
+          "signature": "正在做Agent大航海计划\n清华大学硕士，研究方向神经网络预测\n激波Agent创始人丨曾就职于一线PE投资机构",
+          "uid": "2753653701621582"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oUXTwCBAAI1AiA6u9nPCes7su7cy7fAyAiEdHE.jpeg?from=2956013662",
+          "nickname": "张笑笑（此人智商极高）",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAkts3qtHhmx1jHWm8273s8A0vK9D54uhL5qHLFSSEJ-k",
+          "secUid": "MS4wLjABAAAAkts3qtHhmx1jHWm8273s8A0vK9D54uhL5qHLFSSEJ-k",
+          "signature": "理工男 ｜ 聊AI ｜ 偶尔也聊聊艺术\n有正经工作，自媒体是副业\n合作v：Z_X_X_2026",
+          "uid": "287391194026537"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_fbfc4afb45f94c9703f1d2d0f35b4c89.jpeg?from=2956013662",
+          "nickname": "Shane做AI产品",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAX3f2Jwi_ly0v9lNjkdgAcwCoIp8sivsNXU7bSVYSi_4AvUp3glwZoTkabOj_V5Ki",
+          "secUid": "MS4wLjABAAAAX3f2Jwi_ly0v9lNjkdgAcwCoIp8sivsNXU7bSVYSi_4AvUp3glwZoTkabOj_V5Ki",
+          "signature": "7年软件开发，现在一边拆 AI 产品，一边自己做\n产品拆解｜Prototype｜Agent / Skill｜Eval\nBuild in Public：从 Idea → 上线 → 真实用户",
+          "uid": "2843813581432649"
+        }
+      ],
+      "hasMore": true,
+      "position": 2,
+      "requestMaxTime": 1789785502,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1780852308,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    },
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_osMj9wjIqEDAAAApACoFBCLEIlDArTAeUgf8tS.jpeg?from=2956013662",
+          "nickname": "陈天狼AI编程实战",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAHekEa4VUztBwIlXsJ4HiTooNvLgNSzvsoI3YW4FQbnwwlvgoxJz4kQMXZTYV3uk6",
+          "secUid": "MS4wLjABAAAAHekEa4VUztBwIlXsJ4HiTooNvLgNSzvsoI3YW4FQbnwwlvgoxJz4kQMXZTYV3uk6",
+          "signature": "企业项目：s861847550\n在学AI的晚年程序员 | 维护几个开源框架\n企业服务：Vibe Ccoding、AI团队转型\nAI智能体：企业商业智能体，业务智能体\n维护源码：租赁 | 电商 | AI | API",
+          "uid": "1638743205482931"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/douyin-user-image-file_eb723f4692daa1abb6809a7890c2c59b.jpeg?from=2956013662",
+          "nickname": "一探究竟的小庄Sir",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAACRKcpxqZWA2k5g3RIapQ2X13QOcS6v1fSoGZlTa_S8Wx1U8hZMvVDT4QYX3yM0PL",
+          "secUid": "MS4wLjABAAAACRKcpxqZWA2k5g3RIapQ2X13QOcS6v1fSoGZlTa_S8Wx1U8hZMvVDT4QYX3yM0PL",
+          "signature": "AI+创意工作流实战派\n拒绝人云亦云，只说我用过测过的AI技巧！\n关注我，你也能把AI玩成“生产力工具”！\n\n进粉丝群请绿泡泡加SuperBillZhuang\n获取我分享的资源\n点点关注，咱们一块进步",
+          "uid": "7506876893334799419"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_327cc5401a414146abab350d8998854e.jpeg?from=2956013662",
+          "nickname": "马克的技术工作坊",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwmE-l6oONkP3R29nUSrJlE6gov-8Qq7VinKzNcUvRU0",
+          "secUid": "MS4wLjABAAAAwmE-l6oONkP3R29nUSrJlE6gov-8Qq7VinKzNcUvRU0",
+          "signature": "分享技术与工具，提升生产力。\n全网同名。",
+          "uid": "89984243780"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oMxPDlApUtBIPMpQsACgCiR35AYqJiEaA0cA4.jpeg?from=2956013662",
+          "nickname": "Nathan英语屋",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAP2fPRxpW_Whh5NigfRS_ICRyRwqnbbrZQJA4ZSrEw77TU8u0-CGRaLuBXGCN5j7x",
+          "secUid": "MS4wLjABAAAAP2fPRxpW_Whh5NigfRS_ICRyRwqnbbrZQJA4ZSrEw77TU8u0-CGRaLuBXGCN5j7x",
+          "signature": "• I keep the English simple and natural, so you can enjoy the story while improving your English along the way.and maybe see life from a slightly different perspective.\n•Thanks for being here.",
+          "uid": "1171410702858057"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_5d8bf669f3a7fdabe6ce71c653207939.jpeg?from=2956013662",
+          "nickname": "ami.moment",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA96jvu_C3eIvapc_BNKqKZ-JCzuvkT8zCf2dfEgDkBvOJbMSwCcYFk23S54TxNsc6",
+          "secUid": "MS4wLjABAAAA96jvu_C3eIvapc_BNKqKZ-JCzuvkT8zCf2dfEgDkBvOJbMSwCcYFk23S54TxNsc6",
+          "signature": "影像 ◌ 数码AI ◌ vlog ◌ 旅行\n📩itsamimoment@gmail.com",
+          "uid": "1745661488532235"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_52b952b7839b91e48e9bd9c13727e306.jpeg?from=2956013662",
+          "nickname": "张大丸",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAoC3N2ta6eJ_Eqg5ByWfFglSdgz39EdSKKnSZyoVux6vZyzYpK_4zykdfikKimaJs",
+          "secUid": "MS4wLjABAAAAoC3N2ta6eJ_Eqg5ByWfFglSdgz39EdSKKnSZyoVux6vZyzYpK_4zykdfikKimaJs",
+          "signature": "不从万个梦想中找需求，而从万个需求中找梦想\n目前专注于具身智能。\n养个石头@养个石头 、童梦KidreamAI、能说外语CanspeakAI 创始人，前Instagram高级工程师，雪城大学🍊",
+          "uid": "3767361154592014"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_bd208d3e9113124946bf1694a957b14e.jpeg?from=2956013662",
+          "nickname": "刘涛Todd",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAXW_vNSmo8WPVNxOXDSTnoSIPhSGF5soquM25V02sH38",
+          "secUid": "MS4wLjABAAAAXW_vNSmo8WPVNxOXDSTnoSIPhSGF5soquM25V02sH38",
+          "signature": "Zen7 Labs 联创 | 产品@世纪互联  | 上财硕导\n创业项目：vigilath.cn | 灵机一物  | moltspay.com\n《Web3产品经理必修课》作者\n日常分享：AI 产品&趋势 | 创业感悟 | 开源社群",
+          "uid": "96176144386"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_35f1c32dce73d7988bb38c0b9e9d5709.jpeg?from=2956013662",
+          "nickname": "Cui",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAy6accXEsUOoMqMGUeQhLVUDFWZdQqYkO0f2MZSoHJNg",
+          "secUid": "MS4wLjABAAAAy6accXEsUOoMqMGUeQhLVUDFWZdQqYkO0f2MZSoHJNg",
+          "signature": "",
+          "uid": "76762966736"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_f94e155ef29041ce9bd4083ae31c091a.jpeg?from=2956013662",
+          "nickname": "双越AI club",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAJQYh1R2LUhmN8sLR_m2uxBKpLPrYISSudrYML3vTCGg",
+          "secUid": "MS4wLjABAAAAJQYh1R2LUhmN8sLR_m2uxBKpLPrYISSudrYML3vTCGg",
+          "signature": "wangEditor作者，前百度 滴滴资深软件工程师，慕课网金牌老师，掘金优秀作者，PMP",
+          "uid": "374277998123415"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_623b4b03a99f8472631c2d0d0e7a0e61.jpeg?from=2956013662",
+          "nickname": "mmguo",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+          "secUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE",
+          "signature": "正在做有效且美的AI应用\n发点儿原创的交互实验和文章🤓\n\n个人网站：mmguo.dev（整理了projects&prompts）",
+          "uid": "81301761209"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oIwAJYADLiVpAEeAE0xWenwAxiE2fEoBIGGK3h.jpeg?from=2956013662",
+          "nickname": "费曼学徒冬瓜",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAID6HO3Jq1zUNUqIDG1m-lfhTZgAk43k-ysOnLrIgpUE",
+          "secUid": "MS4wLjABAAAAID6HO3Jq1zUNUqIDG1m-lfhTZgAk43k-ysOnLrIgpUE",
+          "signature": "pi 在线阅读： https://dg-ai-notes.pages.dev/\n完整仓库： https://github.com/buchidonggua/dg-ai-notes",
+          "uid": "92481351764"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oUiYliDpIFABQtEfwAEEAsBABrrcf7EeSWGDAl.jpeg?from=2956013662",
+          "nickname": "知行煮义",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAvJ6XMabMMVfH3-HGuHQUAOzV5s2gnNM-It6vdTiDSJibSFP3IUC2wmlsvj2ESr6s",
+          "secUid": "MS4wLjABAAAAvJ6XMabMMVfH3-HGuHQUAOzV5s2gnNM-It6vdTiDSJibSFP3IUC2wmlsvj2ESr6s",
+          "signature": "一介煮夫\n知味、践行，不空谈。",
+          "uid": "1364939688388906"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oAgthGHEAj9RAQEIZCFmAgFDgoNIAALefstA3x.jpeg?from=2956013662",
+          "nickname": "英雄编程",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA_HhUPR0_L-poLvbF1138uSPN9PmmYB1xvH_2hXPUQHI",
+          "secUid": "MS4wLjABAAAA_HhUPR0_L-poLvbF1138uSPN9PmmYB1xvH_2hXPUQHI",
+          "signature": "大号：@英雄哪里出来\n🥇ACM/ICPC亚赛金牌，WorldFinal选手\n📃2021博客之星Top1，专家评委\n💾十二年互联网大厂研发管理经验",
+          "uid": "82172479088"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_226d77d26d93bd4de39223417bd5f0d1.jpeg?from=2956013662",
+          "nickname": "赵里昂Liang英语老师",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAeg7zj-udhJpBK_jOlcAq1hzDPxn2UxhyNlUxp5VWKLU",
+          "secUid": "MS4wLjABAAAAeg7zj-udhJpBK_jOlcAq1hzDPxn2UxhyNlUxp5VWKLU",
+          "signature": "一个在英国语言学校教国际学生英语的东北人。\n英本英硕🇬🇧｜剑桥CELTA认证教师｜英国教师资格(DET)\n19岁高中毕业后没上大学，北漂10年\n后来靠自学英语一步一步走到了英国\n学语言无捷径，但努力不会白费\n分享真实经历，也分享真正有效的英语学习方法。\n感谢关注❤️\n学英语+ 🌍 544704038（注明来意)",
+          "uid": "56093871240"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_o0yvYAAr0CA6xI91Cziig7BCA2AewXAIEcf5Nt.jpeg?from=2956013662",
+          "nickname": "liliMozi",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAYhJDGSuzkIry3vG5ugd9f0dK6o0cItZEL2jyjM21IlRGc_JEv4KETvLHR51UzYEo",
+          "secUid": "MS4wLjABAAAAYhJDGSuzkIry3vG5ugd9f0dK6o0cItZEL2jyjM21IlRGc_JEv4KETvLHR51UzYEo",
+          "signature": "目标是做真正的具身智能，开发了@HanaAgent \n私信请说明来意",
+          "uid": "3819039697930492"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_6a8e63db03cd4b46a1bd8f15e5c419fa.jpeg?from=2956013662",
+          "nickname": "张司机在路上",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAT7-Z9A33Rto45bSreupLwUxz5CvGJh2GRnF3JuEDV6Q",
+          "secUid": "MS4wLjABAAAAT7-Z9A33Rto45bSreupLwUxz5CvGJh2GRnF3JuEDV6Q",
+          "signature": "☕️ 每天vibe coding尝试把我老婆的生意自动化\n📖 北大计算机，ACM亚洲金牌\n💻 前Meta/Airbnb工程师\n🏂 加拿大单板滑雪二级教练\n🤿 AIDA2星自由潜水员\n✈️ 固定翼飞机运动执照飞行员",
+          "uid": "66752191900"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_owAjAAsKIxPBMAsjSPqaSEBbEn7uEii4AB2W6.jpeg?from=2956013662",
+          "nickname": "布鲁404",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwA2suCv_7KvIm6Khpgl6G9wxg9i-8Oq3vnaapwVzv4eJu1SYKr3I2SwyzR9IlQYI",
+          "secUid": "MS4wLjABAAAAwA2suCv_7KvIm6Khpgl6G9wxg9i-8Oq3vnaapwVzv4eJu1SYKr3I2SwyzR9IlQYI",
+          "signature": "🗿AI 你就学吧\n商务合作：blue_xxie",
+          "uid": "7467914900703478842"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_268aa4e823b8ddcc06b92a3f135d4997.jpeg?from=2956013662",
+          "nickname": "金枪大叔",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAT4iFvoTOtlJCDuUMyovtft5NLQOnQZ-HECl7EGe-rT0",
+          "secUid": "MS4wLjABAAAAT4iFvoTOtlJCDuUMyovtft5NLQOnQZ-HECl7EGe-rT0",
+          "signature": "千年一遇的广告鬼才\n“借势”，“主角” 畅销书作家\n从业30年、为腾讯，小米，网易游戏，Boss直聘，美团，等一线互联网企业，卫龙魔芋爽，Ulike，徕芬，一颗大等头部消费品牌贡献了引起社会轰动的品牌封神战。2024年曾发动免费的送营销下乡，帮助3万个中小创业者打造个人品牌，已结束。",
+          "uid": "92688104856"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ed8d09b4b6508a8c3d1fe2ca1b090b4d.jpeg?from=2956013662",
+          "nickname": "Simon林（日常）",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAfWp593V0UP4zecruaE89hhjBFQUUu-Qo8O9MW__PfmuW6H8RPrZG8pi9s7nEtuLg",
+          "secUid": "MS4wLjABAAAAfWp593V0UP4zecruaE89hhjBFQUUu-Qo8O9MW__PfmuW6H8RPrZG8pi9s7nEtuLg",
+          "signature": "独立开发者，专注 AI Agent 与实用工具开发，分享实用AI 项目。\n作品：a-stock-data、vibe-research\n求职：深圳／香港／远程的 AI 应用与产品工作机会，优先大型企业或成熟 AI 团队，招聘联系请私信。",
+          "uid": "2068660431624666"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oAyKeRulzECAAAA2MChi1AkiI8BAQtAPtgfzlD.jpeg?from=2956013662",
+          "nickname": "Unitree宇树科技",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAZB285oi0dc7f_DV4sjMalOIE0U9BOrkJgTXE2UI4NmuWAtxmBABUo4DohekZyOID",
+          "secUid": "MS4wLjABAAAAZB285oi0dc7f_DV4sjMalOIE0U9BOrkJgTXE2UI4NmuWAtxmBABUo4DohekZyOID",
+          "signature": "",
+          "uid": "4270107387503836"
+        }
+      ],
+      "hasMore": true,
+      "position": 3,
+      "requestMaxTime": 1780852308,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1778586061,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    },
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_c1e36f6d1c51e1a87ae8f8732c966194.jpeg?from=2956013662",
+          "nickname": "杰森Jason",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAATJX5oEerUYmVJZ7peIurePrk35tfTHZvb8FyNdWo9wnZLtmPi5tUV4DZja_IPVs2",
+          "secUid": "MS4wLjABAAAATJX5oEerUYmVJZ7peIurePrk35tfTHZvb8FyNdWo9wnZLtmPi5tUV4DZja_IPVs2",
+          "signature": "数据主权｜在AI的巨大范式转移前，我们该如何自处？\n破除对AI的未知和上手门槛的恐惧。\n\n尽量每天直播，每月至少三次会员直播。",
+          "uid": "2228052693889162"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1538749da661a0405c0aef5f0123b769.jpeg?from=2956013662",
+          "nickname": "鲁大魔",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAm-xPDmDstvdrD-gEQ6rzW2M5npKeNuQmCBt5iUyffs0",
+          "secUid": "MS4wLjABAAAAm-xPDmDstvdrD-gEQ6rzW2M5npKeNuQmCBt5iUyffs0",
+          "signature": "找到一群不输给任何人的伙伴，成为路飞一样的男人！\n唯一的小号：@阿闯",
+          "uid": "111503475639"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ce91484b01e3b17d17f6c257745b2b01.jpeg?from=2956013662",
+          "nickname": "口罩哥直播号",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAO5TIp1flPZXvqelTSBPiwPbb8F7Lpf_PfCT8_xJRk0QuwS92L7dBVfR7W0M9rudR",
+          "secUid": "MS4wLjABAAAAO5TIp1flPZXvqelTSBPiwPbb8F7Lpf_PfCT8_xJRk0QuwS92L7dBVfR7W0M9rudR",
+          "signature": "谢谢你的关注\n“左达右某”口号创始人\n“各玩各的”理念创始人\n“别太微观”策略创始人\n“一亩花田”（ymf）创始人\n合作请私信",
+          "uid": "2453721428284926"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_499b595bb07d3ff15787aad4814acd72.jpeg?from=2956013662",
+          "nickname": "差评君",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAoioyA1wed-aUyuGnSSbUEcjLerCyVtbSCvAxym9ZOWUTEPEdaPbHUlNI4dHOhdMU",
+          "secUid": "MS4wLjABAAAAoioyA1wed-aUyuGnSSbUEcjLerCyVtbSCvAxym9ZOWUTEPEdaPbHUlNI4dHOhdMU",
+          "signature": "用知识和观点Debug the world！\n\n合作WX：maguabd",
+          "uid": "1789638126343508"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_o0FlUAdblCAFDiI0D6ifACg6Vr0AcuE9eAB9Ao.jpeg?from=2956013662",
+          "nickname": "碳基生物退役指南",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAK_l8DyxHSOvnQUm0vX0NmX2MjK1v8ducL-xNDpYkfgJloxUuJxfFNxThsQFglGex",
+          "secUid": "MS4wLjABAAAAK_l8DyxHSOvnQUm0vX0NmX2MjK1v8ducL-xNDpYkfgJloxUuJxfFNxThsQFglGex",
+          "signature": "这世界终究是 AI 的，不如趁早交接权限，带薪退休。\n商务合作： tjswai (注明来意）",
+          "uid": "3599170965350010"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oI7Ecc7bADGJwDanYeFAgnIE9AnsA0LfAACoAx.jpeg?from=2956013662",
+          "nickname": "AI大模型学习",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALc4kETj5YEPPpJXumFbEKsrihV9MQCdEtP4p8im0w2g",
+          "secUid": "MS4wLjABAAAALc4kETj5YEPPpJXumFbEKsrihV9MQCdEtP4p8im0w2g",
+          "signature": "想要系统化学习AI大模型👉@AI大模型学习助理 \n需要AI大模型相关的学习💾@AI大模型学习助理",
+          "uid": "156578512909178"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/douyin-user-image-file_ac66d7ef40701905b4af80768204a736.jpeg?from=2956013662",
+          "nickname": "柱子哥TzFilm",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAjN32ZoC90W_FXxpeck2ATV5PCQcnnHM2cSzm8SHdcGCEC3P_fxGweCSTutk3Mvqq",
+          "secUid": "MS4wLjABAAAAjN32ZoC90W_FXxpeck2ATV5PCQcnnHM2cSzm8SHdcGCEC3P_fxGweCSTutk3Mvqq",
+          "signature": "Ai丨全球视野丨科技数码丨案例分析\n真正意义上的超级个体（洗稿侵权必纠）\n商务：StudioZH6（备注来意）\n〖财富自由团〗：主页专属会员👇🏻👇🏻👇🏻",
+          "uid": "7425882531418965049"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_4b6e406aa0679e8f6b38105684033a36.jpeg?from=2956013662",
+          "nickname": "小白debug",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAJXJVBSGHWDh_TM2bsI4uoIY9rTTR-1tzY9mpfxd3FWY",
+          "secUid": "MS4wLjABAAAAJXJVBSGHWDh_TM2bsI4uoIY9rTTR-1tzY9mpfxd3FWY",
+          "signature": "🍺 AI极客·科技美学家 | 前字节 | AI算法工程\n畅销书《趣味网络图解》作者 \n专注科技美学·硬核技术科普\n商务vx: Rserlin",
+          "uid": "96053920417"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oIDPT9giAB2pnAaEAAAqpI5LvSiAP84Yx4cKM.jpeg?from=2956013662",
+          "nickname": "星探AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA1D-PU5sB7wU3Le0Zut37b-Vk9kiHPsH1mA3wPPfq7_XgIKDMQ24XLQvhqCKPDs4O",
+          "secUid": "MS4wLjABAAAA1D-PU5sB7wU3Le0Zut37b-Vk9kiHPsH1mA3wPPfq7_XgIKDMQ24XLQvhqCKPDs4O",
+          "signature": "发现好用的AI工具 | 说人话讲清楚\n微软算法工程师|中山大学计算机博士",
+          "uid": "3757493232602539"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_e782310af73a4ced9338067e9dcb9aa9.jpeg?from=2956013662",
+          "nickname": "瑶瑶（多agent版）",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAB4OQjRzVeQs-4QgXP_g9f6U31Nsq1JvhCEJ9622OcfQJEwI_oVb2m3B9w-uAvRm0",
+          "secUid": "MS4wLjABAAAAB4OQjRzVeQs-4QgXP_g9f6U31Nsq1JvhCEJ9622OcfQJEwI_oVb2m3B9w-uAvRm0",
+          "signature": "联系 chenyao1846\nAi 咨询 / 培训 / 定制",
+          "uid": "2268981885933245"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_3d4fa623115acdeee79f1799aa11339f.jpeg?from=2956013662",
+          "nickname": "晓辉博士",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA4LqLxq7PLK9xEB5PPazcKTG-3oInPFTDwbqiSrRL_mg",
+          "secUid": "MS4wLjABAAAA4LqLxq7PLK9xEB5PPazcKTG-3oInPFTDwbqiSrRL_mg",
+          "signature": "华科本科-清华博士-创业5年-互联网大厂-俩娃妈\n每天分享生活日常和成长感受，努力做到不着急不害怕\n交流合作联系 @xhbs助手",
+          "uid": "347089455808523"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_0bc21a3396166fe7614f4c1aaed280e6.jpeg?from=2956013662",
+          "nickname": "AI超元域",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAe8ucQWISnNCMJYh3tX04BmV8ZraDmzlhCJjVeKWuETQ",
+          "secUid": "MS4wLjABAAAAe8ucQWISnNCMJYh3tX04BmV8ZraDmzlhCJjVeKWuETQ",
+          "signature": "✅AI超元域开发者、万粉up主，专注AI大模型领域。\n🚀博客：www.aivi.fyi\n🔥联系V:stoeng",
+          "uid": "48831670000900"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_143b2a0c684cec7430d62fdec498e0ab.jpeg?from=2956013662",
+          "nickname": "小雷大智慧",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAH3iyVtQzOAPLBEM5K6VF1Es9hQZK7GRkP19hd7m7dYc",
+          "secUid": "MS4wLjABAAAAH3iyVtQzOAPLBEM5K6VF1Es9hQZK7GRkP19hd7m7dYc",
+          "signature": "◽️专业、系统知识科普频道\n▪️根据合集分类学习\n◽️感谢宝子们为小雷👍和关注\n❗️冒充、侵权行为会永久追责！大家提高警惕！不会主动私信，也不会索取联系方式！",
+          "uid": "58191647818"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oYZAEEAFuIAmC9AwCVAW9nQXlUeVDfaEedPoHy.jpeg?from=2956013662",
+          "nickname": "画画的Lorenzo🎨",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAiM2A7x4Yb1YSBf-qZpY4LGhJH_5n3lKTMNj4IhEszZw",
+          "secUid": "MS4wLjABAAAAiM2A7x4Yb1YSBf-qZpY4LGhJH_5n3lKTMNj4IhEszZw",
+          "signature": "热爱生活的🖼审美观察者🧐\n不会念我的名字？「罗伦佐」\n🇮🇹米兰国立美术学院油画系\n🎨艺术 | 🤔观点 | 😋美食\n🤗世界因多元而精彩 一起进步 一起变好\n📮商务:1031387773@qq.com",
+          "uid": "62944619759"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o8A1jRVFDIC5WwfeA1FAaA7VqEf5VABEEkAcBY.jpeg?from=2956013662",
+          "nickname": "跟着阿亮学AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxnVJkLy44r5woJhOHLoSAzp4nQsslROQJEY5HksE1_oY3vr-jQsuKTZRpu77CYsy",
+          "secUid": "MS4wLjABAAAAxnVJkLy44r5woJhOHLoSAzp4nQsslROQJEY5HksE1_oY3vr-jQsuKTZRpu77CYsy",
+          "signature": "全抖音最会用 AI 的男人；智启亮程创始人 CEO；\n全网 60 万粉丝 AI 博主\n大白话教会普通人用 AI，为无数普通人指明了 AI 方向\n为大量企业提供 AI 落地方案\n\n🈴：aliang2052 请务必备注来意",
+          "uid": "2084312835438680"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_f4f64110821eb0bb69a1bcd376d042e2.jpeg?from=2956013662",
+          "nickname": "ThinkHua",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAjpMrV8bT06XEJ8EoZMJ-uakq58KtfqZqnovHLxLCUV9zx4MSsFaj1IJzCGzQ_8Bd",
+          "secUid": "MS4wLjABAAAAjpMrV8bT06XEJ8EoZMJ-uakq58KtfqZqnovHLxLCUV9zx4MSsFaj1IJzCGzQ_8Bd",
+          "signature": "🇨🇳🇦🇺｜传播学 × 社会心理 entj-a\n人文与媒介Podcast🗣️\n@常见老花 咨询可私 不敢公聊过多谢谢理解\n📩 thinkwu@foxmail.com",
+          "uid": "2833876035315044"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_2e8430aacab196ce03b35f187b2f3ce4.jpeg?from=2956013662",
+          "nickname": "常见老花",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAATp54hXTq6EZrgryrEIoz7w05dVTqsPUbwmSY1WflcwGecplLEJMWR7oJGd0iTtrQ",
+          "secUid": "MS4wLjABAAAATp54hXTq6EZrgryrEIoz7w05dVTqsPUbwmSY1WflcwGecplLEJMWR7oJGd0iTtrQ",
+          "signature": "🇨🇳🇦🇺 传播学x社会心理 \n该用户正在发言💬 HelloWorld 视频播客日记\n📖导师：@冯唐 \n📧个人：@ThinkHua （人文与媒介）\n📮人声录制克隆必究防诈骗 thinkwu@foxmail.com\n👩🏼‍💻私信繁杂 如需咨询劳请您邮件联系",
+          "uid": "2552435228285956"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_ec9ef227699395543adb4d5f22cd58aa.jpeg?from=2956013662",
+          "nickname": "数字游牧人Samuel",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAcBGY4RqDTLberZGiFTk-nG_L0hVwrFC7Bii_20YdBgBDGu-9JoA2L6jtkpdnpBpr",
+          "secUid": "MS4wLjABAAAAcBGY4RqDTLberZGiFTk-nG_L0hVwrFC7Bii_20YdBgBDGu-9JoA2L6jtkpdnpBpr",
+          "signature": "👉全抖音最懂AI的男人；数位游牧科技创始人；前微软工程师；ACM国际程序设计竞赛金牌。\n🧰为无数企业提供AI落地/咨询/定制 @钱穆_企业AI日记",
+          "uid": "1852055338092222"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_27bf9638184ddfbacd77e6bf92524e9e.jpeg?from=2956013662",
+          "nickname": "灵鲸科技袁亮",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAArIg_c2TT161PVUlfRBx_I0Xh-li7INr6y4ROmdH-zMXPV7_vYFJv2TSkX_Lv07kt",
+          "secUid": "MS4wLjABAAAArIg_c2TT161PVUlfRBx_I0Xh-li7INr6y4ROmdH-zMXPV7_vYFJv2TSkX_Lv07kt",
+          "signature": "Tokease 词元聚合分发平台 创始人\n词元建厂、词元分发、词元沙龙\n华中科技大学",
+          "uid": "3174999228424077"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1674255400117277.jpeg?from=2956013662",
+          "nickname": "麦阿臻",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAGmwgghQsE6VOMgVBwtNuaNxejrYCifTgIRKH4xlxa0s",
+          "secUid": "MS4wLjABAAAAGmwgghQsE6VOMgVBwtNuaNxejrYCifTgIRKH4xlxa0s",
+          "signature": "带你看我眼中的世界（独立创作）\n唯一🛰️mazmaz1999\n探索中···\n🍠：麦阿臻",
+          "uid": "97735359742"
+        }
+      ],
+      "hasMore": true,
+      "position": 4,
+      "requestMaxTime": 1778586061,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1776218944,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    },
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o0asA7gcPKPmIJAEYAPgXFhz1iXAziABCygIR.jpeg?from=2956013662",
+          "nickname": "创野小朱",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAIvPlBvXBAU9_TGtEQgeiOrjqpXiHyIa3uCO4m0A_Ikze_WMZNsnhFqFl5Sw0igLq",
+          "secUid": "MS4wLjABAAAAIvPlBvXBAU9_TGtEQgeiOrjqpXiHyIa3uCO4m0A_Ikze_WMZNsnhFqFl5Sw0igLq",
+          "signature": "🕶菊厂离职，分享科技科普/网络安全/AI知识\n🏫毕业于约翰霍普金斯大学\n合作上星图\n不会主动私信任何人，不要上当受骗～",
+          "uid": "3942202045146042"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_ocDHeFDS9AE6jIAOMAEEKxEAPAWwEyAfApfSaA.jpeg?from=2956013662",
+          "nickname": "外行人搞AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAVWxEoebhg7xmkB0EN_Kb5Ukg0cCWRhDF4N_8C68K4t0c1Dh_araNnid2RuHpAhRl",
+          "secUid": "MS4wLjABAAAAVWxEoebhg7xmkB0EN_Kb5Ukg0cCWRhDF4N_8C68K4t0c1Dh_araNnid2RuHpAhRl",
+          "signature": "关注我，用外行人的角度看AI的发展，能通俗易懂地了解最新的AI热点，紧跟时代的主流…",
+          "uid": "3062609422073497"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oMPDcLGr2DTfngAPV5IQb1KAfAmAU6AzfmeswL.jpeg?from=2956013662",
+          "nickname": "VibeLearning AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAHvDljN799o2UOYJslMbwZdVEP00VyTqMXeL8JrfpS0xd-EFMCkhOwnhmagv71A6j",
+          "secUid": "MS4wLjABAAAAHvDljN799o2UOYJslMbwZdVEP00VyTqMXeL8JrfpS0xd-EFMCkhOwnhmagv71A6j",
+          "signature": "🖥️大厂五百强在职数据分析挖掘/智能体工作流研发\n🎉直播随机掉落token\n👾各种AI资原+米分君羊获取\n👨‍💻商务合作 ：_1EchAplus",
+          "uid": "3947673247034347"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_17019b440b667a410899ec63636fe6d2.jpeg?from=2956013662",
+          "nickname": "扑通同学",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAYDsFipAOOHnmh_AqLptXdgMN-fNVYN7vkOOyT-XSiuI",
+          "secUid": "MS4wLjABAAAAYDsFipAOOHnmh_AqLptXdgMN-fNVYN7vkOOyT-XSiuI",
+          "signature": "🔅10岁\n🔅一个正在观察未来世界的小孩\n\n\n🔅 @扑通小助手 🌏：PTXH-1 （添加请备注来意）",
+          "uid": "74623381580"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1fff7d5b8e5e6c49e5bcdc737486fca3.jpeg?from=2956013662",
+          "nickname": "阿酥在Coding",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA7Yc28I_bO9MdDBCXEjJUEhmmgTHUAnZQmOVi3H2aSD85iOAzbtI-m5F6YbWWhjeW",
+          "secUid": "MS4wLjABAAAA7Yc28I_bO9MdDBCXEjJUEhmmgTHUAnZQmOVi3H2aSD85iOAzbtI-m5F6YbWWhjeW",
+          "signature": "AI女工👩‍💻大一开始四段大厂实习\n经验帖在🍠&公主号置顶获取 AI学习社区/咨询\n📮lofisuchat@gmail.com",
+          "uid": "1197813623955627"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_3a0275367da8874a72367c013723abe8.jpeg?from=2956013662",
+          "nickname": "程序员豆腐",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA5ouSO6eKn3rNuN31WZNCLAOueFgtKwBv5aM-znWcT84",
+          "secUid": "MS4wLjABAAAA5ouSO6eKn3rNuN31WZNCLAOueFgtKwBv5aM-znWcT84",
+          "signature": "👨‍💻 程序员一枚，热衷于探索技术世界💻\n🔍 分享好物，挖掘宝藏工具，让生活更便捷有趣✨\n🛑无小号 谨防上当 全网同名",
+          "uid": "56612723665"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/douyin-user-image-file_100311a232871352df0f75bb026211ee.jpeg?from=2956013662",
+          "nickname": "北方Befun",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAV8HHWgS_rk8QdqAtGbZii0QmxvZ5n35cLqbgVUiCnPLP6hZGsMN6GoLS2Xum_DfJ",
+          "secUid": "MS4wLjABAAAAV8HHWgS_rk8QdqAtGbZii0QmxvZ5n35cLqbgVUiCnPLP6hZGsMN6GoLS2Xum_DfJ",
+          "signature": "不要轻易按下你的快门\n\n学习小伙伴：@够了",
+          "uid": "3160475026331051"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oEAU6nVqBIDgn83UAHiADD9C6CfimAAEiFgZAf.jpeg?from=2956013662",
+          "nickname": "Xi Xu",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAZ_9WV-GKSpjalwvuBQtByd1ZuYiO1AhCvIzgHVDCvlm801PucDO8aD7iFOclBoFU",
+          "secUid": "MS4wLjABAAAAZ_9WV-GKSpjalwvuBQtByd1ZuYiO1AhCvIzgHVDCvlm801PucDO8aD7iFOclBoFU",
+          "signature": "ai @youware · xi-xu.me/#contact",
+          "uid": "2634851665327771"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oselFAnDpCGqN1FFEAARFAEFAExhfYvwq9IWBr.jpeg?from=2956013662",
+          "nickname": "帧数燃烧",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAflFs8DkU0tE6zIZauXozRVPZJFUSJ8knXd60De7L2snDAI2gEMob4NimkI5idVia",
+          "secUid": "MS4wLjABAAAAflFs8DkU0tE6zIZauXozRVPZJFUSJ8knXd60De7L2snDAI2gEMob4NimkI5idVia",
+          "signature": "「AIGC专家」「AI产品经理」「剪辑拍摄」\n简历投递：zsrs_hr@163.com\n商务合作wx：dzpparkin\n我们一起，让每一帧都有意义。",
+          "uid": "1259375910467531"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oU69oCEAmAM3oLeAAtwKLJwEDfAMFEAe5EAoyI.jpeg?from=2956013662",
+          "nickname": "比格熊",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAf4YXZg6syjTaiXTR6NAjrTsJXcUH9hrM2YoSv_2L771dOb0Yv1da1JW--xatJGIg",
+          "secUid": "MS4wLjABAAAAf4YXZg6syjTaiXTR6NAjrTsJXcUH9hrM2YoSv_2L771dOb0Yv1da1JW--xatJGIg",
+          "signature": "日常更新...资料在粉丝群领取\n比格熊AI导演工作站\nwww.bgxiong.com",
+          "uid": "7497130318093190201"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_a567490ac9949f91f8cdd7a15a778a69.jpeg?from=2956013662",
+          "nickname": "胡泊Hubo",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA8Gu7OrgX27THzhYvivEzkNVKv1pBlyGHWdLyPJg7FJ_d9SjYs6-XqapH5MuX16xh",
+          "secUid": "MS4wLjABAAAA8Gu7OrgX27THzhYvivEzkNVKv1pBlyGHWdLyPJg7FJ_d9SjYs6-XqapH5MuX16xh",
+          "signature": "AI bulider @Lollipop.ai \n以前做设计｜现在做产品\nTeam github：Innate-Labs\n商务合作 | SummerMilks（注明来意，非本人）\n学习探讨 | @安鑫｜且曼学院",
+          "uid": "1680471068255518"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oQA2JcIgCVAFKEsxAw9RjHf7AZDPACAQ6Alqje.jpeg?from=2956013662",
+          "nickname": "划水的青蛙",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAmHpOwinAN7C6pJpSP-20hpWknuERPLIZiW5T99zsYeU",
+          "secUid": "MS4wLjABAAAAmHpOwinAN7C6pJpSP-20hpWknuERPLIZiW5T99zsYeU",
+          "signature": "全网同名\n大模型算法 | AI应用落地 | Agent",
+          "uid": "100978233209"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oAiacPgPSg1iXBIAbN2BAAyLAamIAcVCE1554.jpeg?from=2956013662",
+          "nickname": "慢学AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAX4enn5sxJQWvIqyONRmab7wNVacTbrmAXJXAfaR6ENM",
+          "secUid": "MS4wLjABAAAAX4enn5sxJQWvIqyONRmab7wNVacTbrmAXJXAfaR6ENM",
+          "signature": "慢即是快。\n持续解读硅谷 AI 前沿工程实践\nevals | agents | skills | 企业落地\n咨询：tinytitans",
+          "uid": "59130943719"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e6798db71fb04970cd4e2def0561fa37.jpeg?from=2956013662",
+          "nickname": "老白的分镜",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAk2XQ1epqpbpBpOevNt-fnzMnc-RkUEKuUK7_rIhC4B_mIC2yxRQ568eg-uBuYJov",
+          "secUid": "MS4wLjABAAAAk2XQ1epqpbpBpOevNt-fnzMnc-RkUEKuUK7_rIhC4B_mIC2yxRQ568eg-uBuYJov",
+          "signature": "私信无法一一回复请见谅。\nAI时代，故事变得更加重！\n学习【 理论+实战 】在橱窗",
+          "uid": "1424612879240094"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oA3kSjviAte1AIUErCi0AtBBwgouAEO6flsA0w.jpeg?from=2956013662",
+          "nickname": "Also",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAg_yIdIuVAlPrNyuf9dvOym9XKJeBtOpt4LNJxiL9li0",
+          "secUid": "MS4wLjABAAAAg_yIdIuVAlPrNyuf9dvOym9XKJeBtOpt4LNJxiL9li0",
+          "signature": "创作不易禁止搬运\n星图合作",
+          "uid": "102437613588"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/mosaic-legacy_2d4180006c296ce64fb4b.jpeg?from=2956013662",
+          "nickname": "严伯钧",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA6cLFP6uL4NmSxtnd9miQb-9S6GweLvikkmvKKFUT74A",
+          "secUid": "MS4wLjABAAAA6cLFP6uL4NmSxtnd9miQb-9S6GweLvikkmvKKFUT74A",
+          "signature": "科普作家 \n2021、2025两届文津图书奖得主",
+          "uid": "105595202170"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_420c20e17c40f7e4877e292f9efedd88.jpeg?from=2956013662",
+          "nickname": "麻省理工Rui同学",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAANxfZzJAT2_2sLq1dJz2DBCd3AUfZRw5i-IyH4JHiRZ2L8fENp6vFRDBoFsbjn1w3",
+          "secUid": "MS4wLjABAAAANxfZzJAT2_2sLq1dJz2DBCd3AUfZRw5i-IyH4JHiRZ2L8fENp6vFRDBoFsbjn1w3",
+          "signature": "每期用一张AI地图，看懂一个人文故事\n麻省理工全奖硕士",
+          "uid": "1033128889302740"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_d1795fa85846def090e110de987393a6.jpeg?from=2956013662",
+          "nickname": "戏京同志",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA1hcSX5Vw0f_uolcKMCpHWxN-u8oTgSerCglvkeRW6Qk",
+          "secUid": "MS4wLjABAAAA1hcSX5Vw0f_uolcKMCpHWxN-u8oTgSerCglvkeRW6Qk",
+          "signature": "你好，我们一起迈入新步伐！长脑子了\n全网800w资深财经热点媒体人，新能源.投资.创业一网打尽！合作备注来意🛰️1328200835\n谢谢大家支持",
+          "uid": "64010164985"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_6e158740367cc8f11176bfa13bb4fdc4.jpeg?from=2956013662",
+          "nickname": "Ai-Agent",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAJcPSF4MvhBAWhlB0D_k20Z3U7LJAcPD-Vrn5-6JNeSk",
+          "secUid": "MS4wLjABAAAAJcPSF4MvhBAWhlB0D_k20Z3U7LJAcPD-Vrn5-6JNeSk",
+          "signature": "一个90后科技独立开发者，Ai个大模型 Ai- Agent AGI 开发",
+          "uid": "74972503834"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_f8bda2f973617a47b05df0139fb318a9.jpeg?from=2956013662",
+          "nickname": "一蛙AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAOcPp5WgDRSX9KaiwY8qt0rO0u1CENqZUDMQ40cSRstPoPNYobtpoQuNgkjolS4rX",
+          "secUid": "MS4wLjABAAAAOcPp5WgDRSX9KaiwY8qt0rO0u1CENqZUDMQ40cSRstPoPNYobtpoQuNgkjolS4rX",
+          "signature": "大模型做题家",
+          "uid": "2410605723791054"
+        }
+      ],
+      "hasMore": true,
+      "position": 5,
+      "requestMaxTime": 1776218944,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1772886059,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    },
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o4XyVlH3AAAIAehugEfkkADzKtxcx5ghAACAkI.jpeg?from=2956013662",
+          "nickname": "学院派Academia",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAB3Qx5iT-XPUp54-wBHTac06qDEKdyWUmKhcIwTIyS5Q25jt7CBoRK-OS-N1ha4Yk",
+          "secUid": "MS4wLjABAAAAB3Qx5iT-XPUp54-wBHTac06qDEKdyWUmKhcIwTIyS5Q25jt7CBoRK-OS-N1ha4Yk",
+          "signature": "把世界顶尖大学的知识漂洋过海带给你\n美国留学->国际智库->跨国资管/耶鲁大学研究员\n王正 Karl ‖ B站158 万粉丝 ‖ 美东北欧北京来回穿梭\n商务V + QAQ165-",
+          "uid": "2749237404641959"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e04824d507dfd4d2bce2321aa8617e58.jpeg?from=2956013662",
+          "nickname": "后常不是后羿",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA_4Rk2Esd5jBcAaq7Kna9CPyWKCh5pLBHDbhyXxFa1jM",
+          "secUid": "MS4wLjABAAAA_4Rk2Esd5jBcAaq7Kna9CPyWKCh5pLBHDbhyXxFa1jM",
+          "signature": "⭐️夜深了，聊点外面听不到的社会规则和商业秘密~\n🎓我是后常，每一段感悟，都来自我十几年创业的真实经历与思考。本人还有碎银几两的主业，尽量保证每周一更。\n👇️ 个人成长/人性情感/商业洞察/认知觉醒",
+          "uid": "92601921889"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_0fec92a8d4f1b58230aa892299ce5c65.jpeg?from=2956013662",
+          "nickname": "AI 落地老魏",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAFs-d_eO0erEnJcob4Q1z6lP_JqAZu6FqXbLWq4zMekA",
+          "secUid": "MS4wLjABAAAAFs-d_eO0erEnJcob4Q1z6lP_JqAZu6FqXbLWq4zMekA",
+          "signature": "银行科技 10 年 AI 开发工程师，TOP10名校\n分享 AI 工具助力个人开发。",
+          "uid": "106082508669"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1b2f236748b5fee1a39dd6b75c650ebd.jpeg?from=2956013662",
+          "nickname": "MyElc",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAeesGWnVSgGiyxDWrQtGwI9ucHfQy4RAleN5b7XQ-dKM",
+          "secUid": "MS4wLjABAAAAeesGWnVSgGiyxDWrQtGwI9ucHfQy4RAleN5b7XQ-dKM",
+          "signature": "👾 Agentic 系统开发者｜ AI Coding工程控制\n👾 AI系统架构设计｜复杂项目开发维护\n👾 AI视频生成工程｜模型能力横评｜技术原理解析",
+          "uid": "369069002079933"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_6e1066206f7343131fad3ffdabfc5df1.jpeg?from=2956013662",
+          "nickname": "大毛裤吹风扇",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAeBkcMp8UvtqWPhwz0GTdK1B19TUyU4HsZrl4V0QAg08",
+          "secUid": "MS4wLjABAAAAeBkcMp8UvtqWPhwz0GTdK1B19TUyU4HsZrl4V0QAg08",
+          "signature": "正在做：\n产品👉「生生 Genera」\n游戏👉「万象行旅」\n已发布站子👉maoku.org",
+          "uid": "61991762850"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_cc111ce2dbad6ad56a7de4b7bf936363.jpeg?from=2956013662",
+          "nickname": "歸藏",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA0ZMxKodgckhSdf_7KczekIydqVMg2pWKTFKpML598Zw",
+          "secUid": "MS4wLjABAAAA0ZMxKodgckhSdf_7KczekIydqVMg2pWKTFKpML598Zw",
+          "signature": "关注人工智能、LLM 、 AI 图像视频和设计（Interested in AI, LLM, Stable Diffusion, and design）AIGC 周刊主理人",
+          "uid": "61802018116"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_835c2e49d51a46cda709d3e9bc4acef0.jpeg?from=2956013662",
+          "nickname": "Mae",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAkOof6vAqid1dzYS49xbb668dMIdP3n_q91BVbVAlOxA",
+          "secUid": "MS4wLjABAAAAkOof6vAqid1dzYS49xbb668dMIdP3n_q91BVbVAlOxA",
+          "signature": "2023年AI视频商业落地原住民\n即梦超级创作者、LibTv认证专业作者、新片场画布认证创作者\nAIGC视频｜后期特效 ｜宣传片包装｜\n商务合作请进星图，作品未经授权禁止转载！",
+          "uid": "92946453209"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e6c63b0fbd4de5820f06b0df5df381e0.jpeg?from=2956013662",
+          "nickname": "鲁班大叔",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA1TwM997BLqB2vqV_wVLNG8v1-MECfTYDF2aInQpVZ0o",
+          "secUid": "MS4wLjABAAAA1TwM997BLqB2vqV_wVLNG8v1-MECfTYDF2aInQpVZ0o",
+          "signature": "工作流编排咨询z276386551",
+          "uid": "67932870163"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_2f14d29398fc77c3b5433cd448c8941d.jpeg?from=2956013662",
+          "nickname": "拿幸·AI启示录",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAYiyWLrWJmy2JDr3EaQYGNOD9z2ZTCYIOgIXnckGDZYZmyAIMpnZtU99Wr6WpXdbN",
+          "secUid": "MS4wLjABAAAAYiyWLrWJmy2JDr3EaQYGNOD9z2ZTCYIOgIXnckGDZYZmyAIMpnZtU99Wr6WpXdbN",
+          "signature": "AI深度解析｜科技巨头动态｜行业趋势｜商业启示\n专注AI 看懂未来 （抖音独家 抄袭必究 谢绝商务）",
+          "uid": "1302287897606222"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_6fb7b46915c92e63cd932271cdd3e421.jpeg?from=2956013662",
+          "nickname": "杜恩泽·AI分享与思考",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAcNSQyVWlflk7x1i8zcVnNw556uZyxyzyjEMEEawbyUFujq7K1TzuPYF2kxs7WZYv",
+          "secUid": "MS4wLjABAAAAcNSQyVWlflk7x1i8zcVnNw556uZyxyzyjEMEEawbyUFujq7K1TzuPYF2kxs7WZYv",
+          "signature": "我是杜恩泽，AI来了，先上车再选座\n零基础codex实战课已上架橱窗\n帮你减少AI时代的信息轰炸\n合作(备注来意）:cdduenze",
+          "uid": "3162639043660254"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/douyin-user-image-file_ab4c7f050bfca849ea5df04af3ced2bd.jpeg?from=2956013662",
+          "nickname": "K森动画",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAh9orEkeL3PDtU2DgGFun7PJxnFP1vMtFCRonVVGfMn2mE8DS3iJ6Z6mVTL_nBynv",
+          "secUid": "MS4wLjABAAAAh9orEkeL3PDtU2DgGFun7PJxnFP1vMtFCRonVVGfMn2mE8DS3iJ6Z6mVTL_nBynv",
+          "signature": "🉑Ai课程在橱窗\n🉑课程咨询/售后🛰️：KITELINEPPT\n🉑商务合作🛰️：akzhuli66（非本人，注明来意）\n🉑 PPT动画视频账号：@01研究所\n🙅🏻‍♂️私✉️不回，MCN勿扰",
+          "uid": "2626110982724644"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_234d6248b07c36d78fcb20b0251ec3d3.jpeg?from=2956013662",
+          "nickname": "神烦老狗",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAz34v-30GSe_nHW3o-dSlBnKeiVcmUEKoeAlba8Ovl84",
+          "secUid": "MS4wLjABAAAAz34v-30GSe_nHW3o-dSlBnKeiVcmUEKoeAlba8Ovl84",
+          "signature": "商务合作 : LAOGOU717\n添加需注明来意 及合作项目\n个人博客：www.laogou717.com",
+          "uid": "62553388065"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_39eccf8d03c44de75fa6477fd8ff9229.jpeg?from=2956013662",
+          "nickname": "互联网老实人",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwOptbHINbMhkYswbkFC3HbR8GT9oiymO-ec0Kc_Bf0Y",
+          "secUid": "MS4wLjABAAAAwOptbHINbMhkYswbkFC3HbR8GT9oiymO-ec0Kc_Bf0Y",
+          "signature": "曾就职于一线互联网大厂，\n程序员架构专家，多年技术专家经验 \n教普通人把 AI 真正用起来\n大模型｜AI工具｜部署｜自动化｜小项目实战\n合作联系：hulianwanglaoshiren",
+          "uid": "171957411134327"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oQrHfFLlUIGGPzAAryAAemINeLQdsQNEQAWffQ.jpeg?from=2956013662",
+          "nickname": "随风",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAJtFDFLcbX5a9GfEepMjAGq_wLkxwkKcInPp4iN9jY2ACKlRHH0T98AZMp7_AHTLW",
+          "secUid": "MS4wLjABAAAAJtFDFLcbX5a9GfEepMjAGq_wLkxwkKcInPp4iN9jY2ACKlRHH0T98AZMp7_AHTLW",
+          "signature": "专注于AI编程,分享各种VibeCoding工具用法\n人人都是产品经理，人人都是开发工程师\n更多知识关注星球\n合作AIzhiMeng66",
+          "uid": "3723384264069184"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_a1a6e6511c2c4099b97b2869d85b1034.jpeg?from=2956013662",
+          "nickname": "宇智波-I",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAckr7fNtatYlYMw9YYMAK9pv9EVZX7jopL2L0jYg2NeS07VTK5et42xw5EDow-xoC",
+          "secUid": "MS4wLjABAAAAckr7fNtatYlYMw9YYMAK9pv9EVZX7jopL2L0jYg2NeS07VTK5et42xw5EDow-xoC",
+          "signature": "在 AI 时代找寻最好的生存方式💎\n所有教程进群无偿分享📖",
+          "uid": "7583897912473781285"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o8bbSZ4IvuVuiAbiBAB0ngIh6AgArDpLPwAhE.jpeg?from=2956013662",
+          "nickname": "LIGHT",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAWK2XlUogiALVtC0aRpWEL9htF9ATg8Dm1j7GjSGevv7rNavPpJGul5Dl_aKJi09n",
+          "secUid": "MS4wLjABAAAAWK2XlUogiALVtC0aRpWEL9htF9ATg8Dm1j7GjSGevv7rNavPpJGul5Dl_aKJi09n",
+          "signature": "⚡ 软件工程师 | 西电  \nAI工具测评 / 教程 / 编程实战\n商务合作 | swhzLight",
+          "uid": "1878387810111630"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oIAESSDeFANXEqg2A9IUAEZAq5WIQeAfwoFm3E.jpeg?from=2956013662",
+          "nickname": "第四种黑猩猩",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAZwr8jX4xwZqPkdc-cJ2MVWvwh3d_rHxluq1ArMrcsBjZ32WONVrcLkvpNN7-Od99",
+          "secUid": "MS4wLjABAAAAZwr8jX4xwZqPkdc-cJ2MVWvwh3d_rHxluq1ArMrcsBjZ32WONVrcLkvpNN7-Od99",
+          "signature": "🦍 超级智能是不是第四种黑猩猩？\n🤖 AI 公司创始人，成为 AI 时代的超级个体\nAI 产业分析@黑猩猩AI产业观察 \n合作：lichao_0703（注明来意）",
+          "uid": "2955957561736269"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_0de8c8666d6085bac5a4f9fa5625d1db.jpeg?from=2956013662",
+          "nickname": "范凯说AI fankaishuo.ai",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA8dsiMzqWen8yH_34sGSnhpps3U36ZNa0b1pnBh4Ufj0",
+          "secUid": "MS4wLjABAAAA8dsiMzqWen8yH_34sGSnhpps3U36ZNa0b1pnBh4Ufj0",
+          "signature": "🧠 看懂AI，选对下一步\n🛠️ 分享AI实践、观察与判断\n💡 聊工作、生意与个人选择\n🌐 会员服务：fankaishuo.ai",
+          "uid": "69804067334"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oQ0SzjADvBtvAwPJAsiainVAiwO9AaogIhREI.jpeg?from=2956013662",
+          "nickname": "Geek Leo独立开发者",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA9gFK3svaIbgmVJkZ-6ecpBzORdsiBA_XAEbYIxhWMQp83NpeYhaevtHCjcBoe_R0",
+          "secUid": "MS4wLjABAAAA9gFK3svaIbgmVJkZ-6ecpBzORdsiBA_XAEbYIxhWMQp83NpeYhaevtHCjcBoe_R0",
+          "signature": "👨‍💻 全栈开发者｜AI科技自媒体\n🤖 分享 AI Agent、AI Coding实战\n🏢 AI咨询｜方案设计｜定制开发｜技术培训\n🤝 商务合作请私信",
+          "uid": "3062597062767872"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_cf886b4b71f834279f4a88a621fe150b.jpeg?from=2956013662",
+          "nickname": "波哥的AI课",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAmxfICRl57Fz8UCCfG3LfQnc87IINFGgKrCCki1Dwm8fLoFGQlT_Ue5aSlghhsz6e",
+          "secUid": "MS4wLjABAAAAmxfICRl57Fz8UCCfG3LfQnc87IINFGgKrCCki1Dwm8fLoFGQlT_Ue5aSlghhsz6e",
+          "signature": "二十余年互联网程序员，一人公司践行者。\nAl自媒体、电商、金融、教育、健康、美业行业解决方案，AI编程、OpenClaw龙虾、Hermes爱玛仕智能体、工作流定制。",
+          "uid": "3784970578705647"
+        }
+      ],
+      "hasMore": true,
+      "position": 6,
+      "requestMaxTime": 1772886059,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1770134417,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    },
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oYItr35EAS9rAIsEICFoAnDDwfn3AEdmfZ7ARt.jpeg?from=2956013662",
+          "nickname": "小天fotos",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALt54qyyG0n4QKc9diYjo6lwt2XVg3O2p837R12Gwd2k",
+          "secUid": "MS4wLjABAAAALt54qyyG0n4QKc9diYjo6lwt2XVg3O2p837R12Gwd2k",
+          "signature": "输出一手实战型AI生产力方法论，不卖课，不收徒，不回私信,mcn勿扰",
+          "uid": "65718025926"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_ooIAFBAA8FOdAEeA4plt9awAAEE7fEfDIEgC2U.jpeg?from=2956013662",
+          "nickname": "晚熟番茄讲AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAd_P_vuxNaX9Y2Idej1zYMIUQcyyfdd5c2Pr_KiNUjIA",
+          "secUid": "MS4wLjABAAAAd_P_vuxNaX9Y2Idej1zYMIUQcyyfdd5c2Pr_KiNUjIA",
+          "signature": "🍅 Hi！我是晚熟番茄\n🤖 AI数字人博主｜把复杂AI变成3分钟故事\n🔥 热点事件+AI解读｜生活中的AI应用\n💡 让普通人也能听懂的AI科普\n📮 深度AI技术思考 @牛马不瞎忙",
+          "uid": "332496843336931"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_7d4a45bf098a5806e6658a148203e3ab.jpeg?from=2956013662",
+          "nickname": "阿洋聊AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAkNSZiRKVuQkIjBJuYZtV1Sjxx9H8xn8bU0-b17PN2Z8",
+          "secUid": "MS4wLjABAAAAkNSZiRKVuQkIjBJuYZtV1Sjxx9H8xn8bU0-b17PN2Z8",
+          "signature": "联系我： AYangDesign01  每周六、日10点直播答疑\n 每周一至周五文章导读～\n字节AI数据标注专家、美团AI训练师、人工智能杂志特邀嘉宾",
+          "uid": "59182276677"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_a624f640a41affbddd4a20ec804904c2.jpeg?from=2956013662",
+          "nickname": "英雄哪里出来",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA8035N_Be0iOxBvGr0vQZD2g3p5zAarwWET3wLOJkTBc",
+          "secUid": "MS4wLjABAAAA8035N_Be0iOxBvGr0vQZD2g3p5zAarwWET3wLOJkTBc",
+          "signature": "💡ACM/ICPC亚赛金牌，世界总决赛选手\n🐎12年互联网大厂研发管理经验\n🐔直播刷题号 @英雄编程 \n📗编程课：@英雄编程",
+          "uid": "98285185095"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_04377138c5c044c91a923ff40f8c9669.jpeg?from=2956013662",
+          "nickname": "熠辉Indie",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA76Z4XIX113nrtkZPqmKDSY1AR0GllqUao-wlqOnSUBo",
+          "secUid": "MS4wLjABAAAA76Z4XIX113nrtkZPqmKDSY1AR0GllqUao-wlqOnSUBo",
+          "signature": "独立开发者➕出海中，希望在 AI 时代开发和分享一些有趣的产品！",
+          "uid": "84838599048"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_7f478a168b97858b72b0e8c067170471.jpeg?from=2956013662",
+          "nickname": "AI樟榆树",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA3n1XyKCkbEGBcBsmg5F7tZrlm0rpqA2AIKl-hosTLnE",
+          "secUid": "MS4wLjABAAAA3n1XyKCkbEGBcBsmg5F7tZrlm0rpqA2AIKl-hosTLnE",
+          "signature": "👩🏿‍🍼AI疯狂训练师 | 🎨短视频酝酿师 | 🦧AI指导偷懒师 |\n用AI做每天都重复做的事\n用 AI 做每天懒得做的事\n上手 AI 其实很容易，执行一个任务感觉就来了\n🤝：AIGCway",
+          "uid": "136815609655199"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_6bd3c43f5830f6b8f862a9ebd100c2a7.jpeg?from=2956013662",
+          "nickname": "智码侃侃Tom",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAmfHU290TuCp0HwGdtGK8ys7ISu2GpzZLlZ2jTOp7MK3mo7PVjqclWuijbSQvZoUZ",
+          "secUid": "MS4wLjABAAAAmfHU290TuCp0HwGdtGK8ys7ISu2GpzZLlZ2jTOp7MK3mo7PVjqclWuijbSQvZoUZ",
+          "signature": "AI编程，零基础干饭程序员～\nAI编程开发｜小程序｜网站｜智能体\n商务合作 课程咨询｜kymlcode（注明来意）",
+          "uid": "2834994374639687"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o8iUOAeAEAAfqIDHA0Ag3dsIDCilEsYB9aqS69.jpeg?from=2956013662",
+          "nickname": "LLM-X-Factors",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAa_UEGuvpvJS_KhxBllkYl7gb7AP87hzCjDHMa1Ab34U",
+          "secUid": "MS4wLjABAAAAa_UEGuvpvJS_KhxBllkYl7gb7AP87hzCjDHMa1Ab34U",
+          "signature": "LLM+X跨界案例分享者。\n每周分享多个大模型在金融、医疗、教育、法律、创意等行业(X)中的实战案例。帮你用AI找到提效新方式，让AI成为你的生产力。在同名公（主）重号【LLM-X-Factors】回复【抖音】，可进粉丝群！",
+          "uid": "11424511310988"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oswzCmBAiEYixDGAtgME8ESAezQvBAA7AfmIGN.jpeg?from=2956013662",
+          "nickname": "AI产品自由",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAArmXKJU-pzMMA09rE9M2CKrmhuwDxrM6HF-jP_d-iWHg",
+          "secUid": "MS4wLjABAAAArmXKJU-pzMMA09rE9M2CKrmhuwDxrM6HF-jP_d-iWHg",
+          "signature": "我是成峰\n希望能让更多人实现 AI产品自由",
+          "uid": "319298719450656"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_eeefb2b4d78095414e048b9306a4e422.jpeg?from=2956013662",
+          "nickname": "Gilbert🍃",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAGZTA_v2sBFgmnDRIyYubwvd7cosWXahJ_Ow7VHUaJ-0",
+          "secUid": "MS4wLjABAAAAGZTA_v2sBFgmnDRIyYubwvd7cosWXahJ_Ow7VHUaJ-0",
+          "signature": "💻产品经理\" Productivity⏳\n✨灵感本易逝,行动正当时\"",
+          "uid": "74743632765"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_baa0a04e22e3c7c19a89c4e7040d1087.jpeg?from=2956013662",
+          "nickname": "绵绵栗子咩",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAxTv1x2Ow3g92du4X0mIRwGjwNhGTZaLqbNxutiz8Ibf8M-dcRtGtDG-_KTk7xpH3",
+          "secUid": "MS4wLjABAAAAxTv1x2Ow3g92du4X0mIRwGjwNhGTZaLqbNxutiz8Ibf8M-dcRtGtDG-_KTk7xpH3",
+          "signature": "有课程/社群：已服务2000+学员\n学习/技能/工作流使用：\n@听课小助理（请看简介） \n点⬇️⬇️⬇️【群聊】加抖音群",
+          "uid": "3708033021255243"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e0e337b1a32416c11d781e17b9c02d1a.jpeg?from=2956013662",
+          "nickname": "科技小妖",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAsMkIapMSntDqQa9oASE1B0ieY5uEQ2OY-NAb8xq99hgTis_T4b58m4TTL9U_FyLy",
+          "secUid": "MS4wLjABAAAAsMkIapMSntDqQa9oASE1B0ieY5uEQ2OY-NAb8xq99hgTis_T4b58m4TTL9U_FyLy",
+          "signature": "👩🏻‍💻大厂PM | 北大光华MBA \n🥣AI喂饭教程、工具测评、实用技巧\n🌟一起来学AI吧~一个人就是一支队伍！",
+          "uid": "2685439445042620"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_ocpAcPAPE1ish1BAMAd3SjinBKAMaHCAAIaSC.jpeg?from=2956013662",
+          "nickname": "技术爬爬虾",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAFSp1EdCLJkoMieKaEVgSj2uoZpVw9ZDyymICRsuR3SQ",
+          "secUid": "MS4wLjABAAAAFSp1EdCLJkoMieKaEVgSj2uoZpVw9ZDyymICRsuR3SQ",
+          "signature": "分享好玩有趣的计算机知识与软件 DIY。",
+          "uid": "99840012512"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_9f238923dd00458299e3600a4bb23e9a.jpeg?from=2956013662",
+          "nickname": "AI产品黄叔",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAalTrAOdJG-HZORmDkVLGUJbARcxiVWEsjdYk_OBr_nxwTIsxTKSQw550ez8H6xs2",
+          "secUid": "MS4wLjABAAAAalTrAOdJG-HZORmDkVLGUJbARcxiVWEsjdYk_OBr_nxwTIsxTKSQw550ez8H6xs2",
+          "signature": "360 AI产品顾问\nYouMind Skill顾问\n咨询➕ product2023",
+          "uid": "3492464384543838"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oMwv5nAky6BIPIgnbABvii229A7nZiEZApAAI.jpeg?from=2956013662",
+          "nickname": "一启-AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAzh8yMyW734VcLHRXsJozZEcLrDumZ5wSTnFJJpwN1Bw",
+          "secUid": "MS4wLjABAAAAzh8yMyW734VcLHRXsJozZEcLrDumZ5wSTnFJJpwN1Bw",
+          "signature": "🤖 独立开发者 | Vibe Coding践行者\n🏆 百度 & Minimax AI 黑客松亚军\n📢知识分享 | 让每个人都能用好AI\n🔥10月17-18 南京Agent公开课(qizhi_AI321)",
+          "uid": "449036005934743"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oMAeHXEwn1AFzE3cBd9oqWfHAGDxECAIwAZpNb.jpeg?from=2956013662",
+          "nickname": "我是L",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAACDFaXddbmbk7yoBN6xV2QpoiB_ZNsGXeaCGXydMynoaWU87gA5JUARr-ldMp7X7u",
+          "secUid": "MS4wLjABAAAACDFaXddbmbk7yoBN6xV2QpoiB_ZNsGXeaCGXydMynoaWU87gA5JUARr-ldMp7X7u",
+          "signature": "科技改变生活的第一步就是 LecSync！",
+          "uid": "3159317038254432"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b26d5b03e2b2ed85903df44d4aaf33e0.jpeg?from=2956013662",
+          "nickname": "图灵的猫",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAHCaQMLsX3qXhKg4Z4kS1RA_jm8uU1Goq6DLis1j-NqAzAJZg51DUDolV4FlvO2vZ",
+          "secUid": "MS4wLjABAAAAHCaQMLsX3qXhKg4Z4kS1RA_jm8uU1Goq6DLis1j-NqAzAJZg51DUDolV4FlvO2vZ",
+          "signature": "华为开发者专家，AI领域创业者，与你一起分享人工智能的有趣知识与应用。商务business@turingscat.com",
+          "uid": "1943561437454663"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_00479c6152be4a4a9b390ae3f36fd6f5.jpeg?from=2956013662",
+          "nickname": "林亦LYi",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAtSFk_pO6mcT_31WOWK60mRDvh_0Op6UvYT9dm77bCT20dADpgjU8ccRfj-VgY-qU",
+          "secUid": "MS4wLjABAAAAtSFk_pO6mcT_31WOWK60mRDvh_0Op6UvYT9dm77bCT20dADpgjU8ccRfj-VgY-qU",
+          "signature": "上交-›密歇根-›佐治亚理工 \n关注我\n带你看好玩的AI科技数码👀\n欢迎投递简历：hr@lyi.ai",
+          "uid": "3597201865979136"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_d0c74f4a1f452a8d7590bee3491f3aa9.jpeg?from=2956013662",
+          "nickname": "差评前沿部",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAPJtwbVBoIW2FBMQ5AmSj2l-n84zdCLp63HJM3NwzOy2pkfY86_tbaKgDY7k3U60n",
+          "secUid": "MS4wLjABAAAAPJtwbVBoIW2FBMQ5AmSj2l-n84zdCLp63HJM3NwzOy2pkfY86_tbaKgDY7k3U60n",
+          "signature": "站在科技的前列线，关注AI、机器人等前沿科技。\n\n商务 V：maguabd02",
+          "uid": "1370457878308675"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_7363c99eb482db92a76b1ab4cbc2d36f.jpeg?from=2956013662",
+          "nickname": "Topbook",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAWGgwqTxSKcy5woqjO4KQ-hvR_4dV9JfF1Jc7hIWagl0",
+          "secUid": "MS4wLjABAAAAWGgwqTxSKcy5woqjO4KQ-hvR_4dV9JfF1Jc7hIWagl0",
+          "signature": "让工具回归工具，让你成为你。\n全平台同名：Topbook",
+          "uid": "93943815475"
+        }
+      ],
+      "hasMore": true,
+      "position": 7,
+      "requestMaxTime": 1770134417,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1768988686,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    },
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_6bb57369a27a4a539bba8f32e4945e98.jpeg?from=2956013662",
+          "nickname": "硅谷101播客",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAm3NQWnvDtr1YC_741RoTaOC_6WLrY22dHvYgYGiCRPe7FSnngqYF8EwxGm--uSsa",
+          "secUid": "MS4wLjABAAAAm3NQWnvDtr1YC_741RoTaOC_6WLrY22dHvYgYGiCRPe7FSnngqYF8EwxGm--uSsa",
+          "signature": "这是一档分享当下最新鲜的技术、知识与思想的科技播客",
+          "uid": "3078223109033486"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_fd8cf3e812a49275fdb802334efcff73.jpeg?from=2956013662",
+          "nickname": "硅谷101陈茜",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAe-hAJmfhgoauAnPMn7xIKixL6QX22o-WF3jYVX1Mztg",
+          "secUid": "MS4wLjABAAAAe-hAJmfhgoauAnPMn7xIKixL6QX22o-WF3jYVX1Mztg",
+          "signature": "📙分享商业财经·前沿科技·创业访谈\n🎙️硅谷101联合创始人｜毕业于斯坦福｜前CNBC主持人\n👁️关注我 一同了解当下最前沿的技术、科技与思想\n📩合作请私信\n近期有诈骗团伙冒充账号，我们不会以任何推荐投资要求转账，也没有在Tiktok开号，请各位谨慎",
+          "uid": "110939335958"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oI3AqeAD9id0ACCAm09De9gAgiEHPAwBIt4Awp.jpeg?from=2956013662",
+          "nickname": "名字就叫 30",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAADBh-jUk9v7E7KNECLoVzxFBsoRNGaXNQ0U1Fyf5KOSlQQq0b38ulL6fObIsagi2T",
+          "secUid": "MS4wLjABAAAADBh-jUk9v7E7KNECLoVzxFBsoRNGaXNQ0U1Fyf5KOSlQQq0b38ulL6fObIsagi2T",
+          "signature": "30aitool 站长",
+          "uid": "3729197298100531"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_60123167d3c47073841b539e99e9cfdc.jpeg?from=2956013662",
+          "nickname": "傻白呀",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAGLwNfNCA8cwEhJTEqlXlvKFYVrVYwUKcF3sAr11jHs0",
+          "secUid": "MS4wLjABAAAAGLwNfNCA8cwEhJTEqlXlvKFYVrVYwUKcF3sAr11jHs0",
+          "signature": "To see a bigger world\n课程咨询：Q：274610358\n直播回放和日常在 @傻白的小号\n商务合作请联系：yxwh016（注明来意）",
+          "uid": "105974054636"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b76c4bf279e1c251f73f83e991265dce.jpeg?from=2956013662",
+          "nickname": "杰森的效率工坊",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAML6vt8UstUMWeKKStFAJo3b59dzFdz8wUHNQzCLQROw",
+          "secUid": "MS4wLjABAAAAML6vt8UstUMWeKKStFAJo3b59dzFdz8wUHNQzCLQROw",
+          "signature": "让你的工具，不止停留在“收藏”和“好看”！\n玩转Notion/Obsidian | AI提升效率\n探索数字世界的更优解\n资源下载：jasonai.me",
+          "uid": "948203665756011"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_o03uy6gbfAEJCCBuAD9n4LC60EANFAAvatAIEe.jpeg?from=2956013662",
+          "nickname": "飞天闪客",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAnVCQPCy6KOdAxfj6LJj4DDFyknf74LQQUMVjYA8PLL-jPrgQpcgSScTEo2s3nS1V",
+          "secUid": "MS4wLjABAAAAnVCQPCy6KOdAxfj6LJj4DDFyknf74LQQUMVjYA8PLL-jPrgQpcgSScTEo2s3nS1V",
+          "signature": "专治不明白～合作：dibingfa2020",
+          "uid": "2366576960218568"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c001_oMmBiCm8pAyAXBoFEAAGifz0NNov0IAnDAPeg1.jpeg?from=2956013662",
+          "nickname": "陶渊小明",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAlYL3JuEkYQ8z-Tw6oMGxnYjJ9Zkm0Fhmh7kkvBPbFX8",
+          "secUid": "MS4wLjABAAAAlYL3JuEkYQ8z-Tw6oMGxnYjJ9Zkm0Fhmh7kkvBPbFX8",
+          "signature": "非正经程序员｜喜欢分享计算机和AI技术！\n\n个人博客: https://tyxiaoming.xin\n联系邮箱：sngyuanyuan@gmail.com",
+          "uid": "92316451211"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_229b6f1c3fb709187a3e783a42e75353.jpeg?from=2956013662",
+          "nickname": "超梦进化论",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAG903XilEJrRl_910CXimFO23rlcdNhAeJFCKHHHExkM",
+          "secUid": "MS4wLjABAAAAG903XilEJrRl_910CXimFO23rlcdNhAeJFCKHHHExkM",
+          "signature": "产品经理/产品体验设计师/AI学习者\nAI工具 | 软件分享|科技好物| 产品分享\n超越梦想 无限进化",
+          "uid": "60618786214"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b7596b9157d1885a3ba59abc15150062.jpeg?from=2956013662",
+          "nickname": "IT咖啡馆",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAAOWFdhre1cL5XEk0LrEz_TOn4FwvtgWSzOipsYA63Kea1Uyp189UU71k6_nghskU",
+          "secUid": "MS4wLjABAAAAAOWFdhre1cL5XEk0LrEz_TOn4FwvtgWSzOipsYA63Kea1Uyp189UU71k6_nghskU",
+          "signature": "👨🏻‍💻NextArch Fundation开源大使，连续创业者。\n🤖AI领域探索者和GitHub 寻宝者。\n分享有价值的产品，技术和观点，把握AI浪潮。\n合作：zbhlove100",
+          "uid": "2316016054967980"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_598c622e5820825ba269618aac97c10a.jpeg?from=2956013662",
+          "nickname": "阿彦能行",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAr6S6z7GR9pSEoJN28eTf1-KhyJXMV7M86R7kDJLGapbFkdGKQ26OIvsTwMMsvgxE",
+          "secUid": "MS4wLjABAAAAr6S6z7GR9pSEoJN28eTf1-KhyJXMV7M86R7kDJLGapbFkdGKQ26OIvsTwMMsvgxE",
+          "signature": "▪️AI产品经理 | 运营策划 | 企业服务\n▪️OPC用AI造自己的具身智能机器人\n▪️技能万金油属性 我的客户都用我来补他们的短板",
+          "uid": "2605217599224344"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1d5aa1b7e2a176ac545699201a213fb8.jpeg?from=2956013662",
+          "nickname": "WhynotTV",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA2jrmr3GC29_7n7GzH4rYyutlB5aHK2mzg6s0YZdTXhy2FxVdfHexmzl-EBv17_Tt",
+          "secUid": "MS4wLjABAAAA2jrmr3GC29_7n7GzH4rYyutlB5aHK2mzg6s0YZdTXhy2FxVdfHexmzl-EBv17_Tt",
+          "signature": "何泰然\ntairanhe.com",
+          "uid": "2096090848175827"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_84b49a03858249aa97f01dfff9375c3b.jpeg?from=2956013662",
+          "nickname": "程序员鱼皮",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAkGPUlxhANi-quQ-g2HAFIHVArZmHUNeyutqfY_bKvS0",
+          "secUid": "MS4wLjABAAAAkGPUlxhANi-quQ-g2HAFIHVArZmHUNeyutqfY_bKvS0",
+          "signature": "⬆️ 上方图片，免费领编程学习资料路线\n🐟 前腾讯程序员，关注我学编程小知识\n💎 入门教程和编程交流：codefather.cn\n👇 私信我，有更多编程指导和项目教程",
+          "uid": "110276496494"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e6b7dbaf01d655cdcadc8e8a13b10a5d.jpeg?from=2956013662",
+          "nickname": "西瓜的皮",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAHdZa5gi3PoqM0qVknxmSOrNzXJ9XoSNhSH8sMPFB2o8",
+          "secUid": "MS4wLjABAAAAHdZa5gi3PoqM0qVknxmSOrNzXJ9XoSNhSH8sMPFB2o8",
+          "signature": "🍉 西瓜中间给你吃，我吃西瓜皮\n🛰️ 合作w8nrind\n💻 提示词 丨 工作流 丨 智能体\n🧑‍💻 Python，Java，C++\n上面这些都不会，就是凑点字数\n爱发电：afdian.com/a/w8nrind",
+          "uid": "152170356291923"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_0104049fc4d59a8642bd308e4be7fd8a.jpeg?from=2956013662",
+          "nickname": "黄阳的学习分享",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA2CMoY_dGIGBfboPFuiwv0ezVNqDYDOz5wjJNbT_n1WQ",
+          "secUid": "MS4wLjABAAAA2CMoY_dGIGBfboPFuiwv0ezVNqDYDOz5wjJNbT_n1WQ",
+          "signature": "重铸A股荣光，吾辈义不容辞🔥\n桃李不言，下自成蹊☀\n不私聊，无小号，无助理，谨防受骗🔨",
+          "uid": "105451453035"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_2540e9126d79159f291219782f9e326d.jpeg?from=2956013662",
+          "nickname": "不自由摄影师Winga",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAADMu1beICCFvxqO67RWi8EnGb2UNUoHmBsFQwSjvAl8Q",
+          "secUid": "MS4wLjABAAAADMu1beICCFvxqO67RWi8EnGb2UNUoHmBsFQwSjvAl8Q",
+          "signature": "做好玩的视频。偶尔更新教程，关注我哟",
+          "uid": "104529153543"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_e53bdf53f3cb74a1fff41c15fcd7ddd5.jpeg?from=2956013662",
+          "nickname": "任毅Steven",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAqCKZMgSWTpSWurUmlhbJzIRHEC-A6MVjDAPk2A9Q_Dg",
+          "secUid": "MS4wLjABAAAAqCKZMgSWTpSWurUmlhbJzIRHEC-A6MVjDAPk2A9Q_Dg",
+          "signature": "Ex国内头部教育科技公司副总裁\n厦门大学未来教育研究中心副主任\nAI领域研究者、创业者、Vibe coding\nAI正在重塑整个世界以及商业规则\n日常朋友圈@任毅",
+          "uid": "84360535891"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_a5e9afcec8e3b3f738efd7d65db77da9.jpeg?from=2956013662",
+          "nickname": "Richard在加州",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAANQGXnO9UQ7Yrl9HWqevJk003gYle_cHBp3Gn1WIzRGKsAlm44cH_8epbUY0j7XVR",
+          "secUid": "MS4wLjABAAAANQGXnO9UQ7Yrl9HWqevJk003gYle_cHBp3Gn1WIzRGKsAlm44cH_8epbUY0j7XVR",
+          "signature": "谢谢关注",
+          "uid": "1948810070203812"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_oYTkIkQ7ABDCLDD6JAgF836zEfFjTgEFeAe7uA.jpeg?from=2956013662",
+          "nickname": "投哥不请自来",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAtIuGLfZIbAEB5XpXrMsqjJeWS-kGr2H-rrT0TJ-H9M0NiuVqD5_8QmH8staEwVzm",
+          "secUid": "MS4wLjABAAAAtIuGLfZIbAEB5XpXrMsqjJeWS-kGr2H-rrT0TJ-H9M0NiuVqD5_8QmH8staEwVzm",
+          "signature": "🪫残血互联网大厂从业猿\n🔋满血智能体实战创业者\n🌈AI智能化重塑各行各业\n🈴 touge1618（注明来意）",
+          "uid": "2010354091828364"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_2022b69a637a47f58c3a2baa04ce8a21.jpeg?from=2956013662",
+          "nickname": "大又元",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAETKuR4IY0cnmo2toCs0IHqQngrriMQZ9zC88EVY_kCWG_LpyDxT_sYaRDIWBXZGV",
+          "secUid": "MS4wLjABAAAAETKuR4IY0cnmo2toCs0IHqQngrriMQZ9zC88EVY_kCWG_LpyDxT_sYaRDIWBXZGV",
+          "signature": "我们最熟悉的东西，却往往是最不了解的\n商务合作: dayouyuan123",
+          "uid": "1736859358333095"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_0e0d95adb42048969d605f9f0352bb61.jpeg?from=2956013662",
+          "nickname": "圈圈包子（周末更新，偶尔日更）",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAALbktAD7bGp8BfcAzVUK9HHTxJ7ZZ8qJwwU2WlftDcUc",
+          "secUid": "MS4wLjABAAAALbktAD7bGp8BfcAzVUK9HHTxJ7ZZ8qJwwU2WlftDcUc",
+          "signature": "分享一点有用的东西\n工作日主业比较忙，周六周末闲下来更新。\n PS：主动联系你们的都是骗子\n找我合作上星图\n年卡699门槛年费VIP🛰会员群，月卡抖音会员，你能获得的是信心，VIP🛰会员群：circaboyBBA\n如果你看完视频还问会员群里面有什么，那你就没看懂视频，我建议你别加群，先看视频。",
+          "uid": "466608609563304"
+        }
+      ],
+      "hasMore": true,
+      "position": 8,
+      "requestMaxTime": 1768988686,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1768472661,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    },
+    {
+      "creators": [
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1e905941e4bee348e333d0058edfa267.jpeg?from=2956013662",
+          "nickname": "水球泡",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAtLTamz3gZsmTq5nomzJbSN3UmQ5RvzLezhCIdrTuqGw",
+          "secUid": "MS4wLjABAAAAtLTamz3gZsmTq5nomzJbSN3UmQ5RvzLezhCIdrTuqGw",
+          "signature": "周日周三周五晚上九点开始直播很久，周二上午播不一定在这个平台，晚上就不播了。可以聊聊职场，人生，苦难，实事，我懂的我教你，我不懂的我唬你",
+          "uid": "75350479061"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_cc42c1d7633f3baa7e00fb101739f3b8.jpeg?from=2956013662",
+          "nickname": "林文冠AI",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAApQab2MFG7PBgB6KxD98zU2ocdj4M6rlQxWnJNo2mZBQmc0eix4PTAEpC7m_7v-ai",
+          "secUid": "MS4wLjABAAAApQab2MFG7PBgB6KxD98zU2ocdj4M6rlQxWnJNo2mZBQmc0eix4PTAEpC7m_7v-ai",
+          "signature": "➕抖音号，送【AI新手实战课】，真心无套路\n🧭必火AI创始人，新加坡AI协会成员，前海外副总裁\n🧭2023年开始AI创业，使命——帮个人学AI提升能力，帮企业用AI 提升业绩\n🧭公司业务：\n① AI+GEO私教班——让AI帮你干活，让 IP+GEO帮你获客\n② AI全能训练营——认真学 2 周，成为AI全能型人才\n③ GEO企业服务——让豆包、DeepSeek给你带新客户\n④ 企业AI化——用AI重构企业经营模式",
+          "uid": "2397382221497438"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_1aea2b7ed4b464ba6ca670ead9d89ce8.jpeg?from=2956013662",
+          "nickname": "秋芝2046",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAwbbVuf1W2DdgRe0xCa0oxg1ZIHbzuiTzyjq3NcOVgBuu6qIidYlMYqbL3ZFY2swu",
+          "secUid": "MS4wLjABAAAAwbbVuf1W2DdgRe0xCa0oxg1ZIHbzuiTzyjq3NcOVgBuu6qIidYlMYqbL3ZFY2swu",
+          "signature": "让更多人用好AI～\n后期｜文案｜产品 欢迎投递简历 : qiuzhi2046.com\n商务合作｜aiboole（注明来意 非本人）",
+          "uid": "2931726622135948"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_37932cd5618eaead1a8b5c2b7e71aec9.jpeg?from=2956013662",
+          "nickname": "Sherry小水（Ai工具学习者）",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAa1f3vW_jbGkpy0koheh-KUegw_Xh7kNb-EUr-gfqS98",
+          "secUid": "MS4wLjABAAAAa1f3vW_jbGkpy0koheh-KUegw_Xh7kNb-EUr-gfqS98",
+          "signature": "Ai工具测评与分享\n合作：xshui7726",
+          "uid": "488649124745220"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_8c00b15136867f774cde225bad66bf33.jpeg?from=2956013662",
+          "nickname": "糖果果的未来要发光",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA2fBhscvL5F-kRVdsaqToOPSlys_9PNaU_FdmQZrOQtH7sZ19cm1J9lSVL4o-ewVG",
+          "secUid": "MS4wLjABAAAA2fBhscvL5F-kRVdsaqToOPSlys_9PNaU_FdmQZrOQtH7sZ19cm1J9lSVL4o-ewVG",
+          "signature": "🫑 90后大学老师\n🧑🏻‍🎓北京大学语言学博士\n👨🏻‍🎓老公清华大学人工智能博士\n👦宝宝小十二今年六岁\n记录生活、分享知识和快乐～\n感谢你的关注❤️\n合作：TGG_future",
+          "uid": "1750022461337052"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_21514c189971a84eced2bb1db5575a85.jpeg?from=2956013662",
+          "nickname": "清华姜学长",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAfte3rFiVQ8VUE3Nfxph1NhCnq1ZAttn43OIr5UsXD5c",
+          "secUid": "MS4wLjABAAAAfte3rFiVQ8VUE3Nfxph1NhCnq1ZAttn43OIr5UsXD5c",
+          "signature": "清华人工智能专业｜前华为、阿里达摩院AI专家\n@三生清影Glowave  创始人兼CEO\n日常分享AI干货 | 个人成长｜创业感悟\n在做一个社区，带大家用AI解放生产力\nAI产品: x.qyingai.com",
+          "uid": "109867761597"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813c000-ce_ogqjCnewIAcbCUsAEUANQEAsA9FJSnfotwtDCE.jpeg?from=2956013662",
+          "nickname": "Jason的AI思考笔记",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA_bn-dlX7tImzbNjxDlu7xSht14g9dn8s9WiPqFWTYQU",
+          "secUid": "MS4wLjABAAAA_bn-dlX7tImzbNjxDlu7xSht14g9dn8s9WiPqFWTYQU",
+          "signature": "理解AI，用好AI。没有焦虑，只有干货和实操。",
+          "uid": "98828793644"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/douyin-user-image-file_7fe9d58fd4ab43900a68af01236c39e9.jpeg?from=2956013662",
+          "nickname": "黄益贺",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA0hrPqt3M7MUOZ9eo55AdMwLA81kkobjkG7lExwmze8aW9n5563rMZQ4DAfMREcvE",
+          "secUid": "MS4wLjABAAAA0hrPqt3M7MUOZ9eo55AdMwLA81kkobjkG7lExwmze8aW9n5563rMZQ4DAfMREcvE",
+          "signature": "分享关于AI的Why和How\n找我就来知识星球newtype",
+          "uid": "1788282380747292"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_01b943ed2ebfbff7a74572e03ecaf038.jpeg?from=2956013662",
+          "nickname": "JasonData",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA3oo3BbxERgIuJnA9VbPRVctv_PmVku7I7T3nvsDsxgdhS3k5RSyLo98PTJo7ygu4",
+          "secUid": "MS4wLjABAAAA3oo3BbxERgIuJnA9VbPRVctv_PmVku7I7T3nvsDsxgdhS3k5RSyLo98PTJo7ygu4",
+          "signature": "Jason｜10年以上财务咨询与商业分析经验（四大会计师事务所 + 科技行业）\n专注科技、AI 与商业内容\n🌐：Jasondata.xyz",
+          "uid": "2419385556799544"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_a0fe4c3ae91a6a4770aa4a11ea3f32fd.jpeg?from=2956013662",
+          "nickname": "Pai阿派",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA-O8Q4f8SiqGa5RRk5QejBDbf9lLVyRPZ7dqtWi06fswL8aT-6AxxFFlhzZ96z_ct",
+          "secUid": "MS4wLjABAAAA-O8Q4f8SiqGa5RRk5QejBDbf9lLVyRPZ7dqtWi06fswL8aT-6AxxFFlhzZ96z_ct",
+          "signature": "◽亮点：干，系统，接地气，真实\n◽让小团队不多招人，也能用AI把事做成\n◽阿派的AI社群，ai落地操盘手，团队决策者\n◽️🔎社群官网：apaivip.com学习🔗本人ztsnp666",
+          "uid": "3043915861857197"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_oMcIAMfBNExJenzAnSNNCWHazCEAIiQAiAAjIg.jpeg?from=2956013662",
+          "nickname": "刘润",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAA9UyRvcjocS7cEHmD0_OXJUCIOAxIWbVkd2ZUp2vGhHE",
+          "secUid": "MS4wLjABAAAA9UyRvcjocS7cEHmD0_OXJUCIOAxIWbVkd2ZUp2vGhHE",
+          "signature": "刘润，润米咨询创始人，“5分钟商学院”课程主理人，商业顾问，《底层逻辑》作者。每年举办“进化的力量·年度演讲”，为创业者企业家提供年度规划的参考方向，一起更早看到未来。我们的使命：降低商业的认知门槛。",
+          "uid": "98203193479"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_9bcba3d86f924153864523764bac95ff.jpeg?from=2956013662",
+          "nickname": "直男山禾",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+          "secUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+          "signature": "👆🏻就职于一家AI公司\n🎈分享各种Ai工具的使用技巧\n👀关注我，早一步踏进Ai时代\n领🎁去绿色软件搜【直男山禾】",
+          "uid": "3035124260682812"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_73214579d917897fad4e3d56121c0fb4.jpeg?from=2956013662",
+          "nickname": "痴五安chammy",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+          "secUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+          "signature": "👦🏻165cm 52kg 小个子55分身材\n✌️165穿成179 绝不无可能！\n视频同款都在橱窗的对应【清单】没穿过的不会上橱窗！！\n粉丝V：chammy666\n🈴 yuntunn\n可能会有日常：@川桑儿",
+          "uid": "3474930275464078"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-0813_o89h3SAxsIA3fAZMA4AfQGIOetBDHEBa3Gb7zL.jpeg?from=2956013662",
+          "nickname": "笨鸟怎么飞",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+          "secUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+          "signature": "医疗科技财经都能扯一扯的笨鸟一枚\n平台就这一个号，不主动加人",
+          "uid": "820694472199033"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_58b7a29483bd415da82c9688c61b3f0e.jpeg?from=2956013662",
+          "nickname": "黄大圣叨叨叨",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+          "secUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+          "signature": "博主周中要上班\n每周末更新\n日常讲财经|经常锐评川宝|最近常讲周期",
+          "uid": "211552108032775"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_3bac6620bdd23099e1aab8eec67c75fd.jpeg?from=2956013662",
+          "nickname": "小德MOMO",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+          "secUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+          "signature": "每周日下午6点更新视频\n梦想是可以得到你的关注！如果对视频内容有疑问或者建议，欢迎加入小德的会员群～",
+          "uid": "105246634576"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/mosaic-legacy_2f4a60003c69b54dfb3d0.jpeg?from=2956013662",
+          "nickname": "派大和小葵",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+          "secUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+          "signature": "商务合作➕wx：paidakuwan",
+          "uid": "18560574259"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_7a27f6b9c65c2134b41ae68071a3ae6a.jpeg?from=2956013662",
+          "nickname": "亦玖",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+          "secUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+          "signature": "白天是生活\n夜晚是梦想\n挣钱养梦，为自己干杯",
+          "uid": "7546511620906812474"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-i-c9aec8xkvj_598310fc5def4930916fd76db4774f44.jpeg?from=2956013662",
+          "nickname": "彭春花本人",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+          "secUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+          "signature": "自我养育幸存者｜坚持写日记20年｜独居2年+｜聊心理，聊文化，知识的终点就是使用\n合作联系：chybtalk",
+          "uid": "100441820893"
+        },
+        {
+          "avatarUrl": "https://p3-pc.douyinpic.com/aweme/100x100/aweme-avatar/tos-cn-avt-0015_b59398e92819a13c303bb012d275db01.jpeg?from=2956013662",
+          "nickname": "大要",
+          "profileUrl": "https://www.douyin.com/user/MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+          "secUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+          "signature": "咱有专门改善发音的系统课程：yaosleepy",
+          "uid": "4147012152328413"
+        }
+      ],
+      "hasMore": true,
+      "position": 9,
+      "requestMaxTime": 1768472661,
+      "requestOffset": 0,
+      "requestOwnerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "responseMinTime": 1767068615,
+      "responseOffset": 0,
+      "responseOwnerUid": "2131296669408333"
+    }
+  ],
+  "prepared": false,
+  "requestedCount": 10,
+  "seenCount": 180,
+  "selfStatusCode": 0,
+  "sourceUrl": "https://www.douyin.com/user/self",
+  "uiClicks": 0,
+  "workResponseBodiesRead": 0
+}

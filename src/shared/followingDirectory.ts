@@ -53,6 +53,9 @@ export const followingDiagnosticSchema = z.object({
 }).strict()
 export type FollowingDiagnostic = z.infer<typeof followingDiagnosticSchema>
 export type FollowingSyncState = {
+  plan?: import('./followingPlan').FollowingPlanState
+  basic?: import('./followingPlan').BasicState
+  activity?: import('./creatorActivity').CreatorActivityState
   phase: 'idle' | 'awaiting-config' | 'running' | 'completed' | 'blocked' | 'cancelled'
   runId: string | null; message: string; count: number; ownerSecUid: string | null
   extensionDirectory: string | null; reportDirectory: string | null; databasePath: string

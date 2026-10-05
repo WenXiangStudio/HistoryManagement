@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-10-05T10:10:21.406Z",
+  "target": {
+    "nickname": "mmguo",
+    "uid": "81301761209",
+    "secUid": "MS4wLjABAAAAANSG2ii-j-_lUq-b3INlGbfoADdryUYNCXRcWH0a8uE"
+  },
+  "loginVerificationGets": 0,
+  "authorHomepageNavigations": 0,
+  "noRetry": true,
+  "maxListGets": 1,
+  "existingBrowserPageReused": true,
+  "fetchResult": {
+    "bodyChars": 886658,
+    "contentType": "application/json",
+    "contextOriginMatches": true,
+    "contextOriginMatchesAfter": true,
+    "elapsedMs": 537.2999999821186,
+    "httpStatus": 200,
+    "issuedApiGets": 1,
+    "redirectMode": "manual",
+    "redirected": false,
+    "responseEndpointMatches": true,
+    "responseType": "cors"
+  },
+  "totalProbeMs": 555.2000000178814,
+  "targetRequestsAllowed": 0,
+  "targetRequestsBlocked": 0,
+  "requestEvents": {
+    "allRequestEvents": 1,
+    "apiGetEvents": 0,
+    "targetListGetEvents": 0
+  },
+  "trace": []
+}

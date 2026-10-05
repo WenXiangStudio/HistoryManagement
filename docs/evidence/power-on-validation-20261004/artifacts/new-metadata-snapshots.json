@@ -1,0 +1,1914 @@
+[
+  {
+    "snapshot": {
+      "workCount": 18,
+      "checkedAt": "2026-10-04T04:19:48.285Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": "2026-10-02T13:13:10.000Z",
+      "weeklyStatus": "updated",
+      "coverage": "list-end",
+      "errorCode": null,
+      "authorUid": "2141457830379949",
+      "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+      "profile": {
+        "uid": "2141457830379949",
+        "secUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+        "workCount": 18
+      },
+      "checkedAt": "2026-10-04T04:19:48.285Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1781917945000,
+          "hasMore": false,
+          "items": [
+            {
+              "workId": "7674612514622419327",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-08-16T12:56:12.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7687615701142644202",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-09-20T13:55:12.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7687124329860284010",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-09-19T06:08:26.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7692057890837132393",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-10-02T13:13:10.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7684686535417561023",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-09-12T16:28:33.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7683872244339393899",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-09-10T11:48:41.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7682469624935370018",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-09-07T04:20:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7679069139143684457",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-08-28T13:10:11.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7675706792123373994",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-08-19T11:42:33.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7673268654768010987",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-08-12T22:01:21.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7668325942946762036",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-07-30T14:21:12.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7666423874543815942",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-07-25T11:20:17.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7663798755757477172",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-07-18T09:33:24.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7662717063663750450",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-07-15T11:35:54.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7661936262429042323",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-07-13T11:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7661210645093813519",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-07-11T10:10:15.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7658958336401952036",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-07-05T08:30:08.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7653279263369579828",
+              "authorUid": "2141457830379949",
+              "authorSecUid": "MS4wLjABAAAAUEgH6iFqoPrr1pB_z5b1EOzfZEQwL8dwFlGw1QGZrvwvhl9fEgM9VfZrSdNTclF5",
+              "publishedAt": "2026-06-20T01:12:25.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 922.5
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 9,
+      "checkedAt": "2026-10-04T04:19:49.245Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": "2026-09-29T02:00:38.000Z",
+      "weeklyStatus": "updated",
+      "coverage": "list-end",
+      "errorCode": null,
+      "authorUid": "3035124260682812",
+      "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+      "profile": {
+        "uid": "3035124260682812",
+        "secUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+        "workCount": 9
+      },
+      "checkedAt": "2026-10-04T04:19:49.245Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1774931539000,
+          "hasMore": false,
+          "items": [
+            {
+              "workId": "7690549007487208738",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-09-29T02:00:38.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7682474066036526377",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-09-07T01:30:03.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7675635505266003242",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-08-19T07:33:50.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7667786109086190888",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-07-29T03:41:29.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7664609329563110671",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-07-20T14:13:58.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7664180255514496290",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-07-19T10:13:51.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7660938424941120794",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-07-10T17:10:55.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7656328622869256808",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-06-28T06:25:22.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7648644731165019442",
+              "authorUid": "3035124260682812",
+              "authorSecUid": "MS4wLjABAAAAGjyiDBysgOcVNg9hK-nHrGTEKMRTdPsYIgaWTYHPZxTLW_pCNaE7OGFp2pOC3Vyn",
+              "publishedAt": "2026-06-07T13:44:47.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": [
+            {
+              "workId": "7623272870457707791",
+              "authorUid": "2849562992849757",
+              "authorSecUid": "MS4wLjABAAAAT5zLrIOcRghyFlzgqYqs4cbuIdv8imoFwYOuVJnJsyZC7JaowF_elvjxicqob3_Z"
+            }
+          ]
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 735.5
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 830,
+      "checkedAt": "2026-10-04T04:19:50.746Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": "2026-10-02T04:00:00.000Z",
+      "weeklyStatus": "updated",
+      "coverage": "week-boundary",
+      "errorCode": null,
+      "authorUid": "3474930275464078",
+      "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+      "profile": {
+        "uid": "3474930275464078",
+        "secUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+        "workCount": 830
+      },
+      "checkedAt": "2026-10-04T04:19:50.746Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1788602661000,
+          "hasMore": true,
+          "items": [
+            {
+              "workId": "7555112436232113450",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2025-09-28T12:15:05.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7453071083252501811",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2024-12-28T03:00:00.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7691847208785759529",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-10-02T04:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7691690677541011307",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-10-01T13:28:12.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7690989046486568243",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-30T04:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7689382827032349952",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-29T04:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7689388154201083146",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-28T04:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7689434412764728639",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-27T04:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7689123330112261410",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-26T04:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7688673059150040329",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-25T04:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7689073732194766118",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-24T12:13:11.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7688694956533288218",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-23T11:43:23.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7687823052146625801",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-21T03:19:56.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7687054010548751626",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-19T04:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7686525682318588406",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-17T15:25:23.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7686083675599031562",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-16T10:50:15.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7685721429794360602",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-15T11:24:34.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7685340915761679654",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-14T10:47:57.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7685014619684883739",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-13T13:41:51.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7683852783757331766",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-10T10:33:14.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7682760425729019146",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-08T02:51:01.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7681989912379297074",
+              "authorUid": "3474930275464078",
+              "authorSecUid": "MS4wLjABAAAAAfdI9pa_VAg9vf1l3PeM1qgbzDvlx48nn-Eb88lTtsvVCQ6J5HMqUITcerTQFl-h",
+              "publishedAt": "2026-09-05T10:04:21.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 1283.4000000059605
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 403,
+      "checkedAt": "2026-10-04T04:19:52.143Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": null,
+      "weeklyStatus": "empty",
+      "coverage": "week-boundary",
+      "errorCode": null,
+      "authorUid": "820694472199033",
+      "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+      "profile": {
+        "uid": "820694472199033",
+        "secUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+        "workCount": 403
+      },
+      "checkedAt": "2026-10-04T04:19:52.143Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1783442457000,
+          "hasMore": true,
+          "items": [
+            {
+              "workId": "7575978515775347449",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2025-11-23T17:46:06.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7582660750059457841",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2025-12-11T17:57:52.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7582268543417404729",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2025-12-10T16:34:57.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7686186056760665713",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-09-16T17:27:30.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7684332746563584633",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-09-11T17:35:42.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7683982126971319675",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-09-10T18:55:07.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7682475655292409521",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-09-06T17:29:13.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7682002914362255281",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-09-05T10:54:44.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7680666832038431225",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-09-01T20:30:06.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7677282832808717241",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-08-23T17:38:25.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7676184930980180209",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-08-20T18:37:59.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7675792471004251321",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-08-19T17:15:02.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7675042852192161201",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-08-17T16:46:08.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7674310816762397285",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-08-15T17:25:29.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7670592263186344954",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-08-05T16:55:35.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7670232802243378033",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-08-04T17:40:41.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7669490002480915579",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-08-02T17:38:14.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7665758063508475178",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-07-23T16:16:45.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7665033493583559665",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-07-21T17:24:42.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7663559181328768113",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-07-17T18:03:38.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7662823796743347301",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-07-15T18:29:59.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7662591754490936570",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-07-15T03:29:30.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7659827023074918641",
+              "authorUid": "820694472199033",
+              "authorSecUid": "MS4wLjABAAAAu5JO6-xlWuHn9nP3J18qkHdOGLJXn1casBXvyKUKT-k",
+              "publishedAt": "2026-07-07T16:40:57.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 1179.7999999970198
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 123,
+      "checkedAt": "2026-10-04T04:19:53.599Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": null,
+      "weeklyStatus": "empty",
+      "coverage": "week-boundary",
+      "errorCode": null,
+      "authorUid": "211552108032775",
+      "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+      "profile": {
+        "uid": "211552108032775",
+        "secUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+        "workCount": 123
+      },
+      "checkedAt": "2026-10-04T04:19:53.599Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1778416930000,
+          "hasMore": true,
+          "items": [
+            {
+              "workId": "7622272463510031668",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-03-28T12:33:31.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7583323636799442202",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2025-12-13T12:49:09.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7559895091171577123",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2025-10-11T09:34:06.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7689895735805938987",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-09-27T02:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7684925250017987892",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-09-13T08:10:03.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7682238642093395240",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-09-06T02:25:40.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7679626843527351603",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-08-30T01:35:32.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7676812176744631603",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-08-22T12:00:40.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7674226645422673186",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-08-15T12:14:05.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7671610797268749608",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-08-08T11:04:27.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7669326859850632511",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-08-02T07:05:17.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7666427290284346650",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-07-25T12:27:42.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7664215196889632041",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-07-19T12:29:35.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7658881180384709914",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-07-05T03:45:43.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7656035453799238927",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-06-27T11:27:52.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7653447754772942080",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-06-20T12:06:20.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7648236592817081663",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-06-06T11:19:27.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7645946665429536036",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-05-31T06:58:09.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7645325848471440683",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-05-30T04:23:46.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7643347912088505663",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-05-24T07:14:18.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7641155143810993471",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-05-18T11:30:21.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7640436581253385526",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-05-16T10:51:23.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7638237229411765540",
+              "authorUid": "211552108032775",
+              "authorSecUid": "MS4wLjABAAAAslohntxQ6LXXLfsEhbiDprOTc5QNXS_h2TNAXAkokN4",
+              "publishedAt": "2026-05-10T12:42:10.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 1230.2000000029802
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 65,
+      "checkedAt": "2026-10-04T04:19:54.834Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": null,
+      "weeklyStatus": "empty",
+      "coverage": "week-boundary",
+      "errorCode": null,
+      "authorUid": "105246634576",
+      "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+      "profile": {
+        "uid": "105246634576",
+        "secUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+        "workCount": 65
+      },
+      "checkedAt": "2026-10-04T04:19:54.834Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1779012001000,
+          "hasMore": true,
+          "items": [
+            {
+              "workId": "7689021135882702090",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-09-27T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7686389766320868650",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-09-20T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7683499971768896794",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-09-13T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7680852595065359626",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-09-06T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7678578790062099738",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-08-30T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7675637178956827956",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-08-19T10:00:01.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7673118667105733924",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-08-16T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7671273576892337434",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-08-09T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7668281611628203299",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-08-02T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7665167002528484627",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-07-26T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7662704404876791074",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-07-19T09:59:59.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7660071514582142243",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-07-12T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7657843131936722191",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-07-05T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7648196813715000603",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-06-26T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7647430943585684786",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-06-21T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7647051455207165234",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-06-14T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7648281472968822066",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-06-07T10:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7644927194875186470",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-05-31T10:00:01.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7642219526087527731",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-05-24T10:00:01.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7640021104349695242",
+              "authorUid": "105246634576",
+              "authorSecUid": "MS4wLjABAAAAoS7I4HXJTCTrcCm-XZSsJ8scqd15RUd_YSxifxFei3k",
+              "publishedAt": "2026-05-17T10:00:01.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 1014.1000000089407
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 233,
+      "checkedAt": "2026-10-04T04:19:55.856Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": null,
+      "weeklyStatus": "empty",
+      "coverage": "week-boundary",
+      "errorCode": null,
+      "authorUid": "18560574259",
+      "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+      "profile": {
+        "uid": "18560574259",
+        "secUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+        "workCount": 233
+      },
+      "checkedAt": "2026-10-04T04:19:55.856Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1754039571000,
+          "hasMore": true,
+          "items": [
+            {
+              "workId": "7619258978773519652",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2026-03-20T08:56:16.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7614065150772940067",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2026-03-06T09:01:40.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7606275338234039558",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2026-02-13T09:13:35.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7603679298561789190",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2026-02-06T09:19:19.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7601079323302366507",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2026-01-30T09:10:24.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7595886287819754798",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2026-01-16T09:18:24.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7593287853761645850",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2026-01-09T09:15:07.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7585493233015196974",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-12-19T09:07:59.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7580297672159005962",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-12-05T09:06:33.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7575102674794794280",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-11-21T09:07:20.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7572507181002558754",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-11-14T09:15:26.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7569913442186857791",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-11-07T09:30:24.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7559891145673821483",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-10-11T09:18:49.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7554325486604700980",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-09-26T09:21:11.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7551737793551043874",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-09-19T09:59:37.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7549131398171397426",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-09-12T09:25:29.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7541333777092447507",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-08-22T09:06:46.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7536145431840034111",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-08-08T09:33:19.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7533542536367852835",
+              "authorUid": "18560574259",
+              "authorSecUid": "MS4wLjABAAAAuLE9jOVk73Rapo2_EyhrGfWLMJl9YXM4trMZ5DnNyf4",
+              "publishedAt": "2025-08-01T09:12:51.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 808.5
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 6,
+      "checkedAt": "2026-10-04T04:19:56.798Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": null,
+      "weeklyStatus": "empty",
+      "coverage": "list-end",
+      "errorCode": null,
+      "authorUid": "7546511620906812474",
+      "authorSecUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+      "profile": {
+        "uid": "7546511620906812474",
+        "secUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+        "workCount": 6
+      },
+      "checkedAt": "2026-10-04T04:19:56.798Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1760152949000,
+          "hasMore": false,
+          "items": [
+            {
+              "workId": "7599703300585467323",
+              "authorUid": "7546511620906812474",
+              "authorSecUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+              "publishedAt": "2026-01-26T16:10:24.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7594849782494375921",
+              "authorUid": "7546511620906812474",
+              "authorSecUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+              "publishedAt": "2026-01-13T14:16:04.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7594163558541089445",
+              "authorUid": "7546511620906812474",
+              "authorSecUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+              "publishedAt": "2026-01-11T17:53:15.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7593657637826158245",
+              "authorUid": "7546511620906812474",
+              "authorSecUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+              "publishedAt": "2026-01-10T09:09:56.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7561054350794149147",
+              "authorUid": "7546511620906812474",
+              "authorSecUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+              "publishedAt": "2025-10-14T12:32:35.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7559799336025017659",
+              "authorUid": "7546511620906812474",
+              "authorSecUid": "MS4wLjABAAAAQpNoRWTy7w-fcAOXCOe76UdoaI12v0oKugzXOiYrWSeOcz_lm8btSbCZoNany7P1",
+              "publishedAt": "2025-10-11T03:22:29.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 703.5999999940395
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 44,
+      "checkedAt": "2026-10-04T04:19:58.207Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": null,
+      "weeklyStatus": "empty",
+      "coverage": "week-boundary",
+      "errorCode": null,
+      "authorUid": "100441820893",
+      "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+      "profile": {
+        "uid": "100441820893",
+        "secUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+        "workCount": 44
+      },
+      "checkedAt": "2026-10-04T04:19:58.207Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1768741015000,
+          "hasMore": true,
+          "items": [
+            {
+              "workId": "7686061384701955369",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-09-16T12:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7684266568812940594",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-09-11T13:19:02.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7679048928775507251",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-08-28T11:51:50.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7676050389724302611",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-08-20T12:00:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7672005152961776922",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-08-09T12:18:25.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7666410185132428559",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-07-25T12:20:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7658641442646068520",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-07-04T12:00:26.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7654549691237027123",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-06-23T11:22:16.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7648991557680418048",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-06-08T11:53:55.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7642948688691711286",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-05-23T12:35:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7637441420634197284",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-05-08T12:30:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7633405404441087272",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-04-27T11:51:45.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7628970733565185316",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-04-15T13:02:54.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7625248409569578280",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-04-05T12:18:32.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7619691293115026728",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-03-21T12:54:15.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7614855348125453606",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-03-08T12:08:09.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7612597118397598995",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-03-02T11:44:35.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7606333124821224756",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-02-13T12:59:37.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7602960054937029928",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-02-04T12:50:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7596684687699873051",
+              "authorUid": "100441820893",
+              "authorSecUid": "MS4wLjABAAAABingXvo5X7UinyZvnpe3wXb2eftaqvARM-C35t9J-MA",
+              "publishedAt": "2026-01-18T12:56:55.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 1192.300000011921
+    }
+  },
+  {
+    "snapshot": {
+      "workCount": 251,
+      "checkedAt": "2026-10-04T04:19:59.356Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "latestPublishedAt": null,
+      "weeklyStatus": "empty",
+      "coverage": "week-boundary",
+      "errorCode": null,
+      "authorUid": "4147012152328413",
+      "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw"
+    },
+    "capture": {
+      "contract": "signaldesk-creator-activity/v2",
+      "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+      "requestContext": {
+        "versionCode": "170400",
+        "publishStrategy": "2",
+        "clientType": "1"
+      },
+      "requestedSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+      "profile": {
+        "uid": "4147012152328413",
+        "secUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+        "workCount": 251
+      },
+      "checkedAt": "2026-10-04T04:19:59.356Z",
+      "weekStart": "2026-09-27T16:00:00.000Z",
+      "weekEndExclusive": "2026-10-04T16:00:00.000Z",
+      "pages": [
+        {
+          "requestCursor": 0,
+          "responseCursor": 1785504600000,
+          "hasMore": true,
+          "items": [
+            {
+              "workId": "7637872318424829236",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-05-09T13:00:43.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7665333458985684278",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-07-22T13:04:04.000Z",
+              "pinned": true,
+              "publicVisible": true
+            },
+            {
+              "workId": "7689449972848233770",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-09-25T12:48:24.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7688567784032177471",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-09-23T13:04:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7686856750217055494",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-09-18T13:05:21.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7683508484435873039",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-09-09T13:23:58.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7681663540729498923",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-09-04T13:12:59.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7680918435789917459",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-09-02T13:01:34.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7679071712566054187",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-28T13:20:18.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7678287454058597672",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-26T12:49:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7676468964712566050",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-21T13:15:20.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7675724591230242089",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-19T13:06:51.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7675350269219196223",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-18T13:25:59.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7674982747571506442",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-17T12:53:01.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7673100109004999963",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-12T13:10:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7672757092146482458",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-11T13:33:04.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7672338437051010350",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-10T12:51:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7671235485859155251",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-07T12:55:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7670472454191566134",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-05T12:55:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7670158966684454190",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-04T12:54:15.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7669781183277829412",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-08-03T13:00:18.000Z",
+              "pinned": false,
+              "publicVisible": true
+            },
+            {
+              "workId": "7668614994988158217",
+              "authorUid": "4147012152328413",
+              "authorSecUid": "MS4wLjABAAAAnu-MdbY-gyMX2R1UfKR6Y2Pqdye1GNH6dYu6LdxpCdWGTSFHYE2UMYdFsjmbTdiw",
+              "publishedAt": "2026-07-31T13:30:00.000Z",
+              "pinned": false,
+              "publicVisible": true
+            }
+          ],
+          "excludedAuthors": []
+        }
+      ],
+      "errorCode": null,
+      "activeApiRequests": 2,
+      "acquisitionMs": 917
+    }
+  }
+]

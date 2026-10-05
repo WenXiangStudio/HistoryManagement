@@ -1,0 +1,57 @@
+{
+  "recordedAt": "2026-10-05T06:41:23.203Z",
+  "version": "0.7.2",
+  "originalShortcut": true,
+  "mainInstances": 1,
+  "noRemoteDebugging": true,
+  "readiness": "ready",
+  "creators": 295,
+  "basicPending": 0,
+  "activity": {
+    "phase": "completed",
+    "runId": "activity-dd889fa2d112eaa63c8b3b03",
+    "message": "已确认 1 位，0 位资料待补齐；原资料保留",
+    "total": 1,
+    "done": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "currentName": null,
+    "remainingIds": [],
+    "startedAt": "2026-10-05T06:36:41.936Z",
+    "weekStart": "2026-10-04T16:00:00.000Z",
+    "weekEndExclusive": "2026-10-11T16:00:00.000Z",
+    "activeListRequests": 0,
+    "reusedNativePages": 1,
+    "observedNativeListRequests": 1,
+    "excludedNonPublicCount": 0,
+    "unverifiedVisibilityCount": 0,
+    "requestAudit": {
+      "contextSource": "first-author-page",
+      "accountPageNavigations": 0,
+      "ownerVerificationGets": 1,
+      "authorHomepageNavigations": 1,
+      "networkRequestsObserved": 388,
+      "platformApiGetsObserved": 18,
+      "selfGetsObserved": 2,
+      "listGetsObserved": 1
+    },
+    "savedTotalMs": 6321.082700000001,
+    "displayedTotalMs": 6482.386800000002
+  },
+  "noRunningCollection": true,
+  "allExtensionFileHashesMatch": true,
+  "executableAndAsarHashesMatch": true,
+  "temporaryGuardRemoved": true,
+  "restoration": {
+    "normalShortcutStarted": true,
+    "version": "0.7.2",
+    "temporaryGuardRemoved": true,
+    "forcedValidationShutdown": true
+  },
+  "ui": {
+    "normalWindowVisible": true,
+    "librarySelected": true,
+    "creatorLabels": 295,
+    "collectionButtonInvoked": false
+  }
+}

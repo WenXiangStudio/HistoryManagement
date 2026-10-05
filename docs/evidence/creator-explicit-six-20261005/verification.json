@@ -1,0 +1,444 @@
+{
+  "versionTested": "0.7.6",
+  "selected": {
+    "selected": [
+      "oil欧呦",
+      "明石飛行社",
+      "食品科学阿祖",
+      "大刘的设计笔记",
+      "程序员阿江-Relakkes",
+      "不抱团乐队"
+    ],
+    "excludesAllPriorActivityAttemptsAndScopedCandidates": true,
+    "platformRequests": 0
+  },
+  "actual": [
+    {
+      "name": "oil欧呦",
+      "runId": "activity-5c7bf5d3ee63e7d5b4ca8384",
+      "phase": "completed",
+      "count": 110,
+      "weekly": 1,
+      "latest": "2026-10-05T12:44:25.000Z",
+      "records": 20,
+      "pinned": 0,
+      "pages": 1,
+      "error": null,
+      "savedStageMs": 6964.4616000000005,
+      "activityReadStageMs": 737.0999999940395,
+      "observedAvailabilityUpperBoundMs": 17059.79999998212,
+      "observedClickToStoppedMs": null,
+      "exactClickToAvailableMs": null,
+      "activeExecutionAttempts": 1,
+      "confirmedExplicitResponses": 1,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 430,
+        "platformApiGetsObserved": 13,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 0,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1,
+        "ownerSourceDiagnostics": {
+          "contract": "signaldesk-activity-owner-diagnostics/v1",
+          "navigationBound": true,
+          "navigationFailed": false,
+          "navigationLoaderPresent": true,
+          "navigationFramePresent": true,
+          "observedRequests": 1,
+          "documents": [
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "different",
+              "frame": "match"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            }
+          ],
+          "currentDocument": {
+            "document": "first-author",
+            "committed": true,
+            "loader": "different",
+            "frame": "match"
+          },
+          "transitions": [
+            {
+              "document": "first-author",
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "first-author",
+              "loader": "different",
+              "frame": "match"
+            }
+          ],
+          "requests": [
+            {
+              "loader": "different",
+              "frame": "match",
+              "document": "first-author",
+              "childSession": false,
+              "currentLoader": "match",
+              "currentFrame": "match",
+              "requestType": "XHR",
+              "stage": "identity-checked",
+              "json": "valid",
+              "identity": "matched",
+              "httpStatus": 200,
+              "responseSource": "network"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "name": "明石飛行社",
+      "runId": "activity-d448818c1bf076d166e01ab7",
+      "phase": "blocked",
+      "count": 47,
+      "weekly": null,
+      "latest": null,
+      "records": 0,
+      "pinned": 0,
+      "pages": 0,
+      "error": "ACTIVITY_PAGE_EXECUTION_FAILED",
+      "savedStageMs": 10598.974599999998,
+      "activityReadStageMs": 244.2999999821186,
+      "observedAvailabilityUpperBoundMs": null,
+      "observedClickToStoppedMs": 10825.59999999404,
+      "exactClickToAvailableMs": null,
+      "activeExecutionAttempts": 1,
+      "confirmedExplicitResponses": 0,
+      "requestAudit": {
+        "contextSource": "first-author-page",
+        "accountPageNavigations": 0,
+        "ownerVerificationGets": 0,
+        "authorHomepageNavigations": 1,
+        "networkRequestsObserved": 444,
+        "platformApiGetsObserved": 19,
+        "selfGetsObserved": 1,
+        "listGetsObserved": 1,
+        "ownerVerificationSource": "native-network",
+        "nativeOwnerRequestsObserved": 1,
+        "ownerSourceDiagnostics": {
+          "contract": "signaldesk-activity-owner-diagnostics/v1",
+          "navigationBound": true,
+          "navigationFailed": false,
+          "navigationLoaderPresent": true,
+          "navigationFramePresent": true,
+          "observedRequests": 1,
+          "documents": [
+            {
+              "document": "first-author",
+              "redirect": false,
+              "loader": "match",
+              "frame": "match"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            },
+            {
+              "document": "other-origin",
+              "redirect": false,
+              "loader": "different",
+              "frame": "different"
+            }
+          ],
+          "currentDocument": {
+            "document": "first-author",
+            "committed": true,
+            "loader": "match",
+            "frame": "match"
+          },
+          "transitions": [
+            {
+              "document": "first-author",
+              "loader": "match",
+              "frame": "match"
+            }
+          ],
+          "requests": [
+            {
+              "loader": "match",
+              "frame": "match",
+              "document": "first-author",
+              "childSession": false,
+              "currentLoader": "match",
+              "currentFrame": "match",
+              "requestType": "XHR",
+              "stage": "identity-checked",
+              "json": "valid",
+              "identity": "matched",
+              "httpStatus": 200,
+              "responseSource": "network"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "unexecuted": [
+    "食品科学阿祖",
+    "大刘的设计笔记",
+    "程序员阿江-Relakkes",
+    "不抱团乐队"
+  ],
+  "outcome": "1 complete, 1 partial/blocked, 4 not executed; no retry",
+  "limits": {
+    "authors": 6,
+    "pagesPerAuthor": 2,
+    "totalExplicitGetBudget": 12
+  },
+  "diagnostic": {
+    "saved": true,
+    "pageStateSaved": false,
+    "screenshotSaved": false,
+    "nativeListHttp200": true,
+    "explicitHttpStatusKnown": false,
+    "rootCauseKnown": false
+  },
+  "timingCaveat": "Oil displayedTotalMs missing; 17.06s includes up to 10s receipt polling, only an observed availability upper bound, not accurate end-to-end latency. Saved/read stage values are separate.",
+  "requestCaveat": "Oil active GET returned HTTP200 but observer list counter was zero. Second activeApiRequests=1 counts a failed execution attempt, does not prove an HTTP request was sent.",
+  "preservation": {
+    "recordedAt": "2026-10-05T13:58:08.532Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 526,
+          "currentRows": 528,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 36,
+          "currentRows": 38,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 526,
+          "currentRows": 528,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "restored": {
+    "version": "0.7.5",
+    "ready": true,
+    "creators": 295,
+    "pending": 0,
+    "noRunningCollection": true,
+    "mainInstances": 1,
+    "noRemoteDebugging": true,
+    "originalPackageHashesUnchanged": true
+  },
+  "rollbackDisplayCaveat": "Old 0.7.5 does not project v7 snapshots; new results remain in SQLite and test evidence, current normal UI retains prior supported snapshots."
+}

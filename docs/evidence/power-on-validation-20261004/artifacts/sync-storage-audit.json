@@ -1,0 +1,69 @@
+{
+  "recordedAt": "2026-10-04T04:21:09.066Z",
+  "oldTables": {
+    "creator_activity_attempts": {
+      "priorRows": 360,
+      "currentRows": 370,
+      "oldRowsUnchanged": true
+    },
+    "creator_activity_runs": {
+      "priorRows": 7,
+      "currentRows": 8,
+      "oldRowsUnchanged": true
+    },
+    "creator_activity_snapshots": {
+      "priorRows": 360,
+      "currentRows": 370,
+      "oldRowsUnchanged": true
+    },
+    "directory_creators": {
+      "priorRows": 0,
+      "currentRows": 0,
+      "oldRowsUnchanged": true
+    },
+    "directory_runs": {
+      "priorRows": 0,
+      "currentRows": 0,
+      "oldRowsUnchanged": true
+    },
+    "following_account_owners": {
+      "priorRows": 1,
+      "currentRows": 1,
+      "oldRowsUnchanged": true
+    },
+    "visible_directory_creators": {
+      "priorRows": 170,
+      "currentRows": 180,
+      "oldRowsUnchanged": true
+    },
+    "visible_directory_runs": {
+      "priorRows": 11,
+      "currentRows": 12,
+      "oldRowsUnchanged": true
+    }
+  },
+  "followingRunId": "following-20261004041944-3fc7dec08ea0e5cc",
+  "metadataRunId": "activity-5757d5729c093681ff634e59",
+  "newFollowingCount": 10,
+  "totalFollowingCount": 180,
+  "distinctProfiles": 180,
+  "newCreatorsMatchReport": true,
+  "sourceOwnerMatches": true,
+  "sourceProofRevalidated": true,
+  "originalSecUidExcluded": true,
+  "newMetadataCount": 10,
+  "metadataAllSucceeded": true,
+  "newWeeklyStatuses": {
+    "updated": 3,
+    "empty": 7
+  },
+  "newMetadataRevalidated": true,
+  "allKnownWorkCounts": 180,
+  "currentSavedWeekStatus": {
+    "updated": 100,
+    "empty": 80
+  },
+  "settingsUnchanged": true,
+  "integrity": "ok",
+  "foreignKeyViolations": 0
+}

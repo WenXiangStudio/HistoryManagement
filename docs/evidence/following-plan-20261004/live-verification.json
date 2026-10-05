@@ -1,0 +1,195 @@
+{
+  "recordedAt": "2026-10-04T14:23:04.230Z",
+  "before": {
+    "creatorCount": 220,
+    "activityRunId": "activity-6bc8a0b1a178dc2131f39ff8"
+  },
+  "click": {
+    "clicked": true,
+    "label": "同步关注清单"
+  },
+  "after": {
+    "creatorCount": 295,
+    "planCount": 295,
+    "pageCount": 15,
+    "complete": true,
+    "pendingBasic": 0,
+    "activityRunId": "activity-6bc8a0b1a178dc2131f39ff8",
+    "activityPhase": "completed",
+    "basicPhase": "idle"
+  },
+  "timing": {
+    "clickToAllDataAndAvatarsVisibleMs": 7921.882600000012,
+    "independentObservedMs": 8046.2134,
+    "rendererObservedMs": 8044,
+    "acquisitionMs": 6065,
+    "persistenceMs": 182.32159999996657
+  },
+  "visible": {
+    "cardCount": 295,
+    "imageCount": 295,
+    "avatarsLoaded": true,
+    "elapsedMs": 8044
+  },
+  "automaticActivityStarted": false,
+  "automaticBasicStarted": false,
+  "activePlatformRequests": {
+    "owner": 1,
+    "followingPages": 15,
+    "total": 16,
+    "note": "Program-active requests only; browser-native page loading and avatar images are separate."
+  },
+  "storage": {
+    "originalRows": {
+      "directory_runs": {
+        "originalCount": 0,
+        "currentCount": 0,
+        "originalRowsUnchanged": true
+      },
+      "directory_creators": {
+        "originalCount": 0,
+        "currentCount": 0,
+        "originalRowsUnchanged": true
+      },
+      "visible_directory_runs": {
+        "originalCount": 14,
+        "currentCount": 15,
+        "originalRowsUnchanged": true
+      },
+      "visible_directory_creators": {
+        "originalCount": 220,
+        "currentCount": 515,
+        "originalRowsUnchanged": true
+      },
+      "following_account_owners": {
+        "originalCount": 1,
+        "currentCount": 1,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_runs": {
+        "originalCount": 19,
+        "currentCount": 19,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_snapshots": {
+        "originalCount": 512,
+        "currentCount": 512,
+        "originalRowsUnchanged": true
+      },
+      "creator_activity_attempts": {
+        "originalCount": 512,
+        "currentCount": 512,
+        "originalRowsUnchanged": true
+      }
+    },
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "savedPages": [
+    {
+      "position": 1,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 2,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 1
+    },
+    {
+      "position": 3,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 1
+    },
+    {
+      "position": 4,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 1
+    },
+    {
+      "position": 5,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 6,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 7,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 8,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 9,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 10,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 11,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 1
+    },
+    {
+      "position": 12,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 13,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 14,
+      "creatorCount": 20,
+      "hasMore": true,
+      "missingSignatures": 0,
+      "emptySignatures": 0
+    },
+    {
+      "position": 15,
+      "creatorCount": 15,
+      "hasMore": false,
+      "missingSignatures": 0,
+      "emptySignatures": 1
+    }
+  ]
+}

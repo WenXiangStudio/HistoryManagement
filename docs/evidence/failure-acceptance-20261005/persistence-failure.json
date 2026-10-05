@@ -1,0 +1,304 @@
+{
+  "mode": "persistence-failure",
+  "runId": "activity-06c65a27518be74799a6b9c2",
+  "checks": {
+    "blocked": true,
+    "pageRetained": true,
+    "cacheComplete": true,
+    "screenshot": true,
+    "dom": true,
+    "noNextAuthor": true,
+    "noBusinessRetry": true,
+    "firstReasonPreserved": true
+  },
+  "actions": [
+    {
+      "method": "Page.enable",
+      "at": "2026-10-05T14:36:19.241Z",
+      "operation": null
+    },
+    {
+      "method": "Page.enable",
+      "at": "2026-10-05T14:36:19.246Z",
+      "operation": null
+    },
+    {
+      "method": "Runtime.enable",
+      "at": "2026-10-05T14:36:19.247Z",
+      "operation": null
+    },
+    {
+      "method": "Network.enable",
+      "at": "2026-10-05T14:36:19.247Z",
+      "operation": null
+    },
+    {
+      "method": "Page.navigate",
+      "at": "2026-10-05T14:36:19.249Z",
+      "operation": null
+    },
+    {
+      "method": "Runtime.evaluate",
+      "at": "2026-10-05T14:36:19.377Z",
+      "operation": "profile-count"
+    },
+    {
+      "method": "Runtime.evaluate",
+      "at": "2026-10-05T14:36:19.378Z",
+      "operation": null
+    },
+    {
+      "method": "Page.captureScreenshot",
+      "at": "2026-10-05T14:36:19.378Z",
+      "operation": null
+    },
+    {
+      "method": "Page.captureScreenshot",
+      "at": "2026-10-05T14:36:19.380Z",
+      "operation": null
+    }
+  ],
+  "diagnostic": {
+    "attempts": [],
+    "browser": {
+      "commands": [
+        {
+          "at": "2026-10-05T14:36:19.241Z",
+          "elapsedMs": 5.200000017881393,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 1,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.246Z",
+          "elapsedMs": 0.5999999940395355,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 2,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.247Z",
+          "elapsedMs": 0.5999999940395355,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 3,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.247Z",
+          "elapsedMs": 0.20000001788139343,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 4,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.249Z",
+          "elapsedMs": 8.299999982118607,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "navigate",
+          "resultType": null,
+          "sequence": 5,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.377Z",
+          "elapsedMs": 0.4000000059604645,
+          "error": "DEBUGGER_NOT_ATTACHED",
+          "exceptionClass": null,
+          "operation": "profile-count",
+          "resultType": null,
+          "sequence": 6,
+          "stage": "rejected"
+        }
+      ],
+      "connections": [
+        {
+          "at": "2026-10-05T14:36:19.240Z",
+          "event": "target-selected",
+          "reason": null
+        }
+      ],
+      "dropped": 0
+    },
+    "captureBrowser": {
+      "commands": [
+        {
+          "at": "2026-10-05T14:36:19.241Z",
+          "elapsedMs": 5.200000017881393,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 1,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.246Z",
+          "elapsedMs": 0.5999999940395355,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 2,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.247Z",
+          "elapsedMs": 0.5999999940395355,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 3,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.247Z",
+          "elapsedMs": 0.20000001788139343,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "setup",
+          "resultType": null,
+          "sequence": 4,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.249Z",
+          "elapsedMs": 8.299999982118607,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "navigate",
+          "resultType": null,
+          "sequence": 5,
+          "stage": "complete"
+        },
+        {
+          "at": "2026-10-05T14:36:19.377Z",
+          "elapsedMs": 0.4000000059604645,
+          "error": "DEBUGGER_NOT_ATTACHED",
+          "exceptionClass": null,
+          "operation": "profile-count",
+          "resultType": null,
+          "sequence": 6,
+          "stage": "rejected"
+        },
+        {
+          "at": "2026-10-05T14:36:19.378Z",
+          "elapsedMs": 0.19999998807907104,
+          "error": "DEBUGGER_NOT_ATTACHED",
+          "exceptionClass": null,
+          "operation": "failure-page",
+          "resultType": null,
+          "sequence": 7,
+          "stage": "rejected"
+        },
+        {
+          "at": "2026-10-05T14:36:19.378Z",
+          "elapsedMs": 0.09999999403953552,
+          "error": "DEBUGGER_NOT_ATTACHED",
+          "exceptionClass": null,
+          "operation": "failure-screenshot",
+          "resultType": null,
+          "sequence": 8,
+          "stage": "rejected"
+        },
+        {
+          "at": "2026-10-05T14:36:19.380Z",
+          "elapsedMs": 90.69999998807907,
+          "error": null,
+          "exceptionClass": null,
+          "operation": "failure-screenshot",
+          "resultType": null,
+          "sequence": 9,
+          "stage": "complete"
+        }
+      ],
+      "connections": [
+        {
+          "at": "2026-10-05T14:36:19.240Z",
+          "event": "target-selected",
+          "reason": null
+        }
+      ],
+      "dropped": 0
+    },
+    "capturePhase": "complete",
+    "capturedAt": "2026-10-05T14:36:19.377Z",
+    "completedAt": "2026-10-05T14:36:19.471Z",
+    "contract": "signaldesk-activity-failure/v1",
+    "creatorId": -1,
+    "environment": {
+      "diagnosticReattached": true,
+      "discarded": false,
+      "pageSource": "extension-script",
+      "pathRelation": "target",
+      "recoveryError": null,
+      "status": "complete",
+      "tabError": null,
+      "tabExists": true
+    },
+    "errorCode": "ACTIVITY_READ_FAILED",
+    "network": {
+      "documents": [
+        {
+          "at": "2026-10-05T14:36:19.260Z",
+          "childSession": false,
+          "kind": "committed",
+          "pathRelation": "target"
+        }
+      ],
+      "dropped": 0,
+      "events": [],
+      "runtime": [
+        {
+          "at": "2026-10-05T14:36:19.259Z",
+          "exceptionClass": null,
+          "kind": "contexts-cleared"
+        },
+        {
+          "at": "2026-10-05T14:36:19.260Z",
+          "exceptionClass": null,
+          "kind": "contexts-cleared"
+        }
+      ],
+      "scriptExceptions": 0
+    },
+    "page": {
+      "markers": {
+        "empty": false,
+        "login": false,
+        "unavailable": false,
+        "verification": false
+      },
+      "panelPresent": true,
+      "panelVisible": true,
+      "pathRelation": "target",
+      "readyState": "complete",
+      "visibilityState": "hidden",
+      "visibleWorkLinks": 0,
+      "worksTabPresent": true,
+      "worksTabSelected": true,
+      "worksTabVisible": true
+    },
+    "pageError": null,
+    "pageFailureReason": "DEBUGGER_NOT_ATTACHED",
+    "retainedTabId": 193484152,
+    "screenshot": "saved in adjacent jpg",
+    "screenshotError": null,
+    "screenshotFailureReason": "DEBUGGER_NOT_ATTACHED",
+    "secUid": "local-first",
+    "stage": "reading-count"
+  }
+}

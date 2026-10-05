@@ -1,0 +1,320 @@
+{
+  "version": "0.7.9",
+  "runId": "activity-5aecf9aa600256f88c7c01ab",
+  "collectionClicks": 1,
+  "programManagedAuthors": 3,
+  "phase": "completed",
+  "results": [
+    {
+      "name": "浪花姜",
+      "count": 133,
+      "weekly": 0,
+      "latest": null,
+      "records": 20,
+      "foreignExcluded": 1,
+      "pages": 1,
+      "readStageMs": 1254.800000011921,
+      "clickToThisAuthorAvailableMs": 5365.299999982119
+    },
+    {
+      "name": "那只貂貂",
+      "count": 32,
+      "weekly": 1,
+      "latest": "2026-10-05T12:30:00.000Z",
+      "records": 20,
+      "foreignExcluded": 0,
+      "pages": 1,
+      "readStageMs": 680,
+      "clickToThisAuthorAvailableMs": 10962.299999982119
+    },
+    {
+      "name": "期市道德经",
+      "count": 18,
+      "weekly": 0,
+      "latest": null,
+      "records": 18,
+      "foreignExcluded": 0,
+      "pages": 1,
+      "readStageMs": 642.5999999940395,
+      "clickToThisAuthorAvailableMs": 16943.90000000596
+    }
+  ],
+  "clickToAllDataAndAvatarsAvailableMs": 16943.90000000596,
+  "appDisplayedTotalMs": 17159.367100000003,
+  "savedTotalMs": 16988.58020000001,
+  "observerIntervalMs": 50,
+  "requestAudit": {
+    "contextSource": "first-author-page",
+    "accountPageNavigations": 0,
+    "ownerVerificationGets": 1,
+    "authorHomepageNavigations": 3,
+    "networkRequestsObserved": 1115,
+    "platformApiGetsObserved": 45,
+    "selfGetsObserved": 4,
+    "listGetsObserved": 2,
+    "ownerVerificationSource": "active-get",
+    "nativeOwnerRequestsObserved": 0,
+    "ownerSourceDiagnostics": {
+      "contract": "signaldesk-activity-owner-diagnostics/v1",
+      "navigationBound": true,
+      "navigationFailed": false,
+      "navigationLoaderPresent": true,
+      "navigationFramePresent": true,
+      "observedRequests": 0,
+      "documents": [
+        {
+          "document": "first-author",
+          "redirect": false,
+          "loader": "match",
+          "frame": "match"
+        },
+        {
+          "document": "first-author",
+          "redirect": false,
+          "loader": "different",
+          "frame": "match"
+        },
+        {
+          "document": "other-origin",
+          "redirect": false,
+          "loader": "different",
+          "frame": "different"
+        }
+      ],
+      "currentDocument": {
+        "document": "first-author",
+        "committed": true,
+        "loader": "different",
+        "frame": "match"
+      },
+      "transitions": [
+        {
+          "document": "first-author",
+          "loader": "match",
+          "frame": "match"
+        },
+        {
+          "document": "first-author",
+          "loader": "different",
+          "frame": "match"
+        }
+      ],
+      "requests": []
+    }
+  },
+  "confirmedExplicitResponses": 3,
+  "businessRetries": 0,
+  "noRealPlatformFailureThisBatch": true,
+  "preservation": {
+    "recordedAt": "2026-10-05T14:44:12.902Z",
+    "preservation": {
+      "following-directory.sqlite": {
+        "creator_activity_attempts": {
+          "originalRows": 539,
+          "currentRows": 542,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_diagnostics": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_runs": {
+          "originalRows": 49,
+          "currentRows": 50,
+          "originalRowsUnchanged": true
+        },
+        "creator_activity_snapshots": {
+          "originalRows": 539,
+          "currentRows": 542,
+          "originalRowsUnchanged": true
+        },
+        "directory_creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "directory_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_account_owners": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_fields": {
+          "originalRows": 295,
+          "currentRows": 295,
+          "originalRowsUnchanged": true
+        },
+        "following_basic_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "following_list_pages": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        },
+        "following_list_plans": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_creators": {
+          "originalRows": 515,
+          "currentRows": 515,
+          "originalRowsUnchanged": true
+        },
+        "visible_directory_runs": {
+          "originalRows": 15,
+          "currentRows": 15,
+          "originalRowsUnchanged": true
+        }
+      },
+      "signal-desk.sqlite": {
+        "analyses": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "analysis_batches": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "app_settings": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "audit_events": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "collection_checkpoints": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "comments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creator_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "creators": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "evidence_frames": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "inbox_states": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "interest_weights": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "jobs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "metric_snapshots": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "ocr_blocks": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "owner_accounts": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_config": {
+          "originalRows": 1,
+          "currentRows": 1,
+          "originalRowsUnchanged": true
+        },
+        "search_index_content": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_data": {
+          "originalRows": 2,
+          "currentRows": 2,
+          "originalRowsUnchanged": true
+        },
+        "search_index_docsize": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "search_index_idx": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "sync_runs": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "taxonomy_tags": {
+          "originalRows": 22,
+          "currentRows": 22,
+          "originalRowsUnchanged": true
+        },
+        "transcript_segments": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_keywords": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "work_tags": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        },
+        "works": {
+          "originalRows": 0,
+          "currentRows": 0,
+          "originalRowsUnchanged": true
+        }
+      }
+    },
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  }
+}

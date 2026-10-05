@@ -1,0 +1,54 @@
+{
+  "StartedAt": "2026-10-04T04:23:17.1521245Z",
+  "DesktopShortcutReopened": true,
+  "AppCommandLine": "\"D:\\AI_WorkSpace\\SpatialWarehouse\\AI_InformationWorkflowCreationCenter\\release-following-background-final\\win-unpacked\\Signal Desk.exe\" --user-data-dir=\"C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\"",
+  "RemoteDebuggingArgument": false,
+  "State": {
+    "phase": "completed",
+    "runId": "following-20261004041944-3fc7dec08ea0e5cc",
+    "message": "最近一次新增 10 位博主，资料库累计 180 位。",
+    "count": 10,
+    "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+    "extensionDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-extension",
+    "reportDirectory": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-runs\\following-20261004041944-3fc7dec08ea0e5cc",
+    "databasePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\following-directory.sqlite",
+    "setupUrl": "http://127.0.0.1:54844/following-connect",
+    "accountStatus": "verified",
+    "readiness": {
+      "phase": "ready",
+      "preparationId": "346c353fcae034439801be67",
+      "message": "登录账号身份和关注数据接口已就绪，可以同步关注。"
+    },
+    "totalCount": 180,
+    "timing": {
+      "startedAt": "2026-10-04T04:19:44.027Z",
+      "dispatchMs": 5.6793000000179745,
+      "acquisitionMs": 2853.7999999970198,
+      "persistenceMs": 13.315999999991618,
+      "savedTotalMs": 2919.7293000000063,
+      "displayedTotalMs": 3225.064700000017,
+      "averageDisplayedMs": 322.50647000000174
+    },
+    "activity": {
+      "phase": "completed",
+      "runId": "activity-5757d5729c093681ff634e59",
+      "message": "已更新 10 位，0 位需重试；原资料保留",
+      "total": 10,
+      "done": 10,
+      "succeeded": 10,
+      "failed": 0,
+      "currentName": null,
+      "remainingIds": [],
+      "startedAt": "2026-10-04T04:19:46.952Z",
+      "weekStart": "2026-09-27T16:00:00Z",
+      "weekEndExclusive": "2026-10-04T16:00:00Z",
+      "savedTotalMs": 12616.802599999995,
+      "displayedTotalMs": 12746.122000000003
+    },
+    "connection": {
+      "online": true,
+      "version": "0.6.2",
+      "expectedVersion": "0.6.2"
+    }
+  }
+}
