@@ -181,6 +181,7 @@ export type InboxItem = {
   platformWorkId: string
   creatorId: number
   creatorName: string
+  creatorProfileUrl?:string
   creatorAvatar: string | null
   workType: 'video' | 'image'
   sourceUrl: string
@@ -205,6 +206,7 @@ export type InboxItem = {
 }
 
 export type CreatorListItem = {
+  refreshPriority?:import('./creatorPriority').CreatorPriorityState
   basicPending?: boolean
   activity?: import('./creatorActivity').CreatorActivityView
   nativeUid?: string | null
@@ -264,6 +266,7 @@ export type IsolatedPilotCatalog = {
 }
 
 export type IsolatedPilotState = {
+  creatorUid?:string
   phase: 'idle' | 'prepared' | 'finished' | 'failed' | 'cancelled'
   runId: string | null
   creatorName: string | null

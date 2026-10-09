@@ -107,3 +107,33 @@ test('page diagnostics distinguish readable count from selected tab and visible 
  assert.equal(page.panelPresent,true);assert.equal(page.panelVisible,false)
  dom.window.close()
 })
+
+test('expected session releases are distinct from forced disconnects and reset for each new page',()=>{
+ const listeners=new Set(),chrome={debugger:{onDetach:{addListener:fn=>listeners.add(fn),removeListener:fn=>listeners.delete(fn)}}}
+ const trace=traceActivityCommands(chrome)
+ trace.setTarget(2);trace.expectDetach(2)
+ for(const fn of listeners)fn({tabId:2},'target_closed')
+ assert.doesNotThrow(()=>trace.assertConnected())
+ trace.setTarget(3)
+ for(const fn of listeners)fn({tabId:3},'target_closed')
+ assert.throws(()=>trace.assertConnected(),/DEBUGGER_NOT_ATTACHED/)
+ const rows=trace.snapshot().connections
+ assert.equal(rows[1].event,'detach-requested');assert.equal(rows[2].expected,true);assert.equal(rows.at(-1).expected,false)
+ trace.beginAuthor();trace.setTarget(4);assert.doesNotThrow(()=>trace.assertConnected())
+ trace.stop();assert.equal(listeners.size,0)
+})
+
+test('child custom-protocol attempts are bounded observations that retain no raw addresses',async()=>{
+ const listeners=new Set(),chrome={debugger:{onEvent:{addListener:fn=>listeners.add(fn),removeListener:fn=>listeners.delete(fn)},sendCommand:async()=>({})}}
+ const observed=await observeActivityDiagnostics(chrome,{tabId:2},'sec')
+ const emit=(method,params)=>{for(const fn of listeners)fn({tabId:2},method,params)}
+ emit('Page.frameNavigated',{frame:{id:'main',url:'https://www.douyin.com/user/sec'}})
+ emit('Page.frameAttached',{frameId:'child',parentFrameId:'main'})
+ emit('Page.frameRequestedNavigation',{frameId:'main',url:'https://www.douyin.com/user/sec?secret'})
+ emit('Page.frameRequestedNavigation',{frameId:'child',url:'bitbrowser://cc/?secret'})
+ assert.deepEqual(observed.snapshot().navigationRequests.map(({frame,protocol})=>({frame,protocol})),[{frame:'main',protocol:'web'},{frame:'child',protocol:'custom'}])
+ for(let i=0;i<20;i++)emit('Page.frameRequestedNavigation',{frameId:'child',url:'custom://secret'})
+ assert.equal(observed.snapshot().navigationRequests.length,16);assert.ok(observed.snapshot().dropped>0)
+ assert.equal(JSON.stringify(observed.snapshot()).includes('secret'),false)
+ observed.stop();assert.equal(listeners.size,0)
+})

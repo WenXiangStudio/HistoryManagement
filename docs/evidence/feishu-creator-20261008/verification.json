@@ -1,0 +1,26 @@
+{
+  "recordedAt": "2026-10-08T03:38:19.791Z",
+  "phase": "awaiting-user-feishu-configuration",
+  "applicationVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "focusedTestsPassed": 25,
+  "typecheckPassed": true,
+  "packagedRendererPassed": true,
+  "dailyCreatorCount": 295,
+  "isolatedEncryptedCredentialsVerified": true,
+  "dailyConnectionConfigured": false,
+  "realFeishuRequestsMade": false,
+  "fullAndAutomaticSyncImplemented": false,
+  "normalShortcutRestored": true,
+  "remoteDebuggingDisabled": true,
+  "sourceMatchesDeployedMainAndPreload": true,
+  "connectionOnline": true,
+  "readiness": "ready",
+  "preservation": {
+    "recordedAt": "2026-10-08T03:36:07.124Z",
+    "allOldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  }
+}

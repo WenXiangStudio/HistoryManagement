@@ -125,7 +125,7 @@ export class FollowingPlanStore {
   }
   basicProgress(runId:string,input:{secUid?:string;finished?:boolean;blocked?:boolean;errorCode?:string}){
     this.requireBasic(runId)
-    if(input.secUid){const row=this.basicTargets.find(creator=>creator.secUid===input.secUid);if(!row)throw Error('本轮没有该博主');this.basic.currentName=row.nickname}
+    if(input.secUid){const row=this.basicTargets.find(creator=>creator.secUid===input.secUid);if(!row)throw Error('本轮没有该博主');this.basic.currentName=row.nickname;this.basic.currentSecUid=row.secUid}
     if(input.finished){if(this.basic.done!==this.basic.total)throw Error('基础资料补充尚未完成');this.basic.phase='completed';this.basic.currentName=null;this.basic.message=`基础资料补充完成：成功 ${this.basic.succeeded} 位，未完成 ${this.basic.failed} 位`}
     if(input.blocked){this.basic.phase='blocked';this.basic.currentName=null;this.basic.errorCode=input.errorCode;this.basic.message='基础资料补充已停止，已完成记录保留'}
     this.persistBasic();return this.basicStatus(this.basicOwner)

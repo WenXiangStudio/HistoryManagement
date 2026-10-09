@@ -2,7 +2,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 import vm from 'node:vm'
 import {JSDOM} from 'jsdom'
-import {readCreatorActivityPage,readCreatorProfileCount,runCreatorActivityRefresh,fetchCreatorActivityPage} from '../browser-connector/following-extension/creator-activity-runner.js'
+import {readCreatorActivityPage,readCreatorProfileCount,readCreatorPageReadiness,runCreatorActivityRefresh,fetchCreatorActivityPage} from '../browser-connector/following-extension/creator-activity-runner.js'
 import {projectCreatorActivityResponse} from '../browser-connector/following-extension/creator-activity-network.js'
 const scope={runId:'run',secUid:'sec',uid:'uid',ownerSecUid:'owner',weekStart:'2026-09-27T16:00:00.000Z',weekEndExclusive:'2026-10-04T16:00:00.000Z'}
 const row=(id,time,pinned=0)=>({aweme_id:id,author:{uid:'uid',sec_uid:'sec'},create_time:Math.floor(Date.parse(time)/1000),is_top:pinned,status:{private_status:0,is_delete:false,is_prohibited:false,allow_share:true},is_story:0,is_24_story:0,aweme_type:0})
@@ -77,6 +77,7 @@ function mockBrowser(calls,onBody=()=>{},rootOverride=null,{native=true}={}){
      }
      if(method==='Page.captureScreenshot'){calls.push('screenshot');return {data:'/9j/AA=='}}
      if(method==='Runtime.evaluate'&&args.expression.includes('readActivityPageState'))return {exceptionDetails:{}}
+     if(method==='Runtime.evaluate'&&args.expression.includes('readCreatorPageReadiness'))return {result:{value:{ready:true}}}
      return {result:{value:args?.expression?.includes('readCreatorProfileCount')?{count:18}:{ok:true,owner:{uid:'owner-uid',secUid:'owner'},observedAt:new Date().toISOString()}}}
    }}}
 }
@@ -129,15 +130,61 @@ test('reads only the native works-tab count; ignores likes, injected panels and 
  const dom=new JSDOM('<div id="semiTabpost"><h2><span>作品</span><span data-e2e="user-tab-count">18</span></h2></div><div id="semiTablike"><span data-e2e="user-tab-count">999</span></div><aside>作品 222</aside>',{url:'https://www.douyin.com/user/sec'})
  let now=0
  const element=dom.window.document.querySelector('#semiTabpost [data-e2e="user-tab-count"]');element.getClientRects=()=>[{}]
- Object.defineProperty(dom.window.document,'readyState',{value:'complete'})
+ Object.defineProperty(dom.window.document,'readyState',{value:'interactive',configurable:true})
  class Clock extends Date {static now(){return now}}
  const fn=vm.runInNewContext(`(${readCreatorProfileCount.toString()})`,{document:dom.window.document,location:dom.window.location,getComputedStyle:()=>({visibility:'visible'}),Date:Clock,setTimeout:fn=>{now+=100;fn()}})
- assert.equal((await fn({secUid:'sec'})).count,18)
+ assert.equal((await fn({secUid:'sec'})).count,18);assert.ok(now>=500,'interactive counts must still stabilize for 500ms')
  element.textContent='0';assert.equal((await fn({secUid:'sec'})).count,0)
  element.textContent='3,248';assert.equal((await fn({secUid:'sec'})).count,3248)
  assert.equal((await fn({secUid:'wrong'})).errorCode,'PROFILE_PAGE_MISMATCH')
  element.remove();assert.equal((await fn({secUid:'sec'})).count,null)
  dom.window.close()
+})
+
+test('interactive readiness requires the target profile and a visible native works count, with verification checked first',()=>{
+ const dom=new JSDOM('<div id="semiTabpost"><h2><span>作品</span><span data-e2e="user-tab-count">29</span></h2></div>',{url:'https://www.douyin.com/user/sec?tab=post'})
+ const element=dom.window.document.querySelector('[data-e2e="user-tab-count"]');element.getClientRects=()=>[{}]
+ Object.defineProperty(dom.window.document,'readyState',{value:'interactive',configurable:true})
+ const ready=vm.runInNewContext(`(${readCreatorPageReadiness.toString()})`,{document:dom.window.document,location:dom.window.location,getComputedStyle:()=>({visibility:'visible'})})
+ assert.equal(ready({secUid:'sec'}).ready,true)
+ assert.equal(ready({secUid:'other'}).ready,false)
+ assert.equal(ready({secUid:'sec'},()=> 'CAPTCHA_OR_SECURITY_CHALLENGE').errorCode,'CAPTCHA_OR_SECURITY_CHALLENGE')
+ assert.equal(ready({secUid:'sec'},()=> 'LOGIN_REQUIRED').errorCode,'LOGIN_REQUIRED')
+ element.getClientRects=()=>[];assert.equal(ready({secUid:'sec'}).ready,false)
+ element.getClientRects=()=>[{}];element.textContent='—';assert.equal(ready({secUid:'sec'}).ready,false)
+ element.textContent='0';assert.equal(ready({secUid:'sec'}).ready,true)
+ Object.defineProperty(dom.window.document,'readyState',{value:'loading',configurable:true});assert.equal(ready({secUid:'sec'}).ready,false)
+ dom.window.close()
+})
+
+test('a loading tab with a readable interactive profile proceeds without waiting for complete',async()=>{
+ const posts=[],calls=[],chromeApi=mockBrowser(calls)
+ chromeApi.tabs.get=async()=>({status:'loading',url:'https://www.douyin.com/user/sec?tab=post'})
+ const fetchApi=async(input,options)=>{if(options.method==='POST'){posts.push({path:new URL(input).pathname,body:JSON.parse(options.body)});return {ok:true,json:async()=>({})}}return {ok:true,json:async()=>({phase:'running',runId:'run'})}}
+ await runCreatorActivityRefresh({...scope,origin:'http://127.0.0.1:1234',token:'test',targets:[{id:-1,...scope}]},{chromeApi,fetchApi})
+ assert.equal(posts.at(-1).body.finished,true);assert.equal(posts.filter(p=>p.path==='/activity-report').length,1)
+})
+
+for(const when of ['between-checks','pending-readiness','pending-count'])test(`unexpected detach ${when} reports the connection error before timeout and retains the failure page`,async()=>{
+ const posts=[],calls=[],listeners=new Set(),chromeApi=mockBrowser(calls)
+ chromeApi.debugger.onDetach={addListener:fn=>listeners.add(fn),removeListener:fn=>listeners.delete(fn)}
+ const disconnect=()=>{for(const fn of listeners)fn({tabId:2},'target_closed')}
+ chromeApi.tabs.get=async()=>{if(when==='between-checks')disconnect();return {status:'loading',url:'https://www.douyin.com/user/sec'}}
+ const send=chromeApi.debugger.sendCommand
+ chromeApi.debugger.sendCommand=async(target,method,args)=>{
+   if(method==='Runtime.evaluate'&&args.expression.includes(when==='pending-count'?'readCreatorProfileCount':'readCreatorPageReadiness')&&when!=='between-checks'){
+     setImmediate(disconnect);return new Promise(()=>{})
+   }
+   return send(target,method,args)
+ }
+ const fetchApi=async(input,options)=>{if(options.method==='POST'){posts.push({path:new URL(input).pathname,body:JSON.parse(options.body)});return {ok:true,json:async()=>({})}}return {ok:true,json:async()=>({phase:'running',runId:'run'})}}
+ const start=performance.now()
+ await runCreatorActivityRefresh({...scope,origin:'http://127.0.0.1:1234',token:'test',targets:[{id:-1,...scope},{id:-2,...scope}]},{chromeApi,fetchApi})
+ assert.ok(performance.now()-start<2000)
+ assert.equal(posts.at(-1).body.errorCode,'DEBUGGER_NOT_ATTACHED')
+ assert.equal(posts.filter(p=>p.path==='/activity-report').length,0)
+ assert.equal(posts.find(p=>p.body.failureDiagnostic?.capturePhase==='complete').body.failureDiagnostic.retainedTabId,2)
+ assert.equal(calls.includes('remove'),false);assert.equal(listeners.size,0)
 })
 
 test('explicit fetch distinguishes timeout, HTTP, JSON, schema and page mismatch without retry',async()=>{
@@ -167,7 +214,7 @@ test('first-page failure saves diagnostics before cleanup, preserves count and s
  const posts=[],calls=[]
  const chromeApi=mockBrowser(calls,()=>{},{status_code:8},{native:false})
  const cached=[]
- chromeApi.storage={local:{set:async value=>{cached.push(structuredClone(value.signalDeskLatestFailure));if(cached.length===1)assert.equal(calls.includes('screenshot'),false)}}}
+ chromeApi.storage={local:{set:async value=>{if(!value.signalDeskLatestFailure)return;cached.push(structuredClone(value.signalDeskLatestFailure));if(cached.length===1)assert.equal(calls.includes('screenshot'),false)}}}
  const fetchApi=async(input,options)=>{
    if(options.method==='POST'){
      const body=JSON.parse(options.body);posts.push({path:new URL(input).pathname,body})

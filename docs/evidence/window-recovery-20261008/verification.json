@@ -1,0 +1,60 @@
+{
+  "recordedAt": "2026-10-08T08:21:44.858Z",
+  "applicationVersion": "0.1.13",
+  "rootCause": "SW_HIDE inherited from launcher; production ready-to-show lacked explicit reveal",
+  "oldHiddenStartupReproduced": true,
+  "focusedTestsPassed": 35,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererPassed": true,
+  "nativeWindowsRegression": {
+    "startupVisible": true,
+    "minimizationPreserved": true,
+    "secondLaunchRestoresSameWindow": true,
+    "accidentalHideRecovered": true,
+    "offscreenRecovered": true,
+    "destroyedWindowRecreated": true,
+    "normalCloseExited": true
+  },
+  "dailyShortcut": {
+    "minimizedNormally": true,
+    "shortcutRestored": true,
+    "sameProcess": true,
+    "singleInstance": true,
+    "visible": true,
+    "cloaked": 0,
+    "taskbarEligible": true
+  },
+  "normalClose": {
+    "closedNormally": true,
+    "remainingDailyProcesses": 0
+  },
+  "finalWindow": {
+    "visible": true,
+    "minimized": false,
+    "cloaked": 0,
+    "taskbarEligible": true
+  },
+  "remoteDebuggingDisabled": true,
+  "singleInstance": true,
+  "package": {
+    "recordedAt": "2026-10-08T08:17:46.720Z",
+    "preservedFilesOutsideMain": 3285,
+    "archiveSha256": "0a845a8a807ca8d5f02f982a9c6409d069d95b5ee0c5019f4eaebe77c6251a2a",
+    "backupComplete": true,
+    "rendererAndPreloadUnchanged": true,
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-08T08:20:05.250Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "feishuAutomaticRetained": true,
+  "creators": 295,
+  "connectionOnline": true,
+  "readiness": "ready",
+  "collectionRequested": false
+}

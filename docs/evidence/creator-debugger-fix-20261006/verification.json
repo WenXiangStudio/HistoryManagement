@@ -1,0 +1,85 @@
+{
+  "recordedAt": "2026-10-06T11:30:54.976Z",
+  "appVersion": "0.1.12",
+  "connectorVersion": "0.8.1",
+  "online": true,
+  "ready": true,
+  "productionFilesMatchSource": true,
+  "diagnosticFilesRemoved": true,
+  "creators": 295,
+  "activity": {
+    "runId": "activity-a78d4256bf911eab4f46f410",
+    "phase": "blocked",
+    "total": 8,
+    "done": 2,
+    "remaining": 6
+  },
+  "realCollectionStarted": false,
+  "automatedChecks": {
+    "applicationTests": 301,
+    "browserLogicTests": 69,
+    "typeScript": "passed",
+    "productionBuild": "passed",
+    "packagedRenderer": "passed"
+  },
+  "localBrowserVerification": {
+    "recordedAt": "2026-10-06T11:28:31.862Z",
+    "browser": "Chrome 154.0.8037.98",
+    "localOnly": true,
+    "platformAuthorNavigations": 0,
+    "dailyDatabaseTouched": false,
+    "legacy": {
+      "phase": "blocked",
+      "done": 2,
+      "total": 3,
+      "detach": "target_closed",
+      "appError": "ACTIVITY_READ_FAILED"
+    },
+    "fixed": {
+      "phase": "completed",
+      "done": 3,
+      "total": 3,
+      "unexpectedDetaches": 0,
+      "authorWaitMs": [
+        3326,
+        6492
+      ],
+      "browserCommandsDuringWait": 0,
+      "onePagePerAuthor": true
+    },
+    "activeReadFailure": {
+      "phase": "blocked",
+      "done": 1,
+      "total": 3,
+      "errorCode": "DEBUGGER_NOT_ATTACHED",
+      "stage": "reading-count",
+      "childCustomProtocolObserved": true,
+      "pageRetained": true,
+      "laterAuthorStarted": false
+    },
+    "cacheRestored": true,
+    "temporaryAuthorTabsClosed": true,
+    "limits": "Local real-browser controls do not establish platform-wide success or challenge frequency."
+  },
+  "preservation": {
+    "recordedAt": "2026-10-06T11:29:19.420Z",
+    "allOldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "packagedSyntheticUi": {
+    "syntheticOnly": true,
+    "platformCollection": false,
+    "message": "浏览器读取连接已断开（DEBUGGER_NOT_ATTACHED），已停止后续博主；已保存资料保留，可手动继续剩余博主本轮 2 位 · 未到期跳过 0 位 · 未更新 0 位 · 完整核验 0 位已复用主页列表 0 页 · 额外列表请求 0 次",
+    "cards": 2,
+    "unchanged": "未更新 · 作品总数相同比对于 2026-10-06 19:29 · 动态沿用上次核验",
+    "schedule": [
+      "活跃 · 每天检查 · 下次 2026-10-07 00:00",
+      "不活跃 · 每 7 天检查 · 下次 2026-10-13 00:00"
+    ],
+    "due": "当前列表 0 位到期，2 位未到期；全库按每天 / 3 天 / 7 天筛选",
+    "clipped": false,
+    "selected": 1
+  }
+}

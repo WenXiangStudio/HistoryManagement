@@ -1,0 +1,183 @@
+{
+  "recordedAt": "2026-10-06T12:28:40.977Z",
+  "appVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "runId": "activity-f2a669cbd918a8a506f8cb93",
+  "implementation": {
+    "firstPageReadOnArrival": true,
+    "laterPagesRemainLazy": true,
+    "arrivalGraceMs": 600,
+    "nativeReadinessDeadlineMs": 1500,
+    "bodyTimeoutMs": 2000,
+    "perResourceBufferBytes": 8388608,
+    "totalBufferBytes": 33554432,
+    "observedRequestLimit": 24,
+    "successfulAndFailedObservationsPersisted": true
+  },
+  "checks": {
+    "applicationTests": 302,
+    "browserLogicTests": 80,
+    "typeScript": "passed",
+    "productionBuild": "passed",
+    "packagedRenderer": "passed",
+    "exportTool": "passed"
+  },
+  "localChrome": {
+    "recordedAt": "2026-10-06T12:19:37.713Z",
+    "realChromeLocalOnly": true,
+    "platformNavigations": 0,
+    "dailyDatabaseTouched": false,
+    "observationContractsValidated": true,
+    "results": [
+      {
+        "mode": "old-large",
+        "phase": "completed",
+        "reason": "count-unchanged",
+        "observationPhase": null,
+        "availability": null,
+        "decodedBytes": null,
+        "errorCode": null
+      },
+      {
+        "mode": "new-large",
+        "phase": "completed",
+        "reason": "latest-unchanged",
+        "observationPhase": "released",
+        "availability": {
+          "at": "2026-10-06T12:18:37.010Z",
+          "waitedMs": 1,
+          "outcome": "ready",
+          "errorCode": null
+        },
+        "decodedBytes": 6291772,
+        "errorCode": null
+      },
+      {
+        "mode": "new-late",
+        "phase": "completed",
+        "reason": "latest-unchanged",
+        "observationPhase": "released",
+        "availability": {
+          "at": "2026-10-06T12:18:42.116Z",
+          "waitedMs": 114,
+          "outcome": "ready",
+          "errorCode": null
+        },
+        "decodedBytes": 316,
+        "errorCode": null
+      },
+      {
+        "mode": "new-missing",
+        "phase": "completed",
+        "reason": "count-unchanged",
+        "observationPhase": "released",
+        "availability": {
+          "at": "2026-10-06T12:18:47.609Z",
+          "waitedMs": 603,
+          "outcome": "ACTIVITY_NATIVE_LIST_UNAVAILABLE",
+          "errorCode": "ACTIVITY_NATIVE_LIST_UNAVAILABLE"
+        },
+        "decodedBytes": null,
+        "errorCode": null
+      },
+      {
+        "mode": "new-pending",
+        "phase": "completed",
+        "reason": "count-unchanged",
+        "observationPhase": "released",
+        "availability": {
+          "at": "2026-10-06T12:18:54.519Z",
+          "waitedMs": 1514,
+          "outcome": "ACTIVITY_NATIVE_PENDING",
+          "errorCode": "ACTIVITY_NATIVE_PENDING"
+        },
+        "decodedBytes": null,
+        "errorCode": null
+      },
+      {
+        "mode": "new-denied",
+        "phase": "blocked",
+        "reason": null,
+        "observationPhase": "failed",
+        "availability": null,
+        "decodedBytes": null,
+        "errorCode": "ACTIVITY_HTTP_429"
+      }
+    ],
+    "cachesRestored": true,
+    "probeTabsClosed": true
+  },
+  "realValidation": {
+    "collectionClicks": 1,
+    "selected": 2,
+    "succeeded": 2,
+    "failed": 0,
+    "unchanged": 2,
+    "full": 0,
+    "extraListGets": 0,
+    "reusedNativePages": 2,
+    "observationRows": 2,
+    "clickToAllDataAndAvatarsMs": 20345,
+    "appReportedDisplayMs": 20612.1456,
+    "plannedWaitingMs": 4249,
+    "authors": [
+      {
+        "nickname": "浪花姜",
+        "workCount": 133,
+        "reason": "latest-unchanged",
+        "nativeRecords": 18,
+        "decodedBytes": 2407635,
+        "nativeReadBeforeCountMs": 4680,
+        "bodyReadStartDelayMs": 1,
+        "clickToDataAndAvatarMs": 9854.100000023842,
+        "observationPhase": "released",
+        "observationStrategy": "native-latest"
+      },
+      {
+        "nickname": "那只貂貂",
+        "workCount": 32,
+        "reason": "latest-unchanged",
+        "nativeRecords": 20,
+        "decodedBytes": 1679265,
+        "nativeReadBeforeCountMs": 2085,
+        "bodyReadStartDelayMs": 0,
+        "clickToDataAndAvatarMs": 20345,
+        "observationPhase": "released",
+        "observationStrategy": "native-latest"
+      }
+    ]
+  },
+  "preservation": {
+    "recordedAt": "2026-10-06T12:28:40.780Z",
+    "allOldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "ui": {
+    "syntheticOnly": true,
+    "platformCollection": false,
+    "cards": 2,
+    "unchanged": "未更新 · 作品总数相同比对于 2026-10-06 20:21 · 动态沿用上次核验仅按总数比对：浏览器已清除响应缓存",
+    "schedule": [
+      "活跃 · 每天检查 · 下次 2026-10-07 00:00",
+      "不活跃 · 每 7 天检查 · 下次 2026-10-13 00:00"
+    ],
+    "due": "当前列表 0 位到期，2 位未到期；全库按每天 / 3 天 / 7 天筛选",
+    "clipped": false,
+    "selected": 1
+  },
+  "deployment": {
+    "online": true,
+    "ready": true,
+    "normalShortcutRestored": true,
+    "productionFilesMatchSource": true,
+    "diagnosticFilesRemoved": true
+  },
+  "limits": [
+    "Two real authors validate the new paths; long-term success and challenge rates remain unmeasured.",
+    "This does not reconstruct the exact cause of the earlier zero-request observations.",
+    "A native response over the bounded capacity or a request missing the grace window can still require count-only fallback.",
+    "Real batch boundary and cross-day frequency validation remain separate tasks."
+  ]
+}

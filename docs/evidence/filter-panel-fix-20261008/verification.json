@@ -1,0 +1,108 @@
+{
+  "recordedAt": "2026-10-08T12:12:49.612Z",
+  "applicationVersion": "0.1.13",
+  "cause": "Same sibling React key reused by filter, chart and Feishu panels",
+  "fix": "Component-specific key prefixes with owner identity",
+  "focusedTestsPassed": 21,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererPassed": true,
+  "oldPackagedReproduction": {
+    "at": "2026-10-08T12:10:06.148Z",
+    "mode": "before",
+    "sourceCreators": 295,
+    "opened": {
+      "panels": 1,
+      "charts": 1,
+      "mode": "all"
+    },
+    "afterFirstPoll": {
+      "panels": 3,
+      "charts": 1,
+      "mode": "all"
+    },
+    "final": {
+      "panels": 3,
+      "charts": 1,
+      "mode": "all"
+    },
+    "rendererErrors": 0,
+    "filterCardCountCheckedInRealRenderer": true
+  },
+  "fixedRealDataSnapshot": {
+    "at": "2026-10-08T12:10:33.848Z",
+    "mode": "after",
+    "sourceCreators": 295,
+    "opened": {
+      "panels": 1,
+      "charts": 1,
+      "mode": "all"
+    },
+    "afterFirstPoll": {
+      "panels": 1,
+      "charts": 1,
+      "mode": "all"
+    },
+    "final": {
+      "panels": 1,
+      "charts": 1,
+      "mode": "all"
+    },
+    "rendererErrors": 0,
+    "filterCardCountCheckedInRealRenderer": true
+  },
+  "dailyVerification": {
+    "at": "2026-10-08T12:11:06.357Z",
+    "mode": "daily",
+    "sourceCreators": 295,
+    "opened": {
+      "panels": 1,
+      "charts": 1,
+      "mode": "all"
+    },
+    "afterFirstPoll": {
+      "panels": 1,
+      "charts": 1,
+      "mode": "all"
+    },
+    "final": {
+      "panels": 1,
+      "charts": 1,
+      "mode": "all"
+    },
+    "rendererErrors": 0,
+    "filterCardCountCheckedInRealRenderer": true,
+    "dailyPreferencesUnchanged": true
+  },
+  "package": {
+    "recordedAt": "2026-10-08T12:08:59.149Z",
+    "preservedFilesOutsideRenderer": 2682,
+    "archiveSha256": "c51bc8f89bc845a89596f19fc2a6615de2e7ffd545ec690056f4498e99a34b7a",
+    "backupComplete": true,
+    "mainAndPreloadUnchanged": true,
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-08T12:11:19.810Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "services": {
+    "automatic": true,
+    "feishuBusy": false,
+    "phases": [
+      "completed",
+      "completed",
+      "idle"
+    ],
+    "online": true,
+    "readiness": "ready"
+  },
+  "normalStartupRestored": true,
+  "singleInstance": true,
+  "remoteDebuggingDisabled": true,
+  "windowVisible": true,
+  "collectionRequested": false
+}

@@ -1,0 +1,36 @@
+{
+  "recordedAt": "2026-10-09T09:03:27.5706185Z",
+  "application": {
+    "suites": 46,
+    "passed": 437
+  },
+  "browserFollowingAndActivityPassed": 109,
+  "workerPassed": 2,
+  "typeScript": "passed",
+  "nativeHostAndManifest": "passed",
+  "connectorContentAndBackground": "passed",
+  "networkObserver": "passed",
+  "phaseB": "passed",
+  "r8IsolatedHarness": "passed",
+  "projectBoundaries": "passed",
+  "build": "passed",
+  "packagedRenderer": "passed",
+  "rebuiltFilesIdenticalToDailyArchive": 600,
+  "r8ProductionPrerequisite": {
+    "exitCode": 1,
+    "status": "existing closed gate retained",
+    "reasons": [
+      "uid and sec_uid remain conflated in production works proof",
+      "production work details still navigate per DOM candidate",
+      "production connector has not wired bounded homepage collector",
+      "production command lacks independently bound author sec_uid"
+    ]
+  },
+  "newPlatformCollectionStarted": false,
+  "credentialScan": "only explicit test fixtures matched",
+  "gitTarget": {
+    "remote": "git@github.com:WenXiangStudio/HistoryManagement.git",
+    "branch": "main",
+    "forcePush": false
+  }
+}

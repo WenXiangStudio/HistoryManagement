@@ -1,0 +1,109 @@
+{
+  "recordedAt": "2026-10-08T13:37:43.014Z",
+  "applicationVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "priorityRule": "One step from the automatic tier; unknown boost -> regular; stored manual target remains authoritative until disabled",
+  "focusedTestsPassed": 178,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererPassed": true,
+  "targets": {
+    "recordedAt": "2026-10-08T13:21:03.594Z",
+    "initialCounts": {
+      "active": 103,
+      "regular": 102,
+      "inactive": 82,
+      "unknown": 8
+    },
+    "manualCounts": {
+      "active": 103,
+      "regular": 104,
+      "inactive": 81,
+      "unknown": 7
+    },
+    "restoredCounts": {
+      "active": 103,
+      "regular": 102,
+      "inactive": 82,
+      "unknown": 8
+    },
+    "groups": {
+      "active": 103,
+      "regular": 104,
+      "all": 295
+    },
+    "restartPersistence": true,
+    "all295DateHintsPreserved": true,
+    "cardsDatabaseAndDispatchAgree": true,
+    "oldCreatorRowsUnchanged": true,
+    "newPlatformRequests": 0,
+    "dailyPriorityChanged": false
+  },
+  "preview": {
+    "recordedAt": "2026-10-08T13:31:24.819Z",
+    "creators": 295,
+    "allDefaultOff": true,
+    "allCardsShowTier": true,
+    "currentGroups": {
+      "active": 103,
+      "regular": 102,
+      "all": 295
+    },
+    "isolatedFourTierTogglesVerified": true,
+    "globalPurpleLibraryDatabaseChartFeishuVerified": true,
+    "restartPersistenceVerified": true,
+    "sourceAnnotationsAndDatesPreserved": true,
+    "smallWindowFits": true,
+    "platformCollectionStarted": false
+  },
+  "daily": {
+    "recordedAt": "2026-10-08T13:33:14.860Z",
+    "creators": 295,
+    "allDefaultOff": true,
+    "allCardsShowTier": true,
+    "currentGroups": {
+      "active": 103,
+      "regular": 102,
+      "all": 295
+    },
+    "isolatedFourTierTogglesVerified": false,
+    "globalPurpleLibraryDatabaseChartFeishuVerified": false,
+    "restartPersistenceVerified": false,
+    "sourceAnnotationsAndDatesPreserved": true,
+    "smallWindowFits": true,
+    "platformCollectionStarted": false
+  },
+  "package": {
+    "recordedAt": "2026-10-08T13:32:30.095Z",
+    "preservedFilesOutsideOut": 2680,
+    "archiveSha256": "8041f0a1bcb6625510cb66d8e9d8f2b7a590940bc207e0099424c5e4143be372",
+    "backupComplete": true,
+    "unrelatedAppFilesUnchanged": true,
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-08T13:33:15.295Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "services": {
+    "automatic": true,
+    "feishuBusy": false,
+    "phases": [
+      "completed",
+      "completed",
+      "idle"
+    ],
+    "online": true,
+    "readiness": "ready",
+    "creators": 295,
+    "enabledPriorities": 0
+  },
+  "normalStartupRestored": true,
+  "windowVisible": true,
+  "singleInstance": true,
+  "remoteDebuggingDisabled": true,
+  "newPlatformCollectionStarted": false
+}

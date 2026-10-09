@@ -1,0 +1,288 @@
+{
+  "recordedAt": "2026-10-07T13:18:32.778Z",
+  "changes": [
+    "Compute publication intervals using deduplicated locally retained public works",
+    "Show a per-author days/hours field on every creator card",
+    "Calculate an equal-author aggregate"
+  ],
+  "checks": {
+    "focusedTestsPassed": 46,
+    "typecheckPassed": true,
+    "productionBuildPassed": true
+  },
+  "calculation": {
+    "recordedAt": "2026-10-07T13:13:05.093Z",
+    "ownerSecUid": "MS4wLjABAAAAWc2jAoKnRCJhCEmYQW8qjyRKpAj0phnOEYXuhvhpbnMHVxzRalioATiTXlyXCH7B",
+    "totalCreators": 295,
+    "sourcePolicy": "All locally retained accepted v2/v3/v4/v6/v7/v8 snapshots plus saved native check first pages; own public works with valid publication dates; unique work IDs; latest valid observation wins",
+    "contracts": {
+      "signaldesk-creator-activity/v2": 221,
+      "signaldesk-creator-activity/v3": 96,
+      "signaldesk-creator-activity/v4": 22,
+      "signaldesk-creator-activity/v6": 14,
+      "signaldesk-creator-activity/v7": 30,
+      "signaldesk-creator-activity/v8": 280
+    },
+    "snapshotSources": 663,
+    "checkSources": 22,
+    "totalUniquePublicWorks": 23104,
+    "totalAdjacentGaps": 22815,
+    "aggregate": {
+      "eligibleCreators": 287,
+      "insufficientCreators": 8,
+      "sumMeanHours": 139150.89272599068,
+      "meanHours": 484.8463161184344,
+      "roundedHours": 485,
+      "label": "20天5小时",
+      "meanDays": 20.2019298382681
+    },
+    "distribution": {
+      "minHours": 9.48275641025641,
+      "maxHours": 3289.639941520468,
+      "medianHours": 308.90259832841696
+    },
+    "insufficientAuthors": [
+      {
+        "nickname": "阿酥在Coding",
+        "workCount": 0
+      },
+      {
+        "nickname": "独夫之心前进四",
+        "workCount": 0
+      },
+      {
+        "nickname": "Viaggiatore！",
+        "workCount": 0
+      },
+      {
+        "nickname": "袁老师【唯一助理】",
+        "workCount": 1
+      },
+      {
+        "nickname": "独夫战备",
+        "workCount": 0
+      },
+      {
+        "nickname": "宇智波-I",
+        "workCount": 1
+      },
+      {
+        "nickname": "Shuwu326",
+        "workCount": 0
+      },
+      {
+        "nickname": "闭关修炼",
+        "workCount": 0
+      }
+    ],
+    "sqlCrossCheckPassed": true,
+    "readOnly": true,
+    "platformCollectionRequested": false
+  },
+  "packaged": {
+    "recordedAt": "2026-10-07T13:15:34.043Z",
+    "unrelatedFilesPreserved": 2681,
+    "mainDiffRestrictedToPublicationInterval": true,
+    "appVersion": "0.1.13",
+    "extensionUnchanged": true,
+    "archiveSha256": "b72b042c1da22c4d7d3916979abadbeef9a92b17d4c3e6881f307e043d240a1e",
+    "rendererAsset": "assets/index-BPzqjusT.js",
+    "checks": {
+      "focusedTestsPassed": 46,
+      "typecheckPassed": true,
+      "buildPassed": true,
+      "realDataSqlCrossCheckPassed": true
+    },
+    "collectionRequested": false
+  },
+  "localViewValidation": {
+    "recordedAt": "2026-10-07T13:13:53.500Z",
+    "cards": 295,
+    "allCardValuesMatchSqlVerifiedCalculation": true,
+    "cachedValuesEqual": true,
+    "coldDecorateMs": 139.4719,
+    "warmDecorateMs": 60.19839999999999,
+    "sourceRowsUnchanged": true,
+    "dailyDatabaseWritten": false,
+    "collectionRequested": false
+  },
+  "dailyUi": {
+    "recordedAt": "2026-10-07T13:15:38.578Z",
+    "cards": 295,
+    "intervalFields": 295,
+    "allCardValuesMatchSqlVerifiedCalculation": true,
+    "computedCards": 287,
+    "insufficientCards": 8,
+    "samples": [
+      {
+        "id": -1000000001,
+        "nickname": "爱学习的乔同学",
+        "secUid": "MS4wLjABAAAAkRmmB7F5OVdNAIVJWfjnfo8hQjiXKCbYIXlT3u3cAE83eUp0NN92tXEnLRdIJqJ2",
+        "interval": {
+          "workCount": 79,
+          "gapCount": 78,
+          "meanHours": 145.70133547008547,
+          "earliestPublishedAt": "2025-06-16T13:42:25.000Z",
+          "latestPublishedAt": "2026-10-03T02:24:40.000Z"
+        },
+        "text": "6天2小时",
+        "basisText": "间隔天数：6天2小时依据 79 条已保存作品",
+        "redReminder": true
+      },
+      {
+        "id": -1000000002,
+        "nickname": "雪踏乌云",
+        "secUid": "MS4wLjABAAAANchjI4dTDuTqyCM8xcfFWYshBcPFVOvWarHtXRVtomU",
+        "interval": {
+          "workCount": 11,
+          "gapCount": 10,
+          "meanHours": 264.73777777777775,
+          "earliestPublishedAt": "2026-06-05T17:12:20.000Z",
+          "latestPublishedAt": "2026-09-24T00:35:00.000Z"
+        },
+        "text": "11天1小时",
+        "basisText": "间隔天数：11天1小时依据 11 条已保存作品",
+        "redReminder": true
+      },
+      {
+        "id": -1000000003,
+        "nickname": "小涛AI大讲堂",
+        "secUid": "MS4wLjABAAAAir7XTbvFjc7gRAyIUMTPduNlbbS85lNujaWPvKvV9aPRh3iXY9CI5sONiVR70OzD",
+        "interval": {
+          "workCount": 86,
+          "gapCount": 85,
+          "meanHours": 265.96474183006535,
+          "earliestPublishedAt": "2024-03-09T10:28:45.000Z",
+          "latestPublishedAt": "2026-10-07T09:28:56.000Z"
+        },
+        "text": "11天2小时",
+        "basisText": "间隔天数：11天2小时依据 86 条已保存作品",
+        "redReminder": false
+      },
+      {
+        "id": -1000000004,
+        "nickname": "AI，我俩和一百万",
+        "secUid": "MS4wLjABAAAALN2m1ZOlREINNiPMLT__94ERrkgQFup9W5rheGFwoKB9hBiUlFOyez0hL63bwwUs",
+        "interval": {
+          "workCount": 12,
+          "gapCount": 11,
+          "meanHours": 191.7579292929293,
+          "earliestPublishedAt": "2026-07-02T04:17:16.000Z",
+          "latestPublishedAt": "2026-09-28T01:37:30.000Z"
+        },
+        "text": "8天0小时",
+        "basisText": "间隔天数：8天0小时依据 12 条已保存作品",
+        "redReminder": true
+      },
+      {
+        "id": -1000000005,
+        "nickname": "浙大猫学长",
+        "secUid": "MS4wLjABAAAA_gr4GldpYARx-VmGCOQrqhgxR4RNkMctuViE-QegVCvByxWkIHDaESG9tKagAY_H",
+        "interval": {
+          "workCount": 22,
+          "gapCount": 21,
+          "meanHours": 696.2448544973546,
+          "earliestPublishedAt": "2025-02-03T04:07:24.000Z",
+          "latestPublishedAt": "2026-10-05T09:15:55.000Z"
+        },
+        "text": "29天0小时",
+        "basisText": "间隔天数：29天0小时依据 22 条已保存作品",
+        "redReminder": false
+      },
+      {
+        "id": -1000000006,
+        "nickname": "曲木古也",
+        "secUid": "MS4wLjABAAAApLyNZTs1SZ1yRU6prjfTJ4EfLuqDwAC4Ggr8re9SUhRzC9FLieaK8Q6rhrXdZb8x",
+        "interval": {
+          "workCount": 631,
+          "gapCount": 630,
+          "meanHours": 56.608511022927686,
+          "earliestPublishedAt": "2022-09-11T05:01:53.000Z",
+          "latestPublishedAt": "2026-10-06T04:23:36.000Z"
+        },
+        "text": "2天9小时",
+        "basisText": "间隔天数：2天9小时依据 631 条已保存作品",
+        "redReminder": false
+      }
+    ],
+    "insufficientAuthors": [
+      {
+        "nickname": "阿酥在Coding",
+        "text": "记录不足",
+        "workCount": 0
+      },
+      {
+        "nickname": "宇智波-I",
+        "text": "记录不足",
+        "workCount": 1
+      },
+      {
+        "nickname": "闭关修炼",
+        "text": "记录不足",
+        "workCount": 0
+      },
+      {
+        "nickname": "Viaggiatore！",
+        "text": "记录不足",
+        "workCount": 0
+      },
+      {
+        "nickname": "独夫之心前进四",
+        "text": "记录不足",
+        "workCount": 0
+      },
+      {
+        "nickname": "独夫战备",
+        "text": "记录不足",
+        "workCount": 0
+      },
+      {
+        "nickname": "袁老师【唯一助理】",
+        "text": "记录不足",
+        "workCount": 1
+      },
+      {
+        "nickname": "Shuwu326",
+        "text": "记录不足",
+        "workCount": 0
+      }
+    ],
+    "aggregate": {
+      "eligibleCreators": 287,
+      "insufficientCreators": 8,
+      "sumMeanHours": 139150.89272599068,
+      "meanHours": 484.8463161184344,
+      "roundedHours": 485,
+      "label": "20天5小时",
+      "meanDays": 20.2019298382681
+    },
+    "runId": "activity-323198c374c0bda14ce17657",
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-07T13:18:32.318Z",
+    "allOldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "deployment": {
+    "recordedAt": "2026-10-07T13:18:32.774Z",
+    "appVersion": "0.1.13",
+    "extensionVersion": "0.8.2",
+    "online": true,
+    "ready": true,
+    "creators": 295,
+    "runId": "activity-323198c374c0bda14ce17657",
+    "phase": "completed",
+    "normalShortcutRestored": true,
+    "remoteDebugging": false,
+    "extensionUnchanged": true,
+    "collectionRequested": false
+  },
+  "limitations": [
+    "The result describes locally saved publication records, which may omit works between observations.",
+    "Eight creators have fewer than two valid saved works and are excluded from the aggregate denominator.",
+    "Legacy unsupported v1/v5 records are preserved but not used as validated sources."
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "name": "signal-desk",
-  "version": "0.1.11",
+  "version": "0.1.13",
   "private": true,
   "description": "Local-first Douyin following intelligence desk",
   "main": "./out/main/index.js",
@@ -27,7 +27,7 @@
     "test:connector-background": "node scripts/test-connector-background.mjs",
     "test:following-flow": "node --test scripts/test-following-visible-runner.mjs scripts/test-following-distinct-batch.mjs scripts/test-following-batch-timer.mjs",
     "test:following-plan": "node --test scripts/test-following-plan-runner.mjs && vitest run src/main/followingPlanStore.test.ts src/main/followingSyncPlan.test.ts",
-    "test:creator-activity": "node --test scripts/test-creator-activity-runner.mjs scripts/test-creator-activity-network.mjs scripts/test-creator-activity-context.mjs scripts/test-creator-activity-owner-network.mjs scripts/test-creator-activity-diagnostics.mjs && vitest run src/shared/creatorActivity.test.ts src/shared/creatorActivityNetwork.test.ts src/main/creatorActivityService.test.ts",
+    "test:creator-activity": "node --test scripts/test-creator-activity-runner.mjs scripts/test-creator-activity-network.mjs scripts/test-creator-activity-context.mjs scripts/test-creator-activity-owner-network.mjs scripts/test-creator-activity-diagnostics.mjs scripts/test-creator-activity-pacing.mjs scripts/test-creator-activity-optimization.mjs scripts/test-creator-activity-continuity.mjs && vitest run src/shared/creatorActivity.test.ts src/shared/creatorActivityNetwork.test.ts src/shared/creatorRefreshPolicy.test.ts src/main/creatorActivityService.test.ts src/main/creatorActivityOptimization.test.ts",
     "test:network-observer": "node --test scripts/test-network-observer.mjs",
     "test:phase-b": "node --test poc/phase-b/test/*.test.mjs",
     "test:project-boundaries": "node scripts/test-project-boundaries.mjs",
@@ -38,13 +38,13 @@
     "@fontsource/noto-sans-sc": "^5.2.6",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@ffprobe-installer/ffprobe": "^2.1.2",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "zod": "^4.1.5"
   },
   "devDependencies": {
     "@types/node": "^24.3.0",
-    "@types/react": "^19.1.12",
+    "@types/react": "^19.2.0",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.2",
     "electron": "^39.8.10",

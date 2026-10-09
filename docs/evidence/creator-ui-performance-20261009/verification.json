@@ -1,0 +1,165 @@
+{
+  "recordedAt": "2026-10-09T02:39:09.972Z",
+  "applicationVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "relatedTestsPassed": 51,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererSmokePassed": true,
+  "measurement": {
+    "source": "Same saved 295-creator database and local avatars, Electron 39.8.10, 1480×920, smoke mode, five repeated navigation/section cycles, CPU sampling and counters enabled",
+    "paint": "Click handler start to second requestAnimationFrame after target DOM appears; approximate paint opportunity, not a hardware display measurement",
+    "avatars": "Visible saved avatar readiness separately measured; no browser/platform collection",
+    "cold": "First section opening in a fresh renderer includes image and text setup; never described as the warm median"
+  },
+  "performance": {
+    "library": {
+      "beforeMedianMs": 27.3,
+      "afterMedianMs": 11.1,
+      "reductionPercent": 59.3,
+      "afterMaxMs": 11.8,
+      "beforeVisibleAvatarsMedianMs": 27.5,
+      "afterVisibleAvatarsMedianMs": 11.2,
+      "beforeDateFormatterConstructions": 0,
+      "afterDateFormatterConstructions": 0
+    },
+    "active": {
+      "beforeMedianMs": 189.9,
+      "afterMedianMs": 37,
+      "reductionPercent": 80.5,
+      "afterMaxMs": 46.4,
+      "beforeVisibleAvatarsMedianMs": 217,
+      "afterVisibleAvatarsMedianMs": 48.2,
+      "beforeDateFormatterConstructions": 508,
+      "afterDateFormatterConstructions": 0
+    },
+    "regular": {
+      "beforeMedianMs": 191,
+      "afterMedianMs": 40,
+      "reductionPercent": 79.1,
+      "afterMaxMs": 50.8,
+      "beforeVisibleAvatarsMedianMs": 220.6,
+      "afterVisibleAvatarsMedianMs": 40.3,
+      "beforeDateFormatterConstructions": 343,
+      "afterDateFormatterConstructions": 0
+    },
+    "inactive": {
+      "beforeMedianMs": 160,
+      "afterMedianMs": 35.3,
+      "reductionPercent": 77.9,
+      "afterMaxMs": 39.6,
+      "beforeVisibleAvatarsMedianMs": 185.1,
+      "afterVisibleAvatarsMedianMs": 35.7,
+      "beforeDateFormatterConstructions": 286,
+      "afterDateFormatterConstructions": 0
+    }
+  },
+  "firstOpen": {
+    "library-cold": {
+      "paintMs": 34.1,
+      "visibleAvatarsReadyMs": 34.2
+    },
+    "active-cold": {
+      "paintMs": 118.4,
+      "visibleAvatarsReadyMs": 136.1
+    },
+    "regular-cold": {
+      "paintMs": 81.6,
+      "visibleAvatarsReadyMs": 103.3
+    },
+    "inactive-cold": {
+      "paintMs": 54.7,
+      "visibleAvatarsReadyMs": 68.5
+    }
+  },
+  "longTasks": {
+    "beforeCount": 22,
+    "afterCount": 1,
+    "beforeMaxMs": 282,
+    "afterMaxMs": 58
+  },
+  "fixes": [
+    "Offscreen cards use content-visibility with remembered intrinsic block height",
+    "Biography overflow reads scheduled once per frame only near viewport; resize and font readiness retained",
+    "Reuse date formatter and static icon definitions; memoize groups by data/day",
+    "Remove 180 ms sidebar selection transition and group refresh transition"
+  ],
+  "preview": {
+    "recordedAt": "2026-10-09T02:34:13.406Z",
+    "packaged": false,
+    "creators": 295,
+    "initialCards": 0,
+    "groups": {
+      "active": {
+        "cards": 102,
+        "button": "活跃更新102"
+      },
+      "regular": {
+        "cards": 103,
+        "button": "普通更新103"
+      },
+      "inactive": {
+        "cards": 90,
+        "button": "全量更新295"
+      }
+    },
+    "allIdentitiesExactlyOnce": true,
+    "oneUpdateButtonPerSelection": true,
+    "buttonBelowInfoAndBesideSections": true,
+    "searchDoesNotRestrictRefresh": true,
+    "selectionSurvivesPolling": true,
+    "smallWindowFits": true,
+    "allRowsScrolledWithoutBlankContent": true,
+    "visibleBiographiesExpandAndCollapse": true,
+    "sourceDataPreserved": true,
+    "rendererExceptions": 0,
+    "platformCollectionStarted": false
+  },
+  "packaged": {
+    "recordedAt": "2026-10-09T02:37:02.516Z",
+    "packaged": true,
+    "creators": 295,
+    "initialCards": 0,
+    "groups": {
+      "active": {
+        "cards": 102,
+        "button": "活跃更新102"
+      },
+      "regular": {
+        "cards": 103,
+        "button": "普通更新103"
+      },
+      "inactive": {
+        "cards": 90,
+        "button": "全量更新295"
+      }
+    },
+    "allIdentitiesExactlyOnce": true,
+    "oneUpdateButtonPerSelection": true,
+    "buttonBelowInfoAndBesideSections": true,
+    "searchDoesNotRestrictRefresh": true,
+    "selectionSurvivesPolling": true,
+    "smallWindowFits": true,
+    "allRowsScrolledWithoutBlankContent": true,
+    "visibleBiographiesExpandAndCollapse": true,
+    "sourceDataPreserved": true,
+    "rendererExceptions": 0,
+    "platformCollectionStarted": false
+  },
+  "package": {
+    "recordedAt": "2026-10-09T02:36:21.005Z",
+    "preservedFilesOutsideRenderer": 2682,
+    "archiveSha256": "826ca89335703909a3f27299e09353d648284a56004c98c642a708796ab8bf3a",
+    "backupComplete": true,
+    "mainAndPreloadPreserved": true,
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-09T02:36:21.732Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "newPlatformCollectionStarted": false
+}

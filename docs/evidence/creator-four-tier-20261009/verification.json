@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-10-09T08:31:30.7074799Z",
+  "appVersion": "0.1.13",
+  "connector": {
+    "online": true,
+    "version": "0.8.4",
+    "expectedVersion": "0.8.4"
+  },
+  "readiness": "ready",
+  "dailyCreatorCounts": {
+    "high": 61,
+    "medium": 92,
+    "low": 80,
+    "veryLow": 54,
+    "unknown": 8,
+    "anomaly": 0
+  },
+  "tests": {
+    "applicationPassed": 438,
+    "browserPassed": 88,
+    "typeScript": "passed",
+    "build": "passed",
+    "packagedRenderer": "passed",
+    "packagedCreatorUI": "passed"
+  },
+  "simon": {
+    "publicCount": 6,
+    "intervalWorks": 6,
+    "intervalDays": 1.5233842592592592,
+    "latest": "2026-05-13T03:09:26.000Z",
+    "tier": "regular"
+  },
+  "syntheticContinuity": {
+    "previousCount": 638,
+    "currentCount": 680,
+    "initialNewWorks": 18,
+    "quarantined": true,
+    "repairNewWorks": 42,
+    "oldBaselineRetainedUntilVerified": true,
+    "realPlatformCollectionStarted": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-09T08:30:53.288Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "existingTask": {
+    "phase": "completed",
+    "done": 18,
+    "total": 18,
+    "failed": 0
+  }
+}

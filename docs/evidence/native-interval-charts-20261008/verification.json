@@ -1,0 +1,70 @@
+{
+  "recordedAt": "2026-10-08T07:55:49.038Z",
+  "applicationVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "defaultChart": "column",
+  "chartTypes": [
+    "column",
+    "bar",
+    "line",
+    "donut"
+  ],
+  "nullIncludedInMainChart": true,
+  "zeroIncludedInMainChart": true,
+  "focusedTestsPassed": 47,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererPassed": true,
+  "preview": {
+    "recordedAt": "2026-10-08T07:51:34.123Z",
+    "source": "real local account snapshot",
+    "total": 295,
+    "valid": 287,
+    "zeroDays": 2,
+    "nullCount": 8,
+    "chartCategories": 69,
+    "allDayCountsVerified": true,
+    "zeroAndNullMembershipVerified": true,
+    "fourChartTypesRendered": true,
+    "minWidthOverflow": false,
+    "rendererErrors": 0,
+    "dailyDatabaseWritten": false
+  },
+  "daily": {
+    "recordedAt": "2026-10-08T07:53:11.641Z",
+    "source": "real local account snapshot",
+    "total": 295,
+    "valid": 287,
+    "zeroDays": 2,
+    "nullCount": 8,
+    "chartCategories": 69,
+    "allDayCountsVerified": true,
+    "zeroAndNullMembershipVerified": true,
+    "fourChartTypesRendered": true,
+    "minWidthOverflow": false,
+    "rendererErrors": 0,
+    "dailyDatabaseWritten": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-08T07:53:22.107Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "package": {
+    "recordedAt": "2026-10-08T07:52:51.957Z",
+    "preservedFilesOutsideRenderer": 2682,
+    "archiveSha256": "b18dfddfdfcc234ef7a318e8024813222688e016c49ecec840774f66e29528cb",
+    "backupComplete": true,
+    "mainAndPreloadUnchanged": true,
+    "collectionRequested": false
+  },
+  "feishuAutomaticRetained": true,
+  "normalStartupRestored": true,
+  "singleInstance": true,
+  "remoteDebuggingDisabled": true,
+  "connectionOnline": true,
+  "readiness": "ready",
+  "collectionRequested": false
+}

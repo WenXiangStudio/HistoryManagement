@@ -1,0 +1,118 @@
+{
+  "recordedAt": "2026-10-06T10:01:46.784Z",
+  "collectionClicks": 1,
+  "plannedAuthors": 8,
+  "phase": "blocked",
+  "completedAuthors": 2,
+  "succeeded": 2,
+  "authorReadFailures": 0,
+  "unexecuted": [
+    "小脏kyrie",
+    "张硕PRO",
+    "浪花姜",
+    "那只貂貂",
+    "期市道德经",
+    "冷却报告"
+  ],
+  "unchanged": 0,
+  "full": 2,
+  "extraListRequests": 0,
+  "reusedNativePages": 2,
+  "authorHomepageNavigations": 2,
+  "accountVerificationGets": 1,
+  "summaries": [
+    {
+      "nickname": "E说财经",
+      "group": "待建立快照",
+      "outcome": "full",
+      "workCount": 271,
+      "weeklyCount": 0,
+      "coverage": "week-boundary",
+      "latestPublishedAt": null,
+      "pages": 1,
+      "extraListRequests": 0,
+      "reusedNativePages": 1,
+      "records": 20,
+      "externalAuthorsExcluded": 0,
+      "clickToDataAndAvatarMs": 5851.5
+    },
+    {
+      "nickname": "温义飞的急救财经",
+      "group": "待建立快照",
+      "outcome": "full",
+      "workCount": 518,
+      "weeklyCount": 0,
+      "coverage": "week-boundary",
+      "latestPublishedAt": null,
+      "pages": 1,
+      "extraListRequests": 0,
+      "reusedNativePages": 1,
+      "records": 19,
+      "externalAuthorsExcluded": 0,
+      "clickToDataAndAvatarMs": 14746.900000035763
+    }
+  ],
+  "waits": [
+    {
+      "durationMs": 3326,
+      "plannedUntil": "2026-10-06T09:59:52.186Z",
+      "nextAuthorObservedAt": "2026-10-06T09:59:52.502Z",
+      "observedElapsedToNextAuthorMs": 3642,
+      "completedBeforeNextAuthor": true
+    },
+    {
+      "durationMs": 6492,
+      "plannedUntil": "2026-10-06T10:00:04.236Z",
+      "nextAuthorObservedAt": null,
+      "observedElapsedToNextAuthorMs": null,
+      "completedBeforeNextAuthor": null
+    }
+  ],
+  "diagnostics": [
+    {
+      "nickname": "温义飞的急救财经",
+      "errorCode": "ACTIVITY_READ_FAILED",
+      "stage": "saving",
+      "capturedAt": "2026-10-06T10:00:04.126Z",
+      "detachAt": "2026-10-06T10:00:03.315Z",
+      "detachReason": "target_closed",
+      "lastCommand": {
+        "sequence": 36,
+        "at": "2026-10-06T10:00:04.126Z",
+        "operation": "runtime-other",
+        "stage": "rejected",
+        "elapsedMs": 0.3999999761581421,
+        "error": "DEBUGGER_NOT_ATTACHED",
+        "exceptionClass": null,
+        "resultType": null
+      },
+      "pageStillExists": true,
+      "pageMatchesAuthor": true,
+      "pageVerificationMarker": false,
+      "rejectedListStatuses": [],
+      "pageSaved": true,
+      "screenshotSaved": true,
+      "retainedTabId": 193484336
+    }
+  ],
+  "stopObservedAt": "2026-10-06T10:00:04.691Z",
+  "clickToStopObservedMs": 21889,
+  "platformVerificationObserved": false,
+  "automaticRetries": 0,
+  "allEightPassed": false,
+  "preserved": {
+    "creatorCards": 295,
+    "uniqueCards": 295,
+    "avatarsReady": 295,
+    "oldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "limits": [
+    "Only two authors completed before the run stopped. The four existing-baseline authors were not reached.",
+    "The Chrome target_closed detach reason does not prove the page closed; independent diagnostics found the matching page still present.",
+    "No challenge or list HTTP 401/403/429 was observed. The cause of the debugger detach remains undetermined.",
+    "Network counters cover observation windows and are not all browser traffic. No batch-boundary or cross-day verification performed."
+  ]
+}

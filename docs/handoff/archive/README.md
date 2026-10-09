@@ -1,6 +1,8 @@
 # 历史交接索引
 
-这些记录用于追溯方案、验证与失败证据。文中的“当前”“等待”“恢复旧版”和旧构建路径均属于当时状态；日常操作以[当前交接](../README.md)为准。过期构建已清理，证据和原始数据继续保留。
+这些报告保留当时的方案、验收和失败证据。旧版本、旧分组、暂停任务及旧构建路径不代表当前行为；操作以[当前交接](../README.md)和[当前实现](../../architecture/following-and-creator-activity.md)为准。
+
+重复二进制、临时验证配置和过期发布包已清理。必要原始捕获与数据库备份保存在本机，位置见工作区 local-data/README.md。
 
 ## 2026-10
 
@@ -10,6 +12,9 @@
 - [Signal Desk 卡片更新数与简介布局交接（2026-10-04）](2026-10/signal-desk-creator-card-layout-2026-10-04.md)
 - [作品刷新页面准备修复与请求量交接（2026-10-05）](2026-10/signal-desk-creator-context-2026-10-05.md)
 - [作者原生列表少量真实验证交接（2026-10-05）](2026-10/signal-desk-creator-controlled-validation-2026-10-05.md)
+- [博主数据库：可编辑数据表（2026-10-08）](2026-10/signal-desk-creator-database-2026-10-08.md)
+- [博主数据库：格式编辑、只读默认数据、自定义筛选与整天分布（2026-10-08）](2026-10/signal-desk-creator-database-format-2026-10-08.md)
+- [近期暂无更新昵称与日期颜色（2026-10-09）](2026-10/signal-desk-creator-name-colors-2026-10-09.md)
 - [作者主页原生作品列表复用（2026-10-05）](2026-10/signal-desk-creator-native-2026-10-05.md)
 - [当前主页文档绑定优化与新样本验证交接（2026-10-05）](2026-10/signal-desk-creator-owner-current-2026-10-05.md)
 - [连续两次停止调查交接（2026-10-05）](2026-10/signal-desk-creator-owner-diagnosis-2026-10-05.md)
@@ -17,10 +22,25 @@
 - [本轮原生账号响应复用交接（2026-10-05）](2026-10/signal-desk-creator-owner-native-2026-10-05.md)
 - [排除前六位后的新样本验证交接（2026-10-05）](2026-10/signal-desk-creator-owner-new-samples-2026-10-05.md)
 - [最后一组六位真实样本验证交接（2026-10-05）](2026-10/signal-desk-creator-owner-six-2026-10-05.md)
+- [博主手动升降权与全局紫色昵称（2026-10-08）](2026-10/signal-desk-creator-priority-2026-10-08.md)
+- [活跃／普通区域手动权重置前（2026-10-09）](2026-10/signal-desk-creator-priority-order-2026-10-09.md)
+- [页面可读判断及及时断开报告修正（2026-10-09）](2026-10/signal-desk-creator-readiness-fix-2026-10-09.md)
+- [批量资料刷新约束机制（2026-10-06）](2026-10/signal-desk-creator-refresh-constraints-2026-10-06.md)
+- [日常单博主刷新反馈修正（2026-10-06）](2026-10/signal-desk-creator-refresh-feedback-2026-10-06.md)
+- [新约束机制混合八位真实验证：两位完成后停止（2026-10-06）](2026-10/signal-desk-creator-refresh-mixed-eight-2026-10-06.md)
+- [连接修复后的剩余六位真实验证（2026-10-06）](2026-10/signal-desk-creator-refresh-resume-six-2026-10-06.md)
+- [活跃／普通／低滞区域切换（2026-10-09）](2026-10/signal-desk-creator-section-switch-2026-10-09.md)
+- [资料库与区域切换卡顿修复（2026-10-09）](2026-10/signal-desk-creator-ui-performance-2026-10-09.md)
 - [Signal Desk 博主资料库动态三区交接（2026-10-04）](2026-10/signal-desk-creator-zones-2026-10-04.md)
+- [博主数据库与表／图切换优化（2026-10-09）](2026-10/signal-desk-database-ui-performance-2026-10-09.md)
+- [作者间隔期间调试连接断开：自定义协议子框架触发（2026-10-06）](2026-10/signal-desk-debugger-disconnect-cause-2026-10-06.md)
+- [作者保存完成后释放浏览器连接（2026-10-06）](2026-10/signal-desk-debugger-disconnect-fix-2026-10-06.md)
 - [桌面重复启动与同步等待回退（2026-10-04）](2026-10/signal-desk-desktop-regression-2026-10-04.md)
 - [作品列表明确请求与失败现场保存（2026-10-05）](2026-10/signal-desk-explicit-activity-2026-10-05.md)
 - [明确请求六位验证：第二位失败停止（2026-10-05）](2026-10/signal-desk-explicit-six-validation-2026-10-05.md)
+- [博主数据库飞书接入第一阶段（2026-10-08）](2026-10/signal-desk-feishu-creator-2026-10-08.md)
+- [飞书博主数据库全库与自动同步（2026-10-08）](2026-10/signal-desk-feishu-full-sync-2026-10-08.md)
+- [自定义筛选面板重复修复（2026-10-08）](2026-10/signal-desk-filter-panel-fix-2026-10-08.md)
 - [Signal Desk 账号与浏览器配置最新交接（2026-10-03）](2026-10/signal-desk-following-account-config-2026-10-03.md)
 - [Signal Desk 关注同步后台化最新交接（2026-10-01）](2026-10/signal-desk-following-background-2026-10-01.md)
 - [Signal Desk 浏览器完全关闭后的启动修复（2026-10-03）](2026-10/signal-desk-following-cold-start-2026-10-03.md)
@@ -31,17 +51,37 @@
 - [Signal Desk 重启首次同步修复最新交接（2026-10-03）](2026-10/signal-desk-following-startup-fix-2026-10-03.md)
 - [Signal Desk 关注同步结构化通路最新交接（2026-10-03）](2026-10/signal-desk-following-structured-2026-10-03.md)
 - [Signal Desk 第三批二十位关注资料与计时交接（2026-10-01）](2026-10/signal-desk-following-third-batch-2026-10-01.md)
+- [四档频率、最近七天状态与作品异常核验（2026-10-09）](2026-10/signal-desk-four-frequency-and-anomaly-2026-10-09.md)
+- [按发布间隔分类与三个更新按钮（2026-10-08）](2026-10/signal-desk-frequency-refresh-2026-10-08.md)
 - [Signal Desk 主页作品计数交接（2026-10-04）](2026-10/signal-desk-frontend-work-count-2026-10-04.md)
+- [全量更新277／295停止诊断（2026-10-09）](2026-10/signal-desk-full-refresh-stop-2026-10-09.md)
+- [本周无更新的日期展示与全库刷新范围调整（2026-10-07）](2026-10/signal-desk-last-update-all-creators-2026-10-07.md)
+- [博主卡片“上次更新”名称调整（2026-10-07）](2026-10/signal-desk-last-update-label-2026-10-07.md)
 - [明石飛行社定向诊断：未复现，历史具体原因不可恢复（2026-10-05）](2026-10/signal-desk-mingshi-diagnosis-2026-10-05.md)
 - [mmguo 两次核心响应验证（2026-10-05）](2026-10/signal-desk-mmguo-two-response-2026-10-05.md)
+- [最近30天无更新优先归极低频（2026-10-09）](2026-10/signal-desk-month-inactivity-2026-10-09.md)
+- [APP 内发布间隔图表（2026-10-08）](2026-10/signal-desk-native-interval-charts-2026-10-08.md)
+- [原生列表未取得的原因与证据范围（2026-10-06）](2026-10/signal-desk-native-list-availability-2026-10-06.md)
+- [原生列表监听诊断与取得时机优化（2026-10-06）](2026-10/signal-desk-native-list-monitoring-2026-10-06.md)
+- [博主数据库统计改为 APP 内实现（2026-10-08）](2026-10/signal-desk-native-statistics-direction-2026-10-08.md)
+- [八位此前未验证博主的同一轮验证（2026-10-05）](2026-10/signal-desk-new-eight-validation-2026-10-05.md)
+- [下一窗口：0.8.2优化效果与30～34位真实批次验证](2026-10/signal-desk-next-window-batch-validation-2026-10-06.md)
 - [Signal Desk 关机后开机验证交接（2026-10-04）](2026-10/signal-desk-power-on-validation-2026-10-04.md)
 - [Signal Desk 下一窗口交接：本周公开作品筛选与请求减量（2026-10-04）](2026-10/signal-desk-public-visibility-next-2026-10-04.md)
 - [Signal Desk 公开可见作品计数交接（2026-10-04）](2026-10/signal-desk-public-visible-count-2026-10-04.md)
+- [博主作品发布时间平均间隔计算与展示（2026-10-07）](2026-10/signal-desk-publication-interval-2026-10-07.md)
+- [0.8.2 优化效果与 34 位真实批次验证（2026-10-07）](2026-10/signal-desk-real-batch-validation-2026-10-07.md)
+- [剩余博主六批连续处理（2026-10-07）](2026-10/signal-desk-remaining-six-batches-2026-10-07.md)
 - [失败即冻结记录、保留网页与新六位验证（2026-10-05）](2026-10/signal-desk-retained-failure-six-2026-10-05.md)
 - [风控优化全部回退至0.6.4（2026-10-04）](2026-10/signal-desk-risk-rollback-2026-10-04.md)
+- [当前会话交接与等待状态（2026-10-08）](2026-10/signal-desk-session-checkpoint-2026-10-08.md)
 - [指定主页单次响应与职能纠正（2026-10-05）](2026-10/signal-desk-single-profile-response-2026-10-05.md)
+- [真实浏览器故障验收、日常升级与一次点击三作者（2026-10-05）](2026-10/signal-desk-stable-deployment-2026-10-05.md)
+- [两组完全不同样本的真实批次验证（2026-10-07）](2026-10/signal-desk-two-distinct-batches-2026-10-07.md)
 - [Signal Desk 统一请求调度交接（2026-10-04）](2026-10/signal-desk-unified-platform-2026-10-04.md)
 - [本窗口关闭交接（2026-10-05）](2026-10/signal-desk-window-close-2026-10-05.md)
+- [主窗口不可见修复（2026-10-08）](2026-10/signal-desk-window-recovery-2026-10-08.md)
+- [工程整理与提交记录（2026-10-05）](2026-10/signal-desk-workspace-cleanup-2026-10-05.md)
 
 ## 2026-09
 
@@ -51,4 +91,4 @@
 
 ## 更早记录
 
-- [2026-08-30 长交接](signal-desk-2026-08-30.md)
+- [历史归档：2026-08-30 长交接](signal-desk-2026-08-30.md)

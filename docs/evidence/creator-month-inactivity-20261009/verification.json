@@ -1,0 +1,56 @@
+{
+  "recordedAt": "2026-10-09T08:45:00.5271491Z",
+  "rule": {
+    "windowDays": 30,
+    "noUpdateThreshold": "strictly greater than 30 days",
+    "reference": "last successful verification",
+    "manualPriorityWins": true,
+    "clockOnlyReclassification": false
+  },
+  "validation": {
+    "relatedTestsPassed": 86,
+    "typeScript": "passed",
+    "build": "passed",
+    "packagedRenderer": "passed",
+    "packagedCreatorUI": "passed"
+  },
+  "simon": {
+    "publicCount": 6,
+    "intervalWorks": 6,
+    "intervalDays": 1.5233842592592592,
+    "latest": "2026-05-13T03:09:26.000Z",
+    "tier": "dormant"
+  },
+  "sectionCounts": {
+    "active": 60,
+    "regular": 65,
+    "inactive": 67,
+    "dormant": 103,
+    "anomaly": 0
+  },
+  "unknown": 6,
+  "totalCreators": 295,
+  "deployedState": {
+    "recordedAt": "2026-10-09T08:45:00.5271491Z",
+    "connection": {
+      "online": true,
+      "version": "0.8.4",
+      "expectedVersion": "0.8.4"
+    },
+    "readiness": "ready",
+    "activity": {
+      "phase": "completed",
+      "done": 18,
+      "total": 18,
+      "failed": 0
+    }
+  },
+  "preservation": {
+    "recordedAt": "2026-10-09T08:45:00.689Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "newCollectionStarted": false
+}

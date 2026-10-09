@@ -20,8 +20,8 @@
 
 ## 验证与 Git
 
-检查结果以 [本次验证记录](../evidence/workspace-cleanup-20261005/validation.json) 为准；R8 前置检查继续保持关闭，不将该已知门禁失败表述为本轮关注/资料刷新回归失败，也不宣称完整 `npm run check` 通过。
+检查结果以 [本次验证记录](../../../evidence/workspace-cleanup-20261005/validation.json) 为准；R8 前置检查继续保持关闭，不将该已知门禁失败表述为本轮关注/资料刷新回归失败，也不宣称完整 `npm run check` 通过。
 
 远端沿用现有 `origin`：`git@github.com:WenXiangStudio/HistoryManagement.git`，分支 `main`。推送采用正常快进方式，不强推；最终提交 SHA 和远端核对以实际 Git 结果及最终回复为准。
 
-详细文件清单：[清理清单](../evidence/workspace-cleanup-20261005/cleanup-manifest.json)、[数据保留](../evidence/workspace-cleanup-20261005/data-preservation.json)。本机完整备份、原始清理计划和哈希在 `local-data/workspace-cleanup-20261005`。
+详细文件清单：[清理清单](../../../evidence/workspace-cleanup-20261005/cleanup-manifest.json)、[数据保留](../../../evidence/workspace-cleanup-20261005/data-preservation.json)。本机完整备份、原始清理计划和哈希在 `local-data/workspace-cleanup-20261005`。

@@ -1,0 +1,99 @@
+{
+  "recordedAt": "2026-10-09T06:01:18.9160917Z",
+  "applicationVersion": "0.1.13",
+  "connectorVersion": "0.8.3",
+  "relatedTestsPassed": 150,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererSmokePassed": true,
+  "local": {
+    "recordedAt": "2026-10-09T05:57:55.786Z",
+    "realChromeLocalOnly": true,
+    "platformNavigations": 0,
+    "productionDatabaseWritten": false,
+    "productionFailureCacheUnchanged": true,
+    "results": [
+      {
+        "mode": "old-loading",
+        "phase": "blocked",
+        "errorCode": "AUTHOR_CONTEXT_TIMEOUT",
+        "done": 0,
+        "elapsedMs": 12214,
+        "detachToFrozenMs": 7647,
+        "explicitListGets": 0
+      },
+      {
+        "mode": "new-loading",
+        "phase": "completed",
+        "errorCode": null,
+        "done": 1,
+        "elapsedMs": 1286,
+        "detachToFrozenMs": null,
+        "explicitListGets": 0
+      },
+      {
+        "mode": "new-disconnect",
+        "phase": "blocked",
+        "errorCode": "DEBUGGER_NOT_ATTACHED",
+        "done": 0,
+        "elapsedMs": 2141,
+        "detachToFrozenMs": 91,
+        "explicitListGets": 0
+      },
+      {
+        "mode": "new-challenge",
+        "phase": "blocked",
+        "errorCode": "CAPTCHA_OR_SECURITY_CHALLENGE",
+        "done": 0,
+        "elapsedMs": 270,
+        "detachToFrozenMs": null,
+        "explicitListGets": 0
+      }
+    ]
+  },
+  "resume": {
+    "recordedAt": "2026-10-09T05:58:47.572Z",
+    "priorDone": 277,
+    "priorTotal": 295,
+    "remainingTargets": 18,
+    "exactRemainingIdentityAndOrderPreserved": true,
+    "priorRunUnchanged": true,
+    "browserTransportStarted": false,
+    "dailyDatabaseWritten": false
+  },
+  "deployed": {
+    "recordedAt": "2026-10-09T06:00:01.7148134Z",
+    "phase": "blocked",
+    "runId": "activity-793ba1162e6e42598634d808",
+    "done": 277,
+    "total": 295,
+    "remaining": 18,
+    "online": true,
+    "version": "0.8.3",
+    "expectedVersion": "0.8.3",
+    "readiness": "ready",
+    "failureSaved": true,
+    "platformCollectionStarted": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-09T06:00:01.581Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "package": {
+    "recordedAt": "2026-10-09T05:59:11.751Z",
+    "preservedFilesOutsideMain": 3299,
+    "archiveSha256": "f0a32094063e306e0ecdfbdd2777a7fb4e43f498e7b0b7c37641d62da59a816f",
+    "backupComplete": true,
+    "rendererAndPreloadPreserved": true,
+    "collectionRequested": false
+  },
+  "extensionFilesVerified": [
+    "creator-activity-runner.js",
+    "creator-activity-diagnostics.js",
+    "manifest.json"
+  ],
+  "platformCollectionStarted": false
+}

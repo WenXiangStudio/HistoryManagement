@@ -18,7 +18,7 @@
 
 首次验收发现一个真实分类缺陷：Chrome 在导航中断时返回 `Inspected target navigated or closed`，旧分类命中 closed，记为 `TARGET_UNAVAILABLE`。新增 `TARGET_NAVIGATED_OR_CLOSED` 并更新后端白名单，避免声称页面关闭。初次未通过记录保存在 `local-data/failure-acceptance-20261005/initial-classification-failure`，修正后三场景通过。此改动解释的是本地注入结果，**没有证明明石历史失败也是此原因**。
 
-测试缓存仅在其 secUid 明确为 local-* 时清理，原生产扩展恢复后才部署新版。本地故障页保留，测试服务随后停止。证据：[验收汇总](../evidence/failure-acceptance-20261005/verification.json)、同目录各场景 JSON/JPEG。可复查脚本位于 `local-data/failure-acceptance-20261005`。
+测试缓存仅在其 secUid 明确为 local-* 时清理，原生产扩展恢复后才部署新版。本地故障页保留，测试服务随后停止。证据：[验收汇总](../../../evidence/failure-acceptance-20261005/verification.json)、同目录各场景 JSON/JPEG。可复查脚本位于 `local-data/failure-acceptance-20261005`。
 
 ## 日常升级与选择刷新
 
@@ -40,16 +40,16 @@
 
 三条明确列表响应各一页，零补页、零重试。账号原生响应本轮未观察到，因此按现有规则实际执行一次主动账号核验；专用账号页导航零，作者主页导航三。网络事件计数仍有观察盲区，不能把三条明确响应加一次账号核验说成浏览器总共只有四个请求。
 
-独立从捕获记录复算作者双 ID、公开状态、去重、本周边界、最新时间、分页终点；结果与快照/展示一致。那只貂貂本周最近为北京时间 20:30，浪花姜一条外作者正确排除。真实本轮无失败，日常诊断表仍只有此前一条。证据：[批次验收](../evidence/stable-deployment-20261005/batch-verification.json)、[升级检查](../evidence/stable-deployment-20261005/upgrade-check.json)。
+独立从捕获记录复算作者双 ID、公开状态、去重、本周边界、最新时间、分页终点；结果与快照/展示一致。那只貂貂本周最近为北京时间 20:30，浪花姜一条外作者正确排除。真实本轮无失败，日常诊断表仍只有此前一条。证据：[批次验收](../../../evidence/stable-deployment-20261005/batch-verification.json)、[升级检查](../../../evidence/stable-deployment-20261005/upgrade-check.json)。
 
 ## 回归、保留与交付
 
 53 项浏览器测试、277 项应用测试 / 31 文件、TypeScript、生产构建、项目边界、diff 空白检查和独立包 renderer 冒烟通过。新增选择范围测试覆盖账号范围和调度目标；实际界面复选框与单次点击完成真实流程验收。
 
-两库全部旧行和配置哈希保留；SQLite integrity=ok，外键错误零。run 49→50、snapshot/attempt 539→542、诊断 1→1。备份和脚本在 `local-data/stable-deployment-20261005`，[保留审计](../evidence/stable-deployment-20261005/preservation.json)。
+两库全部旧行和配置哈希保留；SQLite integrity=ok，外键错误零。run 49→50、snapshot/attempt 539→542、诊断 1→1。备份和脚本在 `local-data/stable-deployment-20261005`，[保留审计](../../../evidence/stable-deployment-20261005/preservation.json)。
 
 退出验证实例时关闭窗口后等待十秒未退出，精确停止该 APP 进程并等待句柄释放；首轮替换 exe 曾因进程退出未完成被 Windows 拒绝，之后增加等待再完成部署。没有声称正常退出验收通过。
 
-最终从原桌面快捷方式启动：0.7.9、online/ready、295 位、pending=0、一主实例、无远程调试、无运行采集；重启后 30 秒被动观察未新增 run。最终哈希和状态：[交付核对](../evidence/stable-deployment-20261005/delivery.json)。
+最终从原桌面快捷方式启动：0.7.9、online/ready、295 位、pending=0、一主实例、无远程调试、无运行采集；重启后 30 秒被动观察未新增 run。最终哈希和状态：[交付核对](../../../evidence/stable-deployment-20261005/delivery.json)。
 
 下一阶段是日常使用观察：可以勾选需要更新的作者后一次启动，遇到首次真实失败先保留页面并检查新增证据，再决定针对性修正。本轮没有安排后台定时采集，也不以短时验收声称长期稳定性已经证明。明石历史具体根因仍未知。

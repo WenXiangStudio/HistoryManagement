@@ -1,0 +1,717 @@
+{
+  "recordedAt": "2026-10-08T02:43:14.140Z",
+  "feature": "Editable table format, read-only source cells and custom filters",
+  "checks": {
+    "focusedTestsPassed": 35,
+    "typecheckPassed": true,
+    "productionBuildPassed": true
+  },
+  "packaged": {
+    "recordedAt": "2026-10-08T02:19:12.646Z",
+    "unrelatedFilesPreserved": 2681,
+    "mainDiffRestrictedToDatabaseFeature": true,
+    "preloadUnchanged": true,
+    "appVersion": "0.1.13",
+    "extensionUnchanged": true,
+    "archiveSha256": "b4f1bee69de34ab448c09d5b74b0d3c5448db9db06f399b0e34871d98ea4258a",
+    "rendererAsset": "assets/index-BrdyHPgR.js",
+    "checks": {
+      "focusedTestsPassed": 35,
+      "typecheckPassed": true,
+      "buildPassed": true
+    },
+    "collectionRequested": false
+  },
+  "isolatedApp": {
+    "recordedAt": "2026-10-08T02:39:27.604Z",
+    "isolatedProfile": true,
+    "creators": 295,
+    "defaultFiveReadonlyInUiAndBackend": true,
+    "emptyAddButtonEnabledAndValidated": true,
+    "addTypedCustomColumnPassed": true,
+    "customContentEditPassed": true,
+    "headerWidthAlignmentOrderPassed": true,
+    "restartFormatAndFiltersPersistencePassed": true,
+    "allFilterCount": 65,
+    "anyFilterCount": 234,
+    "dateRangeCount": 139,
+    "emptyIntervalCount": 8,
+    "customTextConditionCount": 1,
+    "archivedCustomContentRetained": true,
+    "sourceTablesUnchanged": true,
+    "platformCollectionRequested": false
+  },
+  "dailyUi": {
+    "recordedAt": "2026-10-08T02:40:24.499Z",
+    "rows": 295,
+    "columns": [
+      "博主昵称 ↕",
+      "上次更新日期 ↕",
+      "作品数 ↕",
+      "间隔天数 ↕",
+      "活跃情况 ↕"
+    ],
+    "defaultCellButtons": 0,
+    "addEnabled": true,
+    "allIntervalsMatchDistribution": true,
+    "addOpensAndFocusesHeader": true,
+    "originalHeadersFormatControlsPresent": true,
+    "customConditionsMatchedIndependentCount": 65,
+    "clearedBackTo295": true,
+    "dailyDatabaseViewUnchanged": true,
+    "dailyCellsEdited": false,
+    "collectionRequested": false,
+    "runId": "activity-323198c374c0bda14ce17657"
+  },
+  "preservation": {
+    "recordedAt": "2026-10-08T02:43:13.691Z",
+    "allOldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "deployment": {
+    "recordedAt": "2026-10-08T02:43:14.137Z",
+    "appVersion": "0.1.13",
+    "extensionVersion": "0.8.2",
+    "online": true,
+    "ready": true,
+    "creators": 295,
+    "runId": "activity-323198c374c0bda14ce17657",
+    "phase": "completed",
+    "normalShortcutRestored": true,
+    "remoteDebugging": false,
+    "extensionUnchanged": true,
+    "databaseVisible": true,
+    "collectionRequested": false
+  },
+  "distribution": {
+    "recordedAt": "2026-10-08T02:18:17.208Z",
+    "rule": "Use the displayed whole-hour interval; floor(totalHours/24) + (totalHours % 24 > 12 ? 1 : 0). Exactly 12 hours rounds down.",
+    "creators": 295,
+    "eligibleCreators": 287,
+    "insufficientCreators": 8,
+    "minDays": 0,
+    "maxDays": 137,
+    "frequencies": [
+      {
+        "days": 0,
+        "count": 2
+      },
+      {
+        "days": 1,
+        "count": 17
+      },
+      {
+        "days": 2,
+        "count": 20
+      },
+      {
+        "days": 3,
+        "count": 12
+      },
+      {
+        "days": 4,
+        "count": 13
+      },
+      {
+        "days": 5,
+        "count": 10
+      },
+      {
+        "days": 6,
+        "count": 14
+      },
+      {
+        "days": 7,
+        "count": 15
+      },
+      {
+        "days": 8,
+        "count": 8
+      },
+      {
+        "days": 9,
+        "count": 7
+      },
+      {
+        "days": 10,
+        "count": 3
+      },
+      {
+        "days": 11,
+        "count": 9
+      },
+      {
+        "days": 12,
+        "count": 8
+      },
+      {
+        "days": 13,
+        "count": 9
+      },
+      {
+        "days": 14,
+        "count": 8
+      },
+      {
+        "days": 15,
+        "count": 6
+      },
+      {
+        "days": 16,
+        "count": 6
+      },
+      {
+        "days": 17,
+        "count": 7
+      },
+      {
+        "days": 18,
+        "count": 9
+      },
+      {
+        "days": 19,
+        "count": 5
+      },
+      {
+        "days": 20,
+        "count": 4
+      },
+      {
+        "days": 21,
+        "count": 13
+      },
+      {
+        "days": 22,
+        "count": 7
+      },
+      {
+        "days": 23,
+        "count": 3
+      },
+      {
+        "days": 24,
+        "count": 4
+      },
+      {
+        "days": 25,
+        "count": 5
+      },
+      {
+        "days": 26,
+        "count": 1
+      },
+      {
+        "days": 27,
+        "count": 3
+      },
+      {
+        "days": 28,
+        "count": 2
+      },
+      {
+        "days": 29,
+        "count": 3
+      },
+      {
+        "days": 30,
+        "count": 1
+      },
+      {
+        "days": 31,
+        "count": 1
+      },
+      {
+        "days": 32,
+        "count": 1
+      },
+      {
+        "days": 33,
+        "count": 3
+      },
+      {
+        "days": 34,
+        "count": 2
+      },
+      {
+        "days": 35,
+        "count": 3
+      },
+      {
+        "days": 36,
+        "count": 1
+      },
+      {
+        "days": 37,
+        "count": 0
+      },
+      {
+        "days": 38,
+        "count": 2
+      },
+      {
+        "days": 39,
+        "count": 3
+      },
+      {
+        "days": 40,
+        "count": 0
+      },
+      {
+        "days": 41,
+        "count": 1
+      },
+      {
+        "days": 42,
+        "count": 1
+      },
+      {
+        "days": 43,
+        "count": 0
+      },
+      {
+        "days": 44,
+        "count": 1
+      },
+      {
+        "days": 45,
+        "count": 0
+      },
+      {
+        "days": 46,
+        "count": 0
+      },
+      {
+        "days": 47,
+        "count": 0
+      },
+      {
+        "days": 48,
+        "count": 1
+      },
+      {
+        "days": 49,
+        "count": 1
+      },
+      {
+        "days": 50,
+        "count": 3
+      },
+      {
+        "days": 51,
+        "count": 0
+      },
+      {
+        "days": 52,
+        "count": 2
+      },
+      {
+        "days": 53,
+        "count": 0
+      },
+      {
+        "days": 54,
+        "count": 2
+      },
+      {
+        "days": 55,
+        "count": 0
+      },
+      {
+        "days": 56,
+        "count": 1
+      },
+      {
+        "days": 57,
+        "count": 2
+      },
+      {
+        "days": 58,
+        "count": 1
+      },
+      {
+        "days": 59,
+        "count": 1
+      },
+      {
+        "days": 60,
+        "count": 0
+      },
+      {
+        "days": 61,
+        "count": 3
+      },
+      {
+        "days": 62,
+        "count": 0
+      },
+      {
+        "days": 63,
+        "count": 1
+      },
+      {
+        "days": 64,
+        "count": 0
+      },
+      {
+        "days": 65,
+        "count": 0
+      },
+      {
+        "days": 66,
+        "count": 1
+      },
+      {
+        "days": 67,
+        "count": 0
+      },
+      {
+        "days": 68,
+        "count": 0
+      },
+      {
+        "days": 69,
+        "count": 0
+      },
+      {
+        "days": 70,
+        "count": 1
+      },
+      {
+        "days": 71,
+        "count": 0
+      },
+      {
+        "days": 72,
+        "count": 0
+      },
+      {
+        "days": 73,
+        "count": 0
+      },
+      {
+        "days": 74,
+        "count": 2
+      },
+      {
+        "days": 75,
+        "count": 1
+      },
+      {
+        "days": 76,
+        "count": 0
+      },
+      {
+        "days": 77,
+        "count": 0
+      },
+      {
+        "days": 78,
+        "count": 0
+      },
+      {
+        "days": 79,
+        "count": 0
+      },
+      {
+        "days": 80,
+        "count": 0
+      },
+      {
+        "days": 81,
+        "count": 0
+      },
+      {
+        "days": 82,
+        "count": 0
+      },
+      {
+        "days": 83,
+        "count": 0
+      },
+      {
+        "days": 84,
+        "count": 0
+      },
+      {
+        "days": 85,
+        "count": 1
+      },
+      {
+        "days": 86,
+        "count": 0
+      },
+      {
+        "days": 87,
+        "count": 0
+      },
+      {
+        "days": 88,
+        "count": 0
+      },
+      {
+        "days": 89,
+        "count": 1
+      },
+      {
+        "days": 90,
+        "count": 1
+      },
+      {
+        "days": 91,
+        "count": 0
+      },
+      {
+        "days": 92,
+        "count": 1
+      },
+      {
+        "days": 93,
+        "count": 1
+      },
+      {
+        "days": 94,
+        "count": 0
+      },
+      {
+        "days": 95,
+        "count": 0
+      },
+      {
+        "days": 96,
+        "count": 1
+      },
+      {
+        "days": 97,
+        "count": 0
+      },
+      {
+        "days": 98,
+        "count": 0
+      },
+      {
+        "days": 99,
+        "count": 0
+      },
+      {
+        "days": 100,
+        "count": 0
+      },
+      {
+        "days": 101,
+        "count": 0
+      },
+      {
+        "days": 102,
+        "count": 0
+      },
+      {
+        "days": 103,
+        "count": 1
+      },
+      {
+        "days": 104,
+        "count": 1
+      },
+      {
+        "days": 105,
+        "count": 0
+      },
+      {
+        "days": 106,
+        "count": 0
+      },
+      {
+        "days": 107,
+        "count": 0
+      },
+      {
+        "days": 108,
+        "count": 0
+      },
+      {
+        "days": 109,
+        "count": 0
+      },
+      {
+        "days": 110,
+        "count": 0
+      },
+      {
+        "days": 111,
+        "count": 0
+      },
+      {
+        "days": 112,
+        "count": 0
+      },
+      {
+        "days": 113,
+        "count": 0
+      },
+      {
+        "days": 114,
+        "count": 0
+      },
+      {
+        "days": 115,
+        "count": 0
+      },
+      {
+        "days": 116,
+        "count": 0
+      },
+      {
+        "days": 117,
+        "count": 0
+      },
+      {
+        "days": 118,
+        "count": 0
+      },
+      {
+        "days": 119,
+        "count": 0
+      },
+      {
+        "days": 120,
+        "count": 0
+      },
+      {
+        "days": 121,
+        "count": 0
+      },
+      {
+        "days": 122,
+        "count": 0
+      },
+      {
+        "days": 123,
+        "count": 0
+      },
+      {
+        "days": 124,
+        "count": 0
+      },
+      {
+        "days": 125,
+        "count": 1
+      },
+      {
+        "days": 126,
+        "count": 0
+      },
+      {
+        "days": 127,
+        "count": 0
+      },
+      {
+        "days": 128,
+        "count": 0
+      },
+      {
+        "days": 129,
+        "count": 0
+      },
+      {
+        "days": 130,
+        "count": 0
+      },
+      {
+        "days": 131,
+        "count": 0
+      },
+      {
+        "days": 132,
+        "count": 0
+      },
+      {
+        "days": 133,
+        "count": 0
+      },
+      {
+        "days": 134,
+        "count": 0
+      },
+      {
+        "days": 135,
+        "count": 0
+      },
+      {
+        "days": 136,
+        "count": 1
+      },
+      {
+        "days": 137,
+        "count": 1
+      }
+    ],
+    "insufficientAuthors": [
+      {
+        "nickname": "阿酥在Coding",
+        "workCount": 0
+      },
+      {
+        "nickname": "宇智波-I",
+        "workCount": 1
+      },
+      {
+        "nickname": "闭关修炼",
+        "workCount": 0
+      },
+      {
+        "nickname": "Viaggiatore！",
+        "workCount": 0
+      },
+      {
+        "nickname": "独夫之心前进四",
+        "workCount": 0
+      },
+      {
+        "nickname": "独夫战备",
+        "workCount": 0
+      },
+      {
+        "nickname": "袁老师【唯一助理】",
+        "workCount": 1
+      },
+      {
+        "nickname": "Shuwu326",
+        "workCount": 0
+      }
+    ],
+    "everyDayIncluded": true,
+    "displayLabelIndependentCheckPassed": true,
+    "dailyDataWritten": false,
+    "platformCollectionRequested": false
+  },
+  "behavior": {
+    "sourceFieldsReadOnly": true,
+    "allHeadersEditable": true,
+    "customColumnTypes": [
+      "text",
+      "count",
+      "date"
+    ],
+    "format": [
+      "order",
+      "width",
+      "alignment"
+    ],
+    "filters": [
+      "all",
+      "any",
+      "typed-comparisons",
+      "inclusive-range",
+      "empty",
+      "not-empty"
+    ],
+    "sourceRecordsPreserved": true
+  },
+  "verificationNotes": [
+    "Strict accepted isolated run is isolated-ui-verified.json using normal close and reopen.",
+    "Intermediate forced-kill diagnostic output is marked accepted=false and excluded from acceptance evidence.",
+    "Whole-day histogram is based on APP displayed whole-hour values; remainder exactly 12 rounds down."
+  ]
+}

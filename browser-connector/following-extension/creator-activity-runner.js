@@ -1,19 +1,48 @@
-import {projectCreatorActivityResponse, classifyActivityVisibility} from './creator-activity-network.js'
-import {observeActivityDiagnostics,captureActivityFailure,traceActivityCommands,freezeActivityFailure} from './creator-activity-diagnostics.js'
+import {projectCreatorActivityResponse, classifyActivityVisibility,observeCreatorActivity,recoverableNativeListErrors} from './creator-activity-network.js'
+import {observeActivityDiagnostics,captureActivityFailure,traceActivityCommands,freezeActivityFailure,classifyActivityCommandError} from './creator-activity-diagnostics.js'
 import {readCreatorActivityOwner,meterCreatorActivityRequests} from './creator-activity-context.js'
 import {observeCreatorActivityOwner} from './creator-activity-owner-network.js'
+import {waitForCreatorRefresh,finishInterruptedWait} from './creator-activity-pacing.js'
+
+function activityReadError(error){
+  if(/^[A-Z0-9_-]{1,100}$/.test(error?.message))return error.message
+  const classified=classifyActivityCommandError(error)
+  return classified==='COMMAND_FAILED'?'ACTIVITY_READ_FAILED':classified
+}
+
+export function readCreatorActivityGuard(){
+  const visible=element=>!!element&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden'
+  const panels=[...document.querySelectorAll('[role="dialog"],iframe[src*="verify"],iframe[src*="captcha"],.captcha_verify_container')].filter(visible)
+  if(panels.some(element=>element.tagName==='IFRAME'||/安全验证|验证码|完成验证|访问过于频繁/.test(element.textContent||'')))return 'CAPTCHA_OR_SECURITY_CHALLENGE'
+  const text=(document.body?.innerText||'').slice(0,20000)
+  if(!document.querySelector('#semiTabpost')&&/安全验证|验证码|完成验证|访问过于频繁/.test(text))return 'CAPTCHA_OR_SECURITY_CHALLENGE'
+  if(!document.querySelector('#semiTabpost')&&/登录后查看|请登录|扫码登录/.test(text))return 'LOGIN_REQUIRED'
+  return null
+}
+
+// Only observe readiness: this does not fetch, click, dismiss challenges or accept author data.
+export function readCreatorPageReadiness(scope,guard=()=>null){
+  const blocked=guard();if(blocked)return {ready:false,errorCode:blocked}
+  if(location.origin!=='https://www.douyin.com'||decodeURIComponent(location.pathname)!=='/user/'+scope.secUid)return {ready:false}
+  if(document.readyState==='complete')return {ready:true}
+  const tab=document.getElementById('semiTabpost'),count=tab?.querySelector('[data-e2e="user-tab-count"]')
+  const visible=count&&count.getClientRects().length>0&&getComputedStyle(count).visibility!=='hidden'
+  const text=count?.textContent?.trim()||'',label=tab?.querySelector('h2 span:first-child')?.textContent?.trim()
+  return {ready:document.readyState==='interactive'&&!!visible&&label==='作品'&&/^\d+(?:,\d{3})*$/.test(text)}
+}
 
 // Existing user-selected total source; the work LIST is obtained only from JSON network responses.
-export async function readCreatorProfileCount(scope) {
+export async function readCreatorProfileCount(scope,guard=()=>null) {
   const selector='#semiTabpost [data-e2e="user-tab-count"]',profileUrl='https://www.douyin.com/user/'+encodeURIComponent(scope.secUid)
   const deadline=Date.now()+10_000
   let prior=null,stableSince=0
   while(Date.now()<deadline){
+    const blocked=guard();if(blocked)return {count:null,errorCode:blocked}
     if(location.origin!=='https://www.douyin.com'||decodeURIComponent(location.pathname)!=='/user/'+scope.secUid)return {count:null,errorCode:'PROFILE_PAGE_MISMATCH'}
     const tab=document.getElementById('semiTabpost'),element=document.querySelector(selector),text=element?.textContent?.trim()||''
     const visible=element&&element.getClientRects().length>0&&getComputedStyle(element).visibility!=='hidden'
     const label=tab?.querySelector('h2 span:first-child')?.textContent?.trim()
-    if(document.readyState==='complete'&&visible&&label==='作品'&&/^\d+(?:,\d{3})*$/.test(text)){
+    if(['interactive','complete'].includes(document.readyState)&&visible&&label==='作品'&&/^\d+(?:,\d{3})*$/.test(text)){
       if(text!==prior){prior=text;stableSince=Date.now()}
       else if(Date.now()-stableSince>=500){
         const count=Number(text.replaceAll(',',''))
@@ -72,14 +101,16 @@ export async function readCreatorActivityPage(scope,{readPage,active=async()=>{}
     profile={uid:String(scope.uid||''),secUid:scope.secUid,workCount:null}
     if(!id.test(profile.uid)||profile.secUid!==scope.secUid||(scope.uid&&profile.uid!==scope.uid))throw new Error('ACTIVITY_AUTHOR_MISMATCH')
     let cursor=0,previousTime=Infinity,ordered=true
-    for(let index=0;index<10;index++){
+    const pageLimit=scope.repair?200:10
+    for(let index=0;index<pageLimit;index++){
       await active()
       const result=await readPage(cursor)
       if(result.activeRequest)requests++
       if(result.errorCode)throw new Error(result.errorCode)
       const {root,sourceProof}=result
       if(sourceProof?.secUid!==scope.secUid||sourceProof.requestCursor!==cursor||sourceProof.httpStatus!==200||sourceProof.method!=='GET'
-        ||sourceProof.endpoint!=='/aweme/v1/web/aweme/post/'||sourceProof.kind!=='active-get')throw new Error('ACTIVITY_SOURCE_UNVERIFIED')
+        ||sourceProof.endpoint!=='/aweme/v1/web/aweme/post/'||(!['native-network','active-get'].includes(sourceProof.kind))
+        ||(sourceProof.kind==='native-network'&&!scope.optimized))throw new Error('ACTIVITY_SOURCE_UNVERIFIED')
       if(!Array.isArray(root.aweme_list)||root.aweme_list.length>200||![true,false,0,1].includes(root.has_more))throw new Error('ACTIVITY_LIST_SCHEMA_INVALID')
       const records=root.aweme_list.map(row=>{
         const authorUid=String(row.author?.uid||''),authorSecUid=row.author?.sec_uid,workId=String(row.aweme_id||'')
@@ -107,20 +138,55 @@ export async function readCreatorActivityPage(scope,{readPage,active=async()=>{}
       if(hasMore&&!newCount)throw new Error(root.aweme_list.length?'ACTIVITY_REPEATED_PAGE':'ACTIVITY_EMPTY_PAGE_WITH_MORE')
       pages.push({requestCursor:cursor,responseCursor:next,hasMore,items:[],excludedAuthors:[],excludedNonPublic:[],records,sourceProof})
       if(sourceProof.kind==='native-network')reusedNativePages++
-      if(!hasMore||(ordered&&crossed))break
+      const comparison=compareActivityContinuity(pages,scope.comparisonBaseline,scope.frontendCount?.count,profile)
+      if(index===0&&!scope.repair&&comparison?.increase>=10)break
+      if(index===0&&!scope.repair&&scope.baseline&&scope.frontendCount?.count===scope.baseline.workCount&&(!comparison||comparison.connected)){
+        const fingerprint=latestCreatorWork(records,profile,hasMore)
+        if(fingerprint.ready&&JSON.stringify(fingerprint.latest)===JSON.stringify(scope.baseline.latest)&&sourceProof.kind==='native-network'){
+          return {ok:true,unchanged:{contract:'signaldesk-activity-unchanged/v1',ownerSecUid:scope.ownerSecUid,requestedSecUid:scope.secUid,authorUid:scope.uid,
+            baselineSnapshotId:scope.baseline.snapshotId,frontendCount:scope.frontendCount,checkedAt:new Date().toISOString(),reason:'latest-unchanged',firstPage:pages[0],nativeListRequests:nativeRequests()}}
+        }
+      }
+      if(!hasMore||(ordered&&crossed&&(!scope.repair||comparison?.connected)))break
       cursors.add(next)
       cursor=next
-      if(index===9)failure='ACTIVITY_PAGE_LIMIT'
+      if(index===pageLimit-1||scope.repair&&performance.now()-started>90_000){failure=scope.repair?'ACTIVITY_REPAIR_LIMIT':'ACTIVITY_PAGE_LIMIT';break}
     }
-  }catch(error){failure=/^[A-Z0-9_-]{1,100}$/.test(error.message)?error.message:'ACTIVITY_READ_FAILED'}
+  }catch(error){failure=activityReadError(error)}
   if(!profile||!id.test(profile.uid)||profile.secUid!==scope.secUid||(scope.uid&&profile.uid!==scope.uid))return {ok:false,code:failure||'ACTIVITY_AUTHOR_MISMATCH'}
-  return {ok:true,capture:{contract:'signaldesk-creator-activity/v7',requestContext:{versionCode:'170400',publishStrategy:'2',clientType:'1'},ownerSecUid:scope.ownerSecUid,requestedSecUid:scope.secUid,profile,
+  return {ok:true,capture:{contract:scope.optimized?'signaldesk-creator-activity/v8':'signaldesk-creator-activity/v7',requestContext:{versionCode:'170400',publishStrategy:'2',clientType:'1'},ownerSecUid:scope.ownerSecUid,requestedSecUid:scope.secUid,profile,
     frontendCount:scope.frontendCount||{count:null,errorCode:'PROFILE_TAB_COUNT_UNAVAILABLE'},
     checkedAt:new Date().toISOString(),weekStart:scope.weekStart,weekEndExclusive:scope.weekEndExclusive,pages,errorCode:failure,
     activeApiRequests:requests,reusedNativePages,nativeListRequests:nativeRequests(),acquisitionMs:performance.now()-started}}
 }
 
-export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chrome,fetchApi=globalThis.fetch}={}){
+export function latestCreatorWork(records,profile,hasMore){
+  let latest=null,ordinary=false
+  for(const record of records){
+    if(record.authorUid!==profile.uid||record.authorSecUid!==profile.secUid)continue
+    const verdict=classifyActivityVisibility(record.visibility)
+    if(verdict==='unknown'||record.pinned===null)return {ready:false,latest:null}
+    if(record.pinned===false)ordinary=true
+    if(verdict!=='public')continue
+    if(!record.publishedAt||!Number.isFinite(Date.parse(record.publishedAt)))return {ready:false,latest:null}
+    if(!latest||Date.parse(record.publishedAt)>Date.parse(latest.publishedAt)||(record.publishedAt===latest.publishedAt&&record.workId>latest.workId))latest={workId:record.workId,publishedAt:record.publishedAt}
+  }
+  return {ready:!hasMore||ordinary,latest}
+}
+
+// Browser-side stopping only; the main process independently validates IDs and continuity before promotion.
+export function compareActivityContinuity(pages,baseline,count,profile){
+  if(!baseline?.knownWorkIds||count===null||count===undefined)return null
+  const works=new Map(),known=new Set(baseline.knownWorkIds)
+  for(const page of pages)for(const record of page.records){
+    if(record.authorUid===profile.uid&&record.authorSecUid===profile.secUid&&classifyActivityVisibility(record.visibility)==='public'&&record.publishedAt)works.set(record.workId,record)
+  }
+  const increase=count-baseline.workCount,newPublicWorks=[...works.keys()].filter(id=>!known.has(id)).length
+  const complete=!!pages.length&&!pages.at(-1).hasMore&&works.size===count
+  return {increase,newPublicWorks,connected:complete||(!!baseline.anchor&&works.has(baseline.anchor.workId)&&newPublicWorks>=Math.max(0,increase))}
+}
+
+export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chrome,fetchApi=globalThis.fetch,waitOptions={},nativeWaitOptions={}}={}){
   const trace=traceActivityCommands(chromeApi)
   const chrome={...chromeApi,debugger:{...chromeApi.debugger,sendCommand:trace.sendCommand}},headers={authorization:`Bearer ${config.token}`,'content-type':'application/json'}
   const post=async(path,body)=>{
@@ -128,20 +194,48 @@ export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chr
     try{const response=await fetchApi(config.origin+path,{method:'POST',headers,body:JSON.stringify({runId:config.runId,...body}),signal:controller.signal});const result=await response.json();if(!response.ok)throw new Error(result.error||'ACTIVITY_SESSION_REJECTED');return result}
     finally{clearTimeout(timer)}
   }
-  const active=async()=>{const response=await fetchApi(config.origin+'/activity-state',{headers});const state=await response.json();if(!response.ok||state.runId!==config.runId||state.phase!=='running')throw new Error('ACTIVITY_SESSION_ENDED');return state}
-  let target,heartbeat,profileTabId,observer,stopMeter,ownerObserver,navigationStartedAt,firstFrontendCount,currentAuthor,stage='preparing-context',failureSaved=false,diagnosticSaveFailed=false
+  const active=async()=>{trace.assertConnected();const response=await fetchApi(config.origin+'/activity-state',{headers});const state=await response.json();if(!response.ok||state.runId!==config.runId||state.phase!=='running')throw new Error('ACTIVITY_SESSION_ENDED');trace.assertConnected();if(config.pacing&&Date.now()>=Date.parse(config.weekEndExclusive))throw Error('ACTIVITY_WEEK_CHANGED');return state}
+  let target,heartbeat,profileTabId,observer,listObserver,stopMeter,ownerObserver,navigationStartedAt,firstFrontendCount,currentAuthor,stage='preparing-context',failureSaved=false,diagnosticSaveFailed=false
   let attempts=[]
+  let milestones=[],strategy='pending',countSame=null,retainedNative=null,retainedNetwork=null
+  const mark=step=>{if(milestones.length<16)milestones.push({step,at:new Date().toISOString()})}
+  const observation=(phase,errorCode=null)=>({contract:'signaldesk-activity-observation/v1',creatorId:currentAuthor.id,secUid:currentAuthor.secUid,
+    capturedAt:new Date().toISOString(),phase,stage,strategy:phase==='failed'?'failed':strategy,countSame,errorCode,milestones:milestones.map(m=>({...m})),
+    native:listObserver?.snapshot()??retainedNative,network:observer?.snapshot()??retainedNetwork??{events:[],documents:[],dropped:0,scriptExceptions:0},browser:trace.snapshot()})
+  const persistObservation=async value=>{
+    if(chrome.storage?.local)await chrome.storage.local.set({signalDeskLatestObservation:{runId:config.runId,observation:value}}).catch(()=>{})
+    try{await post('/activity-progress',{readObservation:value})}catch{throw Error('ACTIVITY_OBSERVATION_SAVE_FAILED')}
+  }
   let failureCapturePromise=null,preserveFailureTab=false
   const requestAudit={contextSource:'first-author-page',accountPageNavigations:0,ownerVerificationGets:0,authorHomepageNavigations:0,
     ownerVerificationSource:'pending',nativeOwnerRequestsObserved:0,
     networkRequestsObserved:0,platformApiGetsObserved:0,selfGetsObserved:0,listGetsObserved:0}
   const detach=async()=>{
+    if(listObserver){await listObserver.stop({keepNetworkEnabled:true});listObserver=null}
     if(observer){observer.stop();observer=null}
     if(stopMeter){stopMeter();stopMeter=null}
-    if(target){try{await chrome.debugger.detach(target)}catch{};target=null}
+    if(target){trace.expectDetach(target.tabId);try{await chrome.debugger.detach(target)}catch{};target=null}
+  }
+  const releaseCompletedAuthor=async()=>{
+    stage='releasing-context'
+    retainedNative=listObserver?.snapshot()??retainedNative;retainedNetwork=observer?.snapshot()??retainedNetwork
+    await detach()
+    if(profileTabId){
+      try{await chrome.tabs.remove(profileTabId)}catch(error){
+        if(classifyActivityCommandError(error)!=='TARGET_UNAVAILABLE')throw Error('ACTIVITY_PAGE_RELEASE_FAILED')
+      }
+      profileTabId=null
+    }
+    mark('released')
+    await persistObservation(observation('released'))
+  }
+  const waitProgress=async wait=>{
+    stage=wait?(wait.kind==='batch'?'batch-rest':wait.kind==='resume'?'resume-wait':'author-wait'):'preparing-context'
+    await post('/activity-progress',{wait})
   }
   const prepareAuthor=async(author,first=false)=>{
-    currentAuthor=author;attempts=[];failureSaved=false;stage='preparing-context'
+    currentAuthor=author;attempts=[];failureSaved=false;failureCapturePromise=null;stage='preparing-context'
+    milestones=[];strategy='pending';countSame=null;retainedNative=null;retainedNetwork=null;trace.beginAuthor()
     await active()
     if(!profileTabId){const page=await chrome.tabs.create({url:'about:blank',active:false});profileTabId=page.id}
     await detach();target={tabId:profileTabId};trace.setTarget(profileTabId);await chrome.debugger.attach(target,'1.3')
@@ -151,19 +245,50 @@ export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chr
       await chrome.debugger.sendCommand(target,'Page.enable')
     }
     observer=await observeActivityDiagnostics(chrome,target,author.secUid)
+    if(config.pacing)listObserver=await observeCreatorActivity(chrome,target,author.secUid,{lazy:true})
+    mark('listener-ready');await persistObservation(observation('prepared'))
     await active()
     requestAudit.authorHomepageNavigations++
     if(first)navigationStartedAt=ownerObserver.beginNavigation()
+    mark('navigation')
     const navigation=await chrome.debugger.sendCommand(target,'Page.navigate',{url:'https://www.douyin.com/user/'+encodeURIComponent(author.secUid)})
     if(first)ownerObserver.bindNavigation(navigation)
+    if(navigation?.errorText)throw Error('AUTHOR_CONTEXT_NAVIGATION_FAILED')
     const deadline=Date.now()+12000
     do{
       await active()
+      if(observer?.denial)throw Error(observer.denial)
+      if(listObserver?.fatalError)throw Error(listObserver.fatalError)
       const page=await chrome.tabs.get(profileTabId)
-      if(page.status==='complete'&&page.url==='https://www.douyin.com/user/'+encodeURIComponent(author.secUid))return
+      trace.assertConnected()
+      const url=new URL(page.url||'about:blank')
+      if(url.origin==='https://www.douyin.com'&&decodeURIComponent(url.pathname)==='/user/'+author.secUid){
+        let readiness
+        try{
+          const evaluated=await chrome.debugger.sendCommand(target,'Runtime.evaluate',{returnByValue:true,
+            expression:`(${readCreatorPageReadiness.toString()})(${JSON.stringify({secUid:author.secUid})},(${readCreatorActivityGuard.toString()}))`})
+          trace.assertConnected()
+          if(evaluated.exceptionDetails)throw Error('AUTHOR_CONTEXT_CHECK_FAILED')
+          readiness=evaluated.result?.value
+        }catch(error){
+          // The main document can replace its initial execution context while committing.
+          trace.assertConnected()
+          if(classifyActivityCommandError(error)!=='EXECUTION_CONTEXT_UNAVAILABLE')throw error
+        }
+        if(readiness?.errorCode)throw Error(readiness.errorCode)
+        if(readiness?.ready===true){mark('page-ready');return}
+      }
       if(Date.now()>=deadline)throw Error('AUTHOR_CONTEXT_TIMEOUT')
       await new Promise(resolve=>setTimeout(resolve,100))
     }while(true)
+  }
+  const guard=async()=>{
+    trace.assertConnected()
+    if(observer?.denial)throw Error(observer.denial)
+    if(listObserver?.fatalError)throw Error(listObserver.fatalError)
+    if(!target)return
+    const result=await chrome.debugger.sendCommand(target,'Runtime.evaluate',{returnByValue:true,expression:`(${readCreatorActivityGuard.toString()})()`})
+    if(result.result?.value&&typeof result.result.value==='string')throw Error(result.result.value)
   }
   const saveFailure=async code=>{
     if(failureSaved||!currentAuthor||code==='ACTIVITY_SESSION_ENDED')return
@@ -171,13 +296,17 @@ export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chr
     // Freeze synchronously before any await, screenshot or local APP request.
     preserveFailureTab=!!profileTabId
     if(heartbeat){clearInterval(heartbeat);heartbeat=null}
-    const frozen=freezeActivityFailure(target,currentAuthor,observer,code,stage,attempts,trace)
+    const failureTarget=target||(profileTabId?{tabId:profileTabId}:null)
+    mark('failure')
+    const readObservation=failureTarget?observation('failed',code):undefined
+    const frozen=freezeActivityFailure(failureTarget,currentAuthor,observer,code,stage,attempts,trace)
     failureCapturePromise=(async()=>{
       const cache=async diagnostic=>{if(chrome.storage?.local)await chrome.storage.local.set({signalDeskLatestFailure:{runId:config.runId,diagnostic}})}
       // Independent copies survive APP write failures. A receipt precedes cleanup.
       await cache(frozen).catch(()=>{})
-      const early=post('/activity-progress',{failureDiagnostic:frozen}).catch(()=>null)
-      const failureDiagnostic=await captureActivityFailure(chrome,target,currentAuthor,observer,code,stage,attempts,trace,frozen)
+      if(readObservation&&chrome.storage?.local)await chrome.storage.local.set({signalDeskLatestObservation:{runId:config.runId,observation:readObservation}}).catch(()=>{})
+      const early=post('/activity-progress',{failureDiagnostic:frozen,...(readObservation?{readObservation}:{} )}).catch(()=>null)
+      const failureDiagnostic=await captureActivityFailure(chrome,failureTarget,currentAuthor,observer,code,stage,attempts,trace,frozen)
       await cache(failureDiagnostic).catch(()=>{})
       await early
       await post('/activity-progress',{failureDiagnostic});failureSaved=true
@@ -188,6 +317,7 @@ export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chr
     await active()
     await post('/activity-progress',{stage:'preparing-context'})
     if(!config.targets?.length)throw Error('ACTIVITY_TARGETS_UNAVAILABLE')
+    await finishInterruptedWait(config.initialWaitUntil,config.targets.length,config.pacing,{...waitOptions,active,progress:waitProgress})
     // This homepage is needed for count/list in every run. Use its NEW native
     // owner response too, without a preliminary page or a redundant owner GET.
     await prepareAuthor(config.targets[0],true)
@@ -199,8 +329,11 @@ export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chr
     await active()
     stage='reading-count'
     const firstCount=await chrome.debugger.sendCommand(target,'Runtime.evaluate',{awaitPromise:true,returnByValue:true,
-      expression:`(${readCreatorProfileCount.toString()})(${JSON.stringify(config.targets[0])})`})
+      expression:`(${readCreatorProfileCount.toString()})(${JSON.stringify(config.targets[0])},(${readCreatorActivityGuard.toString()}))`})
     firstFrontendCount=firstCount.exceptionDetails||!firstCount.result?.value?{count:null,errorCode:'PROFILE_TAB_COUNT_UNAVAILABLE'}:firstCount.result.value
+    mark('count-ready')
+    if(['CAPTCHA_OR_SECURITY_CHALLENGE','LOGIN_REQUIRED'].includes(firstFrontendCount.errorCode))throw Error(firstFrontendCount.errorCode)
+    await guard()
     stage='verifying-owner';await active();await post('/activity-progress',{stage})
     const nativeOwner=await ownerObserver.result({active})
     requestAudit.nativeOwnerRequestsObserved=ownerObserver.observedRequests
@@ -224,19 +357,46 @@ export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chr
     await active()
     await post('/activity-progress',{ownerVerification,requestAudit:{...requestAudit}})
     for(const [index,author] of config.targets.entries()){
+      if(config.pacing&&Date.now()>=Date.parse(config.weekEndExclusive))throw Error('ACTIVITY_WEEK_CHANGED')
+      if(index>0){
+        await waitForCreatorRefresh(index,config.targets.length,config.pacing,{...waitOptions,
+          active,progress:waitProgress})
+      }
       await active();await post('/activity-progress',{currentId:author.id,stage:'reading-author'})
       if(index!==0)await prepareAuthor(author)
       await active()
       stage='reading-count'
       const counted=index===0?null:await chrome.debugger.sendCommand(target,'Runtime.evaluate',{awaitPromise:true,returnByValue:true,
-        expression:`(${readCreatorProfileCount.toString()})(${JSON.stringify(author)})`})
+        expression:`(${readCreatorProfileCount.toString()})(${JSON.stringify(author)},(${readCreatorActivityGuard.toString()}))`})
       const frontendCount=index===0?firstFrontendCount:counted.exceptionDetails||!counted.result?.value?{count:null,errorCode:'PROFILE_TAB_COUNT_UNAVAILABLE'}:counted.result.value
+      if(index!==0)mark('count-ready')
+      countSame=author.baseline&&frontendCount.count!==null?frontendCount.count===author.baseline.workCount:null
       await active()
+      if(['CAPTCHA_OR_SECURITY_CHALLENGE','LOGIN_REQUIRED'].includes(frontendCount.errorCode))throw Error(frontendCount.errorCode)
+      await guard()
       stage='reading-list'
+      const native=await listObserver?.availablePage(0,{...nativeWaitOptions,active:async()=>{await active();await guard()}})
+      mark('native-decision')
+      if(native?.errorCode&&!recoverableNativeListErrors.has(native.errorCode))throw Error(native.errorCode)
+      if(author.baseline&&frontendCount.count===author.baseline.workCount&&!native?.root){
+        await guard();await active()
+        stage='saving'
+        strategy='count-only';mark('decision');await persistObservation(observation('decision',native?.errorCode??null))
+        const saved=await post('/activity-report',{creatorId:author.id,capture:{contract:'signaldesk-activity-unchanged/v1',ownerSecUid:config.ownerSecUid,
+          requestedSecUid:author.secUid,authorUid:author.uid,baselineSnapshotId:author.baseline.snapshotId,checkedAt:new Date().toISOString(),
+          frontendCount,reason:'count-unchanged',nativeListRequests:observer.nativeListRequests}})
+        if(saved.failed>0)throw Error('ACTIVITY_VALIDATION_INCOMPLETE')
+        mark('save-ack')
+        await releaseCompletedAuthor()
+        await post('/activity-progress',{requestAudit:{...requestAudit}})
+        continue
+      }
       const result=await readCreatorActivityPage({...author,frontendCount,runId:config.runId,ownerSecUid:config.ownerSecUid,
-        weekStart:config.weekStart,weekEndExclusive:config.weekEndExclusive},{active,nativeRequests:()=>observer.nativeListRequests,
+        optimized:!!config.pacing,weekStart:config.weekStart,weekEndExclusive:config.weekEndExclusive},{active,nativeRequests:()=>observer.nativeListRequests,
         readPage:async cursor=>{
           await active()
+          await guard()
+          if(cursor===0&&native?.root)return native
           // An already observed access rejection is a stop, never a retry trigger.
           if(observer.denial)return {errorCode:observer.denial,activeRequest:false}
           observer.beginExplicit()
@@ -245,7 +405,7 @@ export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chr
             const evaluated=await chrome.debugger.sendCommand(target,'Runtime.evaluate',{awaitPromise:true,returnByValue:true,
               expression:`(${fetchCreatorActivityPage.toString()})(${JSON.stringify({runId:config.runId,secUid:author.secUid,cursor})},(${projectCreatorActivityResponse.toString()}))`})
             value=evaluated.exceptionDetails||!evaluated.result?.value?{errorCode:'ACTIVITY_PAGE_EXECUTION_FAILED',activeRequest:true}:evaluated.result.value
-          }catch{value={errorCode:'ACTIVITY_PAGE_EXECUTION_FAILED',activeRequest:true}}
+          }catch(error){value={errorCode:activityReadError(error),activeRequest:true}}
           attempts.push(value.diagnostic||{cursor,stage:'execution',httpStatus:null,json:'pending',errorCode:value.errorCode})
           if(value.errorCode)try{await saveFailure(value.errorCode)}catch{diagnosticSaveFailed=true}
           return value
@@ -253,14 +413,20 @@ export async function runCreatorActivityRefresh(config,{chromeApi=globalThis.chr
       const failure=result?.code||result?.capture?.errorCode||(frontendCount?.count===null?frontendCount.errorCode:null)
       if(failure)try{await saveFailure(failure)}catch{diagnosticSaveFailed=true}
       await active()
+      if(!failure)await guard()
       stage='saving'
-      const saved=await post('/activity-report',{creatorId:author.id,...(result?.ok?{capture:result.capture}:{errorCode:result?.code||'ACTIVITY_READ_FAILED'})})
-      await post('/activity-progress',{requestAudit:{...requestAudit}})
+      strategy=result?.unchanged?'native-latest':result?.capture?.reusedNativePages?'full-native':'full-active'
+      mark('decision');if(!failure)await persistObservation(observation('decision'))
+      const saved=await post('/activity-report',{creatorId:author.id,...(result?.ok?{capture:result.unchanged||result.capture}:{errorCode:result?.code||'ACTIVITY_READ_FAILED'})})
       if(failure)throw new Error(failure)
       if(saved.failed>0)throw Error('ACTIVITY_VALIDATION_INCOMPLETE')
-      await new Promise(resolve=>setTimeout(resolve,200))
+      mark('save-ack')
+      // Persistence acknowledged: this author's browser session ends before any
+      // pacing or local progress I/O. Never read a completed page while waiting.
+      await releaseCompletedAuthor()
+      await post('/activity-progress',{requestAudit:{...requestAudit}})
     }
     return await post('/activity-progress',{finished:true,requestAudit:{...requestAudit}})
-  }catch(error){if(ownerObserver){requestAudit.nativeOwnerRequestsObserved=ownerObserver.observedRequests;requestAudit.ownerSourceDiagnostics=ownerObserver.diagnostics()}const code=/^[A-Z0-9_-]{1,100}$/.test(error.message)?error.message:'ACTIVITY_READ_FAILED';try{await saveFailure(code);if(failureSaved)diagnosticSaveFailed=false}catch{diagnosticSaveFailed=true}try{await post('/activity-progress',{blocked:true,errorCode:code,diagnosticSaveFailed,requestAudit:{...requestAudit}})}catch{};return {phase:'blocked'}}
+  }catch(error){if(ownerObserver){requestAudit.nativeOwnerRequestsObserved=ownerObserver.observedRequests;requestAudit.ownerSourceDiagnostics=ownerObserver.diagnostics()}const code=activityReadError(error);try{await saveFailure(code);if(failureSaved)diagnosticSaveFailed=false}catch{diagnosticSaveFailed=true}try{await post('/activity-progress',{blocked:true,errorCode:code,diagnosticSaveFailed,requestAudit:{...requestAudit}})}catch{};return {phase:'blocked'}}
   finally{if(heartbeat)clearInterval(heartbeat);if(ownerObserver)ownerObserver.stop();if(observer)await observer.stop();await detach();trace.stop();if(profileTabId&&!preserveFailureTab)try{await chrome.tabs.remove(profileTabId)}catch{}}
 }

@@ -1,0 +1,137 @@
+{
+  "recordedAt": "2026-10-07T11:57:12.843Z",
+  "changes": [
+    "Show cross-week last-publication dates in red for no-update creators",
+    "Include all account creators in manual all-creator refresh"
+  ],
+  "checks": {
+    "focusedTestsPassed": 43,
+    "offlineDailyDirectoryTestPassed": 1,
+    "typecheckPassed": true,
+    "productionBuildPassed": true
+  },
+  "packaged": {
+    "recordedAt": "2026-10-07T11:50:15.352Z",
+    "unrelatedFilesPreserved": 2681,
+    "mainDiffRestrictedToDueFilterRemoval": true,
+    "appVersion": "0.1.13",
+    "extensionUnchanged": true,
+    "archiveSha256": "599428ffd0bc2b487f3e1c274521f4a785926c85fc99201579f0cbe4814f743c",
+    "rendererAsset": "assets/index-3oy_RKeT.js",
+    "checks": {
+      "focusedTestsPassed": 43,
+      "typecheckPassed": true,
+      "buildPassed": true
+    },
+    "collectionRequested": false
+  },
+  "offlinePlan": {
+    "recordedAt": "2026-10-07T11:53:16.624Z",
+    "source": "backup copy of daily directory",
+    "directoryCreators": 295,
+    "notDueCreators": 295,
+    "includedCreators": 295,
+    "includedWithBaseline": 295,
+    "notDueSkipped": 0,
+    "batches": 9,
+    "browserInitialized": false,
+    "platformCollectionRequested": false,
+    "dailyDatabasesWritten": false
+  },
+  "dailyUi": {
+    "recordedAt": "2026-10-07T11:52:13.318Z",
+    "cards": 295,
+    "accountCreators": 295,
+    "noUpdates": 206,
+    "datedNoUpdates": 200,
+    "dateUnavailable": 6,
+    "issues": [],
+    "samples": [
+      {
+        "nickname": "AI，我俩和一百万",
+        "text": "近期暂无更新·上次更新日期：2026年9月28日",
+        "date": "2026-09-28T01:37:30.000Z",
+        "color": "rgb(180, 35, 24)"
+      },
+      {
+        "nickname": "阿星不是程序员",
+        "text": "近期暂无更新·上次更新日期：2026年10月4日",
+        "date": "2026-10-04T03:01:24.000Z",
+        "color": "rgb(180, 35, 24)"
+      },
+      {
+        "nickname": "木子不写代码",
+        "text": "近期暂无更新·上次更新日期：2026年10月1日",
+        "date": "2026-10-01T03:10:04.000Z",
+        "color": "rgb(180, 35, 24)"
+      },
+      {
+        "nickname": "阿酥在Coding",
+        "text": "近期暂无更新·上次更新日期：暂无可用日期",
+        "date": "",
+        "color": "rgb(180, 35, 24)"
+      },
+      {
+        "nickname": "闭关修炼",
+        "text": "近期暂无更新·上次更新日期：暂无可用日期",
+        "date": "",
+        "color": "rgb(180, 35, 24)"
+      },
+      {
+        "nickname": "Viaggiatore！",
+        "text": "近期暂无更新·上次更新日期：暂无可用日期",
+        "date": "",
+        "color": "rgb(180, 35, 24)"
+      },
+      {
+        "nickname": "独夫之心前进四",
+        "text": "近期暂无更新·上次更新日期：暂无可用日期",
+        "date": "",
+        "color": "rgb(180, 35, 24)"
+      },
+      {
+        "nickname": "独夫战备",
+        "text": "近期暂无更新·上次更新日期：暂无可用日期",
+        "date": "",
+        "color": "rgb(180, 35, 24)"
+      },
+      {
+        "nickname": "Shuwu326",
+        "text": "近期暂无更新·上次更新日期：暂无可用日期",
+        "date": "",
+        "color": "rgb(180, 35, 24)"
+      }
+    ],
+    "buttonTitle": "更新当前账号资料库中的全部博主，包含未到期博主",
+    "summary": "当前列表 0 位到期，295 位未到期；更新全部时包含未到期博主",
+    "historicalProgress": "已处理 191 位，其中 1 位未更新，190 位完整核验；0 位资料待补齐，104 位未到期点击到资料显示 3653.90 秒本轮 191 位 · 历史任务未到期跳过 104 位 · 未更新 1 位 · 完整核验 190 位计划等待累计 37.6 分钟（包含在全程耗时内）已复用主页列表 185 页 · 额外列表请求 6 次主动账号核验 1 次 · 专用账号页加载 0 次 · 作者主页加载 191 次 · 观察到平台 GET 3353 次",
+    "runId": "activity-323198c374c0bda14ce17657",
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-07T11:57:12.400Z",
+    "allOldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "deployment": {
+    "recordedAt": "2026-10-07T11:57:12.842Z",
+    "appVersion": "0.1.13",
+    "extensionVersion": "0.8.2",
+    "online": true,
+    "ready": true,
+    "creators": 295,
+    "runId": "activity-323198c374c0bda14ce17657",
+    "phase": "completed",
+    "normalShortcutRestored": true,
+    "remoteDebugging": false,
+    "extensionUnchanged": true,
+    "collectionRequested": false
+  },
+  "limitations": [
+    "No new platform collection was started; the all-creator plan was checked using an isolated database copy.",
+    "Six creators currently have no valid latest public-work date.",
+    "The previous 191-creator run and its 104 skipped creators remain historical records."
+  ]
+}

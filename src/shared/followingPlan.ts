@@ -17,6 +17,6 @@ export const basicCaptureSchema=z.object({ownerSecUid:identity,creator:planCreat
 export type PlanCreator=z.infer<typeof planCreatorSchema>
 export type PlanPage=z.infer<typeof planPageSchema>
 export type BasicState={phase:'idle'|'running'|'completed'|'cancelled'|'blocked';runId:string|null;total:number;done:number;
-  succeeded:number;failed:number;pending:number;currentName:string|null;message:string;errorCode?:string}
+  succeeded:number;failed:number;pending:number;currentName:string|null;currentSecUid?:string;message:string;errorCode?:string}
 export type FollowingPlanState={runId:string|null;complete:boolean;pageCount:number;count:number;nextCursor:number;nextOffset:number;
   resumable:boolean;checkedAt:string|null}

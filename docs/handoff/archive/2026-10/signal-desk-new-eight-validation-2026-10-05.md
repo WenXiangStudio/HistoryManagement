@@ -41,6 +41,6 @@ run：`activity-fc93763b283e49c99c72340e`。北京时间本周范围为 2026-10-
 
 临时 guarded extension 移除，用户扩展恢复本轮备份，正常 exe/asar 哈希不变；恢复正常启动并显式显示前台窗口、进入博主资料库。本轮两次重启均完成退出，未使用强制停止。最后 10 秒被动观察未新增采集 run，online/ready、pending=0、一主实例、无远程调试。
 
-证据：[结果与独立校验](../evidence/creator-new-eight-20261005/verification.json)、[旧数据保留](../evidence/creator-new-eight-20261005/preservation.json)、[最终交付状态](../evidence/creator-new-eight-20261005/delivery.json)。同目录为八张 sample-*-app.png 截图。备份、限额、点击观测和复算脚本在 `local-data/creator-new-eight-20261005`。
+证据：[结果与独立校验](../../../evidence/creator-new-eight-20261005/verification.json)、[旧数据保留](../../../evidence/creator-new-eight-20261005/preservation.json)、[最终交付状态](../../../evidence/creator-new-eight-20261005/delivery.json)。同目录为八张 sample-*-app.png 截图。备份、限额、点击观测和复算脚本在 `local-data/creator-new-eight-20261005`。
 
 本轮结论是八位新样本一次全部成功；没有触发真实平台故障捕获，历史失败根因仍未知，单轮结果不构成长期成功率证明。未提交、推送或发布安装器。

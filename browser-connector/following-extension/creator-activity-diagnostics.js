@@ -2,6 +2,8 @@
 // response bodies, exception text or console messages.
 export function classifyActivityCommandError(error) {
   const message=String(error?.message||error||'').toLowerCase()
+  if(/evicted|inspector cache/.test(message))return 'BODY_EVICTED'
+  if(/no resource with given identifier|no data found for resource/.test(message))return 'BODY_NOT_RETAINED'
   if(/not attached|not connected|detached/.test(message))return 'DEBUGGER_NOT_ATTACHED'
   if(/another debugger|already attached/.test(message))return 'DEBUGGER_BUSY'
   if(/target.*navigated or closed/.test(message))return 'TARGET_NAVIGATED_OR_CLOSED'
@@ -20,11 +22,16 @@ export function classifyActivityCommandError(error) {
 // and screenshots both fail. No expression, return value or raw error is retained.
 export function traceActivityCommands(chrome) {
   const commands=[],connections=[]
-  let sequence=0,dropped=0
+  let sequence=0,dropped=0,expectedDetach=false,unexpectedDetach=false
+  const pendingCommands=new Set()
   const push=(list,value,max)=>{if(list.length>=max){list.shift();dropped++}list.push(value)}
   const detach=(source,reason)=>{
     if(source.tabId!==currentTab)return
-    push(connections,{at:new Date().toISOString(),event:'detached',reason:['target_closed','canceled_by_user'].includes(reason)?reason:'other'},16)
+    push(connections,{at:new Date().toISOString(),event:'detached',reason:['target_closed','canceled_by_user'].includes(reason)?reason:'other',expected:expectedDetach},16)
+    if(!expectedDetach){
+      unexpectedDetach=true
+      for(const reject of pendingCommands)reject(Error('DEBUGGER_NOT_ATTACHED'))
+    }
   }
   let currentTab=null
   chrome.debugger.onDetach?.addListener(detach)
@@ -33,8 +40,10 @@ export function traceActivityCommands(chrome) {
       :method==='Page.captureScreenshot'?'failure-screenshot':method==='Page.navigate'?'navigate':method==='Network.getResponseBody'?'response-body':'setup'
     const entry={sequence:++sequence,at:new Date().toISOString(),operation:label,stage:'pending',elapsedMs:0,error:null,exceptionClass:null,resultType:null}
     const began=performance.now();push(commands,entry,64)
+    let rejectDetached
+    const detached=new Promise((_,reject)=>{rejectDetached=reject;pendingCommands.add(reject)})
     try{
-      const value=await chrome.debugger.sendCommand(target,method,params)
+      const value=await Promise.race([chrome.debugger.sendCommand(target,method,params),detached])
       entry.resultType=value?.result?.type&&['object','undefined','string','number','boolean','function','symbol','bigint'].includes(value.result.type)?value.result.type:null
       if(value?.exceptionDetails){
         entry.stage='exception';entry.error='PAGE_SCRIPT_EXCEPTION'
@@ -44,9 +53,12 @@ export function traceActivityCommands(chrome) {
       else entry.stage='complete'
       return value
     }catch(error){entry.stage='rejected';entry.error=classifyActivityCommandError(error);throw error}
-    finally{entry.elapsedMs=Math.max(0,performance.now()-began)}
+    finally{pendingCommands.delete(rejectDetached);entry.elapsedMs=Math.max(0,performance.now()-began)}
   }
-  return {sendCommand,setTarget(tabId){currentTab=tabId;push(connections,{at:new Date().toISOString(),event:'target-selected',reason:null},16)},
+  return {sendCommand,assertConnected(){if(unexpectedDetach)throw Error('DEBUGGER_NOT_ATTACHED')},
+    setTarget(tabId){currentTab=tabId;expectedDetach=false;unexpectedDetach=false;push(connections,{at:new Date().toISOString(),event:'target-selected',reason:null},16)},
+    expectDetach(tabId){if(tabId===currentTab){expectedDetach=true;push(connections,{at:new Date().toISOString(),event:'detach-requested',reason:null},16)}},
+    beginAuthor(){commands.length=0;connections.length=0;sequence=0;dropped=0;expectedDetach=false;unexpectedDetach=false},
     snapshot(){return {commands:commands.map(row=>({...row})),connections:connections.map(row=>({...row})),dropped}},
     stop(){chrome.debugger.onDetach?.removeListener(detach)}}
 }
@@ -67,11 +79,24 @@ export function readActivityPageState(scope) {
 }
 
 export async function observeActivityDiagnostics(chrome,target,secUid) {
-  const requests=new Map(),events=[],documents=[],runtime=[]
+  const requests=new Map(),events=[],documents=[],runtime=[],navigationRequests=[],childFrames=new Set()
+  let mainFrame=null
   let dropped=0,scriptExceptions=0,nativeListRequests=0,explicit=false,denial=null,stopped=false
   const relation=raw=>{try{const url=new URL(raw);return url.origin!=='https://www.douyin.com'?'other-origin':url.pathname==='/user/'+secUid?'target':'other-platform'}catch{return 'missing'}}
   const listener=(source,method,params)=>{
     if(stopped||source.tabId!==target.tabId)return
+    if(method==='Page.frameAttached'&&!source.sessionId){
+      if(childFrames.size<64)childFrames.add(params.frameId)
+      return
+    }
+    if(method==='Page.frameDetached'){childFrames.delete(params.frameId);return}
+    if(method==='Page.frameRequestedNavigation'){
+      let protocol='unknown'
+      try{const scheme=new URL(params.url).protocol;protocol=['http:','https:'].includes(scheme)?'web':['about:','data:','blob:'].includes(scheme)?'inline':['file:','chrome:','chrome-extension:','devtools:'].includes(scheme)?'browser':'custom'}catch{}
+      if(navigationRequests.length>=16){navigationRequests.shift();dropped++}
+      navigationRequests.push({at:new Date().toISOString(),frame:source.sessionId||childFrames.has(params.frameId)?'child':params.frameId===mainFrame?'main':'unknown',protocol})
+      return
+    }
     if(method==='Runtime.exceptionThrown'||method==='Runtime.executionContextsCleared'||method==='Runtime.executionContextDestroyed'){
       if(method==='Runtime.exceptionThrown')scriptExceptions=Math.min(100000,scriptExceptions+1)
       const name=params.exceptionDetails?.exception?.className
@@ -81,6 +106,7 @@ export async function observeActivityDiagnostics(chrome,target,secUid) {
       return
     }
     if((method==='Page.frameNavigated'&&!params.frame?.parentId&&!source.sessionId)||method==='Page.navigatedWithinDocument'){
+      if(method==='Page.frameNavigated')mainFrame=params.frame.id
       if(documents.length<16)documents.push({at:new Date().toISOString(),kind:method==='Page.frameNavigated'?'committed':'same-document',pathRelation:relation(params.frame?.url||params.url),childSession:!!source.sessionId})
       else dropped++
     }
@@ -116,7 +142,7 @@ export async function observeActivityDiagnostics(chrome,target,secUid) {
     await chrome.debugger.sendCommand(target,'Network.enable')
   }catch(error){chrome.debugger.onEvent.removeListener(listener);throw error}
   return {get nativeListRequests(){return nativeListRequests},get denial(){return denial},beginExplicit(){explicit=true},
-    snapshot(){return {events:events.map(event=>({...event})),documents:documents.map(document=>({...document})),runtime:runtime.map(row=>({...row})),dropped,scriptExceptions}},
+    snapshot(){return {events:events.map(event=>({...event})),documents:documents.map(document=>({...document})),runtime:runtime.map(row=>({...row})),navigationRequests:navigationRequests.map(row=>({...row})),dropped,scriptExceptions}},
     stop(){stopped=true;chrome.debugger.onEvent.removeListener(listener)}}
 }
 

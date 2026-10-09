@@ -1,0 +1,122 @@
+{
+  "recordedAt": "2026-10-09T02:58:07.239Z",
+  "applicationVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "relatedTestsPassed": 74,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererSmokePassed": true,
+  "measurement": {
+    "source": "Same current 295-creator database and same Electron, 1480x920, isolated smoke profile; five repeated navigation/view-switch cycles; CPU sampling enabled",
+    "metric": "Click handler to second animation frame after visible target content appears; approximate paint opportunity, not a hardware display measurement",
+    "return": "Database revisit displays retained data immediately then revalidates; initial database read measured separately",
+    "collection": "No collection or Feishu sync performed in isolated checks"
+  },
+  "performance": {
+    "database": {
+      "beforeMedianMs": 112.6,
+      "afterMedianMs": 12.6,
+      "afterMaxMs": 15.1,
+      "reductionPercent": 88.8,
+      "beforeDomNodes": 4846,
+      "afterDomNodes": 1086
+    },
+    "charts": {
+      "beforeMedianMs": 51.9,
+      "afterMedianMs": 26.6,
+      "afterMaxMs": 31.3,
+      "reductionPercent": 48.7,
+      "beforeDomNodes": 2799,
+      "afterDomNodes": 1082
+    },
+    "table": {
+      "beforeMedianMs": 58.9,
+      "afterMedianMs": 12.7,
+      "afterMaxMs": 15.9,
+      "reductionPercent": 78.4,
+      "beforeDomNodes": 4846,
+      "afterDomNodes": 1086
+    }
+  },
+  "firstOpen": [
+    {
+      "operation": "database-cold",
+      "milliseconds": 99.8
+    },
+    {
+      "operation": "charts-cold",
+      "milliseconds": 58.6
+    },
+    {
+      "operation": "table-cold",
+      "milliseconds": 16.3
+    }
+  ],
+  "localDataReadStageMs": [
+    66.4,
+    62.1,
+    60.2
+  ],
+  "longTasks": {
+    "before": 4,
+    "after": 0
+  },
+  "preview": {
+    "recordedAt": "2026-10-09T02:53:14.227Z",
+    "creators": 295,
+    "tableCreatorsReached": 295,
+    "chartCreatorsReached": 295,
+    "allBucketsVerified": 69,
+    "maximumTableRowsMounted": 22,
+    "maximumChartRowsMounted": 20,
+    "counts": {
+      "0": 2,
+      "all": 295,
+      "valid": 287,
+      "missing": 8
+    },
+    "tableAndChartStateRetained": true,
+    "offscreenEditorPreserved": true,
+    "longTextHeightAndNarrowLayout": true,
+    "sourceFieldsAndPrioritiesUnchanged": true,
+    "rendererExceptions": 0,
+    "platformCollectionStarted": false
+  },
+  "packaged": {
+    "recordedAt": "2026-10-09T02:56:40.578Z",
+    "creators": 295,
+    "tableCreatorsReached": 295,
+    "chartCreatorsReached": 295,
+    "allBucketsVerified": 69,
+    "maximumTableRowsMounted": 22,
+    "maximumChartRowsMounted": 20,
+    "counts": {
+      "0": 2,
+      "all": 295,
+      "valid": 287,
+      "missing": 8
+    },
+    "tableAndChartStateRetained": true,
+    "offscreenEditorPreserved": true,
+    "longTextHeightAndNarrowLayout": true,
+    "sourceFieldsAndPrioritiesUnchanged": true,
+    "rendererExceptions": 0,
+    "platformCollectionStarted": false
+  },
+  "package": {
+    "recordedAt": "2026-10-09T02:55:32.302Z",
+    "preservedFilesOutsideRenderer": 2682,
+    "archiveSha256": "d72d723847292852e1d9099f1ee807c787b3e283d6e20bff2a1bc98ae6688b55",
+    "backupComplete": true,
+    "mainAndPreloadPreserved": true,
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-09T02:55:32.766Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "platformCollectionStarted": false
+}

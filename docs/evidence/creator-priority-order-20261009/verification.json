@@ -1,0 +1,62 @@
+{
+  "recordedAt": "2026-10-09T03:05:56.8731672Z",
+  "applicationVersion": "0.1.13",
+  "relatedTestsPassed": 42,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererSmokePassed": true,
+  "ui": {
+    "recordedAt": "2026-10-09T03:05:03.219Z",
+    "packaged": true,
+    "creators": 295,
+    "initial": {
+      "active": {
+        "total": 103,
+        "manualFirst": 1
+      },
+      "regular": {
+        "total": 102,
+        "manualFirst": 1
+      },
+      "inactive": {
+        "total": 90,
+        "manualFirst": 0
+      }
+    },
+    "isolatedEnabled": {
+      "active": {
+        "total": 102,
+        "manualFirst": 2
+      },
+      "regular": {
+        "total": 104,
+        "manualFirst": 3
+      },
+      "inactive": {
+        "total": 89,
+        "manualFirst": 0
+      }
+    },
+    "activeAndRegularManualFirst": true,
+    "withinGroupDirectoryOrderRetained": true,
+    "disableRestoresDirectoryOrder": true,
+    "existingAnnotationsAndPriorityModesPreserved": true,
+    "rendererExceptions": 0,
+    "platformCollectionStarted": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-09T03:04:58.566Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "package": {
+    "recordedAt": "2026-10-09T03:04:58.137Z",
+    "preservedFilesOutsideRenderer": 2682,
+    "archiveSha256": "2ff3cdda5d3731826ed4b11f1a2170d151d3f193b7736d9a66381a623699fd64",
+    "backupComplete": true,
+    "mainAndPreloadPreserved": true,
+    "collectionRequested": false
+  }
+}

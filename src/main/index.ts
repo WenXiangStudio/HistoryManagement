@@ -1,5 +1,5 @@
 import { join } from 'node:path'
-import { app, BrowserWindow, dialog, ipcMain, shell } from 'electron'
+import { app, BrowserWindow, dialog, ipcMain, shell, screen } from 'electron'
 import { AppDatabase } from './database'
 import { BridgeServer } from './bridgeServer'
 import { TaskRunner } from './taskRunner'
@@ -9,6 +9,11 @@ import { CloudService } from './cloudService'
 import { WorkerClient } from './workerClient'
 import { IsolatedPilotService } from './isolatedPilot'
 import { FollowingSyncService } from './followingSync'
+import {createHash} from 'node:crypto'
+import {FeishuCreatorProbe} from './feishuCreatorProbe'
+import {DesktopWindowController,type WindowLog} from './desktopWindow'
+import {windowLifecycleLog} from './windowLifecycleLog'
+import type {CreatorRefreshScope} from '../shared/creatorRefreshPolicy'
 
 app.setName('Signal Desk')
 if (process.env.SIGNAL_DESK_SMOKE_TEST === '1') app.disableHardwareAcceleration()
@@ -20,6 +25,11 @@ let runner: TaskRunner | null = null
 let worker: WorkerClient | null = null
 let isolatedPilot = new IsolatedPilotService()
 let followingSync: FollowingSyncService | null = null
+let feishuProbe: FeishuCreatorProbe | null = null
+let logWindow:WindowLog=()=>{}
+const desktopWindows=new DesktopWindowController({create:()=>{mainWindow=createWindow();return mainWindow},
+  workAreas:()=>screen.getAllDisplays().map(display=>display.workArea),log:(event,details)=>logWindow(event,details),
+  inactive:process.env.SIGNAL_DESK_SMOKE_TEST==='1'})
 
 function requireServices(): { database: AppDatabase; bridge: BridgeServer; runner: TaskRunner; worker: WorkerClient } {
   if (!database || !bridge || !runner || !worker) throw new Error('Application services are not ready')
@@ -46,6 +56,7 @@ function createWindow(): BrowserWindow {
   window.webContents.on('preload-error', (_event, preloadPath, error) => {
     console.error(`Unable to load preload script ${preloadPath}:`, error)
   })
+  window.once('closed',()=>{if(mainWindow===window)mainWindow=null})
   window.webContents.setWindowOpenHandler(({ url }) => {
     if (url.startsWith('https://') || url.startsWith('http://')) void shell.openExternal(url)
     return { action: 'deny' }
@@ -54,9 +65,6 @@ function createWindow(): BrowserWindow {
     void window.loadURL(process.env.ELECTRON_RENDERER_URL)
   } else {
     void window.loadFile(join(__dirname, '../renderer/index.html'))
-  }
-  if (process.env.SIGNAL_DESK_SMOKE_TEST === '1') {
-    window.once('ready-to-show', () => window.showInactive())
   }
   return window
 }
@@ -86,8 +94,17 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
   ipcMain.handle('creators:update', (_event, creatorId: number, input) => {
     if (creatorId < 0 && followingSync) followingSync.store.update(creatorId, input)
     else requireServices().database.updateCreator(creatorId, input)
+    feishuProbe?.dataChanged()
     return { ok: true }
   })
+  ipcMain.handle('creators:database-get',()=>{if(!followingSync)throw Error('博主数据库尚未就绪');return followingSync.getCreatorDatabase()})
+  ipcMain.handle('creators:priority-update',(_event,input)=>{if(!followingSync)throw Error('博主资料库尚未就绪');return followingSync.updateCreatorPriority(input)})
+  ipcMain.handle('creators:database-update',(_event,input)=>{if(!followingSync)throw Error('博主数据库尚未就绪');return followingSync.updateCreatorDatabase(input)})
+  ipcMain.handle('feishu:state',()=>{if(!feishuProbe)throw Error('飞书服务尚未就绪');return feishuProbe.state()})
+  ipcMain.handle('feishu:save',(_event,input)=>{if(!feishuProbe)throw Error('飞书服务尚未就绪');return feishuProbe.save(input)})
+  ipcMain.handle('feishu:probe',(_event,input)=>{if(!feishuProbe)throw Error('飞书服务尚未就绪');return feishuProbe.probe(input)})
+  ipcMain.handle('feishu:sync',(_event,input)=>{if(!feishuProbe)throw Error('飞书服务尚未就绪');return feishuProbe.syncAll(input)})
+  ipcMain.handle('feishu:automatic',(_event,input)=>{if(!feishuProbe)throw Error('飞书服务尚未就绪');return feishuProbe.setAutomatic(input)})
   ipcMain.handle('jobs:list', () => requireServices().database.getJobs())
   ipcMain.handle('following:refresh', (_event, resume = false) => {
     if (!followingSync) throw new Error('关注同步服务未就绪')
@@ -96,9 +113,9 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
   ipcMain.handle('following:basic-start', () => followingSync?.startBasic())
   ipcMain.handle('following:basic-cancel', () => followingSync?.cancelBasic())
   ipcMain.handle('following:status', () => followingSync?.status())
-  ipcMain.handle('creators:activity-refresh', (_event,creatorId?:number,resume=false,creatorIds?:number[]) => {
+  ipcMain.handle('creators:activity-refresh', (_event,creatorId?:number,resume=false,creatorIds?:number[],scope?:CreatorRefreshScope) => {
     if(creatorId!==undefined&&(!Number.isSafeInteger(creatorId)||creatorId>=0))throw new Error('博主目录身份无效')
-    return followingSync?.startActivity(creatorId,Boolean(resume),creatorIds)
+    return followingSync?.startActivity(creatorId,Boolean(resume),creatorIds,scope)
   })
   ipcMain.handle('creators:activity-cancel', () => followingSync?.cancelActivity())
   ipcMain.handle('creators:activity-rendered', (_event,runId:string) => followingSync?.activity.rendered(runId))
@@ -194,10 +211,19 @@ function registerIpc(textCredentials: CredentialStore, visionCredentials: Creden
 async function startDesktop(): Promise<void> {
   await app.whenReady()
   const userData = app.getPath('userData')
+  logWindow=windowLifecycleLog(userData)
+  logWindow('desktop-starting')
   if (process.env.SIGNAL_DESK_SMOKE_TEST === '1') isolatedPilot = new IsolatedPilotService({ tempRoot: join(userData, 'isolated-r8') })
   database = new AppDatabase(join(userData, 'signal-desk.sqlite'))
-  followingSync = new FollowingSyncService(userData, () => {if(mainWindow&&!mainWindow.webContents.isDestroyed())mainWindow.webContents.send('data:changed', { source: 'following-directory' })})
+  followingSync = new FollowingSyncService(userData, () => {
+    if(mainWindow&&!mainWindow.webContents.isDestroyed())mainWindow.webContents.send('data:changed', { source: 'following-directory' })
+    feishuProbe?.dataChanged()
+  })
   if(process.env.SIGNAL_DESK_SMOKE_TEST !== '1')await followingSync.initialize()
+  feishuProbe = new FeishuCreatorProbe(() => ({view: followingSync!.getCreatorDatabase(), creators: followingSync!.listCreators()}),
+    owner => new CredentialStore(join(userData, 'credentials', `feishu-${createHash('sha256').update(owner).digest('hex')}.bin`)), undefined,
+    () => {if(mainWindow&&!mainWindow.webContents.isDestroyed())mainWindow.webContents.send('data:changed',{source:'feishu'})})
+  if(process.env.SIGNAL_DESK_SMOKE_TEST !== '1')feishuProbe.startAutomatic()
   bridge = new BridgeServer(userData)
   await bridge.start()
   worker = new WorkerClient(join(userData, 'runtime'))
@@ -211,18 +237,28 @@ async function startDesktop(): Promise<void> {
   registerIpc(textCredentials, visionCredentials, exporter, cloud)
   bridge.on('envelope', () => mainWindow?.webContents.send('data:changed', { source: 'browser' }))
   bridge.on('status', () => mainWindow?.webContents.send('data:changed', { source: 'connector' }))
-  mainWindow = createWindow()
+  desktopWindows.start()
   if(process.env.SIGNAL_DESK_SMOKE_TEST !== '1'&&!process.argv.includes('--structured-probe'))void followingSync.prepare()
   app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) mainWindow = createWindow()
+    desktopWindows.open()
   })
 }
 
-void startDesktop()
+// A single writer per userData directory prevents two desktop instances creating the same remote row.
+if(app.requestSingleInstanceLock())void startDesktop().catch(error=>{
+  logWindow('startup-failed',{name:error instanceof Error?error.name:'UnknownError'})
+  dialog.showErrorBox('Signal Desk 启动失败','APP 未能完成初始化，请重新打开。\n'+(error instanceof Error?error.message:String(error)))
+  app.quit()
+})
+else app.quit()
+app.on('second-instance',()=>{logWindow('second-instance');desktopWindows.open()})
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
 app.on('before-quit', () => {
+  desktopWindows.stop()
+  logWindow('desktop-quitting')
+  feishuProbe?.stop()
   void followingSync?.stop()
   void isolatedPilot.stop()
   runner?.stop()

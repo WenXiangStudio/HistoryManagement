@@ -1,0 +1,124 @@
+{
+  "recordedAt": "2026-10-08T12:40:33.167Z",
+  "applicationVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "tierRules": {
+    "active": "0–7 rounded days",
+    "regular": "8–21 rounded days",
+    "inactive": "22+ rounded days",
+    "unknown": "null"
+  },
+  "focusedTestsPassed": 126,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererPassed": true,
+  "targets": {
+    "recordedAt": "2026-10-08T12:32:23.375Z",
+    "counts": {
+      "active": 103,
+      "regular": 102,
+      "inactive": 82,
+      "unknown": 8
+    },
+    "groups": {
+      "active": {
+        "targets": 103,
+        "batches": 4,
+        "identityAndOwnerVerified": true,
+        "scope": "active"
+      },
+      "regular": {
+        "targets": 102,
+        "batches": 4,
+        "identityAndOwnerVerified": true,
+        "scope": "regular"
+      },
+      "all": {
+        "targets": 295,
+        "batches": 9,
+        "identityAndOwnerVerified": true,
+        "scope": "all"
+      }
+    },
+    "cardsAndDatabaseAgree": true,
+    "oldSourceRowsRetained": true,
+    "dailySourceWritten": false,
+    "browserRequests": 0,
+    "starred": 0,
+    "annotated": 0
+  },
+  "preview": {
+    "recordedAt": "2026-10-08T12:34:20.476Z",
+    "counts": {
+      "active": 103,
+      "regular": 102,
+      "inactive": 82,
+      "unknown": 8
+    },
+    "buttonCounts": {
+      "active": "活跃更新103",
+      "regular": "普通更新102",
+      "all": "全量更新295"
+    },
+    "cardTiersVerified": 295,
+    "retainedNoUpdateReminders": 206,
+    "searchDoesNotRestrictGroups": true,
+    "smallWindowFits": true,
+    "rendererErrors": 0,
+    "collectionStarted": false
+  },
+  "daily": {
+    "recordedAt": "2026-10-08T12:36:14.279Z",
+    "counts": {
+      "active": 103,
+      "regular": 102,
+      "inactive": 82,
+      "unknown": 8
+    },
+    "buttonCounts": {
+      "active": "活跃更新103",
+      "regular": "普通更新102",
+      "all": "全量更新295"
+    },
+    "cardTiersVerified": 295,
+    "retainedNoUpdateReminders": 206,
+    "searchDoesNotRestrictGroups": true,
+    "smallWindowFits": true,
+    "rendererErrors": 0,
+    "collectionStarted": false
+  },
+  "package": {
+    "recordedAt": "2026-10-08T12:35:49.566Z",
+    "preservedFilesOutsideOut": 2680,
+    "archiveSha256": "af1206785c6f7d9a471f24f260c98788cc472d6edc4365a43e579900283cb7c6",
+    "backupComplete": true,
+    "unrelatedAppFilesUnchanged": true,
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-08T12:36:14.713Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "services": {
+    "automatic": true,
+    "feishuBusy": false,
+    "syncPhase": "success",
+    "syncUpdated": 189,
+    "syncVerified": 295,
+    "phases": [
+      "completed",
+      "completed",
+      "idle"
+    ],
+    "online": true,
+    "readiness": "ready"
+  },
+  "normalStartupRestored": true,
+  "windowVisible": true,
+  "singleInstance": true,
+  "remoteDebuggingDisabled": true,
+  "newPlatformCollectionStarted": false
+}

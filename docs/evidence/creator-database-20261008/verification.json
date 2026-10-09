@@ -1,0 +1,114 @@
+{
+  "recordedAt": "2026-10-08T01:45:04.299Z",
+  "feature": "Creator database editable table",
+  "checks": {
+    "focusedTestsPassed": 29,
+    "typecheckPassed": true,
+    "productionBuildPassed": true
+  },
+  "packaged": {
+    "recordedAt": "2026-10-08T01:39:08.335Z",
+    "unrelatedFilesPreserved": 2680,
+    "mainDiffRestrictedToDatabaseFeature": true,
+    "preloadAddsOnlyDatabaseIpc": true,
+    "appVersion": "0.1.13",
+    "extensionUnchanged": true,
+    "archiveSha256": "d12c79777d7cd157d6bac2aa1fb3c0d8c70cf8f370bd5d40273dd5372af0a076",
+    "rendererAsset": "assets/index-FFRe6vE7.js",
+    "checks": {
+      "focusedTestsPassed": 29,
+      "typecheckPassed": true,
+      "buildPassed": true
+    },
+    "collectionRequested": false
+  },
+  "isolatedApp": {
+    "recordedAt": "2026-10-08T01:41:07.821Z",
+    "isolatedProfile": true,
+    "creators": 295,
+    "initialColumns": 5,
+    "allFiveCellsEdited": true,
+    "blurAutosavePassed": true,
+    "customAddRenameDeletePassed": true,
+    "customContentRetainedAfterRemoval": true,
+    "restartPersistencePassed": true,
+    "restoreAutomaticValuePassed": true,
+    "searchAndTierFilterPassed": true,
+    "originalSourceTablesUnchanged": true,
+    "platformCollectionRequested": false,
+    "finalRevision": 10
+  },
+  "dailyUi": {
+    "recordedAt": "2026-10-08T01:41:42.267Z",
+    "rows": 295,
+    "renderedRows": 295,
+    "columns": [
+      "博主昵称",
+      "上次更新日期",
+      "作品数",
+      "间隔天数",
+      "活跃情况"
+    ],
+    "revision": 0,
+    "issues": [],
+    "unknownTier": 6,
+    "noDate": 6,
+    "insufficientInterval": 8,
+    "firstRow": {
+      "nickname": "爱学习的乔同学",
+      "lastPublishedDate": "2026-10-03",
+      "workCount": 79,
+      "intervalHours": 145.70133547008547,
+      "tier": "active"
+    },
+    "menu": [
+      "今日收件箱",
+      "博主资料库295",
+      "博主数据库",
+      "任务中心",
+      "设置"
+    ],
+    "activeMenu": "博主数据库",
+    "allFieldsMatchOwnCreator": true,
+    "runId": "activity-323198c374c0bda14ce17657",
+    "dailyCellsEdited": false,
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-08T01:44:36.300Z",
+    "allOldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "deployment": {
+    "recordedAt": "2026-10-08T01:45:04.298Z",
+    "appVersion": "0.1.13",
+    "extensionVersion": "0.8.2",
+    "online": true,
+    "ready": true,
+    "creators": 295,
+    "runId": "activity-323198c374c0bda14ce17657",
+    "phase": "completed",
+    "normalShortcutRestored": true,
+    "remoteDebugging": false,
+    "extensionUnchanged": true,
+    "databaseVisible": true,
+    "dailyManualEdits": 0,
+    "collectionRequested": false
+  },
+  "behavior": {
+    "defaultColumns": 5,
+    "customColumnsSupported": true,
+    "autoSave": true,
+    "manualOverridesSurviveCollection": true,
+    "restoreAutomaticValues": true,
+    "customColumnsSoftDeleted": true,
+    "accountScoped": true
+  },
+  "limitations": [
+    "Manual edits affect the table only; source captures, cards, and collection policy keep their own verified values.",
+    "Unknown activity is shown as pending confirmation for six creators, not assigned an unsupported tier.",
+    "Custom columns are text; the five built-in columns remain present."
+  ]
+}

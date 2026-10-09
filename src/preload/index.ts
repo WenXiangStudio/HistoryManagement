@@ -1,4 +1,8 @@
 import { contextBridge, ipcRenderer } from 'electron'
+import type {CreatorDatabaseView,CreatorDatabaseMutation} from '../shared/creatorDatabase'
+import type {FeishuConfigurationInput,FeishuProbeInput,FeishuProbeReceipt,FeishuState,FeishuSyncRun} from '../shared/feishu'
+import type {CreatorRefreshScope} from '../shared/creatorRefreshPolicy'
+import type {CreatorPriorityInput,CreatorPriorityState} from '../shared/creatorPriority'
 
 const api = {
   getDashboard: () => ipcRenderer.invoke('dashboard:get'),
@@ -6,12 +10,20 @@ const api = {
   getWork: (workId: number) => ipcRenderer.invoke('work:get', workId),
   updateInbox: (workId: number, state: 'unread' | 'read' | 'later' | 'saved', feedback = 0) => ipcRenderer.invoke('inbox:update', workId, state, feedback),
   listCreators: (search?: string) => ipcRenderer.invoke('creators:list', search),
+  getCreatorDatabase: ():Promise<CreatorDatabaseView> => ipcRenderer.invoke('creators:database-get'),
+  updateCreatorDatabase: (input:CreatorDatabaseMutation):Promise<CreatorDatabaseView> => ipcRenderer.invoke('creators:database-update',input),
+  getFeishuState: ():Promise<FeishuState> => ipcRenderer.invoke('feishu:state'),
+  saveFeishuConfiguration: (input:FeishuConfigurationInput):Promise<FeishuState> => ipcRenderer.invoke('feishu:save',input),
+  probeFeishuCreator: (input:FeishuProbeInput):Promise<FeishuProbeReceipt> => ipcRenderer.invoke('feishu:probe',input),
+  syncFeishuCreators: (input:{ownerSecUid:string}):Promise<FeishuSyncRun> => ipcRenderer.invoke('feishu:sync',input),
+  setFeishuAutomatic: (input:{ownerSecUid:string;enabled:boolean}):Promise<FeishuState> => ipcRenderer.invoke('feishu:automatic',input),
   updateCreator: (creatorId: number, input: { isStarred?: boolean; note?: string }) => ipcRenderer.invoke('creators:update', creatorId, input),
+  updateCreatorPriority: (input:CreatorPriorityInput):Promise<CreatorPriorityState> => ipcRenderer.invoke('creators:priority-update',input),
   listJobs: () => ipcRenderer.invoke('jobs:list'),
   refreshFollowing: (resume=false) => ipcRenderer.invoke('following:refresh', resume),
   completeFollowingBasics: () => ipcRenderer.invoke('following:basic-start'),
   cancelFollowingBasics: () => ipcRenderer.invoke('following:basic-cancel'),
-  refreshCreatorActivity: (creatorId?:number,resume=false,creatorIds?:number[]) => ipcRenderer.invoke('creators:activity-refresh',creatorId,resume,creatorIds),
+  refreshCreatorActivity: (creatorId?:number,resume=false,creatorIds?:number[],scope?:CreatorRefreshScope) => ipcRenderer.invoke('creators:activity-refresh',creatorId,resume,creatorIds,scope),
   cancelCreatorActivity: () => ipcRenderer.invoke('creators:activity-cancel'),
   ackCreatorActivityRendered: (runId:string) => ipcRenderer.invoke('creators:activity-rendered',runId),
   getFollowingSyncStatus: () => ipcRenderer.invoke('following:status'),

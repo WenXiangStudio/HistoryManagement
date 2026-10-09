@@ -1,0 +1,1649 @@
+{
+  "recordedAt": "2026-10-07T08:55:11.563Z",
+  "appVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "planned": 68,
+  "groupsStarted": 2,
+  "collectionClicks": 2,
+  "sampleIdentity": {
+    "groupA": 34,
+    "groupB": 34,
+    "uniqueSelected": 68,
+    "overlapBetweenGroups": 0,
+    "overlapWithPrevious34": 0,
+    "selectedWithoutUsableBaseline": 68,
+    "selectedWithoutAnyHistoricalAttempt": 13,
+    "previouslyAttemptedButNoUsableBaseline": 55
+  },
+  "result": {
+    "started": 68,
+    "submitted": 68,
+    "succeeded": 68,
+    "failed": 0,
+    "notStarted": 0,
+    "successPerPlanned": 1,
+    "successPerStarted": 1,
+    "full": 68,
+    "latestUnchanged": 0,
+    "countOnly": 0,
+    "allCompleted": true
+  },
+  "native": {
+    "matchingRequests": 64,
+    "authorsWithUsableFirstPage": 64,
+    "extraListGets": 4,
+    "reusedNativePages": 64,
+    "firstBodyReadBeforeCount": 64
+  },
+  "risk": {
+    "observedAuthors": 68,
+    "securityChallengeAuthors": 0,
+    "http401Authors": 0,
+    "http403Authors": 0,
+    "http429Authors": 0,
+    "loginRequiredAuthors": 0,
+    "events": []
+  },
+  "groups": [
+    {
+      "name": "A",
+      "runId": "activity-72043dae83a2e2b8afb1b13a",
+      "result": {
+        "phase": "completed",
+        "planned": 34,
+        "started": 34,
+        "submitted": 34,
+        "succeeded": 34,
+        "failed": 0,
+        "notStarted": 0,
+        "full": 34,
+        "latestUnchanged": 0,
+        "countOnly": 0,
+        "successPerPlanned": 1,
+        "successPerStarted": 1,
+        "remaining": 0,
+        "diagnostics": 0,
+        "observationRows": 34,
+        "observationStrategies": {
+          "full-native": 31,
+          "full-active": 3
+        }
+      },
+      "native": {
+        "matchingRequests": 31,
+        "authorsWithMatchingRequests": 31,
+        "authorsWithUsableFirstPage": 31,
+        "latestUnchanged": 0,
+        "countOnly": 0,
+        "fallbackReasons": {},
+        "nativeUnavailableReasons": {
+          "ACTIVITY_NATIVE_LIST_UNAVAILABLE": 3
+        },
+        "extraListGets": 3,
+        "reusedNativePages": 31,
+        "firstBodyReadBeforeCount": 31,
+        "maximumDecodedFirstPageBytes": 2562156,
+        "maximumFirstBodyReadStartDelayMs": 0
+      },
+      "risk": {
+        "observedAuthors": 34,
+        "securityChallengeAuthors": 0,
+        "http401Authors": 0,
+        "http403Authors": 0,
+        "http429Authors": 0,
+        "loginRequiredAuthors": 0,
+        "httpEvents": [],
+        "failureEvents": [],
+        "stoppedOnFirstFailure": false,
+        "laterAuthorsExposedToSameObservation": true
+      },
+      "timing": {
+        "clickedAt": "2026-10-07T08:30:04.117Z",
+        "clickToAllDataAndAvatarsMs": 621736.5,
+        "clickToSuccessfulDataAndAvatarsMs": 621736.5,
+        "appReportedDisplayMs": 622012.1208,
+        "appReportedClickToSavedMs": 621552.8569,
+        "plannedWaitingMs": 380093,
+        "authorWaitingMs": 172463,
+        "batchWaitingMs": 207630,
+        "batchRestProbes": [
+          {
+            "sampledAt": "2026-10-07T08:36:50.919Z",
+            "runId": "activity-72043dae83a2e2b8afb1b13a",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:40:18.132Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 207630
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "8531eb53103a821dd63c820bbe9564780f8cda6f7aa88c10a5a6ae4f743f9b41"
+          },
+          {
+            "sampledAt": "2026-10-07T08:37:21.340Z",
+            "runId": "activity-72043dae83a2e2b8afb1b13a",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:40:18.132Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 207630
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "8531eb53103a821dd63c820bbe9564780f8cda6f7aa88c10a5a6ae4f743f9b41"
+          },
+          {
+            "sampledAt": "2026-10-07T08:37:51.855Z",
+            "runId": "activity-72043dae83a2e2b8afb1b13a",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:40:18.132Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 207630
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "8531eb53103a821dd63c820bbe9564780f8cda6f7aa88c10a5a6ae4f743f9b41"
+          },
+          {
+            "sampledAt": "2026-10-07T08:38:22.345Z",
+            "runId": "activity-72043dae83a2e2b8afb1b13a",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:40:18.132Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 207630
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "8531eb53103a821dd63c820bbe9564780f8cda6f7aa88c10a5a6ae4f743f9b41"
+          },
+          {
+            "sampledAt": "2026-10-07T08:38:52.768Z",
+            "runId": "activity-72043dae83a2e2b8afb1b13a",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:40:18.132Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 207630
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "8531eb53103a821dd63c820bbe9564780f8cda6f7aa88c10a5a6ae4f743f9b41"
+          },
+          {
+            "sampledAt": "2026-10-07T08:39:23.239Z",
+            "runId": "activity-72043dae83a2e2b8afb1b13a",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:40:18.132Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 207630
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "8531eb53103a821dd63c820bbe9564780f8cda6f7aa88c10a5a6ae4f743f9b41"
+          },
+          {
+            "sampledAt": "2026-10-07T08:39:53.247Z",
+            "runId": "activity-72043dae83a2e2b8afb1b13a",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:40:18.132Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 207630
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "8531eb53103a821dd63c820bbe9564780f8cda6f7aa88c10a5a6ae4f743f9b41"
+          },
+          {
+            "sampledAt": "2026-10-07T08:40:17.687Z",
+            "runId": "activity-72043dae83a2e2b8afb1b13a",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:40:18.132Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 207630
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "8531eb53103a821dd63c820bbe9564780f8cda6f7aa88c10a5a6ae4f743f9b41"
+          }
+        ],
+        "authorWaitDurationsMs": [
+          7426,
+          4986,
+          3444,
+          7997,
+          4867,
+          4378,
+          7814,
+          4355,
+          5637,
+          5613,
+          5543,
+          7100,
+          7749,
+          4277,
+          3760,
+          5378,
+          6334,
+          5539,
+          7165,
+          4845,
+          4498,
+          4700,
+          5280,
+          4702,
+          4962,
+          3362,
+          5731,
+          6406,
+          6517,
+          4369,
+          4181,
+          3548
+        ],
+        "navigationToDecisionTotalMs": 225695,
+        "decisionToSaveAckTotalMs": 2826,
+        "saveAckToReleaseTotalMs": 1213,
+        "boundary": {
+          "afterPosition": 33,
+          "nextPosition": 34,
+          "previousNickname": "发烧好了呢",
+          "nextNickname": "股市吹哨人",
+          "savedAt": "2026-10-07T08:36:50.362Z",
+          "releasedAt": "2026-10-07T08:36:50.374Z",
+          "scheduledStartAt": "2026-10-07T08:36:50.502Z",
+          "firstObservedAt": "2026-10-07T08:36:50.915Z",
+          "scheduledEndAt": "2026-10-07T08:40:18.132Z",
+          "durationMs": 207630,
+          "endObservedAt": "2026-10-07T08:40:18.696Z",
+          "startToEndObservedMs": 208194,
+          "nextNavigationAt": "2026-10-07T08:40:18.345Z",
+          "startToNextNavigationMs": 207843,
+          "releaseBeforePause": true,
+          "nextNavigationAfterPause": true
+        }
+      },
+      "requestUse": {
+        "authorHomepages": 34,
+        "explicitOwnerGets": 1,
+        "ownerVerificationSource": "active-get",
+        "accountPageNavigations": 0,
+        "homepageTrafficStillPresent": true
+      },
+      "preservation": {
+        "recordedAt": "2026-10-07T08:40:41.176Z",
+        "allOldRowsUnchanged": true,
+        "settingsUnchanged": true,
+        "starredAndNotesPreserved": true,
+        "historicalSnapshotsPreserved": true,
+        "databaseIntegrity": "ok",
+        "foreignKeyViolations": 0,
+        "tables": {
+          "following-directory.sqlite": {
+            "creator_activity_attempts": {
+              "before": 601,
+              "after": 635,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_checks": {
+              "before": 23,
+              "after": 23,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_diagnostics": {
+              "before": 2,
+              "after": 2,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_observations": {
+              "before": 36,
+              "after": 70,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_runs": {
+              "before": 62,
+              "after": 63,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_snapshots": {
+              "before": 578,
+              "after": 612,
+              "oldRowsUnchanged": true
+            },
+            "directory_creators": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "directory_runs": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "following_account_owners": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "following_basic_fields": {
+              "before": 295,
+              "after": 295,
+              "oldRowsUnchanged": true
+            },
+            "following_basic_runs": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "following_list_pages": {
+              "before": 15,
+              "after": 15,
+              "oldRowsUnchanged": true
+            },
+            "following_list_plans": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "visible_directory_creators": {
+              "before": 515,
+              "after": 515,
+              "oldRowsUnchanged": true
+            },
+            "visible_directory_runs": {
+              "before": 15,
+              "after": 15,
+              "oldRowsUnchanged": true
+            }
+          },
+          "signal-desk.sqlite": {
+            "analyses": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "analysis_batches": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "app_settings": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "audit_events": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "collection_checkpoints": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "comments": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "creator_tags": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "creators": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "evidence_frames": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "inbox_states": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "interest_weights": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "jobs": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "metric_snapshots": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "ocr_blocks": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "owner_accounts": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "search_index": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "search_index_config": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "search_index_content": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "search_index_data": {
+              "before": 2,
+              "after": 2,
+              "oldRowsUnchanged": true
+            },
+            "search_index_docsize": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "search_index_idx": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "sync_runs": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "taxonomy_tags": {
+              "before": 22,
+              "after": 22,
+              "oldRowsUnchanged": true
+            },
+            "transcript_segments": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "work_keywords": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "work_tags": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "works": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            }
+          }
+        }
+      },
+      "validation": {
+        "allCommittedResultsReplayed": true,
+        "allAuthorAndOwnerAssociationsVerified": true,
+        "lightChecksRetainedFullCheckDates": true,
+        "observationSchemaValidated": true,
+        "allSuccessfulObservationsReleased": true,
+        "releaseBeforeEveryWait": true,
+        "waitChecks": [
+          {
+            "afterPosition": 1,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:30:09.408Z",
+            "beganAt": "2026-10-07T08:30:09.608Z",
+            "until": "2026-10-07T08:30:17.034Z",
+            "durationMs": 7426
+          },
+          {
+            "afterPosition": 2,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:30:23.175Z",
+            "beganAt": "2026-10-07T08:30:23.362Z",
+            "until": "2026-10-07T08:30:28.348Z",
+            "durationMs": 4986
+          },
+          {
+            "afterPosition": 3,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:30:35.392Z",
+            "beganAt": "2026-10-07T08:30:35.589Z",
+            "until": "2026-10-07T08:30:39.033Z",
+            "durationMs": 3444
+          },
+          {
+            "afterPosition": 4,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:30:47.148Z",
+            "beganAt": "2026-10-07T08:30:47.192Z",
+            "until": "2026-10-07T08:30:55.189Z",
+            "durationMs": 7997
+          },
+          {
+            "afterPosition": 5,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:31:02.299Z",
+            "beganAt": "2026-10-07T08:31:02.709Z",
+            "until": "2026-10-07T08:31:07.576Z",
+            "durationMs": 4867
+          },
+          {
+            "afterPosition": 6,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:31:14.189Z",
+            "beganAt": "2026-10-07T08:31:14.382Z",
+            "until": "2026-10-07T08:31:18.760Z",
+            "durationMs": 4378
+          },
+          {
+            "afterPosition": 7,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:31:26.400Z",
+            "beganAt": "2026-10-07T08:31:26.548Z",
+            "until": "2026-10-07T08:31:34.362Z",
+            "durationMs": 7814
+          },
+          {
+            "afterPosition": 8,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:31:41.482Z",
+            "beganAt": "2026-10-07T08:31:41.625Z",
+            "until": "2026-10-07T08:31:45.980Z",
+            "durationMs": 4355
+          },
+          {
+            "afterPosition": 9,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:31:53.284Z",
+            "beganAt": "2026-10-07T08:31:53.412Z",
+            "until": "2026-10-07T08:31:59.049Z",
+            "durationMs": 5637
+          },
+          {
+            "afterPosition": 10,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:32:05.428Z",
+            "beganAt": "2026-10-07T08:32:05.552Z",
+            "until": "2026-10-07T08:32:11.165Z",
+            "durationMs": 5613
+          },
+          {
+            "afterPosition": 11,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:32:17.299Z",
+            "beganAt": "2026-10-07T08:32:17.327Z",
+            "until": "2026-10-07T08:32:22.870Z",
+            "durationMs": 5543
+          },
+          {
+            "afterPosition": 12,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:32:30.531Z",
+            "beganAt": "2026-10-07T08:32:30.663Z",
+            "until": "2026-10-07T08:32:37.763Z",
+            "durationMs": 7100
+          },
+          {
+            "afterPosition": 13,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:32:45.895Z",
+            "beganAt": "2026-10-07T08:32:46.031Z",
+            "until": "2026-10-07T08:32:53.780Z",
+            "durationMs": 7749
+          },
+          {
+            "afterPosition": 14,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:33:01.358Z",
+            "beganAt": "2026-10-07T08:33:01.450Z",
+            "until": "2026-10-07T08:33:05.727Z",
+            "durationMs": 4277
+          },
+          {
+            "afterPosition": 15,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:33:11.618Z",
+            "beganAt": "2026-10-07T08:33:11.750Z",
+            "until": "2026-10-07T08:33:15.510Z",
+            "durationMs": 3760
+          },
+          {
+            "afterPosition": 16,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:33:22.350Z",
+            "beganAt": "2026-10-07T08:33:22.484Z",
+            "until": "2026-10-07T08:33:27.862Z",
+            "durationMs": 5378
+          },
+          {
+            "afterPosition": 17,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:33:34.379Z",
+            "beganAt": "2026-10-07T08:33:34.508Z",
+            "until": "2026-10-07T08:33:40.842Z",
+            "durationMs": 6334
+          },
+          {
+            "afterPosition": 18,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:33:48.186Z",
+            "beganAt": "2026-10-07T08:33:48.356Z",
+            "until": "2026-10-07T08:33:53.895Z",
+            "durationMs": 5539
+          },
+          {
+            "afterPosition": 19,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:34:00.708Z",
+            "beganAt": "2026-10-07T08:34:00.833Z",
+            "until": "2026-10-07T08:34:07.998Z",
+            "durationMs": 7165
+          },
+          {
+            "afterPosition": 20,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:34:15.130Z",
+            "beganAt": "2026-10-07T08:34:15.322Z",
+            "until": "2026-10-07T08:34:20.167Z",
+            "durationMs": 4845
+          },
+          {
+            "afterPosition": 21,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:34:26.415Z",
+            "beganAt": "2026-10-07T08:34:26.583Z",
+            "until": "2026-10-07T08:34:31.081Z",
+            "durationMs": 4498
+          },
+          {
+            "afterPosition": 22,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:34:38.317Z",
+            "beganAt": "2026-10-07T08:34:38.448Z",
+            "until": "2026-10-07T08:34:43.148Z",
+            "durationMs": 4700
+          },
+          {
+            "afterPosition": 23,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:34:49.210Z",
+            "beganAt": "2026-10-07T08:34:49.338Z",
+            "until": "2026-10-07T08:34:54.618Z",
+            "durationMs": 5280
+          },
+          {
+            "afterPosition": 24,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:35:01.362Z",
+            "beganAt": "2026-10-07T08:35:01.548Z",
+            "until": "2026-10-07T08:35:06.250Z",
+            "durationMs": 4702
+          },
+          {
+            "afterPosition": 25,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:35:14.207Z",
+            "beganAt": "2026-10-07T08:35:14.383Z",
+            "until": "2026-10-07T08:35:19.345Z",
+            "durationMs": 4962
+          },
+          {
+            "afterPosition": 26,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:35:26.630Z",
+            "beganAt": "2026-10-07T08:35:26.759Z",
+            "until": "2026-10-07T08:35:30.121Z",
+            "durationMs": 3362
+          },
+          {
+            "afterPosition": 27,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:35:37.807Z",
+            "beganAt": "2026-10-07T08:35:37.851Z",
+            "until": "2026-10-07T08:35:43.582Z",
+            "durationMs": 5731
+          },
+          {
+            "afterPosition": 28,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:35:51.299Z",
+            "beganAt": "2026-10-07T08:35:51.488Z",
+            "until": "2026-10-07T08:35:57.894Z",
+            "durationMs": 6406
+          },
+          {
+            "afterPosition": 29,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:36:04.342Z",
+            "beganAt": "2026-10-07T08:36:04.532Z",
+            "until": "2026-10-07T08:36:11.049Z",
+            "durationMs": 6517
+          },
+          {
+            "afterPosition": 30,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:36:17.432Z",
+            "beganAt": "2026-10-07T08:36:17.768Z",
+            "until": "2026-10-07T08:36:22.137Z",
+            "durationMs": 4369
+          },
+          {
+            "afterPosition": 31,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:36:29.595Z",
+            "beganAt": "2026-10-07T08:36:29.714Z",
+            "until": "2026-10-07T08:36:33.895Z",
+            "durationMs": 4181
+          },
+          {
+            "afterPosition": 32,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:36:40.299Z",
+            "beganAt": "2026-10-07T08:36:40.485Z",
+            "until": "2026-10-07T08:36:44.033Z",
+            "durationMs": 3548
+          },
+          {
+            "afterPosition": 33,
+            "kind": "batch",
+            "releasedAt": "2026-10-07T08:36:50.374Z",
+            "beganAt": "2026-10-07T08:36:50.502Z",
+            "until": "2026-10-07T08:40:18.132Z",
+            "durationMs": 207630
+          }
+        ]
+      }
+    },
+    {
+      "name": "B",
+      "runId": "activity-c45b19ab13242e84de929fa6",
+      "result": {
+        "phase": "completed",
+        "planned": 34,
+        "started": 34,
+        "submitted": 34,
+        "succeeded": 34,
+        "failed": 0,
+        "notStarted": 0,
+        "full": 34,
+        "latestUnchanged": 0,
+        "countOnly": 0,
+        "successPerPlanned": 1,
+        "successPerStarted": 1,
+        "remaining": 0,
+        "diagnostics": 0,
+        "observationRows": 34,
+        "observationStrategies": {
+          "full-native": 33,
+          "full-active": 1
+        }
+      },
+      "native": {
+        "matchingRequests": 33,
+        "authorsWithMatchingRequests": 33,
+        "authorsWithUsableFirstPage": 33,
+        "latestUnchanged": 0,
+        "countOnly": 0,
+        "fallbackReasons": {},
+        "nativeUnavailableReasons": {
+          "ACTIVITY_NATIVE_LIST_UNAVAILABLE": 1
+        },
+        "extraListGets": 1,
+        "reusedNativePages": 33,
+        "firstBodyReadBeforeCount": 33,
+        "maximumDecodedFirstPageBytes": 2633660,
+        "maximumFirstBodyReadStartDelayMs": 0
+      },
+      "risk": {
+        "observedAuthors": 34,
+        "securityChallengeAuthors": 0,
+        "http401Authors": 0,
+        "http403Authors": 0,
+        "http429Authors": 0,
+        "loginRequiredAuthors": 0,
+        "httpEvents": [],
+        "failureEvents": [],
+        "stoppedOnFirstFailure": false,
+        "laterAuthorsExposedToSameObservation": true
+      },
+      "timing": {
+        "clickedAt": "2026-10-07T08:44:37.403Z",
+        "clickToAllDataAndAvatarsMs": 624354.1999999881,
+        "clickToSuccessfulDataAndAvatarsMs": 624354.1999999881,
+        "appReportedDisplayMs": 624631.4763,
+        "appReportedClickToSavedMs": 624115.8774000001,
+        "plannedWaitingMs": 379654,
+        "authorWaitingMs": 172682,
+        "batchWaitingMs": 206972,
+        "batchRestProbes": [
+          {
+            "sampledAt": "2026-10-07T08:51:26.990Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          },
+          {
+            "sampledAt": "2026-10-07T08:51:51.492Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          },
+          {
+            "sampledAt": "2026-10-07T08:51:56.991Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          },
+          {
+            "sampledAt": "2026-10-07T08:52:27.585Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          },
+          {
+            "sampledAt": "2026-10-07T08:52:57.591Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          },
+          {
+            "sampledAt": "2026-10-07T08:53:27.599Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          },
+          {
+            "sampledAt": "2026-10-07T08:53:39.923Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          },
+          {
+            "sampledAt": "2026-10-07T08:53:58.111Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          },
+          {
+            "sampledAt": "2026-10-07T08:54:28.116Z",
+            "runId": "activity-c45b19ab13242e84de929fa6",
+            "done": 33,
+            "currentName": null,
+            "waiting": {
+              "kind": "batch",
+              "until": "2026-10-07T08:54:53.628Z",
+              "batchNumber": 2,
+              "totalBatches": 2,
+              "durationMs": 206972
+            },
+            "authorHomepages": 33,
+            "releasedObservations": 33,
+            "nextAuthorHasObservation": false,
+            "observationHash": "02fe391c09e51805c5a7630d18c48629cdd2140d574fd5fff9fdfd53e95db683"
+          }
+        ],
+        "authorWaitDurationsMs": [
+          4873,
+          3224,
+          7205,
+          4760,
+          5541,
+          5321,
+          3813,
+          7458,
+          4216,
+          4462,
+          5407,
+          5088,
+          7266,
+          4753,
+          4506,
+          4626,
+          7464,
+          7102,
+          4441,
+          4340,
+          5756,
+          4306,
+          6368,
+          6197,
+          6079,
+          7995,
+          5486,
+          7041,
+          4507,
+          5489,
+          3875,
+          3717
+        ],
+        "navigationToDecisionTotalMs": 227766,
+        "decisionToSaveAckTotalMs": 4297,
+        "saveAckToReleaseTotalMs": 1594,
+        "boundary": {
+          "afterPosition": 33,
+          "nextPosition": 34,
+          "previousNickname": "袁老师【唯一助理】",
+          "nextNickname": "鹰眼逻辑",
+          "savedAt": "2026-10-07T08:51:26.509Z",
+          "releasedAt": "2026-10-07T08:51:26.538Z",
+          "scheduledStartAt": "2026-10-07T08:51:26.656Z",
+          "firstObservedAt": "2026-10-07T08:51:26.986Z",
+          "scheduledEndAt": "2026-10-07T08:54:53.628Z",
+          "durationMs": 206972,
+          "endObservedAt": "2026-10-07T08:54:54.165Z",
+          "startToEndObservedMs": 207509,
+          "nextNavigationAt": "2026-10-07T08:54:53.825Z",
+          "startToNextNavigationMs": 207169,
+          "releaseBeforePause": true,
+          "nextNavigationAfterPause": true
+        }
+      },
+      "requestUse": {
+        "authorHomepages": 34,
+        "explicitOwnerGets": 0,
+        "ownerVerificationSource": "native-network",
+        "accountPageNavigations": 0,
+        "homepageTrafficStillPresent": true
+      },
+      "preservation": {
+        "recordedAt": "2026-10-07T08:55:11.026Z",
+        "allOldRowsUnchanged": true,
+        "settingsUnchanged": true,
+        "starredAndNotesPreserved": true,
+        "historicalSnapshotsPreserved": true,
+        "databaseIntegrity": "ok",
+        "foreignKeyViolations": 0,
+        "tables": {
+          "following-directory.sqlite": {
+            "creator_activity_attempts": {
+              "before": 635,
+              "after": 669,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_checks": {
+              "before": 23,
+              "after": 23,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_diagnostics": {
+              "before": 2,
+              "after": 2,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_observations": {
+              "before": 70,
+              "after": 104,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_runs": {
+              "before": 63,
+              "after": 64,
+              "oldRowsUnchanged": true
+            },
+            "creator_activity_snapshots": {
+              "before": 612,
+              "after": 646,
+              "oldRowsUnchanged": true
+            },
+            "directory_creators": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "directory_runs": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "following_account_owners": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "following_basic_fields": {
+              "before": 295,
+              "after": 295,
+              "oldRowsUnchanged": true
+            },
+            "following_basic_runs": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "following_list_pages": {
+              "before": 15,
+              "after": 15,
+              "oldRowsUnchanged": true
+            },
+            "following_list_plans": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "visible_directory_creators": {
+              "before": 515,
+              "after": 515,
+              "oldRowsUnchanged": true
+            },
+            "visible_directory_runs": {
+              "before": 15,
+              "after": 15,
+              "oldRowsUnchanged": true
+            }
+          },
+          "signal-desk.sqlite": {
+            "analyses": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "analysis_batches": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "app_settings": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "audit_events": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "collection_checkpoints": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "comments": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "creator_tags": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "creators": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "evidence_frames": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "inbox_states": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "interest_weights": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "jobs": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "metric_snapshots": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "ocr_blocks": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "owner_accounts": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "search_index": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "search_index_config": {
+              "before": 1,
+              "after": 1,
+              "oldRowsUnchanged": true
+            },
+            "search_index_content": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "search_index_data": {
+              "before": 2,
+              "after": 2,
+              "oldRowsUnchanged": true
+            },
+            "search_index_docsize": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "search_index_idx": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "sync_runs": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "taxonomy_tags": {
+              "before": 22,
+              "after": 22,
+              "oldRowsUnchanged": true
+            },
+            "transcript_segments": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "work_keywords": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "work_tags": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            },
+            "works": {
+              "before": 0,
+              "after": 0,
+              "oldRowsUnchanged": true
+            }
+          }
+        }
+      },
+      "validation": {
+        "allCommittedResultsReplayed": true,
+        "allAuthorAndOwnerAssociationsVerified": true,
+        "lightChecksRetainedFullCheckDates": true,
+        "observationSchemaValidated": true,
+        "allSuccessfulObservationsReleased": true,
+        "releaseBeforeEveryWait": true,
+        "waitChecks": [
+          {
+            "afterPosition": 1,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:44:44.638Z",
+            "beganAt": "2026-10-07T08:44:44.652Z",
+            "until": "2026-10-07T08:44:49.525Z",
+            "durationMs": 4873
+          },
+          {
+            "afterPosition": 2,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:44:55.624Z",
+            "beganAt": "2026-10-07T08:44:55.660Z",
+            "until": "2026-10-07T08:44:58.884Z",
+            "durationMs": 3224
+          },
+          {
+            "afterPosition": 3,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:45:06.408Z",
+            "beganAt": "2026-10-07T08:45:06.527Z",
+            "until": "2026-10-07T08:45:13.732Z",
+            "durationMs": 7205
+          },
+          {
+            "afterPosition": 4,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:45:19.282Z",
+            "beganAt": "2026-10-07T08:45:19.397Z",
+            "until": "2026-10-07T08:45:24.157Z",
+            "durationMs": 4760
+          },
+          {
+            "afterPosition": 5,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:45:30.398Z",
+            "beganAt": "2026-10-07T08:45:30.412Z",
+            "until": "2026-10-07T08:45:35.953Z",
+            "durationMs": 5541
+          },
+          {
+            "afterPosition": 6,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:45:42.440Z",
+            "beganAt": "2026-10-07T08:45:42.774Z",
+            "until": "2026-10-07T08:45:48.095Z",
+            "durationMs": 5321
+          },
+          {
+            "afterPosition": 7,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:45:54.395Z",
+            "beganAt": "2026-10-07T08:45:54.507Z",
+            "until": "2026-10-07T08:45:58.320Z",
+            "durationMs": 3813
+          },
+          {
+            "afterPosition": 8,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:46:04.455Z",
+            "beganAt": "2026-10-07T08:46:04.600Z",
+            "until": "2026-10-07T08:46:12.058Z",
+            "durationMs": 7458
+          },
+          {
+            "afterPosition": 9,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:46:20.730Z",
+            "beganAt": "2026-10-07T08:46:20.820Z",
+            "until": "2026-10-07T08:46:25.036Z",
+            "durationMs": 4216
+          },
+          {
+            "afterPosition": 10,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:46:31.547Z",
+            "beganAt": "2026-10-07T08:46:31.679Z",
+            "until": "2026-10-07T08:46:36.141Z",
+            "durationMs": 4462
+          },
+          {
+            "afterPosition": 11,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:46:42.416Z",
+            "beganAt": "2026-10-07T08:46:42.512Z",
+            "until": "2026-10-07T08:46:47.919Z",
+            "durationMs": 5407
+          },
+          {
+            "afterPosition": 12,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:46:55.434Z",
+            "beganAt": "2026-10-07T08:46:55.627Z",
+            "until": "2026-10-07T08:47:00.715Z",
+            "durationMs": 5088
+          },
+          {
+            "afterPosition": 13,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:47:07.238Z",
+            "beganAt": "2026-10-07T08:47:07.437Z",
+            "until": "2026-10-07T08:47:14.703Z",
+            "durationMs": 7266
+          },
+          {
+            "afterPosition": 14,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:47:21.703Z",
+            "beganAt": "2026-10-07T08:47:21.832Z",
+            "until": "2026-10-07T08:47:26.585Z",
+            "durationMs": 4753
+          },
+          {
+            "afterPosition": 15,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:47:34.539Z",
+            "beganAt": "2026-10-07T08:47:34.632Z",
+            "until": "2026-10-07T08:47:39.138Z",
+            "durationMs": 4506
+          },
+          {
+            "afterPosition": 16,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:47:45.302Z",
+            "beganAt": "2026-10-07T08:47:45.434Z",
+            "until": "2026-10-07T08:47:50.060Z",
+            "durationMs": 4626
+          },
+          {
+            "afterPosition": 17,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:47:57.616Z",
+            "beganAt": "2026-10-07T08:47:57.630Z",
+            "until": "2026-10-07T08:48:05.094Z",
+            "durationMs": 7464
+          },
+          {
+            "afterPosition": 18,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:48:12.585Z",
+            "beganAt": "2026-10-07T08:48:12.766Z",
+            "until": "2026-10-07T08:48:19.868Z",
+            "durationMs": 7102
+          },
+          {
+            "afterPosition": 19,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:48:26.275Z",
+            "beganAt": "2026-10-07T08:48:26.467Z",
+            "until": "2026-10-07T08:48:30.908Z",
+            "durationMs": 4441
+          },
+          {
+            "afterPosition": 20,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:48:39.478Z",
+            "beganAt": "2026-10-07T08:48:39.521Z",
+            "until": "2026-10-07T08:48:43.861Z",
+            "durationMs": 4340
+          },
+          {
+            "afterPosition": 21,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:48:51.353Z",
+            "beganAt": "2026-10-07T08:48:51.462Z",
+            "until": "2026-10-07T08:48:57.218Z",
+            "durationMs": 5756
+          },
+          {
+            "afterPosition": 22,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:49:04.508Z",
+            "beganAt": "2026-10-07T08:49:04.578Z",
+            "until": "2026-10-07T08:49:08.884Z",
+            "durationMs": 4306
+          },
+          {
+            "afterPosition": 23,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:49:15.446Z",
+            "beganAt": "2026-10-07T08:49:15.578Z",
+            "until": "2026-10-07T08:49:21.946Z",
+            "durationMs": 6368
+          },
+          {
+            "afterPosition": 24,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:49:30.702Z",
+            "beganAt": "2026-10-07T08:49:30.834Z",
+            "until": "2026-10-07T08:49:37.031Z",
+            "durationMs": 6197
+          },
+          {
+            "afterPosition": 25,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:49:43.768Z",
+            "beganAt": "2026-10-07T08:49:43.782Z",
+            "until": "2026-10-07T08:49:49.861Z",
+            "durationMs": 6079
+          },
+          {
+            "afterPosition": 26,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:49:57.496Z",
+            "beganAt": "2026-10-07T08:49:57.553Z",
+            "until": "2026-10-07T08:50:05.548Z",
+            "durationMs": 7995
+          },
+          {
+            "afterPosition": 27,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:50:12.389Z",
+            "beganAt": "2026-10-07T08:50:12.523Z",
+            "until": "2026-10-07T08:50:18.009Z",
+            "durationMs": 5486
+          },
+          {
+            "afterPosition": 28,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:50:25.458Z",
+            "beganAt": "2026-10-07T08:50:25.574Z",
+            "until": "2026-10-07T08:50:32.615Z",
+            "durationMs": 7041
+          },
+          {
+            "afterPosition": 29,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:50:40.390Z",
+            "beganAt": "2026-10-07T08:50:40.489Z",
+            "until": "2026-10-07T08:50:44.996Z",
+            "durationMs": 4507
+          },
+          {
+            "afterPosition": 30,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:50:52.368Z",
+            "beganAt": "2026-10-07T08:50:52.704Z",
+            "until": "2026-10-07T08:50:58.193Z",
+            "durationMs": 5489
+          },
+          {
+            "afterPosition": 31,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:51:05.308Z",
+            "beganAt": "2026-10-07T08:51:05.435Z",
+            "until": "2026-10-07T08:51:09.310Z",
+            "durationMs": 3875
+          },
+          {
+            "afterPosition": 32,
+            "kind": "author",
+            "releasedAt": "2026-10-07T08:51:16.548Z",
+            "beganAt": "2026-10-07T08:51:16.627Z",
+            "until": "2026-10-07T08:51:20.344Z",
+            "durationMs": 3717
+          },
+          {
+            "afterPosition": 33,
+            "kind": "batch",
+            "releasedAt": "2026-10-07T08:51:26.538Z",
+            "beganAt": "2026-10-07T08:51:26.656Z",
+            "until": "2026-10-07T08:54:53.628Z",
+            "durationMs": 206972
+          }
+        ]
+      }
+    }
+  ],
+  "betweenRunsCooldown": {
+    "recordedAt": "2026-10-07T08:40:40.741Z",
+    "kind": "between-validation-runs",
+    "fromRun": "activity-72043dae83a2e2b8afb1b13a",
+    "fromReleaseAt": "2026-10-07T08:40:25.660Z",
+    "durationMs": 248979,
+    "until": "2026-10-07T08:44:34.639Z",
+    "reason": "Keep a production-range pause before the second independently selected APP run; excluded from each click-to-usable metric.",
+    "actualFromLastReleaseToSecondClickMs": 251743
+  },
+  "preservation": {
+    "allPriorRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "creators": 295,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "cumulativeWithPreviousRun": {
+    "runs": 3,
+    "uniquePlanned": 102,
+    "uniqueStarted": 102,
+    "succeeded": 102,
+    "full": 84,
+    "latestUnchanged": 18,
+    "countOnly": 0,
+    "usableNativeFirstPage": 98,
+    "extraListGets": 4,
+    "securityChallengeAuthors": 0,
+    "http401Authors": 0,
+    "http403Authors": 0,
+    "http429Authors": 0,
+    "loginRequiredAuthors": 0
+  },
+  "limits": [
+    "Two groups and the preceding group use disjoint homepage identities. The 68 newly selected authors lack a usable complete baseline; historical attempts are separately counted.",
+    "The observed numerator and denominator apply only to these runs. Zero observed platform events does not establish zero long-term risk.",
+    "Program waits inside each 34-author run follow the unchanged 33-author production batch boundary. The extra pause between independent runs is separately timed.",
+    "Read-only observations and renderer inspection do not send per-author collection commands. No business retries or additional run begins after a first failure."
+  ],
+  "deployment": {
+    "recordedAt": "2026-10-07T08:56:04.067Z",
+    "appVersion": "0.1.13",
+    "connectorVersion": "0.8.2",
+    "online": true,
+    "ready": true,
+    "creators": 295,
+    "runId": "activity-c45b19ab13242e84de929fa6",
+    "phase": "completed",
+    "succeeded": 34,
+    "failed": 0,
+    "normalShortcutRestored": true,
+    "remoteDebugging": false,
+    "productionExtensionUnchanged": true,
+    "processState": {
+      "rootCount": 1,
+      "remoteDebugging": false,
+      "expectedExecutable": true
+    }
+  }
+}

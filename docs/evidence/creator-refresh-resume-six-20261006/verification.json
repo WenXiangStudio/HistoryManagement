@@ -1,0 +1,230 @@
+{
+  "recordedAt": "2026-10-06T11:41:00.433Z",
+  "appVersion": "0.1.12",
+  "connectorVersion": "0.8.1",
+  "runId": "activity-208c0a2376ed5d38c2eeb91c",
+  "previousRunId": "activity-a78d4256bf911eab4f46f410",
+  "collectionClicks": 1,
+  "action": "APP Continue remaining 6",
+  "result": {
+    "phase": "completed",
+    "total": 6,
+    "done": 6,
+    "succeeded": 6,
+    "failed": 0,
+    "unchanged": 2,
+    "full": 4,
+    "remaining": 0,
+    "diagnostics": 0
+  },
+  "timing": {
+    "clickedAt": "2026-10-06T11:37:49.204Z",
+    "clickToAllDataAndAvatarsMs": 70440,
+    "appReportedDisplayMs": 70614.9676,
+    "localPlannedWaitingMs": 32371,
+    "authorWaitMs": [
+      5911,
+      6234,
+      7094,
+      5511,
+      7621
+    ],
+    "batchPauseObserved": false
+  },
+  "requestUse": {
+    "authorHomepages": 6,
+    "extraListGets": 1,
+    "reusedNativePages": 3,
+    "nativeListRequestsObserved": 4,
+    "explicitOwnerGets": 0,
+    "accountPageNavigations": 0,
+    "homepageTrafficStillPresent": true
+  },
+  "creators": [
+    {
+      "nickname": "小脏kyrie",
+      "creatorId": -1000000444,
+      "mode": "full",
+      "reason": null,
+      "workCount": 521,
+      "weeklyCount": 1,
+      "weeklySource": "current-full-verification",
+      "extraListGets": 0,
+      "nativeRecords": 18,
+      "clickToDataAndAvatarMs": 5684.799999952316,
+      "latestKnownPublishedAt": "2026-10-05T13:58:32.000Z"
+    },
+    {
+      "nickname": "张硕PRO",
+      "creatorId": -1000000445,
+      "mode": "full",
+      "reason": null,
+      "workCount": 43,
+      "weeklyCount": 0,
+      "weeklySource": "current-full-verification",
+      "extraListGets": 1,
+      "nativeRecords": 0,
+      "clickToDataAndAvatarMs": 19371.599999964237,
+      "latestKnownPublishedAt": "2026-09-23T03:49:49.000Z"
+    },
+    {
+      "nickname": "浪花姜",
+      "creatorId": -1000000451,
+      "mode": "unchanged",
+      "reason": "count-unchanged",
+      "workCount": 133,
+      "weeklyCount": 0,
+      "weeklySource": "retained-full-snapshot",
+      "extraListGets": 0,
+      "nativeRecords": 0,
+      "clickToDataAndAvatarMs": 32034.899999976158,
+      "latestKnownPublishedAt": "2026-09-25T09:58:54.000Z"
+    },
+    {
+      "nickname": "那只貂貂",
+      "creatorId": -1000000470,
+      "mode": "unchanged",
+      "reason": "count-unchanged",
+      "workCount": 32,
+      "weeklyCount": 1,
+      "weeklySource": "retained-full-snapshot",
+      "extraListGets": 0,
+      "nativeRecords": 0,
+      "clickToDataAndAvatarMs": 45202.59999996424,
+      "latestKnownPublishedAt": "2026-10-05T12:30:00.000Z"
+    },
+    {
+      "nickname": "期市道德经",
+      "creatorId": -1000000480,
+      "mode": "full",
+      "reason": null,
+      "workCount": 19,
+      "weeklyCount": 1,
+      "weeklySource": "current-full-verification",
+      "extraListGets": 0,
+      "nativeRecords": 18,
+      "clickToDataAndAvatarMs": 56162.19999998808,
+      "latestKnownPublishedAt": "2026-10-06T04:56:07.000Z"
+    },
+    {
+      "nickname": "冷却报告",
+      "creatorId": -1000000515,
+      "mode": "full",
+      "reason": null,
+      "workCount": 139,
+      "weeklyCount": 1,
+      "weeklySource": "current-full-verification",
+      "extraListGets": 0,
+      "nativeRecords": 19,
+      "clickToDataAndAvatarMs": 70440,
+      "latestKnownPublishedAt": "2026-10-06T01:51:17.000Z"
+    }
+  ],
+  "display": {
+    "creatorCards": 295,
+    "uniqueCards": 295,
+    "allSixDataAndAvatarsReady": true,
+    "progress": "已处理 6 位，其中 2 位未更新，4 位完整核验；0 位资料待补齐点击到资料显示 70.61 秒本轮 6 位 · 未到期跳过 0 位 · 未更新 2 位 · 完整核验 4 位计划等待累计 0.5 分钟（包含在全程耗时内）已复用主页列表 3 页 · 额外列表请求 1 次已复用本轮账号响应 · 主动账号核验 0 次 · 专用账号页加载 0 次 · 作者主页加载 6 次 · 观察到平台 GET 92 次"
+  },
+  "originalEightCoverage": {
+    "previouslySucceeded": 2,
+    "newlySucceeded": 6,
+    "uniqueSucceeded": 8,
+    "singleEightAuthorRunCompleted": false
+  },
+  "preservation": {
+    "allOldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "bounds": [
+    "This one bounded resume succeeded; it does not establish a long-term success or challenge rate.",
+    "Six authors stay within one batch; the real 33/34 boundary and 3–5 minute batch pause remain unverified.",
+    "Resume bypasses due filtering; cross-day frequency behavior was not exercised by this run.",
+    "Count-only unchanged checks accept the previously agreed chance of missed changes; weekly values retain their full-snapshot provenance."
+  ],
+  "localDuePlan": {
+    "recordedAt": "2026-10-06T11:41:45.069Z",
+    "localCopyOnly": true,
+    "realCollectionStarted": false,
+    "creators": 295,
+    "currentTiers": {
+      "active": 28,
+      "unknown": 260,
+      "inactive": 4,
+      "regular": 3
+    },
+    "dueCount": 273,
+    "notDueCount": 22,
+    "freshlyCheckedSixWouldSkipAllRefresh": true,
+    "sixSchedules": [
+      {
+        "nickname": "小脏kyrie",
+        "tier": "active",
+        "intervalDays": 1,
+        "lastCheckedAt": "2026-10-06T11:37:54.688Z",
+        "latestKnownPublishedAt": "2026-10-05T13:58:32.000Z",
+        "nextDueAt": "2026-10-06T16:00:00.000Z",
+        "due": false
+      },
+      {
+        "nickname": "张硕PRO",
+        "tier": "active",
+        "intervalDays": 1,
+        "lastCheckedAt": "2026-10-06T11:38:08.254Z",
+        "latestKnownPublishedAt": "2026-09-23T03:49:49.000Z",
+        "nextDueAt": "2026-10-06T16:00:00.000Z",
+        "due": false
+      },
+      {
+        "nickname": "浪花姜",
+        "tier": "active",
+        "intervalDays": 1,
+        "lastCheckedAt": "2026-10-06T11:38:21.053Z",
+        "latestKnownPublishedAt": "2026-09-25T09:58:54.000Z",
+        "nextDueAt": "2026-10-06T16:00:00.000Z",
+        "due": false
+      },
+      {
+        "nickname": "那只貂貂",
+        "tier": "active",
+        "intervalDays": 1,
+        "lastCheckedAt": "2026-10-06T11:38:34.188Z",
+        "latestKnownPublishedAt": "2026-10-05T12:30:00.000Z",
+        "nextDueAt": "2026-10-06T16:00:00.000Z",
+        "due": false
+      },
+      {
+        "nickname": "期市道德经",
+        "tier": "active",
+        "intervalDays": 1,
+        "lastCheckedAt": "2026-10-06T11:38:45.172Z",
+        "latestKnownPublishedAt": "2026-10-06T04:56:07.000Z",
+        "nextDueAt": "2026-10-06T16:00:00.000Z",
+        "due": false
+      },
+      {
+        "nickname": "冷却报告",
+        "tier": "active",
+        "intervalDays": 1,
+        "lastCheckedAt": "2026-10-06T11:38:59.417Z",
+        "latestKnownPublishedAt": "2026-10-06T01:51:17.000Z",
+        "nextDueAt": "2026-10-06T16:00:00.000Z",
+        "due": false
+      }
+    ]
+  },
+  "finalState": {
+    "recordedAt": "2026-10-06T11:42:03.284Z",
+    "connector": "0.8.1",
+    "online": true,
+    "ready": true,
+    "phase": "completed",
+    "runId": "activity-208c0a2376ed5d38c2eeb91c",
+    "total": 6,
+    "succeeded": 6,
+    "remaining": 0,
+    "productionFilesMatchSource": true
+  }
+}

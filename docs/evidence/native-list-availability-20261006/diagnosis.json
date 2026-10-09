@@ -1,0 +1,223 @@
+{
+  "recordedAt": "2026-10-06T11:55:01.982Z",
+  "originalRunId": "activity-208c0a2376ed5d38c2eeb91c",
+  "originalChecks": [
+    {
+      "nickname": "浪花姜",
+      "reason": "count-unchanged",
+      "nativeListRequests": 0
+    },
+    {
+      "nickname": "那只貂貂",
+      "reason": "count-unchanged",
+      "nativeListRequests": 0
+    }
+  ],
+  "implementation": {
+    "listenerInstalledBeforeNavigation": true,
+    "availablePageIsSingleAvailabilityCheck": true,
+    "noRequestOrPendingResponseReturnsNullImmediately": true,
+    "loadedResponseBodyReadTimeoutMs": 500,
+    "lazyBodyReadAfterCount": true,
+    "perResourceBufferBytes": 4194304,
+    "totalBufferBytes": 16777216
+  },
+  "liveReadOnlyProbes": [
+    {
+      "nickname": "浪花姜",
+      "decision": {
+        "ms": 5860,
+        "count": 133,
+        "nativeRequests": 1,
+        "available": {
+          "ready": false,
+          "errorCode": "ACTIVITY_NATIVE_BODY_UNAVAILABLE",
+          "records": 0,
+          "sourceKind": null
+        }
+      },
+      "late": {
+        "ms": 6126,
+        "nativeRequests": 1,
+        "available": {
+          "ready": false,
+          "errorCode": "ACTIVITY_NATIVE_BODY_UNAVAILABLE",
+          "records": 0,
+          "sourceKind": null
+        }
+      },
+      "pageWorkLinks": 26,
+      "listRequest": {
+        "ms": 2551,
+        "event": "request",
+        "endpoint": "/aweme/v1/web/aweme/post/",
+        "method": "GET",
+        "childSession": false,
+        "authorRelation": "match",
+        "cursor": 0
+      },
+      "bodyReads": null,
+      "detaches": 0
+    },
+    {
+      "nickname": "那只貂貂",
+      "decision": {
+        "ms": 7765,
+        "count": 32,
+        "nativeRequests": 1,
+        "available": {
+          "ready": true,
+          "errorCode": null,
+          "records": 20,
+          "sourceKind": "native-network"
+        }
+      },
+      "late": {
+        "ms": 7940,
+        "nativeRequests": 1,
+        "available": {
+          "ready": true,
+          "errorCode": null,
+          "records": 20,
+          "sourceKind": "native-network"
+        }
+      },
+      "pageWorkLinks": 28,
+      "listRequest": {
+        "ms": 2395,
+        "event": "request",
+        "endpoint": "/aweme/v1/web/aweme/post/",
+        "method": "GET",
+        "childSession": false,
+        "authorRelation": "match",
+        "cursor": 0
+      },
+      "bodyReads": null,
+      "detaches": 0
+    },
+    {
+      "nickname": "浪花姜",
+      "decision": {
+        "ms": 5886,
+        "count": 133,
+        "nativeRequests": 1,
+        "available": {
+          "ready": false,
+          "errorCode": "ACTIVITY_NATIVE_BODY_UNAVAILABLE",
+          "records": 0,
+          "sourceKind": null
+        }
+      },
+      "late": {
+        "ms": 5940,
+        "nativeRequests": 1,
+        "available": {
+          "ready": false,
+          "errorCode": "ACTIVITY_NATIVE_BODY_UNAVAILABLE",
+          "records": 0,
+          "sourceKind": null
+        }
+      },
+      "pageWorkLinks": 26,
+      "listRequest": {
+        "ms": 2454,
+        "event": "request",
+        "endpoint": "/aweme/v1/web/aweme/post/",
+        "method": "GET",
+        "childSession": false,
+        "authorRelation": "match",
+        "cursor": 0,
+        "responseMs": 3496,
+        "status": 200,
+        "fromDiskCache": false,
+        "fromServiceWorker": false,
+        "loadedMs": 3761,
+        "encodedBytes": 2398606
+      },
+      "bodyReads": [
+        {
+          "beganMs": 5844,
+          "endedMs": 5886,
+          "error": "COMMAND_FAILED",
+          "bytes": null
+        }
+      ],
+      "detaches": 0
+    },
+    {
+      "nickname": "浪花姜",
+      "decision": {
+        "ms": 6497,
+        "count": 133,
+        "nativeRequests": 1,
+        "available": {
+          "ready": true,
+          "errorCode": null,
+          "records": 18,
+          "sourceKind": "native-network"
+        }
+      },
+      "late": {
+        "ms": 6534,
+        "nativeRequests": 1,
+        "available": {
+          "ready": true,
+          "errorCode": null,
+          "records": 18,
+          "sourceKind": "native-network"
+        }
+      },
+      "pageWorkLinks": 26,
+      "listRequest": {
+        "ms": 2463,
+        "event": "request",
+        "endpoint": "/aweme/v1/web/aweme/post/",
+        "method": "GET",
+        "childSession": false,
+        "authorRelation": "match",
+        "cursor": 0,
+        "responseMs": 3747,
+        "status": 200,
+        "fromDiskCache": false,
+        "fromServiceWorker": false,
+        "loadedMs": 3909,
+        "encodedBytes": 120079
+      },
+      "bodyReads": [
+        {
+          "beganMs": 6368,
+          "endedMs": 6494,
+          "error": null,
+          "bytes": 1203823
+        }
+      ],
+      "detaches": 0
+    }
+  ],
+  "confirmed": [
+    "Both authors can supply native lists in later observations: 20 records for 那只貂貂 and 18 for 浪花姜.",
+    "浪花姜 twice had a matching HTTP200 loaded list and visible work links but no usable body; one instrumented probe confirms Chrome Network.getResponseBody rejection.",
+    "The count-based decision does not wait for missing or pending native requests; it is a point-in-time availability decision.",
+    "The observing listener is installed before navigation, so the simple claim that it was added after the page loaded is unsupported."
+  ],
+  "unconfirmed": [
+    "The original two count-only successes did not persist detailed per-author network/command traces; their exact reason for observing zero matching native requests cannot be reconstructed.",
+    "A later getResponseBody rejection does not prove that the original zero-request runs failed at the body-read stage.",
+    "The precise browser rejection cause, including whether body-size or buffer eviction was involved, was not captured; response-size variation is a clue only."
+  ],
+  "scope": {
+    "homepageNavigations": 4,
+    "explicitListGets": 0,
+    "businessRefreshClicks": 0,
+    "dailyDatabaseTouched": false,
+    "productCodeChanged": false
+  },
+  "cleanup": {
+    "allCurrentProbeTabsClosed": true,
+    "diagnosticFilesRemoved": true,
+    "productionFilesMatchSource": true,
+    "originalRunStateUnchanged": true,
+    "connectionOnline": true,
+    "ready": true
+  }
+}

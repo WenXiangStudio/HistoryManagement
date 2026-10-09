@@ -16,6 +16,43 @@ function fixture(){
 }
 afterEach(()=>vi.useRealTimers())
 describe('persistent per-account metadata refresh',()=>{
+  it('persists scoped observations across restart without granting author-write permission, and rejects secrets and finished-record rewrites',()=>{
+    const f=fixture();try{
+      const run=f.service.begin('owner',[f.target],undefined,false,true),time=new Date().toISOString()
+      const observation={contract:'signaldesk-activity-observation/v1' as const,creatorId:f.target.id,secUid:f.target.secUid,capturedAt:time,
+        phase:'prepared' as const,stage:'preparing-context' as const,strategy:'pending' as const,countSame:null,errorCode:null,
+        milestones:[{step:'listener-ready' as const,at:time}],native:null,network:{events:[],documents:[],dropped:0,scriptExceptions:0},browser:{commands:[],connections:[],dropped:0}}
+      expect(()=>f.service.progress(run.runId,{readObservation:{...observation,secUid:'other'}})).toThrow('不属于')
+      expect(()=>f.service.progress(run.runId,{readObservation:{...observation,capturedAt:'2026-01-01T00:00:00.000Z'}})).toThrow('时间')
+      expect(()=>f.service.progress(run.runId,{readObservation:{...observation,cookie:'secret'} as never})).toThrow()
+      f.service.progress(run.runId,{readObservation:observation})
+      expect(()=>f.service.receive(run.runId,f.target.id,f.source())).toThrow('尚未核验')
+      const ended={...observation,phase:'failed' as const,strategy:'failed' as const,errorCode:'DEBUGGER_NOT_ATTACHED'}
+      f.service.progress(run.runId,{readObservation:ended})
+      expect(()=>f.service.progress(run.runId,{readObservation:observation})).toThrow('不得覆盖')
+      expect(()=>f.service.progress(run.runId,{readObservation:{...ended,errorCode:'OTHER'}})).toThrow('不得覆盖')
+      f.service.progress(run.runId,{blocked:true,errorCode:ended.errorCode})
+      const restored=new CreatorActivityService(f.store.db,()=>{});expect(restored.status('owner').phase).toBe('blocked')
+      expect(JSON.parse(String(f.store.db.prepare('SELECT observation_json FROM creator_activity_observations').get()?.observation_json))).toEqual(ended)
+      expect(f.store.db.prepare('SELECT COUNT(*) AS n FROM creator_activity_snapshots').get()?.n).toBe(0)
+      expect(f.store.list()[0]).toMatchObject({isStarred:true,note:'必须保留批注'})
+    }finally{f.store.close()}
+  })
+  it('accepts waiting-stage diagnostics and tells the user that a lost connection stopped remaining authors',()=>{
+    const f=fixture();try{
+      const run=f.service.begin('owner',[f.target],undefined,false,true)
+      const failureDiagnostic={contract:'signaldesk-activity-failure/v1' as const,creatorId:f.target.id,secUid:f.target.secUid,capturedAt:new Date().toISOString(),
+        errorCode:'DEBUGGER_NOT_ATTACHED',stage:'author-wait' as const,capturePhase:'frozen' as const,retainedTabId:null,
+        page:null,pageError:null,screenshot:null,screenshotError:null,
+        network:{events:[],documents:[],navigationRequests:[{at:new Date().toISOString(),frame:'child' as const,protocol:'custom' as const}],dropped:0,scriptExceptions:0},attempts:[],
+        browser:{commands:[],connections:[{at:new Date().toISOString(),event:'detach-requested' as const,reason:null},{at:new Date().toISOString(),event:'detached' as const,reason:'target_closed' as const,expected:true}],dropped:0}}
+      f.service.progress(run.runId,{failureDiagnostic})
+      const state=f.service.progress(run.runId,{blocked:true,errorCode:'DEBUGGER_NOT_ATTACHED'})
+      expect(state.phase).toBe('blocked');expect(state.message).toContain('浏览器读取连接已断开');expect(state.message).toContain('手动继续剩余博主')
+      expect(f.store.db.prepare('SELECT COUNT(*) AS n FROM creator_activity_snapshots').get()?.n).toBe(0)
+      expect(f.store.list()[0]).toMatchObject({isStarred:true,note:'必须保留批注'})
+    }finally{f.store.close()}
+  })
   it('persists first failure immediately, then adds capture results without replacing original evidence',()=>{
     const f=fixture();try{
       const run=f.service.begin('owner',[f.target],undefined,false,true)

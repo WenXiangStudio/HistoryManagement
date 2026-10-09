@@ -1,10 +1,20 @@
 import { randomBytes } from 'node:crypto'
 import type { DatabaseSync } from 'node:sqlite'
-import { acceptCreatorActivity, calendarWeek, classifyActivityVisibility, creatorActivityProgressSchema, type CreatorActivityProgress, type CreatorActivitySnapshot, type CreatorActivityState, type CreatorActivityView } from '../shared/creatorActivity'
+import { acceptCreatorActivity, calendarWeek, classifyActivityVisibility, creatorActivityProgressSchema, creatorActivityUnchangedSchema, type CreatorActivityProgress, type CreatorActivitySnapshot, type CreatorActivityState, type CreatorActivityView, type CreatorActivityCapture, type CreatorActivityUnchanged } from '../shared/creatorActivity'
 import type { CreatorListItem } from '../shared/contracts'
+import { creatorRefreshSchedule, latestWorkFingerprint, assessRecentActivity, CREATOR_REFRESH_SCOPE_LABELS, type CreatorRefreshScope, type CreatorRefreshBaseline, type CreatorRefreshPacing } from '../shared/creatorRefreshPolicy'
+import {nativeListUnavailableMessage} from '../shared/creatorActivityObservation'
+import {creatorPublicationInterval,type CreatorPublicationSource,type CreatorPublicationInterval} from '../shared/creatorPublicationInterval'
+import type {CreatorPriorityState} from '../shared/creatorPriority'
+import {compareCreatorContinuity,currentPublicWorks,hasCompletePublicList} from '../shared/creatorActivityContinuity'
+import {CreatorActivityIntegrityStore} from './creatorActivityIntegrityStore'
 
-export type ActivityTarget = {id: number; secUid: string; uid: string | null; nickname: string}
+export type ActivityTarget = {id: number; secUid: string; uid: string | null; nickname: string; baseline?:CreatorRefreshBaseline;comparisonBaseline?:CreatorRefreshBaseline;repair?:boolean}
+type ActivityCommand={action:'activity';runId:string;ownerSecUid:string;ownerUid:string|null;targets:ActivityTarget[];
+  pacing?:CreatorRefreshPacing;initialWaitUntil?:string;weekStart:string;weekEndExclusive:string}
+type ActivityOptions={pacing?:CreatorRefreshPacing;scope?:CreatorRefreshScope}
 export class CreatorActivityService {
+  private readonly integrity:CreatorActivityIntegrityStore
   private state: CreatorActivityState
   private owner: string | null = null
   private targets: ActivityTarget[] = []
@@ -12,6 +22,9 @@ export class CreatorActivityService {
   private received = new Set<number>()
   private readonly snapshotCache = new Map<number,CreatorActivitySnapshot>()
   private expectedOwnerUid:string|null=null
+  private readonly fingerprintCache=new Map<number,ReturnType<typeof latestWorkFingerprint>>()
+  private readonly baselineCache=new Map<number,CreatorRefreshBaseline>()
+  private publicationCache:{owner:string;revision:string;sources:Map<string,CreatorPublicationSource[]>;intervals:Map<string,CreatorPublicationInterval>}|undefined
   constructor(private readonly db: DatabaseSync, private readonly changed: () => void) {
     const week = calendarWeek()
     this.state = {phase:'idle',runId:null,message:'更新作品总数与本周动态',total:0,done:0,succeeded:0,failed:0,
@@ -25,7 +38,14 @@ export class CreatorActivityService {
         PRIMARY KEY(run_id,creator_sec_uid)) STRICT;
       CREATE TABLE IF NOT EXISTS creator_activity_diagnostics(run_id TEXT NOT NULL REFERENCES creator_activity_runs(run_id),
         owner_sec_uid TEXT NOT NULL,creator_sec_uid TEXT NOT NULL,captured_at TEXT NOT NULL,diagnostic_json TEXT NOT NULL,
+        PRIMARY KEY(run_id,creator_sec_uid)) STRICT;
+      CREATE TABLE IF NOT EXISTS creator_activity_checks(id INTEGER PRIMARY KEY,run_id TEXT NOT NULL REFERENCES creator_activity_runs(run_id),
+        owner_sec_uid TEXT NOT NULL,creator_sec_uid TEXT NOT NULL,checked_at TEXT NOT NULL,baseline_snapshot_id INTEGER NOT NULL REFERENCES creator_activity_snapshots(id),
+        check_json TEXT NOT NULL,UNIQUE(run_id,creator_sec_uid)) STRICT;
+      CREATE TABLE IF NOT EXISTS creator_activity_observations(run_id TEXT NOT NULL REFERENCES creator_activity_runs(run_id),
+        owner_sec_uid TEXT NOT NULL,creator_sec_uid TEXT NOT NULL,captured_at TEXT NOT NULL,observation_json TEXT NOT NULL,
         PRIMARY KEY(run_id,creator_sec_uid)) STRICT;`)
+    this.integrity=new CreatorActivityIntegrityStore(db)
   }
   status(owner: string | null): CreatorActivityState {
     if (owner !== this.owner) {
@@ -33,7 +53,7 @@ export class CreatorActivityService {
       const row = owner ? this.db.prepare('SELECT state_json FROM creator_activity_runs WHERE owner_sec_uid=? ORDER BY rowid DESC LIMIT 1').get(owner) : null
       if (row) {
         this.state = JSON.parse(String(row.state_json))
-        if (this.state.phase === 'running') {this.state.phase='cancelled';this.state.currentName=null;this.state.message='上次刷新已中断，可继续剩余博主';this.persist()}
+        if (this.state.phase === 'running') {this.state.phase='cancelled';this.state.currentName=null;this.state.resumeWaitUntil=this.state.waiting?.until??null;this.state.waiting=null;this.state.message='上次刷新已中断，可继续剩余博主';this.persist()}
       } else {const week=calendarWeek();this.state={phase:'idle',runId:null,message:'更新作品总数与本周动态',total:0,done:0,succeeded:0,failed:0,currentName:null,remainingIds:[],startedAt:null,weekStart:week.start,weekEndExclusive:week.endExclusive}}
     }
     return {...this.state,remainingIds:[...this.state.remainingIds]}
@@ -42,25 +62,89 @@ export class CreatorActivityService {
     if(this.owner&&this.state.runId)this.db.prepare('INSERT INTO creator_activity_runs VALUES(?,?,?) ON CONFLICT(run_id) DO UPDATE SET state_json=excluded.state_json')
       .run(this.state.runId,this.owner,JSON.stringify(this.state))
   }
-  begin(owner: string, allTargets: ActivityTarget[], creatorId?: number, resume=false,requireOwnerVerification=false) {
+  private baseline(owner:string,secUid:string):CreatorRefreshBaseline|undefined{
+    const row=this.db.prepare("SELECT id,snapshot_json,capture_json FROM creator_activity_snapshots WHERE owner_sec_uid=? AND creator_sec_uid=? AND id NOT IN (SELECT snapshot_id FROM creator_activity_reviews) AND json_extract(snapshot_json,'$.coverage')<>'partial' AND json_extract(snapshot_json,'$.errorCode') IS NULL AND json_extract(snapshot_json,'$.workCount') IS NOT NULL ORDER BY id DESC LIMIT 1").get(owner,secUid)
+    if(!row)return
+    const cached=this.baselineCache.get(Number(row.id));if(cached)return cached
+    const capture=JSON.parse(String(row.capture_json)) as CreatorActivityCapture
+    if(!['signaldesk-creator-activity/v6','signaldesk-creator-activity/v7','signaldesk-creator-activity/v8'].includes(capture.contract))return
+    let fingerprint=this.fingerprintCache.get(Number(row.id))
+    if(!fingerprint){fingerprint=latestWorkFingerprint(capture);this.fingerprintCache.set(Number(row.id),fingerprint)}
+    if(!fingerprint.ready)return
+    const works=currentPublicWorks(capture),anchor=[...works.values()].filter(work=>work.pinned===false).sort((a,b)=>Date.parse(b.publishedAt)-Date.parse(a.publishedAt))[0]
+    const baseline:CreatorRefreshBaseline={snapshotId:Number(row.id),workCount:(JSON.parse(String(row.snapshot_json)) as CreatorActivitySnapshot).workCount!,latest:fingerprint.latest,
+      knownWorkIds:[...works.keys()],anchor:anchor?{workId:anchor.workId,publishedAt:anchor.publishedAt}:null}
+    this.baselineCache.set(Number(row.id),baseline);return baseline
+  }
+  private schedule(owner:string,secUid:string,interval:CreatorPublicationInterval,at:Date=new Date(),priority?:CreatorPriorityState){
+    const baseline=this.baseline(owner,secUid)
+    const full=this.db.prepare("SELECT checked_at FROM creator_activity_snapshots WHERE owner_sec_uid=? AND creator_sec_uid=? AND id NOT IN (SELECT snapshot_id FROM creator_activity_reviews) AND json_extract(snapshot_json,'$.coverage')<>'partial' AND json_extract(snapshot_json,'$.errorCode') IS NULL ORDER BY id DESC LIMIT 1").get(owner,secUid)
+    const check=this.db.prepare('SELECT checked_at FROM creator_activity_checks WHERE owner_sec_uid=? AND creator_sec_uid=? ORDER BY id DESC LIMIT 1').get(owner,secUid)
+    const checked=[full?.checked_at,check?.checked_at].filter(Boolean).map(String).sort().at(-1)??null
+    const schedule=creatorRefreshSchedule(baseline?.latest?.publishedAt??null,checked,interval.meanHours,at,priority)
+    if(!baseline)schedule.due=true
+    return schedule
+  }
+  begin(owner:string,allTargets:ActivityTarget[],creatorId?:number,resume?:boolean,requireOwnerVerification?:boolean):ActivityCommand
+  begin(owner:string,allTargets:ActivityTarget[],creatorId:number|undefined,resume:boolean,requireOwnerVerification:boolean,options:ActivityOptions):ActivityCommand|null
+  begin(owner: string, allTargets: ActivityTarget[], creatorId?: number, resume=false,requireOwnerVerification=false,
+    options?:ActivityOptions):ActivityCommand|null {
     this.status(owner)
     if(this.state.phase==='running')throw new Error('本轮资料刷新正在进行')
     const remaining = new Set(this.state.remainingIds)
+    const initialWaitUntil=resume&&this.state.resumeWaitUntil&&Date.parse(this.state.resumeWaitUntil)>Date.now()?this.state.resumeWaitUntil:undefined
     this.targets = creatorId === undefined ? resume ? allTargets.filter(item=>remaining.has(item.id)) : allTargets : allTargets.filter(item=>item.id===creatorId)
     if(!this.targets.length)throw new Error('没有需要刷新的博主')
+    const repair=resume?!!this.state.repair:creatorId!==undefined&&!!this.integrity.pending(owner,this.targets[0].secUid)
+    // Every comparison uses the last accepted baseline. A repair never takes an unchanged shortcut.
+    this.targets=this.targets.map(target=>{const baseline=this.baseline(owner,target.secUid);return {...target,comparisonBaseline:baseline,
+      ...(options&&creatorId===undefined&&!repair?{baseline}:{}),...(repair?{repair:true}:{})}})
     this.expectedOwnerUid=String(this.db.prepare('SELECT uid FROM following_account_owners WHERE sec_uid=?').get(owner)?.uid||'')||null
     if(requireOwnerVerification&&!this.expectedOwnerUid)throw Error('账号原生身份尚未绑定')
     this.received.clear();this.started=performance.now()
     const week=calendarWeek()
-    this.state={phase:'running',runId:'activity-'+randomBytes(12).toString('hex'),message:`正在读取 ${this.targets.length} 位博主的主页作品数与本周动态`,
+    const scope=resume?this.state.scope:options?.scope
+    this.state={phase:'running',runId:'activity-'+randomBytes(12).toString('hex'),scope,repair,anomalyCount:0,message:`${repair?'核验并补齐 · ':scope?CREATOR_REFRESH_SCOPE_LABELS[scope]+' · ':''}正在读取 ${this.targets.length} 位博主的主页作品数与更新状态`,
       total:this.targets.length,done:0,succeeded:0,failed:0,currentName:null,remainingIds:this.targets.map(item=>item.id),startedAt:new Date().toISOString(),weekStart:week.start,weekEndExclusive:week.endExclusive,
-      activeListRequests:0,reusedNativePages:0,observedNativeListRequests:0,excludedNonPublicCount:0,unverifiedVisibilityCount:0,ownerVerificationRequired:requireOwnerVerification}
+      activeListRequests:0,reusedNativePages:0,observedNativeListRequests:0,excludedNonPublicCount:0,unverifiedVisibilityCount:0,ownerVerificationRequired:requireOwnerVerification,
+      pacing:options?.pacing,notDueCount:0,unchangedCount:0,fullRefreshCount:0,plannedWaitingMs:0,waiting:null,mode:resume?'resume':'manual'}
     this.persist();this.changed()
-    return {action:'activity' as const,runId:this.state.runId!,ownerSecUid:owner,ownerUid:this.expectedOwnerUid,targets:this.targets,weekStart:week.start,weekEndExclusive:week.endExclusive}
+    return {action:'activity' as const,runId:this.state.runId!,ownerSecUid:owner,ownerUid:this.expectedOwnerUid,targets:this.targets,
+      pacing:options?.pacing,initialWaitUntil,weekStart:week.start,weekEndExclusive:week.endExclusive}
   }
   progress(runId: string, values: CreatorActivityProgress): CreatorActivityState {
     this.requireRun(runId)
     const input=creatorActivityProgressSchema.parse(values)
+    if(input.readObservation){
+      const value=input.readObservation,target=this.targets.find(t=>t.id===value.creatorId)
+      if(!target||target.secUid!==value.secUid)throw Error('监听记录不属于本轮博主')
+      const time=Date.parse(value.capturedAt)
+      if(time<Date.parse(this.state.startedAt!)||time>Date.now()+60000)throw Error('监听记录时间无效')
+      const prior=this.db.prepare('SELECT observation_json FROM creator_activity_observations WHERE run_id=? AND creator_sec_uid=?').get(runId,target.secUid)
+      if(prior){
+        const old=JSON.parse(String(prior.observation_json)),order={prepared:0,decision:1,saved:2,released:3,failed:3}
+        if(['released','failed'].includes(old.phase)&&JSON.stringify(old)!==JSON.stringify(value))throw Error('已结束的监听记录不得覆盖')
+        if(time<Date.parse(old.capturedAt)||order[value.phase]<order[old.phase as keyof typeof order])throw Error('监听阶段不得倒退')
+      }
+      // Observations explain acquisition, never authorize account/author data.
+      this.db.prepare('INSERT INTO creator_activity_observations VALUES(?,?,?,?,?) ON CONFLICT(run_id,creator_sec_uid) DO UPDATE SET captured_at=excluded.captured_at,observation_json=excluded.observation_json')
+        .run(runId,this.owner!,target.secUid,value.capturedAt,JSON.stringify(value))
+    }
+    if(input.wait!==undefined){
+      if(input.wait){
+        const pacing=this.state.pacing
+        if(!pacing)throw Error('本轮未配置等待策略')
+        const maximum=input.wait.kind==='author'?pacing.authorDelayMaxMs:pacing.batchDelayMaxMs
+        const minimum=input.wait.kind==='resume'?0:input.wait.kind==='batch'?pacing.batchDelayMinMs:pacing.authorDelayMinMs
+        if(input.wait.durationMs<minimum||input.wait.durationMs>maximum
+          ||Date.parse(input.wait.until)>Date.now()+maximum+2000||Date.parse(input.wait.until)<Date.now()-2000
+          ||input.wait.totalBatches!==Math.ceil(this.state.total/pacing.batchSize)||input.wait.batchNumber>input.wait.totalBatches)throw Error('等待计划无效')
+        this.state.plannedWaitingMs=(this.state.plannedWaitingMs||0)+input.wait.durationMs
+        this.state.message=input.wait.kind==='batch'?`第 ${input.wait.batchNumber-1} 批已完成，正在批间休息`:input.wait.kind==='resume'?'正在完成上次中断前的等待':'正在等待下一位博主'
+        this.state.currentName=null
+      }
+      this.state.waiting=input.wait
+    }
     if(input.failureDiagnostic){
       const diagnostic=input.failureDiagnostic,target=this.targets.find(item=>item.id===diagnostic.creatorId)
       if(!target||target.secUid!==diagnostic.secUid)throw Error('失败现场不属于本轮博主')
@@ -110,19 +194,27 @@ export class CreatorActivityService {
     if(input.stage==='preparing-context')this.state.message='正在复用或准备抖音执行页面…'
     if(input.stage==='verifying-owner')this.state.message='正在核验当前登录账号…'
     if(input.stage==='reading-author')this.state.message='正在读取博主主页作品数与本周动态…'
-    if(input.currentId!==undefined){const target=this.targets.find(item=>item.id===input.currentId);if(!target)throw new Error('本轮没有该博主');this.state.currentName=target.nickname}
+    if(input.currentId!==undefined){const target=this.targets.find(item=>item.id===input.currentId);if(!target)throw new Error('本轮没有该博主');this.state.currentName=target.nickname;this.state.currentSecUid=target.secUid}
     if(input.finished){
       if(this.state.done!==this.state.total)throw new Error('本轮资料尚未全部检查')
       this.state.phase='completed';this.state.currentName=null;this.state.savedTotalMs=performance.now()-this.started
-      this.state.message=`已确认 ${this.state.succeeded} 位，${this.state.failed} 位资料待补齐；原资料保留`
+      this.state.waiting=null
+      this.state.message=`已处理 ${this.state.succeeded} 位，其中 ${this.state.unchangedCount||0} 位未更新，${this.state.fullRefreshCount||0} 位完整核验；${this.state.failed} 位资料待补齐${this.state.anomalyCount?`；${this.state.anomalyCount} 位进入异常组，需单独核验并补齐`:''}${this.state.notDueCount?`，${this.state.notDueCount} 位未到期`:''}`
     }
     if(input.blocked){
-      this.state.phase='blocked';this.state.currentName=null;this.state.savedTotalMs=performance.now()-this.started
+      this.state.phase='blocked';this.state.currentName=null;this.state.resumeWaitUntil=this.state.waiting?.until??null;this.state.waiting=null;this.state.savedTotalMs=performance.now()-this.started
       const code=input.errorCode||'READ_FAILED'
-      this.state.message=code.startsWith('ACCOUNT_CONTEXT_')||code==='AUTHOR_CONTEXT_TIMEOUT'
+      this.state.message=code.startsWith('ACCOUNT_CONTEXT_')||code.startsWith('AUTHOR_CONTEXT_')
         ?`抖音执行页面未能准备完成（${code}），已有资料保留`
         :code==='LOGIN_REQUIRED'?'抖音账号未登录，请登录后重新刷新；已有资料保留'
         :code==='OWNER_IDENTITY_MISMATCH'?'当前抖音账号与资料库不一致，请切回对应账号；已有资料保留'
+        :code==='CAPTCHA_OR_SECURITY_CHALLENGE'?'抖音出现安全验证，已停止全部后续博主和批次；请在保留的网页中处理后手动继续'
+        :['ACTIVITY_HTTP_401','ACTIVITY_HTTP_403','ACTIVITY_HTTP_429'].includes(code)?`抖音限制了本次访问（${code}），已停止全部后续博主和批次；已有资料保留`
+        :code==='ACTIVITY_WEEK_CHANGED'?'已进入新的一周，本轮停止；重新开始会使用新的记录周期'
+        :['DEBUGGER_NOT_ATTACHED','TARGET_NAVIGATED_OR_CLOSED','TARGET_UNAVAILABLE'].includes(code)?`浏览器读取连接已断开（${code}），已停止后续博主；已保存资料保留，可手动继续剩余博主`
+        :code==='DEBUGGER_BUSY'?'浏览器页面已有其他调试连接，已停止本轮；请结束该连接后手动继续，已有资料保留'
+        :code==='ACTIVITY_PAGE_RELEASE_FAILED'?'已保存资料，但临时网页未能结束；已停止后续博主，请检查浏览器后手动继续'
+        :code==='ACTIVITY_OBSERVATION_SAVE_FAILED'?'监听诊断未能保存，本轮已停止；已有资料保留，请检查本地存储后继续'
         :`资料刷新已停止（${code}），已有资料保留`
       if(this.state.diagnosticSaveFailed)this.state.message+='；失败现场保存未完成'
       else if(this.state.failureDiagnostic)this.state.message+=this.state.failureDiagnostic.screenshotSaved&&this.state.failureDiagnostic.pageSaved?'；失败现场已保存':'；失败诊断已保存，部分网页现场未取得'
@@ -136,16 +228,27 @@ export class CreatorActivityService {
     if(this.state.ownerVerificationRequired&&!this.state.ownerVerification)throw Error('本轮登录账号尚未核验，拒绝作者资料入库')
     const target=this.targets.find(item=>item.id===creatorId);if(!target)throw new Error('本轮没有该博主')
     if(this.received.has(creatorId))throw new Error('该博主的本轮结果已经保存')
-    const accepted=input===undefined?null:acceptCreatorActivity(input,{ownerSecUid:this.owner!,secUid:target.secUid,uid:target.uid,weekStart:this.state.weekStart,weekEndExclusive:this.state.weekEndExclusive})
-    const error=accepted ? accepted.snapshot.errorCode||(accepted.snapshot.workCount===null?'PROFILE_TAB_COUNT_UNAVAILABLE':null) : errorCode||'ACTIVITY_READ_FAILED'
-    const succeeded=!!accepted&&accepted.snapshot.weeklyStatus!=='partial'&&accepted.snapshot.workCount!==null
+    if((input as {contract?:string})?.contract==='signaldesk-activity-unchanged/v1')return this.receiveUnchanged(runId,target,input)
+    const accepted=input===undefined?null:acceptCreatorActivity(input,{ownerSecUid:this.owner!,secUid:target.secUid,uid:target.uid,weekStart:this.state.weekStart,weekEndExclusive:this.state.weekEndExclusive,repair:target.repair})
+    const comparison=accepted&&target.comparisonBaseline?compareCreatorContinuity(accepted.capture,target.comparisonBaseline):null
+    const fullSuccess=!!accepted&&!accepted.snapshot.errorCode&&accepted.snapshot.weeklyStatus!=='partial'&&accepted.snapshot.workCount!==null
+    const quarantine=!!accepted&&!!comparison&&(target.repair?!(comparison.connected&&fullSuccess):comparison.reasons.length>0)
+    const handledReview=quarantine&&!!accepted&&!accepted.capture.errorCode&&accepted.snapshot.workCount!==null
+    const error=handledReview?null:accepted ? accepted.snapshot.errorCode||(accepted.snapshot.workCount===null?'PROFILE_TAB_COUNT_UNAVAILABLE':null) : errorCode||'ACTIVITY_READ_FAILED'
+    const succeeded=handledReview||fullSuccess
     const before={...this.state,remainingIds:[...this.state.remainingIds]}
     this.db.exec('BEGIN IMMEDIATE')
     try{
-      if(accepted)this.db.prepare('INSERT INTO creator_activity_snapshots(run_id,owner_sec_uid,creator_sec_uid,checked_at,snapshot_json,capture_json) VALUES(?,?,?,?,?,?)')
-        .run(runId,this.owner!,target.secUid,accepted.snapshot.checkedAt,JSON.stringify(accepted.snapshot),JSON.stringify(accepted.capture))
+      if(accepted){
+        const saved=this.db.prepare('INSERT INTO creator_activity_snapshots(run_id,owner_sec_uid,creator_sec_uid,checked_at,snapshot_json,capture_json) VALUES(?,?,?,?,?,?)')
+          .run(runId,this.owner!,target.secUid,accepted.snapshot.checkedAt,JSON.stringify(accepted.snapshot),JSON.stringify(accepted.capture))
+        if(quarantine)this.integrity.quarantine(Number(saved.lastInsertRowid),this.owner!,target.secUid,target.comparisonBaseline!.snapshotId,accepted.snapshot.checkedAt,comparison!)
+        else if(target.repair&&succeeded&&comparison?.connected)this.integrity.resolve(this.owner!,target.secUid,Number(saved.lastInsertRowid))
+      }
       this.db.prepare('INSERT INTO creator_activity_attempts VALUES(?,?,?,?,?)').run(runId,this.owner!,target.secUid,new Date().toISOString(),error)
       this.state.done++;this.state.succeeded+=Number(succeeded);this.state.failed+=Number(!succeeded)
+      if(quarantine)this.state.anomalyCount=(this.state.anomalyCount||0)+1
+      else if(succeeded)this.state.fullRefreshCount=(this.state.fullRefreshCount||0)+1
       if(accepted){
         this.state.activeListRequests=(this.state.activeListRequests||0)+accepted.capture.activeApiRequests
         this.state.reusedNativePages=(this.state.reusedNativePages||0)+(accepted.capture.reusedNativePages||0)
@@ -160,14 +263,49 @@ export class CreatorActivityService {
         }
       }
       if(succeeded)this.state.remainingIds=this.state.remainingIds.filter(id=>id!==creatorId)
-      this.state.message=`已检查 ${this.state.done}/${this.state.total} 位 · 成功 ${this.state.succeeded} 位 · 待重试 ${this.state.failed} 位`
+      this.state.message=`已检查 ${this.state.done}/${this.state.total} 位 · 已处理 ${this.state.succeeded} 位 · 待重试 ${this.state.failed} 位${this.state.anomalyCount?` · 异常 ${this.state.anomalyCount} 位，待单独补齐`:''}`
       this.persist();this.db.exec('COMMIT');this.received.add(creatorId)
+    }catch(error){this.db.exec('ROLLBACK');this.state=before;throw error}
+    this.changed();return this.status(this.owner)
+  }
+  private receiveUnchanged(runId:string,target:ActivityTarget,input:unknown):CreatorActivityState{
+    const check=creatorActivityUnchangedSchema.parse(input),baseline=this.baseline(this.owner!,target.secUid)
+    const proof=check.frontendCount,checked=Date.parse(check.checkedAt)
+    if(!target.baseline||!baseline||check.baselineSnapshotId!==target.baseline.snapshotId||check.baselineSnapshotId!==baseline.snapshotId
+      ||check.ownerSecUid!==this.owner||check.requestedSecUid!==target.secUid||check.authorUid!==target.uid
+      ||proof.count===null||proof.count!==baseline.workCount||proof.secUid!==target.secUid
+      ||proof.profileUrl!=='https://www.douyin.com/user/'+encodeURIComponent(target.secUid)||Number(proof.text.replaceAll(',',''))!==proof.count
+      ||checked<Date.parse(this.state.startedAt!)||checked>Date.now()+60000||Date.parse(proof.checkedAt)<checked-120000||Date.parse(proof.checkedAt)>checked+60000)throw Error('未更新判断的计数、归属或快照不一致')
+    if(check.reason==='latest-unchanged'){
+      if(!check.firstPage||check.firstPage.requestCursor!==0||check.firstPage.sourceProof?.kind!=='native-network')throw Error('最新作品比对来源缺失')
+      const result=acceptCreatorActivity({contract:'signaldesk-creator-activity/v8',ownerSecUid:this.owner,requestedSecUid:target.secUid,
+        requestContext:{versionCode:'170400',publishStrategy:'2',clientType:'1'},profile:{uid:target.uid,secUid:target.secUid,workCount:null},
+        frontendCount:proof,checkedAt:check.checkedAt,weekStart:this.state.weekStart,weekEndExclusive:this.state.weekEndExclusive,
+        pages:[check.firstPage],errorCode:null,activeApiRequests:0,reusedNativePages:1,nativeListRequests:check.nativeListRequests,acquisitionMs:0},
+        {ownerSecUid:this.owner!,secUid:target.secUid,uid:target.uid,weekStart:this.state.weekStart,weekEndExclusive:this.state.weekEndExclusive})
+      const fingerprint=latestWorkFingerprint(result.capture)
+      if(!fingerprint.ready||JSON.stringify(fingerprint.latest)!==JSON.stringify(baseline.latest))throw Error('最新作品已变化，不能跳过')
+      const comparison=compareCreatorContinuity(result.capture,baseline)
+      if(comparison&&!comparison.connected)throw Error('作品记录未衔接，不能跳过')
+    }else if(check.firstPage)throw Error('仅计数比对不能附带列表证明')
+    const before={...this.state,remainingIds:[...this.state.remainingIds]}
+    this.db.exec('BEGIN IMMEDIATE')
+    try{
+      this.db.prepare('INSERT INTO creator_activity_checks(run_id,owner_sec_uid,creator_sec_uid,checked_at,baseline_snapshot_id,check_json) VALUES(?,?,?,?,?,?)')
+        .run(runId,this.owner!,target.secUid,check.checkedAt,baseline.snapshotId,JSON.stringify(check))
+      this.db.prepare('INSERT INTO creator_activity_attempts VALUES(?,?,?,?,?)').run(runId,this.owner!,target.secUid,new Date().toISOString(),null)
+      this.state.done++;this.state.succeeded++;this.state.unchangedCount=(this.state.unchangedCount||0)+1
+      if(check.reason==='latest-unchanged')this.state.reusedNativePages=(this.state.reusedNativePages||0)+1
+      this.state.observedNativeListRequests=(this.state.observedNativeListRequests||0)+check.nativeListRequests
+      this.state.remainingIds=this.state.remainingIds.filter(id=>id!==target.id)
+      this.state.message=`已处理 ${this.state.done}/${this.state.total} 位 · ${this.state.unchangedCount} 位未更新，已跳过额外列表请求`
+      this.persist();this.db.exec('COMMIT');this.received.add(target.id)
     }catch(error){this.db.exec('ROLLBACK');this.state=before;throw error}
     this.changed();return this.status(this.owner)
   }
   cancel(): void {
     if(this.state.phase!=='running')return
-    this.state.phase='cancelled';this.state.currentName=null;this.state.savedTotalMs=performance.now()-this.started
+    this.state.phase='cancelled';this.state.currentName=null;this.state.resumeWaitUntil=this.state.waiting?.until??null;this.state.waiting=null;this.state.savedTotalMs=performance.now()-this.started
     this.state.message='资料刷新已取消，已成功更新的结果保留，可继续剩余博主'
     this.persist();this.changed()
   }
@@ -177,11 +315,31 @@ export class CreatorActivityService {
     }
     return this.status(this.owner)
   }
+  private publicationSources(owner:string):NonNullable<CreatorActivityService['publicationCache']>{
+    const latestSnapshot=this.db.prepare('SELECT MAX(id) AS id,COUNT(*) AS n FROM creator_activity_snapshots WHERE owner_sec_uid=?').get(owner)!
+    const latestCheck=this.db.prepare('SELECT MAX(id) AS id,COUNT(*) AS n FROM creator_activity_checks WHERE owner_sec_uid=?').get(owner)!
+    const reviews=this.db.prepare('SELECT COUNT(*) AS n,MAX(resolved_snapshot_id) AS resolved FROM creator_activity_reviews WHERE owner_sec_uid=?').get(owner)!
+    const revision=`${latestSnapshot.id}:${latestSnapshot.n}:${latestCheck.id}:${latestCheck.n}:${reviews.n}:${reviews.resolved}`
+    if(this.publicationCache?.owner===owner&&this.publicationCache.revision===revision)return this.publicationCache
+    const sources=new Map<string,CreatorPublicationSource[]>()
+    const add=(secUid:string,source:CreatorPublicationSource):void=>{const list=sources.get(secUid)??[];list.push(source);sources.set(secUid,list)}
+    for(const row of this.db.prepare("SELECT creator_sec_uid,capture_json FROM creator_activity_snapshots WHERE owner_sec_uid=? AND id NOT IN (SELECT snapshot_id FROM creator_activity_reviews) AND json_extract(snapshot_json,'$.coverage')<>'partial' AND json_extract(snapshot_json,'$.errorCode') IS NULL AND json_extract(capture_json,'$.contract') IN ('signaldesk-creator-activity/v2','signaldesk-creator-activity/v3','signaldesk-creator-activity/v4','signaldesk-creator-activity/v6','signaldesk-creator-activity/v7','signaldesk-creator-activity/v8') ORDER BY id").all(owner)){
+      const capture=JSON.parse(String(row.capture_json)) as CreatorActivityCapture
+      if(capture.ownerSecUid!==owner||capture.requestedSecUid!==row.creator_sec_uid)continue
+      add(String(row.creator_sec_uid),{authorUid:capture.profile.uid,authorSecUid:capture.profile.secUid,observedAt:capture.checkedAt,pages:capture.pages,completePublicList:hasCompletePublicList(capture)})
+    }
+    for(const row of this.db.prepare('SELECT creator_sec_uid,check_json FROM creator_activity_checks WHERE owner_sec_uid=? ORDER BY id').all(owner)){
+      const check=JSON.parse(String(row.check_json)) as CreatorActivityUnchanged
+      if(check.ownerSecUid!==owner||check.requestedSecUid!==row.creator_sec_uid||!check.firstPage)continue
+      add(String(row.creator_sec_uid),{authorUid:check.authorUid,authorSecUid:check.requestedSecUid,observedAt:check.checkedAt,pages:[check.firstPage]})
+    }
+    return this.publicationCache={owner,revision,sources,intervals:new Map()}
+  }
   decorate(owner: string | null, creators: CreatorListItem[], at: Date = new Date()): CreatorListItem[] {
     const week=calendarWeek(at)
     const snapshots=new Map<string,CreatorActivitySnapshot[]>(),attempts=new Map<string,{time:string;error:string|null}>()
     if(owner){
-      for(const row of this.db.prepare("SELECT id,creator_sec_uid,snapshot_json FROM creator_activity_snapshots WHERE owner_sec_uid=? AND json_extract(capture_json,'$.contract') IN ('signaldesk-creator-activity/v2','signaldesk-creator-activity/v3','signaldesk-creator-activity/v4','signaldesk-creator-activity/v6','signaldesk-creator-activity/v7') ORDER BY id DESC").all(owner)){
+      for(const row of this.db.prepare("SELECT id,creator_sec_uid,snapshot_json FROM creator_activity_snapshots WHERE owner_sec_uid=? AND id NOT IN (SELECT snapshot_id FROM creator_activity_reviews) AND json_extract(capture_json,'$.contract') IN ('signaldesk-creator-activity/v2','signaldesk-creator-activity/v3','signaldesk-creator-activity/v4','signaldesk-creator-activity/v6','signaldesk-creator-activity/v7','signaldesk-creator-activity/v8') ORDER BY id DESC").all(owner)){
         const key=String(row.creator_sec_uid),list=snapshots.get(key)||[]
         let snapshot=this.snapshotCache.get(Number(row.id))
         if(!snapshot){
@@ -202,15 +360,47 @@ export class CreatorActivityService {
         const key=String(row.creator_sec_uid);if(!attempts.has(key))attempts.set(key,{time:String(row.attempted_at),error:row.error_code?String(row.error_code):null})
       }
     }
+    const publication=owner?this.publicationSources(owner):undefined
     return creators.map(creator=>{
       const secUid=new URL(creator.profileUrl).pathname.split('/').at(-1)!,list=snapshots.get(secUid)||[]
       const count=list.find(item=>item.workCount!==null),current=list.find(item=>item.weekStart===week.start&&item.weeklyStatus!=='partial')||list.find(item=>item.weekStart===week.start)
       const attempt=attempts.get(secUid)
+      const check=owner?this.db.prepare('SELECT run_id,checked_at,check_json,baseline_snapshot_id FROM creator_activity_checks WHERE owner_sec_uid=? AND creator_sec_uid=? ORDER BY id DESC LIMIT 1').get(owner,secUid):undefined
+      const reuse=check&&(!count||String(check.checked_at)>count.checkedAt)?JSON.parse(String(check.check_json)) as {reason:'count-unchanged'|'latest-unchanged'}:null
+      const basis=reuse?this.db.prepare('SELECT snapshot_json,capture_json FROM creator_activity_snapshots WHERE id=?').get(check!.baseline_snapshot_id):undefined
+      const basisSnapshot=basis?JSON.parse(String(basis.snapshot_json)) as CreatorActivitySnapshot:undefined
+      const observation=owner&&reuse?.reason==='count-unchanged'?this.db.prepare('SELECT observation_json FROM creator_activity_observations WHERE run_id=? AND owner_sec_uid=? AND creator_sec_uid=?').get(check!.run_id,owner,secUid):undefined
+      const unavailable=observation?JSON.parse(String(observation.observation_json)).native?.availability:null
+      const publicationUid=creator.nativeUid??list[0]?.authorUid??null,publicationKey=`${secUid}:${publicationUid}`
+      let interval=publication?.intervals.get(publicationKey)
+      if(!interval){interval=creatorPublicationInterval(publication?.sources.get(secUid)??[],publicationUid,secUid);publication?.intervals.set(publicationKey,interval)}
       const activity:CreatorActivityView={workCount:count?.workCount??null,countCheckedAt:count?.workCountCheckedAt??count?.checkedAt??null,checkedAt:current?.checkedAt??null,
         weeklyUpdateCount:current?.weeklyUpdateCount??null,
         publicCountStatus:count?'complete':'pending',
         weekStart:week.start,weekEndExclusive:week.endExclusive,latestPublishedAt:current?.latestPublishedAt??null,weeklyStatus:current?.weeklyStatus??'pending',
-        lastAttemptAt:attempt?.time??null,errorCode:attempt?.error??current?.errorCode??null}
+        lastAttemptAt:attempt?.time??null,errorCode:attempt?.error??current?.errorCode??null,
+        refreshSchedule:owner?this.schedule(owner,secUid,interval,at,creator.refreshPriority):undefined,
+        publicationInterval:interval,
+        refreshCheck:reuse&&basisSnapshot?{checkedAt:String(check!.checked_at),reason:reuse.reason,lastFullCheckedAt:basisSnapshot.checkedAt,basisWeekStart:basisSnapshot.weekStart,
+          nativeUnavailableReason:unavailable?.errorCode?nativeListUnavailableMessage(unavailable.errorCode):undefined}:undefined}
+      const baseline=owner?this.baseline(owner,secUid):undefined
+      activity.recentActivity=assessRecentActivity(baseline?.latest?.publishedAt??null,activity.refreshSchedule?.lastCheckedAt??null,!!baseline&&!baseline.latest)
+      activity.anomaly=owner?this.integrity.pending(owner,secUid):null
+      if(activity.anomaly){activity.workCount=activity.anomaly.comparison.currentCount;activity.countCheckedAt=activity.anomaly.detectedAt}
+      if(reuse&&check)activity.countCheckedAt=String(check.checked_at)
+      // A new week's display can be projected from the retained baseline, but its full-check date is never advanced.
+      if(reuse&&basisSnapshot&&!current){
+        const capture=JSON.parse(String(basis!.capture_json)) as CreatorActivityCapture,ids=new Set<string>()
+        let latest:string|null=null
+        for(const page of capture.pages)for(const record of page.records||[]){
+          if(record.authorUid!==basisSnapshot.authorUid||record.authorSecUid!==secUid||classifyActivityVisibility(record.visibility)!=='public'||!record.publishedAt)continue
+          const time=Date.parse(record.publishedAt)
+          if(time>=Date.parse(week.start)&&time<Date.parse(week.endExclusive)&&time<=at.getTime()){
+            ids.add(record.workId);if(!latest||time>Date.parse(latest))latest=record.publishedAt
+          }
+        }
+        activity.weeklyUpdateCount=ids.size;activity.latestPublishedAt=latest;activity.weeklyStatus=latest?'updated':'empty'
+      }
       return {...creator,nativeUid:creator.nativeUid??list[0]?.authorUid??null,activity}
     })
   }

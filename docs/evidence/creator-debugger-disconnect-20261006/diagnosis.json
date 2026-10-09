@@ -1,0 +1,161 @@
+{
+  "recordedAt": "2026-10-06T11:11:57.140Z",
+  "browserVersion": "154.0.8037.98",
+  "cause": "Website environment-check script creates a hidden bitbrowser://cc/ iframe; Chromium treats its custom scheme as restricted to extension debugger and force-detaches the session.",
+  "originalFailure": {
+    "runId": "activity-a78d4256bf911eab4f46f410",
+    "detachAt": "2026-10-06T10:00:03.315Z",
+    "reason": "target_closed",
+    "failedCommand": "DEBUGGER_NOT_ATTACHED",
+    "appError": "ACTIVITY_READ_FAILED",
+    "actualStage": "author wait after second saved result",
+    "userReportsNoChromeInteraction": true,
+    "pageStillExists": true,
+    "mainNavigationTimeOrigin": "2026-10-06T09:59:52.515Z",
+    "mainPageReloadedDuringFailure": false
+  },
+  "sameAuthorProbe": {
+    "homepageNavigations": 1,
+    "extraListGets": 0,
+    "accountGets": 0,
+    "dailyDatabaseTouched": false,
+    "observedMs": 10371,
+    "detaches": [
+      {
+        "at": "2026-10-06T10:31:31.330Z",
+        "reason": "target_closed"
+      }
+    ],
+    "targetIdUnchanged": true,
+    "tabStillExists": true,
+    "frameStarts": [
+      {
+        "at": "2026-10-06T10:31:31.292Z",
+        "reason": "initialFrameNavigation",
+        "location": {
+          "origin": "null",
+          "pathRelation": "other",
+          "pathname": "blank"
+        },
+        "isSubframe": true
+      },
+      {
+        "at": "2026-10-06T10:31:31.296Z",
+        "reason": "initialFrameNavigation",
+        "location": {
+          "origin": "null",
+          "pathRelation": "other",
+          "pathname": "srcdoc"
+        },
+        "isSubframe": true
+      },
+      {
+        "at": "2026-10-06T10:31:31.327Z",
+        "reason": "initialFrameNavigation",
+        "location": {
+          "origin": "null",
+          "pathRelation": "other",
+          "pathname": "/"
+        },
+        "isSubframe": true
+      }
+    ],
+    "sourceStaticDecoded": true,
+    "bytecodeExecuted": false,
+    "constantTableEntry": {
+      "index": 77,
+      "value": "bitbrowser://cc/"
+    },
+    "dynamicScriptCallOrigin": "https://lf-douyin-pc-web.douyinstatic.com/obj/douyin-pc-web/ies/douyin_web/async/9075.0cabca16.js"
+  },
+  "secondProbe": {
+    "homepageNavigations": 1,
+    "observedMs": 25608,
+    "detaches": 0,
+    "customProtocolNavigationObserved": false,
+    "note": "Dynamic template differs by request; the second probe did not trigger the same custom-protocol branch."
+  },
+  "localBrowserControls": [
+    {
+      "mode": "control",
+      "phase": "completed",
+      "done": 3,
+      "detached": false,
+      "detachReason": null
+    },
+    {
+      "mode": "remove-child",
+      "phase": "completed",
+      "done": 3,
+      "detached": false,
+      "detachReason": null
+    },
+    {
+      "mode": "swap-child",
+      "phase": "completed",
+      "done": 3,
+      "detached": false,
+      "detachReason": null
+    },
+    {
+      "mode": "restricted-file",
+      "phase": "completed",
+      "done": 3,
+      "detached": false,
+      "detachReason": null
+    },
+    {
+      "mode": "restricted-chrome",
+      "phase": "completed",
+      "done": 3,
+      "detached": false,
+      "detachReason": null
+    },
+    {
+      "mode": "unknown-protocol",
+      "phase": "blocked",
+      "done": 2,
+      "detached": true,
+      "detachReason": "target_closed"
+    },
+    {
+      "mode": "bitbrowser-protocol",
+      "phase": "blocked",
+      "done": 2,
+      "detached": true,
+      "detachReason": "target_closed"
+    }
+  ],
+  "localCustomProtocolFailures": [
+    {
+      "mode": "unknown-protocol",
+      "errorCode": "ACTIVITY_READ_FAILED",
+      "pageExists": true,
+      "pageMatches": true,
+      "failedCommand": "DEBUGGER_NOT_ATTACHED",
+      "detachReason": "target_closed"
+    },
+    {
+      "mode": "bitbrowser-protocol",
+      "errorCode": "ACTIVITY_READ_FAILED",
+      "pageExists": true,
+      "pageMatches": true,
+      "failedCommand": "DEBUGGER_NOT_ATTACHED",
+      "detachReason": "target_closed"
+    }
+  ],
+  "chromiumSource": {
+    "base": "https://chromium.googlesource.com/chromium/src/+/154.0.8037.98/",
+    "restrictions": "extensions/common/permissions/permissions_data.cc#138",
+    "debuggerNavigationPermission": "chrome/browser/extensions/api/debugger/debugger_api.cc#818",
+    "restrictedSessionDetach": "content/browser/devtools/render_frame_devtools_agent_host.cc#783",
+    "agentHostClosedCallback": "content/browser/devtools/devtools_agent_host_impl.cc#494",
+    "targetClosedEvent": "chrome/browser/extensions/api/debugger/debugger_api.cc#680"
+  },
+  "bounds": [
+    "Original run did not record subframe navigation URLs, so the exact original URL is reconstructed from same-author reproduction and static script evidence.",
+    "A hidden browser-environment check is present; no evidence of an account ban, visible CAPTCHA or list HTTP 403/429 was obtained.",
+    "No remaining creator was retried, no full-library refresh was started, and browser permissions/security settings were not changed."
+  ],
+  "recommendation": "Release the debugger and completed temporary page before author/batch waits; record explicit debugger loss and waiting stage; keep error-stop behavior during active reads. No website script suppression or protocol/security bypass."
+}

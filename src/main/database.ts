@@ -432,7 +432,7 @@ export class AppDatabase {
     }
     params.push(Math.min(500, Math.max(1, options.limit ?? 100)))
     const rows = this.db.prepare(`
-      SELECT w.id, w.platform_work_id, w.creator_id, w.is_demo, c.nickname AS creator_name, c.avatar_url AS creator_avatar,
+      SELECT w.id, w.platform_work_id, w.creator_id, w.is_demo, c.nickname AS creator_name, c.profile_url AS creator_profile_url, c.avatar_url AS creator_avatar,
              c.is_starred, w.work_type, w.source_url, w.cover_url, w.title, w.description, w.published_at,
              w.discovered_at, w.analysis_status, i.state AS read_state,
              a.summary, a.core_expression,
@@ -469,6 +469,7 @@ export class AppDatabase {
         platformWorkId: String(row.platform_work_id),
         creatorId,
         creatorName: String(row.creator_name),
+        creatorProfileUrl:String(row.creator_profile_url),
         creatorAvatar: row.creator_avatar as string | null,
         workType: row.work_type as 'video' | 'image',
         sourceUrl: String(row.source_url),

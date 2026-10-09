@@ -152,7 +152,7 @@ export class IsolatedPilotService {
         throw new Error('隔离报告与当前 run 不匹配')
       }
       this.session?.acceptReport(report)
-      return { phase: 'finished', runId: this.current.runId, creatorName: this.current.creatorName,
+      return { phase: 'finished', runId: this.current.runId, creatorName: this.current.creatorName,creatorUid:this.current.creatorUid,
         extensionDirectory: this.current.extensionDirectory, reportDirectory: this.current.runDirectory,
         tasks: this.session?.jobs() ?? this.lastTasks,
         result: { status: report.result.status as 'verified' | 'candidate-only' | 'blocked',
@@ -165,7 +165,7 @@ export class IsolatedPilotService {
           detailProofHash: report.result.detailProof?.projectionSha256 ?? null } }
     }
     return { phase: this.cancelled ? 'cancelled' : this.child && this.child.exitCode === null && this.child.signalCode === null ? 'prepared' : 'failed',
-      runId: this.current.runId, creatorName: this.current.creatorName,
+      runId: this.current.runId, creatorName: this.current.creatorName,creatorUid:this.current.creatorUid,
       tasks: this.session?.jobs() ?? this.lastTasks,
       extensionDirectory: this.current.extensionDirectory,
       reportDirectory: this.current.runDirectory, result: null }

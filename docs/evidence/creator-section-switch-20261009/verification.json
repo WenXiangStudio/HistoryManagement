@@ -1,0 +1,83 @@
+{
+  "recordedAt": "2026-10-09T02:22:53.8859201Z",
+  "applicationVersion": "0.1.13",
+  "connectorVersion": "0.8.2",
+  "relatedTestsPassed": 49,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererSmokePassed": true,
+  "preview": {
+    "recordedAt": "2026-10-09T02:20:19.754Z",
+    "packaged": false,
+    "creators": 295,
+    "initialCards": 0,
+    "groups": {
+      "active": {
+        "cards": 102,
+        "button": "活跃更新102"
+      },
+      "regular": {
+        "cards": 103,
+        "button": "普通更新103"
+      },
+      "inactive": {
+        "cards": 90,
+        "button": "全量更新295"
+      }
+    },
+    "allIdentitiesExactlyOnce": true,
+    "oneUpdateButtonPerSelection": true,
+    "buttonBelowInfoAndBesideSections": true,
+    "searchDoesNotRestrictRefresh": true,
+    "selectionSurvivesPolling": true,
+    "smallWindowFits": true,
+    "sourceDataPreserved": true,
+    "rendererExceptions": 0,
+    "platformCollectionStarted": false
+  },
+  "packaged": {
+    "recordedAt": "2026-10-09T02:21:36.985Z",
+    "packaged": true,
+    "creators": 295,
+    "initialCards": 0,
+    "groups": {
+      "active": {
+        "cards": 102,
+        "button": "活跃更新102"
+      },
+      "regular": {
+        "cards": 103,
+        "button": "普通更新103"
+      },
+      "inactive": {
+        "cards": 90,
+        "button": "全量更新295"
+      }
+    },
+    "allIdentitiesExactlyOnce": true,
+    "oneUpdateButtonPerSelection": true,
+    "buttonBelowInfoAndBesideSections": true,
+    "searchDoesNotRestrictRefresh": true,
+    "selectionSurvivesPolling": true,
+    "smallWindowFits": true,
+    "sourceDataPreserved": true,
+    "rendererExceptions": 0,
+    "platformCollectionStarted": false
+  },
+  "package": {
+    "recordedAt": "2026-10-09T02:21:13.459Z",
+    "preservedFilesOutsideRenderer": 2682,
+    "archiveSha256": "801a99ad8111fb91c4d876c3359c5beb8f8915b787ed11239a98b0227359f3a6",
+    "backupComplete": true,
+    "mainAndPreloadPreserved": true,
+    "collectionRequested": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-09T02:21:29.12Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "platformCollectionStarted": false
+}

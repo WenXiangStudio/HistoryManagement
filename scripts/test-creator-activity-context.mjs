@@ -65,6 +65,7 @@ function browser({existing=true,ownerOk=true,onSelf=()=>{},nativeFailure=false,n
         if(method==='Network.getResponseBody')return {body:JSON.stringify(args.requestId.startsWith('owner-')
           ?{status_code:0,user:{uid:ownerOk?'owner-uid':'other-uid',sec_uid:ownerOk?'owner':'other'},cookie:'do-not-save',signature:'do-not-save'}:root())}
         if(method==='Runtime.evaluate'){
+          if(args.expression.includes('readCreatorPageReadiness'))return {result:{value:{ready:true}}}
           if(args.expression.includes('readCreatorActivityOwner')){
             gets.push('self');emit(target.tabId,'Network.requestWillBeSent',{requestId:'self',request:{method:'GET',url:'https://www.douyin.com/aweme/v1/web/user/profile/self/?secret=never-retained'}})
             onSelf();return {result:{value:ownerOk?{ok:true,owner:{uid:'owner-uid',secUid:'owner'},observedAt:new Date().toISOString()}:{ok:false,code:'OWNER_IDENTITY_MISMATCH'}}}
@@ -78,6 +79,7 @@ function browser({existing=true,ownerOk=true,onSelf=()=>{},nativeFailure=false,n
           if(args.expression.includes('fetchCreatorActivityPage'))return {result:{value:{root:root(),activeRequest:true,
             sourceProof:{kind:'active-get',endpoint:'/aweme/v1/web/aweme/post/',method:'GET',secUid:author,requestCursor:0,httpStatus:200,observedAt:new Date().toISOString()},
             diagnostic:{cursor:0,stage:'complete',httpStatus:200,json:'valid',errorCode:null}}}}
+          if(args.expression.includes('readCreatorActivityGuard'))return {result:{value:null}}
           throw Error('Unexpected page request')
         }
         return {}
@@ -173,7 +175,7 @@ test('cancelled owner check prevents author result submission; native failure ne
   assert.equal(f.posts.filter(row=>row.path==='/activity-report').length,0);assert.equal(f.listeners.size,0)
   const denied=browser({existing:false,nativeFailure:true})
   await runCreatorActivityRefresh(config,{chromeApi:denied.chrome,fetchApi:denied.fetchApi})
-  assert.deepEqual(denied.gets,['self']);assert.equal(denied.posts.at(-1).body.errorCode,'ACTIVITY_HTTP_403')
+  assert.deepEqual(denied.gets,[]);assert.equal(denied.posts.at(-1).body.errorCode,'ACTIVITY_HTTP_403')
   assert.deepEqual(denied.calls.filter(value=>value.startsWith('navigate')),['navigate-sec'])
   assert.equal(denied.listeners.size,0)
 })
@@ -191,6 +193,6 @@ test('a native debugger error becomes a bounded error code so the backend can st
   const f=browser()
   f.chrome.debugger.attach=async()=>{throw Error('Another debugger is already attached')}
   await runCreatorActivityRefresh(config,{chromeApi:f.chrome,fetchApi:f.fetchApi})
-  assert.equal(f.posts.at(-1).body.blocked,true);assert.equal(f.posts.at(-1).body.errorCode,'ACTIVITY_READ_FAILED')
+  assert.equal(f.posts.at(-1).body.blocked,true);assert.equal(f.posts.at(-1).body.errorCode,'DEBUGGER_BUSY')
   assert.equal(f.gets.length,0)
 })

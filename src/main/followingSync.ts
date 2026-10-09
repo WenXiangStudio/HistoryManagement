@@ -15,6 +15,9 @@ import {FollowingPreferences,followingBrowserProfiles} from './followingPreferen
 import {CreatorActivityService} from './creatorActivityService'
 import type {CreatorListItem} from '../shared/contracts'
 import {creatorActivityProgressSchema} from '../shared/creatorActivity'
+import { DEFAULT_CREATOR_REFRESH_PACING, creatorsForRefreshScope, CREATOR_REFRESH_SCOPE_LABELS, type CreatorRefreshScope } from '../shared/creatorRefreshPolicy'
+import {CreatorDatabaseStore} from './creatorDatabaseStore'
+import {CreatorPriorityStore} from './creatorPriorityStore'
 
 const escapeHtml = (value: string): string => value.replace(/[&<>"']/g, (entry) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[entry]!)
 type Scope = {action:'list';runId:string;ownerSecUid:string|null;cursor:number;offset:number;pageCount:number}
@@ -24,6 +27,8 @@ export class FollowingSyncService {
   readonly store: FollowingDirectoryStore
   readonly activity: CreatorActivityService
   readonly plan: FollowingPlanStore
+  readonly creatorDatabase:CreatorDatabaseStore
+  readonly creatorPriority:CreatorPriorityStore
   private readonly preferences:FollowingPreferences
   private pendingBinding:{label:string;expectedOwner:string|null}|null=null
   private enrollmentNonce:string|null=null
@@ -34,7 +39,7 @@ export class FollowingSyncService {
   private started=0
   private scope: Scope | null=null
   private waiting: ServerResponse | null=null
-  private command: (Scope & {origin:string;token:string}|PrepareCommand|ProbeCommand|(ReturnType<CreatorActivityService['begin']>&{origin:string;token:string})|(ReturnType<FollowingPlanStore['beginBasic']>&{origin:string;token:string})) | null=null
+  private command: (Scope & {origin:string;token:string}|PrepareCommand|ProbeCommand|(NonNullable<ReturnType<CreatorActivityService['begin']>>&{origin:string;token:string})|(ReturnType<FollowingPlanStore['beginBasic']>&{origin:string;token:string})) | null=null
   private probeId:string|null=null
   private preparationDeadline:ReturnType<typeof setTimeout>|null=null
   private monitor:ReturnType<typeof setInterval>|null=null
@@ -49,6 +54,8 @@ export class FollowingSyncService {
     this.store = new FollowingDirectoryStore(join(userData, 'following-directory.sqlite'))
     this.activity = new CreatorActivityService(this.store.db, changed)
     this.plan = new FollowingPlanStore(this.store)
+    this.creatorDatabase=new CreatorDatabaseStore(this.store.db)
+    this.creatorPriority=new CreatorPriorityStore(this.store.db)
     const defaultProfile=this.browserProfiles().find(profile=>profile.extensionInstalled)?.directory??this.browserProfiles()[0]?.directory??null
     this.preferences=new FollowingPreferences(userData,this.store.latest()?.ownerSecUid??null,defaultProfile)
     if(this.preferences.value.activeOwnerSecUid)this.store.selectAccount(this.preferences.value.activeOwnerSecUid)
@@ -79,6 +86,16 @@ export class FollowingSyncService {
       connectorVersion:this.extensionVersion,expectedVersion:FOLLOWING_VERSION,extensionDirectory:this.state.extensionDirectory}
   }
   hasDirectory():boolean{return !!this.preferences.value.activeOwnerSecUid||!!this.store.latest()}
+  getCreatorDatabase(){return this.creatorDatabase.view(this.preferences.value.activeOwnerSecUid,this.listCreators())}
+  updateCreatorDatabase(input:unknown){
+    const result=this.creatorDatabase.update(this.preferences.value.activeOwnerSecUid,this.listCreators(),input)
+    this.changed();return result
+  }
+  updateCreatorPriority(input:unknown){
+    this.requireAccountIdle()
+    const result=this.creatorPriority.update(this.preferences.value.activeOwnerSecUid,this.listCreators(),input)
+    this.changed();return result
+  }
   private resetAccountState():void{
     this.clearRunDeadline();this.clearPreparationDeadline();this.command=null;this.preparedOwnerSecUid=null;this.retryPreparationAt=0
     this.state={...this.state,phase:'idle',runId:null,count:this.store.list().length,totalCount:this.store.list().length,timing:undefined,reportDirectory:null,
@@ -90,9 +107,10 @@ export class FollowingSyncService {
   listCreators(search=''):CreatorListItem[]{
     const owner=this.preferences.value.activeOwnerSecUid
     const pending=new Set(owner?this.store.db.prepare("SELECT sec_uid FROM following_basic_fields WHERE owner_sec_uid=? AND (signature_status<>'done' OR avatar_status<>'done')").all(owner).map(row=>String(row.sec_uid)):[])
-    return this.activity.decorate(owner,this.store.list(search)).map(row=>({...row,basicPending:pending.has(new URL(row.profileUrl).pathname.split('/').at(-1)!)}))
+    return this.activity.decorate(owner,this.creatorPriority.decorate(owner,this.store.list(search))).map(row=>({...row,basicPending:pending.has(new URL(row.profileUrl).pathname.split('/').at(-1)!)}))
   }
-  startActivity(creatorId?:number,resume=false,creatorIds?:number[]):FollowingSyncState{
+  startActivity(creatorId?:number,resume=false,creatorIds?:number[],scope?:CreatorRefreshScope):FollowingSyncState{
+    if(scope!==undefined&&(!['active','regular','inactive','all'].includes(scope)||creatorId!==undefined||creatorIds!==undefined||resume))throw new Error('更新分组无效')
     if(creatorIds!==undefined&&(!Array.isArray(creatorIds)||!creatorIds.length||creatorIds.length>10000
       ||creatorIds.some(id=>!Number.isSafeInteger(id)||id>=0)||new Set(creatorIds).size!==creatorIds.length
       ||creatorId!==undefined||resume))throw new Error('所选博主范围无效')
@@ -101,12 +119,15 @@ export class FollowingSyncService {
     if(!this.status().connection?.online||this.state.readiness?.phase!=='ready')throw new Error('请等待连接器与账号准备完成')
     const owner=this.preferences.value.activeOwnerSecUid
     if(!owner)throw new Error('请先绑定当前资料账号')
-    let targets=this.listCreators().map(item=>({id:item.id,secUid:new URL(item.profileUrl).pathname.split('/').at(-1)!,uid:item.nativeUid??null,nickname:item.nickname}))
+    const creators=this.listCreators(),group=creatorId!==undefined||resume?creators:creatorsForRefreshScope(creators,scope??'all')
+    if(scope&&!group.length)throw new Error(`${CREATOR_REFRESH_SCOPE_LABELS[scope]}：当前账号没有符合条件的博主`)
+    let targets=group.map(item=>({id:item.id,secUid:new URL(item.profileUrl).pathname.split('/').at(-1)!,uid:item.nativeUid??null,nickname:item.nickname}))
     if(creatorIds){
       targets=targets.filter(item=>creatorIds.includes(item.id))
       if(targets.length!==creatorIds.length)throw new Error('部分所选博主不属于当前账号，请重新选择')
     }
-    const command=this.activity.begin(owner,targets,creatorId,resume,true)
+    const command=this.activity.begin(owner,targets,creatorId,resume,true,{pacing:DEFAULT_CREATOR_REFRESH_PACING,scope})
+    if(!command)return this.status()
     this.command={...command,origin:this.origin,token:this.token};this.dispatch();return this.status()
   }
   cancelActivity():FollowingSyncState{if(this.command&&'action' in this.command&&this.command.action==='activity')this.command=null;this.activity.cancel();return this.status()}

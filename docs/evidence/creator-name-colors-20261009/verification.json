@@ -1,0 +1,45 @@
+{
+  "recordedAt": "2026-10-09T03:56:15.7633193Z",
+  "applicationVersion": "0.1.13",
+  "relatedTestsPassed": 52,
+  "typecheckPassed": true,
+  "productionBuildPassed": true,
+  "packagedRendererSmokePassed": true,
+  "ui": {
+    "recordedAt": "2026-10-09T03:55:30.173Z",
+    "packaged": true,
+    "creators": 295,
+    "noRecentUpdates": 206,
+    "initialCardRedNames": 206,
+    "isolatedBoostedState": {
+      "databaseRedNames": 205,
+      "chartRedNames": 205,
+      "feishuRedOptions": 205
+    },
+    "selectedOptionFollowsPriority": true,
+    "dateColor": "#FF8247",
+    "nicknameColor": "#B42318",
+    "purpleOverridesRed": true,
+    "boostAndReduceVerified": true,
+    "disableRestoresRed": true,
+    "originalPriorityModesAndAnnotationsPreserved": true,
+    "rendererExceptions": 0,
+    "platformCollectionStarted": false,
+    "feishuWritesStarted": false
+  },
+  "preservation": {
+    "recordedAt": "2026-10-09T03:55:23.374Z",
+    "allLocalRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "databaseIntegrity": "ok",
+    "foreignKeyViolations": 0
+  },
+  "package": {
+    "recordedAt": "2026-10-09T03:55:22.935Z",
+    "preservedFilesOutsideRenderer": 2682,
+    "archiveSha256": "0930a9efe4a3c87f9ab749e2f86df4dab341fd5f6697d4b32d84358e1e7d2f7e",
+    "backupComplete": true,
+    "mainAndPreloadPreserved": true,
+    "collectionRequested": false
+  }
+}

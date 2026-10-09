@@ -1,0 +1,54 @@
+{
+  "recordedAt": "2026-10-06T09:27:27.164Z",
+  "connectorVersion": "0.8.0",
+  "packageMatchesTestedBuild": true,
+  "extensionMatchesSource": true,
+  "liveVerification": {
+    "creator": "Boujoy",
+    "collectionClicks": 1,
+    "phase": "completed",
+    "succeeded": 1,
+    "failed": 0,
+    "workCount": 18,
+    "unchangedReason": "latest-unchanged",
+    "nativeFirstPageRecords": 18,
+    "latestMatchesBaseline": true,
+    "extraListRequests": 0,
+    "reusedNativePages": 1,
+    "authorHomepageNavigations": 1,
+    "savedTotalMs": 5969.997199999983,
+    "displayedTotalMs": 6337.849600000016,
+    "fullSnapshotsAdded": 0,
+    "unchangedChecksAdded": 1,
+    "all295ValidationPerformed": false
+  },
+  "dryPlan": {
+    "localOnly": true,
+    "platformNavigations": 0,
+    "totalCreators": 295,
+    "tiers": {
+      "active": 24,
+      "unknown": 264,
+      "inactive": 4,
+      "regular": 3
+    },
+    "due": 282,
+    "notDue": 13,
+    "reusableBaselines": 18,
+    "requiresBaseline": 264,
+    "batches": 9
+  },
+  "regression": {
+    "appTests": 300,
+    "browserTests": 63,
+    "typeScript": "passed",
+    "packagedRenderer": "passed",
+    "syntheticUi": "passed"
+  },
+  "preservation": {
+    "oldRowsUnchanged": true,
+    "settingsUnchanged": true,
+    "integrity": "ok",
+    "foreignKeyViolations": 0
+  }
+}

@@ -1,0 +1,1819 @@
+{
+  "recordedAt": "2026-10-09T09:03:27.5706185Z",
+  "deleted": {
+    "recordedAt": "2026-10-09T08:54:34.2655448Z",
+    "removedTargets": 255,
+    "removedFiles": 72683,
+    "removedLogicalBytes": 32825349054,
+    "observedDiskFreeIncreaseBytes": 25996947456,
+    "dailyAppPreserved": true
+  },
+  "archivedLocalEvidence": {
+    "recordedAt": "2026-10-09T09:03:27.5706185Z",
+    "archive": "local-data/archive/historical-evidence-through-20261009.zip",
+    "files": 2777,
+    "sourceLogicalBytes": 974446991,
+    "archiveBytes": 151299664,
+    "allEntryHashesVerified": true,
+    "observedDiskFreeIncreaseBytes": 827785216
+  },
+  "observedDiskFreeIncreaseBytes": 26824732672,
+  "datedReportsArchived": 38,
+  "obsoleteToolsRemoved": [
+    "scripts/verify-creator-activity-sections.mjs",
+    "scripts/verify-creator-card-layout.mjs"
+  ],
+  "generatedTargets": [
+    {
+      "path": "release",
+      "reason": "superseded release directory",
+      "directory": true,
+      "files": 154,
+      "logicalBytes": 594916803
+    },
+    {
+      "path": "release-stable-20261005",
+      "reason": "superseded release directory",
+      "directory": true,
+      "files": 153,
+      "logicalBytes": 594754014
+    },
+    {
+      "path": "local-data/tier-refresh-20261008/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 3,
+      "logicalBytes": 1754575
+    },
+    {
+      "path": "local-data/native-charts-20261008/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 3,
+      "logicalBytes": 1754575
+    },
+    {
+      "path": "local-data/feishu-live-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3284,
+      "logicalBytes": 254832256
+    },
+    {
+      "path": "local-data/tier-refresh-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3289,
+      "logicalBytes": 258496074
+    },
+    {
+      "path": "local-data/native-charts-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3286,
+      "logicalBytes": 256193970
+    },
+    {
+      "path": "local-data/creator-priority-20261008/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 3,
+      "logicalBytes": 1755142
+    },
+    {
+      "path": "local-data/feishu-creator-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3282,
+      "logicalBytes": 253491267
+    },
+    {
+      "path": "local-data/window-recovery-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3286,
+      "logicalBytes": 256197268
+    },
+    {
+      "path": "local-data/creator-priority-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3291,
+      "logicalBytes": 259877756
+    },
+    {
+      "path": "local-data/feishu-live-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 110256525
+    },
+    {
+      "path": "local-data/last-update-label-20261007/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107499487
+    },
+    {
+      "path": "local-data/creator-database-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3280,
+      "logicalBytes": 252131905
+    },
+    {
+      "path": "local-data/feishu-live-20261008/helper-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 1,
+      "logicalBytes": 434
+    },
+    {
+      "path": "local-data/filter-panel-fix-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3287,
+      "logicalBytes": 257130514
+    },
+    {
+      "path": "local-data/last-update-label-20261007/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3254,
+      "logicalBytes": 106598441
+    },
+    {
+      "path": "local-data/feishu-live-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 108914960
+    },
+    {
+      "path": "local-data/tier-refresh-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 113921775
+    },
+    {
+      "path": "local-data/creator-four-tier-20261009/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3302,
+      "logicalBytes": 267758149
+    },
+    {
+      "path": "local-data/publication-interval-20261007/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 6,
+      "logicalBytes": 3493274
+    },
+    {
+      "path": "local-data/two-distinct-batches-20261007/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 1177669
+    },
+    {
+      "path": "local-data/creator-debugger-fix-20261006/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 1170525
+    },
+    {
+      "path": "local-data/native-charts-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 111618807
+    },
+    {
+      "path": "local-data/tier-refresh-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 112555643
+    },
+    {
+      "path": "local-data/creator-name-colors-20261009/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3300,
+      "logicalBytes": 266358143
+    },
+    {
+      "path": "local-data/feishu-creator-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 108914960
+    },
+    {
+      "path": "local-data/native-charts-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 110256525
+    },
+    {
+      "path": "local-data/tier-refresh-20261008/dispatch-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 14721236
+    },
+    {
+      "path": "local-data/real-batch-validation-20261007/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 1177669
+    },
+    {
+      "path": "local-data/publication-interval-20261007/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3280,
+      "logicalBytes": 252099459
+    },
+    {
+      "path": "local-data/creator-native-20261005/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107442489
+    },
+    {
+      "path": "local-data/native-list-monitoring-20261006/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 1177545
+    },
+    {
+      "path": "local-data/window-recovery-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 111622105
+    },
+    {
+      "path": "local-data/following-plan-20261004/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107429602
+    },
+    {
+      "path": "local-data/feishu-creator-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107571900
+    },
+    {
+      "path": "local-data/creator-priority-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 115304021
+    },
+    {
+      "path": "local-data/creator-priority-20261008/modules-verify",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 1286915
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 4,
+      "logicalBytes": 1751291
+    },
+    {
+      "path": "local-data/creator-readiness-fix-20261009/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3300,
+      "logicalBytes": 266358144
+    },
+    {
+      "path": "local-data/creator-database-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107555030
+    },
+    {
+      "path": "local-data/feishu-creator-20261008/isolated-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 54,
+      "logicalBytes": 19524540
+    },
+    {
+      "path": "local-data/window-recovery-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 111618807
+    },
+    {
+      "path": "local-data/filter-panel-fix-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 112555643
+    },
+    {
+      "path": "local-data/last-update-label-20261007/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107499541
+    },
+    {
+      "path": "local-data/creator-four-tier-20261009/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 123187382
+    },
+    {
+      "path": "local-data/filter-panel-fix-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 111622105
+    },
+    {
+      "path": "local-data/creator-ui-performance-20261009/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3295,
+      "logicalBytes": 262634163
+    },
+    {
+      "path": "local-data/creator-database-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107522580
+    },
+    {
+      "path": "local-data/creator-section-switch-20261009/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3293,
+      "logicalBytes": 261255485
+    },
+    {
+      "path": "local-data/creator-priority-order-20261009/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3298,
+      "logicalBytes": 264971508
+    },
+    {
+      "path": "local-data/creator-priority-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 113921775
+    },
+    {
+      "path": "local-data/creator-priority-20261008/dispatch-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 14704852
+    },
+    {
+      "path": "local-data/creator-database-20261008/isolated-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 51,
+      "logicalBytes": 23927235
+    },
+    {
+      "path": "local-data/activity-load-20261004/app-before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107429602
+    },
+    {
+      "path": "local-data/last-update-label-20261007/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107499409
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3297,
+      "logicalBytes": 264018867
+    },
+    {
+      "path": "local-data/creator-four-tier-20261009/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 121786849
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3280,
+      "logicalBytes": 252148775
+    },
+    {
+      "path": "local-data/last-update-all-creators-20261007/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3280,
+      "logicalBytes": 252076900
+    },
+    {
+      "path": "local-data/creator-name-colors-20261009/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 121786848
+    },
+    {
+      "path": "local-data/creator-refresh-resume-six-20261006/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 1170525
+    },
+    {
+      "path": "local-data/creator-month-inactivity-20261009/app-stage",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3303,
+      "logicalBytes": 268715846
+    },
+    {
+      "path": "local-data/feishu-live-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/publication-interval-20261007/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107522580
+    },
+    {
+      "path": "local-data/creator-name-colors-20261009/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 120399685
+    },
+    {
+      "path": "local-data/creator-refresh-constraints-20261006/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 1169207
+    },
+    {
+      "path": "local-data/creator-database-20261008/isolated-profile-2",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 50,
+      "logicalBytes": 22004028
+    },
+    {
+      "path": "local-data/creator-refresh-mixed-eight-20261006/modules",
+      "reason": "compiled verification modules",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 1169207
+    },
+    {
+      "path": "local-data/last-update-label-20261007/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 24,
+      "logicalBytes": 145477869
+    },
+    {
+      "path": "local-data/creator-readiness-fix-20261009/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 121786849
+    },
+    {
+      "path": "local-data/last-update-label-20261007/app-stage-complete",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 3280,
+      "logicalBytes": 252076420
+    },
+    {
+      "path": "local-data/unified-platform-20261004/app-before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107433031
+    },
+    {
+      "path": "local-data/feishu-live-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/publication-interval-20261007/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107500021
+    },
+    {
+      "path": "local-data/creator-debugger-fix-20261006/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107492030
+    },
+    {
+      "path": "local-data/tier-refresh-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/backups/app-before-activity-20261003/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107387187
+    },
+    {
+      "path": "local-data/tier-refresh-20261008/ui-profile-1791462854818",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24788194
+    },
+    {
+      "path": "local-data/backups/creator-zones-20261004-140539/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107420444
+    },
+    {
+      "path": "local-data/creator-readiness-fix-20261009/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 121786848
+    },
+    {
+      "path": "local-data/creator-section-switch-20261009/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 116682314
+    },
+    {
+      "path": "local-data/tier-refresh-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-ui-performance-20261009/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 118061548
+    },
+    {
+      "path": "local-data/creator-native-20261005/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/risk-rollback-20261004/runtime-before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107434109
+    },
+    {
+      "path": "local-data/following-plan-20261004/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-priority-order-20261009/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 120399685
+    },
+    {
+      "path": "local-data/native-charts-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/native-list-monitoring-20261006/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107492925
+    },
+    {
+      "path": "local-data/native-charts-20261008/ui-profile-1791445891355",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 53,
+      "logicalBytes": 19524373
+    },
+    {
+      "path": "local-data/feishu-creator-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 119446780
+    },
+    {
+      "path": "local-data/creator-ui-performance-20261009/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 116682314
+    },
+    {
+      "path": "local-data/creator-priority-order-20261009/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 119446780
+    },
+    {
+      "path": "local-data/native-charts-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-section-switch-20261009/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 115304021
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107571900
+    },
+    {
+      "path": "local-data/creator-native-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107442489
+    },
+    {
+      "path": "local-data/creator-context-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107450235
+    },
+    {
+      "path": "local-data/native-charts-20261008/ui-profile-1791445768279",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 53,
+      "logicalBytes": 19524373
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107555030
+    },
+    {
+      "path": "local-data/creator-month-inactivity-20261009/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 124145343
+    },
+    {
+      "path": "local-data/window-recovery-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-database-20261008/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/feishu-creator-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-context-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107450235
+    },
+    {
+      "path": "local-data/last-update-all-creators-20261007/app-final.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107500021
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 118061548
+    },
+    {
+      "path": "local-data/last-update-all-creators-20261007/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107499541
+    },
+    {
+      "path": "local-data/creator-priority-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-owner-six-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/stable-deployment-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/window-recovery-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/activity-load-20261004/app-before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-ui-performance-20261009/benchmark-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 58,
+      "logicalBytes": 24799852
+    },
+    {
+      "path": "local-data/creator-month-inactivity-20261009/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 123187382
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/isolated-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 55,
+      "logicalBytes": 19663915
+    },
+    {
+      "path": "local-data/last-update-label-20261007/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/filter-panel-fix-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-refresh-feedback-20261006/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107469426
+    },
+    {
+      "path": "local-data/creator-new-eight-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107469426
+    },
+    {
+      "path": "local-data/last-update-all-creators-20261007/offline-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 14696660
+    },
+    {
+      "path": "local-data/creator-database-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-priority-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-database-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/stable-deployment-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/last-update-label-20261007/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/filter-panel-fix-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-priority-20261008/ui-profile-1791466272415",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 58,
+      "logicalBytes": 24797743
+    },
+    {
+      "path": "local-data/creator-owner-six-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/creator-debugger-fix-20261006/synthetic-ui-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 51,
+      "logicalBytes": 9622768
+    },
+    {
+      "path": "local-data/creator-priority-20261008/ui-profile-1791466214256",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 54,
+      "logicalBytes": 19532961
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/benchmark-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 19536825
+    },
+    {
+      "path": "local-data/creator-new-eight-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/creator-four-tier-20261009/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/backups/app-before-weekly-counts-20261004/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107415404
+    },
+    {
+      "path": "local-data/creator-four-tier-20261009/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-four-tier-20261009/ui-profile-1791534690705",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 30366969
+    },
+    {
+      "path": "local-data/creator-four-tier-20261009/ui-profile-1791534455506",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 30366966
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/isolated-profile-6",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 55,
+      "logicalBytes": 19676510
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/isolated-profile-5",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 55,
+      "logicalBytes": 19664150
+    },
+    {
+      "path": "local-data/creator-four-tier-20261009/ui-profile-1791534336033",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 30366971
+    },
+    {
+      "path": "local-data/last-update-label-20261007/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/isolated-profile-4",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 55,
+      "logicalBytes": 19663922
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/isolated-profile-3",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 55,
+      "logicalBytes": 19663923
+    },
+    {
+      "path": "local-data/backups/app-before-activity-20261003/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-retained-six-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/creator-owner-native-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107452877
+    },
+    {
+      "path": "local-data/creator-refresh-constraints-20261006/before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107473082
+    },
+    {
+      "path": "local-data/creator-explicit-six-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/native-list-monitoring-20261006/synthetic-ui-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 51,
+      "logicalBytes": 9635083
+    },
+    {
+      "path": "local-data/unified-platform-20261004/app-before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-frequency-analysis-20261009/snapshot-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 20267220
+    },
+    {
+      "path": "local-data/desktop-single-instance-20261004/app-before/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107433641
+    },
+    {
+      "path": "local-data/creator-name-colors-20261009/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-debugger-fix-20261006/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/publication-interval-20261007/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/backups/frontend-work-count-20261004-151624/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107428126
+    },
+    {
+      "path": "local-data/creator-name-colors-20261009/ui-profile-1791518090694",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796300
+    },
+    {
+      "path": "local-data/creator-owner-current-20261005/before/review/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107457892
+    },
+    {
+      "path": "local-data/creator-retained-six-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/creator-owner-native-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107452877
+    },
+    {
+      "path": "local-data/creator-name-colors-20261009/ui-profile-1791518123723",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796434
+    },
+    {
+      "path": "local-data/creator-name-colors-20261009/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-owner-diverse-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107455825
+    },
+    {
+      "path": "local-data/creator-name-colors-20261009/ui-profile-1791517994204",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796438
+    },
+    {
+      "path": "local-data/creator-explicit-six-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/backups/public-visible-count-20261004-144609/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107426247
+    },
+    {
+      "path": "local-data/creator-owner-current-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107457446
+    },
+    {
+      "path": "local-data/risk-rollback-20261004/runtime-before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/filter-panel-fix-20261008/after-profile-1791461420087",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 54,
+      "logicalBytes": 19525009
+    },
+    {
+      "path": "local-data/publication-interval-20261007/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/backups/creator-zones-20261004-140539/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-context-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-owner-diverse-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107455825
+    },
+    {
+      "path": "local-data/publication-interval-20261007/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/filter-panel-fix-20261008/before-profile-1791461399122",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 54,
+      "logicalBytes": 19524785
+    },
+    {
+      "path": "local-data/creator-readiness-fix-20261009/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-owner-current-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107457446
+    },
+    {
+      "path": "local-data/native-list-monitoring-20261006/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-native-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-readiness-fix-20261009/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-section-switch-20261009/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-ui-performance-20261009/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-owner-diagnosis-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107455825
+    },
+    {
+      "path": "local-data/creator-context-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-priority-order-20261009/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-ui-performance-20261009/ui-profile-1791513237660",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796426
+    },
+    {
+      "path": "local-data/creator-section-switch-20261009/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-priority-20261008/dispatch-profile-1791465662290",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 14729428
+    },
+    {
+      "path": "local-data/creator-ui-performance-20261009/ui-profile-1791513406723",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796426
+    },
+    {
+      "path": "local-data/creator-refresh-feedback-20261006/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-new-eight-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-ui-performance-20261009/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-priority-order-20261009/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-priority-order-20261009/ui-profile-1791515098900",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796431
+    },
+    {
+      "path": "local-data/stable-deployment-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-owner-diagnosis-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107455825
+    },
+    {
+      "path": "local-data/last-update-all-creators-20261007/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-diagnostics-four-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/creator-section-switch-20261009/ui-profile-1791512484991",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796431
+    },
+    {
+      "path": "local-data/creator-section-switch-20261009/ui-profile-1791512409072",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796429
+    },
+    {
+      "path": "local-data/creator-priority-order-20261009/ui-profile-1791515070899",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 24796431
+    },
+    {
+      "path": "local-data/creator-owner-six-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-month-inactivity-20261009/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/stable-deployment-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-refresh-constraints-20261006/synthetic-ui-profile",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 52,
+      "logicalBytes": 9598286
+    },
+    {
+      "path": "local-data/backups/app-before-weekly-counts-20261004/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-owner-new-samples-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107457446
+    },
+    {
+      "path": "local-data/creator-mingshi-diagnosis-20261005/before/normal/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/creator-new-eight-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-diagnostics-four-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-owner-six-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/last-update-all-creators-20261007/app-final.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/last-update-all-creators-20261007/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-database-format-20261008/isolated-profile-graceful",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 57,
+      "logicalBytes": 19558845
+    },
+    {
+      "path": "local-data/creator-month-inactivity-20261009/ui-profile-1791535398907",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 30362903
+    },
+    {
+      "path": "local-data/creator-owner-new-samples-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107457446
+    },
+    {
+      "path": "local-data/creator-mingshi-diagnosis-20261005/before/release/app.asar",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 107458831
+    },
+    {
+      "path": "local-data/creator-month-inactivity-20261009/before/app.asar.unpacked",
+      "reason": "regenerable packaged staging",
+      "directory": true,
+      "files": 26,
+      "logicalBytes": 145477979
+    },
+    {
+      "path": "local-data/creator-month-inactivity-20261009/ui-profile-1791535452893",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 56,
+      "logicalBytes": 30362903
+    },
+    {
+      "path": "local-data/creator-explicit-six-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/desktop-single-instance-20261004/app-before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-retained-six-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/backups/frontend-work-count-20261004-151624/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-owner-native-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-readiness-fix-20261009/resume-profile-1791525527216",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 19919060
+    },
+    {
+      "path": "local-data/creator-refresh-constraints-20261006/before/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/backups/public-visible-count-20261004-144609/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-explicit-six-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-owner-current-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-owner-diverse-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-retained-six-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-owner-current-20261005/before/review/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-owner-native-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/verify-profile-1791514565681",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 54,
+      "logicalBytes": 19533010
+    },
+    {
+      "path": "local-data/creator-owner-diverse-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/verify-profile-1791514384211",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 54,
+      "logicalBytes": 19533005
+    },
+    {
+      "path": "local-data/creator-owner-current-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/database-ui-performance-20261009/verify-profile-1791514590679",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 54,
+      "logicalBytes": 19533010
+    },
+    {
+      "path": "local-data/creator-owner-diagnosis-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-owner-diagnosis-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210897408
+    },
+    {
+      "path": "local-data/creator-diagnostics-four-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-owner-new-samples-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-diagnostics-four-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-mingshi-diagnosis-20261005/before/normal/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-owner-new-samples-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-mingshi-diagnosis-20261005/before/release/Signal Desk.exe",
+      "reason": "superseded application binary",
+      "directory": false,
+      "files": 1,
+      "logicalBytes": 210896896
+    },
+    {
+      "path": "local-data/creator-activity-gate-analysis-20261009/snapshot-profile-1791528782911",
+      "reason": "completed isolated verification profile",
+      "directory": true,
+      "files": 2,
+      "logicalBytes": 20267220
+    }
+  ],
+  "protected": [
+    "release-following-background-final/",
+    "userData databases and settings",
+    "desktop shortcut",
+    "current source and referenced prototypes"
+  ]
+}
