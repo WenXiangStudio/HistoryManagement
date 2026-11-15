@@ -9,7 +9,7 @@ const browserSchema=z.object({commands:z.array(z.object({sequence:z.number().int
   stage:z.enum(['pending','complete','exception','missing-result','rejected']),elapsedMs:z.number().finite().nonnegative(),error:commandError.nullable(),
   exceptionClass:z.enum(['Error','TypeError','ReferenceError','SyntaxError','RangeError','EvalError','DOMException','other']).nullable(),
   resultType:z.enum(['object','undefined','string','number','boolean','function','symbol','bigint']).nullable()
-}).strict()).max(64),connections:z.array(z.object({at:z.string().datetime(),event:z.enum(['detached','target-selected','detach-requested']),
+}).strict()).max(64),connections:z.array(z.object({at:z.string().datetime(),event:z.enum(['detached','target-selected','detach-requested','reattached']),
   reason:z.enum(['target_closed','canceled_by_user','other']).nullable(),expected:z.boolean().optional()}).strict()).max(16),dropped:z.number().int().nonnegative()}).strict()
 export const activityFailureDiagnosticSchema=z.object({
   contract:z.literal('signaldesk-activity-failure/v1'),creatorId:z.number().int().negative(),

@@ -295,6 +295,112 @@ try {
   })
   const cloudSettings = JSON.parse(cloudSettingsResponse.result.result.value)
 
+  // Exercise real renderer polling; synthetic provider addresses are never contacted.
+  const flashResponse = await send('Runtime.evaluate', {
+    expression: `(async () => {
+      const view = await window.signalDesk.getDoubaoSpeech()
+      const card = document.querySelector('[data-testid="doubao-speech-settings"]')
+      return { resourceId: view.settings.resourceId, state: view.trial.state,
+        title: card?.querySelector('h3')?.textContent,
+        localAudioButton: [...(card?.querySelectorAll('button') || [])].some(b => b.textContent === '查看本地音轨'),
+        hasUrl: !!card?.querySelector('[aria-label="豆包测试音频链接"]'),
+        hasFlashBridge: typeof window.signalDesk.startDoubaoFlash === 'function' && typeof window.signalDesk.markDoubaoFlashDisplayed === 'function' }
+    })()`, awaitPromise: true, returnByValue: true
+  })
+  const flash = flashResponse.result?.result?.value
+  if (flash?.resourceId !== 'volc.bigasr.auc_turbo' || flash.state !== 'idle'
+    || !flash.title?.includes('录音文件识别极速版') || !flash.localAudioButton || flash.hasUrl || !flash.hasFlashBridge) {
+    throw new Error(`Packaged flash entry incomplete: ${JSON.stringify(flash)}`)
+  }
+  const settingsDraftResponse = await send('Runtime.evaluate', {
+    expression: `(async () => {
+      const field = (name) => [...document.querySelectorAll('label.field')]
+        .find((label) => label.querySelector('span')?.textContent === name)?.querySelector('input')
+      const edit = (name, value) => {
+        const input = field(name)
+        Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(input, value)
+        input.dispatchEvent(new Event('input', { bubbles: true }))
+      }
+      edit('文本服务 Base URL', 'https://draft-text.example.com/v1')
+      edit('文本模型', 'draft-text-model')
+      const protocol = () => [...document.querySelectorAll('label.field')]
+        .find((label) => label.querySelector('span')?.textContent === '文本接口协议')?.querySelector('select')
+      protocol().value = 'responses'
+      protocol().dispatchEvent(new Event('change', { bubbles: true }))
+      await new Promise((resolveWait) => setTimeout(resolveWait, 6500))
+      const retained = field('文本服务 Base URL').value === 'https://draft-text.example.com/v1'
+        && field('文本模型').value === 'draft-text-model' && protocol().value === 'responses'
+      const notAutosaved = (await window.signalDesk.getSettings()).textModel === 'smoke-text-model'
+      if (!retained || !notAutosaved) return { retained, notAutosaved, saved: false, reopened: false }
+      ;[...document.querySelectorAll('.settings-actions button')].find((button) => button.textContent === '保存设置').click()
+      let saved = false
+      for (let i = 0; i < 20; i++) {
+        await new Promise((resolveWait) => setTimeout(resolveWait, 100))
+        const value = await window.signalDesk.getSettings()
+        if (value.textBaseUrl === 'https://draft-text.example.com/v1' && value.textModel === 'draft-text-model' && value.textApiProtocol === 'responses') { saved = true; break }
+      }
+      ;[...document.querySelectorAll('nav button')].find((button) => button.textContent === '任务中心').click()
+      await new Promise((resolveWait) => setTimeout(resolveWait, 100))
+      ;[...document.querySelectorAll('nav button')].find((button) => button.textContent === '设置').click()
+      await new Promise((resolveWait) => setTimeout(resolveWait, 100))
+      return { retained, notAutosaved, saved, reopened: field('文本服务 Base URL').value === 'https://draft-text.example.com/v1'
+        && field('文本模型').value === 'draft-text-model' && protocol().value === 'responses' }
+    })()`, awaitPromise: true, returnByValue: true
+  })
+  const settingsDraft = settingsDraftResponse.result?.result?.value
+  if (!settingsDraft?.retained || !settingsDraft.notAutosaved || !settingsDraft.saved || !settingsDraft.reopened) {
+    throw new Error(`Packaged settings draft/persistence regression: ${JSON.stringify(settingsDraft)}`)
+  }
+
+  const profilesResponse=await send('Runtime.evaluate',{
+    expression:`(async()=>{
+      const pause=ms=>new Promise(resolve=>setTimeout(resolve,ms))
+      const wait=async check=>{for(let i=0;i<50;i++){if(await check())return;await pause(100)}throw Error('Profile UI timed out')}
+      const button=text=>[...document.querySelectorAll('button')].find(b=>b.textContent===text)
+      const field=name=>[...document.querySelectorAll('label.field')].find(l=>l.querySelector('span')?.textContent===name)?.querySelector('input')
+      const edit=(name,value)=>{const e=field(name);Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,'value').set.call(e,value);e.dispatchEvent(new Event('input',{bubbles:true}))}
+      const old=await window.signalDesk.getSettings()
+      if(old.cloudProfiles?.length!==1)throw Error('Existing profile was not preserved')
+      button('新建方案').click()
+      await wait(async()=>((await window.signalDesk.getSettings()).cloudProfiles||[]).length===2)
+      const created=await window.signalDesk.getSettings()
+      await wait(()=>field('文本模型')?.value==='')
+      if(created.hasTextApiKey||created.hasVisionApiKey||created.textBaseUrl||created.textModel)throw Error('New profile inherited old credentials or provider')
+      edit('方案名称','第二厂商 · 验证方案');edit('文本服务 Base URL','https://second.example.com/v1');edit('文本模型','second-provider-model');edit('文本服务 API Key','synthetic-second-secret')
+      await pause(6500)
+      if(field('文本模型').value!=='second-provider-model'||field('文本服务 API Key').value!=='synthetic-second-secret')throw Error('Profile draft was overwritten by polling')
+      button('保存设置').click()
+      await wait(async()=>(await window.signalDesk.getSettings()).textModel==='second-provider-model')
+      await wait(()=>field('文本服务 API Key').value==='')
+      const select=()=>document.querySelector('[aria-label="云端方案"]')
+      const choose=id=>{select().value=id;select().dispatchEvent(new Event('change',{bubbles:true}))}
+      choose(old.activeCloudProfileId)
+      await wait(async()=>(await window.signalDesk.getSettings()).activeCloudProfileId===old.activeCloudProfileId)
+      await wait(()=>field('文本模型').value===old.textModel)
+      const restored=await window.signalDesk.getSettings()
+      if(restored.textBaseUrl!==old.textBaseUrl||restored.textApiProtocol!==old.textApiProtocol||restored.visionModel!==old.visionModel||!restored.hasTextApiKey||!restored.hasVisionApiKey)throw Error('Original profile not restored')
+      choose(created.activeCloudProfileId)
+      await wait(()=>field('文本模型').value==='second-provider-model')
+      edit('文本模型','unsaved-profile-edit');await pause(50);choose(old.activeCloudProfileId)
+      await wait(()=>document.querySelector('.cloud-profile-pending'))
+      if((await window.signalDesk.getSettings()).activeCloudProfileId!==created.activeCloudProfileId)throw Error('Dirty form switched without confirmation')
+      button('继续编辑').click();await pause(50)
+      if(field('文本模型').value!=='unsaved-profile-edit')throw Error('Dirty draft lost')
+      choose(old.activeCloudProfileId);await pause(50);button('放弃修改并继续').click()
+      await wait(()=>field('文本模型').value===old.textModel)
+      return {legacyPreserved:true,newStartsEmpty:true,pollingRetained:true,secretsClearedFromInputs:true,roundtrip:true,dirtyDraftProtected:true,count:(await window.signalDesk.getSettings()).cloudProfiles.length}
+    })()`,awaitPromise:true,returnByValue:true})
+  const cloudProfiles=profilesResponse.result?.result?.value
+  if(!cloudProfiles?.roundtrip||!cloudProfiles.dirtyDraftProtected)throw Error('Packaged profile switching failed: '+JSON.stringify(profilesResponse.result?.exceptionDetails||cloudProfiles))
+  if(process.env.SIGNAL_DESK_SMOKE_EVIDENCE){
+    const evidence=resolve(process.env.SIGNAL_DESK_SMOKE_EVIDENCE);mkdirSync(evidence,{recursive:true})
+    await send('Runtime.evaluate',{expression:`document.querySelector('[data-testid="cloud-profile-controls"]').scrollIntoView({block:'start'})`})
+    await new Promise(r=>setTimeout(r,200))
+    const shot=await send('Page.captureScreenshot',{format:'png'})
+    writeFileSync(join(evidence,'cloud-profiles-settings.png'),Buffer.from(shot.result.data,'base64'))
+    writeFileSync(join(evidence,'cloud-profiles-smoke.json'),JSON.stringify(cloudProfiles,null,2))
+  }
+
   const demoResponse = await send('Runtime.evaluate', {
     expression: `(async () => {
       try {
@@ -480,6 +586,63 @@ try {
     }
     demoCleanup = 'ok'
   }
+  const siliconFlowResponse = await send('Runtime.evaluate', {
+    expression: `(async () => {
+      const pause = ms => new Promise(r => setTimeout(r, ms))
+      const wait = async check => { for (let i = 0; i < 60; i++) { if (await check()) return; await pause(50) } throw Error('SiliconFlow UI timed out') }
+      const before = await window.signalDesk.getSettings()
+      const card = document.querySelector('[data-testid="siliconflow-settings"]')
+      if (!card) throw Error('SiliconFlow card missing')
+      const field = label => card.querySelector('[aria-label="' + label + '"]')
+      const edit = (label, value) => { const e = field(label); Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(e, value); e.dispatchEvent(new Event('input', { bubbles: true })) }
+      const button = text => [...card.querySelectorAll('button')].find(b => b.textContent === text)
+      const save = () => button('保存硅基流动配置').click()
+      const initial = await window.signalDesk.getSiliconFlow()
+      if (initial.slots.length || initial.hasSecret) throw Error('Unexpected populated SiliconFlow smoke profile')
+      for (let slot = 1; slot <= 4; slot++) {
+        button('新增模型').click()
+        await wait(() => !!field('硅基流动模型' + slot))
+      }
+      save(); await wait(async () => (await window.signalDesk.getSiliconFlow()).slots.length === 4)
+      const placeholders = await window.signalDesk.getSiliconFlow()
+      edit('硅基流动API Key', 'synthetic-silicon-smoke-key')
+      edit('硅基流动模型1', 'synthetic/text-model')
+      edit('硅基流动模型2', 'synthetic/vision-model')
+      edit('硅基流动模型3', 'synthetic/third-model')
+      edit('硅基流动模型4', 'synthetic/fourth-model')
+      field('硅基流动模型2图片输入').click(); await pause(100)
+      save(); await wait(async () => (await window.signalDesk.getSiliconFlow()).slots.every(s => s.model && s.hasSecret))
+      const saved = await window.signalDesk.getSiliconFlow(), after = await window.signalDesk.getSettings()
+      await wait(() => button('使用模型 4') && !button('使用模型 4').disabled)
+      button('使用模型 4').click(); await wait(async () => (await window.signalDesk.getSettings()).textModel === 'synthetic/fourth-model')
+      const active = await window.signalDesk.getSettings()
+      await window.signalDesk.saveSettings({ cloudProfileAction: 'activate', cloudProfileId: before.activeCloudProfileId, expectedCloudProfileId: active.activeCloudProfileId })
+      return { endpoint: field('硅基流动服务地址').value, initialEmpty: initial.slots.length === 0, placeholders: placeholders.slots.length === 4 && placeholders.slots.every(s => s.profileId && !s.model && !s.hasSecret),
+        models: saved.slots.map(s => s.model), sharedKeySaved: saved.slots.every(s => s.hasSecret), visionEnabled: saved.slots[1].visionEnabled,
+        secretCleared: field('硅基流动API Key').value === '', preservedOldProfiles: before.cloudProfiles.every(p => after.cloudProfiles.some(n => n.id === p.id && n.name === p.name)),
+        added: after.cloudProfiles.length - before.cloudProfiles.length, activeUnchangedOnSave: before.activeCloudProfileId === after.activeCloudProfileId,
+        activation: active.textModel === 'synthetic/fourth-model' && active.textApiProtocol === 'chat-completions' && active.textBaseUrl === 'https://api.siliconflow.cn/v1' }
+    })()`, awaitPromise: true, returnByValue: true
+  })
+  const siliconFlow = siliconFlowResponse.result?.result?.value
+  if (siliconFlow?.endpoint !== 'https://api.siliconflow.cn/v1' || !siliconFlow.initialEmpty || !siliconFlow.placeholders || !siliconFlow.sharedKeySaved
+    || !siliconFlow.visionEnabled || !siliconFlow.secretCleared || !siliconFlow.preservedOldProfiles || siliconFlow.added !== 4
+    || !siliconFlow.activeUnchangedOnSave || !siliconFlow.activation
+    || JSON.stringify(siliconFlow.models) !== JSON.stringify(['synthetic/text-model','synthetic/vision-model','synthetic/third-model','synthetic/fourth-model'])) {
+    throw new Error(`SiliconFlow packaged configuration failed: ${JSON.stringify(siliconFlowResponse.result)}`)
+  }
+  const workflowEntry = await send('Runtime.evaluate', {
+    expression: `(async () => {
+      [...document.querySelectorAll('nav button')].find(b => b.textContent === '视频信息').click()
+      await new Promise(r => setTimeout(r, 250))
+      const button = [...document.querySelectorAll('button')].find(b => b.textContent.trim() === '分类选中')
+      const result = { exists: !!button, disabledWithoutSelection: button?.disabled }
+      ;[...document.querySelectorAll('nav button')].find(b => b.textContent === '设置').click()
+      await new Promise(r => setTimeout(r, 100))
+      return result
+    })()`, awaitPromise: true, returnByValue: true
+  })
+  if (!workflowEntry.result?.result?.value?.exists || !workflowEntry.result.result.value.disabledWithoutSelection) throw Error('Local classification entry not ready')
   if (errors.length) throw new Error(`Renderer emitted errors: ${JSON.stringify(errors)}`)
 
   if (process.env.SIGNAL_DESK_SMOKE_SCREENSHOT) {
@@ -487,7 +650,7 @@ try {
     writeFileSync(resolve(process.env.SIGNAL_DESK_SMOKE_SCREENSHOT), Buffer.from(screenshot.result.data, 'base64'))
   }
 
-  console.log(JSON.stringify({ executable, preloadBridge: 'ok', renderer: 'ok', dashboardIpc: 'ok', isolatedPilotEntry: 'ok', structuredSyncGate: 'ok', cloudProviders: 'ok', demoSearch: 'ok', demoDetail: 'ok', commentAuditUi: 'ok', demoCleanup, upgradeSnapshot: expectedSnapshot ? 'ok' : 'not-requested' }, null, 2))
+  console.log(JSON.stringify({ executable, preloadBridge: 'ok', renderer: 'ok', dashboardIpc: 'ok', isolatedPilotEntry: 'ok', structuredSyncGate: 'ok', cloudProviders: 'ok', doubaoFlashEntry: 'ok', siliconFlow, settingsDraft: 'ok', cloudProfiles, demoSearch: 'ok', demoDetail: 'ok', commentAuditUi: 'ok', demoCleanup, upgradeSnapshot: expectedSnapshot ? 'ok' : 'not-requested' }, null, 2))
   await send('Runtime.evaluate', { expression: 'window.close()' })
 } finally {
   socket.close()

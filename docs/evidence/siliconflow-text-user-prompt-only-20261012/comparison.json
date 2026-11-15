@@ -1,0 +1,155 @@
+{
+  "startedAt": "2026-10-12T14:03:51.821Z",
+  "completedAt": "2026-10-12T14:06:44.433Z",
+  "source": {
+    "service": "豆包录音文件识别极速版",
+    "resource": "volc.bigasr.auc_turbo",
+    "requestId": "8bdba001-a1a0-461b-ba11-b752eca0d491",
+    "sha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+    "utf8Bytes": 1209,
+    "characters": 479,
+    "appArtifactName": "transcript-original.txt",
+    "humanReview": {
+      "reportedDate": "2026-10-12",
+      "source": "user manual proofreading",
+      "transcriptionAccuracyPercent": 100,
+      "scope": "This sample only: work 7694535682575860393, request 8bdba001-a1a0-461b-ba11-b752eca0d491"
+    }
+  },
+  "messagesSha256": "9b6ab9806aab31856514d587dc86caccdbea673273860969e03b74adfe3fbcb9",
+  "totalRequestCount": 2,
+  "reports": [
+    {
+      "model": "zai-org/GLM-5.3-Flash",
+      "slug": "glm",
+      "profileId": "d2f4dc4b-4970-4a88-aa7e-ad4351b44b15",
+      "providerSlot": 1,
+      "sourceSha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+      "messagesSha256": "9b6ab9806aab31856514d587dc86caccdbea673273860969e03b74adfe3fbcb9",
+      "requestCount": 1,
+      "stream": true,
+      "parameters": {
+        "stream": true,
+        "stream_options": {
+          "include_usage": true
+        },
+        "temperature": 0,
+        "max_tokens": 16384,
+        "enable_thinking": false,
+        "thinking_budget": 1024
+      },
+      "startedAt": "2026-10-12T14:03:52.114Z",
+      "usage": {
+        "prompt_tokens": 346,
+        "completion_tokens": 2183,
+        "total_tokens": 2529,
+        "completion_tokens_details": {
+          "reasoning_tokens": 1025
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 346
+      },
+      "replyCharacters": 1960,
+      "reasoningCharacters": 4225,
+      "receivedBytes": 1019273,
+      "streamDone": true,
+      "finishReason": "stop",
+      "httpStatus": 200,
+      "headersMs": 1208,
+      "responseHeaders": {
+        "content-type": "text/event-stream",
+        "date": "Mon, 12 Oct 2026 14:03:32 GMT"
+      },
+      "responseId": "01a1306cfdc24d2272a7e7a0f00ce1f7",
+      "returnedModel": "zai-org/GLM-5.3-Flash",
+      "firstReasoningMs": 1210,
+      "firstContentMs": 12066,
+      "requestCompletedAt": "2026-10-12T14:04:16.337Z",
+      "complete": true,
+      "requestElapsedMs": 24223,
+      "replySha256": "aad26d3e067beeb102183158458fdf366c262ae0f1076e9d5bb6e3dab3f9803b",
+      "reasoningSha256": "bc85002b71293c46754fb56b43520f6ad65fc727ec7521426dbb48af45f53bb1",
+      "resultsSavedAt": "2026-10-12T14:04:16.337Z",
+      "resultSaveMs": 1,
+      "requestToResultSavedMs": 24224
+    },
+    {
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "slug": "deepseek",
+      "profileId": "8a34d4c6-7ab2-480d-88a4-e3dd18595f7d",
+      "providerSlot": 3,
+      "sourceSha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+      "messagesSha256": "9b6ab9806aab31856514d587dc86caccdbea673273860969e03b74adfe3fbcb9",
+      "requestCount": 1,
+      "stream": true,
+      "parameters": {
+        "stream": true,
+        "stream_options": {
+          "include_usage": true
+        },
+        "temperature": 0,
+        "max_tokens": 16384,
+        "enable_thinking": false,
+        "thinking_budget": 1024
+      },
+      "startedAt": "2026-10-12T14:04:16.338Z",
+      "usage": {
+        "prompt_tokens": 325,
+        "completion_tokens": 1057,
+        "total_tokens": 1382,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 325
+      },
+      "replyCharacters": 1790,
+      "reasoningCharacters": 0,
+      "receivedBytes": 493639,
+      "streamDone": true,
+      "finishReason": "stop",
+      "httpStatus": 200,
+      "headersMs": 118932,
+      "responseHeaders": {
+        "content-type": "text/event-stream",
+        "date": "Mon, 12 Oct 2026 14:05:54 GMT"
+      },
+      "responseId": "01a1306d5c1b0e2416d58939884b5472",
+      "returnedModel": "deepseek-ai/DeepSeek-V4-Flash",
+      "firstContentMs": 118940,
+      "requestCompletedAt": "2026-10-12T14:06:44.220Z",
+      "complete": true,
+      "requestElapsedMs": 147881,
+      "replySha256": "1d767e8e3fbf056d87c258d27895500e92e65865128d59ce36c4f76865ad3ef6",
+      "reasoningSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "resultsSavedAt": "2026-10-12T14:06:44.221Z",
+      "resultSaveMs": 1,
+      "requestToResultSavedMs": 147882
+    }
+  ],
+  "retention": {
+    "databaseRowsUnchanged": true,
+    "encryptedCredentialsUnchanged": true,
+    "activeProfileUnchanged": true,
+    "localRuntimeUnchanged": true,
+    "appPackageUnchanged": true
+  },
+  "executionElapsedMs": 172611,
+  "timingScope": "Independent experiment program start to both results saved; per-request time includes network and full response. No APP click-to-display timing.",
+  "bothComplete": true,
+  "requestedModelsComplete": true,
+  "appStatus": {
+    "phase": "completed",
+    "activity": "completed",
+    "basic": "idle",
+    "video": "completed",
+    "online": true,
+    "readiness": "ready"
+  }
+}

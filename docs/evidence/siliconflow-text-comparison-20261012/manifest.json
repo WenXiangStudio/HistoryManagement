@@ -1,0 +1,60 @@
+{
+  "startedAt": "2026-10-12T12:31:19.726Z",
+  "workId": "7694535682575860393",
+  "title": "数学彻底怒openai了",
+  "author": "口罩哥研报60秒",
+  "source": {
+    "service": "豆包录音文件识别极速版",
+    "resource": "volc.bigasr.auc_turbo",
+    "requestId": "8bdba001-a1a0-461b-ba11-b752eca0d491",
+    "sha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+    "utf8Bytes": 1209,
+    "characters": 479,
+    "appArtifactName": "transcript-original.txt",
+    "humanReview": {
+      "reportedDate": "2026-10-12",
+      "source": "user manual proofreading",
+      "transcriptionAccuracyPercent": 100,
+      "scope": "This sample only: work 7694535682575860393, request 8bdba001-a1a0-461b-ba11-b752eca0d491"
+    }
+  },
+  "endpoint": "https://api.siliconflow.cn/v1/chat/completions",
+  "protocol": "chat-completions",
+  "expectedModels": [
+    {
+      "slot": 1,
+      "slug": "glm",
+      "model": "zai-org/GLM-5.3-Flash"
+    },
+    {
+      "slot": 3,
+      "slug": "deepseek",
+      "model": "deepseek-ai/DeepSeek-V4-Flash"
+    }
+  ],
+  "messagesSha256": "64c33a68c6e3470b352f1b594a8557388a3fcc794e7e06b05ad7777f2be79f29",
+  "parameters": {
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "temperature": 0,
+    "max_tokens": 4096,
+    "enable_thinking": false
+  },
+  "headings": [
+    "一、内容总结与概括",
+    "二、主要观点分析与原文依据",
+    "三、涉及领域与可能相关事件（推测）"
+  ],
+  "maxRequests": 2,
+  "order": "Sequential: GLM then DeepSeek",
+  "externalRetrieval": false,
+  "imageCount": 0,
+  "audioCount": 0,
+  "videoCount": 0,
+  "localModelsUsed": false,
+  "activeProfileSwitch": false,
+  "automaticRetries": false,
+  "timingScope": "Independent experiment program start to both results saved; per-request time includes network and full response. No APP click-to-display timing."
+}

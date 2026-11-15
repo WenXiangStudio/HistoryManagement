@@ -1,0 +1,78 @@
+{
+  "startedAt": "2026-10-12T14:55:11.534Z",
+  "workId": "7693007317557726505",
+  "title": "纯主观｜旅行为何会改变一个人的一生？",
+  "author": "画画的Lorenzo🎨",
+  "source": {
+    "service": "Previously saved faster-whisper small local transcription",
+    "config": {
+      "provider": "faster-whisper",
+      "version": "1.2.1",
+      "model": "small",
+      "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+      "computeType": "int8",
+      "language": "zh",
+      "beamSize": 5
+    },
+    "sha256": "8857306fd0e5fe65eb9f72126cbe8fcb11fc4587141ccb510db6221887979e02",
+    "sourceJsonSha256": "22b007605a55125fbd325ab1404ec8bd4a3c393413f10df90bbcbc704c3df1f6",
+    "sourceMediaSha256": "14016cd1fee70a8e1fa1dc6f1973d0d524267add2bd51ac94c56ad2b8d4f6f29",
+    "utf8Bytes": 2959,
+    "characters": 1071,
+    "spokenTextCharacters": 947,
+    "segments": 125,
+    "stageId": 19,
+    "durationMs": 204700,
+    "humanReview": null,
+    "assembly": "All segment texts unchanged, joined with one line feed; no timestamps or metadata in model content"
+  },
+  "endpoint": "https://api.siliconflow.cn/v1/chat/completions",
+  "protocol": "chat-completions",
+  "expectedModels": [
+    {
+      "slot": 1,
+      "slug": "glm",
+      "model": "zai-org/GLM-5.3-Flash"
+    },
+    {
+      "slot": 3,
+      "slug": "deepseek",
+      "model": "deepseek-ai/DeepSeek-V4-Flash"
+    }
+  ],
+  "messagesSha256": "fef3d13ec9a82e59d042c1087f033356d1f3bdcf8820b889775995b00ff7f05e",
+  "inputSha256": "b42a35fb9e87e3ef4c90418090e59cbad7225b4f486cfaefd8b40b6957403909",
+  "userPromptSha256": "7f8e3ff50726d667c4a834c9fb3d89367cf52e518994977dbcfebfc93da6cc46",
+  "parameters": {
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "temperature": 0,
+    "max_tokens": 16384,
+    "enable_thinking": false,
+    "thinking_budget": 1024
+  },
+  "maxRequests": 2,
+  "inputAudit": {
+    "messageCount": 1,
+    "roles": [
+      "user"
+    ],
+    "systemMessages": 0,
+    "developerMessages": 0,
+    "assistantMessages": 0,
+    "additionalInstructionCharacters": 0,
+    "composition": "Exact verified transcript + two line feeds + exact user three-part task prompt",
+    "userPromptCharacters": 96
+  },
+  "order": "Sequential: GLM then DeepSeek",
+  "externalRetrieval": false,
+  "imageCount": 0,
+  "audioCount": 0,
+  "videoCount": 0,
+  "localModelsUsed": false,
+  "activeProfileSwitch": false,
+  "automaticRetries": false,
+  "timingScope": "Independent experiment program start to both results saved; per-request time includes network and full response. No APP click-to-display timing."
+}

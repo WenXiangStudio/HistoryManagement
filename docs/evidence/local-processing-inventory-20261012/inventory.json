@@ -1,0 +1,347 @@
+{
+  "checkedDate": "2026-10-12",
+  "counts": {
+    "localMaterialVideos": 11,
+    "authors": 5,
+    "durationSeconds": 3696.233,
+    "transcriptSegments": 1861,
+    "transcriptCharacters": 21319,
+    "sampledFrames": 639,
+    "ocrBlocks": 4695,
+    "videosWithLocalSummaryCandidate": 2,
+    "formalLocalSummaries": 0
+  },
+  "records": [
+    {
+      "workId": "7694535682575860393",
+      "authors": [
+        "口罩哥研报60秒"
+      ],
+      "description": "数学彻底怒openai了",
+      "durationMs": 76934,
+      "transcriptSegments": 29,
+      "transcriptCharacters": 417,
+      "transcriptElapsedMs": 26781,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 42,
+      "ocrBlocks": 66,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [
+        {
+          "name": "summary-qwen3-v2-rejected.json",
+          "bytes": 18930,
+          "model": "Qwen3-4B-Instruct-2507-Q4_K_M",
+          "provider": "local",
+          "overviewPresent": true,
+          "elapsedMs": 186003.30479999998
+        },
+        {
+          "name": "summary-v1-rejected.json",
+          "bytes": 18724,
+          "model": "Qwen3-4B-Instruct-2507-Q4_K_M",
+          "provider": "local",
+          "overviewPresent": true,
+          "elapsedMs": 163278.2642
+        },
+        {
+          "name": "summary.json",
+          "bytes": 7728,
+          "model": "Qwen3.5-4B-Q4_K_M",
+          "provider": "local",
+          "overviewPresent": true,
+          "elapsedMs": 126360.7518
+        }
+      ],
+      "mediaExists": true
+    },
+    {
+      "workId": "7694102162485284115",
+      "authors": [
+        "爱学习的乔同学"
+      ],
+      "description": "技术科普：2026诺贝尔物理学奖，都发现了啥？ 今年的诺贝尔物理学奖颁给了一块能探索宇宙的南极冰块，和中微子有关。 \n那么，中微子是啥？冰块和宇宙又有什么联系呢？本视频耗时8小时完成，将会带着大家用高中物理知识来理解2026诺贝尔物理学奖都发现了啥，都是如何做到的。 \n那么，你们认为今年的诺奖，实至名归么？ \n#诺贝尔奖 #2026诺贝尔物理学奖 #技术科普 #技术解读 #人工智能",
+      "durationMs": 275900,
+      "transcriptSegments": 93,
+      "transcriptCharacters": 1269,
+      "transcriptElapsedMs": 97891,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 122,
+      "ocrBlocks": 669,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    },
+    {
+      "workId": "7694998493451454454",
+      "authors": [
+        "口罩哥研报60秒"
+      ],
+      "description": "汽车创新设计要管了…",
+      "durationMs": 33934,
+      "transcriptSegments": 18,
+      "transcriptCharacters": 148,
+      "transcriptElapsedMs": 11875,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 17,
+      "ocrBlocks": 78,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    },
+    {
+      "workId": "7694979794185974500",
+      "authors": [
+        "口罩哥研报60秒"
+      ],
+      "description": "达子不怕，潘子第一！",
+      "durationMs": 69634,
+      "transcriptSegments": 31,
+      "transcriptCharacters": 336,
+      "transcriptElapsedMs": 28500,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 38,
+      "ocrBlocks": 306,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    },
+    {
+      "workId": "7694976987546490980",
+      "authors": [
+        "口罩哥研报60秒"
+      ],
+      "description": "叁叁柒？又来？这次盯上的是供电系统。",
+      "durationMs": 57800,
+      "transcriptSegments": 25,
+      "transcriptCharacters": 259,
+      "transcriptElapsedMs": 19375,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 33,
+      "ocrBlocks": 162,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    },
+    {
+      "workId": "7694967966249527524",
+      "authors": [
+        "口罩哥研报60秒"
+      ],
+      "description": "美债收益率压不下来怎么办？那就是以后长债不拍了！不肯欠你钱那么久",
+      "durationMs": 63200,
+      "transcriptSegments": 27,
+      "transcriptCharacters": 272,
+      "transcriptElapsedMs": 21938,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 38,
+      "ocrBlocks": 246,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    },
+    {
+      "workId": "7694965291436713855",
+      "authors": [
+        "口罩哥研报60秒"
+      ],
+      "description": "",
+      "durationMs": 55611,
+      "transcriptSegments": 16,
+      "transcriptCharacters": 250,
+      "transcriptElapsedMs": 16000,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 28,
+      "ocrBlocks": 127,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    },
+    {
+      "workId": "7691400398775780947",
+      "authors": [
+        "口罩哥研报60秒"
+      ],
+      "description": "等待中",
+      "durationMs": 57167,
+      "transcriptSegments": 26,
+      "transcriptCharacters": 294,
+      "transcriptElapsedMs": 22672,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 29,
+      "ocrBlocks": 28,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    },
+    {
+      "workId": "7682043534987300106",
+      "authors": [
+        "半调留白"
+      ],
+      "description": "PS+AI精准控图 #ps #电商设计 #ai #设计 #设计日常",
+      "durationMs": 25587,
+      "transcriptSegments": 5,
+      "transcriptCharacters": 148,
+      "transcriptElapsedMs": 9719,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "small-536b066",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 18,
+      "ocrBlocks": 1059,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [
+        {
+          "name": "summary.json",
+          "bytes": 41709,
+          "model": "Qwen3.5-4B-Q4_K_M",
+          "provider": "local",
+          "overviewPresent": true,
+          "elapsedMs": 246809.8841
+        }
+      ],
+      "mediaExists": true
+    },
+    {
+      "workId": "7694429527623109951",
+      "authors": [
+        "硅谷101播客"
+      ],
+      "description": "模型越来越强，为什么用户没感觉？再访阿里国际站总裁张阔 #AI #电商 #AccioWork #Agent #视频播客扶持计划",
+      "durationMs": 2775766,
+      "transcriptSegments": 1466,
+      "transcriptCharacters": 16979,
+      "transcriptElapsedMs": 1119687,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 120,
+      "ocrBlocks": 712,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    },
+    {
+      "workId": "7693007317557726505",
+      "authors": [
+        "画画的Lorenzo🎨"
+      ],
+      "description": "🤔纯主观｜旅行为何会改变一个人的一生？ #旅行 #旅行推荐官 #旅行的意义 #感知力 #审美积累",
+      "durationMs": 204700,
+      "transcriptSegments": 125,
+      "transcriptCharacters": 947,
+      "transcriptElapsedMs": 75609,
+      "model": {
+        "provider": "faster-whisper",
+        "version": "1.2.1",
+        "model": "small",
+        "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+        "computeType": "int8",
+        "language": "zh",
+        "beamSize": 5
+      },
+      "frames": 154,
+      "ocrBlocks": 1242,
+      "vision": false,
+      "formalSummaryState": "partial",
+      "formalSummaryPresent": false,
+      "summaryArtifacts": [],
+      "mediaExists": true
+    }
+  ]
+}

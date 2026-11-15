@@ -1,0 +1,21 @@
+{
+  "databases": [
+    {
+      "name": "signal-desk.sqlite",
+      "changes": [],
+      "integrity": "ok"
+    },
+    {
+      "name": "following-directory.sqlite",
+      "changes": [
+        {
+          "table": "video_content_stages",
+          "added": 1,
+          "removed": 0
+        }
+      ],
+      "integrity": "ok"
+    }
+  ],
+  "appTextMatchesOriginal": true
+}

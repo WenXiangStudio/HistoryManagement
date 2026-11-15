@@ -1,0 +1,56 @@
+{
+  "model": "deepseek-ai/DeepSeek-V4-Flash",
+  "slug": "deepseek",
+  "profileId": "8a34d4c6-7ab2-480d-88a4-e3dd18595f7d",
+  "providerSlot": 3,
+  "sourceSha256": "8857306fd0e5fe65eb9f72126cbe8fcb11fc4587141ccb510db6221887979e02",
+  "messagesSha256": "fef3d13ec9a82e59d042c1087f033356d1f3bdcf8820b889775995b00ff7f05e",
+  "requestCount": 1,
+  "stream": true,
+  "parameters": {
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "temperature": 0,
+    "max_tokens": 16384,
+    "enable_thinking": false,
+    "thinking_budget": 1024
+  },
+  "startedAt": "2026-10-12T14:55:33.299Z",
+  "usage": {
+    "prompt_tokens": 652,
+    "completion_tokens": 923,
+    "total_tokens": 1575,
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 652
+  },
+  "replyCharacters": 1634,
+  "reasoningCharacters": 0,
+  "receivedBytes": 432786,
+  "streamDone": true,
+  "finishReason": "stop",
+  "httpStatus": 200,
+  "headersMs": 7122,
+  "responseHeaders": {
+    "content-type": "text/event-stream",
+    "date": "Mon, 12 Oct 2026 14:55:19 GMT"
+  },
+  "responseId": "01a1309c4f908bfeea93a5fc7499f7b4",
+  "returnedModel": "deepseek-ai/DeepSeek-V4-Flash",
+  "firstContentMs": 7130,
+  "requestCompletedAt": "2026-10-12T14:56:06.183Z",
+  "complete": true,
+  "requestElapsedMs": 32884,
+  "replySha256": "0c6c62642118dbac5f0525bc08ffdecd3337db649b5cb8ed1af72baa1addc79f",
+  "reasoningSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "resultsSavedAt": "2026-10-12T14:56:06.184Z",
+  "resultSaveMs": 1,
+  "requestToResultSavedMs": 32886
+}

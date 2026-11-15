@@ -9,9 +9,10 @@ coverage/
 *.sqlite
 *.sqlite-wal
 *.sqlite-shm
-worker/.venv/
-worker/__pycache__/
-worker/tests/__pycache__/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
 browser-connector/native-host/bin/
 downloads/
 models/
@@ -19,6 +20,9 @@ cache/
 runtime/python311/*
 !runtime/python311/.gitkeep
 *.env
+.env.*
+!.env.example
+!.env.sample
 
 # Runtime captures, account settings and local database backups stay local.
 # Reviewed evidence belongs under docs/evidence.

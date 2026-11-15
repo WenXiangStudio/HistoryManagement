@@ -1,0 +1,205 @@
+{
+  "reportedDate": "2026-10-14",
+  "recordedAt": "2026-10-14T02:58:56.507Z",
+  "source": "user manual review confirmation in conversation",
+  "userStatement": "好我已经初步检验完16条视频的本地分类情况，正确率100%",
+  "reviewLevel": "initial manual review",
+  "scope": "video type classification for these 16 new high-frequency-author samples",
+  "reviewedCount": 16,
+  "correctCount": 16,
+  "incorrectCount": 0,
+  "sampleClassificationAccuracyPercent": 100,
+  "categoryCounts": {
+    "visual_text": 1,
+    "speech": 15
+  },
+  "coverage": {
+    "speech": 15,
+    "visual_text": 1,
+    "visual": 0
+  },
+  "verifiesPostInterestProcessing": false,
+  "newCollectionRuns": 0,
+  "newModelCalls": 0,
+  "appWrites": 0,
+  "interestChanges": 0,
+  "rawRunReceiptSha256": "8e257c6d05ed157f1c2b93b70ce45eb4832b0d737982a6866ad3e73063db57af",
+  "records": [
+    {
+      "workId": "7694468446458190543",
+      "creatorName": "ami.moment",
+      "title": "白色 Pocket4P 也有点太美貌了k #vlog #pocket4p #pocket4 #大疆 #开箱",
+      "predictedCode": "visual_text",
+      "predictedCategory": "图文结合（无人声/口播）",
+      "manualCode": "visual_text",
+      "manualCategory": "图文结合（无人声/口播）",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7696106208600324022",
+      "creatorName": "🇨🇳挪威老王🇳🇴",
+      "title": "怪不得挪威人都说我一个人干他们十个人的活儿#日常vlog #海外生活",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7696138716007501110",
+      "creatorName": "刘润",
+      "title": "刘润：没钱也能折腾事儿 #刘润",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7695703994328501519",
+      "creatorName": "数字游牧人Samuel",
+      "title": "实测安克AI耳机，这才是AI耳机该有的样子 #安克AI会议耳机 #飞书 #耳机 #AI #AI耳机",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7695752422030953728",
+      "creatorName": "刘涛Todd",
+      "title": "对AI的恐惧被过度炒作？大佬理性探讨AI的技术发展 #科技创新 @抖音科技 #AI编程 #AI #Agent #抖音科技创作者扶持计划",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7696094620534459686",
+      "creatorName": "灵鲸科技袁亮",
+      "title": "城投做词元合不合适？怎么来做合理？ #词元 #词元平台 #AI基建 #算力集群 #词元工厂",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7695991798070617590",
+      "creatorName": "陈天狼AI编程实战",
+      "title": "好的AI工具设计 可以让你更好的工作 #我在抖音学ai #这个ai教程不烧心 #AI工具 #AI编程 #天狼哥编程趣事",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7693584670918774050",
+      "creatorName": "英雄编程",
+      "title": "看剧学编程 —— 没人算出结果的话,明天同一时间在评论区公布 #科技科普#计算机#编程入门#数学#中国剩余定理",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7695725442308885775",
+      "creatorName": "刺猬星球super-i",
+      "title": "超真实AI电影大拆解！ 6大核心技巧一次讲透！",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7696109326867879588",
+      "creatorName": "口罩哥直播号",
+      "title": null,
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7691314015724686635",
+      "creatorName": "小德MOMO",
+      "title": "为啥无论国家怎么印钱，钱都落不到年轻人手里呢？ #财经 #宏观经济 #失去的三十年 #财经 #小德MOMO",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7696072932031780559",
+      "creatorName": "洋洋洋聊AI",
+      "title": "AI 做数据看板，别只说做个“指标卡片” #vibecoding大赏 #我在抖音学ai #这个ai教程不烧心 #数据看板 #ai教程",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7693961457989324095",
+      "creatorName": "涌现EmergenceHK",
+      "title": "未来12个月，普通投资人要关注的科技资产信号！ 未来12个月，AI和比特币的机会分别在哪里？看好一类资产之后，又该在什么价格、用多大仓位参与？",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7696102919355059510",
+      "creatorName": "以太Max",
+      "title": "用AI重写全套 Adobe，付费软件时代快要结束了 #AI  #vibecoding  #AI时代  #干货分享 #我在抖音学ai",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7696048258011660453",
+      "creatorName": "闻风",
+      "title": "几个意思！",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    },
+    {
+      "workId": "7695975282649353498",
+      "creatorName": "一百八一杯",
+      "title": "国窖1573晶彩全网首喝 #国窖1573晶彩 #品味历史共此晶彩 #国窖1573 #泸州老窖",
+      "predictedCode": "speech",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCode": "speech",
+      "manualCategory": "口播主导或口播加图文",
+      "manualCorrect": true,
+      "source": "user confirmed the entire batch has 100% correct classification"
+    }
+  ]
+}

@@ -39,6 +39,25 @@ function rehash<T extends FollowingDirectoryReport>(input: T): T {
   return input
 }
 describe('independent account following directory', () => {
+  it('reads one identity with the same retained ID, latest public fields and original annotations as the full directory',()=>{
+    const directory=store(),owner={uid:'owner-uid',secUid:'owner',nickname:'当前账号'}
+    directory.recordAccount(owner);directory.selectAccount(owner.secUid)
+    const creators=report().creators
+    directory.savePlanRows('first',owner,'2026-10-01T00:00:00Z',creators)
+    const first=directory.list()[3]
+    directory.update(first.id,{isStarred:true,note:'保留原始批注'})
+    directory.savePlanRows('second',owner,'2026-10-02T00:00:00Z',[{...creators[3],nickname:'最新昵称'}])
+    directory.savePlanRows('empty',owner,'2026-10-03T00:00:00Z',[])
+    const expected=directory.list().filter(c=>c.profileUrl===first.profileUrl)
+    expect(directory.list('','sec-3')).toEqual(expected)
+    expect(directory.list('最新昵称','sec-3')).toEqual(expected)
+    expect(directory.list('不匹配','sec-3')).toEqual([])
+    expect(directory.list('','foreign')).toEqual([])
+    expect(expected[0]).toMatchObject({id:first.id,nickname:'最新昵称',isStarred:true,note:'保留原始批注'})
+    expect(directory.list()).toHaveLength(10)
+    const legacy=store();legacy.accept(report())
+    expect(legacy.list('','sec-3')).toEqual([legacy.list()[3]])
+  })
   it('persists ten ordered public profiles and creates no works or comments storage', () => {
     const directory = store(); const input = report(); directory.accept(input); directory.accept(input)
     expect(directory.list()).toHaveLength(10)

@@ -1,0 +1,1024 @@
+{
+  "status": "succeeded",
+  "emptyReason": null,
+  "segments": [
+    {
+      "id": "speech-1",
+      "startMs": 0,
+      "endMs": 4000,
+      "text": "旅行真的可以改变一个人的人生",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-2",
+      "startMs": 4000,
+      "endMs": 6000,
+      "text": "你改变了人生了吗?",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-3",
+      "startMs": 6000,
+      "endMs": 7000,
+      "text": "当然",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-4",
+      "startMs": 7000,
+      "endMs": 8000,
+      "text": "怎么改变?",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-5",
+      "startMs": 8000,
+      "endMs": 9000,
+      "text": "因为什么改变?",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-6",
+      "startMs": 9000,
+      "endMs": 12000,
+      "text": "就是我现在之所以像现在这样想",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-7",
+      "startMs": 12000,
+      "endMs": 15000,
+      "text": "像这样生活有很大一部分原因",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-8",
+      "startMs": 15000,
+      "endMs": 18000,
+      "text": "是因为我去了世界上的有些地方",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-9",
+      "startMs": 18000,
+      "endMs": 20000,
+      "text": "看到了有些东西",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-10",
+      "startMs": 20000,
+      "endMs": 22000,
+      "text": "改变了我的想法",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-11",
+      "startMs": 22000,
+      "endMs": 23000,
+      "text": "整个人生",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-12",
+      "startMs": 23000,
+      "endMs": 24000,
+      "text": "比如说",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-13",
+      "startMs": 24000,
+      "endMs": 26000,
+      "text": "旅行真的可以改变一个人的人生",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-14",
+      "startMs": 26000,
+      "endMs": 28000,
+      "text": "这不是鸡汤",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-15",
+      "startMs": 28000,
+      "endMs": 29000,
+      "text": "读万卷书",
+      "avgLogprob": -0.13870991079519826,
+      "noSpeechProbability": 0.5221356749534607
+    },
+    {
+      "id": "speech-16",
+      "startMs": 29000,
+      "endMs": 31000,
+      "text": "作为一个在欧洲学习生活过",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-17",
+      "startMs": 31000,
+      "endMs": 33000,
+      "text": "也有幸运去过不同城市",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-18",
+      "startMs": 33000,
+      "endMs": 35000,
+      "text": "不同国家的艺术博主",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-19",
+      "startMs": 35000,
+      "endMs": 37000,
+      "text": "我的心得是旅行真正改变的",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-20",
+      "startMs": 37000,
+      "endMs": 39000,
+      "text": "当然不只是你的朋友圈坐标",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-21",
+      "startMs": 39000,
+      "endMs": 42000,
+      "text": "而是它会提升一个特别重要的能力",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-22",
+      "startMs": 42000,
+      "endMs": 43000,
+      "text": "这也是我认为",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-23",
+      "startMs": 43000,
+      "endMs": 46000,
+      "text": "在全民自媒体时代非常重要的能力",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-24",
+      "startMs": 46000,
+      "endMs": 47000,
+      "text": "也就是",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-25",
+      "startMs": 47000,
+      "endMs": 48000,
+      "text": "意感之力",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-26",
+      "startMs": 48000,
+      "endMs": 49000,
+      "text": "所谓意感之",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-27",
+      "startMs": 49000,
+      "endMs": 51000,
+      "text": "其实就是你能不能注意到",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-28",
+      "startMs": 51000,
+      "endMs": 54000,
+      "text": "发现到别人忽略的东西",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-29",
+      "startMs": 54000,
+      "endMs": 56000,
+      "text": "人在熟悉的环境里待久了",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-30",
+      "startMs": 56000,
+      "endMs": 58000,
+      "text": "大脑会自动过滤大量的重复信息",
+      "avgLogprob": -0.06512784078472951,
+      "noSpeechProbability": 0.009464793838560581
+    },
+    {
+      "id": "speech-31",
+      "startMs": 58000,
+      "endMs": 60000,
+      "text": "每天经过同一条街道",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-32",
+      "startMs": 60000,
+      "endMs": 62000,
+      "text": "你慢慢也就不会再注意到它",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-33",
+      "startMs": 62000,
+      "endMs": 63000,
+      "text": "为什么乱",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-34",
+      "startMs": 63000,
+      "endMs": 65000,
+      "text": "每天看到同一种电招",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-35",
+      "startMs": 65000,
+      "endMs": 66000,
+      "text": "你也不会再想它",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-36",
+      "startMs": 66000,
+      "endMs": 67000,
+      "text": "为什么难看",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-37",
+      "startMs": 67000,
+      "endMs": 68000,
+      "text": "很多不合理",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-38",
+      "startMs": 68000,
+      "endMs": 70000,
+      "text": "只要存在的足够久",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-39",
+      "startMs": 70000,
+      "endMs": 73000,
+      "text": "最后都会变成轻描淡写的一句",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-40",
+      "startMs": 73000,
+      "endMs": 74000,
+      "text": "哪里不都这样吗",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-41",
+      "startMs": 74000,
+      "endMs": 76000,
+      "text": "对我有什么影响呢",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-42",
+      "startMs": 76000,
+      "endMs": 79000,
+      "text": "但旅行会打断这种习惯",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-43",
+      "startMs": 79000,
+      "endMs": 80000,
+      "text": "到了陌生环境",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-44",
+      "startMs": 80000,
+      "endMs": 82000,
+      "text": "你开始没有那么多的默认设置",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-45",
+      "startMs": 82000,
+      "endMs": 83000,
+      "text": "或者说",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-46",
+      "startMs": 83000,
+      "endMs": 84000,
+      "text": "你的所有感官",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-47",
+      "startMs": 84000,
+      "endMs": 86000,
+      "text": "将会迎来一次系统更新",
+      "avgLogprob": -0.06109622350105873,
+      "noSpeechProbability": 0.0063730948604643345
+    },
+    {
+      "id": "speech-48",
+      "startMs": 86000,
+      "endMs": 88000,
+      "text": "你会重新观察街道",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-49",
+      "startMs": 88000,
+      "endMs": 89000,
+      "text": "怎么设计",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-50",
+      "startMs": 89000,
+      "endMs": 90000,
+      "text": "建筑",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-51",
+      "startMs": 90000,
+      "endMs": 91000,
+      "text": "怎么被使用",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-52",
+      "startMs": 91000,
+      "endMs": 93000,
+      "text": "人和人之间怎么相处",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-53",
+      "startMs": 93000,
+      "endMs": 94000,
+      "text": "甚至加小小的商店",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-54",
+      "startMs": 94000,
+      "endMs": 96000,
+      "text": "为什么会让你觉得舒服",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-55",
+      "startMs": 96000,
+      "endMs": 97000,
+      "text": "这种感觉",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-56",
+      "startMs": 97000,
+      "endMs": 99000,
+      "text": "并不是说你会觉得国外更好",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-57",
+      "startMs": 99000,
+      "endMs": 101000,
+      "text": "或者某个城市更高级",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-58",
+      "startMs": 101000,
+      "endMs": 103000,
+      "text": "而是你第一次意识到",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-59",
+      "startMs": 103000,
+      "endMs": 105000,
+      "text": "原来你习以为常的一切",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-60",
+      "startMs": 105000,
+      "endMs": 107000,
+      "text": "还可以这样",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-61",
+      "startMs": 107000,
+      "endMs": 108000,
+      "text": "这句话很重要",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-62",
+      "startMs": 108000,
+      "endMs": 110000,
+      "text": "因为见过不同",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-63",
+      "startMs": 110000,
+      "endMs": 111000,
+      "text": "你才有比较",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-64",
+      "startMs": 111000,
+      "endMs": 112000,
+      "text": "有了比较",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-65",
+      "startMs": 112000,
+      "endMs": 114000,
+      "text": "才会形成自己的判断",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-66",
+      "startMs": 114000,
+      "endMs": 115000,
+      "text": "在我看来",
+      "avgLogprob": -0.05136468537510878,
+      "noSpeechProbability": 0.017528798431158066
+    },
+    {
+      "id": "speech-67",
+      "startMs": 115000,
+      "endMs": 117000,
+      "text": "这就是所谓的见世面",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-68",
+      "startMs": 117000,
+      "endMs": 119000,
+      "text": "因为你开始知道",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-69",
+      "startMs": 119000,
+      "endMs": 121000,
+      "text": "这个世界并不是只有一种答案",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-70",
+      "startMs": 121000,
+      "endMs": 123000,
+      "text": "你的参照系越丰富",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-71",
+      "startMs": 123000,
+      "endMs": 125000,
+      "text": "也就越容易发现差异",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-72",
+      "startMs": 125000,
+      "endMs": 126000,
+      "text": "这就是旅行和形成",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-73",
+      "startMs": 126000,
+      "endMs": 129000,
+      "text": "一感之旅之间最直觉的关系",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-74",
+      "startMs": 129000,
+      "endMs": 130000,
+      "text": "比如你之前可能觉得",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-75",
+      "startMs": 130000,
+      "endMs": 131000,
+      "text": "一条街道",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-76",
+      "startMs": 131000,
+      "endMs": 134000,
+      "text": "只要够平整干净就够了",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-77",
+      "startMs": 134000,
+      "endMs": 135000,
+      "text": "但旅行之后",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-78",
+      "startMs": 135000,
+      "endMs": 136000,
+      "text": "你会开始注意到它的尺度",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-79",
+      "startMs": 136000,
+      "endMs": 137000,
+      "text": "绿化",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-80",
+      "startMs": 137000,
+      "endMs": 138000,
+      "text": "路边的电招",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-81",
+      "startMs": 138000,
+      "endMs": 139000,
+      "text": "座椅",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-82",
+      "startMs": 139000,
+      "endMs": 140000,
+      "text": "灯光",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-83",
+      "startMs": 140000,
+      "endMs": 141000,
+      "text": "甚至有没有让人",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-84",
+      "startMs": 141000,
+      "endMs": 142000,
+      "text": "愿意停下来",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-85",
+      "startMs": 142000,
+      "endMs": 143000,
+      "text": "都逛一逛的可能",
+      "avgLogprob": -0.09170885298933301,
+      "noSpeechProbability": 0.0008229009108617902
+    },
+    {
+      "id": "speech-86",
+      "startMs": 143000,
+      "endMs": 145000,
+      "text": "所以你从这里真好看",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-87",
+      "startMs": 145000,
+      "endMs": 147000,
+      "text": "变成了这里为什么好看",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-88",
+      "startMs": 147000,
+      "endMs": 148000,
+      "text": "这一步很重要",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-89",
+      "startMs": 148000,
+      "endMs": 149000,
+      "text": "因为感知里",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-90",
+      "startMs": 149000,
+      "endMs": 151000,
+      "text": "不是说你的各种感觉很多",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-91",
+      "startMs": 151000,
+      "endMs": 153000,
+      "text": "是你能不能把模糊的感觉",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-92",
+      "startMs": 153000,
+      "endMs": 154000,
+      "text": "进一步拆分出来",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-93",
+      "startMs": 154000,
+      "endMs": 157000,
+      "text": "形成你自己的判断",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-94",
+      "startMs": 157000,
+      "endMs": 158000,
+      "text": "摄影师对光线敏感",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-95",
+      "startMs": 158000,
+      "endMs": 160000,
+      "text": "画家对色彩敏感",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-96",
+      "startMs": 160000,
+      "endMs": 162000,
+      "text": "厨师对味道敏感",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-97",
+      "startMs": 162000,
+      "endMs": 163000,
+      "text": "本质上",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-98",
+      "startMs": 163000,
+      "endMs": 164000,
+      "text": "他们都是对差异的",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-99",
+      "startMs": 164000,
+      "endMs": 166000,
+      "text": "分辨能力更强",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-100",
+      "startMs": 166000,
+      "endMs": 167000,
+      "text": "而旅行恰好",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-101",
+      "startMs": 167000,
+      "endMs": 169000,
+      "text": "一直在给你提供新的差异",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-102",
+      "startMs": 169000,
+      "endMs": 171000,
+      "text": "但是这并不代表旅行",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-103",
+      "startMs": 171000,
+      "endMs": 172000,
+      "text": "越多",
+      "avgLogprob": -0.057803990255871955,
+      "noSpeechProbability": 0.0004722822632174939
+    },
+    {
+      "id": "speech-104",
+      "startMs": 172000,
+      "endMs": 173000,
+      "text": "就一定越强",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-105",
+      "startMs": 173000,
+      "endMs": 174000,
+      "text": "如果旅行只是打卡",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-106",
+      "startMs": 174000,
+      "endMs": 175000,
+      "text": "拍照",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-107",
+      "startMs": 175000,
+      "endMs": 176000,
+      "text": "感情点",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-108",
+      "startMs": 176000,
+      "endMs": 177000,
+      "text": "那只是地点变了",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-109",
+      "startMs": 177000,
+      "endMs": 179000,
+      "text": "观察方式并没有变",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-110",
+      "startMs": 179000,
+      "endMs": 180000,
+      "text": "如果你正在旅途中",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-111",
+      "startMs": 180000,
+      "endMs": 182000,
+      "text": "可以试着思考看看",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-112",
+      "startMs": 182000,
+      "endMs": 184000,
+      "text": "这里为什么和我熟悉的地方",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-113",
+      "startMs": 184000,
+      "endMs": 185000,
+      "text": "不一样",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-114",
+      "startMs": 185000,
+      "endMs": 186000,
+      "text": "哪里不一样",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-115",
+      "startMs": 186000,
+      "endMs": 187000,
+      "text": "它为什么好看",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-116",
+      "startMs": 187000,
+      "endMs": 189000,
+      "text": "而当你把这种习惯",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-117",
+      "startMs": 189000,
+      "endMs": 190000,
+      "text": "带回日常生活以后",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-118",
+      "startMs": 190000,
+      "endMs": 192000,
+      "text": "旅行才真正开始",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-119",
+      "startMs": 192000,
+      "endMs": 194000,
+      "text": "改变你的人生",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-120",
+      "startMs": 194000,
+      "endMs": 196000,
+      "text": "所以旅行的意义是什么",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-121",
+      "startMs": 196000,
+      "endMs": 197000,
+      "text": "它能扩大你的参照系",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-122",
+      "startMs": 197000,
+      "endMs": 198000,
+      "text": "也能提高你",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-123",
+      "startMs": 198000,
+      "endMs": 200000,
+      "text": "感知差异的能力",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-124",
+      "startMs": 200000,
+      "endMs": 201000,
+      "text": "出发吧",
+      "avgLogprob": -0.060454764665819664,
+      "noSpeechProbability": 0.003543621161952615
+    },
+    {
+      "id": "speech-125",
+      "startMs": 201000,
+      "endMs": 203000,
+      "text": "祝你旅途愉快",
+      "avgLogprob": -0.06020076458270733,
+      "noSpeechProbability": 0.500091552734375
+    }
+  ],
+  "metadata": {
+    "durationMs": 204700,
+    "hasAudio": true,
+    "hasVideo": true,
+    "sha256": "14016cd1fee70a8e1fa1dc6f1973d0d524267add2bd51ac94c56ad2b8d4f6f29"
+  },
+  "config": {
+    "provider": "faster-whisper",
+    "version": "1.2.1",
+    "model": "small",
+    "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+    "computeType": "int8",
+    "language": "zh",
+    "beamSize": 5
+  },
+  "inputHash": "95a7db37971785c0d7d6a0f7395d30c68ceb7731aae46228cbce6d8ed9198ad3",
+  "elapsedMs": 75609,
+  "cacheHit": false
+}

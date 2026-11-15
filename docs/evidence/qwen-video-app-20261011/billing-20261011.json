@@ -1,0 +1,58 @@
+{
+  "recordedDate": "2026-10-11",
+  "model": "qwen3.8-omni-flash",
+  "platform": "阿里百炼",
+  "source": "用户在对话中提供的百炼后台用量、剩余额度和收费标准；未直接访问账户账单",
+  "reportedUsage": {
+    "rawInput": "45.2K tokens",
+    "rawOutput": "40.09K tokens",
+    "rawTotal": "85.29K tokens",
+    "inputTokens": 45200,
+    "outputTokens": 40090,
+    "totalTokens": 85290,
+    "includesInitialConnectionCheck": true,
+    "cachedInputTokens": null,
+    "conversion": "K按1000换算，后台显示值可能经过四舍五入"
+  },
+  "remainingQuota": {
+    "reportedValue": 914710,
+    "unit": "tokens",
+    "useAsNextExperimentBaseline": true,
+    "actualCashDebitCny": null
+  },
+  "ratesCnyPerMillionTokens": {
+    "uncachedInput": "0.8",
+    "output": "2.7",
+    "cachedInput": "0.1",
+    "source": "用户提供"
+  },
+  "initialConnectionCheck": {
+    "evidence": "../qwen-connection-20261011/connection.json",
+    "inputTokens": 118,
+    "outputTokens": 63,
+    "cachedInputTokens": 0,
+    "totalTokens": 181,
+    "rateEquivalentCostCny": "0.0002645"
+  },
+  "videoExperimentExcludingConnectionCheck": {
+    "workId": "7691353360976416034",
+    "creator": "盐选财经",
+    "inputTokens": 45082,
+    "outputTokens": 40027,
+    "totalTokens": 85109,
+    "inputCostAssumingNoCacheCny": "0.0360656",
+    "outputCostCny": "0.1080729",
+    "totalCostAssumingNoCacheCny": "0.1441385",
+    "formulaWithCachedInputCny": "0.1441385 - cachedInputTokens * 0.0000007",
+    "scope": "按用户报告的本次后台总量，扣除已知首次连接测试；包含这条视频的小片段探测、转写、画面读取、摘要失败重试及JSON修复，非单次无重试生产处理成本",
+    "assumption": "用户报告的这段后台总量除连接测试外均属于本次视频试验；缓存命中量未提供"
+  },
+  "allReportedUsageCostAssumingNoCacheCny": "0.1444030",
+  "caveats": [
+    "金额是按用户提供单价折算的人民币成本，不是已经核实的现金扣款。是否由免费额度或套餐抵扣未知。",
+    "缓存命中输入应使用0.1元/百万token，不能同时按0.8元再计一次；缓存量未知时按无命中计算。",
+    "历史本地阶段用量48,410不含全部失败与探测，本次总体估算使用用户报告的后台85,290，二者不能相加。",
+    "历史本地未保留完整模态及思考细分；不能从本次账户总数倒推音频、图片和文本各自的精确计费用量。"
+  ],
+  "userQualityFeedback": "用户已检查，认为qwen3.8-omni-flash单纯音频转写文字的效果很好；该反馈不扩展为摘要或动态画面理解验收通过。"
+}

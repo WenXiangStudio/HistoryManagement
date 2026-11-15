@@ -1,0 +1,122 @@
+{
+  "labels": {
+    "visual": "纯画面主导",
+    "visual_text": "图文结合（无语音/口播）",
+    "speech": "口播主导或口播加图文",
+    "pending": "待确认"
+  },
+  "records": [
+    {
+      "workId": "7682043534987300106",
+      "title": "PS+AI精准控图",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7693242837692894504",
+      "title": "《新闻联播》一周复盘解读（9月28日—10月4日） 9月28日的国常会提出“加大逆周期调节力度”“推出增量政策”，还提到研究稳定房地产市场。这次政策真正想解决的是什么问题？",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7694976987546490980",
+      "title": "叁叁柒？又来？这次盯上的是供电系统。",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7694965291436713855",
+      "title": "发布描述为空",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7694535682575860393",
+      "title": "数学彻底怒openai了",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7694998493451454454",
+      "title": "汽车创新设计要管了…",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7691400398775780947",
+      "title": "等待中",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7694967966249527524",
+      "title": "美债收益率压不下来怎么办？那就是以后长债不拍了！不肯欠你钱那么久",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7694979794185974500",
+      "title": "达子不怕，潘子第一！",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7692025326582467849",
+      "title": "为什么现在的旅游体验越来越差，收费项目多，景区还都长一个样？",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7694102162485284115",
+      "title": "技术科普：2026诺贝尔物理学奖，都发现了啥？ 今年的诺贝尔物理学奖颁给了一块能探索宇宙的南极冰块，和中微子有关。 ",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7693007317557726505",
+      "title": "🤔纯主观｜旅行为何会改变一个人的一生？",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7691353360976416034",
+      "title": "十年期美债收益率破5% 股牛债熊 全球其他资产如何定价",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    },
+    {
+      "workId": "7694429527623109951",
+      "title": "模型越来越强，为什么用户没感觉？再访阿里国际站总裁张阔",
+      "predictedCategory": "口播主导或口播加图文",
+      "manualCategory": null,
+      "manualCorrect": null,
+      "note": ""
+    }
+  ]
+}

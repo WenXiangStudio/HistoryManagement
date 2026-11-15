@@ -1,0 +1,21 @@
+{
+  "endpoint": "https://api.siliconflow.cn/v1/chat/completions",
+  "profileId": "d2f4dc4b-4970-4a88-aa7e-ad4351b44b15",
+  "body": {
+    "model": "zai-org/GLM-5.3-Flash",
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "temperature": 0,
+    "max_tokens": 16384,
+    "enable_thinking": false,
+    "thinking_budget": 1024,
+    "messages": [
+      {
+        "role": "user",
+        "content": "学界彻底怒了！AHM 人类数学协会庄严呼吁所有数学家停止使用 OpenAI，对他们的 abusive 行为表示极度的愤怒和被冒犯到，直接把人类剩余的 Millennium 千禧年的难题，还有一些其他数学猜想。当成一个 GitHub 开源仓库的形式，用 GPT 的 Pro 模型。三个小时平均攻克一个数学博士毕生工作之方向。That's fucking brutal。现在陶哲轩再次转发了这个推文，数学界现在对 OpenAI 是彻底强行拉黑的情况，毕竟菲尔兹奖以后也没啥用，你得分人类得的菲尔兹奖和，对吧？和这个 OpenAI 推理出来的，而且你还难说到时候推理出来，别人去看它推理过程就不好弄了。嗯，所以数学界拉黑 OpenAI 了。但是他们要去用 claude 咋办呢？你觉得 claude 解不出来那些题吗？他可能只是没说。所以你说现在的问题倒真的，退一万步讲，还是退一万步太多了？退一步讲的话，真的接受吧。这不是我说给数学界，也说给物理化学，说给所有基础学科界。咱们只有接受了啊，才能和它共生。你像我，坚持手搓啊，视频都自个录，古法才是最好的，Bro。\n\n严格参照以下格式处理转写文案：\n - 对转写文案做内容的总结与概括 ；\n — 对转写文案做分析，并展开文案内容的主要观点与原文依据；\n - 根据文案内容和分析，推理推测此段文本内容涉及的领域、可能相关的事件；"
+      }
+    ]
+  }
+}

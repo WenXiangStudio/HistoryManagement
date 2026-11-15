@@ -14,6 +14,19 @@ function capture():CreatorActivityCapture{
    errorCode:null,activeApiRequests:0,reusedNativePages:1,nativeListRequests:1,acquisitionMs:100}
 }
 describe('native source and independent visibility verification',()=>{
+ it('uses the visited profile for v9 work counts while preserving a different primary author, and rejects mismatched profile proofs',()=>{
+   const value=capture();value.contract='signaldesk-creator-activity/v9'
+   value.pages[0].records=value.pages[0].records!.map(r=>({...r,authorUid:'primary-uid',authorSecUid:'primary-sec',profileOwner:{uid:'uid',secUid:'sec'}}))
+   const accepted=acceptCreatorActivity(value,expected)
+   expect(accepted.snapshot).toMatchObject({weeklyUpdateCount:1,latestPublishedAt:'2026-10-03T04:00:00.000Z',coverage:'week-boundary'})
+   expect(accepted.capture.pages[0].records![0]).toMatchObject({authorUid:'primary-uid',authorSecUid:'primary-sec',profileOwner:{uid:'uid',secUid:'sec'}})
+   for(const mutate of [
+     (v:CreatorActivityCapture)=>{v.pages[0].sourceProof!.secUid='other'},
+     (v:CreatorActivityCapture)=>{v.pages[0].records![0].profileOwner!.secUid='other'},
+     (v:CreatorActivityCapture)=>{delete v.pages[0].records![0].profileOwner},
+     (v:CreatorActivityCapture)=>{v.contract='signaldesk-creator-activity/v8'}
+   ]){const bad=structuredClone(value);mutate(bad);expect(()=>acceptCreatorActivity(bad,expected)).toThrow()}
+ })
  it('accepts explicit v7 first pages with unchanged author, cursor, visibility and accounting checks',()=>{
    const value=capture();value.contract='signaldesk-creator-activity/v7';value.pages[0].sourceProof!.kind='active-get'
    value.activeApiRequests=1;value.reusedNativePages=0;value.nativeListRequests=0

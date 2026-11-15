@@ -1,0 +1,29 @@
+{
+  "date": "2026-11-15",
+  "dataRoot": "%LOCALAPPDATA%/SignalDeskFollowingReview",
+  "files": [
+    {
+      "file": "following-directory.sqlite",
+      "bytes": 64671744,
+      "sha256": "67319c30d2898a24b94dc1cfe6a5bf1114228804f128bec9793025c86bf78ab6",
+      "unchanged": true
+    },
+    {
+      "file": "following-settings.json",
+      "bytes": 212,
+      "sha256": "525256397d3dee90d814ba574912be1875827e5a5c0de4c4ba63565d03158eab",
+      "unchanged": true
+    },
+    {
+      "file": "signal-desk.sqlite",
+      "bytes": 421888,
+      "sha256": "5ab1b461d7b48307102595e34fbb5e6d5a5550738786601330af172404c50f9a",
+      "unchanged": true
+    }
+  ],
+  "allFilesUnchanged": true,
+  "dailyReleaseMoved": false,
+  "realCollectionStarted": false,
+  "cloudProcessingStarted": false,
+  "feishuSyncStarted": false
+}

@@ -1,0 +1,34 @@
+{
+  "app": {
+    "connection": {
+      "online": true,
+      "version": "0.8.6",
+      "expectedVersion": "0.8.6"
+    },
+    "readiness": "ready"
+  },
+  "databases": {
+    "signal-desk.sqlite": {
+      "tableCount": 27,
+      "integrity": "ok",
+      "foreignKeyErrors": 0,
+      "originalRowsPreserved": true
+    },
+    "following-directory.sqlite": {
+      "tableCount": 26,
+      "integrity": "ok",
+      "foreignKeyErrors": 0,
+      "originalRowsPreserved": true
+    }
+  },
+  "profile": {
+    "count": 1,
+    "name": "原有方案 · gpt-6.1-sol",
+    "textModel": "gpt-6.1-sol",
+    "protocol": "responses",
+    "legacyReferencesPreserved": true
+  },
+  "videoCount": 78,
+  "allCredentialFilesUnchanged": true,
+  "appAsarSha256": "bacc9c015006d41ec750c04b551d6e5eeca905b8967dd177b35ad60cfa4cc320"
+}

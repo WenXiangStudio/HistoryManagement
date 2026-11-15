@@ -60,7 +60,7 @@ test('a changed latest work continues weekly verification, reuses the first page
   const f=fixture({root:{status_code:0,has_more:1,max_cursor:100,aweme_list:[record('700000009')]}})
   await runCreatorActivityRefresh(f.config,f)
   const report=f.posts.find(p=>p.path==='/activity-report').body.capture
-  assert.equal(report.contract,'signaldesk-creator-activity/v8');assert.equal(report.pages.length,2)
+  assert.equal(report.contract,'signaldesk-creator-activity/v9');assert.equal(report.pages.length,2)
   assert.equal(report.reusedNativePages,1);assert.equal(report.activeApiRequests,1);assert.equal(f.gets(),1)
 })
 test('count changes and missing baselines cannot enter the unchanged branch',async()=>{
@@ -68,7 +68,7 @@ test('count changes and missing baselines cannot enter the unchanged branch',asy
     const f=fixture({count:missing?628:629});if(missing)delete f.config.targets[0].baseline
     await runCreatorActivityRefresh(f.config,f)
     const report=f.posts.find(p=>p.path==='/activity-report').body.capture
-    assert.equal(report.contract,'signaldesk-creator-activity/v8');assert.equal(report.frontendCount.count,missing?628:629)
+    assert.equal(report.contract,'signaldesk-creator-activity/v9');assert.equal(report.frontendCount.count,missing?628:629)
     assert.equal(report.activeApiRequests,0);assert.equal(report.reusedNativePages,1)
   }
 })

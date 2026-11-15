@@ -3,6 +3,9 @@ import {classifyActivityCommandError} from './creator-activity-diagnostics.js'
 export const NATIVE_LIST_LIMITS={resourceBytes:8*1024*1024,totalBytes:32*1024*1024,requests:24,arrivalWaitMs:600,readyWaitMs:1500,bodyTimeoutMs:2000}
 export const recoverableNativeListErrors=new Set(['ACTIVITY_NATIVE_LIST_UNAVAILABLE','ACTIVITY_NATIVE_PENDING','ACTIVITY_NATIVE_BODY_TIMEOUT',
   'ACTIVITY_NATIVE_BODY_UNAVAILABLE','ACTIVITY_NATIVE_BODY_EVICTED','ACTIVITY_NATIVE_BODY_NOT_RETAINED','ACTIVITY_BODY_TOO_LARGE'])
+export function creatorWorkBelongsTo(record,uid,secUid){
+  return record.profileOwner?record.profileOwner.uid===uid&&record.profileOwner.secUid===secUid:record.authorUid===uid&&record.authorSecUid===secUid
+}
 
 // Observe the author's own native list response before navigation. Never read page DOM,
 // persist request URLs/headers, or replace a rejected native request with another GET.
@@ -35,7 +38,7 @@ export function classifyActivityVisibility(value) {
   return 'unknown'
 }
 
-export async function observeCreatorActivity(chrome, target, secUid, {lazy=false}={}) {
+export async function observeCreatorActivity(chrome, target, secUid, {lazy=false,project=projectCreatorActivityResponse}={}) {
   const requests = new Map(), pages = new Map()
   const records=[],ignored={childSession:0,method:0,author:0,cursor:0},startedAt=new Date().toISOString()
   let stopped = false, nativeListRequests = 0,dropped=0,fatalError=null,lastAvailability=null
@@ -71,7 +74,7 @@ export async function observeCreatorActivity(chrome, target, secUid, {lazy=false
       entry.record.failureStage='json'
       let root;try{root=JSON.parse(text)}catch{throw Error('ACTIVITY_JSON_UNAVAILABLE')}
       entry.record.failureStage='projection'
-      const projected=projectCreatorActivityResponse(root);entry.record.records=projected.aweme_list.length
+      const projected=project(root);entry.record.records=(projected.aweme_list??projected.records??[]).length
       entry.record.failureStage=null
       settle(entry,{root:projected,sourceProof:{kind:'native-network',endpoint:'/aweme/v1/web/aweme/post/',method:'GET',
         secUid,requestCursor:entry.cursor,httpStatus:200,observedAt:entry.observedAt},activeRequest:false})
@@ -129,6 +132,11 @@ export async function observeCreatorActivity(chrome, target, secUid, {lazy=false
   return {
     get nativeListRequests() {return nativeListRequests},
     get fatalError(){return fatalError},
+    clearTransportFailure(){
+      const transient=new Set(['DEBUGGER_NOT_ATTACHED','TARGET_NAVIGATED_OR_CLOSED','EXECUTION_CONTEXT_UNAVAILABLE'])
+      if(transient.has(fatalError))fatalError=null
+      for(const [cursor,entry] of pages)if(transient.has(entry.value?.errorCode))pages.delete(cursor)
+    },
     snapshot(){return {startedAt,limits:{...NATIVE_LIST_LIMITS},matchedRequests:nativeListRequests,
       ignored:{...ignored},requests:records.map(r=>({...r})),availability:lastAvailability?{...lastAvailability}:null,dropped,fatalError}},
     async availablePage(cursor,{active=async()=>{},waitMs=NATIVE_LIST_LIMITS.readyWaitMs,arrivalWaitMs=NATIVE_LIST_LIMITS.arrivalWaitMs,

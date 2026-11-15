@@ -16,10 +16,11 @@ describe('manual creator priority',()=>{
     try{const before=db.prepare('SELECT * FROM creator_refresh_priorities').all(),store=new CreatorPriorityStore(db)
       expect(db.prepare('SELECT * FROM creator_refresh_priorities').all()).toEqual(before)
       store.update('owner',[creator('sec',31*24)],{ownerSecUid:'owner',secUid:'sec',mode:null,revision:3})
-      expect(store.update('owner',[creator('sec',31*24)],{ownerSecUid:'owner',secUid:'sec',mode:'reduce',revision:4}).tier).toBe('dormant')
+      const boundary=store.update('owner',[creator('sec',31*24)],{ownerSecUid:'owner',secUid:'sec',mode:'reduce',revision:4})
+      expect(boundary).toEqual({mode:null,tier:null,revision:4})
     }finally{db.close()}
   })
-  it.each([[24,'boost','active'],[24,'reduce','regular'],[14*24,'boost','active'],[14*24,'reduce','inactive'],[30*24,'boost','regular'],[30*24,'reduce','dormant'],[null,'boost','regular'],[null,'reduce','dormant'],[0,'reduce','regular']] as const)('stores one step from %s hours with %s as %s',(hours,mode,tier)=>{
+  it.each([[24,'reduce','regular'],[14*24,'boost','active'],[14*24,'reduce','inactive'],[30*24,'boost','regular'],[30*24,'reduce','dormant'],[null,'boost','regular'],[null,'reduce','dormant'],[0,'reduce','regular']] as const)('stores one step from %s hours with %s as %s',(hours,mode,tier)=>{
     const db=new DatabaseSync(':memory:'),store=new CreatorPriorityStore(db),rows=[creator('sec',hours)]
     try{expect(store.decorate('owner',rows)[0].refreshPriority).toEqual({mode:null,tier:null,revision:0})
       const saved=store.update('owner',rows,{ownerSecUid:'owner',secUid:'sec',mode,revision:0});expect(saved).toEqual({mode,tier,revision:1})
@@ -52,8 +53,25 @@ describe('manual creator priority',()=>{
       store.update('owner',rows,input)
       expect(()=>store.update('owner',rows,{...input,mode:null})).toThrow('已发生变化')
       expect(store.decorate('other',rows)[0].refreshPriority?.mode).toBeNull()
-      expect(store.update('owner',rows,{...input,revision:1})).toMatchObject({mode:'reduce',revision:1})
-      expect(store.update('owner',rows,{...input,mode:'boost',revision:1})).toEqual({mode:'boost',tier:'active',revision:2})
+      expect(store.update('owner',rows,{...input,revision:1})).toEqual({mode:'reduce',tier:'inactive',revision:2})
+      expect(()=>store.update('owner',rows,{...input,revision:1})).toThrow('已发生变化')
+      expect(store.update('owner',rows,{...input,mode:'boost',revision:2})).toEqual({mode:'boost',tier:'regular',revision:3})
+    }finally{db.close()}
+  })
+  it('steps across all four tiers, clamps both boundaries and restores the latest automatic tier explicitly',()=>{
+    const db=new DatabaseSync(':memory:'),store=new CreatorPriorityStore(db),rows=[creator('sec',40*24)]
+    let revision=0
+    const step=(mode:'boost'|'reduce'|null)=>{const saved=store.update('owner',rows,{ownerSecUid:'owner',secUid:'sec',mode,revision});revision=saved.revision;return saved}
+    try{
+      expect(step('reduce')).toEqual({mode:null,tier:null,revision:0})
+      expect(['boost','boost','boost'].map(()=>step('boost').tier)).toEqual(['inactive','regular','active'])
+      expect(step('boost')).toEqual({mode:'boost',tier:'active',revision:3})
+      expect(['reduce','reduce','reduce'].map(()=>step('reduce').tier)).toEqual(['regular','inactive','dormant'])
+      expect(step('reduce')).toEqual({mode:'reduce',tier:'dormant',revision:6})
+      expect(step('boost').tier).toBe('inactive')
+      rows[0]=creator('sec',24)
+      expect(step(null)).toEqual({mode:null,tier:null,revision:8})
+      expect(effectiveCreatorTier(store.decorate('owner',rows)[0])).toBe('active')
     }finally{db.close()}
   })
   it('survives app reopen and later partial collection without modifying stars, notes or historical rows',()=>{

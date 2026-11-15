@@ -1,0 +1,11 @@
+{
+  "assessedOffline": true,
+  "newRequests": 0,
+  "connectivityPassed": true,
+  "expectedMarkerPresent": true,
+  "exactReplyMatch": false,
+  "originalProbeOk": false,
+  "originalProbeOkMeaning": "Strict full reply equality to the expected marker",
+  "requestCount": 1,
+  "requestElapsedMs": 3504
+}

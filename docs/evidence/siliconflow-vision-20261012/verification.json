@@ -1,0 +1,32 @@
+{
+  "workId": "7694535682575860393",
+  "appVersion": "0.1.24",
+  "batchId": "content-0cbf2386-3dad-47ba-bee0-d143e9a90527",
+  "state": "completed",
+  "displayedTotalMs": 39629,
+  "backendElapsedMs": 25320.601,
+  "frameCount": 12,
+  "model": "Qwen/Qwen3.5-4B",
+  "usage": {
+    "inputTokens": 11474,
+    "outputTokens": 755,
+    "reasoningTokens": 0
+  },
+  "timing": {
+    "preparationMs": 1702,
+    "requestMs": 23554
+  },
+  "appImagesLoaded": 12,
+  "appTextsMatch": true,
+  "localModelsUsed": false,
+  "audioSubmitted": false,
+  "summaryGenerated": false,
+  "modelRequests": {
+    "glmConnection": 1,
+    "qwenImageConnection": 1,
+    "qwenVideoFrames": 4
+  },
+  "rendererErrors": 0,
+  "humanAccuracyReview": "pending",
+  "actualFeeCny": null
+}

@@ -1,0 +1,13 @@
+{
+  "initial": {
+    "ready": true,
+    "authMode": "api-key",
+    "hasSecret": false,
+    "state": "idle",
+    "overflow": false
+  },
+  "after": {
+    "audioReady": true,
+    "state": "idle"
+  }
+}

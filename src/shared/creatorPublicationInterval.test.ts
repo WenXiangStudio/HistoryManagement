@@ -5,10 +5,10 @@ const record=(id:number,publishedAt:string)=>({workId:String(700000000+id),autho
 const source=(records:NonNullable<CreatorPublicationSource['pages'][number]['records']>,observedAt='2026-10-08T00:00:00.000Z'):CreatorPublicationSource=>({authorUid:'uid',authorSecUid:'sec',observedAt,
   pages:[{requestCursor:0,responseCursor:0,hasMore:false,items:[],records,excludedAuthors:[],excludedNonPublic:[]}]})
 describe('per-author publication intervals from retained local works',()=>{
-  it('uses a proven new complete public list for current membership without changing retained source evidence',()=>{
+  it('keeps disappeared publications in interval calculation even after a proven complete list',()=>{
     const old=source(Array.from({length:11},(_,i)=>record(i+1,`2026-05-${String(i+1).padStart(2,'0')}T00:00:00.000Z`)))
     const recent={...source([1,2,3,4,5,6].map(i=>record(i,`2026-05-${String(i).padStart(2,'0')}T00:00:00.000Z`)),'2026-10-09T00:00:00.000Z'),completePublicList:true}
-    expect(creatorPublicationInterval([recent,old],'uid','sec')).toMatchObject({workCount:6,meanHours:24,latestPublishedAt:'2026-05-06T00:00:00.000Z'})
+    expect(creatorPublicationInterval([recent,old],'uid','sec')).toMatchObject({workCount:11,meanHours:24,latestPublishedAt:'2026-05-11T00:00:00.000Z'})
     expect(old.pages[0].records).toHaveLength(11)
     expect(creatorPublicationInterval([old,{...recent,completePublicList:false}],'uid','sec').workCount).toBe(11)
     expect(creatorPublicationInterval([old,{...recent,authorUid:'foreign'}],'uid','sec').workCount).toBe(11)

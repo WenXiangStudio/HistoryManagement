@@ -20,7 +20,7 @@ test('takes total from the frontend and stops weekly reads at the week boundary'
  const {result,requests}=await read([{status_code:0,has_more:1,max_cursor:100,aweme_list:[row('700000001','2026-07-01T00:00:00Z',1),row('700000002','2026-10-03T04:00:00Z'),row('700000003','2026-09-20T00:00:00Z')]},
    {status_code:0,has_more:0,max_cursor:200,aweme_list:[row('700000004','2026-09-10T00:00:00Z')]}])
  assert.equal(result.ok,true);assert.equal(result.capture.profile.workCount,null);assert.equal(result.capture.frontendCount.count,224);assert.equal(result.capture.pages[0].records.length,3)
- assert.equal(result.capture.contract,'signaldesk-creator-activity/v7');assert.equal(result.capture.pages.length,1)
+ assert.equal(result.capture.contract,'signaldesk-creator-activity/v9');assert.equal(result.capture.pages.length,1)
  assert.deepEqual(requests,[0]);assert.equal(result.capture.activeApiRequests,1);assert.equal(result.capture.reusedNativePages,0)
 })
 test('wrong author and unproven cursor cannot produce a complete weekly result',async()=>{
@@ -28,10 +28,13 @@ test('wrong author and unproven cursor cannot produce a complete weekly result',
  const stalled=await read([{status_code:0,has_more:1,max_cursor:0,aweme_list:[row('700000002','2026-10-03T04:00:00Z')]}])
  assert.equal(stalled.result.capture.errorCode,'ACTIVITY_PAGINATION_STALLED');assert.equal(stalled.result.capture.pages.length,0)
 })
-test('foreign-author posts in the same response are excluded from target activity with explicit proof',async()=>{
+test('profile-list works use the visited account attribution even when their primary author differs',async()=>{
  const foreign=row('800000001','2026-10-03T08:00:00Z');foreign.author={uid:'foreign-uid',sec_uid:'foreign-sec'}
  const {result}=await read([{status_code:0,has_more:0,max_cursor:100,aweme_list:[foreign,row('700000002','2026-10-03T04:00:00Z'),row('700000003','2026-09-20T00:00:00Z')]}])
  assert.equal(result.capture.pages[0].records.length,3);assert.equal(result.capture.pages[0].records[0].authorUid,'foreign-uid');assert.equal(result.capture.errorCode,null)
+ assert.deepEqual(result.capture.pages[0].records[0].profileOwner,{uid:'uid',secUid:'sec'})
+ const wrongSource=await readCreatorActivityPage({...scope,optimized:true},{readPage:async()=>({root:{has_more:0,aweme_list:[]},sourceProof:{kind:'native-network',endpoint:'/aweme/v1/web/aweme/post/',method:'GET',secUid:'wrong-profile',requestCursor:0,httpStatus:200},activeRequest:false})})
+ assert.equal(wrongSource.capture.errorCode,'ACTIVITY_SOURCE_UNVERIFIED')
 })
 test('first page entirely inside the week fetches another page and retains partial data on failure',async()=>{
  const {result}=await read([{status_code:0,has_more:1,max_cursor:100,aweme_list:[row('700000002','2026-10-03T04:00:00Z')]},{status_code:8}])

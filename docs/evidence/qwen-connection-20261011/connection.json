@@ -1,0 +1,63 @@
+{
+  "checkedAt": "2026-10-11T09:13:55.177Z",
+  "syntheticInput": true,
+  "requestCount": 1,
+  "requestedModel": "qwen3.8-omni-flash",
+  "savedProtocol": "responses",
+  "testedProtocol": "responses",
+  "credentialsReadable": true,
+  "endpointPath": "/compatible-mode/v1/responses",
+  "httpStatus": 200,
+  "headersMs": 698,
+  "contentType": "text/event-stream; charset=utf-8",
+  "ok": true,
+  "completed": true,
+  "reply": "{\"ok\":true,\"check\":\"QWEN-CONNECT-7319\"}",
+  "returnedModel": "qwen3.8-omni-flash",
+  "usage": {
+    "input_tokens": 118,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 63,
+    "output_tokens_details": {
+      "reasoning_tokens": 41
+    },
+    "total_tokens": 181,
+    "x_details": [
+      {
+        "input_tokens": 118,
+        "output_tokens": 63,
+        "total_tokens": 181,
+        "input_tokens_details": {
+          "text_tokens": 118
+        },
+        "output_tokens_details": {
+          "text_tokens": 22,
+          "reasoning_tokens": 41
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "x_billing_type": "response_api"
+      }
+    ]
+  },
+  "events": [
+    "response.created",
+    "response.in_progress",
+    "response.output_item.added",
+    "response.reasoning_text.delta",
+    "response.reasoning_text.done",
+    "response.output_item.done",
+    "response.content_part.added",
+    "response.output_text.delta",
+    "response.output_text.done",
+    "response.content_part.done",
+    "response.completed"
+  ],
+  "elapsedMs": 1334,
+  "source": "Current saved cloud profile; no configuration mutation",
+  "audioVideoUploaded": false,
+  "officialModelDocumentation": "https://help.aliyun.com/zh/model-studio/qwen-omni"
+}

@@ -206,6 +206,7 @@ export type InboxItem = {
 }
 
 export type CreatorListItem = {
+  interest?:import('./creatorInterest').CreatorInterestState
   refreshPriority?:import('./creatorPriority').CreatorPriorityState
   basicPending?: boolean
   activity?: import('./creatorActivity').CreatorActivityView
@@ -286,8 +287,14 @@ export type IsolatedPilotState = {
   }
 }
 
+export type TextApiProtocol = 'chat-completions' | 'responses'
 export type AppSettings = {
+  activeCloudProfileId?: string
+  activeCloudProfileRevision?: string
+  cloudProfileName?: string
+  cloudProfiles?: {id:string;name:string}[]
   textBaseUrl: string
+  textApiProtocol: TextApiProtocol
   textModel: string
   visionBaseUrl: string
   visionModel: string

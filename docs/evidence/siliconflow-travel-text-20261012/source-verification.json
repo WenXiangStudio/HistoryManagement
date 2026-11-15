@@ -1,0 +1,25 @@
+{
+  "workId": "7693007317557726505",
+  "title": "纯主观｜旅行为何会改变一个人的一生？",
+  "author": "画画的Lorenzo🎨",
+  "stageId": 19,
+  "updatedAt": "2026-10-10T15:27:04.037Z",
+  "durationMs": 204700,
+  "segments": 125,
+  "spokenTextCharacters": 947,
+  "textCharactersWithLineSeparators": 1071,
+  "sourceJsonSha256": "22b007605a55125fbd325ab1404ec8bd4a3c393413f10df90bbcbc704c3df1f6",
+  "textSha256": "8857306fd0e5fe65eb9f72126cbe8fcb11fc4587141ccb510db6221887979e02",
+  "config": {
+    "provider": "faster-whisper",
+    "version": "1.2.1",
+    "model": "small",
+    "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+    "computeType": "int8",
+    "language": "zh",
+    "beamSize": 5
+  },
+  "humanReview": null,
+  "sourceInputHash": "95a7db37971785c0d7d6a0f7395d30c68ceb7731aae46228cbce6d8ed9198ad3",
+  "sourceMediaSha256": "14016cd1fee70a8e1fa1dc6f1973d0d524267add2bd51ac94c56ad2b8d4f6f29"
+}

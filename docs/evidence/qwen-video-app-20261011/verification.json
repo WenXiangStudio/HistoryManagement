@@ -1,0 +1,176 @@
+{
+  "model": "qwen3.8-omni-flash",
+  "protocol": "responses",
+  "appVersion": "0.1.20",
+  "workId": "7691353360976416034",
+  "sourceSha256": "a647d9fe3a878921391460230b6e8a52fcc4d5198ae67942de8f8090fc41d044",
+  "audioDurationMs": 478725,
+  "audioChunks": 8,
+  "audioIntervals": [
+    {
+      "startMs": 0,
+      "endMs": 60000
+    },
+    {
+      "startMs": 60000,
+      "endMs": 120000
+    },
+    {
+      "startMs": 120000,
+      "endMs": 180000
+    },
+    {
+      "startMs": 180000,
+      "endMs": 240000
+    },
+    {
+      "startMs": 240000,
+      "endMs": 300000
+    },
+    {
+      "startMs": 300000,
+      "endMs": 360000
+    },
+    {
+      "startMs": 360000,
+      "endMs": 420000
+    },
+    {
+      "startMs": 420000,
+      "endMs": 478725
+    }
+  ],
+  "transcriptCharacters": 2754,
+  "frameCount": 18,
+  "frameTimesMs": [
+    0,
+    28101,
+    56203,
+    84304,
+    112406,
+    140507,
+    168609,
+    196710,
+    224812,
+    252913,
+    281015,
+    309116,
+    337218,
+    365319,
+    393421,
+    421522,
+    449624,
+    477725
+  ],
+  "allStagesCompleted": true,
+  "summaryDisplayedInApp": true,
+  "summaryReferenceChecks": "passed",
+  "sameModelForAllSemanticStages": true,
+  "localAsrOcrUsed": false,
+  "timingsMs": {
+    "mediaPreprocessing": 8116,
+    "audioTranscription": 123498,
+    "sampledFrameReading": 22841,
+    "appTaskStartToSaved": 35397.596900000004,
+    "appTaskStartToDisplayed": 36038,
+    "operatorClickToVerificationReport": 37564,
+    "successfulSummaryStage": 28344,
+    "totalActiveAttempts": 491923.47490000003,
+    "firstTaskStartToFinalDisplayIncludingManualFixes": 981352
+  },
+  "usage": {
+    "transcript": {
+      "inputTokens": 5462,
+      "outputTokens": 12787
+    },
+    "visual": {
+      "inputTokens": 16528,
+      "outputTokens": 2166
+    },
+    "summary": {
+      "inputTokens": 8226,
+      "outputTokens": 3241
+    },
+    "total": {
+      "inputTokens": 30216,
+      "outputTokens": 18194
+    }
+  },
+  "frameSubtitleAudit": {
+    "matches": 18,
+    "checked": 18,
+    "basis": "Agent inspection of the actual 18 input images; not an independent human audio benchmark"
+  },
+  "qualityLimits": [
+    "Full audio timeline submitted; no independent word-by-word human listening benchmark.",
+    "Minute-sized chunks can split words at boundaries; timestamps are chunk ranges, not word/sentence alignments.",
+    "The final subtitle uses 用 while the audio model wrote 有; this is an audio/subtitle discrepancy requiring listening, not an independently confirmed ASR error.",
+    "Visual reading uses static sampled frames, not continuous motion analysis."
+  ],
+  "summaryQualityAccepted": false,
+  "summaryFidelityIssues": [
+    {
+      "kind": "comparison-basis",
+      "summaryQuote": "其他国家若要吸引资金就必须提供高于5%的风险溢价",
+      "transcriptBasis": "speech-cloud-1 distinguishes a >5% total return benchmark from additional risk premium. The summary assigns the 5% threshold to the premium itself.",
+      "assessment": "Material mismatch against the saved transcript; raw model output retained for user review."
+    },
+    {
+      "kind": "citation-coverage",
+      "summaryPoint": 6,
+      "phrase": "美股扮演抽水机效应",
+      "providedReferences": [
+        "speech-cloud-7",
+        "speech-cloud-8"
+      ],
+      "actualPhraseReference": "speech-cloud-6",
+      "assessment": "Reference IDs exist, but the cited segments do not contain this phrase."
+    }
+  ],
+  "databases": {
+    "signal-desk.sqlite": {
+      "originalRowsPreserved": true,
+      "additions": [],
+      "integrity": "ok",
+      "foreignKeyErrors": 0
+    },
+    "following-directory.sqlite": {
+      "originalRowsPreserved": true,
+      "additions": [
+        {
+          "table": "video_information_snapshots",
+          "rowsAdded": 1
+        },
+        {
+          "table": "creator_video_information",
+          "rowsAdded": 1
+        },
+        {
+          "table": "video_content_batches",
+          "rowsAdded": 2
+        },
+        {
+          "table": "video_content_stages",
+          "rowsAdded": 12
+        }
+      ],
+      "integrity": "ok",
+      "foreignKeyErrors": 0
+    }
+  },
+  "videosAfter": 79,
+  "formalSummariesAfter": 1,
+  "credentialsUnchanged": true,
+  "appAsarSha256": "80f04a8f81e1fb419ad8e5270b102b11723cb065614c13b93c7bd9acc91481ca",
+  "previousFailedAttempts": [
+    {
+      "elapsedMs": 431694.4817,
+      "error": "本阶段处理未完成，可继续重试"
+    },
+    {
+      "elapsedMs": 24831.3963,
+      "error": "SUMMARY_JSON_INVALID"
+    }
+  ],
+  "performanceLimitation": "This run includes two failed summaries and manual application fixes. The final attempt reused audio and frame results; its elapsed time is not a clean full-video end-to-end benchmark."
+}

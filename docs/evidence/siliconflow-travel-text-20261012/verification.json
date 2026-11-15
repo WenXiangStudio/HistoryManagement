@@ -1,0 +1,177 @@
+{
+  "verifiedAt": "2026-10-12T14:56:08.707Z",
+  "inputSha256": "b42a35fb9e87e3ef4c90418090e59cbad7225b4f486cfaefd8b40b6957403909",
+  "messagesSha256": "fef3d13ec9a82e59d042c1087f033356d1f3bdcf8820b889775995b00ff7f05e",
+  "sourceSha256": "8857306fd0e5fe65eb9f72126cbe8fcb11fc4587141ccb510db6221887979e02",
+  "userPromptSha256": "7f8e3ff50726d667c4a834c9fb3d89367cf52e518994977dbcfebfc93da6cc46",
+  "messageCount": 1,
+  "roles": [
+    "user"
+  ],
+  "systemMessages": 0,
+  "developerMessages": 0,
+  "assistantMessages": 0,
+  "additionalInstructionCharacters": 0,
+  "sameMessagesAndParameters": true,
+  "totalRequestCount": 2,
+  "totalUsage": {
+    "input": 1322,
+    "output": 3366,
+    "reasoning": 1025,
+    "total": 4688
+  },
+  "models": [
+    {
+      "slug": "glm",
+      "report": {
+        "model": "zai-org/GLM-5.3-Flash",
+        "slug": "glm",
+        "profileId": "d2f4dc4b-4970-4a88-aa7e-ad4351b44b15",
+        "providerSlot": 1,
+        "sourceSha256": "8857306fd0e5fe65eb9f72126cbe8fcb11fc4587141ccb510db6221887979e02",
+        "messagesSha256": "fef3d13ec9a82e59d042c1087f033356d1f3bdcf8820b889775995b00ff7f05e",
+        "requestCount": 1,
+        "stream": true,
+        "parameters": {
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "max_tokens": 16384,
+          "enable_thinking": false,
+          "thinking_budget": 1024
+        },
+        "startedAt": "2026-10-12T14:55:11.833Z",
+        "usage": {
+          "prompt_tokens": 670,
+          "completion_tokens": 2443,
+          "total_tokens": 3113,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1025
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 670
+        },
+        "replyCharacters": 2473,
+        "reasoningCharacters": 3969,
+        "receivedBytes": 1150018,
+        "streamDone": true,
+        "finishReason": "stop",
+        "httpStatus": 200,
+        "headersMs": 480,
+        "responseHeaders": {
+          "content-type": "text/event-stream",
+          "date": "Mon, 12 Oct 2026 14:54:51 GMT"
+        },
+        "responseId": "01a1309bbe89124ad0ed32c831213723",
+        "returnedModel": "zai-org/GLM-5.3-Flash",
+        "firstReasoningMs": 487,
+        "firstContentMs": 8623,
+        "requestCompletedAt": "2026-10-12T14:55:33.296Z",
+        "complete": true,
+        "requestElapsedMs": 21463,
+        "replySha256": "dc587e451155877d23efaece696ab367d6d8c2ed823d721f24cd590d05f42b93",
+        "reasoningSha256": "666b2497f5c17a249944373b18b6488f305df54683e3cd53b564c6e5631ac6d1",
+        "resultsSavedAt": "2026-10-12T14:55:33.298Z",
+        "resultSaveMs": 1,
+        "requestToResultSavedMs": 21464
+      },
+      "verification": {
+        "oneUserMessage": true,
+        "exactTranscriptAndUserPromptOnly": true,
+        "noSystemMessage": true,
+        "noDeveloperMessage": true,
+        "noAssistantHistory": true,
+        "noAddedInstructionFields": true,
+        "sameMessagesAndParameters": true,
+        "rawResponseMatchesSavedOutput": true,
+        "streamDone": true,
+        "finishReason": "stop"
+      }
+    },
+    {
+      "slug": "deepseek",
+      "report": {
+        "model": "deepseek-ai/DeepSeek-V4-Flash",
+        "slug": "deepseek",
+        "profileId": "8a34d4c6-7ab2-480d-88a4-e3dd18595f7d",
+        "providerSlot": 3,
+        "sourceSha256": "8857306fd0e5fe65eb9f72126cbe8fcb11fc4587141ccb510db6221887979e02",
+        "messagesSha256": "fef3d13ec9a82e59d042c1087f033356d1f3bdcf8820b889775995b00ff7f05e",
+        "requestCount": 1,
+        "stream": true,
+        "parameters": {
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "max_tokens": 16384,
+          "enable_thinking": false,
+          "thinking_budget": 1024
+        },
+        "startedAt": "2026-10-12T14:55:33.299Z",
+        "usage": {
+          "prompt_tokens": 652,
+          "completion_tokens": 923,
+          "total_tokens": 1575,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 652
+        },
+        "replyCharacters": 1634,
+        "reasoningCharacters": 0,
+        "receivedBytes": 432786,
+        "streamDone": true,
+        "finishReason": "stop",
+        "httpStatus": 200,
+        "headersMs": 7122,
+        "responseHeaders": {
+          "content-type": "text/event-stream",
+          "date": "Mon, 12 Oct 2026 14:55:19 GMT"
+        },
+        "responseId": "01a1309c4f908bfeea93a5fc7499f7b4",
+        "returnedModel": "deepseek-ai/DeepSeek-V4-Flash",
+        "firstContentMs": 7130,
+        "requestCompletedAt": "2026-10-12T14:56:06.183Z",
+        "complete": true,
+        "requestElapsedMs": 32884,
+        "replySha256": "0c6c62642118dbac5f0525bc08ffdecd3337db649b5cb8ed1af72baa1addc79f",
+        "reasoningSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "resultsSavedAt": "2026-10-12T14:56:06.184Z",
+        "resultSaveMs": 1,
+        "requestToResultSavedMs": 32886
+      },
+      "verification": {
+        "oneUserMessage": true,
+        "exactTranscriptAndUserPromptOnly": true,
+        "noSystemMessage": true,
+        "noDeveloperMessage": true,
+        "noAssistantHistory": true,
+        "noAddedInstructionFields": true,
+        "sameMessagesAndParameters": true,
+        "rawResponseMatchesSavedOutput": true,
+        "streamDone": true,
+        "finishReason": "stop"
+      }
+    }
+  ],
+  "retention": {
+    "databaseRowsUnchanged": true,
+    "encryptedCredentialsUnchanged": true,
+    "activeProfileUnchanged": true,
+    "localRuntimeUnchanged": true,
+    "appPackageUnchanged": true
+  },
+  "executionElapsedMs": 54871,
+  "scope": "Input composition, API completion and verbatim output verification only; no editorial changes or extra model instructions."
+}

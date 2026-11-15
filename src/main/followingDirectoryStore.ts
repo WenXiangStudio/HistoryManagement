@@ -140,7 +140,7 @@ export class FollowingDirectoryStore {
     return this.db.prepare(`SELECT run_id AS runId,owner_sec_uid AS ownerSecUid,collected_at AS collectedAt
       FROM directory_runs ORDER BY rowid DESC LIMIT 1`).get() as {runId:string;ownerSecUid:string;collectedAt:string} | undefined ?? null
   }
-  list(search = ''): CreatorListItem[] {
+  list(search = '',secUid?:string): CreatorListItem[] {
     const latest = this.latest()
     if (!latest) return []
     if (latest.visible) {
@@ -157,10 +157,10 @@ export class FollowingDirectoryStore {
           FIRST_VALUE(c.id) OVER (PARTITION BY c.sec_uid ORDER BY r.rowid,c.position,c.id) AS saved_id,
           ROW_NUMBER() OVER (PARTITION BY c.sec_uid ORDER BY r.collected_at DESC,r.rowid DESC,c.id DESC) AS revision
         FROM visible_directory_creators c JOIN visible_directory_runs r ON r.run_id=c.run_id
-        WHERE ${scope}
+        WHERE ${scope}${secUid?' AND c.sec_uid=?':''}
       ) SELECT observed.*,saved.is_starred AS saved_starred,saved.user_note AS saved_note
         FROM observed JOIN visible_directory_creators saved ON saved.id=observed.saved_id
-        WHERE revision=1 ORDER BY saved_id`).all(...scopeValues)
+        WHERE revision=1 ORDER BY saved_id`).all(...scopeValues,...(secUid?[secUid]:[]))
       return rows.map((row): CreatorListItem => ({ id: -1000000000-Number(row.saved_id), isDemo:false,
           nativeUid:row.native_uid?String(row.native_uid):null,
           platformCreatorId:`profile:${row.sec_uid}`, nickname:String(row.nickname),avatarUrl:row.avatar_url?String(row.avatar_url):null,
@@ -168,7 +168,7 @@ export class FollowingDirectoryStore {
           note:String(row.saved_note),domains:[],workCount:0,analyzedCount:0,lastPublishedAt:null }))
         .filter((item)=>!query || `${item.nickname} ${item.signature} ${item.note}`.normalize('NFKC').toLocaleLowerCase().includes(query))
     }
-    const rows = this.db.prepare(`SELECT * FROM directory_creators WHERE owner_sec_uid=? ORDER BY id`).all(latest.ownerSecUid)
+    const rows = this.db.prepare(`SELECT * FROM directory_creators WHERE owner_sec_uid=?${secUid?' AND sec_uid=?':''} ORDER BY id`).all(latest.ownerSecUid,...(secUid?[secUid]:[]))
     const query = search.normalize('NFKC').trim().toLocaleLowerCase()
     return rows.map((row): CreatorListItem => ({
       id: -Number(row.id), isDemo: false, platformCreatorId: String(row.uid), nickname: String(row.nickname),
@@ -178,16 +178,23 @@ export class FollowingDirectoryStore {
       domains: [], workCount: 0, analyzedCount: 0, lastPublishedAt: null
     })).filter((item) => !query || `${item.nickname} ${item.signature} ${item.note}`.normalize('NFKC').toLocaleLowerCase().includes(query))
   }
-  update(id: number, input: { isStarred?: boolean; note?: string }): void {
-    const current = this.list().find((item) => item.id === id)
+  find(id:number):CreatorListItem|undefined{
+    const row=id < -1000000000
+      ?this.db.prepare('SELECT sec_uid FROM visible_directory_creators WHERE id=?').get(-id-1000000000)
+      :this.db.prepare('SELECT sec_uid FROM directory_creators WHERE id=?').get(-id)
+    return row?this.list('',String(row.sec_uid)).find(item=>item.id===id):undefined
+  }
+  update(id: number, input: { isStarred?: boolean; note?: string }): CreatorListItem {
+    const current = this.find(id)
     if (!current) throw new Error('当前账号目录中没有这位博主')
     if (id < -1000000000) {
       this.db.prepare('UPDATE visible_directory_creators SET is_starred=?,user_note=? WHERE id=?').run(
         input.isStarred === undefined ? Number(current.isStarred) : Number(input.isStarred),input.note ?? current.note,-id-1000000000)
-      return
+      return {...current,isStarred:input.isStarred??current.isStarred,note:input.note??current.note}
     }
     this.db.prepare('UPDATE directory_creators SET is_starred=?,user_note=? WHERE id=?').run(
       input.isStarred === undefined ? Number(current.isStarred) : Number(input.isStarred), input.note ?? current.note, -id)
+    return {...current,isStarred:input.isStarred??current.isStarred,note:input.note??current.note}
   }
   close(): void { this.db.close() }
 }

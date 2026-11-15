@@ -1,0 +1,256 @@
+{
+  "status": "succeeded",
+  "emptyReason": null,
+  "segments": [
+    {
+      "id": "speech-1",
+      "startMs": 0,
+      "endMs": 5380,
+      "text": "数学界彻底怒了AHM人类数学协会 庄严呼吁",
+      "avgLogprob": -0.24380922230490804,
+      "noSpeechProbability": 0.7417114973068237
+    },
+    {
+      "id": "speech-2",
+      "startMs": 5640,
+      "endMs": 8700,
+      "text": "所有数学家停职使用OpenAI",
+      "avgLogprob": -0.24380922230490804,
+      "noSpeechProbability": 0.7417114973068237
+    },
+    {
+      "id": "speech-3",
+      "startMs": 8960,
+      "endMs": 11000,
+      "text": "对他们的abusive行为",
+      "avgLogprob": -0.24380922230490804,
+      "noSpeechProbability": 0.7417114973068237
+    },
+    {
+      "id": "speech-4",
+      "startMs": 11260,
+      "endMs": 14340,
+      "text": "表示极度的愤怒和被冒犯到",
+      "avgLogprob": -0.24380922230490804,
+      "noSpeechProbability": 0.7417114973068237
+    },
+    {
+      "id": "speech-5",
+      "startMs": 14600,
+      "endMs": 19700,
+      "text": "直接把人类剩余的Millennium签喜年的难题还有一些其他数学猜想",
+      "avgLogprob": -0.24380922230490804,
+      "noSpeechProbability": 0.7417114973068237
+    },
+    {
+      "id": "speech-6",
+      "startMs": 19960,
+      "endMs": 24320,
+      "text": "当成一个github开源仓库的形式用GPD的pro模型",
+      "avgLogprob": -0.24380922230490804,
+      "noSpeechProbability": 0.7417114973068237
+    },
+    {
+      "id": "speech-7",
+      "startMs": 24580,
+      "endMs": 25600,
+      "text": "三个小时平均",
+      "avgLogprob": -0.24380922230490804,
+      "noSpeechProbability": 0.7417114973068237
+    },
+    {
+      "id": "speech-8",
+      "startMs": 25600,
+      "endMs": 29180,
+      "text": "功课一个数学博士 背声工作之方向",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-9",
+      "startMs": 29440,
+      "endMs": 30980,
+      "text": "That's fucking brutal",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-10",
+      "startMs": 31240,
+      "endMs": 33800,
+      "text": "现在陶哲宣再次转发了这个推文",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-11",
+      "startMs": 34040,
+      "endMs": 37880,
+      "text": "数学界现在对OpenAI是彻底强行拉黑的情况",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-12",
+      "startMs": 38140,
+      "endMs": 39940,
+      "text": "毕竟菲尔斯奖以后也没啥用",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-13",
+      "startMs": 40200,
+      "endMs": 44540,
+      "text": "你得分人类得的菲尔斯奖和这个OpenAI推理出来的 而且你还难说",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-14",
+      "startMs": 44800,
+      "endMs": 47620,
+      "text": "到时候推理出来别人去看他推理过程就不好弄了",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-15",
+      "startMs": 47880,
+      "endMs": 49400,
+      "text": "所以数学界拉黑OpenAI了",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-16",
+      "startMs": 50180,
+      "endMs": 51720,
+      "text": "但是他们要去用claw的咋办呢",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-17",
+      "startMs": 52220,
+      "endMs": 54260,
+      "text": "你觉得claw的解不出来那些题吗",
+      "avgLogprob": -0.19831944312368122,
+      "noSpeechProbability": 0.06685487180948257
+    },
+    {
+      "id": "speech-18",
+      "startMs": 54460,
+      "endMs": 55740,
+      "text": "他可能只是没说",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-19",
+      "startMs": 56000,
+      "endMs": 60100,
+      "text": "所以你说现在的问题到真的退一万步讲还是退一万步太多了",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-20",
+      "startMs": 60360,
+      "endMs": 61640,
+      "text": "退一步讲的话真的",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-21",
+      "startMs": 61900,
+      "endMs": 63680,
+      "text": "接受吧 这不是我说给数学界",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-22",
+      "startMs": 63940,
+      "endMs": 66760,
+      "text": "也说给物理化学 说给所有基础学科界",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-23",
+      "startMs": 67260,
+      "endMs": 68540,
+      "text": "咱们只有接受了",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-24",
+      "startMs": 68800,
+      "endMs": 69820,
+      "text": "才能和他共生",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-25",
+      "startMs": 70080,
+      "endMs": 70840,
+      "text": "你像我",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-26",
+      "startMs": 71100,
+      "endMs": 72380,
+      "text": "坚持手搓",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-27",
+      "startMs": 72640,
+      "endMs": 73660,
+      "text": "视频兜自个儿录",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-28",
+      "startMs": 73920,
+      "endMs": 74440,
+      "text": "古粉啊",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    },
+    {
+      "id": "speech-29",
+      "startMs": 74700,
+      "endMs": 76140,
+      "text": "才是最好的",
+      "avgLogprob": -0.2668320090790105,
+      "noSpeechProbability": 0.13527615368366241
+    }
+  ],
+  "metadata": {
+    "durationMs": 76933,
+    "hasAudio": true,
+    "hasVideo": true,
+    "sha256": "869c1542b94651f778b9e53e96f536f7a20a8c251273645ae88faa1fab2c5f04"
+  },
+  "config": {
+    "provider": "faster-whisper",
+    "version": "1.2.1",
+    "model": "small",
+    "modelRevision": "536b0662742c02347bc0e980a01041f333bce120",
+    "computeType": "int8",
+    "language": "zh",
+    "beamSize": 5
+  },
+  "inputHash": "4e8a85e35292285a39fd87e656742f18cdefbf3440c7a4fca230535a2835c0c5",
+  "elapsedMs": 26781,
+  "cacheHit": false
+}

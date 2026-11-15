@@ -1,12 +1,12 @@
 import type { CreatorActivityCapture } from './creatorActivity'
-import { classifyActivityVisibility } from './creatorActivity'
+import { classifyActivityVisibility,creatorWorkBelongsTo } from './creatorActivity'
 import { shanghaiDateKey } from './creatorActivitySections'
 import type {CreatorListItem} from './contracts'
 import type {CreatorPriorityState} from './creatorPriority'
 
 export type CreatorRefreshTier = 'active' | 'regular' | 'inactive' | 'dormant' | 'unknown'
-export type CreatorRefreshScope = 'active' | 'regular' | 'inactive' | 'all'
-export const CREATOR_REFRESH_SCOPE_LABELS:Record<CreatorRefreshScope,string>={active:'高频更新',regular:'中频更新',inactive:'低频更新',all:'全量更新'}
+export type CreatorRefreshScope = 'active' | 'regular' | 'inactive' | 'all' | 'anomaly'
+export const CREATOR_REFRESH_SCOPE_LABELS:Record<CreatorRefreshScope,string>={active:'高频更新',regular:'中频更新',inactive:'低频更新',all:'全量更新',anomaly:'一键核验并补齐'}
 export type CreatorRecentActivity={checkedAt:string|null;latestPublishedAt:string|null;status:'updated'|'empty'|'unknown'}
 /** The result belongs to a successful verification, and never ages merely because the clock moves. */
 export function assessRecentActivity(latest:string|null,checked:string|null,verifiedEmpty=false):CreatorRecentActivity{
@@ -35,14 +35,19 @@ function verifiedCreatorTier(meanHours:number|null|undefined,recent:CreatorRecen
   return recent.status==='updated'?'active':recent.status==='empty'?'regular':'unknown'
 }
 export function creatorAutomaticTier(creator:CreatorListItem):CreatorRefreshTier{
-  return verifiedCreatorTier(creator.activity?.publicationInterval?.meanHours,creatorRecentActivity(creator))
+  return verifiedCreatorTier((creator.activity?.recentBaseline?.interval??creator.activity?.publicationInterval)?.meanHours,creatorRecentActivity(creator))
 }
 export function effectiveCreatorTier(creator:CreatorListItem):CreatorRefreshTier{
   return creator.refreshPriority?.mode&&creator.refreshPriority.tier?creator.refreshPriority.tier:creatorAutomaticTier(creator)
 }
+/** Missing a verified work baseline is a review condition, independent of publication frequency. */
+export function creatorNeedsVerification(creator:CreatorListItem):boolean{
+  return !creator.isDemo&&(!!creator.activity?.anomaly||creator.activity?.baselineStatus==='missing')
+}
 /** Receives the full current-owner directory; search and due dates do not restrict manual groups. */
 export function creatorsForRefreshScope(creators:CreatorListItem[],scope:CreatorRefreshScope):CreatorListItem[]{
-  return creators.filter(creator=>!creator.isDemo&&!creator.activity?.anomaly&&(scope==='all'||effectiveCreatorTier(creator)===scope))
+  if(scope==='anomaly')return creators.filter(creatorNeedsVerification)
+  return creators.filter(creator=>!creator.isDemo&&!creatorNeedsVerification(creator)&&(scope==='all'||effectiveCreatorTier(creator)===scope))
 }
 export type CreatorRefreshSchedule = {
   tier: CreatorRefreshTier; intervalDays: number; lastCheckedAt: string | null
@@ -52,10 +57,14 @@ export type LatestWorkFingerprint = { workId: string; publishedAt: string }
 export type CreatorRefreshBaseline = {
   snapshotId: number; workCount: number; latest: LatestWorkFingerprint | null
   knownWorkIds?:string[];anchor?:LatestWorkFingerprint|null
+  timeBaseline?:string|null;checkedAt?:string
+  continuitySnapshotId?:number
+  invalidWorkIds?:string[]
 }
 export type CreatorRefreshPacing = {
   batchSize: number; authorDelayMinMs: number; authorDelayMaxMs: number
   batchDelayMinMs: number; batchDelayMaxMs: number
+  batchSizes?:number[];startIndex?:number
 }
 export const DEFAULT_CREATOR_REFRESH_PACING: CreatorRefreshPacing = {
   batchSize: 33, authorDelayMinMs: 3000, authorDelayMaxMs: 8000,
@@ -79,7 +88,7 @@ export function latestWorkFingerprint(capture: CreatorActivityCapture): { ready:
   if (!first || first.requestCursor !== 0 || !first.records) return { ready: false, latest: null }
   let latest: LatestWorkFingerprint | null = null, ordinary = false
   for (const record of first.records) {
-    if (record.authorUid !== capture.profile.uid || record.authorSecUid !== capture.profile.secUid) continue
+    if (!creatorWorkBelongsTo(record,capture.profile.uid,capture.profile.secUid)) continue
     const verdict = classifyActivityVisibility(record.visibility)
     if (verdict === 'unknown' || record.pinned === null) return { ready: false, latest: null }
     if (record.pinned === false) ordinary = true

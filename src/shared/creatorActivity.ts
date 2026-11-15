@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import {activityFailureDiagnosticSchema} from './creatorActivityDiagnostics'
 import {creatorActivityObservationSchema} from './creatorActivityObservation'
+import {creatorActivityRecoverySchema} from './creatorActivityRecovery'
 import type { CreatorRefreshSchedule, CreatorRefreshPacing, CreatorRefreshScope, CreatorRecentActivity } from './creatorRefreshPolicy'
 import type {CreatorActivityAnomaly} from './creatorActivityContinuity'
 import type {CreatorPublicationInterval} from './creatorPublicationInterval'
@@ -28,7 +29,7 @@ export const creatorActivityOwnerDiagnosticsSchema=z.object({
 }).strict()
 export const creatorActivityRequestAuditSchema=z.object({
   contextSource:z.enum(['existing-page','first-author-page']),accountPageNavigations:z.literal(0),
-  ownerVerificationGets:z.number().int().min(0).max(1),authorHomepageNavigations:z.number().int().nonnegative().max(100000),
+  ownerVerificationGets:z.number().int().min(0).max(20001),recoveryOwnerGets:z.number().int().min(0).max(20000).optional(),authorHomepageNavigations:z.number().int().nonnegative().max(100000),
   networkRequestsObserved:z.number().int().nonnegative().max(10000000),platformApiGetsObserved:z.number().int().nonnegative().max(10000000),
   selfGetsObserved:z.number().int().nonnegative().max(10000000),listGetsObserved:z.number().int().nonnegative().max(10000000),
   ownerVerificationSource:z.enum(['pending','native-network','active-get']).optional(),nativeOwnerRequestsObserved:z.number().int().min(0).max(10000000).optional(),
@@ -37,8 +38,9 @@ export const creatorActivityRequestAuditSchema=z.object({
   &&value.selfGetsObserved+value.listGetsObserved<=value.platformApiGetsObserved
   &&(value.nativeOwnerRequestsObserved??0)<=value.selfGetsObserved
   &&(!value.ownerSourceDiagnostics||value.ownerSourceDiagnostics.observedRequests===value.nativeOwnerRequestsObserved)
-  &&(value.ownerVerificationSource!=='native-network'||(value.ownerVerificationGets===0&&(value.nativeOwnerRequestsObserved??0)>0))
-  &&(value.ownerVerificationSource!=='active-get'||(value.ownerVerificationGets===1&&value.nativeOwnerRequestsObserved===0)), '请求观察计数不一致')
+  &&value.ownerVerificationGets>=(value.recoveryOwnerGets??0)&&value.ownerVerificationGets-(value.recoveryOwnerGets??0)<=1
+  &&(value.ownerVerificationSource!=='native-network'||(value.ownerVerificationGets===(value.recoveryOwnerGets??0)&&(value.nativeOwnerRequestsObserved??0)>0))
+  &&(value.ownerVerificationSource!=='active-get'||(value.ownerVerificationGets===(value.recoveryOwnerGets??0)+1&&value.nativeOwnerRequestsObserved===0)), '请求观察计数不一致')
 export type CreatorActivityRequestAudit=z.infer<typeof creatorActivityRequestAuditSchema>
 export const creatorActivityOwnerProofSchema=z.object({contract:z.literal('signaldesk-activity-owner/v1'),kind:z.enum(['native-network','active-get']),
   runId:id,uid:id,secUid:id,endpoint:z.literal('/aweme/v1/web/user/profile/self/'),method:z.literal('GET'),httpStatus:z.literal(200),
@@ -48,13 +50,15 @@ export const creatorActivityProgressSchema=z.object({currentId:z.number().int().
   errorCode:z.string().regex(/^[A-Z0-9_-]{1,100}$/).optional(),stage:z.enum(['preparing-context','verifying-owner','reading-author']).optional(),
   requestAudit:creatorActivityRequestAuditSchema.optional(),ownerVerification:creatorActivityOwnerProofSchema.optional(),
   failureDiagnostic:activityFailureDiagnosticSchema.optional(),readObservation:creatorActivityObservationSchema.optional(),diagnosticSaveFailed:z.boolean().optional(),
+  recovery:creatorActivityRecoverySchema.optional(),
   wait:z.object({kind:z.enum(['author','batch','resume']),until:z.string().datetime(),batchNumber:z.number().int().positive(),
     totalBatches:z.number().int().positive(),durationMs:z.number().int().nonnegative()}).strict().nullable().optional()})
 export type CreatorActivityProgress=z.infer<typeof creatorActivityProgressSchema>
 const visibilitySchema=z.object({privateStatus:z.number().int().nullable(),isDelete:z.boolean().nullable(),isProhibited:z.boolean().nullable(),
   allowShare:z.boolean().nullable(),isStory:z.number().int().nullable(),is24Story:z.number().int().nullable(),awemeType:z.number().int().nullable()}).strict()
 const networkRecordSchema=z.object({workId:z.string().regex(/^\d{8,30}$/),authorUid:id,authorSecUid:id,
-  publishedAt:z.string().datetime().nullable(),pinned:z.boolean().nullable(),visibility:visibilitySchema}).strict()
+  publishedAt:z.string().datetime().nullable(),pinned:z.boolean().nullable(),visibility:visibilitySchema,
+  profileOwner:z.object({uid:id,secUid:id}).strict().optional()}).strict()
 const sourceProofSchema=z.object({kind:z.enum(['native-network','active-get']),endpoint:z.literal('/aweme/v1/web/aweme/post/'),
   method:z.literal('GET'),secUid:id,requestCursor:z.number().int().nonnegative(),httpStatus:z.literal(200),observedAt:z.string().datetime()}).strict()
 export const frontendWorkCountSchema=z.union([
@@ -74,7 +78,7 @@ export const activityPageSchema = z.object({
   ,records:z.array(networkRecordSchema).max(200).optional(),sourceProof:sourceProofSchema.optional()
 }).strict()
 export const creatorActivityCaptureSchema = z.object({
-  contract: z.enum(['signaldesk-creator-activity/v2','signaldesk-creator-activity/v3','signaldesk-creator-activity/v4','signaldesk-creator-activity/v6','signaldesk-creator-activity/v7','signaldesk-creator-activity/v8']), ownerSecUid: id,
+  contract: z.enum(['signaldesk-creator-activity/v2','signaldesk-creator-activity/v3','signaldesk-creator-activity/v4','signaldesk-creator-activity/v6','signaldesk-creator-activity/v7','signaldesk-creator-activity/v8','signaldesk-creator-activity/v9']), ownerSecUid: id,
   requestContext:z.object({versionCode:z.literal('170400'),publishStrategy:z.literal('2'),clientType:z.literal('1')}).strict(),
   requestedSecUid: id, profile: z.object({uid: id, secUid: id, workCount: count}).strict(),
   frontendCount:frontendWorkCountSchema.optional(),
@@ -84,6 +88,10 @@ export const creatorActivityCaptureSchema = z.object({
   ,reusedNativePages:z.number().int().min(0).max(10).optional(),nativeListRequests:z.number().int().min(0).max(1000).optional()
 }).strict()
 export type CreatorActivityCapture = z.infer<typeof creatorActivityCaptureSchema>
+/** A verified profile works list determines account attribution; the platform's original author remains intact. */
+export function creatorWorkBelongsTo(record:{authorUid:string;authorSecUid:string;profileOwner?:{uid:string;secUid:string}},uid:string,secUid:string):boolean{
+  return record.profileOwner?record.profileOwner.uid===uid&&record.profileOwner.secUid===secUid:record.authorUid===uid&&record.authorSecUid===secUid
+}
 export const creatorActivityUnchangedSchema=z.object({
   contract:z.literal('signaldesk-activity-unchanged/v1'),ownerSecUid:id,requestedSecUid:id,authorUid:id,
   baselineSnapshotId:z.number().int().positive(),checkedAt:z.string().datetime(),
@@ -108,8 +116,12 @@ export type CreatorActivityView = {
   weeklyStatus: 'pending' | 'updated' | 'empty' | 'partial'; errorCode: string | null; lastAttemptAt: string | null
   refreshSchedule?: CreatorRefreshSchedule
   publicationInterval?:CreatorPublicationInterval
+  recentBaseline?:import('./creatorActivityBaseline').CreatorBaselineResult
   recentActivity?:CreatorRecentActivity
   anomaly?:CreatorActivityAnomaly|null
+  baselineStatus?:'missing'|'ready'
+  workObservation?:import('./creatorWorkTimeline').CreatorTimelineObservation
+  invalidWorkCount?:number
   refreshCheck?: {checkedAt:string;reason:'count-unchanged'|'latest-unchanged';lastFullCheckedAt:string;basisWeekStart:string;nativeUnavailableReason?:string}
 }
 export type CreatorActivityState = {
@@ -129,6 +141,10 @@ export type CreatorActivityState = {
   resumeWaitUntil?:string|null
   plannedWaitingMs?:number; mode?:'due'|'manual'|'resume'; scope?:CreatorRefreshScope
   anomalyCount?:number; repair?:boolean
+  baselineTask?:import('./creatorActivityBaseline').CreatorBaselineTask
+  baselineReadyCount?:number
+  recovery?:import('./creatorActivityRecovery').CreatorActivityRecovery
+  recoveryAttempts?:number;recoverySucceeded?:number
 }
 
 export function classifyActivityVisibility(value:z.infer<typeof visibilitySchema>):string {
@@ -150,7 +166,7 @@ export function acceptCreatorActivity(input: unknown, expected: {
   if (capture.weekStart !== expected.weekStart || capture.weekEndExclusive !== expected.weekEndExclusive) throw new Error('本周追踪边界不一致')
   const week = calendarWeek(expected.weekStart)
   if (week.start !== expected.weekStart || week.endExclusive !== expected.weekEndExclusive) throw new Error('日历周边界无效')
-  const network=capture.contract==='signaldesk-creator-activity/v6'||capture.contract==='signaldesk-creator-activity/v7'||capture.contract==='signaldesk-creator-activity/v8'
+  const network=['signaldesk-creator-activity/v6','signaldesk-creator-activity/v7','signaldesk-creator-activity/v8','signaldesk-creator-activity/v9'].includes(capture.contract)
   const frontend=capture.contract==='signaldesk-creator-activity/v4'||network
   if(frontend&&!capture.frontendCount)throw new Error('主页作品计数缺失')
   if(frontend&&capture.pages.length>(expected.repair?200:10))throw new Error('本周动态超出读取范围')
@@ -163,7 +179,7 @@ export function acceptCreatorActivity(input: unknown, expected: {
   }
   const minRequests=network?capture.pages.filter(page=>page.sourceProof?.kind==='active-get').length:capture.pages.length+(frontend?0:1)
   if (capture.activeApiRequests < minRequests || capture.activeApiRequests > minRequests+1) throw new Error('资料请求计数不一致')
-  if(['signaldesk-creator-activity/v7','signaldesk-creator-activity/v8'].includes(capture.contract)&&!capture.errorCode&&capture.activeApiRequests!==minRequests)throw new Error('资料请求计数不一致')
+  if(['signaldesk-creator-activity/v7','signaldesk-creator-activity/v8','signaldesk-creator-activity/v9'].includes(capture.contract)&&!capture.errorCode&&capture.activeApiRequests!==minRequests)throw new Error('资料请求计数不一致')
   const start = Date.parse(expected.weekStart), end = Date.parse(expected.weekEndExclusive), checked = Date.parse(capture.checkedAt)
   if (checked < start || checked > Date.now() + 60_000) throw new Error('检查时间无效')
   if(network)return acceptNetworkActivity(capture,expected,start,end,checked)
@@ -245,12 +261,17 @@ function acceptNetworkActivity(capture:CreatorActivityCapture,expected:{secUid:s
     if(page.hasMore){if(page.responseCursor===null||cursors.has(page.responseCursor))throw new Error('作品分页没有推进');cursors.add(page.responseCursor)}
     const before=seen.size
     for(const record of page.records){
-      if((record.authorUid===capture.profile.uid)!==(record.authorSecUid===expected.secUid))throw new Error('作品作者归属冲突')
+      if(capture.contract==='signaldesk-creator-activity/v9'){
+        if(!record.profileOwner||record.profileOwner.uid!==capture.profile.uid||record.profileOwner.secUid!==proof.secUid)throw new Error('作品主页统计归属不一致')
+      }else{
+        if(record.profileOwner)throw new Error('旧作品协议不能附带主页统计归属')
+        if((record.authorUid===capture.profile.uid)!==(record.authorSecUid===expected.secUid))throw new Error('作品作者归属冲突')
+      }
       const encoded=JSON.stringify(record),prior=seen.get(record.workId)
       if(prior&&prior!==encoded)throw new Error('同一作品来源或可见性发生冲突')
       if(prior)continue
       seen.set(record.workId,encoded)
-      if(record.authorUid!==capture.profile.uid)continue
+      if(!creatorWorkBelongsTo(record,capture.profile.uid,expected.secUid))continue
       const verdict=classifyActivityVisibility(record.visibility),time=record.publishedAt?Date.parse(record.publishedAt):null
       if(time!==null&&time>checked+60_000)throw new Error('作品发布时间超出检查时间')
       if(verdict==='public'&&time===null)throw new Error('公开作品发布时间缺失')

@@ -1,0 +1,56 @@
+[
+  {
+    "at": "2026-10-12T09:42:33.635Z",
+    "requestedModel": "zai-org/GLM-5.3-Flash",
+    "requestCount": 1,
+    "synthetic": true,
+    "imageCount": 0,
+    "httpStatus": 200,
+    "responseId": "01a12f7dc14918a439015f78e506e952",
+    "returnedModel": "zai-org/GLM-5.3-Flash",
+    "finishReason": "stop",
+    "reply": "SF-CONNECT-7319",
+    "usage": {
+      "prompt_tokens": 26,
+      "completion_tokens": 108,
+      "total_tokens": 134,
+      "completion_tokens_details": {
+        "reasoning_tokens": 101
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 26
+    },
+    "ok": true,
+    "elapsedMs": 2159
+  },
+  {
+    "at": "2026-10-12T09:42:35.797Z",
+    "requestedModel": "Qwen/Qwen3.5-4B",
+    "requestCount": 1,
+    "synthetic": true,
+    "imageCount": 1,
+    "httpStatus": 200,
+    "responseId": "01a12f7dc9824e21eec5d9990b403fcf",
+    "returnedModel": "Qwen/Qwen3.5-4B",
+    "finishReason": "stop",
+    "reply": "RED",
+    "usage": {
+      "prompt_tokens": 96,
+      "completion_tokens": 1,
+      "total_tokens": 97,
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "prompt_cache_hit_tokens": 0,
+      "prompt_cache_miss_tokens": 96
+    },
+    "ok": true,
+    "elapsedMs": 14358
+  }
+]

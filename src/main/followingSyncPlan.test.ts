@@ -11,8 +11,131 @@ vi.mock('./followingPreferences',async()=>{
 import {FollowingSyncService} from './followingSync'
 import {calendarWeek,type CreatorActivityCapture} from '../shared/creatorActivity'
 import {DEFAULT_CREATOR_REFRESH_PACING} from '../shared/creatorRefreshPolicy'
+import {DatabaseSync} from 'node:sqlite'
 const connector='11111111-1111-1111-1111-111111111111',owner={uid:'owner-uid',secUid:'owner',nickname:'当前账号'}
 describe('local readiness and independent following actions',()=>{
+  it('saves interest membership with a scoped event and patches the read model without re-decorating activity or touching annotations',async()=>{
+    const root=mkdtempSync(join(tmpdir(),'following-local-interest-')),changed=vi.fn(),service=new FollowingSyncService(root,changed)
+    try{
+      service.store.recordAccount(owner);service.store.selectAccount(owner.secUid);(service as any).preferences.value.activeOwnerSecUid=owner.secUid
+      service.store.savePlanRows('directory',owner,new Date().toISOString(),[1,2].map(i=>({uid:`uid${i}`,secUid:`sec${i}`,nickname:'同名博主',avatarUrl:null,signature:'简介',profileUrl:`https://www.douyin.com/user/sec${i}`})))
+      const initial=service.listCreators(),decorate=vi.spyOn(service.activity,'decorate')
+      const input={ownerSecUid:owner.secUid,secUid:'sec1',tier:'medium',revision:0}
+      const saved=service.updateCreatorInterest(input)
+      expect(changed).toHaveBeenLastCalledWith({source:'creator-interest',ownerSecUid:owner.secUid,secUid:'sec1',interest:saved})
+      const next=service.listCreators()
+      expect(next[0].interest).toEqual({tier:'medium',revision:1});expect(next[1]).toBe(initial[1]);expect(decorate).not.toHaveBeenCalled()
+      expect(next[0].note).toBe(initial[0].note);expect(next[0].refreshPriority).toEqual(initial[0].refreshPriority)
+      expect(()=>service.updateCreatorInterest({...input,ownerSecUid:'foreign'})).toThrow('账号已切换')
+      expect(()=>service.updateCreatorInterest({...input,secUid:'foreign'})).toThrow('不属于当前账号')
+      expect(()=>service.updateCreatorInterest(input)).toThrow('已发生变化')
+    }finally{await service.stop();rmSync(root,{recursive:true,force:true})}
+  })
+  it('reuses a directory read model and invalidates it for own writes, external commits, accounts and Beijing dates',async()=>{
+    const root=mkdtempSync(join(tmpdir(),'following-read-model-')),service=new FollowingSyncService(root,()=>{})
+    const date=new Date('2026-10-14T15:59:59Z');vi.useFakeTimers();vi.setSystemTime(date)
+    try{
+      service.store.recordAccount(owner);service.store.selectAccount(owner.secUid);(service as any).preferences.value.activeOwnerSecUid=owner.secUid
+      const row={uid:'uid1',secUid:'sec1',nickname:'读模型博主',avatarUrl:null,signature:'简介',profileUrl:'https://www.douyin.com/user/sec1'}
+      service.store.savePlanRows('directory',owner,date.toISOString(),[row])
+      const decorate=vi.spyOn(service.activity,'decorate'),first=service.listCreators()
+      expect(service.listCreators('博主')).toEqual(first);expect(service.listCreators('','sec1')).toEqual(first)
+      expect(decorate).toHaveBeenCalledOnce()
+      service.store.update(first[0].id,{note:'直接写入'})
+      expect(service.listCreators()[0].note).toBe('直接写入');expect(decorate).toHaveBeenCalledTimes(2)
+      const external=new DatabaseSync(join(root,'following-directory.sqlite'))
+      external.prepare('UPDATE visible_directory_creators SET user_note=?').run('外部提交');external.close()
+      expect(service.listCreators()[0].note).toBe('外部提交');expect(decorate).toHaveBeenCalledTimes(3)
+      vi.setSystemTime(new Date('2026-10-14T16:00:01Z'));service.listCreators();expect(decorate).toHaveBeenCalledTimes(4)
+      const other={...owner,uid:'other-uid',secUid:'other-owner'};service.store.recordAccount(other);service.store.selectAccount(other.secUid)
+      ;(service as any).preferences.value.activeOwnerSecUid=other.secUid
+      expect(service.listCreators()).toEqual([]);expect(decorate).toHaveBeenCalledTimes(5)
+    }finally{vi.useRealTimers();await service.stop();rmSync(root,{recursive:true,force:true})}
+  })
+  it('saves owner-scoped annotations without re-reading activity and patches the cached snapshot only after the write',async()=>{
+    const root=mkdtempSync(join(tmpdir(),'following-local-annotation-')),changed=vi.fn(),service=new FollowingSyncService(root,changed)
+    try{
+      service.store.recordAccount(owner);service.store.selectAccount(owner.secUid);(service as any).preferences.value.activeOwnerSecUid=owner.secUid
+      service.store.savePlanRows('directory',owner,new Date().toISOString(),[{uid:'uid1',secUid:'sec1',nickname:'博主',avatarUrl:null,signature:'简介',profileUrl:'https://www.douyin.com/user/sec1'}])
+      const id=service.listCreators()[0].id,decorate=vi.spyOn(service.activity,'decorate')
+      const saved=service.updateCreatorAnnotation(owner.secUid,id,{isStarred:true,note:'保留批注'})
+      expect(saved).toMatchObject({source:'creator-annotation',ownerSecUid:owner.secUid,secUid:'sec1',isStarred:true,note:'保留批注',revision:1})
+      expect(changed).toHaveBeenLastCalledWith(saved);expect(service.listCreators()[0]).toMatchObject({isStarred:true,note:'保留批注'})
+      expect(decorate).not.toHaveBeenCalled()
+      expect(()=>service.updateCreatorAnnotation('foreign',id,{note:'不能覆盖'})).toThrow('账号已切换')
+      expect(()=>service.updateCreatorAnnotation(owner.secUid,-999,{note:'不能覆盖'})).toThrow('没有这位博主')
+      expect(()=>service.updateCreatorAnnotation(owner.secUid,id,{isStarred:'yes'})).toThrow()
+      expect(service.store.find(id)?.note).toBe('保留批注')
+    }finally{await service.stop();rmSync(root,{recursive:true,force:true})}
+  })
+  it('decorates only the selected creator for a priority save and publishes the committed owner-scoped change',async()=>{
+    const root=mkdtempSync(join(tmpdir(),'following-priority-target-')),changed=vi.fn(),service=new FollowingSyncService(root,changed)
+    try{
+      service.store.recordAccount(owner);service.store.selectAccount(owner.secUid);(service as any).preferences.value.activeOwnerSecUid=owner.secUid
+      service.store.savePlanRows('directory',owner,new Date().toISOString(),[1,2].map(i=>({uid:`uid${i}`,secUid:`sec${i}`,nickname:'同名博主',avatarUrl:null,signature:'简介',profileUrl:`https://www.douyin.com/user/sec${i}`})))
+      const decorate=vi.spyOn(service.activity,'decorate').mockImplementation((_owner,creators)=>creators.map(c=>({...c,activity:{baselineStatus:'ready'}})) as any)
+      const directory=vi.spyOn(service.store,'list')
+      const priority=service.updateCreatorPriority({ownerSecUid:owner.secUid,secUid:'sec2',mode:'boost',revision:0})
+      expect(decorate).toHaveBeenCalledTimes(1)
+      expect(directory).toHaveBeenCalledWith('','sec2')
+      expect(decorate.mock.calls[0][1].map(c=>c.profileUrl)).toEqual(['https://www.douyin.com/user/sec2'])
+      expect(changed).toHaveBeenLastCalledWith({source:'creator-priority',ownerSecUid:owner.secUid,secUid:'sec2',priority})
+      expect(service.store.db.prepare('SELECT creator_sec_uid FROM creator_refresh_priorities').all()).toEqual([{creator_sec_uid:'sec2'}])
+    }finally{await service.stop();rmSync(root,{recursive:true,force:true})}
+  })
+  it('allows local priority changes during unrelated video work, preserves account-switch protection and blocks only creator collection',async()=>{
+    const root=mkdtempSync(join(tmpdir(),'following-priority-idle-')),service=new FollowingSyncService(root,()=>{})
+    try{
+      service.store.recordAccount(owner);service.store.selectAccount(owner.secUid);(service as any).preferences.value.activeOwnerSecUid=owner.secUid
+      service.store.savePlanRows('directory',owner,new Date().toISOString(),[{uid:'uid1',secUid:'sec1',nickname:'博主1',avatarUrl:null,signature:'简介',profileUrl:'https://www.douyin.com/user/sec1'}])
+      service.store.update(service.listCreators()[0].id,{isStarred:true,note:'保留批注'})
+      const creators=service.listCreators().map(c=>({...c,activity:{...c.activity!,baselineStatus:'ready' as const}}))
+      vi.spyOn(service,'listCreators').mockReturnValue(creators)
+      const status=vi.spyOn(service,'status').mockReturnValue({...service.status(),phase:'completed',basic:{phase:'completed'},activity:{phase:'completed'}} as any)
+      const video=vi.spyOn(service.videoInformation,'running','get').mockReturnValue(true)
+      const discovery=vi.spyOn(service.videoDiscovery,'running','get').mockReturnValue(true)
+      service.contentRunning=()=>true
+      expect(service.updateCreatorPriority({ownerSecUid:owner.secUid,secUid:'sec1',mode:'boost',revision:0}).mode).toBe('boost')
+      expect(service.updateCreatorPriority({ownerSecUid:owner.secUid,secUid:'sec1',mode:'reduce',revision:1}).mode).toBe('reduce')
+      await expect(service.switchAccount(owner.secUid)).rejects.toThrow('切换账号')
+      expect(()=>service.updateCreatorPriority({ownerSecUid:'other',secUid:'sec1',mode:null,revision:2})).toThrow('账号已切换')
+      expect(()=>service.updateCreatorPriority({ownerSecUid:owner.secUid,secUid:'sec1',mode:null,revision:0})).toThrow('权重已发生变化')
+      video.mockReturnValue(false);discovery.mockReturnValue(false);service.contentRunning=()=>false
+      for(const [phase,basic,activity,message] of [
+        ['running','completed','completed','关注同步'],['awaiting-config','completed','completed','关注同步'],
+        ['completed','running','completed','基础资料'],['completed','completed','running','博主资料刷新']
+      ]){
+        status.mockReturnValue({...service.status(),phase,basic:{phase:basic},activity:{phase:activity}} as any)
+        ;(service as any).state.phase=phase
+        expect(()=>service.updateCreatorPriority({ownerSecUid:owner.secUid,secUid:'sec1',mode:null,revision:2})).toThrow(message)
+      }
+      ;(service as any).state.phase='completed'
+      status.mockReturnValue({...service.status(),phase:'completed',basic:{phase:'completed'},activity:{phase:'completed'}} as any)
+      expect(service.updateCreatorPriority({ownerSecUid:owner.secUid,secUid:'sec1',mode:null,revision:2}).mode).toBeNull()
+      expect(service.store.list()[0]).toMatchObject({isStarred:true,note:'保留批注'})
+    }finally{await service.stop();rmSync(root,{recursive:true,force:true})}
+  })
+  it('dispatches one account-scoped anomaly repair batch and rejects an empty group without starting collection',async()=>{
+    const root=mkdtempSync(join(tmpdir(),'following-anomaly-')),service=new FollowingSyncService(root,()=>{})
+    try{
+      service.store.recordAccount(owner);service.store.selectAccount(owner.secUid);(service as any).preferences.value.activeOwnerSecUid=owner.secUid
+      service.store.savePlanRows('directory',owner,new Date().toISOString(),[0,1,2].map(i=>({uid:`uid${i}`,secUid:`sec${i}`,nickname:`博主${i}`,avatarUrl:null,signature:'简介',profileUrl:`https://www.douyin.com/user/sec${i}`})))
+      const creators=service.listCreators().map(c=>({...c,activity:{...c.activity!,baselineStatus:'ready' as const}})),pending=creators.map((c,i)=>({...c,activity:i<2?{...c.activity,anomaly:{detectedAt:new Date().toISOString()}}:c.activity}))
+      vi.spyOn(service,'listCreators').mockReturnValue(pending as any)
+      vi.spyOn(service,'status').mockReturnValue({connection:{online:true},basic:{phase:'idle'}} as any);(service as any).state.readiness={phase:'ready'}
+      const begin=vi.spyOn(service.activity,'begin').mockImplementation(((o:string,targets:any[],creatorId:number|undefined,resume:boolean,requireOwner:boolean,options:any)=>({
+        action:'activity',runId:'synthetic-anomaly-run',ownerSecUid:o,ownerUid:owner.uid,targets,weekStart:calendarWeek().start,weekEndExclusive:calendarWeek().endExclusive,
+        pacing:options.pacing})) as any)
+      service.startActivity(undefined,false,undefined,'anomaly')
+      expect(begin).toHaveBeenCalledWith(owner.secUid,expect.arrayContaining([expect.objectContaining({id:creators[0].id}),expect.objectContaining({id:creators[1].id})]),undefined,false,true,{scope:'anomaly',pacing:DEFAULT_CREATOR_REFRESH_PACING})
+      expect((service as any).command.targets).toHaveLength(2)
+      expect((service as any).command.ownerSecUid).toBe(owner.secUid)
+      service.cancelActivity()
+      vi.mocked(service.listCreators).mockReturnValue(creators)
+      expect(()=>service.startActivity(undefined,false,undefined,'anomaly')).toThrow('没有符合条件')
+      expect(begin).toHaveBeenCalledTimes(1)
+    }finally{await service.stop();rmSync(root,{recursive:true,force:true})}
+  })
   it('dispatches current-owner frequency groups from retained works, preserving all others and resuming the original selection',async()=>{
     const root=mkdtempSync(join(tmpdir(),'following-frequency-')),service=new FollowingSyncService(root,()=>{})
     try{
@@ -69,7 +192,7 @@ describe('local readiness and independent following actions',()=>{
       for(const args of [[undefined,false,undefined,'invalid'],[targets[0].id,false,undefined,'active'],[undefined,true,undefined,'active'],[undefined,false,[targets[0].id],'active']] as any[])expect(()=>service.startActivity(...args as [any,any,any,any])).toThrow('更新分组无效')
     }finally{await service.stop();rmSync(root,{recursive:true,force:true})}
   })
-  it('dispatches the entire account directory including not-due regular and inactive creators',async()=>{
+  it('dispatches ordinary account creators including not-due ones while reserving uninitialized baselines for review',async()=>{
     vi.useFakeTimers();vi.setSystemTime('2026-10-07T04:00:00.000Z')
     const root=mkdtempSync(join(tmpdir(),'following-all-')),service=new FollowingSyncService(root,()=>{})
     try{
@@ -95,10 +218,15 @@ describe('local readiness and independent following actions',()=>{
       ;(service as any).state.readiness={phase:'ready'}
       service.startActivity()
       const command=(service as any).command
-      expect(command.targets.map((target:any)=>target.id)).toEqual(targets.map(target=>target.id))
+      expect(command.targets.map((target:any)=>target.id)).toEqual(seeded.map(target=>target.id))
       expect(command.targets.filter((target:any)=>target.baseline)).toHaveLength(2)
       expect(command.pacing).toEqual(DEFAULT_CREATOR_REFRESH_PACING)
-      expect(service.activity.status(owner.secUid)).toMatchObject({phase:'running',total:3,notDueCount:0,mode:'manual'})
+      expect(service.activity.status(owner.secUid)).toMatchObject({phase:'running',total:2,notDueCount:0,mode:'manual'})
+      service.cancelActivity()
+      expect(service.listCreators().find(c=>c.profileUrl.endsWith('/sec3'))?.activity?.baselineStatus).toBe('missing')
+      service.startActivity(undefined,false,undefined,'anomaly')
+      expect((service as any).command.targets.map((target:any)=>target.secUid)).toEqual(['sec3'])
+      expect((service as any).command.targets[0]).toMatchObject({repair:true,needsBaseline:true})
     }finally{await service.stop();rmSync(root,{recursive:true,force:true});vi.useRealTimers()}
   })
   it('dispatches only the selected current-account creators and rejects stale or invalid selections',async()=>{

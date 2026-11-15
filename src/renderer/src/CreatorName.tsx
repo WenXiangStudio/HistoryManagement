@@ -1,30 +1,45 @@
-import {createContext,useContext,useMemo,type JSX,type ReactNode} from 'react'
+import {createContext,useCallback,useContext,useLayoutEffect,useMemo,useSyncExternalStore,type JSX,type ReactNode} from 'react'
 import type {CreatorListItem} from '../../shared/contracts'
 import type {CreatorPriorityState} from '../../shared/creatorPriority'
 import {creatorRecentActivity} from '../../shared/creatorRefreshPolicy'
 type NameIdentity={profileUrl?:string|null;nativeUid?:string|null;ownerSecUid?:string|null;priority?:CreatorPriorityState|null}
 type NameAppearance={priority:CreatorPriorityState|null;noRecentUpdates:boolean}
 const DEFAULT_APPEARANCE:NameAppearance={priority:null,noRecentUpdates:false}
-const Context=createContext<{owner:string|null;profiles:Map<string,NameAppearance>;uids:Map<string,NameAppearance>}>({owner:null,profiles:new Map(),uids:new Map()})
 const profileKey=(value:string):string=>{try{const url=new URL(value);return url.origin==='https://www.douyin.com'?url.pathname.replace(/\/$/,''):''}catch{return ''}}
-export function CreatorNameProvider({owner,creators,children}:{owner:string|null;creators:CreatorListItem[];children:ReactNode}):JSX.Element{
-  const value=useMemo(()=>{const profiles=new Map<string,NameAppearance>(),uids=new Map<string,NameAppearance>()
+function nameStore(owner:string|null,initial:CreatorListItem[]){
+  let profiles=new Map<string,NameAppearance>(),uids=new Map<string,NameAppearance>()
+  const listeners=new Set<()=>void>()
+  const replace=(creators:CreatorListItem[]):void=>{
+    const nextProfiles=new Map<string,NameAppearance>(),nextUids=new Map<string,NameAppearance>()
     for(const creator of creators){
       if(creator.isDemo)continue
-      const appearance={priority:creator.refreshPriority??null,noRecentUpdates:creatorRecentActivity(creator).status==='empty'}
-      const key=profileKey(creator.profileUrl)
-      if(key)profiles.set(key,appearance)
-      if(creator.nativeUid)uids.set(creator.nativeUid,appearance)
+      const key=profileKey(creator.profileUrl),old=profiles.get(key)
+      const priority=creator.refreshPriority??null,noRecentUpdates=creatorRecentActivity(creator).status==='empty'
+      const appearance=old&&old.noRecentUpdates===noRecentUpdates&&old.priority?.revision===priority?.revision
+        &&old.priority?.mode===priority?.mode&&old.priority?.tier===priority?.tier?old:{priority,noRecentUpdates}
+      if(key)nextProfiles.set(key,appearance)
+      if(creator.nativeUid)nextUids.set(creator.nativeUid,appearance)
     }
-    return {owner,profiles,uids}
-  },[owner,creators])
+    profiles=nextProfiles;uids=nextUids
+    for(const listener of listeners)listener()
+  }
+  replace(initial)
+  return {owner,replace,subscribe:(listener:()=>void)=>{listeners.add(listener);return()=>{listeners.delete(listener)}},
+    get:(profile:string,uid?:string|null):NameAppearance=>(profile?profiles.get(profile):uid?uids.get(uid):undefined)??DEFAULT_APPEARANCE}
+}
+const Context=createContext(nameStore(null,[]))
+export function CreatorNameProvider({owner,creators,children}:{owner:string|null;creators:CreatorListItem[];children:ReactNode}):JSX.Element{
+  const value=useMemo(()=>nameStore(owner,creators),[owner])
+  // Notify after commit; only names whose identity appearance changed render again.
+  useLayoutEffect(()=>value.replace(creators),[value,creators])
   return <Context.Provider value={value}>{children}</Context.Provider>
 }
 export function useCreatorNameAppearance(identity:NameIdentity):NameAppearance{
-  const source=useContext(Context)
-  if(identity.ownerSecUid&&identity.ownerSecUid!==source.owner)return DEFAULT_APPEARANCE
-  const saved=(identity.profileUrl?source.profiles.get(profileKey(identity.profileUrl)):identity.nativeUid?source.uids.get(identity.nativeUid):undefined)??DEFAULT_APPEARANCE
-  return identity.priority!==undefined?{...saved,priority:identity.priority}:saved
+  const source=useContext(Context),profile=identity.profileUrl?profileKey(identity.profileUrl):''
+  const foreign=!!identity.ownerSecUid&&identity.ownerSecUid!==source.owner
+  const snapshot=useCallback(()=>foreign?DEFAULT_APPEARANCE:source.get(profile,identity.nativeUid),[source,foreign,profile,identity.nativeUid])
+  const saved=useSyncExternalStore(source.subscribe,snapshot,snapshot)
+  return useMemo(()=>foreign?DEFAULT_APPEARANCE:identity.priority!==undefined?{...saved,priority:identity.priority}:saved,[saved,identity.priority,foreign])
 }
 export function creatorNameClass(appearance:NameAppearance,option=false):string|undefined{
   return appearance.priority?.mode?(option?'creator-priority-option':'creator-priority-name')

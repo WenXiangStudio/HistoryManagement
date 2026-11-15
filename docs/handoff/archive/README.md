@@ -6,6 +6,32 @@
 
 ## 2026-10
 
+- [302位新版基线／169位补采完成、六次中断原因与有限恢复交付：APP0.1.38、交接后停止（2026-10-14）](2026-10/signal-desk-activity-baseline-and-recovery-2026-10-14.md)
+
+- [视频素材规范流程与页面交付：APP0.1.26，本地分类并发8，兴趣路由，收件箱正文研究报告（2026-10-13）](2026-10/signal-desk-video-workflow-2026-10-13.md)
+
+- [下一窗口：最后探讨与视频处理流程规格指定，14条分类已人工通过（2026-10-13）](2026-10/signal-desk-flow-spec-next-window-2026-10-13.md)
+- [正式库14条检测分类与本地并发：人工14/14通过，最高实测14，8并发本组最快（2026-10-13）](2026-10/signal-desk-fourteen-detection-triage-2026-10-13.md)
+- [旅行素材：仅原文＋用户三项提示词，删除相关事件，GLM/DeepSeek完成（2026-10-12）](2026-10/signal-desk-siliconflow-travel-text-2026-10-12.md)
+- [禁止代理新增提示词，GLM/DeepSeek仅原文＋用户三项任务重做（2026-10-12）](2026-10/signal-desk-siliconflow-user-prompt-only-2026-10-12.md)
+- [GLM/DeepSeek同479字人工验收原文三项文本实测，完整候选与严格问题记录（2026-10-12）](2026-10/signal-desk-siliconflow-text-comparison-2026-10-12.md)
+- [硅基流动模型3 DeepSeek-V4-Flash 文本连通成功，严格回复格式未通过（2026-10-12）](2026-10/signal-desk-siliconflow-deepseek-connection-2026-10-12.md)
+- [硅基流动第三模型空入口0.1.25，复用已保存Key（2026-10-12）](2026-10/signal-desk-siliconflow-third-slot-2026-10-12.md)
+- [硅基流动两模型连通，云端Qwen3.5-4B十二帧结果已显示于APP0.1.24（2026-10-12）](2026-10/signal-desk-siliconflow-vision-2026-10-12.md)
+- [硅基流动双模型配置入口0.1.23，保留两个空模型位（2026-10-12）](2026-10/signal-desk-siliconflow-entry-2026-10-12.md)
+- [豆包极速版0.1.22：更正Key后77秒音轨3.093秒显示原文（2026-10-12）](2026-10/signal-desk-doubao-flash-integration-2026-10-12.md)
+- [下一窗口：豆包极速版本地文件集成与单样本转写（2026-10-12）](2026-10/signal-desk-doubao-flash-next-window-2026-10-12.md)
+- [豆包语音0.1.21配置入口交付，后续URL路线已撤回（2026-10-12）](2026-10/signal-desk-doubao-speech-2026-10-12.md)
+- [Qwen单模型：盐选财经APP内转写、画面与摘要（2026-10-11）](2026-10/signal-desk-qwen-video-app-2026-10-11.md)
+- [云端方案切换、旧模型与密钥保留（2026-10-11）](2026-10/signal-desk-cloud-profiles-2026-10-11.md)
+- [单云端多模态模型：指定视频真实试验结果（2026-10-11）](2026-10/signal-desk-single-cloud-multimodal-result-2026-10-11.md)
+- [下一窗口：单云端多模态模型全流程试验（2026-10-11）](2026-10/signal-desk-single-cloud-multimodal-next-window-2026-10-11.md)
+- [文本服务切换 Responses 并验证（2026-10-11）](2026-10/signal-desk-responses-protocol-2026-10-11.md)
+- [文本云端接口与摘要函数合成验证（2026-10-11）](2026-10/signal-desk-cloud-text-check-2026-10-11.md)
+- [设置输入被后台刷新覆盖的修复（2026-10-11）](2026-10/signal-desk-settings-draft-fix-2026-10-11.md)
+- [视频日期查找、本地材料与云端接口实施（2026-10-11）](2026-10/signal-desk-video-content-implementation-2026-10-11.md)
+
+- [下一窗口：视频信息采集、独立导航页与未提交工作区（2026-10-10）](2026-10/signal-desk-video-information-next-window-2026-10-10.md)
 - [Signal Desk 请求减量与动态等待交接（2026-10-04）](2026-10/signal-desk-activity-load-2026-10-04.md)
 - [浏览器命令诊断与剩余四位验收（2026-10-05）](2026-10/signal-desk-command-diagnostics-four-2026-10-05.md)
 - [Signal Desk 博主作品总数与本周动态交接（2026-10-03）](2026-10/signal-desk-creator-activity-2026-10-03.md)

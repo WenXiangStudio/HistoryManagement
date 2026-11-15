@@ -1,0 +1,57 @@
+{
+  "model": "zai-org/GLM-5.3-Flash",
+  "slug": "glm",
+  "profileId": "d2f4dc4b-4970-4a88-aa7e-ad4351b44b15",
+  "providerSlot": 1,
+  "sourceSha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+  "messagesSha256": "64c33a68c6e3470b352f1b594a8557388a3fcc794e7e06b05ad7777f2be79f29",
+  "requestCount": 1,
+  "stream": true,
+  "parameters": {
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "temperature": 0,
+    "max_tokens": 16384,
+    "enable_thinking": false,
+    "thinking_budget": 1024
+  },
+  "startedAt": "2026-10-12T12:35:28.995Z",
+  "usage": {
+    "prompt_tokens": 643,
+    "completion_tokens": 2848,
+    "total_tokens": 3491,
+    "completion_tokens_details": {
+      "reasoning_tokens": 1025
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 643
+  },
+  "replyCharacters": 3168,
+  "reasoningCharacters": 4041,
+  "receivedBytes": 1330838,
+  "streamDone": true,
+  "finishReason": "stop",
+  "httpStatus": 200,
+  "headersMs": 600,
+  "responseHeaders": {
+    "content-type": "text/event-stream",
+    "date": "Mon, 12 Oct 2026 12:35:08 GMT"
+  },
+  "responseId": "01a1301bd4d58b6fdb84da62032c27d2",
+  "returnedModel": "zai-org/GLM-5.3-Flash",
+  "firstReasoningMs": 608,
+  "firstContentMs": 10600,
+  "requestCompletedAt": "2026-10-12T12:35:57.404Z",
+  "complete": true,
+  "requestElapsedMs": 28409,
+  "replySha256": "0ff1f267126df9b4b4aa0bcdb807a36ba34f8bd4b37089b11d81d7efcb33aed1",
+  "reasoningSha256": "65062986d681f269a4c4187ecb63d2ce593f6645ef91df553f4da89c28f09726",
+  "resultsSavedAt": "2026-10-12T12:35:57.405Z",
+  "resultSaveMs": 1,
+  "requestToResultSavedMs": 28410
+}

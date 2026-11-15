@@ -1,0 +1,12 @@
+{
+  "oneUserMessage": true,
+  "exactTranscriptAndUserPromptOnly": true,
+  "noSystemMessage": true,
+  "noDeveloperMessage": true,
+  "noAssistantHistory": true,
+  "noAddedInstructionFields": true,
+  "sameMessagesAndParameters": true,
+  "rawResponseMatchesSavedOutput": true,
+  "streamDone": true,
+  "finishReason": "stop"
+}

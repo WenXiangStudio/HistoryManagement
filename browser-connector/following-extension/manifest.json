@@ -1,14 +1,37 @@
 {
   "manifest_version": 3,
   "name": "Signal Desk 关注目录同步",
-  "version": "0.8.4",
+  "version": "0.8.12",
   "description": "与 APP 保持连接，在后台同步授权账号的关注资料。",
-  "permissions": ["tabs", "storage", "nativeMessaging", "scripting", "debugger"],
-  "host_permissions": ["https://www.douyin.com/*", "http://127.0.0.1/*"],
-  "background": { "service_worker": "background.js", "type": "module" },
-  "content_scripts": [
-    { "matches": ["http://127.0.0.1/*"], "js": ["setup-content.js"], "run_at": "document_idle" }
+  "permissions": [
+    "tabs",
+    "storage",
+    "nativeMessaging",
+    "scripting",
+    "debugger"
   ],
-  "action": { "default_title": "Signal Desk 关注目录同步", "default_popup": "popup.html" },
+  "host_permissions": [
+    "https://www.douyin.com/*",
+    "http://127.0.0.1/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "http://127.0.0.1/*"
+      ],
+      "js": [
+        "setup-content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Signal Desk 关注目录同步",
+    "default_popup": "popup.html"
+  },
   "minimum_chrome_version": "120"
 }

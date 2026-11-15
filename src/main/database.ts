@@ -40,6 +40,7 @@ type DemoDataContext = {
 
 const DEFAULT_SETTINGS: AppSettings = {
   textBaseUrl: '',
+  textApiProtocol: 'chat-completions',
   textModel: '',
   visionBaseUrl: '',
   visionModel: '',
@@ -732,6 +733,7 @@ export class AppDatabase {
       ...DEFAULT_SETTINGS,
       ...stored,
       textBaseUrl: typeof stored.textBaseUrl === 'string' ? stored.textBaseUrl : legacyBaseUrl,
+      textApiProtocol: stored.textApiProtocol === 'responses' ? 'responses' : 'chat-completions',
       visionBaseUrl: typeof stored.visionBaseUrl === 'string' ? stored.visionBaseUrl : '',
       textInputPricePerMillion: typeof stored.textInputPricePerMillion === 'number' ? stored.textInputPricePerMillion : legacyInputPrice,
       textOutputPricePerMillion: typeof stored.textOutputPricePerMillion === 'number' ? stored.textOutputPricePerMillion : legacyOutputPrice,
@@ -744,6 +746,7 @@ export class AppDatabase {
 
   saveSettings(settings: Partial<AppSettings>): AppSettings {
     const current = this.getSettings()
+    if(settings.textApiProtocol!==undefined&&!['chat-completions','responses'].includes(settings.textApiProtocol))throw Error('不支持的文本接口协议')
     const baseUrl = (input: unknown, fallback: string, label: string): string => {
       if (typeof input !== 'string') return fallback
       const value = input.trim().slice(0, 2000)
@@ -770,6 +773,7 @@ export class AppDatabase {
     }
     const value: AppSettings = {
       textBaseUrl: baseUrl(settings.textBaseUrl, current.textBaseUrl, '文本服务'),
+      textApiProtocol: settings.textApiProtocol ?? current.textApiProtocol,
       textModel: typeof settings.textModel === 'string' ? settings.textModel.trim().slice(0, 200) : current.textModel,
       visionBaseUrl: baseUrl(settings.visionBaseUrl, current.visionBaseUrl, '视觉服务'),
       visionModel: typeof settings.visionModel === 'string' ? settings.visionModel.trim().slice(0, 200) : current.visionModel,

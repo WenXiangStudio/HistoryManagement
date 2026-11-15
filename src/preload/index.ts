@@ -3,8 +3,27 @@ import type {CreatorDatabaseView,CreatorDatabaseMutation} from '../shared/creato
 import type {FeishuConfigurationInput,FeishuProbeInput,FeishuProbeReceipt,FeishuState,FeishuSyncRun} from '../shared/feishu'
 import type {CreatorRefreshScope} from '../shared/creatorRefreshPolicy'
 import type {CreatorPriorityInput,CreatorPriorityState} from '../shared/creatorPriority'
+import type {VideoInformationState,VideoInformationView,VideoLibraryView,VideoLibraryOptions} from '../shared/videoInformation'
+import type {VideoContentBatch,VideoContentDetail,VideoContentRuntime} from '../shared/videoContent'
 
 const api = {
+  getVideoWorkshop:():Promise<import('../shared/videoWorkshop').WorkshopView>=>ipcRenderer.invoke('video-workshop:get'),
+  processWorkshopVideo:(input:{url:string;clickedAt:number}):Promise<import('../shared/videoWorkshop').WorkshopView>=>ipcRenderer.invoke('video-workshop:process',input),
+  cancelWorkshopVideo:(jobId:string):Promise<import('../shared/videoWorkshop').WorkshopView>=>ipcRenderer.invoke('video-workshop:cancel',jobId),
+  deepProcessWorkshopVideo:(input:{jobId:string;clickedAt:number}):Promise<import('../shared/videoWorkshop').WorkshopView>=>ipcRenderer.invoke('video-workshop:deep',input),
+  getWorkshopFrame:(input:{jobId:string;frameId:string}):Promise<{id:string;timeMs:number;dataUrl:string}>=>ipcRenderer.invoke('video-workshop:frame',input),
+  ackWorkshopDeepDisplayed:(input:{jobId:string;displayedAt:number}):Promise<import('../shared/videoWorkshop').WorkshopView>=>ipcRenderer.invoke('video-workshop:deep-displayed',input),
+  testCloudConnection:(input:import('../shared/cloudConnection').CloudConnectionInput):Promise<import('../shared/cloudConnection').CloudConnectionResult>=>ipcRenderer.invoke('cloud:connection-test',input),
+  getSiliconFlow:():Promise<import('../shared/siliconFlow').SiliconFlowView>=>ipcRenderer.invoke('siliconflow:get'),
+  saveSiliconFlow:(input:import('../shared/siliconFlow').SiliconFlowInput):Promise<import('../shared/siliconFlow').SiliconFlowView>=>ipcRenderer.invoke('siliconflow:save',input),
+  getDoubaoSpeech:():Promise<import('../shared/doubaoSpeech').DoubaoSpeechView>=>ipcRenderer.invoke('doubao-speech:get'),
+  saveDoubaoSpeech:(input:{authMode:import('../shared/doubaoSpeech').DoubaoAuthMode;appId:string;secret:string}):Promise<import('../shared/doubaoSpeech').DoubaoSpeechView>=>ipcRenderer.invoke('doubao-speech:save',input),
+  prepareDoubaoAudio:():Promise<void>=>ipcRenderer.invoke('doubao-speech:prepare'),
+  startDoubaoSpeech:(url:string):Promise<import('../shared/doubaoSpeech').DoubaoSpeechView>=>ipcRenderer.invoke('doubao-speech:start',url),
+  startDoubaoFlash:(input:{clickedAt:number}):Promise<import('../shared/doubaoSpeech').DoubaoSpeechView>=>ipcRenderer.invoke('doubao-speech:flash-start',input),
+  markDoubaoFlashDisplayed:(input:{requestId:string;displayedAt:number}):Promise<import('../shared/doubaoSpeech').DoubaoSpeechView>=>ipcRenderer.invoke('doubao-speech:flash-displayed',input),
+  resumeDoubaoSpeech:():Promise<import('../shared/doubaoSpeech').DoubaoSpeechView>=>ipcRenderer.invoke('doubao-speech:resume'),
+  stopDoubaoSpeech:():Promise<void>=>ipcRenderer.invoke('doubao-speech:stop'),
   getDashboard: () => ipcRenderer.invoke('dashboard:get'),
   listInbox: (options?: { search?: string; state?: string; limit?: number }) => ipcRenderer.invoke('inbox:list', options),
   getWork: (workId: number) => ipcRenderer.invoke('work:get', workId),
@@ -17,14 +36,45 @@ const api = {
   probeFeishuCreator: (input:FeishuProbeInput):Promise<FeishuProbeReceipt> => ipcRenderer.invoke('feishu:probe',input),
   syncFeishuCreators: (input:{ownerSecUid:string}):Promise<FeishuSyncRun> => ipcRenderer.invoke('feishu:sync',input),
   setFeishuAutomatic: (input:{ownerSecUid:string;enabled:boolean}):Promise<FeishuState> => ipcRenderer.invoke('feishu:automatic',input),
-  updateCreator: (creatorId: number, input: { isStarred?: boolean; note?: string }) => ipcRenderer.invoke('creators:update', creatorId, input),
+  updateCreator: (creatorId: number, input: { isStarred?: boolean; note?: string },ownerSecUid?:string) => ipcRenderer.invoke('creators:update', creatorId, input,ownerSecUid),
   updateCreatorPriority: (input:CreatorPriorityInput):Promise<CreatorPriorityState> => ipcRenderer.invoke('creators:priority-update',input),
+  updateCreatorInterest: (input:import('../shared/creatorInterest').CreatorInterestInput):Promise<import('../shared/creatorInterest').CreatorInterestState> => ipcRenderer.invoke('creators:interest-update',input),
   listJobs: () => ipcRenderer.invoke('jobs:list'),
   refreshFollowing: (resume=false) => ipcRenderer.invoke('following:refresh', resume),
   completeFollowingBasics: () => ipcRenderer.invoke('following:basic-start'),
   cancelFollowingBasics: () => ipcRenderer.invoke('following:basic-cancel'),
   refreshCreatorActivity: (creatorId?:number,resume=false,creatorIds?:number[],scope?:CreatorRefreshScope) => ipcRenderer.invoke('creators:activity-refresh',creatorId,resume,creatorIds,scope),
   cancelCreatorActivity: () => ipcRenderer.invoke('creators:activity-cancel'),
+  startCreatorBaseline: (resume=false,creatorIds?:number[]) => ipcRenderer.invoke('creators:baseline-start',resume,creatorIds),
+  getCreatorWorkTimeline:(owner:string,creatorId:number):Promise<import('../shared/creatorWorkTimeline').CreatorTimelineView>=>ipcRenderer.invoke('creators:work-timeline',owner,creatorId),
+  collectVideoEvidence:(creatorId:number):Promise<VideoInformationState>=>ipcRenderer.invoke('video-information:evidence',creatorId),
+  setVideoInterest:(owner:string,workId:string,interest:'unmarked'|'interested'|'not-interested')=>ipcRenderer.invoke('video-content:interest',owner,workId,interest),
+  getVideoContentDetail:(owner:string,workId:string):Promise<VideoContentDetail>=>ipcRenderer.invoke('video-content:detail',owner,workId),
+  classifyVideoWorks:(input:{ownerSecUid:string;workIds:string[];clickedAt?:number}):Promise<VideoContentBatch>=>ipcRenderer.invoke('video-workflow:classify',input),
+  startVideoWorkflow:(input:{ownerSecUid:string;workIds:string[]}):Promise<VideoContentBatch[]>=>ipcRenderer.invoke('video-workflow:start',input),
+  reviewVideoClassification:(owner:string,id:string,input:{code:'visual'|'visual_text'|'speech';note:string})=>ipcRenderer.invoke('video-workflow:review',owner,id,input),
+  reviseVideoBody:(owner:string,id:string,text:string)=>ipcRenderer.invoke('video-workflow:body',owner,id,text),
+  setMaterialInboxState:(owner:string,id:string,state:import('../shared/videoWorkflow').MaterialInboxState)=>ipcRenderer.invoke('video-workflow:inbox',owner,id,state),
+  cancelVideoWorkflow:(owner:string)=>ipcRenderer.invoke('video-workflow:cancel',owner),
+  resumeVideoWorkflow:(owner:string,id:string)=>ipcRenderer.invoke('video-workflow:resume',owner,id),
+  getClassificationFrame:(owner:string,id:string,frameId:string):Promise<{id:string;timeMs:number;dataUrl:string}>=>ipcRenderer.invoke('video-workflow:frame',owner,id,frameId),
+  ackVideoWorkflowRendered:(owner:string,id:string,ids:string[])=>ipcRenderer.invoke('video-workflow:rendered',owner,id,ids),
+  processVideoWorks:(input:{ownerSecUid:string;workIds:string[];provider:'local'|'cloud'|'cloud-omni'|'cloud-frames';includeVision?:boolean;clickedAt?:number}):Promise<VideoContentBatch>=>ipcRenderer.invoke('video-content:process',input),
+  cancelVideoTask:(owner:string)=>ipcRenderer.invoke('video-content:cancel',owner),
+  resumeVideoTask:(owner:string,id:string)=>ipcRenderer.invoke('video-content:resume',owner,id),
+  getVideoContentRuntime:():Promise<VideoContentRuntime>=>ipcRenderer.invoke('video-content:runtime'),
+  getVideoFrame:(owner:string,workId:string,frameId:string):Promise<{id:string;timeMs:number;dataUrl:string}>=>ipcRenderer.invoke('video-content:frame',owner,workId,frameId),
+  estimateVideoCloud:(owner:string,ids:string[],vision=false):Promise<{model:string;estimatedCost:number|null;reason:string;imageCount:number}>=>ipcRenderer.invoke('video-content:estimate',owner,ids,vision),
+  ackVideoContentRendered:(owner:string,id:string,workIds:string[])=>ipcRenderer.invoke('video-content:rendered',owner,id,workIds),
+  discoverVideoWorks:(input:{ownerSecUid:string;creatorIds:number[];startDate:string;endDate:string})=>ipcRenderer.invoke('video-content:discover',input),
+  cancelVideoDiscovery:(owner:string)=>ipcRenderer.invoke('video-content:discovery-cancel',owner),
+  resumeVideoDiscovery:(owner:string,id:string)=>ipcRenderer.invoke('video-content:discovery-resume',owner,id),
+  getVideoInformationStatus:():Promise<VideoInformationState>=>ipcRenderer.invoke('video-information:status'),
+  getVideoLibrary:(options?:VideoLibraryOptions):Promise<VideoLibraryView>=>ipcRenderer.invoke('video-information:library',options),
+  getCreatorVideos:(creatorId:number):Promise<VideoInformationView>=>ipcRenderer.invoke('video-information:list',creatorId),
+  ackVideoInformationRendered:(runId:string):Promise<VideoInformationState>=>ipcRenderer.invoke('video-information:rendered',runId),
+  collectVideoInformation:(creatorId:number):Promise<VideoInformationState>=>ipcRenderer.invoke('video-information:start',creatorId),
+  cancelVideoInformation:():Promise<VideoInformationState>=>ipcRenderer.invoke('video-information:cancel'),
   ackCreatorActivityRendered: (runId:string) => ipcRenderer.invoke('creators:activity-rendered',runId),
   getFollowingSyncStatus: () => ipcRenderer.invoke('following:status'),
   getFollowingConfiguration: () => ipcRenderer.invoke('following:configuration'),
@@ -63,7 +113,7 @@ const api = {
   onDataChanged: (listener: (event: unknown) => void) => {
     const handler = (_event: unknown, payload: unknown): void => listener(payload)
     ipcRenderer.on('data:changed', handler)
-    return () => ipcRenderer.removeListener('data:changed', handler)
+    return () => {ipcRenderer.removeListener('data:changed', handler)}
   },
   onWorkerSetupProgress: (listener: (event: { message: string }) => void) => {
     const handler = (_event: unknown, payload: { message: string }): void => listener(payload)

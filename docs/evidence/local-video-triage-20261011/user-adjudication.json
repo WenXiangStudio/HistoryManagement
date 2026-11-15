@@ -1,0 +1,52 @@
+{
+  "recordedDate": "2026-10-11",
+  "source": "user-feedback-in-conversation",
+  "overallFeedback": "效果总体不错，用户认可本次粗分类方向",
+  "scopeChange": {
+    "musicClassificationRequired": false,
+    "audioQuestion": "是否有人声、语音文案",
+    "visualQuestionsRetained": ["是否有画面文字", "文字和非文字画面如何承载内容"],
+    "newInferenceAuthorizedByThisFeedback": false
+  },
+  "samples": [
+    {
+      "index": 1,
+      "workId": "7692746246095687849",
+      "shareUrl": "https://v.douyin.com/0jhOqgmgr0o/",
+      "userConfirmedType": "动画短片",
+      "humanVoicePresent": true,
+      "humanConfirmedVoiceWindowSeconds": [43, 49],
+      "speechCopyPresent": null,
+      "substantiveVisualTextPresent": null,
+      "assessment": "用户确认模型指出的约43—49秒确有人声；未逐段核验模型的5个精确区间、3.872秒总时长或文字缺失"
+    },
+    {
+      "index": 2,
+      "workId": "7683045679131856147",
+      "shareUrl": "https://v.douyin.com/n4fmbpWpG-Y/",
+      "userConfirmedType": "画面显示主导与画面文字主导的创意视频",
+      "humanVoicePresent": false,
+      "speechCopyPresent": false,
+      "substantiveVisualTextPresent": true,
+      "visualContentRole": "画面与画面文字共同承载内容",
+      "assessment": "无人声/语音文案和有内容文字的方向与检测线索一致；具体创意类型及画面作用由用户确认"
+    },
+    {
+      "index": 3,
+      "workId": "7694229627543227686",
+      "shareUrl": "https://v.douyin.com/ooNjIFb07Ck/",
+      "userConfirmedType": "画面主导的内容分享，画面文字本身就是视频内容",
+      "humanVoicePresent": false,
+      "speechCopyPresent": false,
+      "substantiveVisualTextPresent": true,
+      "visualContentRole": "画面文字直接承载视频内容",
+      "assessment": "无人声/语音文案与抽样文字丰富的方向获用户确认；未验收全部OCR逐字准确性或完整性"
+    }
+  ],
+  "validationLimits": [
+    "三个指定样本获得正面人工反馈，不构成通用准确率评估",
+    "具体视频类型来自用户，不能追溯声称VAD/OCR自动理解了动画或创意视频",
+    "VAD提供疑似语音区间，尚未证明能覆盖所有歌声、笑声等人声或判断是否存在有意义的语音文案",
+    "原模型结果、规则、计时及准确率待验收字段保留不改，以此独立裁决记录解释后续反馈"
+  ]
+}

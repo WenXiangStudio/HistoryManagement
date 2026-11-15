@@ -1,0 +1,97 @@
+{
+  "date": "2026-11-15",
+  "applicationVersion": "0.1.52",
+  "connectorVersion": "0.8.12",
+  "baseCommit": "bd107a15309eeba9ae8f1ecaef227865b5381bbb",
+  "checks": [
+    {
+      "command": "npx tsc --noEmit",
+      "status": "passed"
+    },
+    {
+      "command": "npm test",
+      "status": "passed",
+      "files": 91,
+      "tests": 869
+    },
+    {
+      "command": "node --test <31 offline script and POC files>",
+      "status": "passed",
+      "tests": 198,
+      "files": [
+        "scripts/test-cloud-profile-config.mjs",
+        "scripts/test-connector-background.mjs",
+        "scripts/test-connector-content.mjs",
+        "scripts/test-creator-activity-baseline.mjs",
+        "scripts/test-creator-activity-context.mjs",
+        "scripts/test-creator-activity-continuity.mjs",
+        "scripts/test-creator-activity-diagnostics.mjs",
+        "scripts/test-creator-activity-network.mjs",
+        "scripts/test-creator-activity-optimization.mjs",
+        "scripts/test-creator-activity-owner-network.mjs",
+        "scripts/test-creator-activity-pacing.mjs",
+        "scripts/test-creator-activity-recovery.mjs",
+        "scripts/test-creator-activity-runner.mjs",
+        "scripts/test-following-batch-timer.mjs",
+        "scripts/test-following-distinct-batch.mjs",
+        "scripts/test-following-plan-runner.mjs",
+        "scripts/test-following-visible-runner.mjs",
+        "scripts/test-network-observer.mjs",
+        "scripts/test-video-content.mjs",
+        "scripts/test-video-information.mjs",
+        "scripts/test-workshop-video-runner.mjs",
+        "poc/r8/test/batch-controller.test.mjs",
+        "poc/r8/test/batch-core.test.mjs",
+        "poc/r8/test/browser-transport.test.mjs",
+        "poc/r8/test/homepage-pilot-controller.test.mjs",
+        "poc/r8/test/homepage-pilot-core.test.mjs",
+        "poc/r8/test/homepage-pilot-presentation.test.mjs",
+        "poc/r8/test/t1-harness.test.mjs",
+        "poc/r8/test/t2-controller.test.mjs",
+        "poc/r8/test/verified-catalog.test.mjs",
+        "poc/phase-b/test/core.test.mjs"
+      ]
+    },
+    {
+      "command": "node --test scripts/test-following-extension.mjs",
+      "status": "passed",
+      "tests": 8
+    },
+    {
+      "command": "npm run test:worker",
+      "status": "passed",
+      "tests": 7
+    },
+    {
+      "command": "npm run test:native-host",
+      "status": "passed"
+    },
+    {
+      "command": "npm run test:project-boundaries",
+      "status": "passed"
+    },
+    {
+      "command": "npm run build",
+      "status": "passed"
+    },
+    {
+      "command": "Markdown local links",
+      "status": "passed"
+    },
+    {
+      "command": "git diff --check",
+      "status": "passed"
+    }
+  ],
+  "credentialReview": {
+    "patternCandidates": 27,
+    "allCandidatesReviewed": true,
+    "allCandidatesSyntheticOrTestAssertions": true,
+    "jsonCredentialFieldsReviewed": true,
+    "browserSessionParameterMatchesReviewed": true
+  },
+  "knownBoundary": {
+    "fullNpmCheckRun": false,
+    "reason": "Existing R8 formal work/comment prerequisites remain closed by design."
+  }
+}

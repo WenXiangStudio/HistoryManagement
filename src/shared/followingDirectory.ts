@@ -56,6 +56,7 @@ export type FollowingSyncState = {
   plan?: import('./followingPlan').FollowingPlanState
   basic?: import('./followingPlan').BasicState
   activity?: import('./creatorActivity').CreatorActivityState
+  videoInformation?:import('./videoInformation').VideoInformationState
   phase: 'idle' | 'awaiting-config' | 'running' | 'completed' | 'blocked' | 'cancelled'
   runId: string | null; message: string; count: number; ownerSecUid: string | null
   extensionDirectory: string | null; reportDirectory: string | null; databasePath: string

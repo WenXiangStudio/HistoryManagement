@@ -1,0 +1,434 @@
+{
+  "mode": "cloud-frames-only",
+  "provider": "siliconflow",
+  "modelVersion": "Qwen/Qwen3.5-4B",
+  "promptVersion": "cloud-frame-reading/v1",
+  "generatedAt": "2026-10-12T09:55:30.522Z",
+  "frames": [
+    {
+      "id": "sf-frame-1",
+      "timeMs": 0,
+      "path": "frames/sf-frame-1.jpg",
+      "sha256": "801de8c50d5e8d744a570266abbd9aa0e1492f35146136e89a25ace75643870a"
+    },
+    {
+      "id": "sf-frame-2",
+      "timeMs": 6967,
+      "path": "frames/sf-frame-2.jpg",
+      "sha256": "d84523951cc1f579a33f10bd24412be876f436ef372dc079bda3db1227e0bef7"
+    },
+    {
+      "id": "sf-frame-3",
+      "timeMs": 13933,
+      "path": "frames/sf-frame-3.jpg",
+      "sha256": "a7191330be0a943baa239af584d432ce188980697cb63b551e7cdf2681fdd231"
+    },
+    {
+      "id": "sf-frame-4",
+      "timeMs": 20900,
+      "path": "frames/sf-frame-4.jpg",
+      "sha256": "22c5d2af1c73ad80a950ca5d7288fa47330105f6f24fe19f60f289c8de13a547"
+    },
+    {
+      "id": "sf-frame-5",
+      "timeMs": 27867,
+      "path": "frames/sf-frame-5.jpg",
+      "sha256": "c4f7a9ceb3f2a1d70edfd36dfe725189e2d02d83a445e65253f83a60b90bed07"
+    },
+    {
+      "id": "sf-frame-6",
+      "timeMs": 34833,
+      "path": "frames/sf-frame-6.jpg",
+      "sha256": "19590cb9f5d48e31469f07b72500f373aa2376b354e1b1a4b2d00f8e8c735237"
+    },
+    {
+      "id": "sf-frame-7",
+      "timeMs": 41800,
+      "path": "frames/sf-frame-7.jpg",
+      "sha256": "4fff170384ff0ae90d619f36fa788676f91207c4e258c933584f0c3026b26b79"
+    },
+    {
+      "id": "sf-frame-8",
+      "timeMs": 48766,
+      "path": "frames/sf-frame-8.jpg",
+      "sha256": "670a129988a78667a854520c8284add8653502ed7c743cc38c35eddc567f1f45"
+    },
+    {
+      "id": "sf-frame-9",
+      "timeMs": 55733,
+      "path": "frames/sf-frame-9.jpg",
+      "sha256": "75e1c1b3a46001b63a3bd387ec31934d5d8438db046cbf8d2be6ba00421fe757"
+    },
+    {
+      "id": "sf-frame-10",
+      "timeMs": 62700,
+      "path": "frames/sf-frame-10.jpg",
+      "sha256": "00ff26604a60d074989cfb1f89e992cb83e55840559dcca15dc3f0a4417f3a7c"
+    },
+    {
+      "id": "sf-frame-11",
+      "timeMs": 69666,
+      "path": "frames/sf-frame-11.jpg",
+      "sha256": "2a2a1e92388f9bc1a90096eff67af3f57f825216804cd22f818c1aa7e4eb9676"
+    },
+    {
+      "id": "sf-frame-12",
+      "timeMs": 76633,
+      "path": "frames/sf-frame-12.jpg",
+      "sha256": "dd6a256b8ef8667b5dc3fc045d4dd29b21c37104b48e34514bfcd974072af2e1"
+    }
+  ],
+  "readings": [
+    {
+      "frameId": "sf-frame-1",
+      "text": "",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗户可见。",
+      "uncertainties": [],
+      "timeMs": 0
+    },
+    {
+      "frameId": "sf-frame-2",
+      "text": "力）；10月7日“人类数学协会”（AHM）\n\n声明，呼吁数学家停止与OpenAI合作，陶哲轩在博客转载了该声明。严格说，这份声明\n\n对OpenAI的“要求”只有一条——别再这样\n\n做；真正具体的清单，来自此前陶哲轩等25\n\n位菲尔兹奖得主的公开信和AGMAI咨询组的\n\n发布\n\n所有数学家停止使用Openai",
+      "description": "屏幕显示一段关于数学家协会声明的中文文本，底部有强调文字。",
+      "uncertainties": [],
+      "timeMs": 6967
+    },
+    {
+      "frameId": "sf-frame-3",
+      "text": "极度的愤怒和被冒犯到",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗户可见。",
+      "uncertainties": [],
+      "timeMs": 13933
+    },
+    {
+      "frameId": "sf-frame-4",
+      "text": "当成一个Git Hub开源仓库的形式",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 20900
+    },
+    {
+      "frameId": "sf-frame-5",
+      "text": "数学博士毕生工作之方向",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 27867
+    },
+    {
+      "frameId": "sf-frame-6",
+      "text": "制OpenAI，数学界与AI巨头矛\n数学界现在对Openai是",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面上方和下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 34833
+    },
+    {
+      "frameId": "sf-frame-7",
+      "text": "你得分人类得的菲尔兹奖和对吧",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 41800
+    },
+    {
+      "frameId": "sf-frame-8",
+      "text": "啊所以数学界拉黑Openai了",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 48766
+    },
+    {
+      "frameId": "sf-frame-9",
+      "text": "它可能只是没说",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 55733
+    },
+    {
+      "frameId": "sf-frame-10",
+      "text": "这不是我说给数学界",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内和窗外建筑，画面下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 62700
+    },
+    {
+      "frameId": "sf-frame-11",
+      "text": "才能和它共生",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内和窗外建筑，画面下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 69666
+    },
+    {
+      "frameId": "sf-frame-12",
+      "text": "古法才是坠好的bro",
+      "description": "一名戴眼镜和口罩的男子面部特写，背景为室内和窗外建筑，画面下方有白色中文字幕。",
+      "uncertainties": [],
+      "timeMs": 76633
+    }
+  ],
+  "blocks": [
+    {
+      "id": "sf-text-1",
+      "frameId": "sf-frame-2",
+      "timeMs": 6967,
+      "text": "力）；10月7日“人类数学协会”（AHM）\n\n声明，呼吁数学家停止与OpenAI合作，陶哲轩在博客转载了该声明。严格说，这份声明\n\n对OpenAI的“要求”只有一条——别再这样\n\n做；真正具体的清单，来自此前陶哲轩等25\n\n位菲尔兹奖得主的公开信和AGMAI咨询组的\n\n发布\n\n所有数学家停止使用Openai",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-2",
+      "frameId": "sf-frame-3",
+      "timeMs": 13933,
+      "text": "极度的愤怒和被冒犯到",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-3",
+      "frameId": "sf-frame-4",
+      "timeMs": 20900,
+      "text": "当成一个Git Hub开源仓库的形式",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-4",
+      "frameId": "sf-frame-5",
+      "timeMs": 27867,
+      "text": "数学博士毕生工作之方向",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-5",
+      "frameId": "sf-frame-6",
+      "timeMs": 34833,
+      "text": "制OpenAI，数学界与AI巨头矛\n数学界现在对Openai是",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-6",
+      "frameId": "sf-frame-7",
+      "timeMs": 41800,
+      "text": "你得分人类得的菲尔兹奖和对吧",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-7",
+      "frameId": "sf-frame-8",
+      "timeMs": 48766,
+      "text": "啊所以数学界拉黑Openai了",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-8",
+      "frameId": "sf-frame-9",
+      "timeMs": 55733,
+      "text": "它可能只是没说",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-9",
+      "frameId": "sf-frame-10",
+      "timeMs": 62700,
+      "text": "这不是我说给数学界",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-10",
+      "frameId": "sf-frame-11",
+      "timeMs": 69666,
+      "text": "才能和它共生",
+      "needsReview": false
+    },
+    {
+      "id": "sf-text-11",
+      "frameId": "sf-frame-12",
+      "timeMs": 76633,
+      "text": "古法才是坠好的bro",
+      "needsReview": false
+    }
+  ],
+  "vision": {
+    "observations": [
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗户可见。",
+        "frameIds": [
+          "sf-frame-1"
+        ]
+      },
+      {
+        "text": "屏幕显示一段关于数学家协会声明的中文文本，底部有强调文字。",
+        "frameIds": [
+          "sf-frame-2"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗户可见。",
+        "frameIds": [
+          "sf-frame-3"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-4"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-5"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面上方和下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-6"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-7"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-8"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内环境，窗外可见城市建筑。画面下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-9"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内和窗外建筑，画面下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-10"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内和窗外建筑，画面下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-11"
+        ]
+      },
+      {
+        "text": "一名戴眼镜和口罩的男子面部特写，背景为室内和窗外建筑，画面下方有白色中文字幕。",
+        "frameIds": [
+          "sf-frame-12"
+        ]
+      }
+    ],
+    "limitations": [
+      "仅12张以内全时间轴静态抽样，不代表完整视频字幕或连续动作。",
+      "画面文字与描述为云端模型输出，需结合原帧核对。"
+    ]
+  },
+  "usage": {
+    "inputTokens": 11474,
+    "outputTokens": 755,
+    "reasoningTokens": 0
+  },
+  "requests": [
+    {
+      "responseId": "01a12f8941b10484f7db92e4dcedf0c2",
+      "frameIds": [
+        "sf-frame-1",
+        "sf-frame-2",
+        "sf-frame-3"
+      ],
+      "elapsedMs": 3729,
+      "cached": false,
+      "usage": {
+        "prompt_tokens": 2864,
+        "completion_tokens": 226,
+        "total_tokens": 3090,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2864
+      }
+    },
+    {
+      "responseId": "01a12f89501536ba5dc16a6033e34bae",
+      "frameIds": [
+        "sf-frame-4",
+        "sf-frame-5",
+        "sf-frame-6"
+      ],
+      "elapsedMs": 8358,
+      "cached": false,
+      "usage": {
+        "prompt_tokens": 2869,
+        "completion_tokens": 182,
+        "total_tokens": 3051,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2869
+      }
+    },
+    {
+      "responseId": "01a12f8970d5d0809046fcacbc875b47",
+      "frameIds": [
+        "sf-frame-7",
+        "sf-frame-8",
+        "sf-frame-9"
+      ],
+      "elapsedMs": 6418,
+      "cached": false,
+      "usage": {
+        "prompt_tokens": 2869,
+        "completion_tokens": 191,
+        "total_tokens": 3060,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2869
+      }
+    },
+    {
+      "responseId": "01a12f8989f7a0b366d5fb8f2c21c303",
+      "frameIds": [
+        "sf-frame-10",
+        "sf-frame-11",
+        "sf-frame-12"
+      ],
+      "elapsedMs": 5049,
+      "cached": false,
+      "usage": {
+        "prompt_tokens": 2872,
+        "completion_tokens": 156,
+        "total_tokens": 3028,
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 2872
+      }
+    }
+  ],
+  "timing": {
+    "preparationMs": 1702,
+    "requestMs": 23554
+  },
+  "framesReused": false,
+  "sourceSha256": "869c1542b94651f778b9e53e96f536f7a20a8c251273645ae88faa1fab2c5f04",
+  "localModelsUsed": false,
+  "audioSubmitted": false,
+  "summaryGenerated": false
+}

@@ -16,6 +16,109 @@ function fixture(){
 }
 afterEach(()=>vi.useRealTimers())
 describe('persistent per-account metadata refresh',()=>{
+  it('returns identical activity for a targeted cold read without replacing the full account publication cache',()=>{
+    const f=fixture();try{
+      f.store.savePlanRows('another', {uid:'owner-uid',secUid:'owner',nickname:'原账号'},new Date().toISOString(),[
+        {uid:'other-uid',secUid:'other-sec',nickname:'另一位',avatarUrl:null,signature:'简介',profileUrl:'https://www.douyin.com/user/other-sec'}])
+      const rows=f.store.list(),other=rows.find(c=>c.profileUrl.endsWith('other-sec'))!
+      const run=f.service.begin('owner',[f.target,{id:other.id,secUid:'other-sec',uid:'other-uid',nickname:other.nickname}])
+      f.service.receive(run.runId,f.target.id,f.source())
+      const capture=f.source()
+      capture.requestedSecUid='other-sec';capture.profile={...capture.profile,uid:'other-uid',secUid:'other-sec'}
+      capture.pages[0].items=capture.pages[0].items.map(item=>({...item,authorUid:'other-uid',authorSecUid:'other-sec',workId:'700000002'}))
+      f.service.receive(run.runId,other.id,capture);f.service.progress(run.runId,{finished:true})
+      const at=new Date(),full=f.service.decorate('owner',rows,at),fresh=new CreatorActivityService(f.store.db,()=>{})
+      expect(fresh.decorate('owner',[rows[0]],at)).toEqual([full[0]])
+      expect(fresh.decorate('owner',rows,at)).toEqual(full)
+      expect(fresh.decorate('owner',[other],at)).toEqual(full.filter(c=>c.id===other.id))
+      expect(fresh.decorate('owner',rows,at)).toEqual(full)
+    }finally{f.store.close()}
+  })
+  it('persists bounded recovery phases, counts verification requests and preserves terminal events across restart',()=>{
+    const f=fixture();try{
+      const run=f.service.begin('owner',[f.target]),started=Date.now(),old=f.store.db.prepare('SELECT * FROM visible_directory_creators').all()
+      expect(run.recoveryPolicy).toEqual({maxAttempts:2,delayMinMs:5000,delayMaxMs:10000})
+      const value={creatorId:f.target.id,secUid:f.target.secUid,attempt:1,reason:'DEBUGGER_NOT_ATTACHED',startedAt:new Date(started).toISOString(),
+        waitUntil:new Date(started+5000).toISOString(),preservedPages:2,phase:'waiting'} as const
+      f.service.progress(run.runId,{recovery:value})
+      expect(f.service.status('owner')).toMatchObject({recoveryAttempts:1,recovery:{phase:'waiting',preservedPages:2}})
+      f.service.progress(run.runId,{recovery:{...value,phase:'reconnecting'}})
+      const audit={contextSource:'first-author-page' as const,accountPageNavigations:0 as const,ownerVerificationGets:2,recoveryOwnerGets:1,authorHomepageNavigations:1,
+        networkRequestsObserved:5,platformApiGetsObserved:4,selfGetsObserved:2,listGetsObserved:2,ownerVerificationSource:'active-get' as const,nativeOwnerRequestsObserved:0}
+      f.service.progress(run.runId,{recovery:{...value,phase:'recovered',completedAt:new Date(started+5000).toISOString()},requestAudit:audit})
+      expect(f.service.status('owner')).toMatchObject({recoveryAttempts:1,recoverySucceeded:1,requestAudit:{ownerVerificationGets:2,recoveryOwnerGets:1}})
+      expect(()=>f.service.progress(run.runId,{recovery:value})).toThrow('倒退')
+      expect(()=>f.service.progress(run.runId,{recovery:{...value,secUid:'wrong'}})).toThrow('不属于')
+      expect(()=>f.service.progress(run.runId,{requestAudit:{...audit,ownerVerificationGets:3,recoveryOwnerGets:2}})).toThrow('超过恢复次数')
+      f.service.progress(run.runId,{blocked:true,errorCode:'ACTIVITY_RECOVERY_EXHAUSTED'})
+      const restarted=new CreatorActivityService(f.store.db,()=>{})
+      expect(restarted.status('owner')).toMatchObject({recoveryAttempts:1,recoverySucceeded:1,phase:'blocked'})
+      expect(f.store.db.prepare('SELECT COUNT(*) n FROM creator_activity_recoveries').get()?.n).toBe(1)
+      expect(f.store.db.prepare('SELECT * FROM visible_directory_creators').all()).toEqual(old)
+      expect(f.store.list()[0]).toMatchObject({isStarred:true,note:'必须保留批注'})
+    }finally{f.store.close()}
+  })
+  it('derives count baselines from retained complete raw pages and omits reused identities from supplementation',()=>{
+    const f=fixture();try{
+      const target={...f.target,uid:'native-author'},other={...target,id:-999,secUid:'other',nickname:'待补齐'}
+      const run=f.service.begin('owner',[target],undefined,false,false,{baselineTrial:true})!
+      const now=Date.now(),checkedAt=new Date(now).toISOString(),records=Array.from({length:65},(_,i)=>({workId:String(850000001+i),authorUid:target.uid,authorSecUid:target.secUid,
+        profileOwner:{uid:target.uid,secUid:target.secUid},publishedAt:new Date(now-(400+i)*86400000).toISOString(),pinned:false,
+        visibility:{privateStatus:0,isDelete:false,isProhibited:false,allowShare:true,isStory:0,is24Story:0,awemeType:0}}))
+      const capture={contract:'signaldesk-creator-activity/v9',requestContext:{versionCode:'170400',publishStrategy:'2',clientType:'1'},ownerSecUid:'owner',requestedSecUid:target.secUid,
+        profile:{uid:target.uid,secUid:target.secUid,workCount:null},frontendCount:{count:999,text:'999',profileUrl:'https://www.douyin.com/user/'+target.secUid,secUid:target.secUid,checkedAt,selector:'#semiTabpost [data-e2e="user-tab-count"]'},
+        checkedAt,weekStart:run.weekStart,weekEndExclusive:run.weekEndExclusive,pages:[{requestCursor:0,responseCursor:100,hasMore:true,items:[],excludedAuthors:[],excludedNonPublic:[],records,
+          sourceProof:{kind:'active-get',endpoint:'/aweme/v1/web/aweme/post/',method:'GET',secUid:target.secUid,requestCursor:0,httpStatus:200,observedAt:checkedAt}}],errorCode:null,activeApiRequests:1,reusedNativePages:0,nativeListRequests:0,acquisitionMs:10}
+      f.service.receive(run.runId,target.id,capture);f.service.progress(run.runId,{finished:true})
+      const stored=f.store.db.prepare('SELECT * FROM creator_activity_count_baselines').get()!
+      // Reproduce a v1 sample whose original whole pages contain enough old works to satisfy v2.
+      f.store.db.prepare('INSERT INTO creator_activity_baseline_samples VALUES(?,?,?,?)').run(stored.snapshot_id,'owner',target.secUid,JSON.stringify({creatorId:target.id,nickname:target.nickname,recentCount:0}))
+      f.store.db.exec('DELETE FROM creator_activity_count_baselines')
+      const oldSnapshots=f.store.db.prepare('SELECT * FROM creator_activity_snapshots').all(),oldSamples=f.store.db.prepare('SELECT * FROM creator_activity_baseline_samples').all()
+      const upgraded=new CreatorActivityService(f.store.db,()=>{})
+      expect(upgraded.status('owner').baselineReadyCount).toBe(1)
+      expect(upgraded.decorate('owner',f.store.list())[0].activity?.recentBaseline).toMatchObject({version:2,sampleCount:60,daysSinceLatest:400,
+        interval:{meanHours:24},recentCounts:[{days:30,count:0,complete:true},{days:90,count:0,complete:true},{days:180,count:0,complete:true}]})
+      expect(f.store.db.prepare('SELECT * FROM creator_activity_snapshots').all()).toEqual(oldSnapshots)
+      expect(f.store.db.prepare('SELECT * FROM creator_activity_baseline_samples').all()).toEqual(oldSamples)
+      new CreatorActivityService(f.store.db,()=>{})
+      expect(f.store.db.prepare('SELECT COUNT(*) n FROM creator_activity_count_baselines').get()?.n).toBe(1)
+      const supplement=upgraded.begin('owner',[target,other],undefined,false,false,{baselineTrial:true})!
+      expect(supplement.targets.map(t=>t.id)).toEqual([other.id]);expect(supplement.baselinePolicy).toEqual({version:2,limit:60})
+      expect(upgraded.status('owner')).toMatchObject({total:1,baselineTask:{reusedCount:1,directoryTotal:2}})
+      expect(upgraded.status('different-owner').baselineReadyCount).toBe(0)
+      expect(f.store.list()[0]).toMatchObject({isStarred:true,note:'必须保留批注'})
+    }finally{f.store.close()}
+  })
+  it('stores a continuous sixty-work recent sample despite incomplete weekly coverage and resumes only remaining identities',()=>{
+    const f=fixture();try{
+      const other={...f.target,id:-999,secUid:'other',nickname:'下一位'},target={...f.target,uid:'native-author'}
+      const run=f.service.begin('owner',[target,other],undefined,false,false,{baselineTrial:true})!
+      const at=Date.now(),checkedAt=new Date(at).toISOString(),records=Array.from({length:60},(_,i)=>({workId:String(800000001+i),authorUid:'native-author',authorSecUid:target.secUid,
+        profileOwner:{uid:'native-author',secUid:target.secUid},publishedAt:new Date(at-i*60000).toISOString(),pinned:false,
+        visibility:{privateStatus:0,isDelete:false,isProhibited:false,allowShare:true,isStory:0,is24Story:0,awemeType:0}}))
+      const capture={contract:'signaldesk-creator-activity/v9',requestContext:{versionCode:'170400',publishStrategy:'2',clientType:'1'},ownerSecUid:'owner',requestedSecUid:target.secUid,
+        profile:{uid:'native-author',secUid:target.secUid,workCount:null},frontendCount:{count:999,text:'999',profileUrl:'https://www.douyin.com/user/'+target.secUid,secUid:target.secUid,checkedAt,selector:'#semiTabpost [data-e2e="user-tab-count"]'},
+        checkedAt,weekStart:run.weekStart,weekEndExclusive:run.weekEndExclusive,pages:[{requestCursor:0,responseCursor:100,hasMore:true,items:[],excludedAuthors:[],excludedNonPublic:[],records,
+          sourceProof:{kind:'active-get',endpoint:'/aweme/v1/web/aweme/post/',method:'GET',secUid:target.secUid,requestCursor:0,httpStatus:200,observedAt:checkedAt}}],errorCode:null,activeApiRequests:1,reusedNativePages:0,nativeListRequests:0,acquisitionMs:10}
+      const saved=f.service.receive(run.runId,target.id,capture)
+      expect(saved).toMatchObject({succeeded:1,failed:0,remainingIds:[other.id],baselineTask:{results:[{recentCount:60,stopReason:'limit'}]}})
+      const decorated=f.service.decorate('owner',f.store.list())[0]
+      expect(decorated.activity?.recentBaseline?.interval.meanHours).toBeCloseTo(1/60)
+      expect(decorated).toMatchObject({isStarred:true,note:'必须保留批注',activity:{baselineStatus:'ready'}})
+      expect(f.service.decorate('different-owner',f.store.list())[0].activity?.recentBaseline).toBeUndefined()
+      f.service.cancel()
+      const resumed=f.service.begin('owner',[target,other],undefined,true,false,{baselineTrial:true})!
+      expect(resumed.targets.map(t=>t.id)).toEqual([other.id]);expect(resumed.pacing?.startIndex).toBe(1)
+      expect(resumed.pacing?.batchSizes).toEqual([1,1]);expect(resumed.initialWaitUntil).toBeTruthy()
+      f.service.receive(resumed.runId,other.id,undefined,'ACTIVITY_HTTP_429')
+      f.service.progress(resumed.runId,{blocked:true,errorCode:'ACTIVITY_HTTP_429'})
+      const restarted=new CreatorActivityService(f.store.db,()=>{})
+      expect(restarted.status('owner').baselineTask?.results).toHaveLength(1)
+      expect(restarted.status('owner').remainingIds).toEqual([other.id]);expect(restarted.decorate('owner',f.store.list())[0].activity?.recentBaseline?.recentCount).toBe(60)
+      expect(f.store.list()[0]).toMatchObject({isStarred:true,note:'必须保留批注'})
+    }finally{f.store.close()}
+  })
   it('persists scoped observations across restart without granting author-write permission, and rejects secrets and finished-record rewrites',()=>{
     const f=fixture();try{
       const run=f.service.begin('owner',[f.target],undefined,false,true),time=new Date().toISOString()

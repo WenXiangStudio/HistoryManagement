@@ -1,0 +1,686 @@
+{
+  "experimentDate": "2026-10-11",
+  "workId": "7691353360976416034",
+  "shareUrl": "https://v.douyin.com/s5upJSy-QXI/",
+  "creator": "盐选财经",
+  "description": "十年期美债收益率破5% 股牛债熊 全球其他资产如何定价#美联储 #美债 #股市 #a股 #假期",
+  "durationSeconds": 478.725011,
+  "mediaBytes": 240456200,
+  "mediaSha256": "a647d9fe3a878921391460230b6e8a52fcc4d5198ae67942de8f8090fc41d044",
+  "ownerAndAuthorVerified": true,
+  "sameConfiguredModel": "gpt-6.1-sol",
+  "protocol": "responses",
+  "semanticPreprocessing": false,
+  "completeSingleModelGoalPassed": false,
+  "audioTranscriptionProduced": false,
+  "sampledFrameCount": 18,
+  "sampleTimesSeconds": [
+    0.5,
+    15,
+    30,
+    60,
+    90,
+    120,
+    150,
+    180,
+    210,
+    240,
+    270,
+    300,
+    330,
+    360,
+    390,
+    420,
+    450,
+    477
+  ],
+  "fullVideoCoverageProven": false,
+  "formalSummarySaved": false,
+  "actualClipMetadata": {
+    "sourceCopyHashMatchesVerifiedDownload": true,
+    "clips": {
+      "real-first12s.wav": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_type": "audio",
+            "sample_rate": "16000",
+            "channels": 1,
+            "duration": "11.844000"
+          }
+        ],
+        "format": {
+          "duration": "11.844000",
+          "size": "379132"
+        }
+      },
+      "real-first8s.mp4": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_type": "video",
+            "start_time": "0.000000",
+            "duration": "8.000000"
+          },
+          {
+            "codec_type": "audio",
+            "sample_rate": "44100",
+            "channels": 2,
+            "start_time": "0.137007",
+            "duration": "7.871565"
+          }
+        ],
+        "format": {
+          "start_time": "0.000000",
+          "duration": "8.008572",
+          "size": "263129"
+        }
+      },
+      "control.wav": {
+        "programs": [],
+        "streams": [
+          {
+            "codec_type": "audio",
+            "sample_rate": "22050",
+            "channels": 1,
+            "duration": "6.757687"
+          }
+        ],
+        "format": {
+          "duration": "6.757687",
+          "size": "298060"
+        }
+      }
+    }
+  },
+  "timingsMs": {
+    "browserReadAndOwnership": 4376.60000000149,
+    "captureStartToDownloadedSource": 14323.9154,
+    "captureStartToWorkspaceCopy": 15258,
+    "ffmpegPreparationAndContactSheets": 3788,
+    "sampledFrameModelRequest": 100176,
+    "focusedRecheckModelRequest": 13956,
+    "appClickToContentUsable": null
+  },
+  "requests": [
+    {
+      "name": "image-control",
+      "startedAt": "2026-10-10T18:46:49.303Z",
+      "requestedModel": "gpt-6.1-sol",
+      "returnedModel": "gpt-6.1-sol",
+      "protocol": "responses",
+      "httpStatus": 200,
+      "completed": true,
+      "error": null,
+      "elapsedMs": 6700,
+      "inputs": [
+        {
+          "type": "input_image",
+          "path": "control.png",
+          "mime": "image/png",
+          "bytes": 8818,
+          "sha256": "6765334c2cd215b8342bbce087a6443770c63a0b2ce50d8ec4c979dead27499b"
+        }
+      ],
+      "inputTokens": 4568,
+      "outputTokens": 138
+    },
+    {
+      "name": "audio-inline-control",
+      "startedAt": "2026-10-10T18:46:56.010Z",
+      "requestedModel": "gpt-6.1-sol",
+      "returnedModel": null,
+      "protocol": "responses",
+      "httpStatus": 400,
+      "completed": false,
+      "error": {
+        "type": "invalid_request_error",
+        "code": null,
+        "message": "Audio input is not available.",
+        "param": "input"
+      },
+      "elapsedMs": 1697,
+      "inputs": [
+        {
+          "type": "input_audio",
+          "path": "control.wav",
+          "format": "wav",
+          "bytes": 298060,
+          "sha256": "233791b2f04a3e99b9fdad5afeca2ba0b6c18e8d988ca17bd3c4469557a952b2"
+        }
+      ],
+      "inputTokens": null,
+      "outputTokens": null
+    },
+    {
+      "name": "audio-file-control",
+      "startedAt": "2026-10-10T18:46:57.716Z",
+      "requestedModel": "gpt-6.1-sol",
+      "returnedModel": null,
+      "protocol": "responses",
+      "httpStatus": 400,
+      "completed": false,
+      "error": {
+        "type": "invalid_request_error",
+        "code": "invalid_value",
+        "message": "Invalid file data: 'input[1].content[0].file_data'. Expected a base64-encoded data URL with a valid file MIME type (e.g. 'data:text/plain;base64,SGVsbG8sIFdvcmxkIQ=='), but got unsupported MIME type 'audio/wav'. Please see https://platform.openai.com/docs/assistants/tools/file-search#supported-files for supported file types.",
+        "param": "input[1].content[0].file_data"
+      },
+      "elapsedMs": 2040,
+      "inputs": [
+        {
+          "type": "input_file",
+          "path": "control.wav",
+          "mime": "audio/wav",
+          "bytes": 298060,
+          "sha256": "233791b2f04a3e99b9fdad5afeca2ba0b6c18e8d988ca17bd3c4469557a952b2"
+        }
+      ],
+      "inputTokens": null,
+      "outputTokens": null
+    },
+    {
+      "name": "video-file-control",
+      "startedAt": "2026-10-10T18:46:59.757Z",
+      "requestedModel": "gpt-6.1-sol",
+      "returnedModel": null,
+      "protocol": "responses",
+      "httpStatus": 400,
+      "completed": false,
+      "error": {
+        "type": "invalid_request_error",
+        "code": "invalid_value",
+        "message": "Invalid file data: 'input[1].content[0].file_data'. Expected a base64-encoded data URL with a valid file MIME type (e.g. 'data:text/plain;base64,SGVsbG8sIFdvcmxkIQ=='), but got unsupported MIME type 'video/mp4'. Please see https://platform.openai.com/docs/assistants/tools/file-search#supported-files for supported file types.",
+        "param": "input[1].content[0].file_data"
+      },
+      "elapsedMs": 1505,
+      "inputs": [
+        {
+          "type": "input_file",
+          "path": "control.mp4",
+          "mime": "video/mp4",
+          "bytes": 71284,
+          "sha256": "64c87713ee991586bf2091e791b750305d6619a28000d18ff1f6fcc430a0df0d"
+        }
+      ],
+      "inputTokens": null,
+      "outputTokens": null
+    },
+    {
+      "name": "real-audio-inline",
+      "startedAt": "2026-10-10T18:49:36.964Z",
+      "requestedModel": "gpt-6.1-sol",
+      "returnedModel": null,
+      "protocol": "responses",
+      "httpStatus": 400,
+      "completed": false,
+      "error": {
+        "type": "invalid_request_error",
+        "code": null,
+        "message": "Audio input is not available.",
+        "param": "input"
+      },
+      "elapsedMs": 1994,
+      "inputs": [
+        {
+          "type": "input_audio",
+          "path": "real-first12s.wav",
+          "format": "wav",
+          "sampleRangeSeconds": [
+            0,
+            12
+          ],
+          "bytes": 379132,
+          "sha256": "ee7f566278ee65fdbd4e494a41b9fac23b3cff8b6d8a77b4360f774311419106"
+        }
+      ],
+      "inputTokens": null,
+      "outputTokens": null
+    },
+    {
+      "name": "real-video-inline",
+      "startedAt": "2026-10-10T18:49:38.966Z",
+      "requestedModel": "gpt-6.1-sol",
+      "returnedModel": null,
+      "protocol": "responses",
+      "httpStatus": 400,
+      "completed": false,
+      "error": {
+        "type": "invalid_request_error",
+        "code": null,
+        "message": "[EnumParam] [input[1].content[0].type] [invalid_enum_value] Invalid value: 'input_video'. Supported values are: 'input_text', 'input_image', 'input_audio', 'output_text', 'refusal', 'input_file', 'computer_screenshot', 'summary_text', and 'encrypted_content'.",
+        "param": null
+      },
+      "elapsedMs": 347,
+      "inputs": [
+        {
+          "type": "input_video",
+          "path": "real-first8s.mp4",
+          "mime": "video/mp4",
+          "sampleRangeSeconds": [
+            0,
+            8
+          ],
+          "bytes": 263129,
+          "sha256": "80a0363f834314566bac3b828a3d7fc2855a3d0645246f6fc971225bad876173"
+        }
+      ],
+      "inputTokens": null,
+      "outputTokens": null
+    },
+    {
+      "name": "real-sampled-frames",
+      "startedAt": "2026-10-10T18:49:39.328Z",
+      "requestedModel": "gpt-6.1-sol",
+      "returnedModel": "gpt-6.1-sol",
+      "protocol": "responses",
+      "httpStatus": 200,
+      "completed": true,
+      "error": null,
+      "elapsedMs": 100176,
+      "inputs": [
+        {
+          "type": "input_image",
+          "path": "frames/frame-01-0000.5s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F01；原片位置约 0.5 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 0.5,
+          "bytes": 197047,
+          "sha256": "2aa1894d4a9be23a2cf2bcaa91c3a3c89aa12d54cbe3dfd9380c105ae0fa8921"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-02-0015.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F02；原片位置约 15.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 15,
+          "bytes": 199353,
+          "sha256": "b7110edf4ce81defc9d15b3fd0002dcf5b38dc268409840600c407a2312b98cd"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-03-0030.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F03；原片位置约 30.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 30,
+          "bytes": 203304,
+          "sha256": "b6246aabbf2055ddd37696867aa9451f24f54b5d5758a977af8bce9532be5569"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-04-0060.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F04；原片位置约 60.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 60,
+          "bytes": 196813,
+          "sha256": "ba4d2b68f70f6e27bb1399fc7972fe412d4caba570c68a282a9434b709b9d762"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-05-0090.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F05；原片位置约 90.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 90,
+          "bytes": 192282,
+          "sha256": "0c893374e9dfacbfd4b0cf73ee4b6e39780a869083ae36db680183996a017613"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-06-0120.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F06；原片位置约 120.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 120,
+          "bytes": 202667,
+          "sha256": "f4d107089b01decbca02f807f2833f231ed934b3c46b48b6aad099b2577357ac"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-07-0150.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F07；原片位置约 150.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 150,
+          "bytes": 179683,
+          "sha256": "1c064b6d882a801be6659bcc84cca65171260282afdda7a18f5bc2e24a0a45cd"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-08-0180.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F08；原片位置约 180.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 180,
+          "bytes": 196939,
+          "sha256": "ae9f2e74d980b9434602c30537505a2043c1d1cc70b192f9d76c1efbcc3f0eb0"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-09-0210.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F09；原片位置约 210.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 210,
+          "bytes": 200960,
+          "sha256": "9b9db48b9bbaf8ef2400960e71b9ce74b456b65a942d43f5bdde8572fb9f62a2"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-10-0240.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F10；原片位置约 240.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 240,
+          "bytes": 189332,
+          "sha256": "0a9d257fdb7c70f93ba24eb54828c0c489bec37ae88ebb721e7132fd04b8e4ac"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-11-0270.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F11；原片位置约 270.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 270,
+          "bytes": 187496,
+          "sha256": "69e2aa9e1f767b04f23e8fe8ba1b669e463464282f93025b3be85ea4c264f019"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-12-0300.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F12；原片位置约 300.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 300,
+          "bytes": 202169,
+          "sha256": "8554e8ff994d5cafad856c6695c412201f4576aa03f67cff26ffc7d365fcef11"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-13-0330.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F13；原片位置约 330.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 330,
+          "bytes": 197404,
+          "sha256": "7bf6c7414269c221c5d5b6ea8d2848c895daa65be048a028d1fe64375961b605"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-14-0360.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F14；原片位置约 360.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 360,
+          "bytes": 212458,
+          "sha256": "e5371c1d2ecb791dd55fec5d3da13ce353c580988c6adb646b935710ed5c2b51"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-15-0390.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F15；原片位置约 390.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 390,
+          "bytes": 213927,
+          "sha256": "0f4ea9963b03889902388ea29ab30e6c6f1f7e400653a866a884cbb9523dea29"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-16-0420.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F16；原片位置约 420.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 420,
+          "bytes": 190196,
+          "sha256": "ced9f9ca18e39cdb35d9dada1328423d0161452c6739001d06bdc60b47eddd01"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-17-0450.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F17；原片位置约 450.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 450,
+          "bytes": 199230,
+          "sha256": "eadec5c2d808453f3a28baae841c8e4d0a357861ca7ba0efb9a7f27859518e64"
+        },
+        {
+          "type": "input_image",
+          "path": "frames/frame-18-0477.0s.jpg",
+          "mime": "image/jpeg",
+          "label": "帧 F18；原片位置约 477.0 秒。只是这一瞬间的画面，不代表前后区间的全部内容。",
+          "sampleTimeSeconds": 477,
+          "bytes": 198800,
+          "sha256": "72a76ca98ead3f6bd06a092476c8bbaaaf0ce0a54573189ffe725b628323ed57"
+        }
+      ],
+      "inputTokens": 25074,
+      "outputTokens": 4492
+    },
+    {
+      "name": "real-frame11-focused-recheck",
+      "startedAt": "2026-10-10T18:52:55.729Z",
+      "requestedModel": "gpt-6.1-sol",
+      "returnedModel": "gpt-6.1-sol",
+      "protocol": "responses",
+      "httpStatus": 200,
+      "completed": true,
+      "error": null,
+      "elapsedMs": 13956,
+      "inputs": [
+        {
+          "type": "input_image",
+          "path": "frame-11-subtitle-crop.png",
+          "mime": "image/png",
+          "sampleTimeSeconds": 270,
+          "bytes": 269473,
+          "sha256": "58e9dfbdeaa905ed6e966d05d453cb583a70e656e3d4d66ae152aba2b7444484"
+        }
+      ],
+      "inputTokens": 4649,
+      "outputTokens": 76
+    }
+  ],
+  "frameAudit": [
+    {
+      "frameId": "F01",
+      "timeSeconds": 0.5,
+      "agentReadFromActualFrame": "当美债以超过5%的收益率",
+      "firstModelSubtitle": "当美债以超过5%的收益率",
+      "matches": true
+    },
+    {
+      "frameId": "F02",
+      "timeSeconds": 15.0,
+      "agentReadFromActualFrame": "他客观上是为了拉爆他的竞争对手",
+      "firstModelSubtitle": "他客观上是为了拉爆他的竞争对手",
+      "matches": true
+    },
+    {
+      "frameId": "F03",
+      "timeSeconds": 30.0,
+      "agentReadFromActualFrame": "美债的无风险收益率超过5%",
+      "firstModelSubtitle": "美债的无风险收益率超过5%",
+      "matches": true
+    },
+    {
+      "frameId": "F04",
+      "timeSeconds": 60.0,
+      "agentReadFromActualFrame": "计价的资产该怎么办",
+      "firstModelSubtitle": "计价的资产该怎么办",
+      "matches": true
+    },
+    {
+      "frameId": "F05",
+      "timeSeconds": 90.0,
+      "agentReadFromActualFrame": "首当其冲面临的国家",
+      "firstModelSubtitle": "首当其冲面临的国家",
+      "matches": true
+    },
+    {
+      "frameId": "F06",
+      "timeSeconds": 120.0,
+      "agentReadFromActualFrame": "日元理论上也是一种",
+      "firstModelSubtitle": "日元理论上也是一种",
+      "matches": true
+    },
+    {
+      "frameId": "F07",
+      "timeSeconds": 150.0,
+      "agentReadFromActualFrame": "更高良品率试运行的",
+      "firstModelSubtitle": "更高良品率试运行的",
+      "matches": true
+    },
+    {
+      "frameId": "F08",
+      "timeSeconds": 180.0,
+      "agentReadFromActualFrame": "日本从民间到政府",
+      "firstModelSubtitle": "日本从民间到政府",
+      "matches": true
+    },
+    {
+      "frameId": "F09",
+      "timeSeconds": 210.0,
+      "agentReadFromActualFrame": "触底反弹的这个过程中",
+      "firstModelSubtitle": "触底反弹的这个过程中",
+      "matches": true
+    },
+    {
+      "frameId": "F10",
+      "timeSeconds": 240.0,
+      "agentReadFromActualFrame": "这还只是持有市值",
+      "firstModelSubtitle": "这还只是持有市值",
+      "matches": true
+    },
+    {
+      "frameId": "F11",
+      "timeSeconds": 270.0,
+      "agentReadFromActualFrame": "好再说下一个问题币值",
+      "firstModelSubtitle": "好再说下一个问题市值",
+      "matches": false
+    },
+    {
+      "frameId": "F12",
+      "timeSeconds": 300.0,
+      "agentReadFromActualFrame": "越是存在不确定性的地区和国家",
+      "firstModelSubtitle": "越是存在不确定性的地区和国家",
+      "matches": true
+    },
+    {
+      "frameId": "F13",
+      "timeSeconds": 330.0,
+      "agentReadFromActualFrame": "现在美股的吸引力和赚钱效应更大",
+      "firstModelSubtitle": "现在美股的吸引力和赚钱效应更大",
+      "matches": true
+    },
+    {
+      "frameId": "F14",
+      "timeSeconds": 360.0,
+      "agentReadFromActualFrame": "造各种新的词汇能掩盖的差距",
+      "firstModelSubtitle": "造各种新的词汇能掩盖的差距",
+      "matches": true
+    },
+    {
+      "frameId": "F15",
+      "timeSeconds": 390.0,
+      "agentReadFromActualFrame": "哎呀美债5%-5.1%的年化收益率了",
+      "firstModelSubtitle": "哎呀美债5%-5.1%的年化收益率了",
+      "matches": true
+    },
+    {
+      "frameId": "F16",
+      "timeSeconds": 420.0,
+      "agentReadFromActualFrame": "不得不提供更高的",
+      "firstModelSubtitle": "不得不提供更高的",
+      "matches": true
+    },
+    {
+      "frameId": "F17",
+      "timeSeconds": 450.0,
+      "agentReadFromActualFrame": "并且有资本所得的税收优惠的话",
+      "firstModelSubtitle": "并且有资本所得的税收优惠的话",
+      "matches": true
+    },
+    {
+      "frameId": "F18",
+      "timeSeconds": 477.0,
+      "agentReadFromActualFrame": "用这么高的利率去借钱",
+      "firstModelSubtitle": "用这么高的利率去借钱",
+      "matches": true
+    }
+  ],
+  "auditLimitations": "Actual frame inspection by the root agent, not an independent human/audio benchmark. Background book titles were not audited.",
+  "focusedRecheck": {
+    "providedExpectedAnswer": false,
+    "sameModel": true,
+    "visibleText": "好再说下一个问题币值"
+  },
+  "summaryErrorImpact": "First result misread 币值 as 市值 at F11 and incorrectly merged it with F10 in key_points[2]. Raw output retained; this point is not accepted as validated.",
+  "preservation": {
+    "databases": {
+      "signal-desk.sqlite": {
+        "integrity": "ok",
+        "foreignKeyErrors": 0,
+        "tableCount": 27,
+        "changedTables": []
+      },
+      "following-directory.sqlite": {
+        "integrity": "ok",
+        "foreignKeyErrors": 0,
+        "tableCount": 26,
+        "changedTables": []
+      }
+    },
+    "videos": 78,
+    "contentStages": [
+      [
+        "media",
+        "completed",
+        11
+      ],
+      [
+        "media",
+        "failed",
+        1
+      ],
+      [
+        "media",
+        "interrupted",
+        12
+      ],
+      [
+        "summary",
+        "partial",
+        13
+      ],
+      [
+        "transcript",
+        "cancelled",
+        1
+      ],
+      [
+        "transcript",
+        "completed",
+        11
+      ],
+      [
+        "transcript",
+        "interrupted",
+        12
+      ],
+      [
+        "visual",
+        "completed",
+        11
+      ],
+      [
+        "visual",
+        "interrupted",
+        11
+      ]
+    ],
+    "runningContentBatches": 0,
+    "app": {
+      "phase": "completed",
+      "connection": {
+        "online": true,
+        "version": "0.8.6",
+        "expectedVersion": "0.8.6"
+      },
+      "readiness": "ready"
+    }
+  },
+  "reportedSuccessfulRequestUsage": {
+    "inputTokens": 34291,
+    "outputTokens": 4706,
+    "failedRequestUsageUnknown": true
+  }
+}

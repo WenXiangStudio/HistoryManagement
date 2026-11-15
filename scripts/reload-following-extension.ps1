@@ -8,9 +8,18 @@ $window=@($windows|Where-Object{$_.Current.Name -match 'Google Chrome'})[0]
 if(!$window){throw 'Chrome window unavailable'}
 $null=[FollowingUpgrade]::ShowWindow([IntPtr]$window.Current.NativeWindowHandle,9)
 $null=[FollowingUpgrade]::SetForegroundWindow([IntPtr]$window.Current.NativeWindowHandle)
+$chromeHandle=[IntPtr]$window.Current.NativeWindowHandle
 [System.Windows.Forms.SendKeys]::SendWait('^t')
-Start-Sleep -Milliseconds 150
-$address=$window.FindFirst([System.Windows.Automation.TreeScope]::Descendants,[System.Windows.Automation.PropertyCondition]::new([System.Windows.Automation.AutomationElement]::NameProperty,'地址和搜索栏'))
+Start-Sleep -Milliseconds 300
+$address=$null
+$addressDeadline=[DateTime]::UtcNow.AddSeconds(5)
+do{
+  # Chrome replaces accessibility nodes while a new tab is being created.
+  $window=[System.Windows.Automation.AutomationElement]::FromHandle($chromeHandle)
+  $address=$window.FindFirst([System.Windows.Automation.TreeScope]::Descendants,[System.Windows.Automation.PropertyCondition]::new([System.Windows.Automation.AutomationElement]::NameProperty,'地址和搜索栏'))
+  if(!$address){Start-Sleep -Milliseconds 200}
+}while(!$address -and [DateTime]::UtcNow -lt $addressDeadline)
+if(!$address){throw 'Chrome address bar unavailable'}
 $address.SetFocus()
 ([System.Windows.Automation.ValuePattern]$address.GetCurrentPattern([System.Windows.Automation.ValuePattern]::Pattern)).SetValue('chrome://extensions/')
 [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')

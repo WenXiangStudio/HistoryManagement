@@ -220,12 +220,16 @@ describe('AppDatabase', () => {
     database = new AppDatabase(':memory:')
     const saved = database.saveSettings({
       textBaseUrl: 'http://127.0.0.1:11434/v1',
+      textApiProtocol: 'responses',
       visionBaseUrl: 'https://vision.example.com/v1',
       contextWindow: 999,
       cacheLimitGb: 9_999,
       interests: [' AI ', 'AI', '金融']
     })
     expect(saved.contextWindow).toBe(8_000)
+    expect(database.getSettings().textApiProtocol).toBe('responses')
+    expect(database.saveSettings({textModel:'updated-model'}).textApiProtocol).toBe('responses')
+    expect(()=>database!.saveSettings({textApiProtocol:'invalid' as any})).toThrow(/协议/)
     expect(saved.cacheLimitGb).toBe(500)
     expect(saved.interests).toEqual(['AI', '金融'])
     expect(() => database!.saveSettings({ textBaseUrl: 'file:///secret' })).toThrow(/HTTP/)
@@ -246,6 +250,7 @@ describe('AppDatabase', () => {
 
     const migrated = database.getSettings()
     expect(migrated.textBaseUrl).toBe('https://legacy-text.example.com/v1')
+    expect(migrated.textApiProtocol).toBe('chat-completions')
     expect(migrated.textInputPricePerMillion).toBe(1.25)
     expect(migrated.textOutputPricePerMillion).toBe(4.5)
     expect(migrated.visionBaseUrl).toBe('')

@@ -1,0 +1,58 @@
+{
+  "model": "zai-org/GLM-5.3-Flash",
+  "slug": "glm",
+  "profileId": "d2f4dc4b-4970-4a88-aa7e-ad4351b44b15",
+  "providerSlot": 1,
+  "sourceSha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+  "messagesSha256": "64c33a68c6e3470b352f1b594a8557388a3fcc794e7e06b05ad7777f2be79f29",
+  "requestCount": 1,
+  "stream": true,
+  "parameters": {
+    "stream": true,
+    "stream_options": {
+      "include_usage": true
+    },
+    "temperature": 0,
+    "max_tokens": 4096,
+    "enable_thinking": false
+  },
+  "startedAt": "2026-10-12T12:31:20.020Z",
+  "usage": {
+    "prompt_tokens": 643,
+    "completion_tokens": 4096,
+    "total_tokens": 4739,
+    "completion_tokens_details": {
+      "reasoning_tokens": 4096
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "prompt_cache_hit_tokens": 0,
+    "prompt_cache_miss_tokens": 643
+  },
+  "replyCharacters": 0,
+  "reasoningCharacters": 13254,
+  "receivedBytes": 1980669,
+  "streamDone": true,
+  "finishReason": "length",
+  "httpStatus": 200,
+  "headersMs": 735,
+  "responseHeaders": {
+    "content-type": "text/event-stream",
+    "date": "Mon, 12 Oct 2026 12:31:00 GMT"
+  },
+  "responseId": "01a1301845b92511ca76e0f3ea3d3234",
+  "returnedModel": "zai-org/GLM-5.3-Flash",
+  "firstReasoningMs": 742,
+  "requestCompletedAt": "2026-10-12T12:31:59.404Z",
+  "complete": false,
+  "error": {
+    "message": "Response incomplete, truncated, empty, or model identifier mismatch; no retry was sent."
+  },
+  "requestElapsedMs": 39384,
+  "replySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "reasoningSha256": "8df558694496e0cb57589f5b7ef588481a46ef126ad4ebf3e9563c3b5e31fef4",
+  "resultsSavedAt": "2026-10-12T12:31:59.404Z",
+  "resultSaveMs": 1,
+  "requestToResultSavedMs": 39384
+}

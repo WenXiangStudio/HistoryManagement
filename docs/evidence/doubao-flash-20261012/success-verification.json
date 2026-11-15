@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-12T07:20:53.363Z",
+  "requestId": "8bdba001-a1a0-461b-ba11-b752eca0d491",
+  "logId": "2026101215190862CE6A14E6F3FE365B86",
+  "resourceId": "volc.bigasr.auc_turbo",
+  "httpStatus": 200,
+  "statusCode": "20000000",
+  "sourceDurationMs": 76933,
+  "returnedDurationMs": 77076,
+  "durationDifferenceMs": 143,
+  "characters": 479,
+  "transcriptSha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+  "utterances": 16,
+  "originalMatchesAppAndFile": true,
+  "displayedTotalMs": 3093,
+  "preparationMs": 151,
+  "requestMs": 2784,
+  "saveMs": 6,
+  "serviceFee": 0.017,
+  "serviceFeeCurrency": "CNY",
+  "serviceFeeSource": "User-calculated amount based on console-reported audio usage, not independently read cash-debit record",
+  "humanReview": {
+    "reportedDate": "2026-10-12",
+    "source": "user manual proofreading",
+    "transcriptionAccuracyPercent": 100,
+    "scope": "This sample only: work 7694535682575860393, request 8bdba001-a1a0-461b-ba11-b752eca0d491"
+  },
+  "billingFeedback": {
+    "reportedDate": "2026-10-12",
+    "source": "user report from speech service console",
+    "audioUsageSeconds": 77,
+    "audioUsageDisplay": "1分17秒",
+    "userCalculatedFeeCny": 0.017,
+    "cashDebitIndependentlyVerified": false,
+    "remainingQuota": null,
+    "priorFailedRequestFeeCny": null,
+    "note": "Audio usage duration is separate from the measured 3093ms click-to-visible elapsed time. No new API request was made for this feedback."
+  }
+}

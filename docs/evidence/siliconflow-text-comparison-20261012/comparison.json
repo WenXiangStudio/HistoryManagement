@@ -1,0 +1,998 @@
+{
+  "exportedAt": "2026-10-12T12:39:21.828Z",
+  "source": {
+    "service": "豆包录音文件识别极速版",
+    "resource": "volc.bigasr.auc_turbo",
+    "requestId": "8bdba001-a1a0-461b-ba11-b752eca0d491",
+    "sha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+    "utf8Bytes": 1209,
+    "characters": 479,
+    "appArtifactName": "transcript-original.txt",
+    "humanReview": {
+      "reportedDate": "2026-10-12",
+      "source": "user manual proofreading",
+      "transcriptionAccuracyPercent": 100,
+      "scope": "This sample only: work 7694535682575860393, request 8bdba001-a1a0-461b-ba11-b752eca0d491"
+    }
+  },
+  "messagesSha256": "64c33a68c6e3470b352f1b594a8557388a3fcc794e7e06b05ad7777f2be79f29",
+  "totalRequestCount": 3,
+  "totalUsage": {
+    "input": 1898,
+    "output": 7982,
+    "reasoning": 5121,
+    "total": 9880
+  },
+  "initialExperimentElapsedMs": 48807,
+  "recoveryExperimentElapsedMs": 28904,
+  "inferenceRequestSumMs": 76710,
+  "firstRequestAt": "2026-10-12T12:31:20.020Z",
+  "lastResultSavedAt": "2026-10-12T12:35:57.405Z",
+  "firstRequestToLastSavedMs": 277385,
+  "wholeRecordedSessionStartedAt": "2026-10-12T12:29:47.390Z",
+  "preflightFailure": {
+    "requestCount": 0,
+    "reason": "ENOENT,  not found in release-following-background-final\\win-unpacked\\resources\\app.asar"
+  },
+  "completedModels": [
+    {
+      "slug": "glm",
+      "label": "GLM-5.3-Flash",
+      "model": "zai-org/GLM-5.3-Flash",
+      "report": {
+        "model": "zai-org/GLM-5.3-Flash",
+        "slug": "glm",
+        "profileId": "d2f4dc4b-4970-4a88-aa7e-ad4351b44b15",
+        "providerSlot": 1,
+        "sourceSha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+        "messagesSha256": "64c33a68c6e3470b352f1b594a8557388a3fcc794e7e06b05ad7777f2be79f29",
+        "requestCount": 1,
+        "stream": true,
+        "parameters": {
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "max_tokens": 16384,
+          "enable_thinking": false,
+          "thinking_budget": 1024
+        },
+        "startedAt": "2026-10-12T12:35:28.995Z",
+        "usage": {
+          "prompt_tokens": 643,
+          "completion_tokens": 2848,
+          "total_tokens": 3491,
+          "completion_tokens_details": {
+            "reasoning_tokens": 1025
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 643
+        },
+        "replyCharacters": 3168,
+        "reasoningCharacters": 4041,
+        "receivedBytes": 1330838,
+        "streamDone": true,
+        "finishReason": "stop",
+        "httpStatus": 200,
+        "headersMs": 600,
+        "responseHeaders": {
+          "content-type": "text/event-stream",
+          "date": "Mon, 12 Oct 2026 12:35:08 GMT"
+        },
+        "responseId": "01a1301bd4d58b6fdb84da62032c27d2",
+        "returnedModel": "zai-org/GLM-5.3-Flash",
+        "firstReasoningMs": 608,
+        "firstContentMs": 10600,
+        "requestCompletedAt": "2026-10-12T12:35:57.404Z",
+        "complete": true,
+        "requestElapsedMs": 28409,
+        "replySha256": "0ff1f267126df9b4b4aa0bcdb807a36ba34f8bd4b37089b11d81d7efcb33aed1",
+        "reasoningSha256": "65062986d681f269a4c4187ecb63d2ce593f6645ef91df553f4da89c28f09726",
+        "resultsSavedAt": "2026-10-12T12:35:57.405Z",
+        "resultSaveMs": 1,
+        "requestToResultSavedMs": 28410
+      },
+      "verification": {
+        "rawStreamMatchesSavedOutput": true,
+        "inputMessagesMatchOtherModel": true,
+        "inputTextExact": true,
+        "exactlyThreeRequiredHeadings": true,
+        "startsWithFirstHeading": true,
+        "viewpointLabels": {
+          "主要观点：": 0,
+          "展开分析：": 6,
+          "原文依据：": 6
+        },
+        "numberedViewpointLabels": 6,
+        "viewpointsHaveAllThreeExactLabels": false,
+        "viewpointsHaveAllThreeLabelsIncludingNumbered": true,
+        "mainEvidenceCount": 6,
+        "mainEvidenceExact": true,
+        "eventClueCount": 6,
+        "eventCluesExact": true,
+        "allQuotedSpansExact": false,
+        "domainsSectionPresent": true,
+        "speculationSectionPresent": true,
+        "eventUncertaintyLabelPresent": true,
+        "quotes": [
+          {
+            "line": 3,
+            "text": "AHM 人类数学协会",
+            "isExactSourceSubstring": true,
+            "sourceStart": 7,
+            "sourceEnd": 17,
+            "role": "other"
+          },
+          {
+            "line": 3,
+            "text": "abusive 行为",
+            "isExactSourceSubstring": true,
+            "sourceStart": 43,
+            "sourceEnd": 53,
+            "role": "other"
+          },
+          {
+            "line": 3,
+            "text": "攻克",
+            "isExactSourceSubstring": true,
+            "sourceStart": 145,
+            "sourceEnd": 147,
+            "role": "other"
+          },
+          {
+            "line": 3,
+            "text": "强行拉黑",
+            "isExactSourceSubstring": true,
+            "sourceStart": 215,
+            "sourceEnd": 219,
+            "role": "other"
+          },
+          {
+            "line": 3,
+            "text": "没说",
+            "isExactSourceSubstring": true,
+            "sourceStart": 361,
+            "sourceEnd": 363,
+            "role": "other"
+          },
+          {
+            "line": 3,
+            "text": "接受",
+            "isExactSourceSubstring": true,
+            "sourceStart": 402,
+            "sourceEnd": 404,
+            "role": "other"
+          },
+          {
+            "line": 3,
+            "text": "手搓",
+            "isExactSourceSubstring": true,
+            "sourceStart": 456,
+            "sourceEnd": 458,
+            "role": "other"
+          },
+          {
+            "line": 3,
+            "text": "古法才是最好的",
+            "isExactSourceSubstring": true,
+            "sourceStart": 467,
+            "sourceEnd": 474,
+            "role": "other"
+          },
+          {
+            "line": 3,
+            "text": "AHM 人类数学协会",
+            "isExactSourceSubstring": true,
+            "sourceStart": 7,
+            "sourceEnd": 17,
+            "role": "other"
+          },
+          {
+            "line": 8,
+            "text": "彻底怒了",
+            "isExactSourceSubstring": true,
+            "sourceStart": 2,
+            "sourceEnd": 6,
+            "role": "other"
+          },
+          {
+            "line": 8,
+            "text": "庄严呼吁",
+            "isExactSourceSubstring": true,
+            "sourceStart": 17,
+            "sourceEnd": 21,
+            "role": "other"
+          },
+          {
+            "line": 8,
+            "text": "极度的愤怒和被冒犯到",
+            "isExactSourceSubstring": true,
+            "sourceStart": 55,
+            "sourceEnd": 65,
+            "role": "other"
+          },
+          {
+            "line": 8,
+            "text": "文案声称",
+            "isExactSourceSubstring": false,
+            "role": "other"
+          },
+          {
+            "line": 9,
+            "text": "AHM 人类数学协会庄严呼吁所有数学家停止使用 OpenAI，对他们的 abusive 行为表示极度的愤怒和被冒犯到",
+            "isExactSourceSubstring": true,
+            "sourceStart": 7,
+            "sourceEnd": 65,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 12,
+            "text": "三小时平均攻克一个数学博士毕生工作之方向",
+            "isExactSourceSubstring": false,
+            "role": "other"
+          },
+          {
+            "line": 12,
+            "text": "攻克",
+            "isExactSourceSubstring": true,
+            "sourceStart": 145,
+            "sourceEnd": 147,
+            "role": "other"
+          },
+          {
+            "line": 13,
+            "text": "直接把人类剩余的 Millennium 千禧年的难题，还有一些其他数学猜想。当成一个 GitHub 开源仓库的形式，用 GPT 的 Pro 模型。三个小时平均攻克一个数学博士毕生工作之方向。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 66,
+            "sourceEnd": 161,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 15,
+            "text": "强行拉黑",
+            "isExactSourceSubstring": true,
+            "sourceStart": 215,
+            "sourceEnd": 219,
+            "role": "other"
+          },
+          {
+            "line": 16,
+            "text": "陶哲轩再次转发了这个推文",
+            "isExactSourceSubstring": true,
+            "sourceStart": 185,
+            "sourceEnd": 197,
+            "role": "other"
+          },
+          {
+            "line": 16,
+            "text": "再次",
+            "isExactSourceSubstring": true,
+            "sourceStart": 188,
+            "sourceEnd": 190,
+            "role": "other"
+          },
+          {
+            "line": 16,
+            "text": "强行拉黑",
+            "isExactSourceSubstring": true,
+            "sourceStart": 215,
+            "sourceEnd": 219,
+            "role": "other"
+          },
+          {
+            "line": 16,
+            "text": "人类得的菲尔兹奖",
+            "isExactSourceSubstring": true,
+            "sourceStart": 239,
+            "sourceEnd": 247,
+            "role": "other"
+          },
+          {
+            "line": 16,
+            "text": "OpenAI 推理出来的",
+            "isExactSourceSubstring": true,
+            "sourceStart": 256,
+            "sourceEnd": 268,
+            "role": "other"
+          },
+          {
+            "line": 17,
+            "text": "现在陶哲轩再次转发了这个推文，数学界现在对 OpenAI 是彻底强行拉黑的情况，毕竟菲尔兹奖以后也没啥用，你得分人类得的菲尔兹奖和，对吧？和这个 OpenAI 推理出来的",
+            "isExactSourceSubstring": true,
+            "sourceStart": 183,
+            "sourceEnd": 268,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 19,
+            "text": "没说",
+            "isExactSourceSubstring": true,
+            "sourceStart": 361,
+            "sourceEnd": 363,
+            "role": "other"
+          },
+          {
+            "line": 20,
+            "text": "你觉得 claude 解不出来那些题吗？他可能只是没说",
+            "isExactSourceSubstring": true,
+            "sourceStart": 336,
+            "sourceEnd": 363,
+            "role": "other"
+          },
+          {
+            "line": 21,
+            "text": "但是他们要去用 claude 咋办呢？你觉得 claude 解不出来那些题吗？他可能只是没说。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 317,
+            "sourceEnd": 364,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 24,
+            "text": "物理化学",
+            "isExactSourceSubstring": true,
+            "sourceStart": 419,
+            "sourceEnd": 423,
+            "role": "other"
+          },
+          {
+            "line": 24,
+            "text": "所有基础学科界",
+            "isExactSourceSubstring": true,
+            "sourceStart": 426,
+            "sourceEnd": 433,
+            "role": "other"
+          },
+          {
+            "line": 24,
+            "text": "接受",
+            "isExactSourceSubstring": true,
+            "sourceStart": 402,
+            "sourceEnd": 404,
+            "role": "other"
+          },
+          {
+            "line": 24,
+            "text": "拉黑",
+            "isExactSourceSubstring": true,
+            "sourceStart": 217,
+            "sourceEnd": 219,
+            "role": "other"
+          },
+          {
+            "line": 25,
+            "text": "这不是我说给数学界，也说给物理化学，说给所有基础学科界。咱们只有接受了啊，才能和它共生。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 406,
+            "sourceEnd": 450,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 27,
+            "text": "手搓",
+            "isExactSourceSubstring": true,
+            "sourceStart": 456,
+            "sourceEnd": 458,
+            "role": "other"
+          },
+          {
+            "line": 27,
+            "text": "古法",
+            "isExactSourceSubstring": true,
+            "sourceStart": 467,
+            "sourceEnd": 469,
+            "role": "other"
+          },
+          {
+            "line": 28,
+            "text": "古法才是最好的",
+            "isExactSourceSubstring": true,
+            "sourceStart": 467,
+            "sourceEnd": 474,
+            "role": "other"
+          },
+          {
+            "line": 28,
+            "text": "要接受 AI",
+            "isExactSourceSubstring": false,
+            "role": "other"
+          },
+          {
+            "line": 29,
+            "text": "你像我，坚持手搓啊，视频都自个录，古法才是最好的，Bro。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 450,
+            "sourceEnd": 479,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 34,
+            "text": "推理",
+            "isExactSourceSubstring": true,
+            "sourceStart": 263,
+            "sourceEnd": 265,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 34,
+            "text": "推理过程",
+            "isExactSourceSubstring": true,
+            "sourceStart": 288,
+            "sourceEnd": 292,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 35,
+            "text": "Millennium 千禧年的难题",
+            "isExactSourceSubstring": true,
+            "sourceStart": 75,
+            "sourceEnd": 92,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 35,
+            "text": "数学猜想",
+            "isExactSourceSubstring": true,
+            "sourceStart": 99,
+            "sourceEnd": 103,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 35,
+            "text": "数学家",
+            "isExactSourceSubstring": true,
+            "sourceStart": 23,
+            "sourceEnd": 26,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 35,
+            "text": "数学博士",
+            "isExactSourceSubstring": true,
+            "sourceStart": 149,
+            "sourceEnd": 153,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 35,
+            "text": "菲尔兹奖",
+            "isExactSourceSubstring": true,
+            "sourceStart": 225,
+            "sourceEnd": 229,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 35,
+            "text": "物理化学",
+            "isExactSourceSubstring": true,
+            "sourceStart": 419,
+            "sourceEnd": 423,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 35,
+            "text": "所有基础学科界",
+            "isExactSourceSubstring": true,
+            "sourceStart": 426,
+            "sourceEnd": 433,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 36,
+            "text": "推文",
+            "isExactSourceSubstring": true,
+            "sourceStart": 195,
+            "sourceEnd": 197,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 36,
+            "text": "转发了这个推文",
+            "isExactSourceSubstring": true,
+            "sourceStart": 190,
+            "sourceEnd": 197,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 36,
+            "text": "GitHub 开源仓库",
+            "isExactSourceSubstring": true,
+            "sourceStart": 109,
+            "sourceEnd": 120,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 36,
+            "text": "拉黑",
+            "isExactSourceSubstring": true,
+            "sourceStart": 217,
+            "sourceEnd": 219,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 37,
+            "text": "手搓",
+            "isExactSourceSubstring": true,
+            "sourceStart": 456,
+            "sourceEnd": 458,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 37,
+            "text": "视频都自个录",
+            "isExactSourceSubstring": true,
+            "sourceStart": 460,
+            "sourceEnd": 466,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 40,
+            "text": "用 GPT 的 Pro 模型。三个小时平均攻克一个数学博士毕生工作之方向",
+            "isExactSourceSubstring": true,
+            "sourceStart": 124,
+            "sourceEnd": 160,
+            "role": "event-clue"
+          },
+          {
+            "line": 40,
+            "text": "Pro 模型",
+            "isExactSourceSubstring": true,
+            "sourceStart": 132,
+            "sourceEnd": 138,
+            "role": "other"
+          },
+          {
+            "line": 40,
+            "text": "三小时攻克",
+            "isExactSourceSubstring": false,
+            "role": "other"
+          },
+          {
+            "line": 41,
+            "text": "现在陶哲轩再次转发了这个推文",
+            "isExactSourceSubstring": true,
+            "sourceStart": 183,
+            "sourceEnd": 197,
+            "role": "event-clue"
+          },
+          {
+            "line": 41,
+            "text": "再次",
+            "isExactSourceSubstring": true,
+            "sourceStart": 188,
+            "sourceEnd": 190,
+            "role": "other"
+          },
+          {
+            "line": 42,
+            "text": "AHM 人类数学协会",
+            "isExactSourceSubstring": true,
+            "sourceStart": 7,
+            "sourceEnd": 17,
+            "role": "other"
+          },
+          {
+            "line": 42,
+            "text": "AHM 人类数学协会庄严呼吁所有数学家停止使用 OpenAI",
+            "isExactSourceSubstring": true,
+            "sourceStart": 7,
+            "sourceEnd": 37,
+            "role": "event-clue"
+          },
+          {
+            "line": 42,
+            "text": "AHM 人类数学协会",
+            "isExactSourceSubstring": true,
+            "sourceStart": 7,
+            "sourceEnd": 17,
+            "role": "other"
+          },
+          {
+            "line": 43,
+            "text": "数学界现在对 OpenAI 是彻底强行拉黑的情况",
+            "isExactSourceSubstring": true,
+            "sourceStart": 198,
+            "sourceEnd": 222,
+            "role": "event-clue"
+          },
+          {
+            "line": 43,
+            "text": "但是他们要去用 claude 咋办呢",
+            "isExactSourceSubstring": true,
+            "sourceStart": 317,
+            "sourceEnd": 335,
+            "role": "event-clue"
+          },
+          {
+            "line": 43,
+            "text": "拉黑",
+            "isExactSourceSubstring": true,
+            "sourceStart": 217,
+            "sourceEnd": 219,
+            "role": "other"
+          },
+          {
+            "line": 44,
+            "text": "直接把人类剩余的 Millennium 千禧年的难题，还有一些其他数学猜想。当成一个 GitHub 开源仓库的形式",
+            "isExactSourceSubstring": true,
+            "sourceStart": 66,
+            "sourceEnd": 123,
+            "role": "event-clue"
+          },
+          {
+            "line": 44,
+            "text": "攻克",
+            "isExactSourceSubstring": true,
+            "sourceStart": 145,
+            "sourceEnd": 147,
+            "role": "other"
+          },
+          {
+            "line": 44,
+            "text": "攻克",
+            "isExactSourceSubstring": true,
+            "sourceStart": 145,
+            "sourceEnd": 147,
+            "role": "other"
+          }
+        ],
+        "scope": "Mechanical source/format checks only. Does not score factual truth, completeness of analysis, or quality of event inference."
+      }
+    },
+    {
+      "slug": "deepseek",
+      "label": "DeepSeek-V4-Flash",
+      "model": "deepseek-ai/DeepSeek-V4-Flash",
+      "report": {
+        "model": "deepseek-ai/DeepSeek-V4-Flash",
+        "slug": "deepseek",
+        "profileId": "8a34d4c6-7ab2-480d-88a4-e3dd18595f7d",
+        "providerSlot": 3,
+        "sourceSha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+        "messagesSha256": "64c33a68c6e3470b352f1b594a8557388a3fcc794e7e06b05ad7777f2be79f29",
+        "requestCount": 1,
+        "stream": true,
+        "parameters": {
+          "stream": true,
+          "stream_options": {
+            "include_usage": true
+          },
+          "temperature": 0,
+          "max_tokens": 4096,
+          "enable_thinking": false
+        },
+        "startedAt": "2026-10-12T12:31:59.405Z",
+        "usage": {
+          "prompt_tokens": 612,
+          "completion_tokens": 1038,
+          "total_tokens": 1650,
+          "completion_tokens_details": {
+            "reasoning_tokens": 0
+          },
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "prompt_cache_hit_tokens": 0,
+          "prompt_cache_miss_tokens": 612
+        },
+        "replyCharacters": 1879,
+        "reasoningCharacters": 0,
+        "receivedBytes": 486507,
+        "streamDone": true,
+        "finishReason": "stop",
+        "httpStatus": 200,
+        "headersMs": 827,
+        "responseHeaders": {
+          "content-type": "text/event-stream",
+          "date": "Mon, 12 Oct 2026 12:31:39 GMT"
+        },
+        "responseId": "01a13018e19d0bd34c5d2fa72ed140d7",
+        "returnedModel": "deepseek-ai/DeepSeek-V4-Flash",
+        "firstContentMs": 834,
+        "requestCompletedAt": "2026-10-12T12:32:08.322Z",
+        "complete": true,
+        "requestElapsedMs": 8917,
+        "replySha256": "a4dbf1659c3c84b04b4b8186f8dc1bb6a09a8396d7247996b3ff0d6743a0d876",
+        "reasoningSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "resultsSavedAt": "2026-10-12T12:32:08.322Z",
+        "resultSaveMs": 1,
+        "requestToResultSavedMs": 8918
+      },
+      "verification": {
+        "rawStreamMatchesSavedOutput": true,
+        "inputMessagesMatchOtherModel": true,
+        "inputTextExact": true,
+        "exactlyThreeRequiredHeadings": true,
+        "startsWithFirstHeading": true,
+        "viewpointLabels": {
+          "主要观点：": 4,
+          "展开分析：": 4,
+          "原文依据：": 4
+        },
+        "numberedViewpointLabels": 0,
+        "viewpointsHaveAllThreeExactLabels": true,
+        "viewpointsHaveAllThreeLabelsIncludingNumbered": true,
+        "mainEvidenceCount": 4,
+        "mainEvidenceExact": true,
+        "eventClueCount": 4,
+        "eventCluesExact": false,
+        "allQuotedSpansExact": false,
+        "domainsSectionPresent": true,
+        "speculationSectionPresent": true,
+        "eventUncertaintyLabelPresent": true,
+        "quotes": [
+          {
+            "line": 2,
+            "text": "abusive",
+            "isExactSourceSubstring": true,
+            "sourceStart": 43,
+            "sourceEnd": 50,
+            "role": "other"
+          },
+          {
+            "line": 2,
+            "text": "拉黑",
+            "isExactSourceSubstring": true,
+            "sourceStart": 217,
+            "sourceEnd": 219,
+            "role": "other"
+          },
+          {
+            "line": 2,
+            "text": "手搓",
+            "isExactSourceSubstring": true,
+            "sourceStart": 456,
+            "sourceEnd": 458,
+            "role": "other"
+          },
+          {
+            "line": 6,
+            "text": "abusive",
+            "isExactSourceSubstring": true,
+            "sourceStart": 43,
+            "sourceEnd": 50,
+            "role": "other"
+          },
+          {
+            "line": 6,
+            "text": "彻底怒了",
+            "isExactSourceSubstring": true,
+            "sourceStart": 2,
+            "sourceEnd": 6,
+            "role": "other"
+          },
+          {
+            "line": 6,
+            "text": "拉黑",
+            "isExactSourceSubstring": true,
+            "sourceStart": 217,
+            "sourceEnd": 219,
+            "role": "other"
+          },
+          {
+            "line": 7,
+            "text": "学界彻底怒了！AHM 人类数学协会庄严呼吁所有数学家停止使用 OpenAI，对他们的 abusive 行为表示极度的愤怒和被冒犯到，直接把人类剩余的 Millennium 千禧年的难题，还有一些其他数学猜想。当成一个 GitHub 开源仓库的形式，用 GPT 的 Pro 模型。三个小时平均攻克一个数学博士毕生工作之方向。That's fucking brutal。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 0,
+            "sourceEnd": 183,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 11,
+            "text": "毕竟菲尔兹奖以后也没啥用，你得分人类得的菲尔兹奖和，对吧？和这个 OpenAI 推理出来的，而且你还难说到时候推理出来，别人去看它推理过程就不好弄了。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 223,
+            "sourceEnd": 298,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 15,
+            "text": "退一步讲的话，真的接受吧。这不是我说给数学界，也说给物理化学，说给所有基础学科界。咱们只有接受了啊，才能和它共生。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 393,
+            "sourceEnd": 450,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 18,
+            "text": "手搓",
+            "isExactSourceSubstring": true,
+            "sourceStart": 456,
+            "sourceEnd": 458,
+            "role": "other"
+          },
+          {
+            "line": 19,
+            "text": "你像我，坚持手搓啊，视频都自个录，古法才是最好的，Bro。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 450,
+            "sourceEnd": 479,
+            "role": "main-point-evidence"
+          },
+          {
+            "line": 23,
+            "text": "Millennium 千禧年的难题",
+            "isExactSourceSubstring": true,
+            "sourceStart": 75,
+            "sourceEnd": 92,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 23,
+            "text": "数学博士毕生工作之方向",
+            "isExactSourceSubstring": true,
+            "sourceStart": 149,
+            "sourceEnd": 160,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 23,
+            "text": "菲尔兹奖",
+            "isExactSourceSubstring": true,
+            "sourceStart": 225,
+            "sourceEnd": 229,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 24,
+            "text": "用 GPT 的 Pro 模型",
+            "isExactSourceSubstring": true,
+            "sourceStart": 124,
+            "sourceEnd": 138,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 24,
+            "text": "OpenAI 推理出来的",
+            "isExactSourceSubstring": true,
+            "sourceStart": 256,
+            "sourceEnd": 268,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 25,
+            "text": "AHM 人类数学协会",
+            "isExactSourceSubstring": true,
+            "sourceStart": 7,
+            "sourceEnd": 17,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 25,
+            "text": "陶哲轩再次转发了这个推文",
+            "isExactSourceSubstring": true,
+            "sourceStart": 185,
+            "sourceEnd": 197,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 25,
+            "text": "数学界对 OpenAI 是彻底强行拉黑",
+            "isExactSourceSubstring": false,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 26,
+            "text": "也说给物理化学，说给所有基础学科界",
+            "isExactSourceSubstring": true,
+            "sourceStart": 416,
+            "sourceEnd": 433,
+            "role": "domain-evidence"
+          },
+          {
+            "line": 30,
+            "text": "用 GPT 的 Pro 模型。三个小时平均攻克一个数学博士毕生工作之方向。",
+            "isExactSourceSubstring": true,
+            "sourceStart": 124,
+            "sourceEnd": 161,
+            "role": "event-clue"
+          },
+          {
+            "line": 35,
+            "text": "AHM 人类数学协会庄严呼吁所有数学家停止使用 OpenAI。",
+            "isExactSourceSubstring": false,
+            "role": "event-clue"
+          },
+          {
+            "line": 40,
+            "text": "陶哲轩再次转发了这个推文。",
+            "isExactSourceSubstring": false,
+            "role": "event-clue"
+          },
+          {
+            "line": 45,
+            "text": "数学界对 OpenAI 是彻底强行拉黑的情况。",
+            "isExactSourceSubstring": false,
+            "role": "event-clue"
+          }
+        ],
+        "scope": "Mechanical source/format checks only. Does not score factual truth, completeness of analysis, or quality of event inference."
+      }
+    }
+  ],
+  "failedRequests": [
+    {
+      "model": "zai-org/GLM-5.3-Flash",
+      "slug": "glm",
+      "profileId": "d2f4dc4b-4970-4a88-aa7e-ad4351b44b15",
+      "providerSlot": 1,
+      "sourceSha256": "316798ba2ceeccd1901a7f2963c78a2dc1b26da810942c3be2c5bd4fbb95c5f3",
+      "messagesSha256": "64c33a68c6e3470b352f1b594a8557388a3fcc794e7e06b05ad7777f2be79f29",
+      "requestCount": 1,
+      "stream": true,
+      "parameters": {
+        "stream": true,
+        "stream_options": {
+          "include_usage": true
+        },
+        "temperature": 0,
+        "max_tokens": 4096,
+        "enable_thinking": false
+      },
+      "startedAt": "2026-10-12T12:31:20.020Z",
+      "usage": {
+        "prompt_tokens": 643,
+        "completion_tokens": 4096,
+        "total_tokens": 4739,
+        "completion_tokens_details": {
+          "reasoning_tokens": 4096
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 643
+      },
+      "replyCharacters": 0,
+      "reasoningCharacters": 13254,
+      "receivedBytes": 1980669,
+      "streamDone": true,
+      "finishReason": "length",
+      "httpStatus": 200,
+      "headersMs": 735,
+      "responseHeaders": {
+        "content-type": "text/event-stream",
+        "date": "Mon, 12 Oct 2026 12:31:00 GMT"
+      },
+      "responseId": "01a1301845b92511ca76e0f3ea3d3234",
+      "returnedModel": "zai-org/GLM-5.3-Flash",
+      "firstReasoningMs": 742,
+      "requestCompletedAt": "2026-10-12T12:31:59.404Z",
+      "complete": false,
+      "error": {
+        "message": "Response incomplete, truncated, empty, or model identifier mismatch; no retry was sent."
+      },
+      "requestElapsedMs": 39384,
+      "replySha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reasoningSha256": "8df558694496e0cb57589f5b7ef588481a46ef126ad4ebf3e9563c3b5e31fef4",
+      "resultsSavedAt": "2026-10-12T12:31:59.404Z",
+      "resultSaveMs": 1,
+      "requestToResultSavedMs": 39384
+    }
+  ],
+  "sameTranscript": true,
+  "sameMessages": true,
+  "sameParameters": false,
+  "parameterDifference": "GLM recovery max_tokens=16384 and thinking_budget=1024; DeepSeek initial max_tokens=4096 without thinking_budget. Other request settings and all messages identical.",
+  "retention": {
+    "initial": {
+      "databaseRowsUnchanged": true,
+      "encryptedCredentialsUnchanged": true,
+      "activeProfileUnchanged": true,
+      "localRuntimeUnchanged": true,
+      "appPackageUnchanged": true
+    },
+    "recovery": {
+      "databaseRowsUnchanged": true,
+      "encryptedCredentialsUnchanged": true,
+      "activeProfileUnchanged": true,
+      "localRuntimeUnchanged": true,
+      "appPackageUnchanged": true
+    }
+  },
+  "timingScope": "Independent tests, not APP click-to-display. Session intervals include agent parameter investigation and recovery preparation; summed request durations exclude those gaps."
+}

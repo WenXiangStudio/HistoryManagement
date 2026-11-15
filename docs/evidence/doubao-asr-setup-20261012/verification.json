@@ -1,0 +1,35 @@
+{
+  "checkedDate": "2026-10-12",
+  "appVersion": "0.1.21",
+  "realDoubaoRequests": 0,
+  "databases": [
+    {
+      "name": "signal-desk.sqlite",
+      "changes": [],
+      "integrity": "ok",
+      "foreignKeyErrors": 0
+    },
+    {
+      "name": "following-directory.sqlite",
+      "changes": [],
+      "integrity": "ok",
+      "foreignKeyErrors": 0
+    }
+  ],
+  "doubaoConfigurationPresent": false,
+  "appAsarSha256": "1f82594cc17ad77ec6cd19ff282a5e0010a35f2d09ce33e9d81476aa8873442d",
+  "tests": {
+    "suites": 60,
+    "passed": 520,
+    "typescript": true,
+    "packagedRendererSmoke": true,
+    "boundaries": true
+  },
+  "audio": {
+    "workId": "7694535682575860393",
+    "sourceSha256": "869c1542b94651f778b9e53e96f536f7a20a8c251273645ae88faa1fab2c5f04",
+    "audioSha256": "85579d548c8c457f4689c1632f4d58980631f91ed6294eb809088b6850e4bc48",
+    "durationMs": 76933,
+    "bytes": 616812
+  }
+}

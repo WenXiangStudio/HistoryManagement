@@ -1,0 +1,110 @@
+{
+  "startedAt": "2026-10-11T11:26:07.770Z",
+  "mode": "media-acquisition-and-container-probe-only",
+  "modelCallsExecuted": 0,
+  "blockedModelEntryAttempts": [],
+  "blockedNetworkAttempts": [],
+  "records": [
+    {
+      "index": 1,
+      "shareUrl": "https://v.douyin.com/0jhOqgmgr0o/",
+      "workId": "7692746246095687849",
+      "state": "media-and-container-probe-completed",
+      "startedAt": "2026-10-11T11:26:08.967Z",
+      "type": "undetermined",
+      "acquisitionMs": 5595,
+      "media": {
+        "byteLength": 12977521,
+        "sha256": "791f31dc8e22c793db582263e9f519777c012d58b94b2b332fd083aa7f301783",
+        "durationSeconds": 66.152993,
+        "streams": [
+          {
+            "type": "video",
+            "codec": "h264",
+            "width": 1920,
+            "height": 1080
+          },
+          {
+            "type": "audio",
+            "codec": "aac",
+            "channels": 2,
+            "sampleRate": "44100"
+          }
+        ],
+        "hasAudioTrack": true,
+        "hasVideoTrack": true
+      },
+      "finishedAt": "2026-10-11T11:26:14.629Z",
+      "modelInferenceStarted": false
+    },
+    {
+      "index": 2,
+      "shareUrl": "https://v.douyin.com/n4fmbpWpG-Y/",
+      "workId": "7683045679131856147",
+      "state": "media-and-container-probe-completed",
+      "startedAt": "2026-10-11T11:26:14.730Z",
+      "type": "undetermined",
+      "acquisitionMs": 5102,
+      "media": {
+        "byteLength": 1947886,
+        "sha256": "bdf216286cd6d8209ae7d8fb3934e8179a531909f66cddeb83c63076c5790faa",
+        "durationSeconds": 26.3,
+        "streams": [
+          {
+            "type": "audio",
+            "codec": "aac",
+            "channels": 2,
+            "sampleRate": "44100"
+          },
+          {
+            "type": "video",
+            "codec": "h264",
+            "width": 720,
+            "height": 960
+          }
+        ],
+        "hasAudioTrack": true,
+        "hasVideoTrack": true
+      },
+      "finishedAt": "2026-10-11T11:26:19.858Z",
+      "modelInferenceStarted": false
+    },
+    {
+      "index": 3,
+      "shareUrl": "https://v.douyin.com/ooNjIFb07Ck/",
+      "workId": "7694229627543227686",
+      "state": "media-and-container-probe-completed",
+      "startedAt": "2026-10-11T11:26:19.949Z",
+      "type": "undetermined",
+      "acquisitionMs": 4582,
+      "media": {
+        "byteLength": 2806633,
+        "sha256": "aa67383655d594af0e86026e670dfc253b8b42cfb1939c729ac8b2431cf7af20",
+        "durationSeconds": 14.743991,
+        "streams": [
+          {
+            "type": "audio",
+            "codec": "aac",
+            "channels": 2,
+            "sampleRate": "44100"
+          },
+          {
+            "type": "video",
+            "codec": "h264",
+            "width": 1080,
+            "height": 1920
+          }
+        ],
+        "hasAudioTrack": true,
+        "hasVideoTrack": true
+      },
+      "finishedAt": "2026-10-11T11:26:24.563Z",
+      "modelInferenceStarted": false
+    }
+  ],
+  "readyAt": "2026-10-11T11:26:08.876Z",
+  "stopReason": "MODEL_REQUIRED_FOR_SEMANTIC_TYPE_IN_CURRENT_APP",
+  "nextLocalModelStep": "VideoContentRuntimeClient.request(transcribe): faster-whisper small with VAD",
+  "nextOmniModelStep": "transcribeQwen or readQwenFrames",
+  "finishedAt": "2026-10-11T11:26:24.563Z"
+}

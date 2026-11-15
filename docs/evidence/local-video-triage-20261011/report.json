@@ -1,0 +1,319 @@
+{
+  "startedAt": "2026-10-11T12:03:17.190582+00:00",
+  "rules": {
+    "version": "local-vad-ocr-triage-v1",
+    "vad": {
+      "model": "silero_vad_v6.onnx",
+      "samplingRate": 16000,
+      "threshold": 0.5,
+      "negThreshold": 0.35,
+      "minSpeechDurationMs": 250,
+      "minSilenceDurationMs": 200,
+      "speechPadMs": 0,
+      "channelPolicy": "choose the decoded channel with highest whole-track RMS; no phase-cancelling mix",
+      "highSpeechFraction": 0.6,
+      "someSpeechFraction": 0.05
+    },
+    "ocr": {
+      "models": [
+        "PP-OCRv5_mobile_det",
+        "PP-OCRv5_mobile_rec"
+      ],
+      "framesPerVideo": 8,
+      "lastRequestedFrame": "video stream duration minus 0.25 seconds",
+      "maximumDimension": 1280,
+      "minimumRecognitionScore": 0.8,
+      "minimumAlphanumericCharacters": 2,
+      "identityRegex": "(?i)(抖音|douyin|https?://|^@)",
+      "persistentSmallEdgeRule": "same normalized text in >=50% frames, height<=6%, area<=2.5%, center in outer 10% vertical or 12% horizontal",
+      "sufficientTextEvidence": "at least 2 frames retain text and at least 4 unique alphanumeric characters",
+      "overlayRemovalStatus": "heuristic only; original text and boxes retained"
+    },
+    "classification": [
+      "speech fraction >=60%: speech-rich candidate, talking head versus audiovisual demonstration unresolved",
+      "speech fraction >=5%: mixed/intermittent speech candidate, information dominance unresolved",
+      "speech fraction >0% but <5%: sparse suspected speech, semantic type unresolved",
+      "zero detected speech + sufficient retained OCR: visual-text candidate, music not verified",
+      "zero detected speech + some retained OCR: limited visual-text evidence, unresolved",
+      "zero detected speech + no retained OCR: non-speech visual candidate, neither music nor whole-video absence of text verified"
+    ],
+    "groundTruth": "pending user adjudication",
+    "thresholdStatus": "fixed before running these three samples; no accuracy claim"
+  },
+  "modelsLoaded": [
+    {
+      "name": "Silero VAD v6",
+      "sha256": "4cbf549b8326f60f80f2536d9eefeb450a9abe83365a098031c89719f1be17d2"
+    },
+    {
+      "name": "PP-OCRv5_mobile_det",
+      "sha256": "afa1820cb16c1fd0dad589d0f8b389139061c1ef6d68019685fd07be997dda5b"
+    },
+    {
+      "name": "PP-OCRv5_mobile_rec",
+      "sha256": "2460da90875937c94db97eba74ae3d9e5d4c4c57c42f1f41531c09a26bcc771a"
+    }
+  ],
+  "samples": [
+    {
+      "index": 1,
+      "shareUrl": "https://v.douyin.com/0jhOqgmgr0o/",
+      "workId": "7692746246095687849",
+      "sha256": "791f31dc8e22c793db582263e9f519777c012d58b94b2b332fd083aa7f301783",
+      "durationSeconds": 66.152993,
+      "vad": {
+        "startSeconds": 0.161125,
+        "decodedSeconds": 65.9939375,
+        "selectedChannelZeroBased": 1,
+        "channelRms": [
+          0.06377267693864003,
+          0.06452753379550899
+        ],
+        "unassessedInitialSeconds": 0.161125,
+        "speechFraction": 0.05867205605060313,
+        "speechPercent": 5.867,
+        "speechSeconds": 3.872,
+        "intervalCount": 5,
+        "intervals": [
+          {
+            "startSeconds": 43.0411,
+            "endSeconds": 43.3291
+          },
+          {
+            "startSeconds": 43.7131,
+            "endSeconds": 45.1531
+          },
+          {
+            "startSeconds": 45.8251,
+            "endSeconds": 46.7851
+          },
+          {
+            "startSeconds": 47.3291,
+            "endSeconds": 47.7131
+          },
+          {
+            "startSeconds": 48.2251,
+            "endSeconds": 49.0251
+          }
+        ]
+      },
+      "ocr": {
+        "sampledFrameCount": 8,
+        "framesWithDetectedBoxes": 4,
+        "detectedBoxCount": 5,
+        "recognizedBlockCount": 3,
+        "highScoreBlockCount": 0,
+        "retainedTextBlockCount": 0,
+        "framesWithRetainedText": 0,
+        "retainedFramePercent": 0.0,
+        "uniqueRetainedTextCount": 0,
+        "uniqueRetainedCharacterCount": 0,
+        "excludedReasonCounts": {
+          "low-recognition-score": 3,
+          "too-few-characters": 2
+        },
+        "sufficientSampledTextEvidence": false,
+        "substantiveTextHumanVerified": false
+      },
+      "samplingTimesSeconds": [
+        0.0,
+        9.43333,
+        18.8333,
+        28.2667,
+        37.6667,
+        47.0667,
+        56.5,
+        65.9
+      ],
+      "existingTechnicalEvidence": {
+        "largePixelChangePairPercent": 50.382,
+        "source": "video-signals-no-model-20261011/report.json"
+      },
+      "classification": {
+        "code": "intermittent_speech_unresolved_dominance",
+        "label": "检测到间歇性疑似语音；信息主导类型待确认",
+        "finalFourWayType": "undetermined",
+        "musicPresence": "not-tested",
+        "needsHumanAdjudication": true,
+        "basis": "fixed numerical rules only; no title, transcript or semantic visual judgement"
+      },
+      "timing": {
+        "audioDecodeMs": 187.412,
+        "vadInferenceMs": 89.719,
+        "frameExtractionMs": 13023.265,
+        "ocrInferenceMs": 2118.983,
+        "perSampleElapsedMs": 15461.721
+      },
+      "accuracyAccepted": false
+    },
+    {
+      "index": 2,
+      "shareUrl": "https://v.douyin.com/n4fmbpWpG-Y/",
+      "workId": "7683045679131856147",
+      "sha256": "bdf216286cd6d8209ae7d8fb3934e8179a531909f66cddeb83c63076c5790faa",
+      "durationSeconds": 26.3,
+      "vad": {
+        "startSeconds": 0.0,
+        "decodedSeconds": 26.285,
+        "selectedChannelZeroBased": 1,
+        "channelRms": [
+          0.1800267008759204,
+          0.18010665513635463
+        ],
+        "unassessedInitialSeconds": 0,
+        "speechFraction": 0.0,
+        "speechPercent": 0.0,
+        "speechSeconds": 0.0,
+        "intervalCount": 0,
+        "intervals": []
+      },
+      "ocr": {
+        "sampledFrameCount": 8,
+        "framesWithDetectedBoxes": 4,
+        "detectedBoxCount": 9,
+        "recognizedBlockCount": 8,
+        "highScoreBlockCount": 7,
+        "retainedTextBlockCount": 7,
+        "framesWithRetainedText": 3,
+        "retainedFramePercent": 37.5,
+        "uniqueRetainedTextCount": 6,
+        "uniqueRetainedCharacterCount": 44,
+        "excludedReasonCounts": {
+          "low-recognition-score": 1,
+          "too-few-characters": 1
+        },
+        "sufficientSampledTextEvidence": true,
+        "substantiveTextHumanVerified": false
+      },
+      "samplingTimesSeconds": [
+        0.0,
+        3.73333,
+        7.46667,
+        11.1667,
+        14.9,
+        18.6333,
+        22.3333,
+        26.0667
+      ],
+      "existingTechnicalEvidence": {
+        "largePixelChangePairPercent": 28.846,
+        "source": "video-signals-no-model-20261011/report.json"
+      },
+      "classification": {
+        "code": "no_speech_detected_visual_text_candidate",
+        "label": "未检出疑似语音；画面文字类候选，是否纯音乐待确认",
+        "finalFourWayType": "undetermined",
+        "musicPresence": "not-tested",
+        "needsHumanAdjudication": true,
+        "basis": "fixed numerical rules only; no title, transcript or semantic visual judgement"
+      },
+      "timing": {
+        "audioDecodeMs": 89.847,
+        "vadInferenceMs": 34.509,
+        "frameExtractionMs": 1729.856,
+        "ocrInferenceMs": 1618.742,
+        "perSampleElapsedMs": 3501.39
+      },
+      "accuracyAccepted": false
+    },
+    {
+      "index": 3,
+      "shareUrl": "https://v.douyin.com/ooNjIFb07Ck/",
+      "workId": "7694229627543227686",
+      "sha256": "aa67383655d594af0e86026e670dfc253b8b42cfb1939c729ac8b2431cf7af20",
+      "durationSeconds": 14.743991,
+      "vad": {
+        "startSeconds": 0.161125,
+        "decodedSeconds": 14.5849375,
+        "selectedChannelZeroBased": 0,
+        "channelRms": [
+          0.04470207013678908,
+          0.044679920809994986
+        ],
+        "unassessedInitialSeconds": 0.161125,
+        "speechFraction": 0.0,
+        "speechPercent": 0.0,
+        "speechSeconds": 0.0,
+        "intervalCount": 0,
+        "intervals": []
+      },
+      "ocr": {
+        "sampledFrameCount": 8,
+        "framesWithDetectedBoxes": 8,
+        "detectedBoxCount": 84,
+        "recognizedBlockCount": 84,
+        "highScoreBlockCount": 76,
+        "retainedTextBlockCount": 76,
+        "framesWithRetainedText": 8,
+        "retainedFramePercent": 100.0,
+        "uniqueRetainedTextCount": 71,
+        "uniqueRetainedCharacterCount": 1137,
+        "excludedReasonCounts": {
+          "low-recognition-score": 6,
+          "too-few-characters": 5
+        },
+        "sufficientSampledTextEvidence": true,
+        "substantiveTextHumanVerified": false
+      },
+      "samplingTimesSeconds": [
+        0.0,
+        2.1,
+        4.16667,
+        6.23333,
+        8.3,
+        10.3667,
+        12.4333,
+        14.5
+      ],
+      "existingTechnicalEvidence": {
+        "largePixelChangePairPercent": 42.857,
+        "source": "video-signals-no-model-20261011/report.json"
+      },
+      "classification": {
+        "code": "no_speech_detected_visual_text_candidate",
+        "label": "未检出疑似语音；画面文字类候选，是否纯音乐待确认",
+        "finalFourWayType": "undetermined",
+        "musicPresence": "not-tested",
+        "needsHumanAdjudication": true,
+        "basis": "fixed numerical rules only; no title, transcript or semantic visual judgement"
+      },
+      "timing": {
+        "audioDecodeMs": 76.486,
+        "vadInferenceMs": 18.304,
+        "frameExtractionMs": 2977.892,
+        "ocrInferenceMs": 7203.422,
+        "perSampleElapsedMs": 10311.98
+      },
+      "accuracyAccepted": false
+    }
+  ],
+  "asrInvoked": false,
+  "languageModelInvoked": false,
+  "cloudInvoked": false,
+  "codexViewedMedia": false,
+  "networkAttemptsBlocked": [
+    {
+      "event": "socket.getaddrinfo"
+    },
+    {
+      "event": "socket.getaddrinfo"
+    },
+    {
+      "event": "socket.getaddrinfo"
+    },
+    {
+      "event": "socket.getaddrinfo"
+    }
+  ],
+  "vadImportAndLoadMs": 3356.607,
+  "ocrImportAndLoadMs": 4751.425,
+  "versions": {
+    "faster-whisper": "1.2.1",
+    "onnxruntime": "1.22.1",
+    "paddleocr": "3.2.0",
+    "paddlepaddle": "3.2.1"
+  },
+  "scriptElapsedMs": 37512.671,
+  "finishedAt": "2026-10-11T12:03:54.594722+00:00",
+  "stopReason": "BOUNDED_LOCAL_TRIAGE_COMPLETED_WAITING_FOR_USER_ADJUDICATION"
+}

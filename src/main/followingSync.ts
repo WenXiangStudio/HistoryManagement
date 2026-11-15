@@ -18,17 +18,36 @@ import {creatorActivityProgressSchema} from '../shared/creatorActivity'
 import { DEFAULT_CREATOR_REFRESH_PACING, creatorsForRefreshScope, CREATOR_REFRESH_SCOPE_LABELS, type CreatorRefreshScope } from '../shared/creatorRefreshPolicy'
 import {CreatorDatabaseStore} from './creatorDatabaseStore'
 import {CreatorPriorityStore} from './creatorPriorityStore'
+import {creatorPriorityBusyReason,creatorPriorityInputSchema,applyCreatorPriorityChange,type CreatorPriorityChanged} from '../shared/creatorPriority'
+import {VideoInformationService} from './videoInformationService'
+import {VideoContentStore} from './videoContentStore'
+import {VideoDiscoveryService} from './videoDiscoveryService'
+import type {VideoDiscoveryCommand} from '../shared/videoDiscovery'
+import {publicationRange} from '../shared/videoContent'
+import type {VideoInformationCommand} from '../shared/videoInformation'
+import {creatorAnnotationInputSchema,applyCreatorAnnotation,type CreatorAnnotationChanged} from '../shared/creatorAnnotation'
+import {shanghaiDateKey} from '../shared/creatorActivitySections'
+import {CreatorInterestStore} from './creatorInterestStore'
+import {creatorInterestInputSchema,applyCreatorInterestChange,type CreatorInterestChanged} from '../shared/creatorInterest'
+import {validateWorkshopBrowserMedia,type WorkshopBrowserMedia} from './workshopBrowser'
+import type {WorkshopDownloadInput} from './workshopDownload'
 
 const escapeHtml = (value: string): string => value.replace(/[&<>"']/g, (entry) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[entry]!)
 type Scope = {action:'list';runId:string;ownerSecUid:string|null;cursor:number;offset:number;pageCount:number}
 type PrepareCommand={action:'account';preparationId:string;ownerNickname:string|null;ownerSecUid:string|null;origin:string;token:string}
 type ProbeCommand={action:'probe';probeId:string;origin:string;token:string}
+type WorkshopVideoCommand={action:'workshop-video';runId:string;url:string;expectedWorkId:string;origin:string;token:string}
 export class FollowingSyncService {
   readonly store: FollowingDirectoryStore
   readonly activity: CreatorActivityService
+  readonly videoInformation:VideoInformationService
+  readonly videoContent:VideoContentStore
+  readonly videoDiscovery:VideoDiscoveryService
+  contentRunning:()=>boolean=()=>false
   readonly plan: FollowingPlanStore
   readonly creatorDatabase:CreatorDatabaseStore
   readonly creatorPriority:CreatorPriorityStore
+  readonly creatorInterest:CreatorInterestStore
   private readonly preferences:FollowingPreferences
   private pendingBinding:{label:string;expectedOwner:string|null}|null=null
   private enrollmentNonce:string|null=null
@@ -39,7 +58,8 @@ export class FollowingSyncService {
   private started=0
   private scope: Scope | null=null
   private waiting: ServerResponse | null=null
-  private command: (Scope & {origin:string;token:string}|PrepareCommand|ProbeCommand|(NonNullable<ReturnType<CreatorActivityService['begin']>>&{origin:string;token:string})|(ReturnType<FollowingPlanStore['beginBasic']>&{origin:string;token:string})) | null=null
+  private command: (Scope & {origin:string;token:string}|PrepareCommand|ProbeCommand|WorkshopVideoCommand|(VideoDiscoveryCommand&{origin:string;token:string})|(VideoInformationCommand&{origin:string;token:string})|(NonNullable<ReturnType<CreatorActivityService['begin']>>&{origin:string;token:string})|(ReturnType<FollowingPlanStore['beginBasic']>&{origin:string;token:string})) | null=null
+  private workshopVideo:{runId:string;input:WorkshopDownloadInput;resolve:(media:WorkshopBrowserMedia)=>void;reject:(reason:Error)=>void}|null=null
   private probeId:string|null=null
   private preparationDeadline:ReturnType<typeof setTimeout>|null=null
   private monitor:ReturnType<typeof setInterval>|null=null
@@ -50,12 +70,24 @@ export class FollowingSyncService {
   private connectorInstance:string|null=null
   private preparedOwnerSecUid:string|null=null
   private runDeadline: ReturnType<typeof setTimeout> | null=null
-  constructor(private readonly userData: string, private readonly changed: () => void) {
+  private annotationRevision=0
+  private directorySnapshot:{key:string;rows:CreatorListItem[]}|null=null
+  private directoryRevision():string{
+    const db=this.store.db,changes=db.prepare('SELECT total_changes() AS count').get()!.count
+    const external=db.prepare('PRAGMA data_version').get()!.data_version
+    return `${this.preferences.value.activeOwnerSecUid}:${changes}:${external}:${shanghaiDateKey()}`
+  }
+  constructor(private readonly userData: string, private readonly changed: (event?:CreatorPriorityChanged|CreatorAnnotationChanged|CreatorInterestChanged) => void) {
     this.store = new FollowingDirectoryStore(join(userData, 'following-directory.sqlite'))
     this.activity = new CreatorActivityService(this.store.db, changed)
+    this.videoInformation=new VideoInformationService(this.store.db,userData,changed)
+    this.videoContent=new VideoContentStore(this.store.db)
+    this.videoContent.interrupt()
+    this.videoDiscovery=new VideoDiscoveryService(this.videoContent,this.videoInformation.store,()=>this.listCreators(),command=>{this.command={...command,origin:this.origin,token:this.token};this.dispatch()},changed)
     this.plan = new FollowingPlanStore(this.store)
     this.creatorDatabase=new CreatorDatabaseStore(this.store.db)
     this.creatorPriority=new CreatorPriorityStore(this.store.db)
+    this.creatorInterest=new CreatorInterestStore(this.store.db)
     const defaultProfile=this.browserProfiles().find(profile=>profile.extensionInstalled)?.directory??this.browserProfiles()[0]?.directory??null
     this.preferences=new FollowingPreferences(userData,this.store.latest()?.ownerSecUid??null,defaultProfile)
     if(this.preferences.value.activeOwnerSecUid)this.store.selectAccount(this.preferences.value.activeOwnerSecUid)
@@ -77,7 +109,7 @@ export class FollowingSyncService {
       }catch{ /* Historical imports without a display receipt remain idle. */ }
     }
   }
-  status(): FollowingSyncState { return { ...this.state, plan:this.plan.plan(this.preferences.value.activeOwnerSecUid),basic:this.plan.basicStatus(this.preferences.value.activeOwnerSecUid),activity:this.activity.status(this.preferences.value.activeOwnerSecUid), connection:{online:this.extensionVersion===FOLLOWING_VERSION&&Date.now()-this.lastSeen<30000,
+  status(): FollowingSyncState { return { ...this.state,videoInformation:this.videoInformationStatus(), plan:this.plan.plan(this.preferences.value.activeOwnerSecUid),basic:this.plan.basicStatus(this.preferences.value.activeOwnerSecUid),activity:this.activity.status(this.preferences.value.activeOwnerSecUid), connection:{online:this.extensionVersion===FOLLOWING_VERSION&&Date.now()-this.lastSeen<30000,
     version:this.extensionVersion,expectedVersion:FOLLOWING_VERSION} } }
   private browserProfiles(){return followingBrowserProfiles(join(process.env.LOCALAPPDATA||'','Google','Chrome','User Data'),join(this.userData,'following-extension'))}
   configuration():FollowingConfiguration{
@@ -92,9 +124,32 @@ export class FollowingSyncService {
     this.changed();return result
   }
   updateCreatorPriority(input:unknown){
-    this.requireAccountIdle()
-    const result=this.creatorPriority.update(this.preferences.value.activeOwnerSecUid,this.listCreators(),input)
-    this.changed();return result
+    const values=creatorPriorityInputSchema.parse(input),owner=this.preferences.value.activeOwnerSecUid
+    if(!owner||owner!==values.ownerSecUid)throw Error('账号已切换，请重新打开博主资料库后设置权重')
+    const reason=creatorPriorityBusyReason({...this.status(),phase:this.state.phase})
+    if(reason)throw Error(reason)
+    const revision=this.directoryRevision()
+    const result=this.creatorPriority.update(owner,this.listCreators('',values.secUid),values)
+    const event:CreatorPriorityChanged={source:'creator-priority',ownerSecUid:owner,secUid:values.secUid,priority:result}
+    if(this.directorySnapshot?.key===revision)this.directorySnapshot={key:this.directoryRevision(),rows:applyCreatorPriorityChange(this.directorySnapshot.rows,owner,event)}
+    this.changed(event);return result
+  }
+  updateCreatorInterest(input:unknown){
+    const values=creatorInterestInputSchema.parse(input),owner=this.preferences.value.activeOwnerSecUid
+    if(!owner||owner!==values.ownerSecUid)throw Error('账号已切换，请重新打开博主资料库后设置兴趣度')
+    const revision=this.directoryRevision()
+    const interest=this.creatorInterest.update(owner,this.listCreators('',values.secUid),values)
+    const event:CreatorInterestChanged={source:'creator-interest',ownerSecUid:owner,secUid:values.secUid,interest}
+    if(this.directorySnapshot?.key===revision)this.directorySnapshot={key:this.directoryRevision(),rows:applyCreatorInterestChange(this.directorySnapshot.rows,owner,event)}
+    this.changed(event);return interest
+  }
+  updateCreatorAnnotation(owner:string|undefined,id:number,input:unknown):CreatorAnnotationChanged{
+    if(!owner||owner!==this.preferences.value.activeOwnerSecUid)throw Error('账号已切换，请重新打开博主资料库后编辑')
+    const revision=this.directoryRevision(),values=creatorAnnotationInputSchema.parse(input),saved=this.store.update(id,values)
+    const event:CreatorAnnotationChanged={source:'creator-annotation',ownerSecUid:owner,secUid:new URL(saved.profileUrl).pathname.split('/').at(-1)!,
+      revision:++this.annotationRevision,isStarred:saved.isStarred,note:saved.note}
+    if(this.directorySnapshot?.key===revision)this.directorySnapshot={key:this.directoryRevision(),rows:applyCreatorAnnotation(this.directorySnapshot.rows,owner,event)}
+    this.changed(event);return event
   }
   private resetAccountState():void{
     this.clearRunDeadline();this.clearPreparationDeadline();this.command=null;this.preparedOwnerSecUid=null;this.retryPreparationAt=0
@@ -103,14 +158,119 @@ export class FollowingSyncService {
       readiness:{phase:'offline',preparationId:null,message:'正在重新连接并验证所选账号…'}}
     this.changed()
   }
-  private requireAccountIdle():void{if(['running','awaiting-config'].includes(this.state.phase)||this.status().activity?.phase==='running'||this.status().basic?.phase==='running')throw new Error('请等待本轮同步或资料刷新完成，或取消后再切换账号')}
-  listCreators(search=''):CreatorListItem[]{
-    const owner=this.preferences.value.activeOwnerSecUid
-    const pending=new Set(owner?this.store.db.prepare("SELECT sec_uid FROM following_basic_fields WHERE owner_sec_uid=? AND (signature_status<>'done' OR avatar_status<>'done')").all(owner).map(row=>String(row.sec_uid)):[])
-    return this.activity.decorate(owner,this.creatorPriority.decorate(owner,this.store.list(search))).map(row=>({...row,basicPending:pending.has(new URL(row.profileUrl).pathname.split('/').at(-1)!)}))
+  private requireAccountIdle():void{if(this.workshopVideo||['running','awaiting-config'].includes(this.state.phase)||this.status().activity?.phase==='running'||this.status().basic?.phase==='running'||this.videoInformation.running||this.videoDiscovery.running||this.contentRunning())throw new Error('请等待本轮同步或资料刷新完成，或取消后再切换账号')}
+  activeOwner(){return this.preferences.value.activeOwnerSecUid}
+  requireOwner(owner:string){if(!owner||owner!==this.activeOwner())throw Error('资料账号已变化，请重新操作')}
+  discoverVideos(input:unknown,resumeId?:string){
+    this.requireAccountIdle();const owner=this.activeOwner(),identity=owner?this.store.account(owner):null
+    if(!owner||!identity?.uid||!this.status().connection?.online)throw Error('请先连接并核验当前账号')
+    return resumeId?this.videoDiscovery.resume(owner,identity.uid,resumeId):this.videoDiscovery.begin(owner,identity.uid,input)
   }
-  startActivity(creatorId?:number,resume=false,creatorIds?:number[],scope?:CreatorRefreshScope):FollowingSyncState{
-    if(scope!==undefined&&(!['active','regular','inactive','all'].includes(scope)||creatorId!==undefined||creatorIds!==undefined||resume))throw new Error('更新分组无效')
+  cancelDiscovery(owner:string){this.requireOwner(owner);this.videoDiscovery.cancel();if(this.command?.action==='video-discovery')this.command=null;return this.videoLibraryView()}
+  videoInformationStatus(){return this.videoInformation.status(this.preferences.value.activeOwnerSecUid)}
+  videoLibraryView(options:import('../shared/videoInformation').VideoLibraryOptions={}){
+    const owner=this.preferences.value.activeOwnerSecUid
+    const records=owner?this.videoInformation.store.list(owner):[],content=owner?this.videoContent.info(owner):new Map()
+    const range=options.startDate||options.endDate?publicationRange(options.startDate||'2016-01-01',options.endDate||'9999-12-30'):null
+    const enriched=records.map(row=>({...row,content:content.get(row.workId)})).filter(row=>(!options.creatorSecUid||row.authorSecUid===options.creatorSecUid)&&(!range||row.publishedAt>=range.start&&row.publishedAt<range.endExclusive)&&(!options.interest||(row.content?.interest??'unmarked')===options.interest))
+    return {ownerSecUid:owner,records:enriched,state:this.videoInformationStatus(),contentBatches:owner?this.videoContent.batches(owner):[]}
+  }
+  setVideoInterest(expectedOwner:string,workId:string,interest:unknown){
+    this.requireOwner(expectedOwner)
+    const owner=this.preferences.value.activeOwnerSecUid;if(!owner)throw Error('请先绑定当前资料账号')
+    this.videoContent.setInterest(owner,workId,interest);this.changed();return this.videoLibraryView()
+  }
+  videoContentDetail(expectedOwner:string,workId:string){
+    this.requireOwner(expectedOwner)
+    const owner=this.preferences.value.activeOwnerSecUid;if(!owner)throw Error('请先绑定当前资料账号')
+    return this.videoContent.detail(owner,workId)
+  }
+  creatorWorkTimeline(expectedOwner:string,creatorId:number){
+    this.requireOwner(expectedOwner)
+    const creator=this.listCreators().find(c=>c.id===creatorId&&!c.isDemo)
+    if(!creator)throw Error('博主不属于当前资料账号')
+    const secUid=new URL(creator.profileUrl).pathname.split('/').at(-1)!
+    return this.activity.workTimeline(expectedOwner,secUid)
+  }
+  videoInformationView(creatorId:number){
+    const owner=this.preferences.value.activeOwnerSecUid,creator=this.listCreators().find(item=>item.id===creatorId)
+    if(!owner||!creator||creator.isDemo)throw Error('博主不属于当前账号')
+    return {ownerSecUid:owner,creatorId,records:this.videoInformation.store.list(owner,new URL(creator.profileUrl).pathname.split('/').at(-1)!),state:this.videoInformationStatus()}
+  }
+  videoInformationRendered(runId:string){return this.videoInformation.rendered(this.preferences.value.activeOwnerSecUid,runId)}
+  startVideoInformation(creatorId:number,captureEvidence=false){
+    this.requireAccountIdle()
+    if(!this.status().connection?.online||this.state.readiness?.phase!=='ready'||this.pendingBinding)throw Error('请等待浏览器连接与账号准备完成')
+    const owner=this.preferences.value.activeOwnerSecUid,creator=this.listCreators().find(item=>item.id===creatorId)
+    const identity=owner?this.store.account(owner):null
+    if(!owner||!identity?.uid||!creator)throw Error('博主不属于当前账号')
+    this.command={...this.videoInformation.begin(owner,identity.uid,creator,captureEvidence),origin:this.origin,token:this.token}
+    this.dispatch();return this.videoInformationStatus()
+  }
+  async captureWorkEvidence(owner:string,workId:string,signal:AbortSignal){
+    this.requireOwner(owner)
+    if(this.workshopVideo||this.videoDiscovery.running||this.videoInformation.running||this.status().activity?.phase==='running'||this.status().basic?.phase==='running'||this.state.phase==='running')throw Error('浏览器采集正在运行')
+    if(!this.status().connection?.online)throw Error('VIDEO_BROWSER_DISCONNECTED')
+    const work=this.videoInformation.store.list(owner).find(w=>w.workId===workId),identity=this.store.account(owner)
+    const creator=work?this.listCreators().find(c=>c.profileUrl.endsWith(work.authorSecUid)):null
+    if(!work||!creator||!identity?.uid)throw Error('VIDEO_AUTHOR_UNAVAILABLE')
+    const command=this.videoInformation.begin(owner,identity.uid,creator,true,{creatorId:creator.id,nickname:creator.nickname,workId,
+      authorUid:work.authorUid,authorSecUid:work.authorSecUid,publishedAt:work.publishedAt})
+    this.command={...command,origin:this.origin,token:this.token};this.dispatch()
+    const abort=()=>this.cancelVideoInformation();signal.addEventListener('abort',abort,{once:true})
+    try{while(true){signal.throwIfAborted();const state=this.videoInformationStatus()
+      if(state.runId!==command.runId)throw Error('VIDEO_SESSION_REPLACED')
+      if(state.phase!=='running'){if(state.phase==='completed'&&state.evidence)return state.evidence;throw Error(state.errorCode||'VIDEO_MEDIA_UNAVAILABLE')}
+      await new Promise(r=>setTimeout(r,250))
+    }}finally{signal.removeEventListener('abort',abort)}
+  }
+  cancelVideoInformation(){
+    if(this.command&&'action' in this.command&&this.command.action==='video-information')this.command=null
+    this.videoInformation.cancel();return this.videoInformationStatus()
+  }
+  /** One explicit video URL, independent from the saved creator/account directory. */
+  async readWorkshopVideo(input:WorkshopDownloadInput,signal:AbortSignal):Promise<WorkshopBrowserMedia>{
+    signal.throwIfAborted()
+    if(!input.expectedWorkId||!/^\d{8,30}$/.test(input.expectedWorkId)||input.url!==`https://www.douyin.com/video/${input.expectedWorkId}`)throw Error('请先解析并核验抖音视频链接')
+    if(this.workshopVideo||this.command||this.pendingBinding||['running','awaiting-config'].includes(this.state.phase)||this.status().activity?.phase==='running'||this.status().basic?.phase==='running'||this.videoInformation.running||this.videoDiscovery.running)throw Error('浏览器采集正在运行，请完成或取消后再处理视频')
+    await this.initialize()
+    if(!this.status().connection?.online)throw Error('公开下载受限，请先在设置中连接 Chrome 关注扩展，再重试处理视频')
+    // Do not use contentRunning(): this workshop request is itself a content task.
+    const runId='workshop-'+randomBytes(12).toString('hex')
+    let timeout:ReturnType<typeof setTimeout>|undefined
+    const abort=()=>{if(this.workshopVideo?.runId===runId)this.workshopVideo.reject(Error('已取消视频处理'))}
+    try{return await new Promise<WorkshopBrowserMedia>((resolve,reject)=>{
+      this.workshopVideo={runId,input,resolve,reject}
+      timeout=setTimeout(()=>reject(Error('浏览器读取视频超时，请在 Chrome 扩展管理页重新加载 Signal Desk 扩展后重试')),60000)
+      signal.addEventListener('abort',abort,{once:true})
+      this.command={action:'workshop-video',runId,url:input.url,expectedWorkId:input.expectedWorkId!,origin:this.origin,token:this.token}
+      if(signal.aborted){abort();return}
+      this.dispatch()
+    })}finally{
+      if(timeout)clearTimeout(timeout);signal.removeEventListener('abort',abort)
+      this.finishWorkshopVideo(runId)
+    }
+  }
+  private finishWorkshopVideo(runId:string){
+    if(this.workshopVideo?.runId===runId)this.workshopVideo=null
+    if(this.command?.action==='workshop-video'&&this.command.runId===runId)this.command=null
+  }
+  listCreators(search='',secUid?:string):CreatorListItem[]{
+    const owner=this.preferences.value.activeOwnerSecUid
+    const key=this.directoryRevision(),query=search.normalize('NFKC').trim().toLocaleLowerCase()
+    const filter=(rows:CreatorListItem[])=>rows.filter(row=>(!secUid||new URL(row.profileUrl).pathname.split('/').at(-1)===secUid)
+      &&(!query||`${row.nickname} ${row.signature} ${row.note}`.normalize('NFKC').toLocaleLowerCase().includes(query)))
+    if(this.directorySnapshot?.key===key)return filter(this.directorySnapshot.rows)
+    const pending=new Set(owner?this.store.db.prepare(`SELECT sec_uid FROM following_basic_fields WHERE owner_sec_uid=?${secUid?' AND sec_uid=?':''} AND (signature_status<>'done' OR avatar_status<>'done')`).all(owner,...(secUid?[secUid]:[])).map(row=>String(row.sec_uid)):[])
+    const creators=this.store.list('',secUid)
+    const rows=this.activity.decorate(owner,this.creatorInterest.decorate(owner,this.creatorPriority.decorate(owner,creators))).map(row=>({...row,basicPending:pending.has(new URL(row.profileUrl).pathname.split('/').at(-1)!)}))
+    if(!secUid)this.directorySnapshot={key:this.directoryRevision(),rows}
+    return filter(rows)
+  }
+  startActivity(creatorId?:number,resume=false,creatorIds?:number[],scope?:CreatorRefreshScope,baselineTrial=false):FollowingSyncState{
+    if(this.workshopVideo||this.videoDiscovery.running||this.contentRunning())throw Error('视频任务正在运行，请等待或取消')
+    if(this.videoInformation.running)throw Error('请等待视频信息采集完成或取消')
+    if(scope!==undefined&&(!['active','regular','inactive','all','anomaly'].includes(scope)||creatorId!==undefined||creatorIds!==undefined||resume))throw new Error('更新分组无效')
     if(creatorIds!==undefined&&(!Array.isArray(creatorIds)||!creatorIds.length||creatorIds.length>10000
       ||creatorIds.some(id=>!Number.isSafeInteger(id)||id>=0)||new Set(creatorIds).size!==creatorIds.length
       ||creatorId!==undefined||resume))throw new Error('所选博主范围无效')
@@ -119,14 +279,14 @@ export class FollowingSyncService {
     if(!this.status().connection?.online||this.state.readiness?.phase!=='ready')throw new Error('请等待连接器与账号准备完成')
     const owner=this.preferences.value.activeOwnerSecUid
     if(!owner)throw new Error('请先绑定当前资料账号')
-    const creators=this.listCreators(),group=creatorId!==undefined||resume?creators:creatorsForRefreshScope(creators,scope??'all')
+    const creators=this.listCreators(),group=baselineTrial?creators.filter(c=>!c.isDemo):creatorId!==undefined||resume?creators:creatorsForRefreshScope(creators,scope??'all')
     if(scope&&!group.length)throw new Error(`${CREATOR_REFRESH_SCOPE_LABELS[scope]}：当前账号没有符合条件的博主`)
     let targets=group.map(item=>({id:item.id,secUid:new URL(item.profileUrl).pathname.split('/').at(-1)!,uid:item.nativeUid??null,nickname:item.nickname}))
     if(creatorIds){
       targets=targets.filter(item=>creatorIds.includes(item.id))
       if(targets.length!==creatorIds.length)throw new Error('部分所选博主不属于当前账号，请重新选择')
     }
-    const command=this.activity.begin(owner,targets,creatorId,resume,true,{pacing:DEFAULT_CREATOR_REFRESH_PACING,scope})
+    const command=this.activity.begin(owner,targets,creatorId,resume,true,{pacing:DEFAULT_CREATOR_REFRESH_PACING,scope,...(baselineTrial?{baselineTrial:true}:{})})
     if(!command)return this.status()
     this.command={...command,origin:this.origin,token:this.token};this.dispatch();return this.status()
   }
@@ -230,6 +390,9 @@ export class FollowingSyncService {
         if(path==='/status'&&request.method==='GET'){response.end(JSON.stringify(this.status()));return}
         if(path==='/basic-state'&&request.method==='GET'){response.end(JSON.stringify(this.plan.basicStatus(this.preferences.value.activeOwnerSecUid)));return}
         if(path==='/activity-state'&&request.method==='GET'){this.lastSeen=Date.now();response.end(JSON.stringify(this.status().activity));return}
+        if(path==='/video-information-state'&&request.method==='GET'){this.lastSeen=Date.now();response.end(JSON.stringify(this.videoInformationStatus()));return}
+        if(path==='/video-discovery-state'&&request.method==='GET'){this.lastSeen=Date.now();response.end(JSON.stringify(this.videoDiscovery.status(this.activeOwner())));return}
+        if(path==='/workshop-video-state'&&request.method==='GET'){this.lastSeen=Date.now();response.end(JSON.stringify({runId:this.workshopVideo?.runId??null,phase:this.workshopVideo?'running':'idle'}));return}
         if(path==='/open-folder'&&request.method==='POST'){
           const error=await shell.openPath(this.state.extensionDirectory!);if(error)throw new Error(error)
           response.end(JSON.stringify({message:'扩展目录已打开'}));return
@@ -237,11 +400,35 @@ export class FollowingSyncService {
         if(path==='/open-extensions'&&request.method==='POST'){
           this.openChrome('chrome://extensions/');response.end(JSON.stringify({message:'扩展管理页已打开'}));return
         }
-        if(request.method!=='POST'||!['/progress','/report','/readiness','/structured-probe','/connector-enroll','/activity-progress','/activity-report','/list-owner','/list-page','/basic-progress','/basic-report'].includes(path)){response.writeHead(404);response.end('{}');return}
+        if(request.method!=='POST'||!['/progress','/report','/readiness','/structured-probe','/connector-enroll','/activity-progress','/activity-report','/list-owner','/list-page','/basic-progress','/basic-report','/video-information-report','/video-discovery-report','/video-discovery-end','/workshop-video-report'].includes(path)){response.writeHead(404);response.end('{}');return}
         let size=0
         const chunks:Buffer[]=[]
         for await(const chunk of request){size+=chunk.length;if(size>512*1024)throw new Error('同步报告过大');chunks.push(chunk)}
         const body=JSON.parse(Buffer.concat(chunks).toString('utf8'))
+        if(path==='/workshop-video-report'){
+          this.lastSeen=Date.now()
+          const pending=this.workshopVideo
+          if(!pending||body.runId!==pending.runId)throw Error('视频工坊浏览器会话已结束')
+          if(body.errorCode){
+            const code=z.string().regex(/^[A-Z0-9_-]{1,100}$/).parse(body.errorCode)
+            const message:Record<string,string>={WORKSHOP_LOGIN_REQUIRED:'抖音要求登录，请在 Chrome 登录后重试',WORKSHOP_CAPTCHA_REQUIRED:'抖音要求安全验证，请在 Chrome 完成验证后重试',WORKSHOP_VIDEO_UNAVAILABLE:'该抖音作品不可用，可能已删除或限制访问',WORKSHOP_VIDEO_ID_MISMATCH:'浏览器打开的作品与输入视频不一致，已停止处理',WORKSHOP_MEDIA_UNAVAILABLE:'未取得该视频可播放的媒体，请在 Chrome 确认作品可正常播放后重试',WORKSHOP_READ_TIMEOUT:'浏览器读取视频超时，请检查作品页面或重新加载扩展后重试',WORKSHOP_BROWSER_DISCONNECTED:'Chrome 连接已断开，请重新连接后重试'}
+            pending.reject(Error(message[code]??'浏览器未能读取该抖音视频，请确认作品可正常播放后重试'))
+          }else{
+            try{pending.resolve(validateWorkshopBrowserMedia(pending.input,body.media))}catch(error){pending.reject(error instanceof Error?error:Error('视频来源校验失败'));throw error}
+          }
+          response.end(JSON.stringify({ok:true}));return
+        }
+        if(path==='/video-discovery-report'||path==='/video-discovery-end'){
+          this.lastSeen=Date.now()
+          try{const result=path==='/video-discovery-report'?this.videoDiscovery.receive(body):this.videoDiscovery.end(body);response.end(JSON.stringify(result||{ok:true}))}
+          catch(error){this.videoDiscovery.end({batchId:body.batchId,runId:body.runId,errorCode:'VIDEO_DISCOVERY_VALIDATION_FAILED'});throw error}
+          return
+        }
+        if(path==='/video-information-report'){
+          this.lastSeen=Date.now();const result=await this.videoInformation.receive(body)
+          if(['OWNER_IDENTITY_MISMATCH','VIDEO_OWNER_MISMATCH'].includes(result.errorCode||''))this.blockPreparation('浏览器登录账号已变化，请重新检查所选账号。','OWNER_IDENTITY_MISMATCH')
+          response.end(JSON.stringify(result));return
+        }
         if(path==='/activity-report'||path==='/activity-progress'){
           this.lastSeen=Date.now()
           const runId=z.string().parse(body.runId)
@@ -323,6 +510,7 @@ export class FollowingSyncService {
       ownerSecUid:this.preferences.value.activeOwnerSecUid??null}
   }
   probeStructured():FollowingSyncState{
+    this.requireAccountIdle()
     this.clearPreparationDeadline();this.retryPreparationAt=0
     this.probeId=randomBytes(12).toString('hex')
     this.state.readiness={phase:'checking',preparationId:null,message:'正在验证底层关注数据通路…'}
@@ -343,6 +531,8 @@ export class FollowingSyncService {
           if(this.state.phase==='running'&&this.state.runId){this.plan.stop(this.state.runId,'blocked');this.state.phase='blocked';this.state.message='连接已断开，已保存清单保留'}
           this.plan.cancelBasic()
           if(this.status().activity?.phase==='running')this.activity.cancel()
+          this.videoInformation.cancel('VIDEO_BROWSER_DISCONNECTED')
+          this.videoDiscovery.cancel()
         }
         this.state.readiness={phase:online?'ready':'offline',preparationId:null,message:online?'关注扩展已连接，点击同步时核验抖音账号':'等待关注扩展连接，请在 Chrome 启用扩展'}
         this.changed()
@@ -471,6 +661,9 @@ export class FollowingSyncService {
     return this.status()
   }
   async stop():Promise<void>{
+    this.workshopVideo?.reject(Error('视频工坊已关闭'))
+    this.videoDiscovery.stop()
+    this.videoInformation.cancel()
     this.activity.cancel();this.plan.cancelBasic()
     this.clearRunDeadline()
     this.clearPreparationDeadline()

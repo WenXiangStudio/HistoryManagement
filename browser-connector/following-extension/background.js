@@ -1,6 +1,9 @@
 import {runFollowingPlan} from './following-plan-runner.js'
 import {runStructuredFollowingProbe} from './structured-probe.js'
 import {runCreatorActivityRefresh} from './creator-activity-runner.js'
+import {runVideoInformation} from './video-information-runner.js'
+import {runVideoDiscovery} from './video-discovery-runner.js'
+import {runWorkshopVideo} from './workshop-video-runner.js'
 const version=chrome.runtime.getManifest().version
 let nativePort=null,reconnecting=false,connection=null,running=false
 let activePreparationId=null,preparedTabId=null
@@ -62,6 +65,18 @@ async function listen(port,bridge){
       if(running)continue
       running=true
       try{
+        if(result.command.action==='workshop-video'){
+          await runWorkshopVideo(result.command)
+          continue
+        }
+        if(result.command.action==='video-discovery'){
+          await runVideoDiscovery(result.command)
+          continue
+        }
+        if(result.command.action==='video-information'){
+          await runVideoInformation(result.command)
+          continue
+        }
         if(result.command.action==='activity'){
           await runCreatorActivityRefresh(result.command)
           continue

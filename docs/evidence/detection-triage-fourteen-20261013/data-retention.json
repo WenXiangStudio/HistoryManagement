@@ -1,0 +1,6 @@
+{
+  "databases": true,
+  "credentials": true,
+  "runtimeSha256": true,
+  "appAsarSha256": true
+}

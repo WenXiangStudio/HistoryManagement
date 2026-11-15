@@ -2,7 +2,9 @@
 
 面向 Windows 的本地内容情报桌面应用，使用 Electron、React、TypeScript 和 SQLite。程序连续完成关注清单同步、博主主页状态读取、归属校验、保存和界面更新。
 
-应用版本 **0.1.13**，关注连接器 **0.8.4**。当前功能以本文及[实现说明](docs/architecture/following-and-creator-activity.md)为准；按日期保存的验收报告仅代表当次结果。
+应用版本 **0.1.52**，关注连接器 **0.8.12**。硅基流动GLM5.3Flash文本连接、Qwen3.5-4B图片连接已实测通过，设置页支持[自由新增和删除硅基流动模型](docs/evidence/siliconflow-dynamic-models-20261016.md)，复用同组已保存Key，原模型配置保留。视频页“仅云端识别画面”指定77秒样本12帧已由云端Qwen读取并在APP逐帧显示原图、文字和描述，全程渲染确认39.629秒；本次不运行本地模型、不转写音频或生成摘要，见[云端画面实测](docs/evidence/siliconflow-vision-20261012/README.md)。视觉准确率待用户核对。豆包录音文件识别极速版已集成，指定77秒音轨点击至原文显示3.093秒，用户确认本样本文字正确率100%、后台77秒换算0.017元，见[语音实测与人工验收](docs/evidence/doubao-flash-20261012/success-corrected-key.md)；用户已选其作为云端纯转写首选。设置页支持多套云端方案和可自由增删的硅基流动模型列表，各方案保存模型、协议与凭据，旧配置保留。所有云端配置区域均提供[连通测试](docs/evidence/cloud-connection-tests-20261016.md)，按已保存模型和凭据执行最小请求并显示结果与耗时。已有百炼qwen3.8-omni-flash单模型音轨/画面/摘要流程的质量边界见[历史验证](docs/evidence/qwen-video-app-20261011/README.md)。当前功能以本文及[实现说明](docs/architecture/following-and-creator-activity.md)为准；按日期保存的验收报告仅代表当次结果。
+
+**视频工坊（0.1.52）已按[新规划](docs/architecture/video-workshop.md)接通下载、分类与深度处理：** 首版以单条抖音视频链接为入口，预留“处理”下载与本地分类、“深度处理”豆包极速版转写和 `Qwen/Qwen3.5-122B-A10B` 画面识别、按原视频时间对齐的图文分析总结报告。有效链接可点击“处理”下载到 E 盘并完成本地分类，公开下载受限时通过已连接 Chrome 读取对应作品；用户当前短链已实际完成。点击“深度处理”使用豆包极速版取得原始分句时间、Qwen3.5-122B-A10B识别实际时间画面并生成可核对的图文分析总结，已在该34.712秒视频完成真实转写／18帧／4段报告。原收录作品保留在“历史资料”。见[深度处理实测](docs/evidence/workshop-deep-20261016.md)。下方原视频信息／收件箱处理规则是现存历史功能，不作为新工坊设计。
 
 ## 日常使用
 
@@ -15,7 +17,10 @@
 1. **同步关注清单**：完整分页读取，逐页入库。
 2. **补全基础资料**：只处理缺失字段，每批最多20位。
 3. **更新主页状态**：单作者、勾选作者或按频率分组，支持取消与继续剩余。
-4. **核验并补齐**：对异常组中的单个作者连续读取并校验缺口，成功后恢复正常分组。
+4. **核验并补齐**：异常分组提供“一键核验并补齐”，依次处理当前账号全部异常博主，也可单个核验。成功后恢复正常分组，未完成的保留异常并可继续剩余。
+5. **视频信息与历史资料**：采集作品后自动进行本地分类与抽帧截图，默认分类并发8。标记“感兴趣”只收录资料；点击“开始处理／继续处理”后才按类别处理：纯画面人工观看；图文由硅基流动Qwen3.5-4B识别并人工校对；口播仅豆包语音识别极速版转写；无法判定停在人工审核。完成初步文案的口播与图文进入**今日收件箱**，详情显示无时间戳完整正文及硅基流动GLM5.3Flash生成的总结、分析、观点原文依据与领域推测。模型自动使用各自已保存配置。手动处理规则见[0.1.47验证记录](docs/evidence/video-interest-manual-20261015.md)，旧分类流程与样本见[规范流程](docs/architecture/video-material-workflow-2026-10-13.md)及[验证记录](docs/evidence/video-workflow-20261013/README.md)。[初始演示模板](docs/local-templates/initial-demo-20261013/README.md)保留为源码参考。
+
+作品新增按累计历史的时间基线统计：上次最新发布时间 M 到本次采集时间 X，仅计 `M < 发布时间 ≤ X` 的已读公开作品。主页作品总数的净变化单独显示；旧置顶、历史补充和恢复公开不混入新发布。卡片支持展开按时间排序的累计作品及“已失效”标签，旧作品记录和间隔计算保留。详见[时间基线规则](docs/architecture/creator-publication-time-baseline-2026-10-13.md)。
 
 ## 频率分组与近期状态
 
@@ -63,6 +68,7 @@ npm test
 npm run test:following-flow
 npm run test:following-plan
 npm run test:creator-activity
+npm run test:video-information
 npm run test:project-boundaries
 npm run test:worker
 npm run test:native-host
@@ -90,7 +96,9 @@ node scripts/test-packaged-renderer.mjs 'release-following-background-final/win-
 
 ## 其他能力和资料位置
 
-正式作品详情、评论及完整分析尚未完成真实验收，功能门保持关闭。`poc/r8` 中部分模块仍用于隔离入口和打包，不应作为无用原型删除。媒体 ASR/OCR 通过设置页显式安装，模型和 Python 环境不进入 Git。云端分析使用用户自己的 API 配置，执行前确认费用。
+单视频基础信息的独立入口已通过[一条真实样本验收](docs/evidence/video-information-20261010/README.md)。原完整作品详情、评论及分析链路尚未完成真实验收，原功能门保持关闭。`poc/r8` 中部分模块仍用于隔离入口和打包，不应作为无用原型删除。媒体 ASR/OCR 通过设置页显式安装，模型和 Python 环境不进入 Git。云端分析使用用户自己的 API 配置，执行前确认费用。
+
+后续选型与实现可从[可借鉴项目、工具与 Skills 总目录](docs/research/reference-project-catalog.md)进入；[视频信息提取与结构化总结专题](docs/research/video-information-extraction-and-summary-2026-10-09.md)记录各参考对象的数据来源、处理方式和能力边界，并链接固定版本源码。
 
 | 目录 | 用途 |
 |---|---|
@@ -102,6 +110,9 @@ node scripts/test-packaged-renderer.mjs 'release-following-background-final/win-
 | `docs/architecture/` | 当前实现与功能门约束 |
 | `docs/handoff/` | 当前交接及按月归档的历史报告 |
 | `docs/evidence/` | 经审阅的验证结论和必要证据 |
+| [`docs/research/`](docs/research/README.md) | 技术研究、外部工具对比与已确认的借鉴方向 |
 | `local-data/` | 忽略提交的本机备份、原始证据和清理记录 |
 
 工作区仅保留原日常运行包。旧发布包、重复二进制、解包目录及已完成的临时验证配置可清理；用户日常资料在工作区之外。提交范围为源码、测试、维护文档和审阅证据，数据库、发现令牌、凭据和原始运行配置保持本地。
+
+2026-11-15 已将35个历史打包目录移至 `local-data/archive/release-builds-20261115/`，原日常运行包路径保留；归档清单、数据保留核对与本次离线检查见[工作区整理记录](docs/evidence/workspace-cleanup-20261115/README.md)。

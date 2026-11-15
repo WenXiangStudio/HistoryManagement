@@ -1,6 +1,6 @@
 import type {DatabaseSync} from 'node:sqlite'
 import type {CreatorListItem} from '../shared/contracts'
-import {creatorAutomaticTier} from '../shared/creatorRefreshPolicy'
+import {effectiveCreatorTier,creatorNeedsVerification} from '../shared/creatorRefreshPolicy'
 import {adjustedCreatorTier,creatorPriorityInputSchema,DEFAULT_CREATOR_PRIORITY,type CreatorPriorityState} from '../shared/creatorPriority'
 
 /** Manual priority is attached to owner + profile identity, independent of collection batches. */
@@ -31,7 +31,8 @@ export class CreatorPriorityStore {
     return {mode:row.mode as CreatorPriorityState['mode'],tier:row.tier as CreatorPriorityState['tier'],revision:Number(row.revision)}
   }
   decorate(owner:string|null,creators:CreatorListItem[]):CreatorListItem[]{
-    const saved=new Map(owner?this.db.prepare('SELECT * FROM creator_refresh_priorities WHERE owner_sec_uid=?').all(owner).map(row=>[String(row.creator_sec_uid),this.parse(row)]):[])
+    const secUid=creators.length===1?new URL(creators[0].profileUrl).pathname.split('/').at(-1):undefined
+    const saved=new Map(owner?this.db.prepare(`SELECT * FROM creator_refresh_priorities WHERE owner_sec_uid=?${secUid?' AND creator_sec_uid=?':''}`).all(owner,...(secUid?[secUid]:[])).map(row=>[String(row.creator_sec_uid),this.parse(row)]):[])
     return creators.map(creator=>({...creator,refreshPriority:saved.get(new URL(creator.profileUrl).pathname.split('/').at(-1)!)??{...DEFAULT_CREATOR_PRIORITY}}))
   }
   update(owner:string|null,creators:CreatorListItem[],input:unknown):CreatorPriorityState{
@@ -39,14 +40,18 @@ export class CreatorPriorityStore {
     if(!owner||owner!==values.ownerSecUid)throw Error('账号已切换，请重新打开博主资料库后设置权重')
     const creator=creators.find(item=>!item.isDemo&&new URL(item.profileUrl).pathname.split('/').at(-1)===values.secUid)
     if(!creator)throw Error('该博主不属于当前账号')
+    if(creatorNeedsVerification(creator))throw Error('请先核验并补齐这位博主的作品基线，再设置权重')
     this.db.exec('BEGIN IMMEDIATE')
     try{
       const row=this.db.prepare('SELECT * FROM creator_refresh_priorities WHERE owner_sec_uid=? AND creator_sec_uid=?').get(owner,values.secUid)
       const current=row?this.parse(row):DEFAULT_CREATOR_PRIORITY
       if(current.revision!==values.revision)throw Error('该博主权重已发生变化，请等待页面更新后重试')
-      // Repeated delivery of the same enabled mode must not move another level.
-      if(current.mode===values.mode){this.db.exec('COMMIT');return {...current}}
-      const next:CreatorPriorityState={mode:values.mode,tier:values.mode?adjustedCreatorTier(creatorAutomaticTier(creator),values.mode):null,revision:current.revision+1}
+      // Each confirmed click moves from the persisted tier. The revision check above
+      // prevents a repeated IPC delivery from applying the same step twice.
+      const effective=effectiveCreatorTier({...creator,refreshPriority:current})
+      const tier=values.mode?adjustedCreatorTier(effective,values.mode):null
+      if(values.mode?tier===effective:current.mode===null){this.db.exec('COMMIT');return {...current}}
+      const next:CreatorPriorityState={mode:values.mode,tier,revision:current.revision+1}
       this.db.prepare(`INSERT INTO creator_refresh_priorities VALUES(?,?,?,?,?,?) ON CONFLICT(owner_sec_uid,creator_sec_uid)
         DO UPDATE SET mode=excluded.mode,tier=excluded.tier,revision=excluded.revision,updated_at=excluded.updated_at`)
         .run(owner,values.secUid,next.mode,next.tier,next.revision,new Date().toISOString())

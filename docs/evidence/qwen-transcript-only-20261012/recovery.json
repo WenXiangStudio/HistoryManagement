@@ -1,0 +1,42 @@
+{
+  "workId": "7694535682575860393",
+  "responseId": "resp_9a9e6a65-0961-9de3-8c72-6adc84cadc4d",
+  "model": "qwen3.8-omni-flash",
+  "responseStatus": "completed",
+  "sameRequestRecovered": true,
+  "newRequestsDuringRecovery": 0,
+  "originalAppError": "RESPONSES_TIMEOUT",
+  "textSha256": "c8724d83b8da2f1184802e52028ef2ddf04350d2aa72391907d2b0b38ddf3577",
+  "textCharacters": 460,
+  "usage": {
+    "input_tokens": 794,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 54431,
+    "output_tokens_details": {
+      "reasoning_tokens": 54156
+    },
+    "total_tokens": 55225,
+    "x_details": [
+      {
+        "input_tokens": 794,
+        "output_tokens": 54431,
+        "total_tokens": 55225,
+        "input_tokens_details": {
+          "text_tokens": 260,
+          "audio_tokens": 534
+        },
+        "output_tokens_details": {
+          "text_tokens": 275,
+          "reasoning_tokens": 54156
+        },
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "x_billing_type": "response_api"
+      }
+    ]
+  },
+  "cashDebitVerified": false
+}

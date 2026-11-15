@@ -80,12 +80,13 @@ describe('CloudService approval batches', () => {
     expect(manifest.visionWorks[0].frames).toHaveLength(16)
   })
 
-  it('routes text and vision requests to independent providers and credentials', async () => {
+  it.each(['chat-completions','responses'] as const)('routes %s text and vision requests to independent providers and credentials', async (protocol) => {
     temporaryRoot = mkdtempSync(join(tmpdir(), 'signal-desk-cloud-routing-'))
     database = new AppDatabase(':memory:')
     database.seedDemo()
     database.saveSettings({
       textBaseUrl: 'https://text.example.com/v1',
+      textApiProtocol: protocol,
       textModel: 'text-model',
       visionBaseUrl: 'https://vision.example.com/openai/v1',
       visionModel: 'vision-model'
@@ -98,16 +99,18 @@ describe('CloudService approval batches', () => {
     database.db.prepare('INSERT INTO evidence_frames(work_id, frame_ref, time_ms, local_path, perceptual_hash) VALUES (?, ?, ?, ?, ?)')
       .run(work.id, 'frame-1', 2_000, path, createHash('sha256').update(bytes).digest('hex'))
 
-    const fetchMock = vi.fn(async (_input: string | URL | Request, _init?: RequestInit) => new Response(JSON.stringify({
-      choices: [{ message: { content: JSON.stringify({
+    const fetchMock = vi.fn(async (input: string | URL | Request, _init?: RequestInit) => {
+      const content=JSON.stringify({
         summary: '已完成分析',
         keyPoints: ['要点'],
         coreExpression: '核心表达',
         domains: [{ id: 'technology', confidence: 0.9 }],
         keywords: ['关键词'],
         confidence: 0.9
-      }) } }]
-    }), { status: 200, headers: { 'content-type': 'application/json' } }))
+      })
+      return String(input).endsWith('/responses')?new Response('data: '+JSON.stringify({type:'response.completed',response:{status:'completed',output:[{type:'message',content:[{type:'output_text',text:content}]}]}})+'\n\n'):
+        new Response(JSON.stringify({choices:[{message:{content}}]}),{status:200,headers:{'content-type':'application/json'}})
+    })
     vi.stubGlobal('fetch', fetchMock)
     const textCredentials = { getApiKey: () => 'text-secret' } as CredentialStore
     const visionCredentials = { getApiKey: () => 'vision-secret' } as CredentialStore
@@ -124,7 +127,7 @@ describe('CloudService approval batches', () => {
       authorization: (init?.headers as Record<string, string>).authorization,
       body: JSON.parse(String(init?.body)) as { model: string; messages: Array<{ content: unknown }> }
     }))
-    const textRequests = requests.filter((request) => request.url === 'https://text.example.com/v1/chat/completions')
+    const textRequests = requests.filter((request) => request.url === 'https://text.example.com/v1/'+(protocol==='responses'?'responses':'chat/completions'))
     const visionRequests = requests.filter((request) => request.url === 'https://vision.example.com/openai/v1/chat/completions')
     expect(textRequests.length).toBeGreaterThanOrEqual(2)
     expect(textRequests.every((request) => request.authorization === 'Bearer text-secret' && request.body.model === 'text-model')).toBe(true)

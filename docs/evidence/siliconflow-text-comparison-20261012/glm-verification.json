@@ -1,0 +1,546 @@
+{
+  "rawStreamMatchesSavedOutput": true,
+  "inputMessagesMatchOtherModel": true,
+  "inputTextExact": true,
+  "exactlyThreeRequiredHeadings": true,
+  "startsWithFirstHeading": true,
+  "viewpointLabels": {
+    "主要观点：": 0,
+    "展开分析：": 6,
+    "原文依据：": 6
+  },
+  "numberedViewpointLabels": 6,
+  "viewpointsHaveAllThreeExactLabels": false,
+  "viewpointsHaveAllThreeLabelsIncludingNumbered": true,
+  "mainEvidenceCount": 6,
+  "mainEvidenceExact": true,
+  "eventClueCount": 6,
+  "eventCluesExact": true,
+  "allQuotedSpansExact": false,
+  "domainsSectionPresent": true,
+  "speculationSectionPresent": true,
+  "eventUncertaintyLabelPresent": true,
+  "quotes": [
+    {
+      "line": 3,
+      "text": "AHM 人类数学协会",
+      "isExactSourceSubstring": true,
+      "sourceStart": 7,
+      "sourceEnd": 17,
+      "role": "other"
+    },
+    {
+      "line": 3,
+      "text": "abusive 行为",
+      "isExactSourceSubstring": true,
+      "sourceStart": 43,
+      "sourceEnd": 53,
+      "role": "other"
+    },
+    {
+      "line": 3,
+      "text": "攻克",
+      "isExactSourceSubstring": true,
+      "sourceStart": 145,
+      "sourceEnd": 147,
+      "role": "other"
+    },
+    {
+      "line": 3,
+      "text": "强行拉黑",
+      "isExactSourceSubstring": true,
+      "sourceStart": 215,
+      "sourceEnd": 219,
+      "role": "other"
+    },
+    {
+      "line": 3,
+      "text": "没说",
+      "isExactSourceSubstring": true,
+      "sourceStart": 361,
+      "sourceEnd": 363,
+      "role": "other"
+    },
+    {
+      "line": 3,
+      "text": "接受",
+      "isExactSourceSubstring": true,
+      "sourceStart": 402,
+      "sourceEnd": 404,
+      "role": "other"
+    },
+    {
+      "line": 3,
+      "text": "手搓",
+      "isExactSourceSubstring": true,
+      "sourceStart": 456,
+      "sourceEnd": 458,
+      "role": "other"
+    },
+    {
+      "line": 3,
+      "text": "古法才是最好的",
+      "isExactSourceSubstring": true,
+      "sourceStart": 467,
+      "sourceEnd": 474,
+      "role": "other"
+    },
+    {
+      "line": 3,
+      "text": "AHM 人类数学协会",
+      "isExactSourceSubstring": true,
+      "sourceStart": 7,
+      "sourceEnd": 17,
+      "role": "other"
+    },
+    {
+      "line": 8,
+      "text": "彻底怒了",
+      "isExactSourceSubstring": true,
+      "sourceStart": 2,
+      "sourceEnd": 6,
+      "role": "other"
+    },
+    {
+      "line": 8,
+      "text": "庄严呼吁",
+      "isExactSourceSubstring": true,
+      "sourceStart": 17,
+      "sourceEnd": 21,
+      "role": "other"
+    },
+    {
+      "line": 8,
+      "text": "极度的愤怒和被冒犯到",
+      "isExactSourceSubstring": true,
+      "sourceStart": 55,
+      "sourceEnd": 65,
+      "role": "other"
+    },
+    {
+      "line": 8,
+      "text": "文案声称",
+      "isExactSourceSubstring": false,
+      "role": "other"
+    },
+    {
+      "line": 9,
+      "text": "AHM 人类数学协会庄严呼吁所有数学家停止使用 OpenAI，对他们的 abusive 行为表示极度的愤怒和被冒犯到",
+      "isExactSourceSubstring": true,
+      "sourceStart": 7,
+      "sourceEnd": 65,
+      "role": "main-point-evidence"
+    },
+    {
+      "line": 12,
+      "text": "三小时平均攻克一个数学博士毕生工作之方向",
+      "isExactSourceSubstring": false,
+      "role": "other"
+    },
+    {
+      "line": 12,
+      "text": "攻克",
+      "isExactSourceSubstring": true,
+      "sourceStart": 145,
+      "sourceEnd": 147,
+      "role": "other"
+    },
+    {
+      "line": 13,
+      "text": "直接把人类剩余的 Millennium 千禧年的难题，还有一些其他数学猜想。当成一个 GitHub 开源仓库的形式，用 GPT 的 Pro 模型。三个小时平均攻克一个数学博士毕生工作之方向。",
+      "isExactSourceSubstring": true,
+      "sourceStart": 66,
+      "sourceEnd": 161,
+      "role": "main-point-evidence"
+    },
+    {
+      "line": 15,
+      "text": "强行拉黑",
+      "isExactSourceSubstring": true,
+      "sourceStart": 215,
+      "sourceEnd": 219,
+      "role": "other"
+    },
+    {
+      "line": 16,
+      "text": "陶哲轩再次转发了这个推文",
+      "isExactSourceSubstring": true,
+      "sourceStart": 185,
+      "sourceEnd": 197,
+      "role": "other"
+    },
+    {
+      "line": 16,
+      "text": "再次",
+      "isExactSourceSubstring": true,
+      "sourceStart": 188,
+      "sourceEnd": 190,
+      "role": "other"
+    },
+    {
+      "line": 16,
+      "text": "强行拉黑",
+      "isExactSourceSubstring": true,
+      "sourceStart": 215,
+      "sourceEnd": 219,
+      "role": "other"
+    },
+    {
+      "line": 16,
+      "text": "人类得的菲尔兹奖",
+      "isExactSourceSubstring": true,
+      "sourceStart": 239,
+      "sourceEnd": 247,
+      "role": "other"
+    },
+    {
+      "line": 16,
+      "text": "OpenAI 推理出来的",
+      "isExactSourceSubstring": true,
+      "sourceStart": 256,
+      "sourceEnd": 268,
+      "role": "other"
+    },
+    {
+      "line": 17,
+      "text": "现在陶哲轩再次转发了这个推文，数学界现在对 OpenAI 是彻底强行拉黑的情况，毕竟菲尔兹奖以后也没啥用，你得分人类得的菲尔兹奖和，对吧？和这个 OpenAI 推理出来的",
+      "isExactSourceSubstring": true,
+      "sourceStart": 183,
+      "sourceEnd": 268,
+      "role": "main-point-evidence"
+    },
+    {
+      "line": 19,
+      "text": "没说",
+      "isExactSourceSubstring": true,
+      "sourceStart": 361,
+      "sourceEnd": 363,
+      "role": "other"
+    },
+    {
+      "line": 20,
+      "text": "你觉得 claude 解不出来那些题吗？他可能只是没说",
+      "isExactSourceSubstring": true,
+      "sourceStart": 336,
+      "sourceEnd": 363,
+      "role": "other"
+    },
+    {
+      "line": 21,
+      "text": "但是他们要去用 claude 咋办呢？你觉得 claude 解不出来那些题吗？他可能只是没说。",
+      "isExactSourceSubstring": true,
+      "sourceStart": 317,
+      "sourceEnd": 364,
+      "role": "main-point-evidence"
+    },
+    {
+      "line": 24,
+      "text": "物理化学",
+      "isExactSourceSubstring": true,
+      "sourceStart": 419,
+      "sourceEnd": 423,
+      "role": "other"
+    },
+    {
+      "line": 24,
+      "text": "所有基础学科界",
+      "isExactSourceSubstring": true,
+      "sourceStart": 426,
+      "sourceEnd": 433,
+      "role": "other"
+    },
+    {
+      "line": 24,
+      "text": "接受",
+      "isExactSourceSubstring": true,
+      "sourceStart": 402,
+      "sourceEnd": 404,
+      "role": "other"
+    },
+    {
+      "line": 24,
+      "text": "拉黑",
+      "isExactSourceSubstring": true,
+      "sourceStart": 217,
+      "sourceEnd": 219,
+      "role": "other"
+    },
+    {
+      "line": 25,
+      "text": "这不是我说给数学界，也说给物理化学，说给所有基础学科界。咱们只有接受了啊，才能和它共生。",
+      "isExactSourceSubstring": true,
+      "sourceStart": 406,
+      "sourceEnd": 450,
+      "role": "main-point-evidence"
+    },
+    {
+      "line": 27,
+      "text": "手搓",
+      "isExactSourceSubstring": true,
+      "sourceStart": 456,
+      "sourceEnd": 458,
+      "role": "other"
+    },
+    {
+      "line": 27,
+      "text": "古法",
+      "isExactSourceSubstring": true,
+      "sourceStart": 467,
+      "sourceEnd": 469,
+      "role": "other"
+    },
+    {
+      "line": 28,
+      "text": "古法才是最好的",
+      "isExactSourceSubstring": true,
+      "sourceStart": 467,
+      "sourceEnd": 474,
+      "role": "other"
+    },
+    {
+      "line": 28,
+      "text": "要接受 AI",
+      "isExactSourceSubstring": false,
+      "role": "other"
+    },
+    {
+      "line": 29,
+      "text": "你像我，坚持手搓啊，视频都自个录，古法才是最好的，Bro。",
+      "isExactSourceSubstring": true,
+      "sourceStart": 450,
+      "sourceEnd": 479,
+      "role": "main-point-evidence"
+    },
+    {
+      "line": 34,
+      "text": "推理",
+      "isExactSourceSubstring": true,
+      "sourceStart": 263,
+      "sourceEnd": 265,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 34,
+      "text": "推理过程",
+      "isExactSourceSubstring": true,
+      "sourceStart": 288,
+      "sourceEnd": 292,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 35,
+      "text": "Millennium 千禧年的难题",
+      "isExactSourceSubstring": true,
+      "sourceStart": 75,
+      "sourceEnd": 92,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 35,
+      "text": "数学猜想",
+      "isExactSourceSubstring": true,
+      "sourceStart": 99,
+      "sourceEnd": 103,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 35,
+      "text": "数学家",
+      "isExactSourceSubstring": true,
+      "sourceStart": 23,
+      "sourceEnd": 26,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 35,
+      "text": "数学博士",
+      "isExactSourceSubstring": true,
+      "sourceStart": 149,
+      "sourceEnd": 153,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 35,
+      "text": "菲尔兹奖",
+      "isExactSourceSubstring": true,
+      "sourceStart": 225,
+      "sourceEnd": 229,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 35,
+      "text": "物理化学",
+      "isExactSourceSubstring": true,
+      "sourceStart": 419,
+      "sourceEnd": 423,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 35,
+      "text": "所有基础学科界",
+      "isExactSourceSubstring": true,
+      "sourceStart": 426,
+      "sourceEnd": 433,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 36,
+      "text": "推文",
+      "isExactSourceSubstring": true,
+      "sourceStart": 195,
+      "sourceEnd": 197,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 36,
+      "text": "转发了这个推文",
+      "isExactSourceSubstring": true,
+      "sourceStart": 190,
+      "sourceEnd": 197,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 36,
+      "text": "GitHub 开源仓库",
+      "isExactSourceSubstring": true,
+      "sourceStart": 109,
+      "sourceEnd": 120,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 36,
+      "text": "拉黑",
+      "isExactSourceSubstring": true,
+      "sourceStart": 217,
+      "sourceEnd": 219,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 37,
+      "text": "手搓",
+      "isExactSourceSubstring": true,
+      "sourceStart": 456,
+      "sourceEnd": 458,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 37,
+      "text": "视频都自个录",
+      "isExactSourceSubstring": true,
+      "sourceStart": 460,
+      "sourceEnd": 466,
+      "role": "domain-evidence"
+    },
+    {
+      "line": 40,
+      "text": "用 GPT 的 Pro 模型。三个小时平均攻克一个数学博士毕生工作之方向",
+      "isExactSourceSubstring": true,
+      "sourceStart": 124,
+      "sourceEnd": 160,
+      "role": "event-clue"
+    },
+    {
+      "line": 40,
+      "text": "Pro 模型",
+      "isExactSourceSubstring": true,
+      "sourceStart": 132,
+      "sourceEnd": 138,
+      "role": "other"
+    },
+    {
+      "line": 40,
+      "text": "三小时攻克",
+      "isExactSourceSubstring": false,
+      "role": "other"
+    },
+    {
+      "line": 41,
+      "text": "现在陶哲轩再次转发了这个推文",
+      "isExactSourceSubstring": true,
+      "sourceStart": 183,
+      "sourceEnd": 197,
+      "role": "event-clue"
+    },
+    {
+      "line": 41,
+      "text": "再次",
+      "isExactSourceSubstring": true,
+      "sourceStart": 188,
+      "sourceEnd": 190,
+      "role": "other"
+    },
+    {
+      "line": 42,
+      "text": "AHM 人类数学协会",
+      "isExactSourceSubstring": true,
+      "sourceStart": 7,
+      "sourceEnd": 17,
+      "role": "other"
+    },
+    {
+      "line": 42,
+      "text": "AHM 人类数学协会庄严呼吁所有数学家停止使用 OpenAI",
+      "isExactSourceSubstring": true,
+      "sourceStart": 7,
+      "sourceEnd": 37,
+      "role": "event-clue"
+    },
+    {
+      "line": 42,
+      "text": "AHM 人类数学协会",
+      "isExactSourceSubstring": true,
+      "sourceStart": 7,
+      "sourceEnd": 17,
+      "role": "other"
+    },
+    {
+      "line": 43,
+      "text": "数学界现在对 OpenAI 是彻底强行拉黑的情况",
+      "isExactSourceSubstring": true,
+      "sourceStart": 198,
+      "sourceEnd": 222,
+      "role": "event-clue"
+    },
+    {
+      "line": 43,
+      "text": "但是他们要去用 claude 咋办呢",
+      "isExactSourceSubstring": true,
+      "sourceStart": 317,
+      "sourceEnd": 335,
+      "role": "event-clue"
+    },
+    {
+      "line": 43,
+      "text": "拉黑",
+      "isExactSourceSubstring": true,
+      "sourceStart": 217,
+      "sourceEnd": 219,
+      "role": "other"
+    },
+    {
+      "line": 44,
+      "text": "直接把人类剩余的 Millennium 千禧年的难题，还有一些其他数学猜想。当成一个 GitHub 开源仓库的形式",
+      "isExactSourceSubstring": true,
+      "sourceStart": 66,
+      "sourceEnd": 123,
+      "role": "event-clue"
+    },
+    {
+      "line": 44,
+      "text": "攻克",
+      "isExactSourceSubstring": true,
+      "sourceStart": 145,
+      "sourceEnd": 147,
+      "role": "other"
+    },
+    {
+      "line": 44,
+      "text": "攻克",
+      "isExactSourceSubstring": true,
+      "sourceStart": 145,
+      "sourceEnd": 147,
+      "role": "other"
+    }
+  ],
+  "scope": "Mechanical source/format checks only. Does not score factual truth, completeness of analysis, or quality of event inference."
+}

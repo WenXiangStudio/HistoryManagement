@@ -1,0 +1,698 @@
+{
+  "startedAt": "2026-10-12T16:37:14.657126+00:00",
+  "records": [
+    {
+      "workId": "7693007317557726505",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-0e3293a8afee4e9d9e223d4d\\source.mp4",
+      "sha256": "14016cd1fee70a8e1fa1dc6f1973d0d524267add2bd51ac94c56ad2b8d4f6f29",
+      "byteLength": 47924341
+    },
+    {
+      "workId": "7694967966249527524",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-13058bbf0ffd3b7933ed70e9\\source.mp4",
+      "sha256": "2fd8e1c462417aeeef05a8ed8dfbe953c5ab3448085e73a51d3b23ad7d86b152",
+      "byteLength": 8688339
+    },
+    {
+      "workId": "7694102162485284115",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-38c155365c8823f7499d11c9\\source.mp4",
+      "sha256": "66dc6e0a594bed3a580ec6b2764052afb0a9965aa2ee34c3c5d2a803bc593e58",
+      "byteLength": 11940547
+    },
+    {
+      "workId": "7694976987546490980",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-603f5967de28bca0bfaaa531\\source.mp4",
+      "sha256": "6350c9ea535fd4f4588af56de460aa28b201dc0edab0fdf99b467ca031c11be4",
+      "byteLength": 7500394
+    },
+    {
+      "workId": "7694535682575860393",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-6308b5485e404fbe8a60d170\\source.mp4",
+      "sha256": "869c1542b94651f778b9e53e96f536f7a20a8c251273645ae88faa1fab2c5f04",
+      "byteLength": 8048113
+    },
+    {
+      "workId": "7691400398775780947",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-69d19c860be22589dd3c0a5b\\source.mp4",
+      "sha256": "bd39ea8ab6a5f7e463980cd619de23f1d33a51929e3e347670c32c92ea894912",
+      "byteLength": 6571374
+    },
+    {
+      "workId": "7694429527623109951",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-6ee8135e704c7805f249cece\\source.mp4",
+      "sha256": "0235ac1866faa9af0829793a6f359bbdb193051cc59b0d5c10560942808023cd",
+      "byteLength": 103336240
+    },
+    {
+      "workId": "7694965291436713855",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-8cb1918d0f634bbb7d4cba02\\source.mp4",
+      "sha256": "3f2b8ad42dc13acc682bc2ac8126348e18e3f8e818db59d49699ec1200ff5374",
+      "byteLength": 13594348
+    },
+    {
+      "workId": "7691353360976416034",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-931dda814076bd5f192641a3\\source.mp4",
+      "sha256": "a647d9fe3a878921391460230b6e8a52fcc4d5198ae67942de8f8090fc41d044",
+      "byteLength": 240456200
+    },
+    {
+      "workId": "7694979794185974500",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-96ed041b9d6000419f842509\\source.mp4",
+      "sha256": "d86fc6c028275d7e5ca8281ad0228e29ed94cd21b0a62542069f03c5c2db9b87",
+      "byteLength": 9026177
+    },
+    {
+      "workId": "7694998493451454454",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-a73fa57ff9b99f3025cc65c0\\source.mp4",
+      "sha256": "32e22f5d1ed6f5c65786124920b7070378fa170e3be297e46381a3ac776c5145",
+      "byteLength": 5135482
+    },
+    {
+      "workId": "7692025326582467849",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-aba4c3250fae2c7a284ddee4\\source.mp4",
+      "sha256": "28ff4b80587a6f4651b55a7cf40c4b0cb80258343e602f20ef51400f50589551",
+      "byteLength": 90827662
+    },
+    {
+      "workId": "7693242837692894504",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-cf7d07d9a6c88f87eb95d522\\source.mp4",
+      "sha256": "0d3aa5e07f32d5c255cdf9e035dbf5184555ef3aca95353fa225a9c53b08b851",
+      "byteLength": 49352650
+    },
+    {
+      "workId": "7682043534987300106",
+      "sourcePath": "C:\\Users\\Administrator\\AppData\\Local\\SignalDeskFollowingReview\\video-content\\evidence\\video-info-e2eb09da9ff7de0df5bbcd69\\source.mp4",
+      "sha256": "a3c9253c60dc3213794af78e106bfebe7cdffc0c682b9d779026c1f9a2c3d412",
+      "byteLength": 2466782
+    }
+  ],
+  "scope": "14 originals already in official library; excludes 3 independent triage samples",
+  "models": [
+    {
+      "name": "Silero VAD v6",
+      "sha256": "4cbf549b8326f60f80f2536d9eefeb450a9abe83365a098031c89719f1be17d2"
+    },
+    {
+      "name": "PP-OCRv5_mobile_det",
+      "sha256": "afa1820cb16c1fd0dad589d0f8b389139061c1ef6d68019685fd07be997dda5b"
+    }
+  ],
+  "machine": {
+    "physicalCores": 10,
+    "logicalCores": 16,
+    "memoryTotalBytes": 34039967744,
+    "memoryAvailableBytes": 19237654528
+  },
+  "rules": {
+    "version": "existence-detection-triage-v1",
+    "classificationThresholdStatus": "exploratory rules fixed before inference; user accuracy review pending",
+    "vad": {
+      "threshold": 0.5,
+      "negThreshold": 0.35,
+      "minSpeechMs": 250,
+      "minSilenceMs": 200,
+      "speechPadMs": 0,
+      "highSpeechFraction": 0.6,
+      "sparseSpeechFraction": 0.1,
+      "temporalBins": 10,
+      "highSpeechBinCoverage": 0.5,
+      "channelPolicy": "highest whole-track RMS channel; the other channel is not independently assessed"
+    },
+    "frames": {
+      "count": 8,
+      "longEdge": 960,
+      "lastTime": "duration minus 0.30 seconds",
+      "method": "input seeking with showinfo actual source timestamps; no earlier frame cache"
+    },
+    "textDetection": {
+      "model": "PP-OCRv5_mobile_det",
+      "pixelThreshold": 0.3,
+      "boxThreshold": 0.6,
+      "minimumAreaFraction": 0.0001,
+      "minimumWidthFraction": 0.005,
+      "minimumHeightFraction": 0.003,
+      "smallEdgeCandidate": "area <=2.5% and height <=6%, center in outer 10% vertical or 12% horizontal",
+      "textEvidence": "at least 2 of 8 frames retain geometric text candidates",
+      "charactersRecognized": false,
+      "overlayHeuristic": "geometry only; cannot prove watermark identity"
+    },
+    "visualChange": {
+      "graySize": [
+        96,
+        96
+      ],
+      "changedPixelDelta": 25,
+      "largeMeanDifferenceFraction": 0.08,
+      "largeChangedPixelFraction": 0.25,
+      "nearStaticMeanFraction": 0.01,
+      "nearStaticChangedPixelFraction": 0.01,
+      "scope": "differences between eight sparse samples, not continuous motion or semantic change"
+    },
+    "labels": {
+      "visual": "纯画面主导",
+      "visual_text": "图文结合（无语音/口播）",
+      "speech": "口播主导或口播加图文",
+      "pending": "待确认"
+    },
+    "classification": [
+      "speech fraction >=60% and speech in >=50% of timeline bins: speech category, strong rule evidence",
+      "speech fraction >10%: speech category candidate, moderate/low rule evidence",
+      "zero speech and >=2 retained text frames: visual-text category",
+      "speech fraction <=10% and <2 retained text frames: visual category candidate (sparse voice allowed)",
+      "speech fraction >0% and <=10% and >=2 retained text frames: unresolved boundary; no forced fourth category"
+    ],
+    "limits": {
+      "workerCpuThreads": 2,
+      "ffmpegThreads": 1,
+      "minimumProjectedAvailableBytes": 6442450944,
+      "emergencyAvailableBytes": 2147483648,
+      "waveReadyTimeoutSeconds": 180,
+      "waveTaskTimeoutSeconds": 900
+    }
+  },
+  "noCloud": true,
+  "noASR": true,
+  "noTextRecognition": true,
+  "noSemanticClassification": true,
+  "humanAccuracyAssessment": "pending",
+  "retention": {
+    "databases": true,
+    "credentials": true,
+    "runtimeSha256": true,
+    "appAsarSha256": true
+  },
+  "highestVerifiedConcurrency": 14,
+  "fastestWarmConcurrency": 8,
+  "fastestColdConcurrency": 8,
+  "scriptElapsedMs": 194764.22,
+  "finishedAt": "2026-10-12T16:40:29.166566+00:00",
+  "status": "complete",
+  "waves": [
+    {
+      "concurrencyConfigured": 1,
+      "observedPeakActiveVideos": 1,
+      "initializationWallMs": 7769.84,
+      "warmBatchMs": 61478.396,
+      "coldBatchThroughSavedResultsMs": 69248.236,
+      "coldIncludesPoolShutdown": false,
+      "videosPerMinuteWarm": 13.663,
+      "meanPerVideoProcessingMs": 4387.318,
+      "all14Completed": true,
+      "sameDetectionAndClassificationAsBaseline": true,
+      "resource": {
+        "minAvailableBytes": 17410916352,
+        "peakChildRssBytes": 1764077568,
+        "emergency": false,
+        "samples": 264
+      },
+      "workers": [
+        {
+          "pid": 8164,
+          "readyAt": "2026-10-12T16:37:22.392748+00:00",
+          "vadImportLoadMs": 3483.733,
+          "detectorConstructMs": 1654.944,
+          "totalInitializationMs": 7620.376,
+          "rssBytes": 562540544,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        }
+      ]
+    },
+    {
+      "concurrencyConfigured": 2,
+      "observedPeakActiveVideos": 2,
+      "initializationWallMs": 5136.81,
+      "warmBatchMs": 33332.163,
+      "coldBatchThroughSavedResultsMs": 38468.974,
+      "coldIncludesPoolShutdown": false,
+      "videosPerMinuteWarm": 25.201,
+      "meanPerVideoProcessingMs": 4652.208,
+      "all14Completed": true,
+      "sameDetectionAndClassificationAsBaseline": true,
+      "resource": {
+        "minAvailableBytes": 16901169152,
+        "peakChildRssBytes": 2419482624,
+        "emergency": false,
+        "samples": 148
+      },
+      "workers": [
+        {
+          "pid": 16624,
+          "readyAt": "2026-10-12T16:38:29.678745+00:00",
+          "vadImportLoadMs": 2299.002,
+          "detectorConstructMs": 980.333,
+          "totalInitializationMs": 4951.319,
+          "rssBytes": 561643520,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 3356,
+          "readyAt": "2026-10-12T16:38:29.678745+00:00",
+          "vadImportLoadMs": 2298.934,
+          "detectorConstructMs": 980.55,
+          "totalInitializationMs": 4951.418,
+          "rssBytes": 564023296,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        }
+      ]
+    },
+    {
+      "concurrencyConfigured": 4,
+      "observedPeakActiveVideos": 4,
+      "initializationWallMs": 5543.765,
+      "warmBatchMs": 20948.774,
+      "coldBatchThroughSavedResultsMs": 26492.539,
+      "coldIncludesPoolShutdown": false,
+      "videosPerMinuteWarm": 40.098,
+      "meanPerVideoProcessingMs": 5362.709,
+      "all14Completed": true,
+      "sameDetectionAndClassificationAsBaseline": true,
+      "resource": {
+        "minAvailableBytes": 15919321088,
+        "peakChildRssBytes": 3707301888,
+        "emergency": false,
+        "samples": 103
+      },
+      "workers": [
+        {
+          "pid": 15084,
+          "readyAt": "2026-10-12T16:39:09.337590+00:00",
+          "vadImportLoadMs": 2531.032,
+          "detectorConstructMs": 1035.17,
+          "totalInitializationMs": 5327.763,
+          "rssBytes": 563220480,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 16308,
+          "readyAt": "2026-10-12T16:39:09.346088+00:00",
+          "vadImportLoadMs": 2528.271,
+          "detectorConstructMs": 1043.942,
+          "totalInitializationMs": 5336.056,
+          "rssBytes": 564486144,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 8684,
+          "readyAt": "2026-10-12T16:39:09.335330+00:00",
+          "vadImportLoadMs": 2532.996,
+          "detectorConstructMs": 1032.583,
+          "totalInitializationMs": 5327.616,
+          "rssBytes": 564125696,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 9064,
+          "readyAt": "2026-10-12T16:39:09.349597+00:00",
+          "vadImportLoadMs": 2528.638,
+          "detectorConstructMs": 1064.829,
+          "totalInitializationMs": 5339.428,
+          "rssBytes": 561745920,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        }
+      ]
+    },
+    {
+      "concurrencyConfigured": 8,
+      "observedPeakActiveVideos": 8,
+      "initializationWallMs": 6574.312,
+      "warmBatchMs": 18258.873,
+      "coldBatchThroughSavedResultsMs": 24833.186,
+      "coldIncludesPoolShutdown": false,
+      "videosPerMinuteWarm": 46.005,
+      "meanPerVideoProcessingMs": 7631.039,
+      "all14Completed": true,
+      "sameDetectionAndClassificationAsBaseline": true,
+      "resource": {
+        "minAvailableBytes": 13829525504,
+        "peakChildRssBytes": 6348546048,
+        "emergency": false,
+        "samples": 98
+      },
+      "workers": [
+        {
+          "pid": 14904,
+          "readyAt": "2026-10-12T16:39:37.919393+00:00",
+          "vadImportLoadMs": 3117.9,
+          "detectorConstructMs": 1200.5,
+          "totalInitializationMs": 6362.191,
+          "rssBytes": 562323456,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 1804,
+          "readyAt": "2026-10-12T16:39:37.900182+00:00",
+          "vadImportLoadMs": 3111.908,
+          "detectorConstructMs": 1211.579,
+          "totalInitializationMs": 6351.08,
+          "rssBytes": 563097600,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 18720,
+          "readyAt": "2026-10-12T16:39:37.631354+00:00",
+          "vadImportLoadMs": 2928.952,
+          "detectorConstructMs": 1226.434,
+          "totalInitializationMs": 6091.317,
+          "rssBytes": 564330496,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 20024,
+          "readyAt": "2026-10-12T16:39:37.638372+00:00",
+          "vadImportLoadMs": 2856.947,
+          "detectorConstructMs": 1253.286,
+          "totalInitializationMs": 6093.145,
+          "rssBytes": 561795072,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 22424,
+          "readyAt": "2026-10-12T16:39:37.953934+00:00",
+          "vadImportLoadMs": 3130.942,
+          "detectorConstructMs": 1197.401,
+          "totalInitializationMs": 6399.496,
+          "rssBytes": 563638272,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 3684,
+          "readyAt": "2026-10-12T16:39:37.983567+00:00",
+          "vadImportLoadMs": 3174.223,
+          "detectorConstructMs": 1206.343,
+          "totalInitializationMs": 6427.028,
+          "rssBytes": 562601984,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 3932,
+          "readyAt": "2026-10-12T16:39:37.726588+00:00",
+          "vadImportLoadMs": 3047.913,
+          "detectorConstructMs": 1189.197,
+          "totalInitializationMs": 6174.061,
+          "rssBytes": 563990528,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 7912,
+          "readyAt": "2026-10-12T16:39:37.971476+00:00",
+          "vadImportLoadMs": 3166.261,
+          "detectorConstructMs": 1194.148,
+          "totalInitializationMs": 6414.471,
+          "rssBytes": 563978240,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        }
+      ]
+    },
+    {
+      "concurrencyConfigured": 14,
+      "observedPeakActiveVideos": 14,
+      "initializationWallMs": 9714.921,
+      "warmBatchMs": 19345.842,
+      "coldBatchThroughSavedResultsMs": 29060.764,
+      "coldIncludesPoolShutdown": false,
+      "videosPerMinuteWarm": 43.42,
+      "meanPerVideoProcessingMs": 11513.356,
+      "all14Completed": true,
+      "sameDetectionAndClassificationAsBaseline": true,
+      "resource": {
+        "minAvailableBytes": 11150954496,
+        "peakChildRssBytes": 9794244608,
+        "emergency": false,
+        "samples": 115
+      },
+      "workers": [
+        {
+          "pid": 10236,
+          "readyAt": "2026-10-12T16:40:06.511461+00:00",
+          "vadImportLoadMs": 4180.522,
+          "detectorConstructMs": 1745.231,
+          "totalInitializationMs": 8571.784,
+          "rssBytes": 563486720,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 16228,
+          "readyAt": "2026-10-12T16:40:07.196089+00:00",
+          "vadImportLoadMs": 4816.098,
+          "detectorConstructMs": 1646.787,
+          "totalInitializationMs": 9237.352,
+          "rssBytes": 562139136,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 19740,
+          "readyAt": "2026-10-12T16:40:07.337164+00:00",
+          "vadImportLoadMs": 4852.737,
+          "detectorConstructMs": 1656.084,
+          "totalInitializationMs": 9389.089,
+          "rssBytes": 562208768,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 22104,
+          "readyAt": "2026-10-12T16:40:07.357215+00:00",
+          "vadImportLoadMs": 4889.379,
+          "detectorConstructMs": 1615.233,
+          "totalInitializationMs": 9395.375,
+          "rssBytes": 563834880,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 22688,
+          "readyAt": "2026-10-12T16:40:07.358220+00:00",
+          "vadImportLoadMs": 4883.272,
+          "detectorConstructMs": 1602.523,
+          "totalInitializationMs": 9397.741,
+          "rssBytes": 562298880,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 22816,
+          "readyAt": "2026-10-12T16:40:07.361790+00:00",
+          "vadImportLoadMs": 4872.59,
+          "detectorConstructMs": 1643.53,
+          "totalInitializationMs": 9401.951,
+          "rssBytes": 564408320,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 22820,
+          "readyAt": "2026-10-12T16:40:06.497941+00:00",
+          "vadImportLoadMs": 4202.023,
+          "detectorConstructMs": 1708.048,
+          "totalInitializationMs": 8554.913,
+          "rssBytes": 562106368,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 22852,
+          "readyAt": "2026-10-12T16:40:07.344187+00:00",
+          "vadImportLoadMs": 4898.139,
+          "detectorConstructMs": 1635.278,
+          "totalInitializationMs": 9390.42,
+          "rssBytes": 564781056,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 22896,
+          "readyAt": "2026-10-12T16:40:07.203662+00:00",
+          "vadImportLoadMs": 4737.64,
+          "detectorConstructMs": 1657.561,
+          "totalInitializationMs": 9243.27,
+          "rssBytes": 563015680,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 23228,
+          "readyAt": "2026-10-12T16:40:07.155691+00:00",
+          "vadImportLoadMs": 4692.694,
+          "detectorConstructMs": 1674.812,
+          "totalInitializationMs": 9199.209,
+          "rssBytes": 561786880,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 23356,
+          "readyAt": "2026-10-12T16:40:07.182554+00:00",
+          "vadImportLoadMs": 4736.089,
+          "detectorConstructMs": 1662.597,
+          "totalInitializationMs": 9229.107,
+          "rssBytes": 564035584,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 23380,
+          "readyAt": "2026-10-12T16:40:07.029865+00:00",
+          "vadImportLoadMs": 4619.766,
+          "detectorConstructMs": 1695.995,
+          "totalInitializationMs": 9084.461,
+          "rssBytes": 562298880,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 23472,
+          "readyAt": "2026-10-12T16:40:07.138551+00:00",
+          "vadImportLoadMs": 4722.235,
+          "detectorConstructMs": 1651.418,
+          "totalInitializationMs": 9199.183,
+          "rssBytes": 564486144,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        },
+        {
+          "pid": 23524,
+          "readyAt": "2026-10-12T16:40:07.011781+00:00",
+          "vadImportLoadMs": 4639.114,
+          "detectorConstructMs": 1662.696,
+          "totalInitializationMs": 9059.147,
+          "rssBytes": 563392512,
+          "networkAttemptsBlocked": 4,
+          "models": [
+            "Silero VAD v6",
+            "PP-OCRv5_mobile_det"
+          ],
+          "recognitionModelLoaded": false
+        }
+      ]
+    }
+  ]
+}

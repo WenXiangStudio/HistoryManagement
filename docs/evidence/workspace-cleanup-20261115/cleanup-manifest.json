@@ -1,0 +1,615 @@
+{
+  "date": "2026-11-15",
+  "action": "move-to-ignored-local-archive",
+  "reversible": true,
+  "diskSpaceFreedBytes": 0,
+  "preservedDailyRelease": "release-following-background-final",
+  "releaseDirectories": 35,
+  "releaseFiles": 5750,
+  "releaseBytes": 20848161003,
+  "entries": [
+    {
+      "source": ".analysis",
+      "destination": "local-data/archive/release-builds-20261115/.analysis",
+      "files": 0,
+      "bytes": 0,
+      "criticalFiles": [],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release",
+      "destination": "local-data/archive/release-builds-20261115/release",
+      "files": 164,
+      "bytes": 595461264,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "95c8ff66b0802e1f2128c17070e93a2a0573d680d4d6e138f2babd12ea21c77a"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "3ba195357cf9e635cfa93a38aba5566e24f487fc06e4e7be0f0fb159ff9d0b91"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-activity-baseline-036",
+      "destination": "local-data/archive/release-builds-20261115/release-activity-baseline-036",
+      "files": 165,
+      "bytes": 595546553,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "f1e4a5e67805a6e92b30459769b8d71a7c5c505472a529ecbdc8631bdd5cbe5f"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "9e5b6f146a452f6de4f9d3ba0199227c03d445446c9a73d9e5321f6e13b3b691"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-activity-count-baseline-037",
+      "destination": "local-data/archive/release-builds-20261115/release-activity-count-baseline-037",
+      "files": 165,
+      "bytes": 595553170,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "bce8fa5db8171faec187ed4a0d70ddc6419d51fc318d48ac75959502a2fa1f06"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "79461063ec1d738dd19579e13f0be8af29ae4ae2b33be0b8653fce4836cc5749"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-activity-recovery-038",
+      "destination": "local-data/archive/release-builds-20261115/release-activity-recovery-038",
+      "files": 166,
+      "bytes": 595570642,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "d9244ccb41fa79cfe75de0cd556a2941d9db8c34d3283a3763743c45d28d117f"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "37406fed457d43c05d57ada8a8dddb062f126689f94092b9c8a9d82e3f7b105b"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-anomaly-batch-027",
+      "destination": "local-data/archive/release-builds-20261115/release-anomaly-batch-027",
+      "files": 165,
+      "bytes": 595478374,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "4db121dc10100483b2584a5e632943654b7eaebfeace6e7558f89952f8546a75"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "dc94bf0e84fadd3a90fd479e1ca7623b03bb3f1b35e0daa77b5ff096534a49a2"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-cloud-connection-049",
+      "destination": "local-data/archive/release-builds-20261115/release-cloud-connection-049",
+      "files": 166,
+      "bytes": 596266546,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "d12e16c5c5924f99e086b69b12f65e90e29a8a3a3ed83c73c08b25e2526acb69"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "fc82ec2bc1fd1b56f7c04059d12d20eafeffd7127998bed55b87e5000b17e818"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-cloud-profiles-019",
+      "destination": "local-data/archive/release-builds-20261115/release-cloud-profiles-019",
+      "files": 161,
+      "bytes": 595296609,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "11d5e1b7025b9bb016565b6846b39db8db699fc85b2efdac62d519bb164a980c"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "bacc9c015006d41ec750c04b551d6e5eeca905b8967dd177b35ad60cfa4cc320"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-creator-architecture-044",
+      "destination": "local-data/archive/release-builds-20261115/release-creator-architecture-044",
+      "files": 166,
+      "bytes": 596204358,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "d8015009cd75b37a301c73dc181b850f7239cc3e018c7af22a1207af4d732458"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "a4791fc641f7dd2bc39ae222dd9e3bc86ec7412e38c265cf65728e21085629d3"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-creator-baseline-031",
+      "destination": "local-data/archive/release-builds-20261115/release-creator-baseline-031",
+      "files": 163,
+      "bytes": 595394673,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "5f5500bfee85f7c96b9a958476ee3d31ce16f9da961ea3eea8fd5f0b241f3dae"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "a634cafeae01917be0321d9b146cddeda661b55c74039e7ea45b8a1ab5cb3bb0"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-creator-baseline-031-final",
+      "destination": "local-data/archive/release-builds-20261115/release-creator-baseline-031-final",
+      "files": 165,
+      "bytes": 595504665,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "8d6ba49cefea2b9895a1749d15f59fd0c289d19a2189665765413ed264a3dc13"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "0c5cc0d1f3321b9f43acb79c36a9839c1abab04185b9d34e61254a27caf2e8ad"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-creator-card-029",
+      "destination": "local-data/archive/release-builds-20261115/release-creator-card-029",
+      "files": 163,
+      "bytes": 595391920,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "95db5513e31943c67609e83d2d13a44203852ddcfa46d58546676e00ecd1826b"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "441eb65c07d621b5ac7a124772722b6448ff4d9ab1f96d82f057d6529a6fb925"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-creator-demo-033",
+      "destination": "local-data/archive/release-builds-20261115/release-creator-demo-033",
+      "files": 163,
+      "bytes": 595396459,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "aec14aece1beb8f8fa101d1a23144f5e7e190679947630c2bbac5a2767fe143d"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "25a12808bd259c2bb10e417335a838dd6d149b50beb6854c3f42547edf35c5fb"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-creator-heading-030",
+      "destination": "local-data/archive/release-builds-20261115/release-creator-heading-030",
+      "files": 163,
+      "bytes": 595392062,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "06281b066539c8501206b905f1600fbbb7b18bb062b3abe41568dad20963350b"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "83cb777eb44703947fbba0b0ab90e8c64254af219a3c383f9024ae25cf70bafe"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-creator-interest-manual-046",
+      "destination": "local-data/archive/release-builds-20261115/release-creator-interest-manual-046",
+      "files": 166,
+      "bytes": 596226123,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "01868a02b73086ecc3a3d68b5ecec927a0db9fa764338670f8a2b5cea75c586a"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "08603c7bcdfb43f221617186af2b93533dfa54352d65c6e646f5ede446c0ef26"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-creator-time-028",
+      "destination": "local-data/archive/release-builds-20261115/release-creator-time-028",
+      "files": 165,
+      "bytes": 595499400,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "ad8675dd4259386797664186d8c93574717b396f90f112f785ee541bfa8751ef"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "baaad70138d9c88302bbdd8300741df375453a520d70a82f427c045821d40f72"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-doubao-asr-021",
+      "destination": "local-data/archive/release-builds-20261115/release-doubao-asr-021",
+      "files": 161,
+      "bytes": 595344450,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "842066c8690bfee7aaaabb41d31414ddeed8668ee6847ebb1eff0f89426a49ca"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "1f82594cc17ad77ec6cd19ff282a5e0010a35f2d09ce33e9d81476aa8873442d"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-doubao-flash-022",
+      "destination": "local-data/archive/release-builds-20261115/release-doubao-flash-022",
+      "files": 161,
+      "bytes": 595355863,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "556ef71442c815ba29cd9cd02d6a6ab26161109ad430dee09cdec4704ff2b09d"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "a6d0859d6f9900517c3f5a60e819ccca0446d2ed7ddad4fc06f9fc2c50270d6c"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-information-workshop-035",
+      "destination": "local-data/archive/release-builds-20261115/release-information-workshop-035",
+      "files": 163,
+      "bytes": 595414101,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "82e68c92f33995904200fe36c98cccec2d3484c1ed9acf312c621acd0dddcc54"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "36abb1e9086ba4918e76c60c03147e69930a03feefa4ed10d9369f88b057b573"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-interest-framework-045",
+      "destination": "local-data/archive/release-builds-20261115/release-interest-framework-045",
+      "files": 166,
+      "bytes": 596206960,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "2e2bc59f1972ffa3b49051d502602afec73d245202655ddb9da97d35a3925b73"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "d72ed40d34783d902c9dbbf37f829fa541920f64c21c6e34c6fe6ee1087aadf2"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-priority-idle-041",
+      "destination": "local-data/archive/release-builds-20261115/release-priority-idle-041",
+      "files": 166,
+      "bytes": 595572110,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "2cb511de951963be2e176a227bed0bf74323380a862b4d48199d1d500d667cc1"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "c74af22e51dc9cc5b0561b6347ea6c9ae72c281aed0593661c962d6a71324efc"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-priority-performance-042",
+      "destination": "local-data/archive/release-builds-20261115/release-priority-performance-042",
+      "files": 166,
+      "bytes": 595577156,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "abe861b46bcdab012189dfe7340a145ff9a20ee23db914d45b0b1848fcb8de34"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "7e51f74008cfac7bf635c9e0f35cd07efc8e9abd29285040884362643704fae6"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-priority-steps-043",
+      "destination": "local-data/archive/release-builds-20261115/release-priority-steps-043",
+      "files": 166,
+      "bytes": 595583119,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "c82a45c6a71d8195b944347f748add884c75b1b322068de55c016a45596a4bc1"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "21be011f87308c1649051d88396d8691fdd618671480e5f4cff0dd63e0428705"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-profile-attribution-032",
+      "destination": "local-data/archive/release-builds-20261115/release-profile-attribution-032",
+      "files": 165,
+      "bytes": 595506316,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "c8571411d190d90fff75a1087830ddc28dd61efee24c27604712b5de68f83ca5"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "d617dedc09c3e0a92589fdcbac25334253904fd66a66f9e4eac6b3bd13680e83"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-qwen-video-020",
+      "destination": "local-data/archive/release-builds-20261115/release-qwen-video-020",
+      "files": 161,
+      "bytes": 595316985,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "e43c06dac91a15437cbb7576b16ec5ee6433f2543fb3d2393cc12b19653343be"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "80f04a8f81e1fb419ad8e5270b102b11723cb065614c13b93c7bd9acc91481ca"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-research-128000-040",
+      "destination": "local-data/archive/release-builds-20261115/release-research-128000-040",
+      "files": 166,
+      "bytes": 595571174,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "54d09dbd53087bd82c26dd37fe49f5460d579a69f4cc9f04c2accb8e6b4127a0"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "da96146bc7427d706666fc014ce6be2815bf66b964c88672d137c03a5f19f2b9"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-siliconflow-023",
+      "destination": "local-data/archive/release-builds-20261115/release-siliconflow-023",
+      "files": 161,
+      "bytes": 595370451,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "8577c9d871dbf80406fb70a79f9d0e10256bfcd9f4e376c5f6f3b1f6a83b0265"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "199eca22a06210754efd97a9ade974ab6bce57ae08883603f18012763359997c"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-siliconflow-dynamic-048",
+      "destination": "local-data/archive/release-builds-20261115/release-siliconflow-dynamic-048",
+      "files": 166,
+      "bytes": 596232927,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "c47e3161f3dd91ed0a89ea940700c4a15405955d944408d769f995a4fbaca37e"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "07318a18104b62f577129fa688bc394a93798ccfcbf5495f202c1f278e77fba1"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-siliconflow-slot3-025",
+      "destination": "local-data/archive/release-builds-20261115/release-siliconflow-slot3-025",
+      "files": 161,
+      "bytes": 595393870,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "19b793959fdbe14fe3dd28adadbb815b7cb4a8a9e01623a05fd4b6c863fb9dbc"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "c0417a4e66cfe2d15d56d11dc6135549ccc71326ca448994895fbfed34755f64"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-siliconflow-vision-024",
+      "destination": "local-data/archive/release-builds-20261115/release-siliconflow-vision-024",
+      "files": 161,
+      "bytes": 595393113,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "ea39594ae857738d33f4362952f128c10fff13723a15ae5ea3f520a90a5ccdfb"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "648132d37f867a40b8ef8ff1ce3686cf23ba4351241bf972c7211dc368fc05ec"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-video-audit-034",
+      "destination": "local-data/archive/release-builds-20261115/release-video-audit-034",
+      "files": 163,
+      "bytes": 595396529,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "5382a820cf5b4e4b74af1ca5a85aee71de48690c2ac792412aece81ea5cc9a9f"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "f0b5af5f96a7c71213f0670b768bc4b967754a4cafe40527f877a4a8667a34db"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-video-interest-manual-047",
+      "destination": "local-data/archive/release-builds-20261115/release-video-interest-manual-047",
+      "files": 166,
+      "bytes": 596228608,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "91135dca24a8f39fe9797dd44bdc3a1d22f38698193176ff4e00d3319765adf8"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "10e5846dd141399c382b641087ab67d0ebf79a2956e89cd94d15190f2dc76c71"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-video-workflow-026",
+      "destination": "local-data/archive/release-builds-20261115/release-video-workflow-026",
+      "files": 165,
+      "bytes": 595476768,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "526e8ad1e4fe2397339f94863b613a20b1128de78d125bf5bdc435228b3f4a8f"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "d13947fedb1c91bdeb7533323cad6cc45906e076e56180efda6f7bfc228fe89a"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-video-workshop-ui-050",
+      "destination": "local-data/archive/release-builds-20261115/release-video-workshop-ui-050",
+      "files": 166,
+      "bytes": 596289880,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "71e76029ac8b1749f6606daae85a4fdfe6fd69ee89028188766687f3d4f60b66"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "5b55dffe5feba7cfd83691585d22f7ed0d011b2edc9a74c7796f514957b9d237"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-workshop-deep-052",
+      "destination": "local-data/archive/release-builds-20261115/release-workshop-deep-052",
+      "files": 167,
+      "bytes": 596404085,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "c3691d10ff40437c9dc7eaf743ea95eca786e7ddb49aa7bac381b0a64e1fea42"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "24613ee13fed4b65cf4b3f173e89548416ad79cbe7efa3e5536d4717a9d2e11e"
+        }
+      ],
+      "inventoryVerified": true
+    },
+    {
+      "source": "release-workshop-process-051",
+      "destination": "local-data/archive/release-builds-20261115/release-workshop-process-051",
+      "files": 167,
+      "bytes": 596343720,
+      "criticalFiles": [
+        {
+          "file": "win-unpacked/Signal Desk.exe",
+          "sha256": "c8c25c9c7894e1275d02c18d24e254505a870172e02bb398959c140deb9569c2"
+        },
+        {
+          "file": "win-unpacked/resources/app.asar",
+          "sha256": "659b2d675cfc4d02744608c8df2cf60c33b8dc59081a2e782566cec572332cb5"
+        }
+      ],
+      "inventoryVerified": true
+    }
+  ]
+}

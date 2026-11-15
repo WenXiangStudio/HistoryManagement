@@ -1,26 +1,24 @@
-import {classifyActivityVisibility,type CreatorActivityCapture} from './creatorActivity'
+import {classifyActivityVisibility,creatorWorkBelongsTo,type CreatorActivityCapture} from './creatorActivity'
 
 export type CreatorPublicationSource = {
   authorUid:string; authorSecUid:string; observedAt:string; pages:CreatorActivityCapture['pages']
-  /** Only a verified complete list whose public IDs agree with the homepage count replaces current membership. */
+  /** Coverage metadata only; missing current membership never removes publication history from intervals. */
   completePublicList?:boolean
 }
 export type CreatorPublicationInterval = {
   workCount:number; gapCount:number; meanHours:number|null; earliestPublishedAt:string|null; latestPublishedAt:string|null
 }
 
-/** Preserve source history, but compute current membership from the last proven complete list plus newer observations. */
+/** Accumulated publication history; inactive records retain their original contribution to the intervals. */
 export function creatorPublicationInterval(sources:CreatorPublicationSource[],uid:string|null,secUid:string):CreatorPublicationInterval {
   const works=new Map<string,{published:number;observed:number}>()
   for(const source of [...sources].sort((a,b)=>Date.parse(a.observedAt)-Date.parse(b.observedAt))){
     const observed=Date.parse(source.observedAt)
     if(!Number.isFinite(observed)||source.authorSecUid!==secUid||!uid||source.authorUid!==uid)continue
-    if(source.completePublicList)works.clear()
     for(const page of source.pages){
       const records=page.records??page.items
       for(const record of records){
-        if(record.authorUid!==uid||record.authorSecUid!==secUid)continue
-        if('visibility' in record&&['deleted','prohibited','restricted','temporary-marker'].includes(classifyActivityVisibility(record.visibility))){works.delete(record.workId);continue}
+        if(!creatorWorkBelongsTo(record,uid,secUid))continue
         if(!record.publishedAt)continue
         const visible='visibility' in record?classifyActivityVisibility(record.visibility)==='public':record.publicVisible===true
         if(!visible)continue

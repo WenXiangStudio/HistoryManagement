@@ -1,0 +1,76 @@
+{
+  "recordedDate": "2026-10-12",
+  "workId": "7694535682575860393",
+  "responseId": "resp_9a9e6a65-0961-9de3-8c72-6adc84cadc4d",
+  "model": "qwen3.8-omni-flash",
+  "userQualityFeedback": {
+    "source": "用户对本条视频的人工校对",
+    "reportedAccuracyPercent": 100,
+    "reportedComparison": "本条转写正确率完胜此前本地模型",
+    "scope": "只针对本条视频，不外推为通用模型准确率；未追加独立核听或改写原文"
+  },
+  "ratesCnyPerMillionTokens": {
+    "uncachedInput": "0.8",
+    "output": "2.7",
+    "cachedInput": "0.1",
+    "source": "用户此前提供"
+  },
+  "userReportedBackendUsage": {
+    "source": "用户转述的百炼后台元数据记录，未直接核对后台页面",
+    "recordScope": {
+      "metadataOnly": true,
+      "metadataExamples": ["Request ID", "时间", "模型", "Token 用量", "状态码"],
+      "includesPromptContent": false,
+      "includesResponseContent": false,
+      "clarifiedByUserOn": "2026-10-12",
+      "interpretation": "仅说明用户所见记录不含请求/响应正文，不表示Token统计仅计算元数据或排除实际模型输入输出"
+    },
+    "inputTokens": 54431,
+    "outputTokens": 794,
+    "totalTokens": 55225,
+    "inputCostAssumingNoCacheCny": "0.0435448",
+    "outputCostCny": "0.0021438",
+    "totalCostAssumingNoCacheCny": "0.0456886"
+  },
+  "savedApiUsage": {
+    "evidence": "usage-complete.json",
+    "source": "本机保存的同次API response.completed原始回执；不同于用户提供的后台元数据记录",
+    "inputTokens": 794,
+    "inputTextTokens": 260,
+    "inputAudioTokens": 534,
+    "cachedInputTokens": 0,
+    "outputTokens": 54431,
+    "outputVisibleTextTokens": 275,
+    "outputReasoningTokens": 54156,
+    "totalTokens": 55225,
+    "inputCostCny": "0.0006352",
+    "outputCostCny": "0.1469637",
+    "totalRateEquivalentCostCny": "0.1475989",
+    "reasoningRateEquivalentCostCny": "0.1462212",
+    "reasoningShareOfOutputPercent": 99.4947731990961,
+    "reasoningShareOfRateEquivalentCostPercent": 99.06659195969618,
+    "inputPlusVisibleOutputArithmeticOnlyCny": "0.0013777"
+  },
+  "reconciliation": {
+    "status": "input-output-direction-conflict-unresolved",
+    "observation": "后台数字经用户转述与接口回执总量一致，但输入和输出方向完全相反",
+    "backendNowReportedVisible": true,
+    "actualCashDebitVerified": false,
+    "actualCashDebitCny": null,
+    "remainingQuotaTokens": null,
+    "noDoubleCounting": "同一次调用的两个计价口径，不是两次调用或两笔费用"
+  },
+  "codeAudit": {
+    "entry": "src/main/qwenVideo.ts transcribeQwen -> src/main/responsesText.ts requestResponsesContent",
+    "reasoningEffortExplicitlyConfigured": false,
+    "maxOutputTokensExplicitlyConfigured": false,
+    "reasoningDisabledExplicitly": false,
+    "audioRequests": 1,
+    "visualRequests": 0,
+    "summaryRequests": 0,
+    "retries": 0,
+    "observation": "没有设定推理或输出预算，本次返回大量思考tokens；具体为何生成如此长思考尚未独立定位"
+  },
+  "followupDirection": "针对仅转写路径核对服务支持的思考开关/预算和输出上限，再进行小范围质量与用量对照；不能保证关闭思考后准确率不变，也不能直接将算术扣除思考费用当优化后实测",
+  "thisTurnActions": "只读核对代码与usage，计算并保存费用与用户反馈；未修改APP设置、源码或发起新模型调用"
+}

@@ -1,10 +1,28 @@
 // @vitest-environment jsdom
-import {act,createElement} from 'react'
+import {act,createElement,memo} from 'react'
 import {createRoot} from 'react-dom/client'
 import {it,expect,vi} from 'vitest'
-import CreatorName,{CreatorNameProvider,CreatorNameOption} from './CreatorName'
+import CreatorName,{CreatorNameProvider,CreatorNameOption,useCreatorNameAppearance} from './CreatorName'
 import type {CreatorListItem} from '../../shared/contracts'
 import {calendarWeek} from '../../shared/calendarWeek'
+it('notifies only the changed identity when one priority is saved or an equivalent IPC snapshot arrives',async()=>{
+  vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT',true)
+  const container=document.createElement('div'),root=createRoot(container),renders=vi.fn()
+  const Probe=memo(({secUid}:{secUid:string})=>{const appearance=useCreatorNameAppearance({profileUrl:`https://www.douyin.com/user/${secUid}`});renders(secUid);return createElement('span',null,appearance.priority?.tier)})
+  const children=['one','two','three'].map(secUid=>createElement(Probe,{key:secUid,secUid}))
+  const rows=['one','two','three'].map(secUid=>({profileUrl:`https://www.douyin.com/user/${secUid}`,refreshPriority:{mode:null,tier:null,revision:0}})) as CreatorListItem[]
+  const render=(creators:CreatorListItem[])=>createElement(CreatorNameProvider,{owner:'owner',creators,children})
+  try{
+    await act(async()=>root.render(render(rows)));renders.mockClear()
+    const changed=rows.map((creator,index)=>index===1?{...creator,refreshPriority:{mode:'boost' as const,tier:'active' as const,revision:1}}:creator)
+    await act(async()=>root.render(render(changed)))
+    expect(renders.mock.calls.map(([secUid])=>secUid)).toEqual(['two'])
+    renders.mockClear();await act(async()=>root.render(render(structuredClone(changed))))
+    expect(renders).not.toHaveBeenCalled()
+    await act(async()=>root.render(render(rows)))
+    expect(renders.mock.calls.map(([secUid])=>secUid)).toEqual(['two'])
+  }finally{await act(async()=>root.unmount());vi.unstubAllGlobals()}
+})
 it('matches global names by identity within the current owner, never by a duplicate nickname',async()=>{
   vi.stubGlobal('IS_REACT_ACT_ENVIRONMENT',true)
   const container=document.createElement('div'),root=createRoot(container)

@@ -1,0 +1,77 @@
+  seedDemo(): void {
+    const existing = Number((this.db.prepare('SELECT COUNT(*) AS count FROM works').get() as { count: number }).count)
+    if (existing > 0) return
+    const collectedAt = nowIso()
+    const creators = [
+      ['c-tech', '量子茶馆', '拆解 AI、芯片与消费电子，不贩卖焦虑', 'technology'],
+      ['c-finance', '慢钱研究所', '普通人的金融常识与资产配置', 'finance'],
+      ['c-history', '地图里的往事', '用地图讲清历史与地缘', 'humanities'],
+      ['c-work', '职场显微镜', '真实职场案例和沟通方法', 'business'],
+      ['c-health', '靠谱营养师周周', '循证营养，不神化单一食物', 'health'],
+      ['c-auto', '电车观察室', '新能源车长期体验与技术解读', 'automotive']
+    ] as const
+    const items = creators.map(([creatorId, nickname, signature]) => ({ entityType: 'creator' as const, creatorId, nickname, signature, profileUrl: `https://www.douyin.com/user/${creatorId}`, avatarUrl: null, isFollowing: true }))
+    this.ingestEnvelope({ contract: 'browser-collection-envelope/v1', commandId: 'demo-creators', platform: 'douyin', collectedAt, sourceUrl: 'https://www.douyin.com/user/self?showTab=follow', completeness: 'complete', hasMore: false, items })
+    creators.forEach(([creatorId, nickname, , domain], creatorIndex) => {
+      const workItems = Array.from({ length: 4 }, (_, index) => {
+        const published = new Date(Date.now() - (creatorIndex * 8 + index * 22 + 1) * 3_600_000).toISOString()
+        const titles: Record<string, string[]> = {
+          technology: ['手机端 AI 真正有用的三个场景', '为什么芯片制程数字不等于性能', '大模型价格战之后会发生什么', '一张图看懂端侧推理'],
+          finance: ['利率下降时普通人该看什么', '别把高收益当成低风险', '家庭现金流的四个账户', '指数基金常见误区'],
+          humanities: ['一条河如何改变三座城市', '地图上的古代交通线', '边界为什么画在这里', '从地形看一场战争'],
+          business: ['领导说再想想究竟是什么意思', '汇报不等于念工作日志', '同事越界时如何回应', '转岗前先回答这三个问题'],
+          health: ['蛋白质不是越多越好', '看懂配料表的顺序', '熬夜后补觉有用吗', '保健品证据等级怎么分'],
+          automotive: ['冬季续航应该怎么测', '800V 平台带来了什么', '辅助驾驶不是自动驾驶', '三年电车电池衰减实测']
+        }
+        return {
+          entityType: 'work' as const,
+          workId: `${creatorId}-w${index + 1}`,
+          creatorId,
+          workType: index === 3 ? 'image' as const : 'video' as const,
+          sourceUrl: `https://www.douyin.com/video/${creatorId}-w${index + 1}`,
+          coverUrl: `https://picsum.photos/seed/${creatorId}-${index}/720/960`,
+          title: titles[domain][index],
+          description: `${nickname}：${titles[domain][index]}。从事实、误区和可执行建议三个层次展开。`,
+          publishedAt: published,
+          discoveredAt: collectedAt,
+          metrics: {
+            likeCount: creatorIndex === 2 && index === 3 ? null : (creatorIndex + 2) * (index + 3) * 137,
+            commentCount: creatorIndex === 1 && index === 2 ? null : (creatorIndex + 1) * (index + 2) * 19,
+            collectCount: creatorIndex === 0 && index === 1 ? null : (creatorIndex + 3) * (index + 1) * 41,
+            shareCount: null,
+            visibility: {
+              like: creatorIndex === 2 && index === 3 ? 'unknown' as const : 'visible' as const,
+              comment: creatorIndex === 1 && index === 2 ? 'unknown' as const : 'visible' as const,
+              collect: creatorIndex === 0 && index === 1 ? 'unknown' as const : 'visible' as const,
+              share: 'unknown' as const
+            }
+          }
+        }
+      })
+      this.ingestEnvelope({ contract: 'browser-collection-envelope/v1', commandId: `demo-${creatorId}`, platform: 'douyin', collectedAt, sourceUrl: `https://www.douyin.com/user/${creatorId}`, completeness: 'complete', hasMore: false, items: workItems })
+      const creatorDbId = (this.db.prepare('SELECT id FROM creators WHERE platform_creator_id=?').get(creatorId) as { id: number }).id
+      this.db.prepare('UPDATE creators SET is_demo=1 WHERE id=?').run(creatorDbId)
+      this.db.prepare(`UPDATE works SET is_demo=1 WHERE creator_id=? AND platform_work_id GLOB 'c-*-w[1-4]'`).run(creatorDbId)
+      this.db.prepare(`INSERT INTO creator_tags(creator_id, tag_id, source, confidence, is_locked, evidence_json) VALUES (?, ?, 'ai', 0.92, 0, '[]')`).run(creatorDbId, domain)
+      workItems.forEach((work, index) => {
+        this.saveAnalysis({
+          contract: 'analysis-result/v1', subjectType: 'work', subjectId: work.workId,
+          summary: `${work.title}：作者先指出常见误解，再用两个可核验的例子解释原因，最后给出普通用户可以立即采用的判断方法。`,
+          keyPoints: ['先区分表面现象与真实原因', '用具体例子降低理解门槛', '给出可操作的判断清单'],
+          coreExpression: '面对复杂信息，应先建立可验证的判断框架，而不是追逐单一结论。',
+          domains: [{ id: domain, confidence: 0.92 }], keywords: [work.title.split('的')[0], creators[creatorIndex][3], '方法论'],
+          evidence: [{ kind: 'page', ref: work.sourceUrl, quote: work.description }], confidence: 0.82,
+          modelId: 'demo-local', promptVersion: 'work-analysis/v1', generatedAt: collectedAt
+        })
+        const commentItems = Array.from({ length: 5 }, (_, commentIndex) => ({
+          entityType: 'comment' as const, commentId: `${work.workId}-cm${commentIndex}`, workId: work.workId,
+          parentCommentId: null, publicAuthorId: `viewer-${commentIndex}`, publicAuthorName: `观众${commentIndex + 1}`,
+          body: ['这个解释终于把概念讲清楚了', '能不能再做一期具体案例？', '这里的数据来源是什么？', '我之前确实理解反了', '已收藏，准备按清单试一下'][commentIndex],
+          likeCount: 25 - commentIndex * 3, publishedAt: work.publishedAt
+        }))
+        this.ingestEnvelope({ contract: 'browser-collection-envelope/v1', commandId: `demo-comments-${work.workId}`, platform: 'douyin', collectedAt, sourceUrl: work.sourceUrl, completeness: 'complete', hasMore: false, items: commentItems })
+      })
+      this.indexCreator(creatorDbId)
+    })
+  }
+

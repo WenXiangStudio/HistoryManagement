@@ -1,9 +1,26 @@
 import {describe,it,expect} from 'vitest'
-import {creatorRefreshSchedule,creatorRefreshTier,DEFAULT_CREATOR_REFRESH_PACING,latestWorkFingerprint,assessRecentActivity,creatorAutomaticTier,effectiveCreatorTier,creatorsForRefreshScope} from './creatorRefreshPolicy'
+import {creatorRefreshSchedule,creatorRefreshTier,DEFAULT_CREATOR_REFRESH_PACING,latestWorkFingerprint,assessRecentActivity,creatorAutomaticTier,effectiveCreatorTier,creatorsForRefreshScope,creatorNeedsVerification} from './creatorRefreshPolicy'
 import type {CreatorActivityCapture} from './creatorActivity'
 
 describe('creator refresh frequency',()=>{
   const now='2026-10-07T04:00:00.000Z'
+  it('puts missing baselines in the review group regardless of guessed frequency or saved priority, and keeps verified single-work baselines ordinary',()=>{
+    const missing={id:-1,isDemo:false,activity:{baselineStatus:'missing',publicationInterval:{meanHours:24}},refreshPriority:{mode:'boost',tier:'active'}} as any
+    const oneWork={id:-2,isDemo:false,activity:{baselineStatus:'ready',publicationInterval:{meanHours:null}}} as any
+    const demo={...missing,id:1,isDemo:true}
+    expect(creatorNeedsVerification(missing)).toBe(true)
+    expect(creatorsForRefreshScope([missing,oneWork,demo],'anomaly')).toEqual([missing])
+    expect(creatorsForRefreshScope([missing,oneWork,demo],'all')).toEqual([oneWork])
+    expect(creatorsForRefreshScope([missing,oneWork,demo],'active')).toEqual([])
+  })
+  it('selects only real anomalous creators for the explicit repair group and keeps ordinary all-refresh separate',()=>{
+    const regular={id:-1,isDemo:false,activity:{publicationInterval:{meanHours:24},recentActivity:assessRecentActivity('2026-10-06T00:00:00Z',now)}} as any
+    const anomaly={...regular,id:-2,activity:{...regular.activity,anomaly:{detectedAt:now}},isStarred:true,note:'保留'}
+    const demo={...anomaly,id:3,isDemo:true}
+    expect(creatorsForRefreshScope([regular,anomaly,demo],'anomaly')).toEqual([anomaly])
+    expect(creatorsForRefreshScope([regular,anomaly,demo],'all')).toEqual([regular])
+    expect(creatorsForRefreshScope([regular,anomaly,demo],'active')).toEqual([regular])
+  })
   it('checks four frequencies daily, weekly, fortnightly and every thirty days',()=>{
     expect(creatorRefreshSchedule('2026-10-06T00:00:00Z','2026-10-06T08:00:00Z',24,now)).toMatchObject({tier:'active',intervalDays:1,due:true,latestKnownPublishedAt:'2026-10-06T00:00:00Z'})
     expect(creatorRefreshSchedule('2026-10-06T00:00:00Z','2026-10-06T08:00:00Z',14*24,now)).toMatchObject({tier:'regular',intervalDays:7,due:false,nextDueAt:'2026-10-12T16:00:00.000Z'})

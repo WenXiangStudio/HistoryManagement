@@ -1,0 +1,56 @@
+{
+  "modelEntryAttempts": 0,
+  "networkGuardHits": 0,
+  "formalContentStagesAdded": 0,
+  "databases": [
+    {
+      "name": "signal-desk.sqlite",
+      "tablesCompared": 27,
+      "changedTables": [],
+      "integrity": "ok",
+      "foreignKeyErrors": 0
+    },
+    {
+      "name": "following-directory.sqlite",
+      "tablesCompared": 26,
+      "changedTables": [],
+      "integrity": "ok",
+      "foreignKeyErrors": 0
+    }
+  ],
+  "videoCount": 79,
+  "formalSummaryWorkCount": 1,
+  "packageSha256": "80f04a8f81e1fb419ad8e5270b102b11723cb065614c13b93c7bd9acc91481ca",
+  "mediaEvidenceFiles": [
+    {
+      "index": 1,
+      "files": [
+        "proof.json",
+        "source.mp4"
+      ]
+    },
+    {
+      "index": 2,
+      "files": [
+        "proof.json",
+        "source.mp4"
+      ]
+    },
+    {
+      "index": 3,
+      "files": [
+        "proof.json",
+        "source.mp4"
+      ]
+    }
+  ],
+  "restoredApp": {
+    "phase": "completed",
+    "connection": {
+      "online": true,
+      "version": "0.8.6",
+      "expectedVersion": "0.8.6"
+    },
+    "readiness": "ready"
+  }
+}

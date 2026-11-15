@@ -1,0 +1,30 @@
+{
+  "input_tokens": 794,
+  "input_tokens_details": {
+    "cached_tokens": 0
+  },
+  "output_tokens": 54431,
+  "output_tokens_details": {
+    "reasoning_tokens": 54156
+  },
+  "total_tokens": 55225,
+  "x_details": [
+    {
+      "input_tokens": 794,
+      "output_tokens": 54431,
+      "total_tokens": 55225,
+      "input_tokens_details": {
+        "text_tokens": 260,
+        "audio_tokens": 534
+      },
+      "output_tokens_details": {
+        "text_tokens": 275,
+        "reasoning_tokens": 54156
+      },
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "x_billing_type": "response_api"
+    }
+  ]
+}

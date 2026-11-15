@@ -22,14 +22,14 @@ export function classifyActivityCommandError(error) {
 // and screenshots both fail. No expression, return value or raw error is retained.
 export function traceActivityCommands(chrome) {
   const commands=[],connections=[]
-  let sequence=0,dropped=0,expectedDetach=false,unexpectedDetach=false
+  let sequence=0,dropped=0,expectedDetach=false,unexpectedDetach=false,lastDetachReason=null
   const pendingCommands=new Set()
   const push=(list,value,max)=>{if(list.length>=max){list.shift();dropped++}list.push(value)}
   const detach=(source,reason)=>{
     if(source.tabId!==currentTab)return
     push(connections,{at:new Date().toISOString(),event:'detached',reason:['target_closed','canceled_by_user'].includes(reason)?reason:'other',expected:expectedDetach},16)
     if(!expectedDetach){
-      unexpectedDetach=true
+      unexpectedDetach=true;lastDetachReason=reason
       for(const reject of pendingCommands)reject(Error('DEBUGGER_NOT_ATTACHED'))
     }
   }
@@ -56,9 +56,11 @@ export function traceActivityCommands(chrome) {
     finally{pendingCommands.delete(rejectDetached);entry.elapsedMs=Math.max(0,performance.now()-began)}
   }
   return {sendCommand,assertConnected(){if(unexpectedDetach)throw Error('DEBUGGER_NOT_ATTACHED')},
+    get detached(){return unexpectedDetach},get detachReason(){return lastDetachReason},
+    reconnected(){unexpectedDetach=false;expectedDetach=false;lastDetachReason=null;push(connections,{at:new Date().toISOString(),event:'reattached',reason:null},16)},
     setTarget(tabId){currentTab=tabId;expectedDetach=false;unexpectedDetach=false;push(connections,{at:new Date().toISOString(),event:'target-selected',reason:null},16)},
     expectDetach(tabId){if(tabId===currentTab){expectedDetach=true;push(connections,{at:new Date().toISOString(),event:'detach-requested',reason:null},16)}},
-    beginAuthor(){commands.length=0;connections.length=0;sequence=0;dropped=0;expectedDetach=false;unexpectedDetach=false},
+    beginAuthor(){commands.length=0;connections.length=0;sequence=0;dropped=0;expectedDetach=false;unexpectedDetach=false;lastDetachReason=null},
     snapshot(){return {commands:commands.map(row=>({...row})),connections:connections.map(row=>({...row})),dropped}},
     stop(){chrome.debugger.onDetach?.removeListener(detach)}}
 }

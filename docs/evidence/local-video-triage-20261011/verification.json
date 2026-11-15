@@ -1,0 +1,13 @@
+{
+  "numericalConsistency": "passed",
+  "sampleCount": 3,
+  "frameCount": 24,
+  "videos": 79,
+  "targetFormalContentStages": 0,
+  "runningContentBatches": 0,
+  "networkAvailabilityChecksBlocked": 4,
+  "cloudModelRequests": 0,
+  "ASRRequests": 0,
+  "languageModelRequests": 0,
+  "codexViewedMedia": false
+}

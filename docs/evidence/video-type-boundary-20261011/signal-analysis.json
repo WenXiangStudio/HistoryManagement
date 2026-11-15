@@ -1,0 +1,484 @@
+{
+  "startedAt": "2026-10-11T11:40:00.718157+00:00",
+  "rules": {
+    "audio": {
+      "sampleRate": 16000,
+      "windowSeconds": 0.02,
+      "energy": "mean square across all channels; never sum channels before squaring",
+      "lowLevelThresholdsDbfs": [
+        -50,
+        -40,
+        -30
+      ],
+      "minimumQuietRunSeconds": 0.3,
+      "noDigitalSignalRule": "maximum absolute decoded sample is exactly zero",
+      "sustainedSignalRule": "at least 95% of analyzed time has window RMS >= -40 dBFS"
+    },
+    "video": {
+      "sampleFps": 2,
+      "scaledWidth": 160,
+      "pixelFormat": "gray",
+      "nearUnchangedPair": "mean absolute pixel delta <= 1% of 255 AND fraction of pixels with delta >= 25 <= 1%",
+      "largeChangePair": "mean absolute pixel delta >= 8% of 255 AND fraction of pixels with delta >= 25 >= 25%",
+      "labels": ">=95% near-unchanged pairs: mostly stable samples; >=20% large-change pairs: frequent large changes; otherwise: other sampled changes"
+    },
+    "semanticClassification": "undetermined; these rules do not identify speech, music, text, objects, or information dominance",
+    "thresholdStatus": "fixed before reading numerical results; exploratory, not calibrated or validated classifiers"
+  },
+  "samples": [
+    {
+      "index": 1,
+      "shareUrl": "https://v.douyin.com/0jhOqgmgr0o/",
+      "workId": "7692746246095687849",
+      "sha256": "791f31dc8e22c793db582263e9f519777c012d58b94b2b332fd083aa7f301783",
+      "containerDurationSeconds": 66.152993,
+      "audio": {
+        "decodedSeconds": 65.993938,
+        "startSeconds": 0.161125,
+        "decodedEndSeconds": 66.155062,
+        "maximumTimestampDiscontinuitySeconds": 0.0001,
+        "initialUnassessedSeconds": 0.161125,
+        "percentageDenominator": "decoded PCM duration; initial uncovered interval is not counted as silence",
+        "limitations": [
+          "AAC decoding may start after container time zero; timestamps reflect actual decoded samples",
+          "20 ms RMS thresholds are energy measurements, not speech or music detection"
+        ],
+        "channelCount": 2,
+        "windowCount": 3300,
+        "overallRmsDbfs": -23.856,
+        "peakDbfs": -0.194,
+        "allDecodedSamplesZero": false,
+        "windowLevelP10Dbfs": -43.29,
+        "windowLevelP90Dbfs": -20.348,
+        "thresholdChecks": [
+          {
+            "thresholdDbfs": -50,
+            "lowLevelSeconds": 4.774,
+            "lowLevelPercent": 7.234,
+            "quietRunsAtLeast300ms": [
+              {
+                "startSeconds": 55.881,
+                "endSeconds": 58.781,
+                "durationSeconds": 2.9
+              },
+              {
+                "startSeconds": 58.961,
+                "endSeconds": 59.321,
+                "durationSeconds": 0.36
+              },
+              {
+                "startSeconds": 64.701,
+                "endSeconds": 66.155,
+                "durationSeconds": 1.454
+              }
+            ]
+          },
+          {
+            "thresholdDbfs": -40,
+            "lowLevelSeconds": 11.314,
+            "lowLevelPercent": 17.144,
+            "quietRunsAtLeast300ms": [
+              {
+                "startSeconds": 22.161,
+                "endSeconds": 22.561,
+                "durationSeconds": 0.4
+              },
+              {
+                "startSeconds": 46.921,
+                "endSeconds": 47.221,
+                "durationSeconds": 0.3
+              },
+              {
+                "startSeconds": 49.181,
+                "endSeconds": 49.541,
+                "durationSeconds": 0.36
+              },
+              {
+                "startSeconds": 50.161,
+                "endSeconds": 50.521,
+                "durationSeconds": 0.36
+              },
+              {
+                "startSeconds": 55.701,
+                "endSeconds": 58.801,
+                "durationSeconds": 3.1
+              },
+              {
+                "startSeconds": 58.941,
+                "endSeconds": 59.361,
+                "durationSeconds": 0.42
+              },
+              {
+                "startSeconds": 64.301,
+                "endSeconds": 66.155,
+                "durationSeconds": 1.854
+              }
+            ]
+          },
+          {
+            "thresholdDbfs": -30,
+            "lowLevelSeconds": 20.974,
+            "lowLevelPercent": 31.782,
+            "quietRunsAtLeast300ms": [
+              {
+                "startSeconds": 21.401,
+                "endSeconds": 22.561,
+                "durationSeconds": 1.16
+              },
+              {
+                "startSeconds": 38.321,
+                "endSeconds": 38.641,
+                "durationSeconds": 0.32
+              },
+              {
+                "startSeconds": 41.021,
+                "endSeconds": 42.061,
+                "durationSeconds": 1.04
+              },
+              {
+                "startSeconds": 42.081,
+                "endSeconds": 42.761,
+                "durationSeconds": 0.68
+              },
+              {
+                "startSeconds": 43.221,
+                "endSeconds": 43.601,
+                "durationSeconds": 0.38
+              },
+              {
+                "startSeconds": 45.041,
+                "endSeconds": 45.821,
+                "durationSeconds": 0.78
+              },
+              {
+                "startSeconds": 46.721,
+                "endSeconds": 47.321,
+                "durationSeconds": 0.6
+              },
+              {
+                "startSeconds": 47.481,
+                "endSeconds": 48.081,
+                "durationSeconds": 0.6
+              },
+              {
+                "startSeconds": 48.921,
+                "endSeconds": 49.561,
+                "durationSeconds": 0.64
+              },
+              {
+                "startSeconds": 49.581,
+                "endSeconds": 52.701,
+                "durationSeconds": 3.12
+              },
+              {
+                "startSeconds": 52.721,
+                "endSeconds": 54.581,
+                "durationSeconds": 1.86
+              },
+              {
+                "startSeconds": 54.621,
+                "endSeconds": 55.161,
+                "durationSeconds": 0.54
+              },
+              {
+                "startSeconds": 55.621,
+                "endSeconds": 58.801,
+                "durationSeconds": 3.18
+              },
+              {
+                "startSeconds": 58.941,
+                "endSeconds": 59.401,
+                "durationSeconds": 0.46
+              },
+              {
+                "startSeconds": 62.721,
+                "endSeconds": 63.421,
+                "durationSeconds": 0.7
+              },
+              {
+                "startSeconds": 63.841,
+                "endSeconds": 66.155,
+                "durationSeconds": 2.314
+              }
+            ]
+          }
+        ],
+        "technicalLabel": "signal_with_low_level_intervals",
+        "decodeElapsedMs": 162.989
+      },
+      "video": {
+        "sampleFps": 2,
+        "frameCount": 132,
+        "pairCount": 131,
+        "firstSampleSeconds": 0.0,
+        "lastSampleSeconds": 65.5,
+        "scaledDimensions": [
+          160,
+          90
+        ],
+        "meanPixelDeltaPercent": 8.784,
+        "p90PixelDeltaPercent": 19.001,
+        "nearUnchangedPairCount": 16,
+        "nearUnchangedPairPercent": 12.214,
+        "largeChangePairCount": 66,
+        "largeChangePairPercent": 50.382,
+        "technicalLabel": "frequent_large_sample_changes",
+        "decodeElapsedMs": 2924.97,
+        "limitations": [
+          "2 fps grayscale samples; short changes between samples, color-only changes and fine text may be missed",
+          "pixel changes do not identify objects, scene cuts, subtitles, actions, speech or semantic information"
+        ]
+      },
+      "contentType": "undetermined",
+      "speechPresent": "undetermined",
+      "musicPresent": "undetermined",
+      "substantiveVisualTextPresent": "undetermined",
+      "informationDominance": "undetermined",
+      "localAnalysisElapsedMs": 3161.136
+    },
+    {
+      "index": 2,
+      "shareUrl": "https://v.douyin.com/n4fmbpWpG-Y/",
+      "workId": "7683045679131856147",
+      "sha256": "bdf216286cd6d8209ae7d8fb3934e8179a531909f66cddeb83c63076c5790faa",
+      "containerDurationSeconds": 26.3,
+      "audio": {
+        "decodedSeconds": 26.285,
+        "startSeconds": 0.0,
+        "decodedEndSeconds": 26.285,
+        "maximumTimestampDiscontinuitySeconds": 8.8e-05,
+        "initialUnassessedSeconds": 0,
+        "percentageDenominator": "decoded PCM duration; initial uncovered interval is not counted as silence",
+        "limitations": [
+          "AAC decoding may start after container time zero; timestamps reflect actual decoded samples",
+          "20 ms RMS thresholds are energy measurements, not speech or music detection"
+        ],
+        "channelCount": 2,
+        "windowCount": 1315,
+        "overallRmsDbfs": -14.891,
+        "peakDbfs": -0.12,
+        "allDecodedSamplesZero": false,
+        "windowLevelP10Dbfs": -240.0,
+        "windowLevelP90Dbfs": -10.803,
+        "thresholdChecks": [
+          {
+            "thresholdDbfs": -50,
+            "lowLevelSeconds": 4.625,
+            "lowLevelPercent": 17.596,
+            "quietRunsAtLeast300ms": [
+              {
+                "startSeconds": 2.22,
+                "endSeconds": 3.1,
+                "durationSeconds": 0.88
+              },
+              {
+                "startSeconds": 3.32,
+                "endSeconds": 4.48,
+                "durationSeconds": 1.16
+              },
+              {
+                "startSeconds": 4.94,
+                "endSeconds": 5.72,
+                "durationSeconds": 0.78
+              },
+              {
+                "startSeconds": 6.16,
+                "endSeconds": 7.56,
+                "durationSeconds": 1.4
+              }
+            ]
+          },
+          {
+            "thresholdDbfs": -40,
+            "lowLevelSeconds": 5.505,
+            "lowLevelPercent": 20.944,
+            "quietRunsAtLeast300ms": [
+              {
+                "startSeconds": 2.2,
+                "endSeconds": 3.18,
+                "durationSeconds": 0.98
+              },
+              {
+                "startSeconds": 3.32,
+                "endSeconds": 4.48,
+                "durationSeconds": 1.16
+              },
+              {
+                "startSeconds": 4.88,
+                "endSeconds": 5.72,
+                "durationSeconds": 0.84
+              },
+              {
+                "startSeconds": 6.12,
+                "endSeconds": 7.62,
+                "durationSeconds": 1.5
+              },
+              {
+                "startSeconds": 25.96,
+                "endSeconds": 26.285,
+                "durationSeconds": 0.325
+              }
+            ]
+          },
+          {
+            "thresholdDbfs": -30,
+            "lowLevelSeconds": 7.605,
+            "lowLevelPercent": 28.933,
+            "quietRunsAtLeast300ms": [
+              {
+                "startSeconds": 2.12,
+                "endSeconds": 3.18,
+                "durationSeconds": 1.06
+              },
+              {
+                "startSeconds": 3.3,
+                "endSeconds": 4.48,
+                "durationSeconds": 1.18
+              },
+              {
+                "startSeconds": 4.82,
+                "endSeconds": 5.72,
+                "durationSeconds": 0.9
+              },
+              {
+                "startSeconds": 6.04,
+                "endSeconds": 7.64,
+                "durationSeconds": 1.6
+              },
+              {
+                "startSeconds": 25.5,
+                "endSeconds": 26.285,
+                "durationSeconds": 0.785
+              }
+            ]
+          }
+        ],
+        "technicalLabel": "signal_with_low_level_intervals",
+        "decodeElapsedMs": 83.933
+      },
+      "video": {
+        "sampleFps": 2,
+        "frameCount": 53,
+        "pairCount": 52,
+        "firstSampleSeconds": 0.0,
+        "lastSampleSeconds": 26.0,
+        "scaledDimensions": [
+          160,
+          213
+        ],
+        "meanPixelDeltaPercent": 7.759,
+        "p90PixelDeltaPercent": 13.443,
+        "nearUnchangedPairCount": 10,
+        "nearUnchangedPairPercent": 19.231,
+        "largeChangePairCount": 15,
+        "largeChangePairPercent": 28.846,
+        "technicalLabel": "frequent_large_sample_changes",
+        "decodeElapsedMs": 379.59,
+        "limitations": [
+          "2 fps grayscale samples; short changes between samples, color-only changes and fine text may be missed",
+          "pixel changes do not identify objects, scene cuts, subtitles, actions, speech or semantic information"
+        ]
+      },
+      "contentType": "undetermined",
+      "speechPresent": "undetermined",
+      "musicPresent": "undetermined",
+      "substantiveVisualTextPresent": "undetermined",
+      "informationDominance": "undetermined",
+      "localAnalysisElapsedMs": 510.512
+    },
+    {
+      "index": 3,
+      "shareUrl": "https://v.douyin.com/ooNjIFb07Ck/",
+      "workId": "7694229627543227686",
+      "sha256": "aa67383655d594af0e86026e670dfc253b8b42cfb1939c729ac8b2431cf7af20",
+      "containerDurationSeconds": 14.743991,
+      "audio": {
+        "decodedSeconds": 14.584938,
+        "startSeconds": 0.161125,
+        "decodedEndSeconds": 14.746063,
+        "maximumTimestampDiscontinuitySeconds": 6.2e-05,
+        "initialUnassessedSeconds": 0.161125,
+        "percentageDenominator": "decoded PCM duration; initial uncovered interval is not counted as silence",
+        "limitations": [
+          "AAC decoding may start after container time zero; timestamps reflect actual decoded samples",
+          "20 ms RMS thresholds are energy measurements, not speech or music detection"
+        ],
+        "channelCount": 2,
+        "windowCount": 730,
+        "overallRmsDbfs": -26.996,
+        "peakDbfs": -14.97,
+        "allDecodedSamplesZero": false,
+        "windowLevelP10Dbfs": -33.193,
+        "windowLevelP90Dbfs": -23.793,
+        "thresholdChecks": [
+          {
+            "thresholdDbfs": -50,
+            "lowLevelSeconds": 0.005,
+            "lowLevelPercent": 0.034,
+            "quietRunsAtLeast300ms": []
+          },
+          {
+            "thresholdDbfs": -40,
+            "lowLevelSeconds": 0.185,
+            "lowLevelPercent": 1.268,
+            "quietRunsAtLeast300ms": []
+          },
+          {
+            "thresholdDbfs": -30,
+            "lowLevelSeconds": 3.345,
+            "lowLevelPercent": 22.934,
+            "quietRunsAtLeast300ms": [
+              {
+                "startSeconds": 0.161,
+                "endSeconds": 1.121,
+                "durationSeconds": 0.96
+              },
+              {
+                "startSeconds": 13.061,
+                "endSeconds": 13.441,
+                "durationSeconds": 0.38
+              }
+            ]
+          }
+        ],
+        "technicalLabel": "sustained_signal_above_threshold",
+        "decodeElapsedMs": 70.067
+      },
+      "video": {
+        "sampleFps": 2,
+        "frameCount": 29,
+        "pairCount": 28,
+        "firstSampleSeconds": 0.0,
+        "lastSampleSeconds": 14.0,
+        "scaledDimensions": [
+          160,
+          284
+        ],
+        "meanPixelDeltaPercent": 10.969,
+        "p90PixelDeltaPercent": 24.681,
+        "nearUnchangedPairCount": 0,
+        "nearUnchangedPairPercent": 0.0,
+        "largeChangePairCount": 12,
+        "largeChangePairPercent": 42.857,
+        "technicalLabel": "frequent_large_sample_changes",
+        "decodeElapsedMs": 654.625,
+        "limitations": [
+          "2 fps grayscale samples; short changes between samples, color-only changes and fine text may be missed",
+          "pixel changes do not identify objects, scene cuts, subtitles, actions, speech or semantic information"
+        ]
+      },
+      "contentType": "undetermined",
+      "speechPresent": "undetermined",
+      "musicPresent": "undetermined",
+      "substantiveVisualTextPresent": "undetermined",
+      "informationDominance": "undetermined",
+      "localAnalysisElapsedMs": 767.193
+    }
+  ],
+  "noModelExecution": true,
+  "noNetworkOperations": true,
+  "rawImagesOrAudioPresentedToCodex": false,
+  "analysisScriptElapsedMs": 4439.449,
+  "finishedAt": "2026-10-11T11:40:05.157531+00:00",
+  "stopReason": "UNABLE_TO_DETERMINE_SEMANTIC_TYPE_FROM_THESE_NON_MODEL_SIGNALS"
+}

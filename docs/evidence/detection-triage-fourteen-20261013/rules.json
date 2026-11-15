@@ -1,0 +1,67 @@
+{
+  "version": "existence-detection-triage-v1",
+  "classificationThresholdStatus": "exploratory rules fixed before inference; user accuracy review pending",
+  "vad": {
+    "threshold": 0.5,
+    "negThreshold": 0.35,
+    "minSpeechMs": 250,
+    "minSilenceMs": 200,
+    "speechPadMs": 0,
+    "highSpeechFraction": 0.6,
+    "sparseSpeechFraction": 0.1,
+    "temporalBins": 10,
+    "highSpeechBinCoverage": 0.5,
+    "channelPolicy": "highest whole-track RMS channel; the other channel is not independently assessed"
+  },
+  "frames": {
+    "count": 8,
+    "longEdge": 960,
+    "lastTime": "duration minus 0.30 seconds",
+    "method": "input seeking with showinfo actual source timestamps; no earlier frame cache"
+  },
+  "textDetection": {
+    "model": "PP-OCRv5_mobile_det",
+    "pixelThreshold": 0.3,
+    "boxThreshold": 0.6,
+    "minimumAreaFraction": 0.0001,
+    "minimumWidthFraction": 0.005,
+    "minimumHeightFraction": 0.003,
+    "smallEdgeCandidate": "area <=2.5% and height <=6%, center in outer 10% vertical or 12% horizontal",
+    "textEvidence": "at least 2 of 8 frames retain geometric text candidates",
+    "charactersRecognized": false,
+    "overlayHeuristic": "geometry only; cannot prove watermark identity"
+  },
+  "visualChange": {
+    "graySize": [
+      96,
+      96
+    ],
+    "changedPixelDelta": 25,
+    "largeMeanDifferenceFraction": 0.08,
+    "largeChangedPixelFraction": 0.25,
+    "nearStaticMeanFraction": 0.01,
+    "nearStaticChangedPixelFraction": 0.01,
+    "scope": "differences between eight sparse samples, not continuous motion or semantic change"
+  },
+  "labels": {
+    "visual": "纯画面主导",
+    "visual_text": "图文结合（无语音/口播）",
+    "speech": "口播主导或口播加图文",
+    "pending": "待确认"
+  },
+  "classification": [
+    "speech fraction >=60% and speech in >=50% of timeline bins: speech category, strong rule evidence",
+    "speech fraction >10%: speech category candidate, moderate/low rule evidence",
+    "zero speech and >=2 retained text frames: visual-text category",
+    "speech fraction <=10% and <2 retained text frames: visual category candidate (sparse voice allowed)",
+    "speech fraction >0% and <=10% and >=2 retained text frames: unresolved boundary; no forced fourth category"
+  ],
+  "limits": {
+    "workerCpuThreads": 2,
+    "ffmpegThreads": 1,
+    "minimumProjectedAvailableBytes": 6442450944,
+    "emergencyAvailableBytes": 2147483648,
+    "waveReadyTimeoutSeconds": 180,
+    "waveTaskTimeoutSeconds": 900
+  }
+}
